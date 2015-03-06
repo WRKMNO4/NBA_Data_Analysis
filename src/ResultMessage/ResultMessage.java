@@ -1,5 +1,5 @@
 package ResultMessage;
 
-public class ResultMessage {
-
+public enum ResultMessage {
+	
 }
