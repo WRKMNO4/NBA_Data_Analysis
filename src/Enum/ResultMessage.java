@@ -1,4 +1,4 @@
-package ResultMessage;
+package Enum;
 
 public enum ResultMessage {
 	find_sucess,
