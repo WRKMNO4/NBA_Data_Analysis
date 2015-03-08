@@ -13,4 +13,7 @@ public class TeamPO {
 	
 	String teamLogoURL;     //«Ú∂”Logoµÿ÷∑
 	
+	TeamDataPO teamData;
+	
+	
 }

@@ -14,4 +14,7 @@ public class PlayerPO {
 	String portraitURL;    //头像的地址
 	String actionURL;      //动作照片的地址
 	
+	PlayerDataPO playerData;
+	
+	
 }
