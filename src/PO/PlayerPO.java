@@ -15,6 +15,7 @@ public class PlayerPO {
 	String actionURL;      //动作照片的地址
 	
 	PlayerDataPO playerData;
+	TeamPO team ; //所属球队
 	
 	
 }

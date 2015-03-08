@@ -1,5 +1,7 @@
 package PO;
 
+import java.util.ArrayList;
+
 import Enum.Zone;
 
 public class TeamPO {
@@ -15,5 +17,5 @@ public class TeamPO {
 	
 	TeamDataPO teamData;
 	
-	
+	ArrayList<PlayerPO> players ;//«Ú‘±ºØ∫œ
 }
