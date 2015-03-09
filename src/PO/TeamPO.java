@@ -18,4 +18,6 @@ public class TeamPO {
 	TeamDataPO teamData;
 	
 	ArrayList<PlayerPO> players ;//球员集合
+	ArrayList<MatchPO> matches;  //比赛集合
+	
 }

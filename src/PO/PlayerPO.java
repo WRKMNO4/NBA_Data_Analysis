@@ -1,5 +1,7 @@
 package PO;
 
+import java.util.ArrayList;
+
 public class PlayerPO {
 	String name;
 	String position;  //位置
@@ -15,9 +17,9 @@ public class PlayerPO {
 	String portraitURL;    //头像的地址
 	String actionURL;      //动作照片的地址
 	
+	ArrayList<PlayerDataOfOneMatchPO> datas;
 	PlayerDataPO playerData;
-	PlayerDataOfOneMatchPO playerDataOfOneMatch ;
-	TeamPO team ; //所属球队
 	
+	String team ; //所属球队（可用name去find TeamPO）
 	
 }

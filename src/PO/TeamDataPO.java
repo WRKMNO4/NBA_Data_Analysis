@@ -14,9 +14,9 @@ public class TeamDataPO {
 	int numberOfAssist ;//助攻数，
 	int numberOfSteal ;//抢断数，
 	int numberOfBlock ;//盖帽数，
-	int numberOfFault ;//失误数
-	int numberOfFoul ;//，犯规数，
-	int score ;//比赛得分，
+	int numberOfFault ;//失误数，
+	int numberOfFoul ;//犯规数，
+	int score ;//比赛得分
 	
 	double percentageOfShooting ;//投篮命中率，
 	double percentageOf3_point ;//三分命中率，
