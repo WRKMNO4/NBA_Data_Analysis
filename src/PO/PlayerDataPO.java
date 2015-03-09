@@ -1,13 +1,15 @@
 package PO;
 
 public class PlayerDataPO {
+
+	//该球员赛季总数据
 	TeamPO team ;
 	int numberOfMatch ;//参赛场数
 	int numberOfStarting ;//首发场数
 	int numberOfRebound ;//篮板数
 	int numberOfAssist ;//助攻数
-	
 	double presentTime ;//在场时间
+	
 	double percentageOfShooting ;//投篮命中率
 	double percentageOf3_Point ;//三分命中率
 	double percentageOffreeThrow ;//罚球命中率

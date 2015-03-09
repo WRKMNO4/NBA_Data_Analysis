@@ -9,7 +9,4 @@ public class MatchPO {
 	ScorePO firstScore,secondScore,thirdScore,fourthScore;
 	
 	
-	
-	
-	
 }

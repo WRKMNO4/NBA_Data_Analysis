@@ -1,5 +1,11 @@
 package PO;
 
-public class MatchListPO {
+import java.util.ArrayList;
 
+public class MatchListPO {
+	ArrayList<MatchPO> allMatchList ;
+	
+	void addMatch(MatchPO theMatch){
+		
+	}
 }
