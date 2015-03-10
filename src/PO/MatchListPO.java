@@ -3,6 +3,6 @@ package PO;
 import java.util.ArrayList;
 
 public class MatchListPO {
-	ArrayList<MatchPO> allMatchList ;
+	ArrayList<MatchPO> allMatchListOf13_14 ;
 	
 }

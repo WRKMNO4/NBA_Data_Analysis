@@ -1,6 +1,8 @@
 package Enum;
 
 public enum ResultMessage {
-	find_sucess,
-	find_failure,
+	find_success ,
+	find_failure ,
+	add_success ,
+	add_failure ,
 }

@@ -14,6 +14,7 @@ public class PlayerDataOfOneMatchPO {
 	int numberOfDefenseRebound ;//防守（后场）篮板球，
 	int numberOfReboundOfOneMatch ;//总篮板球，
 	int numberOfAssistOfOneMatch ;//助攻数，
+	int numberOfSteal;  //抢断数
 	int numberOfBlockOfOneMatch ;//盖帽数，
 	int numberOfFaultOfOneMatch ;//失误数，
 	int numberOfFoulOfOneMatch ;//犯规数，
@@ -54,6 +55,9 @@ public class PlayerDataOfOneMatchPO {
 	public int getNumberOfAssistOfOneMatch() {
 		return numberOfAssistOfOneMatch;
 	}
+	public int getNumberOfSteal() {
+		return numberOfSteal;
+	}
 	public int getNumberOfBlockOfOneMatch() {
 		return numberOfBlockOfOneMatch;
 	}
@@ -66,7 +70,6 @@ public class PlayerDataOfOneMatchPO {
 	public int getScoreOfOneMatch() {
 		return scoreOfOneMatch;
 	}
-	
 	
 	
 }
