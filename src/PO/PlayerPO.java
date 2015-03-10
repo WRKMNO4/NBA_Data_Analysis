@@ -12,7 +12,7 @@ public class PlayerPO {
 	String birth;     //生日(月/日/年)
 	int age;
 	int exp;         //球龄
-	String school;    //毕业学校
+	String school;    //毕业学校                          
 	
 	String portraitURL;    //头像的地址
 	String actionURL;      //动作照片的地址
