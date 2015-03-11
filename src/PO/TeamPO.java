@@ -19,5 +19,73 @@ public class TeamPO {
 	
 	ArrayList<PlayerPO> players ;//球员集合
 	ArrayList<MatchPO> matches;  //比赛集合
+	public String getFullName() {
+		return fullName;
+	}
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+	public String getShortName() {
+		return shortName;
+	}
+	public void setShortName(String shortName) {
+		this.shortName = shortName;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public Zone getZone() {
+		return zone;
+	}
+	public void setZone(Zone zone) {
+		this.zone = zone;
+	}
+	public String getDistrict() {
+		return district;
+	}
+	public void setDistrict(String district) {
+		this.district = district;
+	}
+	public String getHomeCourt() {
+		return homeCourt;
+	}
+	public void setHomeCourt(String homeCourt) {
+		this.homeCourt = homeCourt;
+	}
+	public int getTimeOfEstablishment() {
+		return timeOfEstablishment;
+	}
+	public void setTimeOfEstablishment(int timeOfEstablishment) {
+		this.timeOfEstablishment = timeOfEstablishment;
+	}
+	public String getTeamLogoURL() {
+		return teamLogoURL;
+	}
+	public void setTeamLogoURL(String teamLogoURL) {
+		this.teamLogoURL = teamLogoURL;
+	}
+	public TeamDataPO getTeamData() {
+		return teamData;
+	}
+	public void setTeamData(TeamDataPO teamData) {
+		this.teamData = teamData;
+	}
+	public ArrayList<PlayerPO> getPlayers() {
+		return players;
+	}
+	public void setPlayers(ArrayList<PlayerPO> players) {
+		this.players = players;
+	}
+	public ArrayList<MatchPO> getMatches() {
+		return matches;
+	}
+	public void setMatches(ArrayList<MatchPO> matches) {
+		this.matches = matches;
+	}
+	
+	
 	
 }

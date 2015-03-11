@@ -1,5 +1,7 @@
 package PO;
 
+import java.util.ArrayList;
+
 public class MatchPO {
 	String name;    //比赛的文件名字
 	
@@ -8,7 +10,8 @@ public class MatchPO {
 	String firstTeam;
 	String secondTeam;
 	ScorePO finalScore;
-	ScorePO firstScore,secondScore,thirdScore,fourthScore;
+	/*ScorePO firstScore,secondScore,thirdScore,fourthScore;*/
+	ArrayList<ScorePO> allScore ;
 	
 	TeamDataPO firstTeamData;
 	TeamDataPO secondTeamData;

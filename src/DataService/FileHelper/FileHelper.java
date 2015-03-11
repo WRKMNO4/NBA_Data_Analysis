@@ -33,7 +33,7 @@ public class FileHelper {
 	
 	public static ArrayList<String> analysisOfOneLine(String oneLine){   //解析每行数据
 		ArrayList<String> results=new ArrayList<String>();
-		oneLine=oneLine.substring(1,oneLine.length()-1);
+		oneLine=oneLine.substring(1,oneLine.length()-1);//去掉首尾的非法字符
 		String[] eachString=oneLine.split("│");
 		for(int i=0;i<eachString.length;i++){     //去掉空格
 			results.add(eachString[i].trim());

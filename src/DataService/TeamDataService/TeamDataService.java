@@ -1,8 +1,10 @@
 package DataService.TeamDataService;
 
+import Enum.ResultMessage;
 import PO.TeamPO;
 
 public interface TeamDataService {
-	public void addTeam(TeamPO oneTeam) ;
+	public ResultMessage addTeam(TeamPO oneTeam) ;
 	public TeamPO findTeamByName(String name) ;
+	public ResultMessage updateTeam(TeamPO oneTeam) ;
 }

@@ -5,4 +5,6 @@ public enum ResultMessage {
 	find_failure ,
 	add_success ,
 	add_failure ,
+	update_success ,
+	update_failure ,
 }
