@@ -10,28 +10,29 @@ import PO.PlayerDataOfOneMatchPO;
 import PO.PlayerDataPO;
 import PO.PlayerListPO;
 import PO.PlayerPO;
-import PO.ScorePO;
+import PO.ScoreOfMatchPO;
 import PO.TeamDataPO;
 import PO.TeamListPO;
 import PO.TeamPO;
 
 public class MatchController implements MatchDataService{
-	MatchListPO matchs ;
+	MatchListPO matches ;
 	
 	public MatchController(){
-		read("µ¸¥˙“ª ˝æ›/matches") ;
+		matches=new MatchListPO();
+		read("Ëø≠‰ª£‰∏ÄÊï∞ÊçÆ/matches") ;
 	}
 	void read(String fileName){
 		File file = new File(fileName) ;
 		if(file.isDirectory()){
 			File[] allFiles = file.listFiles() ;
-			for(int i = 0; i<allFiles.length;i++){   //±È¿˙matchesŒƒº˛º–÷–À˘”–Œƒº˛
+			for(int i = 0; i<allFiles.length;i++){   //ÔøΩÔøΩÔøΩÔøΩmatchesÔøΩƒºÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩƒºÔøΩ
 				ArrayList<String> tempString  = FileHelper.readByLine(allFiles[i]) ;
 				
 				MatchPO newMatch = new MatchPO() ;
 				
-				boolean isFirstTeam = false ; //≈–∂œƒƒ“ª÷ª«Ú∂”
-				for(int j = 0;j<tempString.size() ;j++){      //∂‘√ø≥°»¸ ¬º«¬º¿Ôµƒ√ø“ª––Ω¯––∑÷Œˆ
+				boolean isFirstTeam = false ; //ÔøΩ–∂ÔøΩÔøΩÔøΩ“ª÷ªÔøΩÔøΩÔøΩ
+				for(int j = 0;j<tempString.size() ;j++){      //ÔøΩÔøΩ√øÔøΩÔøΩÔøΩÔøΩÔøΩ¬ºÔøΩ¬ºÔøΩÔøΩÔøΩ√ø“ªÔøΩ–ΩÔøΩÔøΩ–∑ÔøΩÔøΩÔøΩ
 					String[] splitString=tempString.get(j).split(";");
 					if(tempString.get(j).length() == 3){
 						isFirstTeam =!isFirstTeam ;
@@ -42,11 +43,11 @@ public class MatchController implements MatchDataService{
 					case 0: newMatch.setDate(splitString[0]);
 					        newMatch.setFirstTeam(splitString[1].split("-")[0]);
 					        newMatch.setSecondTeam(splitString[1].split("-")[1]);
-					        newMatch.setFinalScore(new ScorePO(splitString[2]));
+					        newMatch.setFinalScore(new ScoreOfMatchPO(splitString[2]));
 					        break;
-					case 1: ArrayList<ScorePO> allScore = new ArrayList<ScorePO>();
+					case 1: ArrayList<ScoreOfMatchPO> allScore = new ArrayList<ScoreOfMatchPO>();
 					        for(int scoreCount=0;scoreCount<splitString.length;scoreCount++)
-					        	allScore.add(new ScorePO(splitString[scoreCount]));
+					        	allScore.add(new ScoreOfMatchPO(splitString[scoreCount]));
 					        newMatch.setAllScore(allScore);
 					        break;
 					 default: 
@@ -67,21 +68,23 @@ public class MatchController implements MatchDataService{
 							 newMatch.addDataOfOnePlayerOfSecondTeam(onePlayer);
 							 thePlayer.setTeam(newMatch.getSecondTeam());
 						 }
-						 TeamPO theTeam = TeamListPO.findTeamByFullName(thePlayer.getTeam()) ;
+						 TeamPO theTeam = TeamListPO.findTeamByShortName(thePlayer.getTeam()) ;
 						 theTeam.addPlayer(thePlayer);
 					}	
 				}
-				TeamPO firstTeam = TeamListPO.findTeamByFullName(newMatch.getFirstTeam());
-				TeamPO secondTeam = TeamListPO.findTeamByFullName(newMatch.getSecondTeam());
+				TeamPO firstTeam = TeamListPO.findTeamByShortName(newMatch.getFirstTeam());
+				TeamPO secondTeam = TeamListPO.findTeamByShortName(newMatch.getSecondTeam());
 				firstTeam.addMatch(newMatch);
 				secondTeam.addMatch(newMatch);
+				
+				addMatch(newMatch);
 			}
 		}
 	}
 	@Override
 	public void addMatch(MatchPO oneMatch) {
 		// TODO Auto-generated method stub
-		
+		matches.addMatch(oneMatch);
 	}
 
 	@Override

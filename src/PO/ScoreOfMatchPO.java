@@ -1,11 +1,11 @@
 package PO;
 
-public class ScorePO {
+public class ScoreOfMatchPO {
 	String scores;
 	int firstScore;
 	int secondScore;
 	
-	public ScorePO(String s){
+	public ScoreOfMatchPO(String s){
 		scores=s;
 		String[] tmp=s.split("-");
 		firstScore=Integer.parseInt(tmp[0]);

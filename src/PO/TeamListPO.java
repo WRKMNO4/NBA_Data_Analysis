@@ -23,9 +23,9 @@ public class TeamListPO {
 		return null ;
 	}
 	
-	public static TeamPO findTeamByFullName(String name){
+	public static TeamPO findTeamByShortName(String name){
 		for(TeamPO oneTeam:allTeamsOf13_14){
-			if(oneTeam.getFullName().equals(name)){
+			if(oneTeam.getShortName().equals(name)){
 				return oneTeam ;
 			}
 		}

@@ -49,7 +49,7 @@ public class TeamController implements TeamDataService{
 	@Override
 	public TeamPO findTeamByName(String name) {
 		// TODO Auto-generated method stub
-		return teams.findTeamByFullName(name);
+		return teams.findTeamByShortName(name);
 	}
 
 	@Override

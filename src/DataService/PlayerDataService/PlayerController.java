@@ -28,7 +28,6 @@ public class PlayerController implements PlayerDataService{
 					if(j%2==0)
 						continue;
 					String data=FileHelper.analysisOfOneLine(tempString.get(j)).get(1);
-					System.out.println(data);
 					switch(j){
 					case 1: newPlayer.setName(data); break;
 					case 3: newPlayer.setNumber(data); break;

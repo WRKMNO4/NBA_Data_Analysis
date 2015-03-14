@@ -17,7 +17,7 @@ public class PlayerPO {
 	String portraitURL;    //头像的地址
 	String actionURL;      //动作照片的地址
 	
-	ArrayList<PlayerDataOfOneMatchPO> datas;
+	ArrayList<PlayerDataOfOneMatchPO> datas=new ArrayList<PlayerDataOfOneMatchPO>();
 	PlayerDataPO playerData;
 	
 	String team ; //所属球队（可用name去find TeamPO）

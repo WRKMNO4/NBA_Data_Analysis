@@ -9,9 +9,9 @@ public class MatchPO {
 	String date;
 	String firstTeam;
 	String secondTeam;
-	ScorePO finalScore;
+	ScoreOfMatchPO finalScore;
 	/*ScorePO firstScore,secondScore,thirdScore,fourthScore;*/
-	ArrayList<ScorePO> allScore ;
+	ArrayList<ScoreOfMatchPO> allScore ;
 	
 	ArrayList<PlayerDataOfOneMatchPO> firstTeamData;
 	ArrayList<PlayerDataOfOneMatchPO> secondTeamData;
@@ -56,16 +56,16 @@ public class MatchPO {
 	public void setSecondTeam(String secondTeam) {
 		this.secondTeam = secondTeam;
 	}
-	public ScorePO getFinalScore() {
+	public ScoreOfMatchPO getFinalScore() {
 		return finalScore;
 	}
-	public void setFinalScore(ScorePO finalScore) {
+	public void setFinalScore(ScoreOfMatchPO finalScore) {
 		this.finalScore = finalScore;
 	}
-	public ArrayList<ScorePO> getAllScore() {
+	public ArrayList<ScoreOfMatchPO> getAllScore() {
 		return allScore;
 	}
-	public void setAllScore(ArrayList<ScorePO> allScore) {
+	public void setAllScore(ArrayList<ScoreOfMatchPO> allScore) {
 		this.allScore = allScore;
 	}
 	public ArrayList<PlayerDataOfOneMatchPO> getFirstTeamData() {

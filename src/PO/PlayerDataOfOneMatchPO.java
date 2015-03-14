@@ -4,7 +4,7 @@ public class PlayerDataOfOneMatchPO {
 	//某场比赛中的数据
 	String name ;//名字
 	String position ;//位置
-	double presentTimeOfOneMatch ;//在场时间
+	String presentTimeOfOneMatch ;//在场时间
 	int numberOfShooting ;//投篮命中数
 	int numberOfShotAttempt ; // 投篮出手数，
 	int numberOf3_point ;//三分命中数，
@@ -26,7 +26,7 @@ public class PlayerDataOfOneMatchPO {
 	public PlayerDataOfOneMatchPO(String[] splitString){
 	   	this.setName(splitString[0]);//名字
     	this.setPosition(splitString[1]);//位置
-		this.setPresentTimeOfOneMatch(Double.parseDouble(splitString[2]));
+		this.setPresentTimeOfOneMatch(splitString[2]);
 		this.setNumberOfShooting(Integer.parseInt(splitString[3]));
 		this.setNumberOfShotAttempt(Integer.parseInt(splitString[4]));
 		this.setNumberOf3_point(Integer.parseInt(splitString[5]));
@@ -41,8 +41,14 @@ public class PlayerDataOfOneMatchPO {
 		this.setNumberOfBlockOfOneMatch(Integer.parseInt(splitString[14]));
 		this.setNumberOfFaultOfOneMatch(Integer.parseInt(splitString[15]));
 		this.setNumberOfFoulOfOneMatch(Integer.parseInt(splitString[16]));
-		this.setScoreOfOneMatch(Integer.parseInt(splitString[17]));
+		if(splitString[17].equals("null"))
+			this.setScoreOfOneMatch(this.getNumberOfFreeThrow() + 
+					2 * (this.getNumberOfShooting() - this. getNumberOf3_point()) +
+					3 * this.getNumberOf3_point()   );
+		else
+			this.setScoreOfOneMatch(Integer.parseInt(splitString[17]));
 	}
+	
 	public String getName() {
 		return name;
 	}
@@ -52,7 +58,7 @@ public class PlayerDataOfOneMatchPO {
 	public void setPosition(String position) {
 		this.position = position;
 	}
-	public void setPresentTimeOfOneMatch(double presentTimeOfOneMatch) {
+	public void setPresentTimeOfOneMatch(String presentTimeOfOneMatch) {
 		this.presentTimeOfOneMatch = presentTimeOfOneMatch;
 	}
 	public void setNumberOfShooting(int numberOfShooting) {
@@ -103,7 +109,7 @@ public class PlayerDataOfOneMatchPO {
 	public String getPosition() {
 		return position;
 	}
-	public double getPresentTimeOfOneMatch() {
+	public String getPresentTimeOfOneMatch() {
 		return presentTimeOfOneMatch;
 	}
 	public int getNumberOfShooting() {

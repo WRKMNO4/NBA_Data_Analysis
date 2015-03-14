@@ -17,8 +17,8 @@ public class TeamPO {
 	
 	TeamDataPO teamData;
 	
-	ArrayList<PlayerPO> players ;//球员集合
-	ArrayList<MatchPO> matches;  //比赛集合
+	ArrayList<PlayerPO> players = new ArrayList<PlayerPO>() ;//球员集合
+	ArrayList<MatchPO> matches = new ArrayList<MatchPO>();  //比赛集合
 	
 	public void addPlayer(PlayerPO onePlayer){
 		if(ifContainThePlayer(onePlayer)){
