@@ -19,6 +19,26 @@ public class TeamPO {
 	
 	ArrayList<PlayerPO> players ;//球员集合
 	ArrayList<MatchPO> matches;  //比赛集合
+	
+	public void addPlayer(PlayerPO onePlayer){
+		if(ifContainThePlayer(onePlayer)){
+			;
+		}else{
+			players.add(onePlayer) ;
+		}
+	}
+	public void addMatch(MatchPO oneMatch){
+		matches.add(oneMatch) ;
+	}
+	
+	boolean ifContainThePlayer(PlayerPO onePlayer){
+		for(PlayerPO thePlayer:players){
+			if(thePlayer.getName().equals(onePlayer.getName())){
+				return true ;
+			}
+		}
+		return false ;
+	}
 	public String getFullName() {
 		return fullName;
 	}

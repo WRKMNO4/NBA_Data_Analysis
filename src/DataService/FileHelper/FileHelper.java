@@ -2,9 +2,11 @@ package DataService.FileHelper;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 
@@ -13,11 +15,9 @@ public class FileHelper {
 	public static ArrayList<String> readByLine(File file){
 		ArrayList<String> content=new ArrayList<String>();
 		
-		BufferedReader reader;
 		try {
 			String tempString;
-			reader=new BufferedReader(new FileReader(file));
-			
+			BufferedReader reader=new BufferedReader(new InputStreamReader(new FileInputStream(file.getPath()),"UTF-8"));  
 			while((tempString = reader.readLine()) != null){
 				
 				content.add(tempString);
@@ -31,7 +31,7 @@ public class FileHelper {
 		
 	}
 	
-	public static ArrayList<String> analysisOfOneLine(String oneLine){   //解析每行数据
+	public static ArrayList<String> analysisOfOneLine(String oneLine){   //解析每行数据（对球员信息和球队信息文件有效）
 		ArrayList<String> results=new ArrayList<String>();
 		oneLine=oneLine.substring(1,oneLine.length()-1);//去掉首尾的非法字符
 		String[] eachString=oneLine.split("│");

@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import Enum.ResultMessage;
 
 public class TeamListPO {
-	ArrayList<TeamPO> allTeamsOf13_14 ;
+	public static ArrayList<TeamPO> allTeamsOf13_14 ;
 	public TeamListPO(){
-		allTeamsOf13_14 = new ArrayList<TeamPO>() ;
+		allTeamsOf13_14= new ArrayList<TeamPO>() ;
 	}
 	
 	public ResultMessage addTeam(TeamPO theTeam){
@@ -23,7 +23,7 @@ public class TeamListPO {
 		return null ;
 	}
 	
-	public TeamPO findTeamByFullName(String name){
+	public static TeamPO findTeamByFullName(String name){
 		for(TeamPO oneTeam:allTeamsOf13_14){
 			if(oneTeam.getFullName().equals(name)){
 				return oneTeam ;

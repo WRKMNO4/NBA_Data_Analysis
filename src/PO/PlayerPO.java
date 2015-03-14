@@ -6,12 +6,12 @@ public class PlayerPO {
 	String name;
 	String position;  //位置
 	
-	int number;       //球衣号码
+	String number;       //球衣号码(用String是因为有些人的号码为"N/A")
 	String height;    //身高(英尺-英寸)
-	double weight;       //体重(磅)
+	String weight;       //体重(磅)
 	String birth;     //生日(月/日/年)
-	int age;
-	int exp;         //球龄
+	String age;
+	String exp;         //球龄
 	String school;    //毕业学校                          
 	
 	String portraitURL;    //头像的地址
@@ -23,7 +23,9 @@ public class PlayerPO {
 	String team ; //所属球队（可用name去find TeamPO）
 	
 	
-
+	public void addDataOfOneMatchOfOnePlayer(PlayerDataOfOneMatchPO onePlayer){
+		datas.add(onePlayer);
+	}
 	public String getName() {
 		return name;
 	}
@@ -40,11 +42,11 @@ public class PlayerPO {
 		this.position = position;
 	}
 
-	public int getNumber() {
+	public String getNumber() {
 		return number;
 	}
 
-	public void setNumber(int number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 
@@ -56,11 +58,11 @@ public class PlayerPO {
 		this.height = height;
 	}
 
-	public double getWeight() {
+	public String  getWeight() {
 		return weight;
 	}
 
-	public void setWeight(double weight) {
+	public void setWeight(String  weight) {
 		this.weight = weight;
 	}
 
@@ -72,19 +74,19 @@ public class PlayerPO {
 		this.birth = birth;
 	}
 
-	public int getAge() {
+	public String  getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(String  age) {
 		this.age = age;
 	}
 
-	public int getExp() {
+	public String getExp() {
 		return exp;
 	}
 
-	public void setExp(int exp) {
+	public void setExp(String exp) {
 		this.exp = exp;
 	}
 

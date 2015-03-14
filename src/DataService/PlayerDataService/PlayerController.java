@@ -13,6 +13,7 @@ public class PlayerController implements PlayerDataService{
 	PlayerListPO players ;
 	
 	public PlayerController(){
+		players= new PlayerListPO();
 		read("迭代一数据/players/info");
 	}
 	
@@ -27,15 +28,18 @@ public class PlayerController implements PlayerDataService{
 					if(j%2==0)
 						continue;
 					String data=FileHelper.analysisOfOneLine(tempString.get(j)).get(1);
+					System.out.println(data);
 					switch(j){
 					case 1: newPlayer.setName(data); break;
-					case 3: newPlayer.setNumber(Integer.parseInt(data)); break;
+					case 3: newPlayer.setNumber(data); break;
 					case 5: newPlayer.setPosition(data); break;
 					case 7: newPlayer.setHeight(data); break;
-					case 9: newPlayer.setWeight(Double.parseDouble(data)); break;
+					case 9: newPlayer.setWeight(data); break;
 					case 11: newPlayer.setBirth(data); break;
-					case 13: newPlayer.setAge(Integer.parseInt(data)); break;
-					case 15: newPlayer.setExp(Integer.parseInt(data)); break;
+					case 13: newPlayer.setAge(data);
+					        break;
+					case 15: 
+						     newPlayer.setExp(data); break;
 					case 17: newPlayer.setSchool(data); break;
 					default: break;
 					}

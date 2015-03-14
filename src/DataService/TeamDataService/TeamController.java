@@ -13,13 +13,14 @@ public class TeamController implements TeamDataService{
 	
 	TeamListPO teams ;
 	public TeamController(){
+		teams = new TeamListPO();
 		read("迭代一数据/teams/teams") ;
 	}
 	
 	public void read(String fileName){
 		File file = new File(fileName) ;
 		ArrayList<String> tempString = FileHelper.readByLine(file) ;
-		for(int i = 2;i<tempString.size()-2 ;i++){
+		for(int i = 1;i<tempString.size()-1 ;i++){
 			TeamPO newTeam = new TeamPO() ;
 			ArrayList<String> data = FileHelper.analysisOfOneLine(tempString.get(i)) ;
 			newTeam.setFullName(data.get(0));
@@ -36,6 +37,7 @@ public class TeamController implements TeamDataService{
 			newTeam.setTimeOfEstablishment(Integer.parseInt(data.get(6)));
 			newTeam.setTeamLogoURL("迭代一数据/teams/"+newTeam.getShortName()+".svg");
 			
+			addTeam(newTeam);
 		}
 	}
 	@Override
