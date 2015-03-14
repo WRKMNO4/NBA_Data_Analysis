@@ -25,6 +25,7 @@ public class MatchDriver {
 		
 		PlayerPO player= PlayerListPO.findPlayerByName("LeBron James");
 		System.out.println(player.getDatas().size()+" matches");
+		System.out.println(player.getTeam());
 		
 		
 	}
