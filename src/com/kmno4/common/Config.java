@@ -1,7 +1,7 @@
 package com.kmno4.common;
 
+import java.awt.Image;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -10,6 +10,9 @@ public class Config {
 	
 	public static final int UI_WIDTH=800;
 	public static final int UI_HEIGHT=600;
+	
+	public static final int SPLASH_MOTION_X=320;
+	public static final	int SPLASH_MOTION_Y=210;
 	
 	public static final int TOP_TAB_HEIGHT=100;
 	public static final int TOP_TAB_LABLE_WIDTH=60;
@@ -45,8 +48,8 @@ public class Config {
 	//所有图片
 	public static ArrayList<ImageIcon> motions=new ArrayList<ImageIcon>();
 	public static final Icon SPLASH_TITLE=new ImageIcon("images/splash_title.png");
-	public static final Icon SPLASH_BACKGROUND=new ImageIcon("images/pure_color.jpg");
-	public static final Icon PLAYER_SELECTION_BACKGROUND=new ImageIcon("iamges/selection_bg.png");
+	public static final Icon SPLASH_BACKGROUND=new ImageIcon("images/splash_bg.jpg");
+	public static final ImageIcon PLAYER_SELECTION_BACKGROUND=new ImageIcon("images/selection_bg.png");
 	
 	public static ArrayList<ImageIcon> getLoadingMotions(){
 		for(int i=1;i<100;i++){

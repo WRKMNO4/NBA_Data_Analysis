@@ -81,7 +81,6 @@ public class MainFrame extends JFrame implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		for(int i=0;i<topTabPanel.tabs.size();)
 		// TODO Auto-generated method stub
 		
 	}

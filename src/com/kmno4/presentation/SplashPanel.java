@@ -11,7 +11,7 @@ import com.kmno4.common.Config;
 
 public class SplashPanel extends JPanel {
 
-	private int i;
+	private int i=51;
 	private JLabel bg;
 
 	/**
@@ -34,7 +34,8 @@ public class SplashPanel extends JPanel {
 	
 	public void paint(Graphics g){
 		super.paint(g);
-		g.drawImage(Config.getLoadingMotions().get(i).getImage(), 400, 300, 
+		g.drawImage(Config.getLoadingMotions().get(i).getImage(), Config.SPLASH_MOTION_X,
+				Config.SPLASH_MOTION_Y, 
 				Config.getLoadingMotions().get(i).getIconWidth(), 
 				Config.getLoadingMotions().get(i).getIconHeight(), this);
 		changeMotionIndex();
@@ -44,7 +45,7 @@ public class SplashPanel extends JPanel {
 	public void changeMotionIndex(){
 		i++;
 		if(i>=99){
-			i=0;
+			i=51;
 		}
 	}
 	

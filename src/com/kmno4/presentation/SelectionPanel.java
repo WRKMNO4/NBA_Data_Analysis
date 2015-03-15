@@ -134,22 +134,7 @@ public class SelectionPanel extends JPanel {
 	//画背景
 	public void paintComponent(Graphics g)
 	      {
-//	         int x=0,y=0;
-//	         java.net.URL imgURL=getClass().getResource("images/selection_bg.png");
-//	         ImageIcon icon=new ImageIcon(imgURL);
-//	         g.drawImage(icon.getImage(),x,y,getSize().width,getSize().height,this);
-//	         while(true)
-//	         {
-//	           g.drawImage(icon.getImage(),x,y,this);
-//	           if(x>getSize().width && y>getSize().height)break;
-//	           //保证在窗口大于图片时，图片仍能覆盖整个窗口
-//	           if(x>getSize().width)
-//	           {
-//	              x=0;
-//	              y+=icon.getIconHeight();
-//	           }
-//	           else
-//	            x+=icon.getIconWidth();
-//	         }
+				super.paintComponent(g);
+				g.drawImage(Config.PLAYER_SELECTION_BACKGROUND.getImage(), 0, 0,Config.UI_WIDTH,Config.SELECTION_HEIGHT ,this);
 	      }    
 }
