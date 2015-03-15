@@ -72,6 +72,9 @@ public class MatchController implements MatchDataService{
 						 theTeam.addPlayer(thePlayer);
 					}	
 				}
+				
+				
+				
 				TeamPO firstTeam = TeamListPO.findTeamByShortName(newMatch.getFirstTeam());
 				TeamPO secondTeam = TeamListPO.findTeamByShortName(newMatch.getSecondTeam());
 				firstTeam.addMatch(newMatch);

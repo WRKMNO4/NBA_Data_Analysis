@@ -17,6 +17,8 @@ public class TeamPO {
 	
 	TeamDataPO teamData;
 	
+	int numberOfMatches=0;
+	
 	ArrayList<PlayerPO> players = new ArrayList<PlayerPO>() ;//球员集合
 	ArrayList<MatchPO> matches = new ArrayList<MatchPO>();  //比赛集合
 	
@@ -29,6 +31,7 @@ public class TeamPO {
 	}
 	public void addMatch(MatchPO oneMatch){
 		matches.add(oneMatch) ;
+		numberOfMatches++;
 	}
 	
 	boolean ifContainThePlayer(PlayerPO onePlayer){
@@ -104,6 +107,12 @@ public class TeamPO {
 	}
 	public void setMatches(ArrayList<MatchPO> matches) {
 		this.matches = matches;
+	}
+	public int getNumberOfMatches() {
+		return numberOfMatches;
+	}
+	public void setNumberOfMatches(int numberOfMatches) {
+		this.numberOfMatches = numberOfMatches;
 	}
 	
 	

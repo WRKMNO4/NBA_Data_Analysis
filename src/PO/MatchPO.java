@@ -13,19 +13,24 @@ public class MatchPO {
 	/*ScorePO firstScore,secondScore,thirdScore,fourthScore;*/
 	ArrayList<ScoreOfMatchPO> allScore ;
 	
-	ArrayList<PlayerDataOfOneMatchPO> firstTeamData;
-	ArrayList<PlayerDataOfOneMatchPO> secondTeamData;
+	ArrayList<PlayerDataOfOneMatchPO> firstTeam_PlayerData;
+	ArrayList<PlayerDataOfOneMatchPO> secondTeam_PlayerData;
+	
+	TeamDataPO firstTeamData;
+	TeamDataPO secondTeamData;
+	
 	public MatchPO(){
-		firstTeamData = new ArrayList<>() ;
-		secondTeamData = new ArrayList<>() ;
+		firstTeam_PlayerData = new ArrayList<>() ;
+		secondTeam_PlayerData = new ArrayList<>() ;
 	}
 	
 	public void addDataOfOnePlayerOfFirstTeam(PlayerDataOfOneMatchPO onePlayer){  
-		firstTeamData.add(onePlayer) ;
+		firstTeam_PlayerData.add(onePlayer) ;
 	}
 	public void addDataOfOnePlayerOfSecondTeam(PlayerDataOfOneMatchPO onePlayer){  
-		secondTeamData.add(onePlayer) ;
+		secondTeam_PlayerData.add(onePlayer) ;
 	}
+	
 	public String getName() {
 		return name;
 	}
@@ -68,19 +73,41 @@ public class MatchPO {
 	public void setAllScore(ArrayList<ScoreOfMatchPO> allScore) {
 		this.allScore = allScore;
 	}
-	public ArrayList<PlayerDataOfOneMatchPO> getFirstTeamData() {
+
+	public ArrayList<PlayerDataOfOneMatchPO> getFirstTeam_PlayerData() {
+		return firstTeam_PlayerData;
+	}
+
+	public void setFirstTeam_PlayerData(
+			ArrayList<PlayerDataOfOneMatchPO> firstTeam_PlayerData) {
+		this.firstTeam_PlayerData = firstTeam_PlayerData;
+	}
+
+	public ArrayList<PlayerDataOfOneMatchPO> getSecondTeam_PlayerData() {
+		return secondTeam_PlayerData;
+	}
+
+	public void setSecondTeam_PlayerData(
+			ArrayList<PlayerDataOfOneMatchPO> secondTeam_PlayerData) {
+		this.secondTeam_PlayerData = secondTeam_PlayerData;
+	}
+
+	public TeamDataPO getFirstTeamData() {
 		return firstTeamData;
 	}
-	public void setFirstTeamData(ArrayList<PlayerDataOfOneMatchPO> firstTeamData) {
+
+	public void setFirstTeamData(TeamDataPO firstTeamData) {
 		this.firstTeamData = firstTeamData;
 	}
-	public ArrayList<PlayerDataOfOneMatchPO> getSecondTeamData() {
+
+	public TeamDataPO getSecondTeamData() {
 		return secondTeamData;
 	}
-	public void setSecondTeamData(ArrayList<PlayerDataOfOneMatchPO> secondTeamData) {
+
+	public void setSecondTeamData(TeamDataPO secondTeamData) {
 		this.secondTeamData = secondTeamData;
 	}
-	
+
 	
 	
 }

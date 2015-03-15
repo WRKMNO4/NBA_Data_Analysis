@@ -1,14 +1,15 @@
 package PO;
 
+import java.util.ArrayList;
+
 public class TeamDataPO {
-	int numberOfMatch ;//比赛场数
 	int numberOfShooting ;//投篮命中数
 	int numberOfShotAttempt ;//，投篮出手数，
 	int numberOf3_point ;//三分命中数，
 	int numberOf3_pointAttempt ;//三分出手数，
 	int numberOfFreeThrow ;//罚球命中数，
 	int numberOfFreeThrowAttempt ;//罚球出手数，
-	int numberOfAttackingRebound ;//进攻篮板数，
+	int numberOfAttackRebound ;//进攻篮板数，
 	int numberOfDefenseRebound ;//防守篮板数，
 	int numberOfRebound ;//篮板球，
 	int numberOfAssist ;//助攻数，
@@ -29,11 +30,31 @@ public class TeamDataPO {
 	double efficiencyOfSteal ;//抢断效率
 	double efficiencyOfAssist ;//助攻率。
 	
-	
-	
-	public int getNumberOfMatch() {
-		return numberOfMatch;
+	public void calculateTeamDataOfOneMatch(ArrayList<PlayerDataOfOneMatchPO> playerDatas){
+		for(int i=0;i<playerDatas.size();i++){
+			PlayerDataOfOneMatchPO tempData=playerDatas.get(i);
+			
+			numberOfShooting += tempData.getNumberOfShooting();
+			numberOfShotAttempt += tempData.getNumberOfShotAttempt();
+			numberOf3_point += tempData.getNumberOf3_point();
+			numberOf3_pointAttempt += tempData.getNumberOf3_pointAttempt();
+			numberOfFreeThrow += tempData.getNumberOfFreeThrow();
+			numberOfFreeThrowAttempt += tempData.getNumberOfFreeThrowAttempt();
+			numberOfAttackRebound += tempData.getNumberOfAttackRebound();
+			numberOfDefenseRebound += tempData.getNumberOfDefenseRebound();
+			numberOfRebound += tempData.getNumberOfReboundOfOneMatch();
+			numberOfAssist += tempData.getNumberOfAssistOfOneMatch();
+			numberOfSteal += tempData.getNumberOfSteal();
+			numberOfBlock += tempData.getNumberOfBlockOfOneMatch();
+			numberOfFault += tempData.getNumberOfFaultOfOneMatch();
+			numberOfFoul += tempData.getNumberOfFoulOfOneMatch();
+			score += tempData.getScoreOfOneMatch();
+			
+			
+		}
 	}
+	
+	
 	public int getNumberOfShooting() {
 		return numberOfShooting;
 	}
@@ -52,8 +73,8 @@ public class TeamDataPO {
 	public int getNumberOfFreeThrowAttempt() {
 		return numberOfFreeThrowAttempt;
 	}
-	public int getNumberOfAttackingRebound() {
-		return numberOfAttackingRebound;
+	public int getNumberOfAttackRebound() {
+		return numberOfAttackRebound;
 	}
 	public int getNumberOfDefenseRebound() {
 		return numberOfDefenseRebound;
