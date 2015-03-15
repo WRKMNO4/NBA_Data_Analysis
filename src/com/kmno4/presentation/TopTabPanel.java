@@ -12,7 +12,7 @@ import com.kmno4.common.Config;
 
 public class TopTabPanel extends JPanel {
 	
-	private List<JLabel> tabs;
+	public List<JLabel> tabs;
 	
 	private JLabel player;
 	private JLabel match;
