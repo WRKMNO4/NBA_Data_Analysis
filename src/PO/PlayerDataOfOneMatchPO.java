@@ -41,10 +41,10 @@ public class PlayerDataOfOneMatchPO {
 		this.setNumberOfBlockOfOneMatch(Integer.parseInt(splitString[14]));
 		this.setNumberOfFaultOfOneMatch(Integer.parseInt(splitString[15]));
 		this.setNumberOfFoulOfOneMatch(Integer.parseInt(splitString[16]));
-		if(splitString[17].equals("null"))
+		if(splitString[17].equals("null"))  // Invalid data
 			this.setScoreOfOneMatch(this.getNumberOfFreeThrow() + 
 					2 * (this.getNumberOfShooting() - this. getNumberOf3_point()) +
-					3 * this.getNumberOf3_point()   );
+					3 * this.getNumberOf3_point()   );      //calculate by other data of him
 		else
 			this.setScoreOfOneMatch(Integer.parseInt(splitString[17]));
 	}

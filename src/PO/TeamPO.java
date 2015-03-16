@@ -18,6 +18,7 @@ public class TeamPO {
 	TeamDataPO teamData;
 	
 	int numberOfMatches=0;
+	double percentageOfWinning ; //胜率 
 	
 	ArrayList<PlayerPO> players = new ArrayList<PlayerPO>() ;//球员集合
 	ArrayList<MatchPO> matches = new ArrayList<MatchPO>();  //比赛集合
@@ -96,6 +97,18 @@ public class TeamPO {
 	public void setTeamData(TeamDataPO teamData) {
 		this.teamData = teamData;
 	}
+	public int getNumberOfMatches() {
+		return numberOfMatches;
+	}
+	public void setNumberOfMatches(int numberOfMatches) {
+		this.numberOfMatches = numberOfMatches;
+	}
+	public double getPercentageOfWinning() {
+		return percentageOfWinning;
+	}
+	public void setPercentageOfWinning(double percentageOfWinning) {
+		this.percentageOfWinning = percentageOfWinning;
+	}
 	public ArrayList<PlayerPO> getPlayers() {
 		return players;
 	}
@@ -108,12 +121,7 @@ public class TeamPO {
 	public void setMatches(ArrayList<MatchPO> matches) {
 		this.matches = matches;
 	}
-	public int getNumberOfMatches() {
-		return numberOfMatches;
-	}
-	public void setNumberOfMatches(int numberOfMatches) {
-		this.numberOfMatches = numberOfMatches;
-	}
+
 	
 	
 	

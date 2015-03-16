@@ -22,11 +22,11 @@ public class TeamDataPO {
 	double percentageOfShooting ;//投篮命中率，
 	double percentageOf3_point ;//三分命中率，
 	double percentageOfFreeThrow ;//罚球命中率，
-	double percentageOfWinning ;//胜率，
+	//double percentageOfWinning ;
 	double roundOfAttack ;//进攻回合
 	double efficiencyOfAttack ;//，进攻效率，
 	double efficiencyOfDefense ;//防守效率，
-	double efficiencyOfBlock ;//篮板效率，
+	double efficiencyOfRebound ;//篮板效率，
 	double efficiencyOfSteal ;//抢断效率
 	double efficiencyOfAssist ;//助攻率。
 	
@@ -49,11 +49,26 @@ public class TeamDataPO {
 			numberOfFault += tempData.getNumberOfFaultOfOneMatch();
 			numberOfFoul += tempData.getNumberOfFoulOfOneMatch();
 			score += tempData.getScoreOfOneMatch();
-			
-			
-		}
+		}   //end the loop
+		
+		percentageOfShooting = (double)numberOfShooting / (double)numberOfShotAttempt;
+		percentageOf3_point = (double)numberOf3_point / (double) numberOf3_pointAttempt;
+		percentageOfFreeThrow = (double) numberOfFreeThrow / (double) numberOfFreeThrowAttempt;
+		
 	}
 	
+	public void calculateTeamDataOfOneMatchUsingTheOther(TeamDataPO dataOfTheOther){
+		roundOfAttack = numberOfShotAttempt + 0.4 * numberOfFreeThrowAttempt
+				- 1.07 * (numberOfAttackRebound / (numberOfAttackRebound + 
+						dataOfTheOther.numberOfDefenseRebound) * (numberOfShotAttempt -numberOfShooting))
+						+ 1.07 * numberOfFault ;
+		
+		efficiencyOfRebound = (double)(numberOfAttackRebound + numberOfDefenseRebound) / (double)
+				(numberOfAttackRebound + numberOfDefenseRebound + dataOfTheOther.numberOfAttackRebound 
+						+ dataOfTheOther.numberOfDefenseRebound) ;
+		
+		
+	}
 	
 	public int getNumberOfShooting() {
 		return numberOfShooting;
@@ -109,9 +124,6 @@ public class TeamDataPO {
 	public double getPercentageOfFreeThrow() {
 		return percentageOfFreeThrow;
 	}
-	public double getPercentageOfWinning() {
-		return percentageOfWinning;
-	}
 	public double getRoundOfAttack() {
 		return roundOfAttack;
 	}
@@ -121,8 +133,8 @@ public class TeamDataPO {
 	public double getEfficiencyOfDefense() {
 		return efficiencyOfDefense;
 	}
-	public double getEfficiencyOfBlock() {
-		return efficiencyOfBlock;
+	public double getEfficiencyOfRebound() {
+		return efficiencyOfRebound;
 	}
 	public double getEfficiencyOfSteal() {
 		return efficiencyOfSteal;
