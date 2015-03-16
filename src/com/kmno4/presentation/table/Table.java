@@ -29,7 +29,7 @@ public class Table extends JPanel {
 		setOpaque(true);
 		
 		if(rowNum == 0) rowNum = 7;//最大列数的初始化
-		setLayout(new GridLayout(rowNum + 1, 1));
+		setLayout(new GridLayout(rowNum + 2, 1));
 		head = new TableList(headStr, TableList.HEAD);
 		add(head);
 		
@@ -45,12 +45,14 @@ public class Table extends JPanel {
 					body[i][j] = new TableList(new String[]{}, TableList.BLANK);
 			}
 		}
-		
 		for(int i = 0; i < rowNum; i ++) {
 		    add(body[TP.page][i]);
 		}
 		
-		//add(turn);
+		/*
+		turn = new TP();
+		add(turn);
+		*/
 	}
 	
 	//TODO
