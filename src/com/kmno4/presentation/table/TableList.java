@@ -1,8 +1,8 @@
 package com.kmno4.presentation.table;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,7 +18,7 @@ public class TableList extends JPanel {
 	
 	public TableList(String[] ele, int type) {
 		super();
-		setLayout(new FlowLayout());
+		setLayout(new GridLayout(1, 0));
 		
 		elements = new JLabel[ele.length];
 		switch(type) {
@@ -36,8 +36,13 @@ public class TableList extends JPanel {
 		
 		for(int i = 0; i < ele.length; i ++) {
 			elements[i] = new JLabel(ele[i]);
-			if(type != HEAD) elements[i].setFont(BODY_FONT);
-			else elements[i].setFont(HEAD_FONT);
+			if(type == HEAD) { 
+				elements[i].setFont(HEAD_FONT);
+			    elements[i].setForeground(HEAD_FONT_COLOR);
+			}
+			else {
+				elements[i].setFont(BODY_FONT);
+			}
 			add(elements[i]);
 		}
 	}
@@ -48,12 +53,13 @@ public class TableList extends JPanel {
         SING = 0,
         DOUB = 1;
 	private static final Color
-	    HEAD_COLOR = new Color(255, 200, 0, 200),
+	    HEAD_COLOR = new Color(0, 0, 0, 200),
 	    SING_COLOR = new Color(192, 192, 192, 200),
-	    DOUB_COLOR = new Color(255, 255, 255, 200);
+	    DOUB_COLOR = new Color(255, 255, 255, 200),
+	    HEAD_FONT_COLOR = new Color(255, 255, 255, 255);
 	private static final Font
 	    HEAD_FONT = new Font("Arial", Font.BOLD, 25),
-	    BODY_FONT = new Font("Arial", Font.PLAIN, 20);
+	    BODY_FONT = new Font("Arial", Font.PLAIN, 18);
 	
 	
 }

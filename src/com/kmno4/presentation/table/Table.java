@@ -9,18 +9,27 @@ import javax.swing.JPanel;
  */
 @SuppressWarnings("serial")
 public class Table extends JPanel {
+	/**
+	 * 表头
+	 */
 	public TableList head;
+	/**
+	 * 表身组，即若干表身的集合
+	 */
 	public TableList[] body;
+	/**
+	 * 翻页部分
+	 */
 	public TP turn;
 	
 	
 	public Table(String[] headStr, String[][] bodyStr) {
 		super();
-		setSize(sizeX, sizeY);
+		setSize(SIZE_X, SIZE_Y);
 		setOpaque(true);
 		
 		//setLayout(new GridBagLayout());
-		setLayout(new GridLayout(0, 1));
+		setLayout(new GridLayout(ROW_NUM, 1));
 		head = new TableList(headStr, TableList.HEAD);
 		
 		body = new TableList[bodyStr.length];
@@ -33,15 +42,19 @@ public class Table extends JPanel {
 		
 		add(head);
 		for(TableList t : body)
-			add(t);
+			if(t != null) add(t);
 		//add(turn);
 	}
 	
-	
+	/**
+	 * 最大列数（包括表头）
+	 */
+	public static final int
+	    ROW_NUM = 10;
 	
 	
 	private static final int 
-	    sizeX = 600,
-	    sizeY = 400;
+	    SIZE_X = 600,
+	    SIZE_Y = 400;
 
 }

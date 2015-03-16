@@ -8,5 +8,11 @@ import javax.swing.JPanel;
  */
 @SuppressWarnings("serial")
 public class TP extends JPanel {
+	
+	public TP() {
+		super();
+		
+		
+	}
 
 }
