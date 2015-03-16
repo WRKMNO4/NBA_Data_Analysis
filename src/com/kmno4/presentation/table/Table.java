@@ -1,6 +1,12 @@
 package com.kmno4.presentation.table;
-import javax.swing.JPanel;
+import java.awt.GridLayout;
 
+import javax.swing.JPanel;
+/**
+ * table样式
+ * @author hutao
+ *
+ */
 @SuppressWarnings("serial")
 public class Table extends JPanel {
 	public TableList head;
@@ -12,16 +18,22 @@ public class Table extends JPanel {
 		super();
 		setSize(sizeX, sizeY);
 		setOpaque(true);
-		head = new TableList(headStr, TableList.head);
 		
+		//setLayout(new GridBagLayout());
+		setLayout(new GridLayout(0, 1));
+		head = new TableList(headStr, TableList.HEAD);
 		
+		body = new TableList[bodyStr.length];
+		for(int i = 0; i < bodyStr.length; i ++) {
+			body[i] = new TableList(bodyStr[i], i % 2);
+		}
 		
 		
 		
 		
 		add(head);
-		//for(TableList t : body)
-			//add(t);
+		for(TableList t : body)
+			add(t);
 		//add(turn);
 	}
 	
@@ -31,6 +43,5 @@ public class Table extends JPanel {
 	private static final int 
 	    sizeX = 600,
 	    sizeY = 400;
-	
 
 }
