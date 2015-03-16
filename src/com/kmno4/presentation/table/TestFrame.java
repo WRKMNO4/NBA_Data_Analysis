@@ -14,13 +14,18 @@ public class TestFrame extends JFrame{
 		Table t = new Table(
 				    new String[]{"a", "b", "c", "d"}, 
 				    new String[][]{
-					    {"aa", "bb", "cc", "dd"},
-					    {"aaa", "bbb", "ccc", "ddd"},
-					    {"aaa", "bbb", "ccc", "ddd"},
-					    {"aaa", "bbb", "ccc", "ddd"},
-					    {"aaa", "bbb", "ccc", "ddd"}
+					    {"aa0", "bb", "cc", "dd"},
+					    {"aaa1", "bbb", "ccc", "ddd"},
+					    {"aaa2", "bbb", "ccc", "ddd"},
+					    {"aaa3", "bbb", "ccc", "ddd"},
+					    {"aaa4", "bbb", "ccc", "ddd"},
+					    {"aaa5", "bbb", "ccc", "ddd"},
+					    {"aaa6", "bbb", "ccc", "ddd"},
+					    {"aaa7", "bbb", "ccc", "ddd"},
+					    {"aaa8", "bbb", "ccc", "ddd"},
+					    {"aaa9", "bbb", "ccc", "ddd"}
 				    });
-		t.setLocation(0, 0);
+		t.setBounds(0, 0, 600, 400);
 		
 		add(t);
 		setVisible(true);

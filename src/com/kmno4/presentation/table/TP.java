@@ -8,6 +8,8 @@ import javax.swing.JPanel;
  */
 @SuppressWarnings("serial")
 public class TP extends JPanel {
+	public static int page = 0;
+	
 	
 	public TP() {
 		super();

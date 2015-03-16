@@ -15,8 +15,9 @@ public class Table extends JPanel {
 	public TableList head;
 	/**
 	 * 表身组，即若干表身的集合
+	 * 例如TableList[2][5]为2面，每面5行(第二面可能不足5行)
 	 */
-	public TableList[] body;
+	public TableList[][] body;
 	/**
 	 * 翻页部分
 	 */
@@ -25,36 +26,46 @@ public class Table extends JPanel {
 	
 	public Table(String[] headStr, String[][] bodyStr) {
 		super();
-		setSize(SIZE_X, SIZE_Y);
 		setOpaque(true);
 		
-		//setLayout(new GridBagLayout());
-		setLayout(new GridLayout(ROW_NUM, 1));
+		if(rowNum == 0) rowNum = 7;//最大列数的初始化
+		setLayout(new GridLayout(rowNum + 1, 1));
 		head = new TableList(headStr, TableList.HEAD);
+		add(head);
 		
-		body = new TableList[bodyStr.length];
-		for(int i = 0; i < bodyStr.length; i ++) {
-			body[i] = new TableList(bodyStr[i], i % 2);
+		body = new TableList[(bodyStr.length - 1) / rowNum + 1][rowNum];
+		for(int i = 0; i < body.length; i ++) {
+			for(int j = 0; j < body[i].length; j ++) {
+				int k;
+				if((k = i * rowNum + j) < bodyStr.length) {
+				    body[i][j] = new TableList(bodyStr[k], k % 2);
+				}
+				else
+					//空条目
+					body[i][j] = new TableList(new String[]{}, TableList.BLANK);
+			}
 		}
 		
+		for(int i = 0; i < rowNum; i ++) {
+		    add(body[TP.page][i]);
+		}
 		
-		
-		
-		add(head);
-		for(TableList t : body)
-			if(t != null) add(t);
 		//add(turn);
 	}
 	
+	//TODO
+	
 	/**
-	 * 最大列数（包括表头）
+	 * 最大列数（不包括表头）
 	 */
-	public static final int
-	    ROW_NUM = 10;
+	private static int
+	    rowNum;
+	/**
+	 * 设置最大列数(不包括表头)
+	 */
+	public void setRowNum(int r) {
+		rowNum = r;
+	}
 	
-	
-	private static final int 
-	    SIZE_X = 600,
-	    SIZE_Y = 400;
 
 }

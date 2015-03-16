@@ -31,12 +31,14 @@ public class TableList extends JPanel {
 		case DOUB : 
 			setBackground(DOUB_COLOR);
 			break;
+		case BLANK :
+			setBackground(BLANK_COLOR);
 		default :
 		}
 		
 		for(int i = 0; i < ele.length; i ++) {
 			elements[i] = new JLabel(ele[i]);
-			if(type == HEAD) { 
+			if(type == HEAD) {
 				elements[i].setFont(HEAD_FONT);
 			    elements[i].setForeground(HEAD_FONT_COLOR);
 			}
@@ -51,11 +53,13 @@ public class TableList extends JPanel {
 	public static final int 
         HEAD = -1,
         SING = 0,
-        DOUB = 1;
+        DOUB = 1,
+        BLANK = 2;
 	private static final Color
 	    HEAD_COLOR = new Color(0, 0, 0, 200),
 	    SING_COLOR = new Color(192, 192, 192, 200),
 	    DOUB_COLOR = new Color(255, 255, 255, 200),
+	    BLANK_COLOR = new Color(0, 0, 0, 0),
 	    HEAD_FONT_COLOR = new Color(255, 255, 255, 255);
 	private static final Font
 	    HEAD_FONT = new Font("Arial", Font.BOLD, 25),
