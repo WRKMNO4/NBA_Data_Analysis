@@ -19,9 +19,12 @@ public class MatchPO {
 	TeamDataPO firstTeamData;
 	TeamDataPO secondTeamData;
 	
+	int totalTime ;//所有球员上场时间，单位秒
 	public MatchPO(){
 		firstTeam_PlayerData = new ArrayList<>() ;
 		secondTeam_PlayerData = new ArrayList<>() ;
+		firstTeamData = new TeamDataPO() ;
+		secondTeamData = new TeamDataPO() ;
 	}
 	
 	public void addDataOfOnePlayerOfFirstTeam(PlayerDataOfOneMatchPO onePlayer){  
@@ -31,6 +34,34 @@ public class MatchPO {
 		secondTeam_PlayerData.add(onePlayer) ;
 	}
 	
+	public void calculateTeamData(){
+		firstTeamData.calculateTeamDataOfOneMatch(firstTeam_PlayerData);
+		secondTeamData.calculateTeamDataOfOneMatch(secondTeam_PlayerData);
+		firstTeamData.calculateTeamDataOfOneMatchUsingTheOther(secondTeamData);
+		secondTeamData.calculateTeamDataOfOneMatchUsingTheOther(firstTeamData);
+	}
+	public void calculatePlayersData(){
+		for(PlayerDataOfOneMatchPO onePlayer:firstTeam_PlayerData){
+			onePlayer.calculatePlayerData(totalTime, firstTeamData, secondTeamData);
+		}
+		for(PlayerDataOfOneMatchPO onePlayer:secondTeam_PlayerData){
+			onePlayer.calculatePlayerData(totalTime, secondTeamData, firstTeamData);
+		}
+	}
+	
+	public TeamDataPO getOneTeamDataByName(String name){
+		if(firstTeam.equals(name)){
+			return firstTeamData ;
+		}
+		if(secondTeam.equals(name)){
+			return secondTeamData ;
+		}
+		return null;
+	}
+	
+	public void calculateTotalTime(){//计算所有球员的上场时间
+		totalTime = (48+(allScore.size()-4)*5)*60 ;
+	}
 	public String getName() {
 		return name;
 	}

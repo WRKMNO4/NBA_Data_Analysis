@@ -15,7 +15,8 @@ public class TeamPO {
 	
 	String teamLogoURL;     //Çò¶ÓLogoµØÖ·
 	
-	TeamDataPO teamData;
+	TeamDataPO totalTeamData = new TeamDataPO();
+	TeamDataPO averageTeamData = new TeamDataPO() ;
 	
 	int numberOfMatches=0;
 	double percentageOfWinning ; //Ê¤ÂÊ 
@@ -91,11 +92,18 @@ public class TeamPO {
 	public void setTeamLogoURL(String teamLogoURL) {
 		this.teamLogoURL = teamLogoURL;
 	}
-	public TeamDataPO getTeamData() {
-		return teamData;
+
+	public TeamDataPO getTotalTeamData() {
+		return totalTeamData;
 	}
-	public void setTeamData(TeamDataPO teamData) {
-		this.teamData = teamData;
+	public void setTotalTeamData(TeamDataPO totalTeamData) {
+		this.totalTeamData = totalTeamData;
+	}
+	public TeamDataPO getAverageTeamData() {
+		return averageTeamData;
+	}
+	public void setAverageTeamData(TeamDataPO averageTeamData) {
+		this.averageTeamData = averageTeamData;
 	}
 	public int getNumberOfMatches() {
 		return numberOfMatches;

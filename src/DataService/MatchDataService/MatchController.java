@@ -28,7 +28,7 @@ public class MatchController implements MatchDataService{
 			File[] allFiles = file.listFiles() ;
 			for(int i = 0; i<allFiles.length;i++){   //����matches�ļ����������ļ�
 				ArrayList<String> tempString  = FileHelper.readByLine(allFiles[i]) ;
-				
+				System.out.println(allFiles[i].getName());
 				MatchPO newMatch = new MatchPO() ;
 				
 				boolean isFirstTeam = false ; //�ж���һֻ���
@@ -73,7 +73,9 @@ public class MatchController implements MatchDataService{
 					}	
 				}
 				
-				
+				newMatch.calculateTeamData();
+				newMatch.calculateTotalTime();
+				newMatch.calculatePlayersData();
 				
 				TeamPO firstTeam = TeamListPO.findTeamByShortName(newMatch.getFirstTeam());
 				TeamPO secondTeam = TeamListPO.findTeamByShortName(newMatch.getSecondTeam());
@@ -84,6 +86,8 @@ public class MatchController implements MatchDataService{
 			}
 		}
 	}
+	
+	
 	@Override
 	public void addMatch(MatchPO oneMatch) {
 		// TODO Auto-generated method stub

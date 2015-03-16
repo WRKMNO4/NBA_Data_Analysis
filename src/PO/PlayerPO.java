@@ -18,8 +18,8 @@ public class PlayerPO {
 	String actionURL;      //动作照片的地址
 	
 	ArrayList<PlayerDataOfOneMatchPO> datas=new ArrayList<PlayerDataOfOneMatchPO>();
-	PlayerDataPO playerData;
-	
+	PlayerDataPO totalPlayerData = new PlayerDataPO();
+	PlayerDataPO averagePlayerData = new PlayerDataPO() ;
 	String team ; //所属球队（可用name去find TeamPO）
 	
 	
@@ -122,14 +122,20 @@ public class PlayerPO {
 		this.datas = datas;
 	}
 
-	public PlayerDataPO getPlayerData() {
-		return playerData;
-	}
+	
 
-	public void setPlayerData(PlayerDataPO playerData) {
-		this.playerData = playerData;
+	public PlayerDataPO getTotalPlayerData() {
+		return totalPlayerData;
 	}
-
+	public void setTotalPlayerData(PlayerDataPO totalPlayerData) {
+		this.totalPlayerData = totalPlayerData;
+	}
+	public PlayerDataPO getAveragePlayerData() {
+		return averagePlayerData;
+	}
+	public void setAveragePlayerData(PlayerDataPO averagePlayerData) {
+		this.averagePlayerData = averagePlayerData;
+	}
 	public String getTeam() {
 		return team;
 	}

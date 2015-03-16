@@ -18,8 +18,33 @@ public class PlayerDataOfOneMatchPO {
 	int numberOfSteal;  //抢断数
 	int numberOfBlockOfOneMatch ;//盖帽数，
 	int numberOfFaultOfOneMatch ;//失误数，
+	
 	int numberOfFoulOfOneMatch ;//犯规数，
 	int scoreOfOneMatch ;//个人得分
+	
+	
+	
+	double percentageOfShooting ;//投篮命中率
+	double percentageOf3_Point ;//三分命中率
+	double percentageOffreeThrow ;//罚球命中率
+	
+	int numberOfAttack ;//进攻数
+	int numberOfDefense ;//防守数
+	int efficiency ;//效率，
+	
+	double efficiencyOfGmSc ;//GmSc效率值，
+	double percentageOfTrueShooting ;//真实命中率，
+	double efficiencyOfShooting ;//投篮效率，
+	double percentageOfRebound ; //篮板率，
+	double percentageOfAttackingRebound ;//进攻篮板率，
+	double percentageOfDefenseRebound ;//防守篮板率，
+	double percentageOfAssist ;// 助攻率，
+	double percentageOfSteal ;//抢断率，
+	double percentageOfBlock ;//盖帽率，
+	double percentageOfFault ;//失误率，
+	double percentageOfUse ;//使用率
+	
+	
 	public PlayerDataOfOneMatchPO(){
 		
 	}
@@ -49,6 +74,34 @@ public class PlayerDataOfOneMatchPO {
 			this.setScoreOfOneMatch(Integer.parseInt(splitString[17]));
 	}
 	
+	public void calculatePlayerData(int totalTime,TeamDataPO teamData,TeamDataPO theOtherTeamData){//所有球员在长时间和对手总篮板
+		percentageOfShooting = (double)numberOfShooting/numberOfShotAttempt ;//投篮命中率
+		percentageOf3_Point = (double)numberOf3_point/numberOf3_pointAttempt ;//三分命中率
+		percentageOffreeThrow = (double)numberOfFreeThrow/numberOfFreeThrowAttempt ;//罚球命中率
+		efficiency = (scoreOfOneMatch+numberOfReboundOfOneMatch+numberOfAssistOfOneMatch+numberOfSteal+numberOfBlockOfOneMatch)
+				-(numberOfShotAttempt - numberOfShooting)-(numberOfFreeThrowAttempt-numberOfFreeThrow)-numberOfFaultOfOneMatch ;
+		
+		efficiencyOfGmSc = scoreOfOneMatch + 0.4*numberOfShooting-0.7*numberOfShotAttempt-0.4*(numberOfFreeThrowAttempt-numberOfFreeThrow)
+				+0.7*numberOfAttackRebound+0.3*numberOfDefenseRebound+numberOfSteal+0.7*numberOfAssistOfOneMatch ;
+		percentageOfTrueShooting = scoreOfOneMatch/(2*(numberOfShotAttempt+0.44*numberOfFreeThrowAttempt)) ;
+		efficiencyOfShooting = (numberOfShooting+0.5*numberOf3_point)/numberOfShotAttempt ;
+		percentageOfRebound = numberOfReboundOfOneMatch*(totalTime/5.0)/transfromTime(presentTimeOfOneMatch)/(teamData.getNumberOfRebound()+theOtherTeamData.getNumberOfRebound()) ;
+		percentageOfAttackingRebound = numberOfAttackRebound*(totalTime/5.0)/transfromTime(presentTimeOfOneMatch)/(teamData.getNumberOfAttackRebound()+theOtherTeamData.getNumberOfAttackRebound());
+		percentageOfDefenseRebound = numberOfDefense*(totalTime/5.0)/transfromTime(presentTimeOfOneMatch)/(teamData.getNumberOfDefenseRebound()+theOtherTeamData.getNumberOfDefenseRebound()) ;
+		percentageOfAssist = numberOfAssistOfOneMatch/(transfromTime(presentTimeOfOneMatch)/(totalTime/5.0))*(teamData.getNumberOfShooting()-numberOfShooting) ;
+		percentageOfSteal = numberOfSteal*(totalTime/5.0)/transfromTime(presentTimeOfOneMatch)/theOtherTeamData.getRoundOfAttack() ;
+		percentageOfBlock = numberOfBlockOfOneMatch*(totalTime/5.0)/transfromTime(presentTimeOfOneMatch)/(theOtherTeamData.getNumberOfShotAttempt()-theOtherTeamData.getNumberOf3_pointAttempt()) ;
+		percentageOfFault = numberOfFaultOfOneMatch/( (theOtherTeamData.getNumberOfShotAttempt()-theOtherTeamData.getNumberOf3_pointAttempt()) + 0.44*numberOfFreeThrowAttempt+numberOfFaultOfOneMatch) ;
+		percentageOfUse = (numberOfShotAttempt+0.44*numberOfFreeThrowAttempt+numberOfFaultOfOneMatch)*(totalTime/5.0)/transfromTime(presentTimeOfOneMatch)/(teamData.getNumberOfShotAttempt()+0.44*teamData.getNumberOfFreeThrowAttempt()+teamData.getNumberOfFault());
+	}
+	int transfromTime(String time){//转化时间为整数，单位秒
+		if(time.equals("null")||time.equals("None")){
+			return 60 ;
+		}
+		String[] strs = time.split(":");
+		int result = Integer.parseInt(strs[0])*60+Integer.parseInt(strs[1]) ;
+		return result ;
+	}
 	public String getName() {
 		return name;
 	}
