@@ -16,6 +16,8 @@ import com.kmno4.common.Config;
 public class MainFrame extends JFrame implements MouseListener{
 
 	private JPanel contentPane;
+	
+	public static MainFrame mainFrame; //mainframe自身的静态引用
 	public static SelectionPanel playerSelectionPanel;
 	public static TopTabPanel topTabPanel;
 	public static PageInfoPanel pageInfoPanel;
@@ -67,6 +69,7 @@ public class MainFrame extends JFrame implements MouseListener{
 	 * Create the frame.
 	 */
 	public MainFrame() {
+		mainFrame = this; //
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

@@ -2,6 +2,8 @@ package com.kmno4.presentation;
 
 
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.kmno4.common.Config;
+import com.kmno4.presentation.table.Table;
 
 public class TopTabPanel extends JPanel {
 	
@@ -19,6 +22,11 @@ public class TopTabPanel extends JPanel {
 	private JLabel team;
 	private JLabel help;
 	private JLabel aboutus;
+	
+	/**
+	 * 用于引用当前显示的表格
+	 */
+	private Table tableBeShowing;
 
 	/**
 	 * Create the panel.
@@ -50,9 +58,89 @@ public class TopTabPanel extends JPanel {
 					Config.TOP_TAB_LABLE_HEIGHT);
 			tabs.get(i).setBackground(Color.WHITE);
 			this.add(tabs.get(i));
-			}
+		}
 		
-
-
+		player.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				showPlayerTable();
+				MainFrame.mainFrame.repaint();
+			}
+		});
+		team.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				showTeamTable();
+				MainFrame.mainFrame.repaint();
+			}
+		});
+		match.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				showMatchTable();
+				MainFrame.mainFrame.repaint();
+			}
+		});
+		
+		showPlayerTable();
 	}
+	
+	
+	private void showPlayerTable() {
+		if(tableBeShowing == null) { //第一次创建table
+			tableBeShowing = new Table(
+					new String[]{"a", "b", "c", "d"}, 
+					new String[][]{
+							{"player", "bb", "cc", "dd"},
+							{"player", "bb", "cc", "dd"}
+					});
+			setTableBounds();
+			MainFrame.mainFrame.add(tableBeShowing);
+			return;
+		}
+		tableBeShowing.setVisible(false);
+		MainFrame.mainFrame.remove(tableBeShowing);
+		tableBeShowing = new Table(
+				new String[]{"a", "b", "c", "d"}, 
+				new String[][]{
+						{"player", "bb", "cc", "dd"},
+						{"player", "bb", "cc", "dd"}
+				});
+		setTableBounds();
+		MainFrame.mainFrame.add(tableBeShowing);
+		
+	}
+	private void showTeamTable() {
+		tableBeShowing.setVisible(false);
+		MainFrame.mainFrame.remove(tableBeShowing);
+		tableBeShowing = new Table(
+				new String[]{"a", "b", "c", "d"}, 
+				new String[][]{
+						{"team", "bb", "cc", "dd"},
+						{"team", "bb", "cc", "dd"}
+				});
+		setTableBounds();
+		MainFrame.mainFrame.add(tableBeShowing);
+	}
+	private void showMatchTable() {
+		tableBeShowing.setVisible(false);
+		MainFrame.mainFrame.remove(tableBeShowing);
+		tableBeShowing = new Table(
+				new String[]{"a", "b", "c", "d"}, 
+				new String[][]{
+						{"match", "bb", "cc", "dd"},
+						{"match", "bb", "cc", "dd"}
+				});
+		setTableBounds();
+		MainFrame.mainFrame.add(tableBeShowing);
+	}
+	private void setTableBounds() {
+		tableBeShowing.setBounds(0, 285, 500, 280);
+	}
+	
+	
+	
+	
+	
+	
 }
