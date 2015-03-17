@@ -1,7 +1,11 @@
 package com.kmno4.presentation.table;
 
 import javax.swing.JFrame;
-
+/**
+ * 专门用来测试的一个frame 没什么大用
+ * @author hutao
+ *
+ */
 @SuppressWarnings("serial")
 public class TestFrame extends JFrame{
 	
@@ -10,21 +14,18 @@ public class TestFrame extends JFrame{
 		setLocationRelativeTo(null);
 		setLayout(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		String[][] str = new String[100][4];
+		for (int i = 0 ; i < str.length; i ++) {
+			str[i][0] = new String("aaa" + i);
+			str[i][1] = "b";
+			str[i][2] = "c";
+			str[i][3] = "d";
+		}
 		
 		Table t = new Table(
 				    new String[]{"a", "b", "c", "d"}, 
-				    new String[][]{
-					    {"aa0", "bb", "cc", "dd"},
-					    {"aaa1", "bbb", "ccc", "ddd"},
-					    {"aaa2", "bbb", "ccc", "ddd"},
-					    {"aaa3", "bbb", "ccc", "ddd"},
-					    {"aaa4", "bbb", "ccc", "ddd"},
-					    {"aaa5", "bbb", "ccc", "ddd"},
-					    {"aaa6", "bbb", "ccc", "ddd"},
-					    {"aaa7", "bbb", "ccc", "ddd"},
-					    {"aaa8", "bbb", "ccc", "ddd"},
-					    {"aaa9", "bbb", "ccc", "ddd"}
-				    });
+				    str);
+		
 		t.setBounds(0, 0, 600, 400);
 		
 		add(t);

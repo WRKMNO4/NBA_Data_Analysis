@@ -3,7 +3,7 @@ import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 /**
- * table样式
+ * 主table
  * @author hutao
  *
  */
@@ -26,14 +26,23 @@ public class Table extends JPanel {
 	
 	public Table(String[] headStr, String[][] bodyStr) {
 		super();
+		if(bodyStr.length == 0) {
+			System.out.println("bodyStr.length == 0");
+			return;
+		}
+		if(headStr.length != bodyStr[0].length) {
+			System.out.println("headStr.length != bodyStr[0].length");
+			return;
+		}
 		setOpaque(true);
 		
-		if(rowNum == 0) rowNum = 7;//最大列数的初始化
+		if(rowNum == 0) rowNum = 8;//最大列数的初始化
 		setLayout(new GridLayout(rowNum + 2, 1));
 		head = new TableList(headStr, TableList.HEAD);
 		add(head);
 		
-		body = new TableList[(bodyStr.length - 1) / rowNum + 1][rowNum];
+		pageNum = (bodyStr.length - 1) / rowNum + 1;
+		body = new TableList[pageNum][rowNum];
 		for(int i = 0; i < body.length; i ++) {
 			for(int j = 0; j < body[i].length; j ++) {
 				int k;
@@ -49,24 +58,23 @@ public class Table extends JPanel {
 		    add(body[TP.page][i]);
 		}
 		
-		/*
-		turn = new TP();
+		
+		turn = new TP(this);
 		add(turn);
-		*/
+		
 	}
 	
-	//TODO
 	
 	/**
 	 * 最大列数（不包括表头）
 	 */
-	private static int
-	    rowNum;
+	public static int rowNum;
 	/**
-	 * 设置最大列数(不包括表头)
+	 * 页数，不小于1
 	 */
-	public void setRowNum(int r) {
-		rowNum = r;
+	private static int pageNum;
+	public int getPageNum() {
+		return pageNum;
 	}
 	
 
