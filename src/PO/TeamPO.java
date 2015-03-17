@@ -18,7 +18,8 @@ public class TeamPO {
 	TeamDataPO totalTeamData = new TeamDataPO();
 	TeamDataPO averageTeamData = new TeamDataPO() ;
 	
-	int numberOfMatches=0;
+	int numberOfMatches;
+	int numberOfWinning;
 	double percentageOfWinning ; //胜率 
 	
 	ArrayList<PlayerPO> players = new ArrayList<PlayerPO>() ;//球员集合
@@ -34,6 +35,8 @@ public class TeamPO {
 	public void addMatch(MatchPO oneMatch){
 		matches.add(oneMatch) ;
 		numberOfMatches++;
+		if(oneMatch.getNameOfWinner().equals(shortName))
+			numberOfWinning++;
 	}
 	
 	boolean ifContainThePlayer(PlayerPO onePlayer){
@@ -43,6 +46,12 @@ public class TeamPO {
 			}
 		}
 		return false ;
+	}
+	
+	public void calculateTotalTeamData(){
+		percentageOfWinning = numberOfWinning / matches.size() ;
+		
+		
 	}
 	public String getFullName() {
 		return fullName;

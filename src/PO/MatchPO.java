@@ -62,6 +62,21 @@ public class MatchPO {
 	public void calculateTotalTime(){//计算所有球员的上场时间
 		totalTime = (48+(allScore.size()-4)*5)*60 ;
 	}
+	
+	public String getNameOfWinner(){
+		if(finalScore.getFirstScore()>finalScore.getSecondScore())
+			return firstTeam;
+		else
+			return secondTeam;
+	}
+	
+	public TeamDataPO getTeamDataByName(String shortName){
+		if(shortName.equals(firstTeam))
+			return firstTeamData;
+		else 
+			return secondTeamData;
+	}
+	
 	public String getName() {
 		return name;
 	}

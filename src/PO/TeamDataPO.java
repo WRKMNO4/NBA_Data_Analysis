@@ -80,6 +80,13 @@ public class TeamDataPO {
 		
 	}
 
+	public void calculateTeamTotalDataInOneSeason(ArrayList<MatchPO> matches, String teamShortName){
+		for(int i=0;i<matches.size();i++){
+			TeamDataPO teamData = matches.get(i).getTeamDataByName(teamShortName);
+			numberOfShooting += teamData.getNumberOfShooting() ;
+		}
+	} 
+	
 	public int getNumberOfShooting() {
 		return numberOfShooting;
 	}

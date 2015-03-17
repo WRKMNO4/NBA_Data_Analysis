@@ -30,6 +30,7 @@ public class MatchController implements MatchDataService{
 				ArrayList<String> tempString  = FileHelper.readByLine(allFiles[i]) ;
 //				System.out.println(allFiles[i].getName());
 				MatchPO newMatch = new MatchPO() ;
+				newMatch.setName(allFiles[i].getName());
 				
 				boolean isFirstTeam = false ; //�ж���һֻ���
 				for(int j = 0;j<tempString.size() ;j++){      //��ÿ�����¼�¼���ÿһ�н��з���
