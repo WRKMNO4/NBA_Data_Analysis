@@ -6,9 +6,6 @@ import com.kmno4.common.Config;
 import com.kmno4.presentation.SplashPanel;
 
 public class FucMain {
-	
-
-	
 
 	public static void main(String[] args){
 		JFrame GFrame = new JFrame();	//创建窗口

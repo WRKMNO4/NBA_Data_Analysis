@@ -15,6 +15,7 @@ import com.kmno4.common.Config;
 
 public class MainFrame extends JFrame implements MouseListener{
 
+	//panel统一从右边进入
 	private JPanel contentPane;
 	
 	public static MainFrame mainFrame; //mainframe自身的静态引用
@@ -45,10 +46,7 @@ public class MainFrame extends JFrame implements MouseListener{
 					topTabPanel.setLayout(null);
 					frame.add(topTabPanel);
 					
-					for(int i=0;i<topTabPanel.tabs.size();i++){
-						topTabPanel.tabs.get(i).addMouseListener(frame);
-					}
-					
+
 					//以下是需要跳转的Panel
 					playerSelectionPanel.setLayout(null);
 					frame.add(playerSelectionPanel);
@@ -71,19 +69,33 @@ public class MainFrame extends JFrame implements MouseListener{
 	public MainFrame() {
 		mainFrame = this; //
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(Config.MAIN_FRAME_X,Config.MAIN_FRAME_Y, 
+				Config.UI_WIDTH, Config.UI_HEIGHT);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+		contentPane.setLayout(null);
 		setContentPane(contentPane);	
 		
 		topTabPanel=new TopTabPanel();
 		playerSelectionPanel=new SelectionPanel();
 
+		for(int i=0;i<topTabPanel.tabs.size();i++){
+			topTabPanel.tabs.get(i).addMouseListener(this);
+		}
+		
+	}
+	
+	
+	public void initPanel(){
+		
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		//如果点击球员tab
+		if(e.getSource()==topTabPanel.player){
+			
+		}
 		// TODO Auto-generated method stub
 		
 	}

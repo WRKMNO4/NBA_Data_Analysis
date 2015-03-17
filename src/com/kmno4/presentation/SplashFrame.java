@@ -45,8 +45,8 @@ public class SplashFrame extends JFrame {
 		this.setVisible(true);
 //		this.setUndecorated(true);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5,5,5,5));
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setBorder(new EmptyBorder(0,0,0,0));
+		contentPane.setLayout(null);
 		contentPane.setVisible(true);
 		setContentPane(contentPane);
 

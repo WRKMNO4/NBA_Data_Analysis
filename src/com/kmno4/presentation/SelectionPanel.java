@@ -16,6 +16,10 @@ public class SelectionPanel extends JPanel {
 	public  List<JLabel> sort;
 	private TextField tf_search;
 	
+	//方位
+	public int location_x;
+	public int location_y;
+	
 	JLabel title = new JLabel("球员");
 	JLabel lb_search = new JLabel("搜索");
 	
@@ -136,5 +140,13 @@ public class SelectionPanel extends JPanel {
 	      {
 				super.paintComponent(g);
 				g.drawImage(Config.PLAYER_SELECTION_BACKGROUND.getImage(), 0, 0,Config.UI_WIDTH,Config.SELECTION_HEIGHT ,this);
-	      }    
+	      }
+	
+	public void moveIn(){
+		
+	}
+	
+	public void moveOut(){
+		
+	}
 }

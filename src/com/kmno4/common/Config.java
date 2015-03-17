@@ -8,6 +8,8 @@ import javax.swing.ImageIcon;
 
 public class Config {
 	
+	public static final int MAIN_FRAME_X=100;
+	public static final int MAIN_FRAME_Y=100;
 	public static final int UI_WIDTH=800;
 	public static final int UI_HEIGHT=600;
 	
@@ -44,6 +46,17 @@ public class Config {
 	public static final int MATCH_INFO_TIME_PLACE_HEIGHT=15;
 
 	public static final int INTRODUCTION_WHITE=50;
+	
+	public static final int PLAYER_DETAIL_UI_WIDTH=620;
+	public static final int PLAYER_DETATI_UI_TOP_HEIGHT=240;
+	public static final int PLAYER_ICON_X=70;
+	public static final int PLAYER_ICON_Y=35;
+	public static final int PLAYER_ICON_WIDTH=130;
+	public static final int PLAYER_ICON_HEIGHT=160;
+	public static final int PLAYER_NUMBER_WIDTH=60;
+	public static final int PLAYER_NUMBER_HEIGHT=70;
+	public static final int PLAYER_LABEL_HEIGHT=15;
+	public static final int PLAYER_LABEL_WIDTH=60;
 	
 	//所有图片
 	public static ArrayList<ImageIcon> motions=new ArrayList<ImageIcon>();

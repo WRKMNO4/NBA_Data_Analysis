@@ -17,6 +17,7 @@ public class TopTabPanel extends JPanel {
 	
 	public List<JLabel> tabs;
 	
+<<<<<<< Updated upstream
 	private JLabel player;
 	private JLabel match;
 	private JLabel team;
@@ -27,6 +28,13 @@ public class TopTabPanel extends JPanel {
 	 * 用于引用当前显示的表格
 	 */
 	private Table tableBeShowing;
+=======
+	public JLabel player;
+	public JLabel match;
+	public JLabel team;
+	public JLabel help;
+	public JLabel aboutus;
+>>>>>>> Stashed changes
 
 	/**
 	 * Create the panel.

@@ -11,8 +11,9 @@ import com.kmno4.common.Config;
 
 public class SplashPanel extends JPanel {
 
-	private int i=51;
+	private int i=51;//动效初始index
 	private JLabel bg;
+	private int count=0;//记录动效的循环次数
 
 	/**
 	 * Create the panel.
@@ -34,10 +35,12 @@ public class SplashPanel extends JPanel {
 	
 	public void paint(Graphics g){
 		super.paint(g);
-		g.drawImage(Config.getLoadingMotions().get(i).getImage(), Config.SPLASH_MOTION_X,
+		if(count<=1){
+			g.drawImage(Config.getLoadingMotions().get(i).getImage(), Config.SPLASH_MOTION_X,
 				Config.SPLASH_MOTION_Y, 
 				Config.getLoadingMotions().get(i).getIconWidth(), 
 				Config.getLoadingMotions().get(i).getIconHeight(), this);
+		}
 		changeMotionIndex();
 	}
 	
@@ -46,6 +49,7 @@ public class SplashPanel extends JPanel {
 		i++;
 		if(i>=99){
 			i=51;
+			count++;
 		}
 	}
 	
@@ -53,10 +57,17 @@ public class SplashPanel extends JPanel {
 		@Override
 		public void run() {
 		// TODO Auto-generated method stub
+			//执行5秒
+//			long begin_time=System.currentTimeMillis();
 			while(true){
 				repaint();
 				try {
 					Thread.sleep(80);
+//					long endTime=System.currentTimeMillis();
+//					if((endTime-begin_time)>5000){
+//						repaint();
+//						break;
+//					}
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
