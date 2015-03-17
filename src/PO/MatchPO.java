@@ -42,10 +42,10 @@ public class MatchPO {
 	}
 	public void calculatePlayersData(){
 		for(PlayerDataOfOneMatchPO onePlayer:firstTeam_PlayerData){
-			onePlayer.calculatePlayerData(totalTime, firstTeamData, secondTeamData);
+			onePlayer.calculatePlayerData(totalTime, firstTeamData, secondTeamData,firstTeam_PlayerData);
 		}
 		for(PlayerDataOfOneMatchPO onePlayer:secondTeam_PlayerData){
-			onePlayer.calculatePlayerData(totalTime, secondTeamData, firstTeamData);
+			onePlayer.calculatePlayerData(totalTime, secondTeamData, firstTeamData,secondTeam_PlayerData);
 		}
 	}
 	

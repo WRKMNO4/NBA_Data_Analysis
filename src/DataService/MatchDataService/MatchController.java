@@ -28,7 +28,7 @@ public class MatchController implements MatchDataService{
 			File[] allFiles = file.listFiles() ;
 			for(int i = 0; i<allFiles.length;i++){   //����matches�ļ����������ļ�
 				ArrayList<String> tempString  = FileHelper.readByLine(allFiles[i]) ;
-				System.out.println(allFiles[i].getName());
+//				System.out.println(allFiles[i].getName());
 				MatchPO newMatch = new MatchPO() ;
 				
 				boolean isFirstTeam = false ; //�ж���һֻ���

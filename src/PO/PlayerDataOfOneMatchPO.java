@@ -1,5 +1,7 @@
 package PO;
 
+import java.util.ArrayList;
+
 public class PlayerDataOfOneMatchPO {
 	//某场比赛中的数据
 	String name ;//名字
@@ -74,7 +76,7 @@ public class PlayerDataOfOneMatchPO {
 			this.setScoreOfOneMatch(Integer.parseInt(splitString[17]));
 	}
 	
-	public void calculatePlayerData(int totalTime,TeamDataPO teamData,TeamDataPO theOtherTeamData){//所有球员在长时间和对手总篮板
+	public void calculatePlayerData(int totalTime,TeamDataPO teamData,TeamDataPO theOtherTeamData,ArrayList<PlayerDataOfOneMatchPO> playersData ){//所有球员在长时间和对手总篮板
 		percentageOfShooting = (double)numberOfShooting/numberOfShotAttempt ;//投篮命中率
 		percentageOf3_Point = (double)numberOf3_point/numberOf3_pointAttempt ;//三分命中率
 		percentageOffreeThrow = (double)numberOfFreeThrow/numberOfFreeThrowAttempt ;//罚球命中率
@@ -82,24 +84,36 @@ public class PlayerDataOfOneMatchPO {
 				-(numberOfShotAttempt - numberOfShooting)-(numberOfFreeThrowAttempt-numberOfFreeThrow)-numberOfFaultOfOneMatch ;
 		
 		efficiencyOfGmSc = scoreOfOneMatch + 0.4*numberOfShooting-0.7*numberOfShotAttempt-0.4*(numberOfFreeThrowAttempt-numberOfFreeThrow)
-				+0.7*numberOfAttackRebound+0.3*numberOfDefenseRebound+numberOfSteal+0.7*numberOfAssistOfOneMatch ;
+				+0.7*numberOfAttackRebound+0.3*numberOfDefenseRebound+numberOfSteal+0.7*numberOfAssistOfOneMatch+0.7*numberOfBlockOfOneMatch-0.4*numberOfFoulOfOneMatch-numberOfFaultOfOneMatch;
 		percentageOfTrueShooting = scoreOfOneMatch/(2*(numberOfShotAttempt+0.44*numberOfFreeThrowAttempt)) ;
 		efficiencyOfShooting = (numberOfShooting+0.5*numberOf3_point)/numberOfShotAttempt ;
-		percentageOfRebound = numberOfReboundOfOneMatch*(totalTime/5.0)/transfromTime(presentTimeOfOneMatch)/(teamData.getNumberOfRebound()+theOtherTeamData.getNumberOfRebound()) ;
-		percentageOfAttackingRebound = numberOfAttackRebound*(totalTime/5.0)/transfromTime(presentTimeOfOneMatch)/(teamData.getNumberOfAttackRebound()+theOtherTeamData.getNumberOfAttackRebound());
-		percentageOfDefenseRebound = numberOfDefense*(totalTime/5.0)/transfromTime(presentTimeOfOneMatch)/(teamData.getNumberOfDefenseRebound()+theOtherTeamData.getNumberOfDefenseRebound()) ;
-		percentageOfAssist = numberOfAssistOfOneMatch/(transfromTime(presentTimeOfOneMatch)/(totalTime/5.0))*(teamData.getNumberOfShooting()-numberOfShooting) ;
-		percentageOfSteal = numberOfSteal*(totalTime/5.0)/transfromTime(presentTimeOfOneMatch)/theOtherTeamData.getRoundOfAttack() ;
-		percentageOfBlock = numberOfBlockOfOneMatch*(totalTime/5.0)/transfromTime(presentTimeOfOneMatch)/(theOtherTeamData.getNumberOfShotAttempt()-theOtherTeamData.getNumberOf3_pointAttempt()) ;
+		percentageOfRebound = numberOfReboundOfOneMatch*(totalTime/5.0)/transfromTime(presentTimeOfOneMatch,playersData,totalTime)/(teamData.getNumberOfRebound()+theOtherTeamData.getNumberOfRebound()) ;
+		percentageOfAttackingRebound = numberOfAttackRebound*(totalTime/5.0)/transfromTime(presentTimeOfOneMatch,playersData,totalTime)/(teamData.getNumberOfAttackRebound()+theOtherTeamData.getNumberOfAttackRebound());
+		percentageOfDefenseRebound = numberOfDefenseRebound*(totalTime/5.0)/transfromTime(presentTimeOfOneMatch,playersData,totalTime)/(teamData.getNumberOfDefenseRebound()+theOtherTeamData.getNumberOfDefenseRebound()) ;
+		percentageOfAssist = numberOfAssistOfOneMatch/(transfromTime(presentTimeOfOneMatch,playersData,totalTime)/(totalTime/5.0)*teamData.getNumberOfShooting()-numberOfShooting) ;
+		percentageOfSteal = numberOfSteal*(totalTime/5.0)/transfromTime(presentTimeOfOneMatch,playersData,totalTime)/theOtherTeamData.getRoundOfAttack() ;
+		percentageOfBlock = numberOfBlockOfOneMatch*(totalTime/5.0)/transfromTime(presentTimeOfOneMatch,playersData,totalTime)/(theOtherTeamData.getNumberOfShotAttempt()-theOtherTeamData.getNumberOf3_pointAttempt()) ;
 		percentageOfFault = numberOfFaultOfOneMatch/( (theOtherTeamData.getNumberOfShotAttempt()-theOtherTeamData.getNumberOf3_pointAttempt()) + 0.44*numberOfFreeThrowAttempt+numberOfFaultOfOneMatch) ;
-		percentageOfUse = (numberOfShotAttempt+0.44*numberOfFreeThrowAttempt+numberOfFaultOfOneMatch)*(totalTime/5.0)/transfromTime(presentTimeOfOneMatch)/(teamData.getNumberOfShotAttempt()+0.44*teamData.getNumberOfFreeThrowAttempt()+teamData.getNumberOfFault());
+		percentageOfUse = (numberOfShotAttempt+0.44*numberOfFreeThrowAttempt+numberOfFaultOfOneMatch)*(totalTime/5.0)/transfromTime(presentTimeOfOneMatch,playersData,totalTime)/(teamData.getNumberOfShotAttempt()+0.44*teamData.getNumberOfFreeThrowAttempt()+teamData.getNumberOfFault());
 	}
-	int transfromTime(String time){//转化时间为整数，单位秒
+	int transfromTime(String time,ArrayList<PlayerDataOfOneMatchPO> playersData,int totalTime){//转化时间为整数，单位秒
+		int result = 0 ;
 		if(time.equals("null")||time.equals("None")){
-			return 60 ;
+			result = totalTime *5;
+			for(PlayerDataOfOneMatchPO onePlayer:playersData){
+				if(!onePlayer.getName().equals(name)){
+				   result =result - transfromTime(onePlayer.getPresentTimeOfOneMatch(), playersData, totalTime) ;
+				}
+			}
+			if(result<0){
+				result = 0;
+			}
+			presentTimeOfOneMatch = ""+result/60+":"+result%60 ;//设置缺失的上场时间
+//			System.out.println(result+"  "+presentTimeOfOneMatch);
+			return result ;
 		}
 		String[] strs = time.split(":");
-		int result = Integer.parseInt(strs[0])*60+Integer.parseInt(strs[1]) ;
+		result = Integer.parseInt(strs[0])*60+Integer.parseInt(strs[1]) ;
 		return result ;
 	}
 	public String getName() {
@@ -188,6 +202,57 @@ public class PlayerDataOfOneMatchPO {
 	}
 	public int getNumberOfDefenseRebound() {
 		return numberOfDefenseRebound;
+	}
+	public double getPercentageOfShooting() {
+		return percentageOfShooting;
+	}
+	public double getPercentageOf3_Point() {
+		return percentageOf3_Point;
+	}
+	public double getPercentageOffreeThrow() {
+		return percentageOffreeThrow;
+	}
+	public int getNumberOfAttack() {
+		return numberOfAttack;
+	}
+	public int getNumberOfDefense() {
+		return numberOfDefense;
+	}
+	public int getEfficiency() {
+		return efficiency;
+	}
+	public double getEfficiencyOfGmSc() {
+		return efficiencyOfGmSc;
+	}
+	public double getPercentageOfTrueShooting() {
+		return percentageOfTrueShooting;
+	}
+	public double getEfficiencyOfShooting() {
+		return efficiencyOfShooting;
+	}
+	public double getPercentageOfRebound() {
+		return percentageOfRebound;
+	}
+	public double getPercentageOfAttackingRebound() {
+		return percentageOfAttackingRebound;
+	}
+	public double getPercentageOfDefenseRebound() {
+		return percentageOfDefenseRebound;
+	}
+	public double getPercentageOfAssist() {
+		return percentageOfAssist;
+	}
+	public double getPercentageOfSteal() {
+		return percentageOfSteal;
+	}
+	public double getPercentageOfBlock() {
+		return percentageOfBlock;
+	}
+	public double getPercentageOfFault() {
+		return percentageOfFault;
+	}
+	public double getPercentageOfUse() {
+		return percentageOfUse;
 	}
 	public int getNumberOfReboundOfOneMatch() {
 		return numberOfReboundOfOneMatch;

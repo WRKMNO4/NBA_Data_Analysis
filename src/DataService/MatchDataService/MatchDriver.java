@@ -17,17 +17,17 @@ public class MatchDriver {
 		PlayerController players=new PlayerController();
 	
 		MatchController test= new MatchController();
-		System.out.println(test.matches.allMatchListOf13_14.size());
-		
-		TeamPO team = TeamListPO.findTeamByShortName("MIL");
+//		System.out.println(test.matches.allMatchListOf13_14.size());
+//		TeamPO team = TeamListPO.findTeamByShortName("MIL");
 //		System.out.println(team.getMatches().size()+" matches");
 //		System.out.println(team.getPlayers().size()+" players");
 //		
-//		PlayerPO player= PlayerListPO.findPlayerByName("LeBron James");
+		PlayerPO player= PlayerListPO.findPlayerByName("Alex Len");
 //		System.out.println(player.getDatas().size()+" matches");
 //		System.out.println(player.getTeam());
-		System.out.println(team.getMatches().get(0).getFirstTeamData().getNumberOf3_point());
-		
+		for(int i =0 ;i<player.getDatas().size();i++){
+			System.out.println(player.getDatas().get(i).getEfficiencyOfShooting());
+		}
 		
 	}
 }
