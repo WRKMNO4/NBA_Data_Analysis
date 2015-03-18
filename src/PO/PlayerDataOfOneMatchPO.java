@@ -116,6 +116,7 @@ public class PlayerDataOfOneMatchPO {
 		result = Integer.parseInt(strs[0])*60+Integer.parseInt(strs[1]) ;
 		return result ;
 	}
+	
 	public String getName() {
 		return name;
 	}
