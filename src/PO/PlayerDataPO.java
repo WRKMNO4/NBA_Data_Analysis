@@ -1,27 +1,29 @@
 package PO;
 
+import java.util.ArrayList;
+
 public class PlayerDataPO {
 
 	//该球员赛季总数据
-	TeamPO team ;
 	int numberOfMatch ;//参赛场数
 	int numberOfStarting ;//首发场数
-	int numberOfRebound ;//篮板数
-	int numberOfAssist ;//助攻数
-	double presentTime ;//在场时间
+	double numberOfRebound ;//篮板数
+	double numberOfAssist ;//助攻数
+	String presentTime ;//在场时间
+	
 	
 	double percentageOfShooting ;//投篮命中率
 	double percentageOf3_Point ;//三分命中率
 	double percentageOffreeThrow ;//罚球命中率
 	
-	int numberOfAttack ;//进攻数
-	int numberOfDefense ;//防守数
-	int numberOfSteal ;//抢断数
-	int numberOfBlock ;//盖帽数 
-	int numberOfFault ;//失误数
-	int numberOfFoul ;//犯规数，
-	int score ;//得分，
-	int efficiency ;//效率，
+	double numberOfAttack ;//进攻数
+	double numberOfDefense ;//防守数
+	double numberOfSteal ;//抢断数
+	double numberOfBlock ;//盖帽数 
+	double numberOfFault ;//失误数
+	double numberOfFoul ;//犯规数，
+	double score ;//得分，
+	double efficiency ;//效率，
 	
 	double efficiencyOfGmSc ;//GmSc效率值，
 	double percentageOfTrueShooting ;//真实命中率，
@@ -35,25 +37,125 @@ public class PlayerDataPO {
 	double percentageOfFault ;//失误率，
 	double percentageOfUse ;//使用率
 	
+	int double_double;  //两双
+	double comprehension;  // 得分/篮板/助攻
 	
-	
-	
-	public TeamPO getTeam() {
-		return team;
+	public void calculatePlayerTotalDataInOneSeason(ArrayList<PlayerDataOfOneMatchPO> datas){
+		numberOfMatch = datas.size() ;
+		numberOfStarting = datas.size() ;
+		
+		int totalTime = 0 ;
+		
+		for(PlayerDataOfOneMatchPO oneMatch:datas){
+			numberOfRebound += oneMatch.getNumberOfReboundOfOneMatch() ;
+			numberOfAssist += oneMatch.getNumberOfAssistOfOneMatch() ;
+			totalTime += transportTime(oneMatch.getPresentTimeOfOneMatch()) ;
+			
+			numberOfAttack += oneMatch.getNumberOfAttack() ;
+			numberOfDefense += oneMatch.getNumberOfDefense() ;
+			numberOfSteal += oneMatch.getNumberOfSteal() ;
+			numberOfBlock += oneMatch.getNumberOfBlockOfOneMatch() ;
+			numberOfFault += oneMatch.getNumberOfFaultOfOneMatch() ;
+			numberOfFoul += oneMatch.getNumberOfFoulOfOneMatch() ;
+			score = oneMatch.getScoreOfOneMatch() ;
+			efficiency += oneMatch.getEfficiency() ;
+			
+		    efficiencyOfGmSc += oneMatch.getEfficiencyOfGmSc() ;
+		    
+		    if(oneMatch.isDouble_double()==true)
+		    	double_double += 1;
+		    
+		}
+		presentTime ="" +totalTime/60+":"+totalTime%60 ;
+		comprehension = (score+numberOfRebound+numberOfAssist)/3;
 	}
+	
+	public void calculatePlayerAverageDataInOneSeason(ArrayList<PlayerDataOfOneMatchPO> datas){
+		
+		calculatePlayerTotalDataInOneSeason(datas);
+		
+		double totalPOShooting = 0;
+		double totalPO3 = 0 ;
+		double totalPOFT = 0;
+		
+		double totalPOTS = 0 ;
+		double totalEOS = 0;
+		double totalPOR = 0;
+		double totalPOAR = 0;
+		double totalPODR = 0 ;
+		double totalPOA = 0 ;
+		double totalPOS = 0;
+		double totalPOB = 0;
+		double totalPOF = 0;
+		double totalPOU = 0;
+		
+		for(PlayerDataOfOneMatchPO oneMatch:datas){
+		    totalPOShooting += oneMatch.getPercentageOfShooting() ;
+		    totalPO3 += oneMatch.getPercentageOf3_Point() ;
+		    totalPOFT += oneMatch.getPercentageOffreeThrow() ;
+		    totalPOTS += oneMatch.getPercentageOfTrueShooting() ;
+	    	totalEOS += oneMatch.getEfficiencyOfShooting() ;
+	  		totalPOR = oneMatch.getPercentageOfRebound() ;
+			totalPOAR = oneMatch.getPercentageOfAttackingRebound() ;
+			totalPODR = oneMatch.getPercentageOfDefenseRebound() ;
+			totalPOA = oneMatch.getPercentageOfAssist() ;
+			totalPOS = oneMatch.getPercentageOfSteal() ;
+			totalPOB = oneMatch.getPercentageOfBlock() ;
+			totalPOF = oneMatch.getPercentageOfFault() ;
+			totalPOU = oneMatch.getPercentageOfUse() ;
+		}
+		
+		numberOfRebound = numberOfRebound/numberOfMatch ;
+		numberOfAssist = numberOfAssist/numberOfMatch ;
+		double totalTime = transportTime(presentTime) ;
+		double avgTime = totalTime/numberOfMatch ;
+		presentTime = ""+avgTime/60+":"+avgTime%60 ;
+		
+		percentageOfShooting = totalPOShooting/numberOfMatch ;
+		percentageOf3_Point = totalPO3/numberOfMatch ;
+		percentageOffreeThrow = totalPOFT/numberOfMatch ;
+		
+		numberOfAttack = numberOfAttack/numberOfMatch ;
+		numberOfDefense = numberOfDefense/numberOfMatch ;
+		numberOfSteal = numberOfSteal/numberOfMatch ;
+		numberOfBlock = numberOfBlock/numberOfMatch ;
+		numberOfFault = numberOfFault/numberOfMatch ;
+		numberOfFoul = numberOfFoul/numberOfMatch ;
+		score = score/numberOfMatch ;
+		efficiency = efficiency/numberOfMatch ;
+		
+		efficiencyOfGmSc = efficiencyOfGmSc/numberOfMatch ;
+		percentageOfTrueShooting = totalPOTS/numberOfMatch ;
+		efficiencyOfShooting = totalEOS/numberOfMatch ;
+		percentageOfRebound = totalPOR/numberOfMatch ;
+		percentageOfAttackingRebound = totalPOAR/numberOfMatch ;
+		percentageOfDefenseRebound = totalPODR/numberOfMatch ;
+		percentageOfAssist = totalPOA/numberOfMatch ;
+		percentageOfSteal = totalPOS/numberOfMatch ;
+		percentageOfBlock = totalPOB/numberOfMatch ;
+		percentageOfFault = totalPOF/numberOfMatch ;
+		percentageOfUse = totalPOU/numberOfMatch ;
+	}
+	int transportTime(String time){
+		int result = 0;
+		String[] strs = time.split(":") ;
+		result = Integer.parseInt(strs[0])*60 + Integer.parseInt(strs[1]) ;
+		return result ;
+	}
+	
 	public int getNumberOfMatch() {
 		return numberOfMatch;
 	}
 	public int getNumberOfStarting() {
 		return numberOfStarting;
 	}
-	public int getNumberOfRebound() {
+	public double getNumberOfRebound() {
 		return numberOfRebound;
 	}
-	public int getNumberOfAssist() {
+	public double getNumberOfAssist() {
 		return numberOfAssist;
 	}
-	public double getPresentTime() {
+	public String getPresentTime() {
 		return presentTime;
 	}
 	public double getPercentageOfShooting() {
@@ -65,28 +167,28 @@ public class PlayerDataPO {
 	public double getPercentageOffreeThrow() {
 		return percentageOffreeThrow;
 	}
-	public int getNumberOfAttack() {
+	public double getNumberOfAttack() {
 		return numberOfAttack;
 	}
-	public int getNumberOfDefense() {
+	public double getNumberOfDefense() {
 		return numberOfDefense;
 	}
-	public int getNumberOfSteal() {
+	public double getNumberOfSteal() {
 		return numberOfSteal;
 	}
-	public int getNumberOfBlock() {
+	public double getNumberOfBlock() {
 		return numberOfBlock;
 	}
-	public int getNumberOfFault() {
+	public double getNumberOfFault() {
 		return numberOfFault;
 	}
-	public int getNumberOfFoul() {
+	public double getNumberOfFoul() {
 		return numberOfFoul;
 	}
-	public int getScore() {
+	public double getScore() {
 		return score;
 	}
-	public int getEfficiency() {
+	public double getEfficiency() {
 		return efficiency;
 	}
 	public double getEfficiencyOfGmSc() {
@@ -122,6 +224,14 @@ public class PlayerDataPO {
 	public double getPercentageOfUse() {
 		return percentageOfUse;
 	}
+	public int getDouble_double() {
+		return double_double;
+	}
+	public double getComprehension() {
+		return comprehension;
+	}
+
+
 	
 	
 }

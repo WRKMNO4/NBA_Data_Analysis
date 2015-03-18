@@ -50,8 +50,8 @@ public class TeamPO {
 	
 	public void calculateTotalTeamData(){
 		percentageOfWinning = numberOfWinning / matches.size() ;
-		
-		
+		totalTeamData.calculateTeamTotalDataInOneSeason(matches, shortName);
+		averageTeamData.calculateTeamAverageDataInOneSeason(totalTeamData, matches.size());
 	}
 	public String getFullName() {
 		return fullName;

@@ -3,21 +3,21 @@ package PO;
 import java.util.ArrayList;
 
 public class TeamDataPO {
-	int numberOfShooting ;//投篮命中数
-	int numberOfShotAttempt ;//，投篮出手数，
-	int numberOf3_point ;//三分命中数，
-	int numberOf3_pointAttempt ;//三分出手数，
-	int numberOfFreeThrow ;//罚球命中数，
-	int numberOfFreeThrowAttempt ;//罚球出手数，
-	int numberOfAttackRebound ;//进攻篮板数，
-	int numberOfDefenseRebound ;//防守篮板数，
-	int numberOfRebound ;//篮板球，
-	int numberOfAssist ;//助攻数，
-	int numberOfSteal ;//抢断数，
-	int numberOfBlock ;//盖帽数，
-	int numberOfFault ;//失误数，
-	int numberOfFoul ;//犯规数，
-	int score ;//比赛得分
+	double numberOfShooting ;//投篮命中数
+	double numberOfShotAttempt ;//，投篮出手数，
+	double numberOf3_point ;//三分命中数，
+	double  numberOf3_pointAttempt ;//三分出手数，
+	double numberOfFreeThrow ;//罚球命中数，
+	double numberOfFreeThrowAttempt ;//罚球出手数，
+	double numberOfAttackRebound ;//进攻篮板数，
+	double numberOfDefenseRebound ;//防守篮板数，
+	double numberOfRebound ;//篮板球，
+	double numberOfAssist ;//助攻数，
+	double numberOfSteal ;//抢断数，
+	double numberOfBlock ;//盖帽数，
+	double numberOfFault ;//失误数，
+	double numberOfFoul ;//犯规数，
+	double score ;//比赛得分
 	
 	double percentageOfShooting ;//投篮命中率，
 	double percentageOf3_point ;//三分命中率，
@@ -83,209 +83,267 @@ public class TeamDataPO {
 	public void calculateTeamTotalDataInOneSeason(ArrayList<MatchPO> matches, String teamShortName){
 		for(int i=0;i<matches.size();i++){
 			TeamDataPO teamData = matches.get(i).getTeamDataByName(teamShortName);
-			numberOfShooting += teamData.getNumberOfShooting() ;
+			numberOfShooting += teamData.getNumberOfShooting();
+			numberOfShotAttempt += teamData.getNumberOfShotAttempt();
+			numberOf3_point += teamData.getNumberOf3_point();
+			numberOf3_pointAttempt += teamData.getNumberOf3_pointAttempt();
+			numberOfFreeThrow += teamData.getNumberOfFreeThrow();
+			numberOfFreeThrowAttempt += teamData.getNumberOfFreeThrowAttempt();
+			numberOfAttackRebound += teamData.getNumberOfAttackRebound();
+			numberOfDefenseRebound += teamData.getNumberOfDefenseRebound();
+			numberOfRebound += teamData.getNumberOfRebound();
+			numberOfAssist += teamData.getNumberOfAssist();
+			numberOfSteal += teamData.getNumberOfSteal();
+			numberOfBlock += teamData.getNumberOfBlock();
+			numberOfFault += teamData.getNumberOfFault();
+			numberOfFoul += teamData.getNumberOfFoul();
+			score += teamData.getScore();
+			
+			percentageOfShooting += teamData.getPercentageOfShooting();
+			percentageOf3_point += teamData.getPercentageOf3_point();
+			percentageOfFreeThrow += teamData.getPercentageOfFreeThrow();
+			
+			roundOfAttack += teamData.getRoundOfAttack();
+			
+			efficiencyOfAttack += teamData.getEfficiencyOfAttack();
+			efficiencyOfDefense += teamData.getEfficiencyOfDefense();
+			efficiencyOfRebound += teamData.getEfficiencyOfRebound();
+			efficiencyOfSteal += teamData.getEfficiencyOfSteal();
+			efficiencyOfAssist += teamData.getEfficiencyOfAssist();
 		}
 	} 
-	
-	public int getNumberOfShooting() {
+
+	public void calculateTeamAverageDataInOneSeason(TeamDataPO totalTeamData, int matches){
+		numberOfShooting = totalTeamData.getNumberOfShooting() / matches ;
+		numberOfShotAttempt = totalTeamData.getNumberOfShotAttempt() / matches;
+		numberOf3_point = totalTeamData.getNumberOf3_point() / matches;
+		numberOf3_pointAttempt = totalTeamData.getNumberOf3_pointAttempt() / matches;
+		numberOfFreeThrow = totalTeamData.getNumberOfFreeThrow() / matches;
+		numberOfFreeThrowAttempt = totalTeamData.getNumberOfFreeThrowAttempt() / matches;
+		numberOfAttackRebound = totalTeamData.getNumberOfAttackRebound() / matches;
+		numberOfDefenseRebound = totalTeamData.getNumberOfDefenseRebound() / matches;
+		numberOfRebound = totalTeamData.getNumberOfRebound() / matches;
+		numberOfAssist = totalTeamData.getNumberOfAssist() / matches;
+		numberOfSteal = totalTeamData.getNumberOfSteal() / matches;
+		numberOfBlock = totalTeamData.getNumberOfBlock() / matches;
+		numberOfFault = totalTeamData.getNumberOfFault() / matches;
+		numberOfFoul = totalTeamData.getNumberOfFoul() / matches;
+		score = totalTeamData.getScore() / matches;
+		
+		percentageOfShooting = totalTeamData.getNumberOfShooting() / totalTeamData.getNumberOfShotAttempt();
+		percentageOf3_point =  totalTeamData.getNumberOf3_point() / totalTeamData.getNumberOf3_pointAttempt();
+		percentageOfFreeThrow =  totalTeamData.getNumberOfFreeThrow() / totalTeamData.getNumberOfFreeThrowAttempt();
+		
+		roundOfAttack =  totalTeamData.getRoundOfAttack() / matches;
+		
+		efficiencyOfAttack =  totalTeamData.getEfficiencyOfAttack() / matches;
+		efficiencyOfDefense =  totalTeamData.getEfficiencyOfDefense() / matches;
+		efficiencyOfRebound = totalTeamData.getEfficiencyOfRebound() / matches;
+		efficiencyOfSteal = totalTeamData.getEfficiencyOfSteal() / matches;
+		efficiencyOfAssist = totalTeamData.getEfficiencyOfAssist() / matches;
+	}
+
+	public double getNumberOfShooting() {
 		return numberOfShooting;
 	}
 
-	public void setNumberOfShooting(int numberOfShooting) {
+	public void setNumberOfShooting(double numberOfShooting) {
 		this.numberOfShooting = numberOfShooting;
 	}
 
-	public int getNumberOfShotAttempt() {
-		return numberOfShotAttempt;
-	}
-
-	public void setNumberOfShotAttempt(int numberOfShotAttempt) {
+	public void setNumberOfShotAttempt(double numberOfShotAttempt) {
 		this.numberOfShotAttempt = numberOfShotAttempt;
 	}
 
-	public int getNumberOf3_point() {
-		return numberOf3_point;
-	}
-
-	public void setNumberOf3_point(int numberOf3_point) {
+	public void setNumberOf3_point(double numberOf3_point) {
 		this.numberOf3_point = numberOf3_point;
 	}
 
-	public int getNumberOf3_pointAttempt() {
-		return numberOf3_pointAttempt;
-	}
-
-	public void setNumberOf3_pointAttempt(int numberOf3_pointAttempt) {
+	public void setNumberOf3_pointAttempt(double numberOf3_pointAttempt) {
 		this.numberOf3_pointAttempt = numberOf3_pointAttempt;
 	}
 
-	public int getNumberOfFreeThrow() {
-		return numberOfFreeThrow;
-	}
-
-	public void setNumberOfFreeThrow(int numberOfFreeThrow) {
+	public void setNumberOfFreeThrow(double numberOfFreeThrow) {
 		this.numberOfFreeThrow = numberOfFreeThrow;
 	}
 
-	public int getNumberOfFreeThrowAttempt() {
-		return numberOfFreeThrowAttempt;
-	}
-
-	public void setNumberOfFreeThrowAttempt(int numberOfFreeThrowAttempt) {
+	public void setNumberOfFreeThrowAttempt(double numberOfFreeThrowAttempt) {
 		this.numberOfFreeThrowAttempt = numberOfFreeThrowAttempt;
 	}
 
-	public int getNumberOfAttackRebound() {
-		return numberOfAttackRebound;
-	}
-
-	public void setNumberOfAttackRebound(int numberOfAttackRebound) {
+	public void setNumberOfAttackRebound(double numberOfAttackRebound) {
 		this.numberOfAttackRebound = numberOfAttackRebound;
 	}
 
-	public int getNumberOfDefenseRebound() {
-		return numberOfDefenseRebound;
-	}
-
-	public void setNumberOfDefenseRebound(int numberOfDefenseRebound) {
+	public void setNumberOfDefenseRebound(double numberOfDefenseRebound) {
 		this.numberOfDefenseRebound = numberOfDefenseRebound;
 	}
 
-	public int getNumberOfRebound() {
-		return numberOfRebound;
-	}
-
-	public void setNumberOfRebound(int numberOfRebound) {
+	public void setNumberOfRebound(double numberOfRebound) {
 		this.numberOfRebound = numberOfRebound;
 	}
 
-	public int getNumberOfAssist() {
-		return numberOfAssist;
-	}
-
-	public void setNumberOfAssist(int numberOfAssist) {
+	public void setNumberOfAssist(double numberOfAssist) {
 		this.numberOfAssist = numberOfAssist;
 	}
 
-	public int getNumberOfSteal() {
-		return numberOfSteal;
-	}
-
-	public void setNumberOfSteal(int numberOfSteal) {
+	public void setNumberOfSteal(double numberOfSteal) {
 		this.numberOfSteal = numberOfSteal;
 	}
 
-	public int getNumberOfBlock() {
-		return numberOfBlock;
-	}
-
-	public void setNumberOfBlock(int numberOfBlock) {
+	public void setNumberOfBlock(double numberOfBlock) {
 		this.numberOfBlock = numberOfBlock;
 	}
 
-	public int getNumberOfFault() {
-		return numberOfFault;
-	}
-
-	public void setNumberOfFault(int numberOfFault) {
+	public void setNumberOfFault(double numberOfFault) {
 		this.numberOfFault = numberOfFault;
 	}
 
-	public int getNumberOfFoul() {
-		return numberOfFoul;
-	}
-
-	public void setNumberOfFoul(int numberOfFoul) {
+	public void setNumberOfFoul(double numberOfFoul) {
 		this.numberOfFoul = numberOfFoul;
 	}
 
-	public int getScore() {
-		return score;
-	}
-
-	public void setScore(int score) {
+	public void setScore(double score) {
 		this.score = score;
-	}
-
-	public double getPercentageOfShooting() {
-		return percentageOfShooting;
 	}
 
 	public void setPercentageOfShooting(double percentageOfShooting) {
 		this.percentageOfShooting = percentageOfShooting;
 	}
 
-	public double getPercentageOf3_point() {
-		return percentageOf3_point;
-	}
-
 	public void setPercentageOf3_point(double percentageOf3_point) {
 		this.percentageOf3_point = percentageOf3_point;
-	}
-
-	public double getPercentageOfFreeThrow() {
-		return percentageOfFreeThrow;
 	}
 
 	public void setPercentageOfFreeThrow(double percentageOfFreeThrow) {
 		this.percentageOfFreeThrow = percentageOfFreeThrow;
 	}
 
-	public double getRoundOfAttack() {
-		return roundOfAttack;
-	}
-
 	public void setRoundOfAttack(double roundOfAttack) {
 		this.roundOfAttack = roundOfAttack;
-	}
-
-	public double getEfficiencyOfAttack() {
-		return efficiencyOfAttack;
 	}
 
 	public void setEfficiencyOfAttack(double efficiencyOfAttack) {
 		this.efficiencyOfAttack = efficiencyOfAttack;
 	}
 
-	public double getRoundOfDefense() {
-		return roundOfDefense;
-	}
-
 	public void setRoundOfDefense(double roundOfDefense) {
 		this.roundOfDefense = roundOfDefense;
-	}
-
-	public double getEfficiencyOfDefense() {
-		return efficiencyOfDefense;
 	}
 
 	public void setEfficiencyOfDefense(double efficiencyOfDefense) {
 		this.efficiencyOfDefense = efficiencyOfDefense;
 	}
 
-	public double getEfficiencyOfRebound() {
-		return efficiencyOfRebound;
-	}
-
 	public void setEfficiencyOfRebound(double efficiencyOfRebound) {
 		this.efficiencyOfRebound = efficiencyOfRebound;
-	}
-
-	public double getEfficiencyOfSteal() {
-		return efficiencyOfSteal;
 	}
 
 	public void setEfficiencyOfSteal(double efficiencyOfSteal) {
 		this.efficiencyOfSteal = efficiencyOfSteal;
 	}
 
-	public double getEfficiencyOfAssist() {
-		return efficiencyOfAssist;
-	}
-
 	public void setEfficiencyOfAssist(double efficiencyOfAssist) {
 		this.efficiencyOfAssist = efficiencyOfAssist;
 	}
+
+	public double getNumberOfShotAttempt() {
+		return numberOfShotAttempt;
+	}
+
+	public double getNumberOf3_point() {
+		return numberOf3_point;
+	}
+
+	public double getNumberOf3_pointAttempt() {
+		return numberOf3_pointAttempt;
+	}
+
+	public double getNumberOfFreeThrow() {
+		return numberOfFreeThrow;
+	}
+
+	public double getNumberOfFreeThrowAttempt() {
+		return numberOfFreeThrowAttempt;
+	}
+
+	public double getNumberOfAttackRebound() {
+		return numberOfAttackRebound;
+	}
+
+	public double getNumberOfDefenseRebound() {
+		return numberOfDefenseRebound;
+	}
+
+	public double getNumberOfRebound() {
+		return numberOfRebound;
+	}
+
+	public double getNumberOfAssist() {
+		return numberOfAssist;
+	}
+
+	public double getNumberOfSteal() {
+		return numberOfSteal;
+	}
+
+	public double getNumberOfBlock() {
+		return numberOfBlock;
+	}
+
+	public double getNumberOfFault() {
+		return numberOfFault;
+	}
+
+	public double getNumberOfFoul() {
+		return numberOfFoul;
+	}
+
+	public double getScore() {
+		return score;
+	}
+
+	public double getPercentageOfShooting() {
+		return percentageOfShooting;
+	}
+
+	public double getPercentageOf3_point() {
+		return percentageOf3_point;
+	}
+
+	public double getPercentageOfFreeThrow() {
+		return percentageOfFreeThrow;
+	}
+
+	public double getRoundOfAttack() {
+		return roundOfAttack;
+	}
+
+	public double getEfficiencyOfAttack() {
+		return efficiencyOfAttack;
+	}
+
+	public double getRoundOfDefense() {
+		return roundOfDefense;
+	}
+
+	public double getEfficiencyOfDefense() {
+		return efficiencyOfDefense;
+	}
+
+	public double getEfficiencyOfRebound() {
+		return efficiencyOfRebound;
+	}
+
+	public double getEfficiencyOfSteal() {
+		return efficiencyOfSteal;
+	}
+
+	public double getEfficiencyOfAssist() {
+		return efficiencyOfAssist;
+	}
+	
+	
 	
 	
 }

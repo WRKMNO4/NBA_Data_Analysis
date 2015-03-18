@@ -10,7 +10,7 @@ import PO.PlayerPO;
 
 public class PlayerController implements PlayerDataService{
 
-	PlayerListPO players ;
+	public PlayerListPO players ;
 	
 	public PlayerController(){
 		players= new PlayerListPO();
@@ -63,6 +63,10 @@ public class PlayerController implements PlayerDataService{
 	public PlayerPO findPlayerByName(String name) {
 		// TODO Auto-generated method stub
 		return players.findPlayerByName(name);
+	}
+
+	public ArrayList<PlayerPO> getAllPlayers() {
+		return players.getAllPlayers();
 	}
 	
 	
