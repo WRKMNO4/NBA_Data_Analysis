@@ -83,9 +83,36 @@ public class TeamDataPO {
 	public void calculateTeamTotalDataInOneSeason(ArrayList<MatchPO> matches, String teamShortName){
 		for(int i=0;i<matches.size();i++){
 			TeamDataPO teamData = matches.get(i).getTeamDataByName(teamShortName);
-			numberOfShooting += teamData.getNumberOfShooting() ;
+			numberOfShooting += teamData.getNumberOfShooting();
+			numberOfShotAttempt += teamData.getNumberOfShotAttempt();
+			numberOf3_point += teamData.getNumberOf3_point();
+			numberOf3_pointAttempt += teamData.getNumberOf3_pointAttempt();
+			numberOfFreeThrow += teamData.getNumberOfFreeThrow();
+			numberOfFreeThrowAttempt += teamData.getNumberOfFreeThrowAttempt();
+			numberOfAttackRebound += teamData.getNumberOfAttackRebound();
+			numberOfDefenseRebound += teamData.getNumberOfDefenseRebound();
+			numberOfRebound += teamData.getNumberOfRebound();
+			numberOfAssist += teamData.getNumberOfAssist();
+			numberOfSteal += teamData.getNumberOfSteal();
+			numberOfBlock += teamData.getNumberOfBlock();
+			numberOfFault += teamData.getNumberOfFault();
+			numberOfFoul += teamData.getNumberOfFoul();
+			score += teamData.getScore();
+			
+			roundOfAttack += teamData.getRoundOfAttack();
+			
+			
 		}
+		
+		percentageOfShooting = (double)numberOfShooting / (double)numberOfShotAttempt;
+		percentageOf3_point = (double)numberOf3_point / (double) numberOf3_pointAttempt;
+		percentageOfFreeThrow = (double) numberOfFreeThrow / (double) numberOfFreeThrowAttempt;
+		
 	} 
+
+	public void calculateTeamAverageDataInOneSeason(TeamDataPO totalTeamData){
+		
+	}
 	
 	public int getNumberOfShooting() {
 		return numberOfShooting;
