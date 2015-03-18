@@ -1,11 +1,12 @@
 package BusinessLogic.TeamBusinessLogic;
 
 public class TeamController implements TeamBusinessLogic{
-	TeamController teamController;
+	DataService.TeamDataService.TeamController teamController;
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		teamController = new TeamController();
+		teamController = new DataService.TeamDataService.TeamController();
 	}
 
+	
 }

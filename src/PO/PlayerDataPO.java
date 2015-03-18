@@ -37,6 +37,9 @@ public class PlayerDataPO {
 	double percentageOfFault ;//失误率，
 	double percentageOfUse ;//使用率
 	
+	int double_double;  //两双
+	double comprehension;  // 得分/篮板/助攻
+	
 	public void calculatePlayerTotalDataInOneSeason(ArrayList<PlayerDataOfOneMatchPO> datas){
 		numberOfMatch = datas.size() ;
 		numberOfStarting = datas.size() ;
@@ -59,8 +62,12 @@ public class PlayerDataPO {
 			
 		    efficiencyOfGmSc += oneMatch.getEfficiencyOfGmSc() ;
 		    
+		    if(oneMatch.isDouble_double()==true)
+		    	double_double += 1;
+		    
 		}
 		presentTime ="" +totalTime/60+":"+totalTime%60 ;
+		comprehension = (score+numberOfRebound+numberOfAssist)/3;
 	}
 	
 	public void calculatePlayerAverageDataInOneSeason(ArrayList<PlayerDataOfOneMatchPO> datas){
@@ -217,6 +224,14 @@ public class PlayerDataPO {
 	public double getPercentageOfUse() {
 		return percentageOfUse;
 	}
+	public int getDouble_double() {
+		return double_double;
+	}
+	public double getComprehension() {
+		return comprehension;
+	}
+
+
 	
 	
 }

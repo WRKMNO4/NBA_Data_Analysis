@@ -31,5 +31,11 @@ public class PlayerListPO {
 	void updatePlayer(PlayerPO thePlayer){
 		
 	}
+
+	public static ArrayList<PlayerPO> getAllPlayers() {
+		return allPlayers;
+	}
+	
+	
 	
 }

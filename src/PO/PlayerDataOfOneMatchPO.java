@@ -46,6 +46,8 @@ public class PlayerDataOfOneMatchPO {
 	double percentageOfFault ;//失误率，
 	double percentageOfUse ;//使用率
 	
+	boolean double_double;  //两双
+	
 	
 	public PlayerDataOfOneMatchPO(){
 		
@@ -74,6 +76,8 @@ public class PlayerDataOfOneMatchPO {
 					3 * this.getNumberOf3_point()   );      //calculate by other data of him
 		else
 			this.setScoreOfOneMatch(Integer.parseInt(splitString[17]));
+		this.setDouble_double(ifDoubleDouble());
+		
 	}
 	
 	public void calculatePlayerData(int totalTime,TeamDataPO teamData,TeamDataPO theOtherTeamData,ArrayList<PlayerDataOfOneMatchPO> playersData ){//所有球员在长时间和对手总篮板
@@ -115,6 +119,24 @@ public class PlayerDataOfOneMatchPO {
 		String[] strs = time.split(":");
 		result = Integer.parseInt(strs[0])*60+Integer.parseInt(strs[1]) ;
 		return result ;
+	}
+	
+	public boolean ifDoubleDouble(){
+		int count=0;
+		if(scoreOfOneMatch>=10)
+			count++;
+		if(numberOfReboundOfOneMatch>=10)
+			count++;
+		if(numberOfAssistOfOneMatch>=10)
+			count++;
+		if(numberOfSteal>=10)
+			count++;
+		if(numberOfBlockOfOneMatch>=10)
+			count++;
+		if(count>=2)
+			return true;
+		else
+			return false;
 	}
 	
 	public String getName() {
@@ -327,6 +349,12 @@ public class PlayerDataOfOneMatchPO {
 	}
 	public double getScoreOfOneMatch() {
 		return scoreOfOneMatch;
+	}
+	public boolean isDouble_double() {
+		return double_double;
+	}
+	public void setDouble_double(boolean double_double) {
+		this.double_double = double_double;
 	}
 	
 	
