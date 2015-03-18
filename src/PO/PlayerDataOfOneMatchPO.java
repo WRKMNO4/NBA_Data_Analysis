@@ -7,22 +7,22 @@ public class PlayerDataOfOneMatchPO {
 	String name ;//名字
 	String position ;//位置
 	String presentTimeOfOneMatch ;//在场时间
-	int numberOfShooting ;//投篮命中数
-	int numberOfShotAttempt ; // 投篮出手数，
-	int numberOf3_point ;//三分命中数，
-	int numberOf3_pointAttempt ;//三分出手数，
-	int numberOfFreeThrow ;//罚球命中数，
-	int numberOfFreeThrowAttempt ;//罚球出手数，
-	int numberOfAttackRebound ;//进攻（前场）篮板球，
-	int numberOfDefenseRebound ;//防守（后场）篮板球，
-	int numberOfReboundOfOneMatch ;//总篮板球，
-	int numberOfAssistOfOneMatch ;//助攻数，
-	int numberOfSteal;  //抢断数
-	int numberOfBlockOfOneMatch ;//盖帽数，
-	int numberOfFaultOfOneMatch ;//失误数，
+	double numberOfShooting ;//投篮命中数
+	double numberOfShotAttempt ; // 投篮出手数，
+	double numberOf3_point ;//三分命中数，
+	double numberOf3_pointAttempt ;//三分出手数，
+	double numberOfFreeThrow ;//罚球命中数，
+	double numberOfFreeThrowAttempt ;//罚球出手数，
+	double numberOfAttackRebound ;//进攻（前场）篮板球，
+	double numberOfDefenseRebound ;//防守（后场）篮板球，
+	double numberOfReboundOfOneMatch ;//总篮板球，
+	double numberOfAssistOfOneMatch ;//助攻数，
+	double numberOfSteal;  //抢断数
+	double numberOfBlockOfOneMatch ;//盖帽数，
+	double numberOfFaultOfOneMatch ;//失误数，
 	
-	int numberOfFoulOfOneMatch ;//犯规数，
-	int scoreOfOneMatch ;//个人得分
+	double numberOfFoulOfOneMatch ;//犯规数，
+	double scoreOfOneMatch ;//个人得分
 	
 	
 	
@@ -30,9 +30,9 @@ public class PlayerDataOfOneMatchPO {
 	double percentageOf3_Point ;//三分命中率
 	double percentageOffreeThrow ;//罚球命中率
 	
-	int numberOfAttack ;//进攻数
-	int numberOfDefense ;//防守数
-	int efficiency ;//效率，
+	double numberOfAttack ;//进攻数
+	double numberOfDefense ;//防守数
+	double efficiency ;//效率，
 	
 	double efficiencyOfGmSc ;//GmSc效率值，
 	double percentageOfTrueShooting ;//真实命中率，
@@ -128,49 +128,101 @@ public class PlayerDataOfOneMatchPO {
 	public void setPresentTimeOfOneMatch(String presentTimeOfOneMatch) {
 		this.presentTimeOfOneMatch = presentTimeOfOneMatch;
 	}
-	public void setNumberOfShooting(int numberOfShooting) {
+	
+	public void setNumberOfShooting(double numberOfShooting) {
 		this.numberOfShooting = numberOfShooting;
 	}
-	public void setNumberOfShotAttempt(int numberOfShotAttempt) {
+	public void setNumberOfShotAttempt(double numberOfShotAttempt) {
 		this.numberOfShotAttempt = numberOfShotAttempt;
 	}
-	public void setNumberOf3_point(int numberOf3_point) {
+	public void setNumberOf3_point(double numberOf3_point) {
 		this.numberOf3_point = numberOf3_point;
 	}
-	public void setNumberOf3_pointAttempt(int numberOf3_pointAttempt) {
+	public void setNumberOf3_pointAttempt(double numberOf3_pointAttempt) {
 		this.numberOf3_pointAttempt = numberOf3_pointAttempt;
 	}
-	public void setNumberOfFreeThrow(int numbreOfFreeThrow) {
-		this.numberOfFreeThrow = numbreOfFreeThrow;
+	public void setNumberOfFreeThrow(double numberOfFreeThrow) {
+		this.numberOfFreeThrow = numberOfFreeThrow;
 	}
-	public void setNumberOfFreeThrowAttempt(int numberOfFreeThrowAttempt) {
+	public void setNumberOfFreeThrowAttempt(double numberOfFreeThrowAttempt) {
 		this.numberOfFreeThrowAttempt = numberOfFreeThrowAttempt;
 	}
-	public void setNumberOfAttackRebound(int numberOfAttackRebound) {
+	public void setNumberOfAttackRebound(double numberOfAttackRebound) {
 		this.numberOfAttackRebound = numberOfAttackRebound;
 	}
-	public void setNumberOfDefenseRebound(int numberOfDefenseRebound) {
+	public void setNumberOfDefenseRebound(double numberOfDefenseRebound) {
 		this.numberOfDefenseRebound = numberOfDefenseRebound;
 	}
-	public void setNumberOfReboundOfOneMatch(int numberOfReboundOfOneMatch) {
+	public void setNumberOfReboundOfOneMatch(double numberOfReboundOfOneMatch) {
 		this.numberOfReboundOfOneMatch = numberOfReboundOfOneMatch;
 	}
-	public void setNumberOfAssistOfOneMatch(int numberOfAssistOfOneMatch) {
+	public void setNumberOfAssistOfOneMatch(double numberOfAssistOfOneMatch) {
 		this.numberOfAssistOfOneMatch = numberOfAssistOfOneMatch;
 	}
-	public void setNumberOfSteal(int numberOfSteal) {
+	public void setNumberOfSteal(double numberOfSteal) {
 		this.numberOfSteal = numberOfSteal;
 	}
-	public void setNumberOfBlockOfOneMatch(int numberOfBlockOfOneMatch) {
+	public void setNumberOfBlockOfOneMatch(double numberOfBlockOfOneMatch) {
 		this.numberOfBlockOfOneMatch = numberOfBlockOfOneMatch;
 	}
-	public void setNumberOfFaultOfOneMatch(int numberOfFaultOfOneMatch) {
+	public void setNumberOfFaultOfOneMatch(double numberOfFaultOfOneMatch) {
 		this.numberOfFaultOfOneMatch = numberOfFaultOfOneMatch;
 	}
-	public void setNumberOfFoulOfOneMatch(int numberOfFoulOfOneMatch) {
+	public void setPercentageOfShooting(double percentageOfShooting) {
+		this.percentageOfShooting = percentageOfShooting;
+	}
+	public void setPercentageOf3_Point(double percentageOf3_Point) {
+		this.percentageOf3_Point = percentageOf3_Point;
+	}
+	public void setPercentageOffreeThrow(double percentageOffreeThrow) {
+		this.percentageOffreeThrow = percentageOffreeThrow;
+	}
+	public void setNumberOfAttack(double numberOfAttack) {
+		this.numberOfAttack = numberOfAttack;
+	}
+	public void setNumberOfDefense(double numberOfDefense) {
+		this.numberOfDefense = numberOfDefense;
+	}
+	public void setEfficiency(double efficiency) {
+		this.efficiency = efficiency;
+	}
+	public void setEfficiencyOfGmSc(double efficiencyOfGmSc) {
+		this.efficiencyOfGmSc = efficiencyOfGmSc;
+	}
+	public void setPercentageOfTrueShooting(double percentageOfTrueShooting) {
+		this.percentageOfTrueShooting = percentageOfTrueShooting;
+	}
+	public void setEfficiencyOfShooting(double efficiencyOfShooting) {
+		this.efficiencyOfShooting = efficiencyOfShooting;
+	}
+	public void setPercentageOfRebound(double percentageOfRebound) {
+		this.percentageOfRebound = percentageOfRebound;
+	}
+	public void setPercentageOfAttackingRebound(double percentageOfAttackingRebound) {
+		this.percentageOfAttackingRebound = percentageOfAttackingRebound;
+	}
+	public void setPercentageOfDefenseRebound(double percentageOfDefenseRebound) {
+		this.percentageOfDefenseRebound = percentageOfDefenseRebound;
+	}
+	public void setPercentageOfAssist(double percentageOfAssist) {
+		this.percentageOfAssist = percentageOfAssist;
+	}
+	public void setPercentageOfSteal(double percentageOfSteal) {
+		this.percentageOfSteal = percentageOfSteal;
+	}
+	public void setPercentageOfBlock(double percentageOfBlock) {
+		this.percentageOfBlock = percentageOfBlock;
+	}
+	public void setPercentageOfFault(double percentageOfFault) {
+		this.percentageOfFault = percentageOfFault;
+	}
+	public void setPercentageOfUse(double percentageOfUse) {
+		this.percentageOfUse = percentageOfUse;
+	}
+	public void setNumberOfFoulOfOneMatch(double numberOfFoulOfOneMatch) {
 		this.numberOfFoulOfOneMatch = numberOfFoulOfOneMatch;
 	}
-	public void setScoreOfOneMatch(int scoreOfOneMatch) {
+	public void setScoreOfOneMatch(double scoreOfOneMatch) {
 		this.scoreOfOneMatch = scoreOfOneMatch;
 	}
 	public String getPosition() {
@@ -179,28 +231,28 @@ public class PlayerDataOfOneMatchPO {
 	public String getPresentTimeOfOneMatch() {
 		return presentTimeOfOneMatch;
 	}
-	public int getNumberOfShooting() {
+	public double getNumberOfShooting() {
 		return numberOfShooting;
 	}
-	public int getNumberOfShotAttempt() {
+	public double getNumberOfShotAttempt() {
 		return numberOfShotAttempt;
 	}
-	public int getNumberOf3_point() {
+	public double getNumberOf3_point() {
 		return numberOf3_point;
 	}
-	public int getNumberOf3_pointAttempt() {
+	public double getNumberOf3_pointAttempt() {
 		return numberOf3_pointAttempt;
 	}
-	public int getNumberOfFreeThrow() {
+	public double getNumberOfFreeThrow() {
 		return numberOfFreeThrow;
 	}
-	public int getNumberOfFreeThrowAttempt() {
+	public double getNumberOfFreeThrowAttempt() {
 		return numberOfFreeThrowAttempt;
 	}
-	public int getNumberOfAttackRebound() {
+	public double getNumberOfAttackRebound() {
 		return numberOfAttackRebound;
 	}
-	public int getNumberOfDefenseRebound() {
+	public double getNumberOfDefenseRebound() {
 		return numberOfDefenseRebound;
 	}
 	public double getPercentageOfShooting() {
@@ -212,13 +264,13 @@ public class PlayerDataOfOneMatchPO {
 	public double getPercentageOffreeThrow() {
 		return percentageOffreeThrow;
 	}
-	public int getNumberOfAttack() {
+	public double getNumberOfAttack() {
 		return numberOfAttack;
 	}
-	public int getNumberOfDefense() {
+	public double getNumberOfDefense() {
 		return numberOfDefense;
 	}
-	public int getEfficiency() {
+	public double getEfficiency() {
 		return efficiency;
 	}
 	public double getEfficiencyOfGmSc() {
@@ -254,25 +306,25 @@ public class PlayerDataOfOneMatchPO {
 	public double getPercentageOfUse() {
 		return percentageOfUse;
 	}
-	public int getNumberOfReboundOfOneMatch() {
+	public double getNumberOfReboundOfOneMatch() {
 		return numberOfReboundOfOneMatch;
 	}
-	public int getNumberOfAssistOfOneMatch() {
+	public double getNumberOfAssistOfOneMatch() {
 		return numberOfAssistOfOneMatch;
 	}
-	public int getNumberOfSteal() {
+	public double getNumberOfSteal() {
 		return numberOfSteal;
 	}
-	public int getNumberOfBlockOfOneMatch() {
+	public double getNumberOfBlockOfOneMatch() {
 		return numberOfBlockOfOneMatch;
 	}
-	public int getNumberOfFaultOfOneMatch() {
+	public double getNumberOfFaultOfOneMatch() {
 		return numberOfFaultOfOneMatch;
 	}
-	public int getNumberOfFoulOfOneMatch() {
+	public double getNumberOfFoulOfOneMatch() {
 		return numberOfFoulOfOneMatch;
 	}
-	public int getScoreOfOneMatch() {
+	public double getScoreOfOneMatch() {
 		return scoreOfOneMatch;
 	}
 	
