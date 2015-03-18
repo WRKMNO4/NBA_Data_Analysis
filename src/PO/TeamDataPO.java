@@ -111,8 +111,6 @@ public class TeamDataPO {
 			efficiencyOfSteal += teamData.getEfficiencyOfSteal();
 			efficiencyOfAssist += teamData.getEfficiencyOfAssist();
 		}
-		
-		
 	} 
 
 	public void calculateTeamAverageDataInOneSeason(TeamDataPO totalTeamData, int matches){
@@ -120,8 +118,29 @@ public class TeamDataPO {
 		numberOfShotAttempt = totalTeamData.getNumberOfShotAttempt() / matches;
 		numberOf3_point = totalTeamData.getNumberOf3_point() / matches;
 		numberOf3_pointAttempt = totalTeamData.getNumberOf3_pointAttempt() / matches;
-		numberOfFreeThrow = totalTeamData.getNumberOfFreeThrow()/ matches;
+		numberOfFreeThrow = totalTeamData.getNumberOfFreeThrow() / matches;
+		numberOfFreeThrowAttempt = totalTeamData.getNumberOfFreeThrowAttempt() / matches;
+		numberOfAttackRebound = totalTeamData.getNumberOfAttackRebound() / matches;
+		numberOfDefenseRebound = totalTeamData.getNumberOfDefenseRebound() / matches;
+		numberOfRebound = totalTeamData.getNumberOfRebound() / matches;
+		numberOfAssist = totalTeamData.getNumberOfAssist() / matches;
+		numberOfSteal = totalTeamData.getNumberOfSteal() / matches;
+		numberOfBlock = totalTeamData.getNumberOfBlock() / matches;
+		numberOfFault = totalTeamData.getNumberOfFault() / matches;
+		numberOfFoul = totalTeamData.getNumberOfFoul() / matches;
+		score = totalTeamData.getScore() / matches;
 		
+		percentageOfShooting = totalTeamData.getNumberOfShooting() / totalTeamData.getNumberOfShotAttempt();
+		percentageOf3_point =  totalTeamData.getNumberOf3_point() / totalTeamData.getNumberOf3_pointAttempt();
+		percentageOfFreeThrow =  totalTeamData.getNumberOfFreeThrow() / totalTeamData.getNumberOfFreeThrowAttempt();
+		
+		roundOfAttack =  totalTeamData.getRoundOfAttack() / matches;
+		
+		efficiencyOfAttack =  totalTeamData.getEfficiencyOfAttack() / matches;
+		efficiencyOfDefense =  totalTeamData.getEfficiencyOfDefense() / matches;
+		efficiencyOfRebound = totalTeamData.getEfficiencyOfRebound() / matches;
+		efficiencyOfSteal = totalTeamData.getEfficiencyOfSteal() / matches;
+		efficiencyOfAssist = totalTeamData.getEfficiencyOfAssist() / matches;
 	}
 
 	public double getNumberOfShooting() {
