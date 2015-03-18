@@ -1,27 +1,28 @@
 package PO;
 
+import java.util.ArrayList;
+
 public class PlayerDataPO {
 
 	//该球员赛季总数据
-	TeamPO team ;
 	int numberOfMatch ;//参赛场数
 	int numberOfStarting ;//首发场数
-	int numberOfRebound ;//篮板数
-	int numberOfAssist ;//助攻数
+	double numberOfRebound ;//篮板数
+	double numberOfAssist ;//助攻数
 	double presentTime ;//在场时间
 	
 	double percentageOfShooting ;//投篮命中率
 	double percentageOf3_Point ;//三分命中率
 	double percentageOffreeThrow ;//罚球命中率
 	
-	int numberOfAttack ;//进攻数
-	int numberOfDefense ;//防守数
-	int numberOfSteal ;//抢断数
-	int numberOfBlock ;//盖帽数 
-	int numberOfFault ;//失误数
-	int numberOfFoul ;//犯规数，
-	int score ;//得分，
-	int efficiency ;//效率，
+	double numberOfAttack ;//进攻数
+	double numberOfDefense ;//防守数
+	double numberOfSteal ;//抢断数
+	double numberOfBlock ;//盖帽数 
+	double numberOfFault ;//失误数
+	double numberOfFoul ;//犯规数，
+	double score ;//得分，
+	double efficiency ;//效率，
 	
 	double efficiencyOfGmSc ;//GmSc效率值，
 	double percentageOfTrueShooting ;//真实命中率，
@@ -35,22 +36,35 @@ public class PlayerDataPO {
 	double percentageOfFault ;//失误率，
 	double percentageOfUse ;//使用率
 	
-	
-	
-	
-	public TeamPO getTeam() {
-		return team;
+	public void calculatePlayerTotalDataInOneSeason(ArrayList<PlayerDataOfOneMatchPO> datas){
+		numberOfMatch = datas.size() ;
+		numberOfStarting = datas.size() ;
+		for(PlayerDataOfOneMatchPO oneMatch:datas){
+			numberOfRebound += oneMatch.getNumberOfReboundOfOneMatch() ;
+			numberOfAssist += oneMatch.getNumberOfAssistOfOneMatch() ;
+			
+		}
 	}
+	public void calculatePlayerAverageDataInOneSeason(){
+		
+	}
+	int transportTime(String time){
+		int result = 0;
+		String[] strs = time.split(":") ;
+		result = Integer.parseInt(strs[0])*60 + Integer.parseInt(strs[1]) ;
+		return result ;
+	}
+	
 	public int getNumberOfMatch() {
 		return numberOfMatch;
 	}
 	public int getNumberOfStarting() {
 		return numberOfStarting;
 	}
-	public int getNumberOfRebound() {
+	public double getNumberOfRebound() {
 		return numberOfRebound;
 	}
-	public int getNumberOfAssist() {
+	public double getNumberOfAssist() {
 		return numberOfAssist;
 	}
 	public double getPresentTime() {
@@ -65,28 +79,28 @@ public class PlayerDataPO {
 	public double getPercentageOffreeThrow() {
 		return percentageOffreeThrow;
 	}
-	public int getNumberOfAttack() {
+	public double getNumberOfAttack() {
 		return numberOfAttack;
 	}
-	public int getNumberOfDefense() {
+	public double getNumberOfDefense() {
 		return numberOfDefense;
 	}
-	public int getNumberOfSteal() {
+	public double getNumberOfSteal() {
 		return numberOfSteal;
 	}
-	public int getNumberOfBlock() {
+	public double getNumberOfBlock() {
 		return numberOfBlock;
 	}
-	public int getNumberOfFault() {
+	public double getNumberOfFault() {
 		return numberOfFault;
 	}
-	public int getNumberOfFoul() {
+	public double getNumberOfFoul() {
 		return numberOfFoul;
 	}
-	public int getScore() {
+	public double getScore() {
 		return score;
 	}
-	public int getEfficiency() {
+	public double getEfficiency() {
 		return efficiency;
 	}
 	public double getEfficiencyOfGmSc() {
