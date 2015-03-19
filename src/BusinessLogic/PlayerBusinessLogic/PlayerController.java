@@ -18,13 +18,14 @@ public class PlayerController implements PlayerBusinessLogic{
 	
 	@Override
 	public ArrayList<PlayerPO> pickUpPlayersByCondition(String position,
-			Zone zone) {
+			Zone zone, String district) {
 		// TODO Auto-generated method stub
 		ArrayList<PlayerPO> results = new ArrayList<PlayerPO>();
 		for(PlayerPO onePlayer: playerController.getAllPlayers()){
 			PlayerPO thePlayer = onePlayer;   //
 			TeamPO ofTeam = TeamListPO.findTeamByShortName(onePlayer.getTeam());
-			if(onePlayer.getPosition().equals(position) && ofTeam.getZone().equals(zone))
+			if(onePlayer.getPosition().equals(position) && ofTeam.getZone().equals(zone)&& 
+					(district.equals(null) || ofTeam.getDistrict().equals(district)))
 				results.add(onePlayer);
 		}
 		return results;

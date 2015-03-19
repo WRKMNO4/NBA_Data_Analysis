@@ -7,6 +7,6 @@ import PO.PlayerPO;
 
 public interface PlayerBusinessLogic {
 	public void init();
-	public ArrayList<PlayerPO> pickUpPlayersByCondition(String position, Zone zone);  //¸ù¾İÇòÔ±µÄÎ»ÖÃºÍËùÊôÁªÃË£¨¶«Î÷²¿£©É¸Ñ¡
-	public ArrayList<PlayerPO> sortPlayersByComprehension();   // ¸ù¾İµÃ·Ö/Àº°å/Öú¹¥ÅÅĞò
+	public ArrayList<PlayerPO> pickUpPlayersByCondition(String position, Zone zone, String district);  //æ ¹æ®æ¡ä»¶ç­›é€‰çƒå‘˜
+	public ArrayList<PlayerPO> sortPlayersByComprehension();   //æ­¤æ–¹æ³•å¯åˆ 
 }

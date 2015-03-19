@@ -30,11 +30,11 @@ public class TeamSortHelper implements Comparator<TeamPO>{
 			String name1=o1.getFullName();
 			String name2=o2.getFullName();
 			if(name1.compareTo(name2)>0)
-				return -1;
+				return 1;
 			else if(name1.equals(name2))
 				return 0;
 			else
-				return 1;
+				return -1;
 		}
 		//Sort by number of matches
 		else if(str.equals("matches")){
