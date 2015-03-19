@@ -1,12 +1,11 @@
 package com.kmno4.presentation;
 
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.JLabel;
 
 import com.kmno4.common.Config;
-import javax.swing.JTextField;
 
+@SuppressWarnings("serial")
 public class PlayerDetailPanel extends JPanel {
 
 	/**
@@ -14,7 +13,7 @@ public class PlayerDetailPanel extends JPanel {
 	 */
 	public PlayerDetailPanel() {
 		
-		this.setBounds(Config.MAIN_FRAME_X, Config.MAIN_FRAME_Y	,
+		this.setBounds(0, 0,
 				Config.PLAYER_DETAIL_UI_WIDTH,Config.PLAYER_DETATI_UI_TOP_HEIGHT);
 		this.setLayout(null);
 		
@@ -44,7 +43,7 @@ public class PlayerDetailPanel extends JPanel {
 		add(team);
 		
 		//以下用自定义table替代
-		/*
+		
 		JLabel participating_in_several = new JLabel("参赛场数");
 		participating_in_several.setBounds(289, 155, 88, 16);
 		add(participating_in_several);
@@ -68,19 +67,7 @@ public class PlayerDetailPanel extends JPanel {
 		JLabel lblInsquretime = new JLabel("in_squre_time");
 		lblInsquretime.setBounds(523, 179, 61, 16);
 		add(lblInsquretime);
-		*/
 		
-//		JLabel lblTxtname = new JLabel("txt_name");
-//		lblTxtname.setBounds(485, 24, 61, 16);
-//		add(lblTxtname);
-//		
-//		JLabel lblLocation = new JLabel("location");
-//		lblLocation.setBounds(485, 50, 61, 16);
-//		add(lblLocation);
-//		
-//		JLabel lblTeam = new JLabel("team");
-//		lblTeam.setBounds(485, 84, 61, 16);
-//		add(lblTeam);
 		
 		
 	}
