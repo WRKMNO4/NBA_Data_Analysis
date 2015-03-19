@@ -1,5 +1,7 @@
 package com.kmno4.presentation.table;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JPanel;
 /**
@@ -23,9 +25,11 @@ public class Table extends JPanel {
 	 */
 	public TP turn;
 	
+	private String[][] bodyStr;
 	
-	public Table(String[] headStr, String[][] bodyStr) {
+	public Table(String[] headStr, String[][] bodyString) {
 		super();
+		bodyStr = bodyString;
 		if(bodyStr.length == 0) {
 			System.out.println("bodyStr.length == 0");
 			return;
@@ -39,21 +43,31 @@ public class Table extends JPanel {
 		if(rowNum == 0) rowNum = 8;//最大列数的初始化
 		setLayout(new GridLayout(rowNum + 2, 1));
 		head = new TableList(headStr, TableList.HEAD);
+		head.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				for(int i = 0; i < rowNum; i ++) {
+					body[TP.page][i].setVisible(false);
+					remove(body[TP.page][i]);
+				}
+				bodyStr = flip(bodyStr);
+				fillTable(bodyStr, body);
+				
+				for(int i = 0; i < rowNum; i ++) {
+				    add(body[TP.page][i]);
+				}
+				remove(turn);
+				add(turn);
+				
+			}
+		});
 		add(head);
 		
 		pageNum = (bodyStr.length - 1) / rowNum + 1;
 		body = new TableList[pageNum][rowNum];
-		for(int i = 0; i < body.length; i ++) {
-			for(int j = 0; j < body[i].length; j ++) {
-				int k;
-				if((k = i * rowNum + j) < bodyStr.length) {
-				    body[i][j] = new TableList(bodyStr[k], k % 2);
-				}
-				else
-					//空条目
-					body[i][j] = new TableList(new String[]{}, TableList.BLANK);
-			}
-		}
+		
+		fillTable(bodyStr, body);
+		
 		for(int i = 0; i < rowNum; i ++) {
 		    add(body[TP.page][i]);
 		}
@@ -63,6 +77,34 @@ public class Table extends JPanel {
 		add(turn);
 		
 	}
+	
+	private void fillTable(String[][] bodyStr, TableList[][] body) {
+		for(int i = 0; i < body.length; i ++) {
+			for(int j = 0; j < body[i].length; j ++) {
+				int k;
+				if((k = i * body[0].length + j) < bodyStr.length) {
+				    body[i][j] = new TableList(bodyStr[k], k % 2);
+				}
+				else
+					//空条目
+					body[i][j] = new TableList(new String[]{}, TableList.BLANK);
+			}
+		}
+	}
+	private String[][] flip(String[][] str) {
+		int l1 = str.length;
+		if(l1 == 0) return null;
+		int l2 = str[0].length;
+		if(l2 == 0) return null;
+		String[][] flipedStr = new String[l1][l2];
+		for(int i = 0; i < l1; i ++) {
+			flipedStr[i] = str[l1 - i - 1];
+		}
+		return flipedStr;
+	}
+	
+	
+	
 	
 	
 	/**

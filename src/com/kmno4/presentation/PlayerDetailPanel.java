@@ -18,12 +18,12 @@ public class PlayerDetailPanel extends JPanel {
 	    player_name,
 	    player_place,
 	    player_team,
-	    avg,
-	    sum;
+	    avg, //场均切换标签
+	    sum; //总计切换标签
 	private Table
-	    mainInfo,
-	    sumInfo,
-	    avgInfo;
+	    mainInfo, //主要信息表格
+	    sumInfo, //总计信息表格
+	    avgInfo; //场均信息表格
 	    
 	public PlayerDetailPanel() {
 		
