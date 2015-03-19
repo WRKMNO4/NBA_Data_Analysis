@@ -44,6 +44,7 @@ public class PlayerDetailPanel extends JPanel {
 		add(team);
 		
 		//以下用自定义table替代
+		/*
 		JLabel participating_in_several = new JLabel("参赛场数");
 		participating_in_several.setBounds(289, 155, 88, 16);
 		add(participating_in_several);
@@ -67,6 +68,7 @@ public class PlayerDetailPanel extends JPanel {
 		JLabel lblInsquretime = new JLabel("in_squre_time");
 		lblInsquretime.setBounds(523, 179, 61, 16);
 		add(lblInsquretime);
+		*/
 		
 //		JLabel lblTxtname = new JLabel("txt_name");
 //		lblTxtname.setBounds(485, 24, 61, 16);
