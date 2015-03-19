@@ -10,7 +10,7 @@ import javax.swing.border.EmptyBorder;
 public class PlayerDetailFrame extends JFrame {
 
 	private JPanel contentPane;
-	public JPanel PlayerDetailPanel;
+	public JPanel playerDetailPanel;
 
 	/**
 	 * Launch the application.
@@ -41,7 +41,8 @@ public class PlayerDetailFrame extends JFrame {
 		this.setVisible(true);
 		this.setLayout(null);
 		
-		this.add(PlayerDetailPanel);
+		playerDetailPanel = new PlayerDetailPanel();
+		this.add(playerDetailPanel);
 		
 	}
 
