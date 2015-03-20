@@ -35,7 +35,7 @@ public class TeamController implements TeamDataService{
 			newTeam.setDistrict(data.get(4));
 			newTeam.setHomeCourt(data.get(5));
 			newTeam.setTimeOfEstablishment(Integer.parseInt(data.get(6)));
-			newTeam.setTeamLogoURL("����һ����/teams/"+newTeam.getShortName()+".svg");
+			newTeam.setTeamLogoURL("迭代一数据/teams/"+newTeam.getShortName()+".svg");
 			
 			addTeam(newTeam);
 		}
