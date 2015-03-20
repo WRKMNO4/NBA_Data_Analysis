@@ -18,7 +18,7 @@ public class TeamPO {
 	TeamDataPO totalTeamData = new TeamDataPO();
 	TeamDataPO averageTeamData = new TeamDataPO() ;
 	
-	DataForTotalCalculationPO dataOfOtherTeams = new DataForTotalCalculationPO() ;
+	DataForFinalCalculationPO dataOfOtherTeams = new DataForFinalCalculationPO() ;
 	
 	int numberOfMatches;
 	int numberOfWinning;
@@ -53,7 +53,7 @@ public class TeamPO {
 	public void calculateTeamDataInOneSeason(){
 		percentageOfWinning = numberOfWinning / matches.size() ;
 		totalTeamData.calculateTeamTotalDataInOneSeason(matches, shortName);
-		averageTeamData.calculateTeamAverageDataInOneSeason(totalTeamData, matches.size());
+		averageTeamData.calculateTeamAverageDataInOneSeason(totalTeamData, matches.size(),dataOfOtherTeams);
 	}
 	
 	public void updateOtherTeamData(double score){

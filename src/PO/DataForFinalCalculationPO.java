@@ -1,6 +1,6 @@
 package PO;
 
-public class DataForTotalCalculationPO {
+public class DataForFinalCalculationPO {
 	double teamTotalTime ;
 	double numberOfReboundOfOtherTeam ;
 	double numberOfAttackReboundOfOtherTeam ;

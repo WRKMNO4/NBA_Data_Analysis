@@ -3,33 +3,33 @@ package PO;
 import java.util.ArrayList;
 
 public class TeamDataPO {
-	double numberOfShooting ;//Í¶ÀºÃüÖÐÊý
-	double numberOfShotAttempt ;//£¬Í¶Àº³öÊÖÊý£¬
-	double numberOf3_point ;//Èý·ÖÃüÖÐÊý£¬
-	double  numberOf3_pointAttempt ;//Èý·Ö³öÊÖÊý£¬
-	double numberOfFreeThrow ;//·£ÇòÃüÖÐÊý£¬
-	double numberOfFreeThrowAttempt ;//·£Çò³öÊÖÊý£¬
-	double numberOfAttackRebound ;//½ø¹¥Àº°åÊý£¬
-	double numberOfDefenseRebound ;//·ÀÊØÀº°åÊý£¬
-	double numberOfRebound ;//Àº°åÇò£¬
-	double numberOfAssist ;//Öú¹¥Êý£¬
-	double numberOfSteal ;//ÇÀ¶ÏÊý£¬
-	double numberOfBlock ;//¸ÇÃ±Êý£¬
-	double numberOfFault ;//Ê§ÎóÊý£¬
-	double numberOfFoul ;//·¸¹æÊý£¬
-	double score ;//±ÈÈüµÃ·Ö
+	double numberOfShooting ;//Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfShotAttempt ;//ï¿½ï¿½Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOf3_point ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double  numberOf3_pointAttempt ;//ï¿½ï¿½ï¿½Ö³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfFreeThrow ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfFreeThrowAttempt ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfAttackRebound ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfDefenseRebound ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfRebound ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfAssist ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfSteal ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfBlock ;//ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½
+	double numberOfFault ;//Ê§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfFoul ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double score ;//ï¿½ï¿½ï¿½ï¿½ï¿½Ã·ï¿½
 	
-	double percentageOfShooting ;//Í¶ÀºÃüÖÐÂÊ£¬
-	double percentageOf3_point ;//Èý·ÖÃüÖÐÂÊ£¬
-	double percentageOfFreeThrow ;//·£ÇòÃüÖÐÂÊ£¬
+	double percentageOfShooting ;//Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½
+	double percentageOf3_point ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½
+	double percentageOfFreeThrow ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½
 	//double percentageOfWinning ;
-	double roundOfAttack ;//½ø¹¥»ØºÏ
-	double efficiencyOfAttack ;//£¬½ø¹¥Ð§ÂÊ£¬
-	double roundOfDefense ;//·ÀÊØ»ØºÏ
-	double efficiencyOfDefense ;//·ÀÊØÐ§ÂÊ£¬
-	double efficiencyOfRebound ;//Àº°åÐ§ÂÊ£¬
-	double efficiencyOfSteal ;//ÇÀ¶ÏÐ§ÂÊ
-	double efficiencyOfAssist ;//Öú¹¥ÂÊ¡£
+	double roundOfAttack ;//ï¿½ï¿½ï¿½ï¿½ï¿½Øºï¿½
+	double efficiencyOfAttack ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½Ê£ï¿½
+	double roundOfDefense ;//ï¿½ï¿½ï¿½Ø»Øºï¿½
+	double efficiencyOfDefense ;//ï¿½ï¿½ï¿½ï¿½Ð§ï¿½Ê£ï¿½
+	double efficiencyOfRebound ;//ï¿½ï¿½ï¿½ï¿½Ð§ï¿½Ê£ï¿½
+	double efficiencyOfSteal ;//ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
+	double efficiencyOfAssist ;//ï¿½ï¿½ï¿½ï¿½ï¿½Ê¡ï¿½
 	
 	public void calculateTeamDataOfOneMatch(ArrayList<PlayerDataOfOneMatchPO> playerDatas){
 		for(int i=0;i<playerDatas.size();i++){
@@ -64,17 +64,17 @@ public class TeamDataPO {
 						dataOfTheOther.numberOfDefenseRebound) * (numberOfShotAttempt -numberOfShooting))
 						+ 1.07 * numberOfFault ;
 		
-		dataOfTheOther.setRoundOfDefense(roundOfAttack);//ÉèÖÃ¶ÔÊÖµÄ·ÀÊØ»ØºÏ
+		dataOfTheOther.setRoundOfDefense(roundOfAttack);//ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½ÖµÄ·ï¿½ï¿½Ø»Øºï¿½
 		
 		efficiencyOfAttack = (double)score/roundOfAttack*100;
 		
-		dataOfTheOther.setEfficiencyOfDefense(efficiencyOfAttack);//ÉèÖÃ¶ÔÊÖµÄ·ÀÊØÐ§ÂÊ
+		dataOfTheOther.setEfficiencyOfDefense(efficiencyOfAttack);//ï¿½ï¿½ï¿½Ã¶ï¿½ï¿½ÖµÄ·ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
 		
 		efficiencyOfRebound = (double)(numberOfAttackRebound + numberOfDefenseRebound) / (double)
 				(numberOfAttackRebound + numberOfDefenseRebound + dataOfTheOther.numberOfAttackRebound 
 						+ dataOfTheOther.numberOfDefenseRebound) ;
 		
-		dataOfTheOther.setEfficiencyOfSteal(dataOfTheOther.getNumberOfSteal()/(double)roundOfAttack*100);//ÉèÖÃ¶Ô·½µÄÇÀ¶ÏÐ§ÂÊ
+		dataOfTheOther.setEfficiencyOfSteal(dataOfTheOther.getNumberOfSteal()/(double)roundOfAttack*100);//ï¿½ï¿½ï¿½Ã¶Ô·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
 		
 		efficiencyOfAssist = numberOfAssist/(double)roundOfAttack*100 ;
 		
@@ -113,7 +113,7 @@ public class TeamDataPO {
 		}
 	} 
 
-	public void calculateTeamAverageDataInOneSeason(TeamDataPO totalTeamData, int matches){
+	public void calculateTeamAverageDataInOneSeason(TeamDataPO totalTeamData, int matches, DataForFinalCalculationPO dataOfOtherTeams){
 		numberOfShooting = totalTeamData.getNumberOfShooting() / matches ;
 		numberOfShotAttempt = totalTeamData.getNumberOfShotAttempt() / matches;
 		numberOf3_point = totalTeamData.getNumberOf3_point() / matches;
@@ -136,11 +136,12 @@ public class TeamDataPO {
 		
 		roundOfAttack =  totalTeamData.getRoundOfAttack() / matches;
 		
-		efficiencyOfAttack =  totalTeamData.getEfficiencyOfAttack() / matches;
-		efficiencyOfDefense =  totalTeamData.getEfficiencyOfDefense() / matches;
-		efficiencyOfRebound = totalTeamData.getEfficiencyOfRebound() / matches;
-		efficiencyOfSteal = totalTeamData.getEfficiencyOfSteal() / matches;
-		efficiencyOfAssist = totalTeamData.getEfficiencyOfAssist() / matches;
+		efficiencyOfAttack =  totalTeamData.getScore()/totalTeamData.getRoundOfAttack()*100 ;
+		efficiencyOfDefense =  dataOfOtherTeams.getScoreOfOtherTeam()/totalTeamData.getRoundOfDefense()*100;
+		efficiencyOfRebound = totalTeamData.getNumberOfRebound() / 
+				(totalTeamData.getNumberOfRebound()+dataOfOtherTeams.getNumberOfReboundOfOtherTeam());
+		efficiencyOfSteal = totalTeamData.getNumberOfSteal()/totalTeamData.getRoundOfDefense()*100;
+		efficiencyOfAssist = totalTeamData.getNumberOfAssist() / totalTeamData.getRoundOfAttack()*100;
 	}
 
 	public double getNumberOfShooting() {

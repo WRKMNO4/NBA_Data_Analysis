@@ -21,7 +21,7 @@ public class PlayerPO {
 	PlayerDataPO totalPlayerData = new PlayerDataPO();
 	PlayerDataPO averagePlayerData = new PlayerDataPO() ;
 	
-	DataForTotalCalculationPO dataOfOtherTeam = new DataForTotalCalculationPO() ;
+	DataForFinalCalculationPO dataOfOtherTeam = new DataForFinalCalculationPO() ;
 	String team ; //������ӣ�����nameȥfind TeamPO��
 	
 	public void calculateFinalData(){
