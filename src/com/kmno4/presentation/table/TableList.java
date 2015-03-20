@@ -37,7 +37,7 @@ public class TableList extends JPanel {
 		}
 		
 		for(int i = 0; i < ele.length; i ++) {
-			elements[i] = new JLabel(ele[i]);
+			elements[i] = new JLabel(ele[i], JLabel.CENTER);
 			if(type == HEAD) {
 				elements[i].setFont(HEAD_FONT);
 			    elements[i].setForeground(HEAD_FONT_COLOR);

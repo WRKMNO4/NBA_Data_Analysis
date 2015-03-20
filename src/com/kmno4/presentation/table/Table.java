@@ -1,12 +1,9 @@
 package com.kmno4.presentation.table;
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 /**
  * 主table
@@ -32,6 +29,10 @@ public class Table extends JPanel {
 	private String[][] bodyStr;
 	
 	public Table(String[] headStr, String[][] bodyString) {
+		this(headStr, bodyString, false);
+	}
+	
+	public Table(String[] headStr, String[][] bodyString, boolean isSmallData) {
 		super();
 		bodyStr = bodyString;
 		if(bodyStr.length == 0) {
@@ -44,41 +45,44 @@ public class Table extends JPanel {
 		}
 		setOpaque(true);
 		
+		if(isSmallData)
+			rowNum = bodyString.length;
 		if(rowNum == 0) rowNum = 8;//最大列数的初始化
 		setLayout(new GridLayout(rowNum + 2, 1));
 		head = new TableList(headStr, TableList.HEAD);
-		head.addMouseListener(new MouseAdapter() {
-			Border bb;
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				for(int i = 0; i < rowNum; i ++) {
-					body[TP.page][i].setVisible(false);
-					remove(body[TP.page][i]);
+		if(!isSmallData)
+			head.addMouseListener(new MouseAdapter() {
+				Border bb;
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					for(int i = 0; i < rowNum; i ++) {
+						body[TP.page][i].setVisible(false);
+						remove(body[TP.page][i]);
+					}
+					bodyStr = flip(bodyStr);
+					fillTable(bodyStr, body);
+					
+					for(int i = 0; i < rowNum; i ++) {
+					    add(body[TP.page][i]);
+					}
+					remove(turn);
+					add(turn);
 				}
-				bodyStr = flip(bodyStr);
-				fillTable(bodyStr, body);
-				
-				for(int i = 0; i < rowNum; i ++) {
-				    add(body[TP.page][i]);
+				/*
+				@Override
+				public void mousePressed(MouseEvent e) {
+					bb = BorderFactory.createBevelBorder(
+							BevelBorder.LOWERED,
+							new Color(0, 0, 0, 255),
+							new Color(255, 255, 255, 255));
+					head.setBorder(bb);
 				}
-				remove(turn);
-				add(turn);
-			}
-			/*
-			@Override
-			public void mousePressed(MouseEvent e) {
-				bb = BorderFactory.createBevelBorder(
-						BevelBorder.LOWERED,
-						new Color(0, 0, 0, 255),
-						new Color(255, 255, 255, 255));
-				head.setBorder(bb);
-			}
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				head.setBorder(null);
-			}
-			*/
-		});
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					head.setBorder(null);
+				}
+				*/
+			});
 		add(head);
 		
 		pageNum = (bodyStr.length - 1) / rowNum + 1;
@@ -93,8 +97,12 @@ public class Table extends JPanel {
 		
 		turn = new TP(this);
 		add(turn);
-		
+		if(isSmallData) {
+			hidtp(true);
+		}
 	}
+	
+	
 	
 	public void hidtp(boolean isHid) {
 		if(isHid) {
