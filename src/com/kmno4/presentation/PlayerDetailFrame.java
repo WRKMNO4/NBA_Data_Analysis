@@ -1,5 +1,6 @@
 package com.kmno4.presentation;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -35,7 +36,8 @@ public class PlayerDetailFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, Config.PLAYER_DETAIL_UI_WIDTH, Config.PLAYER_DETATI_UI_TOP_HEIGHT);
 		setLayout(null);
-		this.setUndecorated(true);
+		setUndecorated(true);
+		
 		
 		playerDetailPanel = new PlayerDetailPanel();
 		this.add(playerDetailPanel);

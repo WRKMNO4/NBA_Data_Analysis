@@ -7,7 +7,6 @@ import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.border.BevelBorder;
-import javax.swing.border.Border;
 
 @SuppressWarnings("serial")
 public class LabelButton extends JLabel {
@@ -45,17 +44,16 @@ public class LabelButton extends JLabel {
 	
 	
 	private void addSomething() {
+		lb.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
 		addMouseListener(new MouseAdapter() {
-			Border bb;
 			@Override
 			public void mousePressed(MouseEvent e) {
 				if(!lb.isEnabled()) return;
-				bb = BorderFactory.createBevelBorder(BevelBorder.LOWERED);
-				lb.setBorder(bb);
+				lb.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 			}
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				lb.setBorder(null);
+				lb.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
 			}
 			
 		});
