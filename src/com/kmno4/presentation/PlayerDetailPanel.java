@@ -1,6 +1,5 @@
 package com.kmno4.presentation;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
@@ -11,10 +10,12 @@ import javax.swing.JLabel;
 
 import com.kmno4.common.Config;
 import com.kmno4.presentation.button.BorderLabel;
+import com.kmno4.presentation.button.LabelButton;
 import com.kmno4.presentation.table.Table;
 
 @SuppressWarnings("serial")
 public class PlayerDetailPanel extends JPanel {
+	private PlayerDetailPanel playerDetailPanel = this;
 	private JLabel 
 	    player_icon,
 	    player_num,
@@ -27,84 +28,126 @@ public class PlayerDetailPanel extends JPanel {
 	    mainInfo, //主要信息表格
 	    sumInfo, //总计信息表格
 	    avgInfo; //场均信息表格
+	private GridBagLayout layout;
+	private GridBagConstraints c;
 	    
 	public PlayerDetailPanel() {
 		
 		setBounds(0, 0,
 				Config.PLAYER_DETAIL_UI_WIDTH,Config.PLAYER_DETATI_UI_TOP_HEIGHT);
-		setBackground(Color.WHITE);
-		GridBagLayout layout = new GridBagLayout();
+		layout = new GridBagLayout();
 		setLayout(layout);
-		GridBagConstraints c = new GridBagConstraints();
+		c = new GridBagConstraints();
 		player_icon = new BorderLabel("球员照片", JLabel.CENTER);
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 1;
-		c.gridheight = 3;
-		c.weightx = 3;
-		c.weighty = 3;
+		c.gridheight = 4;
+		c.weightx = 7;
+		c.weighty = 5;
 		c.fill = GridBagConstraints.BOTH;
 		layout.setConstraints(player_icon, c);
 		add(player_icon);
 		
-		player_num = new BorderLabel("球衣号", JLabel.CENTER);
+		JLabel blank1 = new JLabel();
 		c.gridx = 1;
 		c.gridy = 0;
 		c.gridwidth = 1;
 		c.gridheight = 1;
 		c.weightx = 1;
-		c.weighty = 1;
-		layout.setConstraints(player_num, c);
-		add(player_num);
+		c.weighty = 2;
+		layout.setConstraints(blank1, c);
+		add(blank1);
 		
-		player_name = new BorderLabel("name", JLabel.CENTER);
+		player_num = new BorderLabel("球衣号", JLabel.CENTER);
 		c.gridx = 2;
 		c.gridy = 0;
 		c.gridwidth = 1;
 		c.gridheight = 1;
 		c.weightx = 2;
-		c.weighty = 1;
+		c.weighty = 2;
+		layout.setConstraints(player_num, c);
+		add(player_num);
+		
+		player_name = new BorderLabel("name", JLabel.CENTER);
+		c.gridx = 3;
+		c.gridy = 0;
+		c.gridwidth = 1;
+		c.gridheight = 1;
+		c.weightx = 5;
+		c.weighty = 2;
 		layout.setConstraints(player_name, c);
 		add(player_name);
 		
 		player_place = new BorderLabel("位置", JLabel.CENTER);
-		c.gridx = 1;
+		c.gridx = 3;
 		c.gridy = 1;
-		c.gridwidth = 2;
+		c.gridwidth = 1;
 		c.gridheight = 1;
-		c.weightx = 3;
+		c.weightx = 5;
 		c.weighty = 1;
 		layout.setConstraints(player_place, c);
 		add(player_place);
 		
 		player_team = new BorderLabel("服役球队", JLabel.CENTER);
-		c.gridx = 3;
+		c.gridx = 4;
 		c.gridy = 0;
-		c.gridwidth = 2;
-		c.gridheight = 2;
-		c.weightx = 3;
+		c.gridwidth = 3;
+		c.gridheight = 1;
+		c.weightx = 5;
 		c.weighty = 2;
 		layout.setConstraints(player_team, c);
 		add(player_team);
 		
-		avg = new BorderLabel("场均", JLabel.CENTER);
-		avg.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-		});
-		c.gridx = 3;
-		c.gridy = 2;
+		
+		JLabel blank2 = new JLabel();
+		c.gridx = 4;
+		c.gridy = 3;
 		c.gridwidth = 1;
 		c.gridheight = 1;
 		c.weightx = 1;
 		c.weighty = 1;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.anchor = GridBagConstraints.SOUTHEAST;
+		layout.setConstraints(blank2, c);
+		add(blank2);
+		
+		avg = new LabelButton("场均", JLabel.CENTER);
+		avg.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(!avg.isEnabled()) return;
+				avg.setEnabled(false);
+				sum.setEnabled(true);
+				sumInfo.setVisible(false);
+				avgInfo.setVisible(true);
+				layout.setConstraints(avgInfo, c);
+				playerDetailPanel.remove(sumInfo);
+				playerDetailPanel.add(avgInfo);
+				playerDetailPanel.repaint();
+			}
+		});
+		c.gridx = 5;
 		layout.setConstraints(avg, c);
 		add(avg);
 		
-		sum = new BorderLabel("总计", JLabel.CENTER);
-		c.gridx = 4;
+		sum = new LabelButton("总计", JLabel.CENTER);
+		sum.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(!sum.isEnabled()) return;
+				sum.setEnabled(false);
+				avg.setEnabled(true);
+				avgInfo.setVisible(false);
+				sumInfo.setVisible(true);
+				layout.setConstraints(sumInfo, c);
+				playerDetailPanel.remove(avgInfo);
+				playerDetailPanel.add(sumInfo);
+				playerDetailPanel.repaint();
+			}
+		});
+		sum.setEnabled(false);
+		c.gridx = 6;
 		layout.setConstraints(sum, c);
 		add(sum);
 		
@@ -115,30 +158,38 @@ public class PlayerDetailPanel extends JPanel {
 				true);
 		c.gridx = 1;
 		c.gridy = 2;
-		c.gridwidth = 2;
-		c.gridheight = 1;
-		c.weightx = 3;
-		c.weighty = 1;
-		c.fill = GridBagConstraints.BOTH;
+		c.gridwidth = 3;
+		c.gridheight = 2;
+		c.weightx = 8;
+		c.weighty = 1.5;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.anchor = GridBagConstraints.NORTH;
 		layout.setConstraints(mainInfo, c);
 		add(mainInfo);
 		
 		sumInfo = new Table(
-				new String[] {"s1", "s2", "s3", "s4", "s5", "s6", "s7"},
-				new String[][] {{"0", "0", "0", "0", "0", "0", "0"}},
+				new String[] {"s1", "s2", "s3", "s4", "s5", "s6"},
+				new String[][] {
+						{"0", "0", "0", "0", "0", "0"},
+						{"0", "0", "0", "0", "0", "0"},
+						{"0", "0", "0", "0", "0", "0"}},
 				true);
 		c.gridx = 0;
-		c.gridy = 3;
-		c.gridwidth = 5;
+		c.gridy = 4;
+		c.gridwidth = 7;
 		c.gridheight = 1;
-		c.weightx = 9;
-		c.weighty = 1;
+		c.weightx = 20;
+		c.weighty = 0.8;
+		c.fill = GridBagConstraints.BOTH;
 		layout.setConstraints(sumInfo, c);
 		add(sumInfo);
 		
 		avgInfo = new Table(
 				new String[] {"a1", "a2", "a3", "a4", "a5"},
-				new String[][] {{"0", "0", "0", "0", "0"}},
+				new String[][] {
+						{"0", "0", "0", "0", "0"},
+						{"0", "0", "0", "0", "0"},
+						{"0", "0", "0", "0", "0"}},
 				true);
 		layout.setConstraints(avgInfo, c);
 		//add(avgInfo);
