@@ -13,6 +13,9 @@ public class Config {
 	public static final int UI_WIDTH=800;
 	public static final int UI_HEIGHT=600;
 	
+	public static final int COMBOX_WIDTH=20;
+	public static final int LABEL_HEIGHT=15;
+	
 	public static final int SPLASH_MOTION_X=320;
 	public static final	int SPLASH_MOTION_Y=210;
 	
@@ -66,9 +69,11 @@ public class Config {
 	//所有图片
 	public static ArrayList<ImageIcon> motions=new ArrayList<ImageIcon>();
 	public static final Icon SPLASH_TITLE=new ImageIcon("images/splash_title.png");
-	public static final Icon SPLASH_BACKGROUND=new ImageIcon("images/splash_bg.jpg");
+	public static final Icon SPLASH_BACKGROUND=new ImageIcon("images/splash_bg.png");
 	public static final ImageIcon PLAYER_SELECTION_BACKGROUND=new ImageIcon("images/selection_bg.png");
-	
+	public static final ImageIcon TOP_TAB_BACKGROUND=new ImageIcon("images/top_tab_background.png");
+	public static final ImageIcon WELCOME=new ImageIcon("images/welcome.png");
+	public static final ImageIcon TEAM_SELECTION_BACKGROUND=new ImageIcon("images/team_selection_bg2.png");
 	public static ArrayList<ImageIcon> getLoadingMotions(){
 		for(int i=1;i<100;i++){
 			motions.add(new ImageIcon("images/loading_motions/"+i+".png"));	

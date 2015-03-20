@@ -41,6 +41,12 @@ public class SplashPanel extends JPanel {
 				Config.getLoadingMotions().get(i).getIconWidth(), 
 				Config.getLoadingMotions().get(i).getIconHeight(), this);
 		}
+		if(count>2){
+			this.getParent().disable();
+			this.getParent().setVisible(false);
+			this.setVisible(false);
+			
+			}
 		changeMotionIndex();
 	}
 	

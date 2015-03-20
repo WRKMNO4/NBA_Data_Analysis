@@ -3,12 +3,14 @@ package com.kmno4.presentation;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import com.kmno4.common.Config;
@@ -28,39 +30,66 @@ public class MainFrame extends JFrame implements MouseListener{
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+		Thread splash=new Thread(new Runnable(){
+			@Override
 			public void run() {
-				try {					
-					MainFrame frame = new MainFrame();
-					frame.setLayout(null);
-					frame.setResizable(false);
-					//获取屏幕宽高
-					Toolkit kit=Toolkit.getDefaultToolkit();
-					Dimension screensize=kit.getScreenSize();
-					int screenheight=screensize.height;
-					int screenwidth=screensize.width;
-					
-					frame.setSize(Config.UI_WIDTH,Config.UI_HEIGHT);
-					frame.setLocation(screenwidth/8,screenheight/8);
-					//添加panel
-//					topTabPanel.setLayout(null);
-//					frame.add(topTabPanel);
-//					
-//
-//					//以下是需要跳转的Panel
-//					playerSelectionPanel.setLayout(null);
-//					frame.add(playerSelectionPanel);
-					
-					playerSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
-				Config.UI_WIDTH, Config.SELECTION_HEIGHT);
-					
-					
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
+				long begin_time=System.currentTimeMillis();
+				JFrame GFrame = new JFrame();	//创建窗口
+				SplashPanel DPanel = new SplashPanel();	//创建画板
+				/*设置JFrame*/
+				GFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				GFrame.setUndecorated(true);
+				Toolkit kit=Toolkit.getDefaultToolkit();
+				Dimension screensize=kit.getScreenSize();
+				int screenheight=screensize.height;
+				int screenwidth=screensize.width;
+				GFrame.setLocation(screenwidth/8,screenheight/8);
+				GFrame.setSize(Config.UI_WIDTH, Config.UI_HEIGHT);
+				GFrame.setVisible(true);
+				GFrame.add(DPanel);	//在JFrame中加入DPanel
+				DPanel.launch();					
+				while(true){
+					if(System.currentTimeMillis()-begin_time>7000){
+						GFrame.dispose();
+						break;
+					}				
+				}				
+			}			
 		});
+		
+		Thread mainUI=new Thread(new Runnable(){
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				long begin_time=System.currentTimeMillis();
+				
+				MainFrame frame = new MainFrame();
+				frame.setLayout(null);
+				frame.setResizable(false);
+				//获取屏幕宽高
+				Toolkit kit=Toolkit.getDefaultToolkit();
+				Dimension screensize=kit.getScreenSize();
+				int screenheight=screensize.height;
+				int screenwidth=screensize.width;
+				
+				frame.setSize(Config.UI_WIDTH,Config.UI_HEIGHT);
+				frame.setLocation(screenwidth/8,screenheight/8);				
+				playerSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
+			Config.UI_WIDTH, Config.SELECTION_HEIGHT);
+				
+				while(true){
+					if((System.currentTimeMillis()-begin_time)>7000){
+						frame.setVisible(true);
+						break;
+					}
+				}
+			}			
+		});
+		
+		mainUI.start();
+//		splash.start();
+
 	}
 
 	/**
