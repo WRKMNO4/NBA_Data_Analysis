@@ -2,10 +2,11 @@ package BusinessLogic.PlayerBusinessLogic;
 
 import java.util.ArrayList;
 
+import Enum.Zone;
 import PO.PlayerPO;
 
 public interface PlayerBusinessLogic {
 	public void init();
-	public ArrayList<PlayerPO> pickUpPlayersByCondition(String position, String district);
-	public ArrayList<PlayerPO> sortPlayersByComprehension();   // ¸ù¾İµÃ·Ö/Àº°å/Öú¹¥ÅÅĞò
+	public ArrayList<PlayerPO> pickUpPlayersByCondition(String position, Zone zone, String district);  //æ ¹æ®æ¡ä»¶ç­›é€‰çƒå‘˜
+	public ArrayList<PlayerPO> sortPlayersByComprehension();   //æ­¤æ–¹æ³•å¯åˆ 
 }

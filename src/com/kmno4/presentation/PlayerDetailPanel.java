@@ -1,84 +1,129 @@
 package com.kmno4.presentation;
 
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.JLabel;
 
 import com.kmno4.common.Config;
-import javax.swing.JTextField;
+import com.kmno4.presentation.table.Table;
 
+@SuppressWarnings("serial")
 public class PlayerDetailPanel extends JPanel {
-
-	/**
-	 * Create the panel.
-	 */
+	private JLabel 
+	    player_icon,
+	    player_num,
+	    player_name,
+	    player_place,
+	    player_team,
+	    avg, //场均切换标签
+	    sum; //总计切换标签
+	private Table
+	    mainInfo, //主要信息表格
+	    sumInfo, //总计信息表格
+	    avgInfo; //场均信息表格
+	    
 	public PlayerDetailPanel() {
 		
-		this.setBounds(Config.MAIN_FRAME_X, Config.MAIN_FRAME_Y	,
+		setBounds(0, 0,
 				Config.PLAYER_DETAIL_UI_WIDTH,Config.PLAYER_DETATI_UI_TOP_HEIGHT);
-		this.setLayout(null);
-		
-		JLabel player_icon = new JLabel("球员照片");
-		player_icon.setBounds(Config.PLAYER_ICON_X,Config.PLAYER_ICON_Y, 
-				Config.PLAYER_ICON_WIDTH,Config.PLAYER_ICON_HEIGHT);
+		setBackground(Color.WHITE);
+		GridBagLayout layout = new GridBagLayout();
+		setLayout(layout);
+		GridBagConstraints c = new GridBagConstraints();
+		//TODO
+		player_icon = new JLabel("球员照片", JLabel.CENTER);
+		c.gridx = 0;
+		c.gridy = 0;
+		c.gridwidth = 7;
+		c.gridheight = 6;
+		layout.setConstraints(player_icon, c);
 		add(player_icon);
 		
-		JLabel player_number = new JLabel("球衣号");
-		player_number.setBounds(289, 25,
-				Config.PLAYER_NUMBER_WIDTH, Config.PLAYER_NUMBER_HEIGHT);
-		add(player_number);
+		player_num = new JLabel("球衣号", JLabel.CENTER);
+		c.gridx = 8;
+		c.gridy = 0;
+		c.gridwidth = 2;
+		c.gridheight = 2;
+		layout.setConstraints(player_num, c);
+		add(player_num);
 		
-		JLabel player_name = new JLabel("name");
-		player_name.setBounds(411, 23, 
-				Config.PLAYER_LABEL_WIDTH, Config.PLAYER_LABEL_HEIGHT);
+		player_name = new JLabel("name", JLabel.CENTER);
+		c.gridx = 10;
+		c.gridy = 0;
+		c.gridwidth = 4;
+		c.gridheight = 2;
+		layout.setConstraints(player_name, c);
 		add(player_name);
 		
-		JLabel place = new JLabel("位置");
-		place.setBounds(411, 51, 
-				Config.PLAYER_LABEL_WIDTH, Config.PLAYER_LABEL_HEIGHT);
-		add(place);
+		player_place = new JLabel("位置", JLabel.CENTER);
+		c.gridx = 10;
+		c.gridy = 2;
+		c.gridwidth = 4;
+		c.gridheight = 1;
+		layout.setConstraints(player_place, c);
+		add(player_place);
 		
-		JLabel team = new JLabel("服役球队");
-		team.setBounds(411, 84,
-				Config.PLAYER_LABEL_WIDTH, Config.PLAYER_LABEL_HEIGHT);
-		add(team);
+		player_team = new JLabel("服役球队", JLabel.CENTER);
+		c.gridx = 14;
+		c.gridy = 0;
+		c.gridwidth = 5;
+		c.gridheight = 3;
+		layout.setConstraints(player_team, c);
+		add(player_team);
 		
-		//以下用自定义table替代
-		JLabel participating_in_several = new JLabel("参赛场数");
-		participating_in_several.setBounds(289, 155, 88, 16);
-		add(participating_in_several);
+		avg = new JLabel("场均", JLabel.CENTER);
+		avg.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			}
+		});
+		c.gridx = 15;
+		c.gridy = 5;
+		c.gridwidth = 2;
+		c.gridheight = 1;
+		layout.setConstraints(avg, c);
+		add(avg);
 		
-		JLabel first_in = new JLabel("先发场数");
-		first_in.setBounds(411, 155, 61, 16);
-		add(first_in);
+		sum = new JLabel("总计", JLabel.CENTER);
+		c.gridx = 17;
+		layout.setConstraints(sum, c);
+		add(sum);
 		
-		JLabel time_in_match = new JLabel("在场时间");
-		time_in_match.setBounds(523, 155, 61, 16);
-		add(time_in_match);
 		
-		JLabel lblMatches = new JLabel("matches");
-		lblMatches.setBounds(289, 179, 61, 16);
-		add(lblMatches);
+		mainInfo = new Table(
+				new String[] {"场均得分", "场均篮板", "场均助攻"},
+				new String[][] {{"0", "0", "0"}});
+		mainInfo.hidtp(true);
+		c.gridx = 8;
+		c.gridy = 3;
+		c.gridwidth = 6;
+		c.gridheight = 2;
+		layout.setConstraints(mainInfo, c);
+		add(mainInfo);
 		
-		JLabel lblFirstout = new JLabel("firstOut");
-		lblFirstout.setBounds(411, 179, 61, 16);
-		add(lblFirstout);
+		sumInfo = new Table(
+				new String[] {"总1", "总2", "总3", "总4", "总5", "总6", "总7"},
+				new String[][] {{"0", "0", "0", "0", "0", "0", "0"}});
+		sumInfo.hidtp(true);
+		c.gridx = 0;
+		c.gridy = 6;
+		c.gridwidth = 19;
+		c.gridheight = 3;
+		layout.setConstraints(sumInfo, c);
+		//add(sumInfo);
 		
-		JLabel lblInsquretime = new JLabel("in_squre_time");
-		lblInsquretime.setBounds(523, 179, 61, 16);
-		add(lblInsquretime);
-		
-//		JLabel lblTxtname = new JLabel("txt_name");
-//		lblTxtname.setBounds(485, 24, 61, 16);
-//		add(lblTxtname);
-//		
-//		JLabel lblLocation = new JLabel("location");
-//		lblLocation.setBounds(485, 50, 61, 16);
-//		add(lblLocation);
-//		
-//		JLabel lblTeam = new JLabel("team");
-//		lblTeam.setBounds(485, 84, 61, 16);
-//		add(lblTeam);
+		avgInfo = new Table(
+				new String[] {"均1", "均2", "均3", "均4", "均5"},
+				new String[][] {{"0", "0", "0", "0", "0"}});
+		avgInfo.hidtp(true);
+		layout.setConstraints(avgInfo, c);
+		add(avgInfo);
 		
 		
 	}

@@ -1,16 +1,16 @@
 package com.kmno4.presentation;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
+import com.kmno4.common.Config;
+
+@SuppressWarnings("serial")
 public class PlayerDetailFrame extends JFrame {
 
-	private JPanel contentPane;
-	public JPanel PlayerDetailPanel;
+	public JPanel playerDetailPanel;
 
 	/**
 	 * Launch the application.
@@ -33,16 +33,13 @@ public class PlayerDetailFrame extends JFrame {
 	 */
 	public PlayerDetailFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
-		this.setVisible(true);
-		this.setLayout(null);
+		setBounds(100, 100, Config.PLAYER_DETAIL_UI_WIDTH, Config.PLAYER_DETATI_UI_TOP_HEIGHT);
+		setLayout(null);
 		
-		this.add(PlayerDetailPanel);
+		playerDetailPanel = new PlayerDetailPanel();
+		this.add(playerDetailPanel);
 		
+		setVisible(true);
 	}
 
 }

@@ -7,6 +7,8 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import com.kmno4.presentation.button.LabelButton;
 /**
  * 翻页的部分，包括上一页、下一页等跳转
  * @author hutao
@@ -31,7 +33,7 @@ public class TP extends JPanel {
 		setLayout(new GridLayout(1, 0));
 		
 		
-		firstPage = new JLabel("FirstPage", JLabel.CENTER);
+		firstPage = new LabelButton("FirstPage", JLabel.CENTER);
 		firstPage.setFont(TP_FONT);
 		firstPage.addMouseListener(new MouseAdapter() {
 			@Override
@@ -41,7 +43,7 @@ public class TP extends JPanel {
 		});
 		add(firstPage);
 		
-		beforePage = new JLabel("<<", JLabel.CENTER);
+		beforePage = new LabelButton("<<", JLabel.CENTER);
 		beforePage.setFont(TP_FONT);
 		beforePage.addMouseListener(new MouseAdapter() {
 			@Override
@@ -57,7 +59,7 @@ public class TP extends JPanel {
 		nowaPage.setFont(TP_FONT);
 		add(nowaPage);
 		
-		nextPage = new JLabel(">>", JLabel.CENTER);
+		nextPage = new LabelButton(">>", JLabel.CENTER);
 		nextPage.setFont(TP_FONT);
 		nextPage.addMouseListener(new MouseAdapter() {
 			@Override
@@ -69,7 +71,7 @@ public class TP extends JPanel {
 		else nextPage.setEnabled(true);
 		add(nextPage);
 		
-		lastPage = new JLabel("LastPage", JLabel.CENTER);
+		lastPage = new LabelButton("LastPage", JLabel.CENTER);
 		lastPage.setFont(TP_FONT);
 		lastPage.addMouseListener(new MouseAdapter() {
 			@Override

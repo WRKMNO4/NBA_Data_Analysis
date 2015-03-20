@@ -4,41 +4,42 @@ import java.util.ArrayList;
 
 public class PlayerDataPO {
 
-	//¸ÃÇòÔ±Èü¼¾×ÜÊý¾Ý
-	int numberOfMatch ;//²ÎÈü³¡Êý
-	int numberOfStarting ;//Ê×·¢³¡Êý
-	double numberOfRebound ;//Àº°åÊý
-	double numberOfAssist ;//Öú¹¥Êý
-	String presentTime ;//ÔÚ³¡Ê±¼ä
+	//ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int numberOfMatch ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int numberOfStarting ;//ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfRebound ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfAssist ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	String presentTime ;//ï¿½Ú³ï¿½Ê±ï¿½ï¿½
 	
 	
-	double percentageOfShooting ;//Í¶ÀºÃüÖÐÂÊ
-	double percentageOf3_Point ;//Èý·ÖÃüÖÐÂÊ
-	double percentageOffreeThrow ;//·£ÇòÃüÖÐÂÊ
 	
-	double numberOfAttack ;//½ø¹¥Êý
-	double numberOfDefense ;//·ÀÊØÊý
-	double numberOfSteal ;//ÇÀ¶ÏÊý
-	double numberOfBlock ;//¸ÇÃ±Êý 
-	double numberOfFault ;//Ê§ÎóÊý
-	double numberOfFoul ;//·¸¹æÊý£¬
-	double score ;//µÃ·Ö£¬
-	double efficiency ;//Ð§ÂÊ£¬
+	double percentageOfShooting ;//Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double percentageOf3_Point ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double percentageOffreeThrow ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	double efficiencyOfGmSc ;//GmScÐ§ÂÊÖµ£¬
-	double percentageOfTrueShooting ;//ÕæÊµÃüÖÐÂÊ£¬
-	double efficiencyOfShooting ;//Í¶ÀºÐ§ÂÊ£¬
-	double percentageOfRebound ; //Àº°åÂÊ£¬
-	double percentageOfAttackingRebound ;//½ø¹¥Àº°åÂÊ£¬
-	double percentageOfDefenseRebound ;//·ÀÊØÀº°åÂÊ£¬
-	double percentageOfAssist ;// Öú¹¥ÂÊ£¬
-	double percentageOfSteal ;//ÇÀ¶ÏÂÊ£¬
-	double percentageOfBlock ;//¸ÇÃ±ÂÊ£¬
-	double percentageOfFault ;//Ê§ÎóÂÊ£¬
-	double percentageOfUse ;//Ê¹ÓÃÂÊ
+	double numberOfAttack ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfDefense ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfSteal ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfBlock ;//ï¿½ï¿½Ã±ï¿½ï¿½ 
+	double numberOfFault ;//Ê§ï¿½ï¿½ï¿½ï¿½
+	double numberOfFoul ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double score ;//ï¿½Ã·Ö£ï¿½
+	double efficiency ;//Ð§ï¿½Ê£ï¿½
 	
-	int double_double;  //Á½Ë«
-	double comprehension;  // µÃ·Ö/Àº°å/Öú¹¥
+	double efficiencyOfGmSc ;//GmScÐ§ï¿½ï¿½Öµï¿½ï¿½
+	double percentageOfTrueShooting ;//ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½
+	double efficiencyOfShooting ;//Í¶ï¿½ï¿½Ð§ï¿½Ê£ï¿½
+	double percentageOfRebound ; //ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½
+	double percentageOfAttackingRebound ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½
+	double percentageOfDefenseRebound ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½
+	double percentageOfAssist ;// ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½
+	double percentageOfSteal ;//ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½
+	double percentageOfBlock ;//ï¿½ï¿½Ã±ï¿½Ê£ï¿½
+	double percentageOfFault ;//Ê§ï¿½ï¿½ï¿½Ê£ï¿½
+	double percentageOfUse ;//Ê¹ï¿½ï¿½ï¿½ï¿½
+	
+	int double_double;  //ï¿½ï¿½Ë«
+	double comprehension;  // ï¿½Ã·ï¿½/ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½
 	
 	public void calculatePlayerTotalDataInOneSeason(ArrayList<PlayerDataOfOneMatchPO> datas){
 		numberOfMatch = datas.size() ;

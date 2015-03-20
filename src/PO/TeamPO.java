@@ -20,7 +20,7 @@ public class TeamPO {
 	
 	int numberOfMatches;
 	int numberOfWinning;
-	double percentageOfWinning ; //胜率 
+	double percentageOfWinning ; //胜率
 	
 	ArrayList<PlayerPO> players = new ArrayList<PlayerPO>() ;//球员集合
 	ArrayList<MatchPO> matches = new ArrayList<MatchPO>();  //比赛集合
