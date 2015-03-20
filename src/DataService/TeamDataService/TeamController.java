@@ -14,7 +14,7 @@ public class TeamController implements TeamDataService{
 	TeamListPO teams ;
 	public TeamController(){
 		teams = new TeamListPO();
-		read("µü´úÒ»Êı¾İ/teams/teams") ;
+		read("è¿­ä»£ä¸€æ•°æ®/teams/teams") ;
 	}
 	
 	public void read(String fileName){
@@ -35,7 +35,7 @@ public class TeamController implements TeamDataService{
 			newTeam.setDistrict(data.get(4));
 			newTeam.setHomeCourt(data.get(5));
 			newTeam.setTimeOfEstablishment(Integer.parseInt(data.get(6)));
-			newTeam.setTeamLogoURL("µü´úÒ»Êı¾İ/teams/"+newTeam.getShortName()+".svg");
+			newTeam.setTeamLogoURL("ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½/teams/"+newTeam.getShortName()+".svg");
 			
 			addTeam(newTeam);
 		}
@@ -56,6 +56,20 @@ public class TeamController implements TeamDataService{
 	public ResultMessage updateTeam(TeamPO oneTeam) {
 		// TODO Auto-generated method stub
 		return teams.updateTeam(oneTeam);
+	}
+
+	@Override
+	public void calculateFinalData() {
+		// TODO Auto-generated method stub
+		for(TeamPO oneTeam:teams.getAllTeamsOf13_14()){
+			oneTeam.calculateTeamDataInOneSeason();
+		}
+	}
+
+	@Override
+	public ArrayList<TeamPO> getAllTeamsOf13_14() {
+		// TODO Auto-generated method stub
+		return teams.getAllTeamsOf13_14() ;
 	}
 	
 }

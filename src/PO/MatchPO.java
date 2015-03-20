@@ -3,7 +3,7 @@ package PO;
 import java.util.ArrayList;
 
 public class MatchPO {
-	String name;    //比赛的文件名字
+	String name;    //锟斤拷锟斤拷锟斤拷锟侥硷拷锟斤拷锟斤拷
 	
 	String season;
 	String date;
@@ -19,7 +19,8 @@ public class MatchPO {
 	TeamDataPO firstTeamData;
 	TeamDataPO secondTeamData;
 	
-	int totalTime ;//所有球员上场时间，单位秒
+	int totalTime ;//锟斤拷锟斤拷锟斤拷员锟较筹拷时锟戒，锟斤拷位锟斤拷
+	
 	public MatchPO(){
 		firstTeam_PlayerData = new ArrayList<>() ;
 		secondTeam_PlayerData = new ArrayList<>() ;
@@ -39,6 +40,7 @@ public class MatchPO {
 		secondTeamData.calculateTeamDataOfOneMatch(secondTeam_PlayerData);
 		firstTeamData.calculateTeamDataOfOneMatchUsingTheOther(secondTeamData);
 		secondTeamData.calculateTeamDataOfOneMatchUsingTheOther(firstTeamData);
+		
 	}
 	public void calculatePlayersData(){
 		for(PlayerDataOfOneMatchPO onePlayer:firstTeam_PlayerData){
@@ -59,10 +61,20 @@ public class MatchPO {
 		return null;
 	}
 	
-	public void calculateTotalTime(){//计算所有球员的上场时间
+	public void calculateTotalTime(){//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷员锟斤拷锟较筹拷时锟斤拷
 		totalTime = (48+(allScore.size()-4)*5)*60 ;
 	}
 	
+	public void updateOtherTeamDataForPlayers(){
+		for(PlayerDataOfOneMatchPO onePlayer: firstTeam_PlayerData ){
+			PlayerPO thePlayer = PlayerListPO.findPlayerByName(onePlayer.getName()) ;
+			thePlayer.updateDataOfOtherData(this.totalTime, this.secondTeamData);
+		}
+		for(PlayerDataOfOneMatchPO onePlayer: secondTeam_PlayerData ){
+			PlayerPO thePlayer = PlayerListPO.findPlayerByName(onePlayer.getName()) ;
+			thePlayer.updateDataOfOtherData(this.totalTime, this.firstTeamData);
+		}
+	}
 	public String getNameOfWinner(){
 		if(finalScore.getFirstScore()>finalScore.getSecondScore())
 			return firstTeam;

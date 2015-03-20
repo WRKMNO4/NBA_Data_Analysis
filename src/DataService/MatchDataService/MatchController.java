@@ -51,7 +51,7 @@ public class MatchController implements MatchDataService{
 					        	allScore.add(new ScoreOfMatchPO(splitString[scoreCount]));
 					        newMatch.setAllScore(allScore);
 					        break;
-					 default: 
+					 default:  //读取每个球员的具体信息 
 						 PlayerDataOfOneMatchPO onePlayer = new PlayerDataOfOneMatchPO(splitString);
 						 PlayerPO thePlayer = PlayerListPO.findPlayerByName(onePlayer.getName());
 						 if(thePlayer == null){
@@ -82,6 +82,13 @@ public class MatchController implements MatchDataService{
 				TeamPO secondTeam = TeamListPO.findTeamByShortName(newMatch.getSecondTeam());
 				firstTeam.addMatch(newMatch);
 				secondTeam.addMatch(newMatch);
+				
+				//更新球队的对手信息
+				firstTeam.updateOtherTeamData(newMatch.getFinalScore().getSecondScore());
+				secondTeam.updateOtherTeamData(newMatch.getFinalScore().getFirstScore());
+				
+				//更新球员的对手信息 
+				newMatch.updateOtherTeamDataForPlayers();
 				
 				addMatch(newMatch);
 			}

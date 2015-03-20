@@ -5,25 +5,27 @@ import java.util.ArrayList;
 import Enum.Zone;
 
 public class TeamPO {
-	String fullName;    //È«Ãû
-	String shortName;   //ËõÐ´Ãû
-	String city;        //ËùÔÚ³ÇÊÐ
-	Zone zone;          //ÈüÇø£¨¶«²¿»òÎ÷²¿£©
-	String district;     //·ÖÇø£¨Î÷ÄÏ²¿¡¢ÖÐ²¿¡¢Ì«Æ½ÑóµØÇøµÈ£©
-	String homeCourt;     //Ö÷³¡
-	int timeOfEstablishment;   //½¨Á¢Äê·Ý
+	String fullName;    //È«ï¿½ï¿½
+	String shortName;   //ï¿½ï¿½Ð´ï¿½ï¿½
+	String city;        //ï¿½ï¿½ï¿½Ú³ï¿½ï¿½ï¿½
+	Zone zone;          //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	String district;     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï²ï¿½ï¿½ï¿½ï¿½Ð²ï¿½ï¿½ï¿½Ì«Æ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½
+	String homeCourt;     //ï¿½ï¿½ï¿½ï¿½
+	int timeOfEstablishment;   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	String teamLogoURL;     //Çò¶ÓLogoµØÖ·
+	String teamLogoURL;     //ï¿½ï¿½ï¿½Logoï¿½ï¿½Ö·
 	
 	TeamDataPO totalTeamData = new TeamDataPO();
 	TeamDataPO averageTeamData = new TeamDataPO() ;
 	
+	DataForTotalCalculationPO dataOfOtherTeams = new DataForTotalCalculationPO() ;
+	
 	int numberOfMatches;
 	int numberOfWinning;
-	double percentageOfWinning ; //Ê¤ÂÊ
+	double percentageOfWinning ; //Ê¤ï¿½ï¿½
 	
-	ArrayList<PlayerPO> players = new ArrayList<PlayerPO>() ;//ÇòÔ±¼¯ºÏ
-	ArrayList<MatchPO> matches = new ArrayList<MatchPO>();  //±ÈÈü¼¯ºÏ
+	ArrayList<PlayerPO> players = new ArrayList<PlayerPO>() ;//ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½
+	ArrayList<MatchPO> matches = new ArrayList<MatchPO>();  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
 	public void addPlayer(PlayerPO onePlayer){
 		if(ifContainThePlayer(onePlayer)){
@@ -48,11 +50,17 @@ public class TeamPO {
 		return false ;
 	}
 	
-	public void calculateTotalTeamData(){
+	public void calculateTeamDataInOneSeason(){
 		percentageOfWinning = numberOfWinning / matches.size() ;
 		totalTeamData.calculateTeamTotalDataInOneSeason(matches, shortName);
 		averageTeamData.calculateTeamAverageDataInOneSeason(totalTeamData, matches.size());
 	}
+	
+	public void updateOtherTeamData(double score){
+		dataOfOtherTeams.update(score) ;
+	}
+
+	
 	public String getFullName() {
 		return fullName;
 	}

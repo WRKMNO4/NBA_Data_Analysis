@@ -4,25 +4,35 @@ import java.util.ArrayList;
 
 public class PlayerPO {
 	String name;
-	String position;  //Î»ÖÃ
+	String position;  //Î»ï¿½ï¿½
 	
-	String number;       //ÇòÒÂºÅÂë(ÓÃStringÊÇÒòÎªÓÐÐ©ÈËµÄºÅÂëÎª"N/A")
-	String height;    //Éí¸ß(Ó¢³ß-Ó¢´ç)
-	String weight;       //ÌåÖØ(°õ)
-	String birth;     //ÉúÈÕ(ÔÂ/ÈÕ/Äê)
+	String number;       //ï¿½ï¿½ï¿½Âºï¿½ï¿½ï¿½(ï¿½ï¿½Stringï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ð©ï¿½ËµÄºï¿½ï¿½ï¿½Îª"N/A")
+	String height;    //ï¿½ï¿½ï¿½(Ó¢ï¿½ï¿½-Ó¢ï¿½ï¿½)
+	String weight;       //ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½)
+	String birth;     //ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½/ï¿½ï¿½/ï¿½ï¿½)
 	String age;
-	String exp;         //ÇòÁä
-	String school;    //±ÏÒµÑ§Ð£                          
+	String exp;         //ï¿½ï¿½ï¿½ï¿½
+	String school;    //ï¿½ï¿½ÒµÑ§Ð£                          
 	
-	String portraitURL;    //Í·ÏñµÄµØÖ·
-	String actionURL;      //¶¯×÷ÕÕÆ¬µÄµØÖ·
+	String portraitURL;    //Í·ï¿½ï¿½Äµï¿½Ö·
+	String actionURL;      //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¬ï¿½Äµï¿½Ö·
 	
 	ArrayList<PlayerDataOfOneMatchPO> datas=new ArrayList<PlayerDataOfOneMatchPO>();
 	PlayerDataPO totalPlayerData = new PlayerDataPO();
 	PlayerDataPO averagePlayerData = new PlayerDataPO() ;
-	String team ; //ËùÊôÇò¶Ó£¨¿ÉÓÃnameÈ¥find TeamPO£©
 	
+	DataForTotalCalculationPO dataOfOtherTeam = new DataForTotalCalculationPO() ;
+	String team ; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó£ï¿½ï¿½ï¿½ï¿½ï¿½nameÈ¥find TeamPOï¿½ï¿½
 	
+	public void calculateFinalData(){
+		TeamPO team = TeamListPO.findTeamByShortName(this.team) ;
+		totalPlayerData.calculatePlayerTotalDataInOneSeason(datas, team.getTotalTeamData(), dataOfOtherTeam);
+		averagePlayerData.calculatePlayerAverageDataInOneSeason(datas,team.getTotalTeamData(),dataOfOtherTeam);
+	}
+	
+	public void updateDataOfOtherData(int totalTime,TeamDataPO dataOfOtherTeam){
+		this.dataOfOtherTeam.update(totalTime, dataOfOtherTeam) ;
+	}
 	public void addDataOfOneMatchOfOnePlayer(PlayerDataOfOneMatchPO onePlayer){
 		datas.add(onePlayer);
 	}

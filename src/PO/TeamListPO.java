@@ -31,4 +31,7 @@ public class TeamListPO {
 		}
 		return null ;
 	}
+	public ArrayList<TeamPO> getAllTeamsOf13_14(){
+		return allTeamsOf13_14 ;
+	}
 }

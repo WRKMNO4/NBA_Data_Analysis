@@ -14,14 +14,14 @@ public class PlayerController implements PlayerDataService{
 	
 	public PlayerController(){
 		players= new PlayerListPO();
-		read("µü´úÒ»Êı¾İ/players/info");
+		read("è¿­ä»£ä¸€æ•°æ®/players/info");
 	}
 	
 	public void read(String fileName){
 		File file=new File(fileName);
 		if(file.isDirectory()){
 			File[] allFiles=file.listFiles();
-			for(int i=0;i<allFiles.length;i++){    //±éÀúinfoÎÄ¼ş¼ĞÀïµÄËùÓĞÎÄ¼ş
+			for(int i=0;i<allFiles.length;i++){    //ï¿½ï¿½ï¿½ï¿½infoï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
 				ArrayList<String> tempString=FileHelper.readByLine(allFiles[i]);
 				PlayerPO newPlayer=new PlayerPO();
 				for(int j=0;j<tempString.size();j++){
@@ -43,8 +43,8 @@ public class PlayerController implements PlayerDataService{
 					default: break;
 					}
 				}
-				newPlayer.setPortraitURL("µü´úÒ»Êı¾İ/players/portrait/"+newPlayer.getName()+".png");
-				newPlayer.setActionURL("µü´úÒ»Êı¾İ/players/action/"+newPlayer.getName()+".png");
+				newPlayer.setPortraitURL("ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½/players/portrait/"+newPlayer.getName()+".png");
+				newPlayer.setActionURL("ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½/players/action/"+newPlayer.getName()+".png");
 			
 				players.addPlayer(newPlayer) ;
 			}
@@ -52,6 +52,7 @@ public class PlayerController implements PlayerDataService{
 		}
 		
 	}
+	
 	
 	@Override
 	public ResultMessage addPlayer(PlayerPO onePlayer) {
@@ -67,6 +68,14 @@ public class PlayerController implements PlayerDataService{
 
 	public ArrayList<PlayerPO> getAllPlayers() {
 		return players.getAllPlayers();
+	}
+
+	@Override
+	public void calculateFinalData() {
+		// TODO Auto-generated method stub
+		for(PlayerPO onePlayer:players.getAllPlayers()){
+			onePlayer.calculateFinalData();
+		}
 	}
 	
 	

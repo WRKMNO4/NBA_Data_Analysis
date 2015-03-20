@@ -1,42 +1,59 @@
 package BusinessLogic.PlayerBusinessLogic;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
+import BusinessLogic.SortHelper.PlayerSortHelper;
+import DataService.PlayerDataService.PlayerDataService;
 import DataService.TeamDataService.TeamController;
+import Enum.PlayerData;
 import Enum.Zone;
 import PO.PlayerPO;
 import PO.TeamListPO;
 import PO.TeamPO;
 
 public class PlayerController implements PlayerBusinessLogic{
-	DataService.PlayerDataService.PlayerController playerController;
+	PlayerDataService playerController;
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		playerController = new DataService.PlayerDataService.PlayerController();
+		playerController = new DataService.PlayerDataService.PlayerController() ;
 	}
+	public void calculateFinalData(){
+		playerController.calculateFinalData() ;
+	}
+	
+	
 	
 	@Override
 	public ArrayList<PlayerPO> pickUpPlayersByCondition(String position,
-			Zone zone, String district) {
+			Zone zone, String district, String standard,PlayerData dataType) {
 		// TODO Auto-generated method stub
 		ArrayList<PlayerPO> results = new ArrayList<PlayerPO>();
 		for(PlayerPO onePlayer: playerController.getAllPlayers()){
-			PlayerPO thePlayer = onePlayer;   //
 			TeamPO ofTeam = TeamListPO.findTeamByShortName(onePlayer.getTeam());
 			if(onePlayer.getPosition().equals(position) && ofTeam.getZone().equals(zone)&& 
 					(district.equals(null) || ofTeam.getDistrict().equals(district)))
 				results.add(onePlayer);
 		}
+		Collections.sort(results, new PlayerSortHelper(standard, dataType));
+		if(results.size()>50)
+			results.subList(0, 50);
 		return results;
 	}
 
 	@Override
-	public ArrayList<PlayerPO> sortPlayersByComprehension() {
+	public ArrayList<PlayerPO> sortPlayersByComprehension(String standard,PlayerData dataType) {
 		// TODO Auto-generated method stub
 		ArrayList<PlayerPO> results= (ArrayList<PlayerPO>) playerController.getAllPlayers().clone();
-		
-		return null;
+		Collections.sort(results,new PlayerSortHelper(standard, dataType));
+		return results;
+	}
+	@Override
+	public ArrayList<PlayerPO> getAllPlayers() {
+		// TODO Auto-generated method stub
+		return playerController.getAllPlayers();
 	}
 	
 
