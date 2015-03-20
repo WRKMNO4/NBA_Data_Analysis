@@ -40,52 +40,75 @@ public class PlayerDetailPanel extends JPanel {
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 1;
-		c.gridheight = 3;
-		c.weightx = 3;
-		c.weighty = 3;
+		c.gridheight = 4;
+		c.weightx = 7;
+		c.weighty = 5;
 		c.fill = GridBagConstraints.BOTH;
 		layout.setConstraints(player_icon, c);
 		add(player_icon);
 		
-		player_num = new BorderLabel("球衣号", JLabel.CENTER);
+		JLabel blank1 = new JLabel();
 		c.gridx = 1;
 		c.gridy = 0;
 		c.gridwidth = 1;
 		c.gridheight = 1;
 		c.weightx = 1;
-		c.weighty = 1;
-		layout.setConstraints(player_num, c);
-		add(player_num);
+		c.weighty = 2;
+		layout.setConstraints(blank1, c);
+		add(blank1);
 		
-		player_name = new BorderLabel("name", JLabel.CENTER);
+		player_num = new BorderLabel("球衣号", JLabel.CENTER);
 		c.gridx = 2;
 		c.gridy = 0;
 		c.gridwidth = 1;
 		c.gridheight = 1;
 		c.weightx = 2;
-		c.weighty = 1;
+		c.weighty = 2;
+		layout.setConstraints(player_num, c);
+		add(player_num);
+		
+		player_name = new BorderLabel("name", JLabel.CENTER);
+		c.gridx = 3;
+		c.gridy = 0;
+		c.gridwidth = 1;
+		c.gridheight = 1;
+		c.weightx = 5;
+		c.weighty = 2;
 		layout.setConstraints(player_name, c);
 		add(player_name);
 		
 		player_place = new BorderLabel("位置", JLabel.CENTER);
-		c.gridx = 1;
+		c.gridx = 3;
 		c.gridy = 1;
-		c.gridwidth = 2;
+		c.gridwidth = 1;
 		c.gridheight = 1;
-		c.weightx = 3;
+		c.weightx = 5;
 		c.weighty = 1;
 		layout.setConstraints(player_place, c);
 		add(player_place);
 		
 		player_team = new BorderLabel("服役球队", JLabel.CENTER);
-		c.gridx = 3;
+		c.gridx = 4;
 		c.gridy = 0;
-		c.gridwidth = 2;
-		c.gridheight = 2;
-		c.weightx = 3;
+		c.gridwidth = 3;
+		c.gridheight = 1;
+		c.weightx = 5;
 		c.weighty = 2;
 		layout.setConstraints(player_team, c);
 		add(player_team);
+		
+		
+		JLabel blank2 = new JLabel();
+		c.gridx = 4;
+		c.gridy = 3;
+		c.gridwidth = 1;
+		c.gridheight = 1;
+		c.weightx = 1;
+		c.weighty = 1;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.anchor = GridBagConstraints.SOUTHEAST;
+		layout.setConstraints(blank2, c);
+		add(blank2);
 		
 		avg = new BorderLabel("场均", JLabel.CENTER);
 		avg.addMouseListener(new MouseAdapter() {
@@ -94,17 +117,12 @@ public class PlayerDetailPanel extends JPanel {
 				
 			}
 		});
-		c.gridx = 3;
-		c.gridy = 2;
-		c.gridwidth = 1;
-		c.gridheight = 1;
-		c.weightx = 1;
-		c.weighty = 1;
+		c.gridx = 5;
 		layout.setConstraints(avg, c);
 		add(avg);
 		
 		sum = new BorderLabel("总计", JLabel.CENTER);
-		c.gridx = 4;
+		c.gridx = 6;
 		layout.setConstraints(sum, c);
 		add(sum);
 		
@@ -115,30 +133,38 @@ public class PlayerDetailPanel extends JPanel {
 				true);
 		c.gridx = 1;
 		c.gridy = 2;
-		c.gridwidth = 2;
-		c.gridheight = 1;
-		c.weightx = 3;
-		c.weighty = 1;
-		c.fill = GridBagConstraints.BOTH;
+		c.gridwidth = 3;
+		c.gridheight = 2;
+		c.weightx = 8;
+		c.weighty = 1.5;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.anchor = GridBagConstraints.NORTH;
 		layout.setConstraints(mainInfo, c);
 		add(mainInfo);
 		
 		sumInfo = new Table(
 				new String[] {"s1", "s2", "s3", "s4", "s5", "s6", "s7"},
-				new String[][] {{"0", "0", "0", "0", "0", "0", "0"}},
+				new String[][] {
+						{"0", "0", "0", "0", "0", "0", "0"},
+						{"0", "0", "0", "0", "0", "0", "0"},
+						{"0", "0", "0", "0", "0", "0", "0"}},
 				true);
 		c.gridx = 0;
-		c.gridy = 3;
-		c.gridwidth = 5;
+		c.gridy = 4;
+		c.gridwidth = 7;
 		c.gridheight = 1;
-		c.weightx = 9;
-		c.weighty = 1;
+		c.weightx = 20;
+		c.weighty = 0.8;
+		c.fill = GridBagConstraints.BOTH;
 		layout.setConstraints(sumInfo, c);
 		add(sumInfo);
 		
 		avgInfo = new Table(
 				new String[] {"a1", "a2", "a3", "a4", "a5"},
-				new String[][] {{"0", "0", "0", "0", "0"}},
+				new String[][] {
+						{"0", "0", "0", "0", "0"},
+						{"0", "0", "0", "0", "0"},
+						{"0", "0", "0", "0", "0"}},
 				true);
 		layout.setConstraints(avgInfo, c);
 		//add(avgInfo);
