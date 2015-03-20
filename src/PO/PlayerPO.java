@@ -26,8 +26,8 @@ public class PlayerPO {
 	
 	public void calculateFinalData(){
 		TeamPO team = TeamListPO.findTeamByShortName(this.team) ;
-		totalPlayerData.calculatePlayerTotalDataInOneSeason(datas, team.getTotalTeamData(), dataOfOtherTeam);
-		averagePlayerData.calculatePlayerAverageDataInOneSeason(datas,team.getTotalTeamData(),dataOfOtherTeam);
+		totalPlayerData.calculatePlayerTotalDataInOneSeason(datas);
+		averagePlayerData.calculatePlayerAverageDataInOneSeason(totalPlayerData,team.getTotalTeamData(),dataOfOtherTeam);
 	}
 	
 	public void updateDataOfOtherData(int totalTime,TeamDataPO dataOfOtherTeam){
