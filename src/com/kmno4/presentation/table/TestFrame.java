@@ -26,7 +26,7 @@ public class TestFrame extends JFrame{
 				    new String[]{"a", "b", "c", "d"}, 
 				    str);
 		
-		t.setBounds(0, 0, 600, 400);
+		t.setBounds(50, 50, 600, 400);
 		
 		add(t);
 		setVisible(true);

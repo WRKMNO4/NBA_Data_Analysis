@@ -99,6 +99,7 @@ public class PlayerDetailPanel extends JPanel {
 		mainInfo = new Table(
 				new String[] {"场均得分", "场均篮板", "场均助攻"},
 				new String[][] {{"0", "0", "0"}});
+		mainInfo.hidtp(true);
 		c.gridx = 8;
 		c.gridy = 3;
 		c.gridwidth = 6;
@@ -109,6 +110,7 @@ public class PlayerDetailPanel extends JPanel {
 		sumInfo = new Table(
 				new String[] {"总1", "总2", "总3", "总4", "总5", "总6", "总7"},
 				new String[][] {{"0", "0", "0", "0", "0", "0", "0"}});
+		sumInfo.hidtp(true);
 		c.gridx = 0;
 		c.gridy = 6;
 		c.gridwidth = 19;
@@ -119,6 +121,7 @@ public class PlayerDetailPanel extends JPanel {
 		avgInfo = new Table(
 				new String[] {"均1", "均2", "均3", "均4", "均5"},
 				new String[][] {{"0", "0", "0", "0", "0"}});
+		avgInfo.hidtp(true);
 		layout.setConstraints(avgInfo, c);
 		add(avgInfo);
 		

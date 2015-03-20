@@ -1,17 +1,15 @@
 package com.kmno4.presentation;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import com.kmno4.common.Config;
 
+@SuppressWarnings("serial")
 public class PlayerDetailFrame extends JFrame {
 
-	private JPanel contentPane;
 	public JPanel playerDetailPanel;
 
 	/**

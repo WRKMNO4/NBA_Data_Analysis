@@ -1,9 +1,13 @@
 package com.kmno4.presentation.table;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
 /**
  * 主table
  * @author hutao
@@ -44,6 +48,7 @@ public class Table extends JPanel {
 		setLayout(new GridLayout(rowNum + 2, 1));
 		head = new TableList(headStr, TableList.HEAD);
 		head.addMouseListener(new MouseAdapter() {
+			Border bb;
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				for(int i = 0; i < rowNum; i ++) {
@@ -58,8 +63,21 @@ public class Table extends JPanel {
 				}
 				remove(turn);
 				add(turn);
-				
 			}
+			/*
+			@Override
+			public void mousePressed(MouseEvent e) {
+				bb = BorderFactory.createBevelBorder(
+						BevelBorder.LOWERED,
+						new Color(0, 0, 0, 255),
+						new Color(255, 255, 255, 255));
+				head.setBorder(bb);
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				head.setBorder(null);
+			}
+			*/
 		});
 		add(head);
 		
@@ -77,6 +95,21 @@ public class Table extends JPanel {
 		add(turn);
 		
 	}
+	
+	public void hidtp(boolean isHid) {
+		if(isHid) {
+			turn.setVisible(false);
+			remove(turn);
+			setLayout(new GridLayout(rowNum + 1, 1));
+		}
+		else {
+			if(turn.getParent() == this) return;
+			setLayout(new GridLayout(rowNum + 2, 1));
+			add(turn);
+			turn.setVisible(true);
+		}
+	}
+	
 	
 	private void fillTable(String[][] bodyStr, TableList[][] body) {
 		for(int i = 0; i < body.length; i ++) {
@@ -102,8 +135,6 @@ public class Table extends JPanel {
 		}
 		return flipedStr;
 	}
-	
-	
 	
 	
 	
