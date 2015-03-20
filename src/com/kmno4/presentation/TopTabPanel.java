@@ -166,7 +166,12 @@ public class TopTabPanel extends JPanel {
 		MainFrame.mainFrame.add(tableBeShowing);
 	}
 	private void setTableBounds() {
-		tableBeShowing.setBounds(0, 300, 500, 280);
+		int y = Config.TOP_TAB_HEIGHT + Config.INTRODUCTION_WHITE + Config.SELECTION_HEIGHT + 10;
+		tableBeShowing.setBounds(
+				0, 
+				y,
+				Config.UI_WIDTH,
+				Config.UI_HEIGHT - y);
 	}
 	
 	
