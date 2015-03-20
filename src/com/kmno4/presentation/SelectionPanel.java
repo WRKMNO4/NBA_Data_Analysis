@@ -3,6 +3,7 @@ package com.kmno4.presentation;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.TextField;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -72,6 +73,7 @@ public class SelectionPanel extends JPanel implements MouseListener{
 				Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		this.setBackground(Color.GRAY);
 		setLayout(null);
+		
 				
 		//第一行
 		lb_search.setBounds(606, 11, Config.TEXT_WIDTH, Config.TEXT_height);
@@ -139,6 +141,28 @@ public class SelectionPanel extends JPanel implements MouseListener{
 		lb_location.setBounds(13, Config.COBM_LOCATION_Y, Config.TEXT_WIDTH, Config.TEXT_height);
 		add(lb_location);
 		
+		
+//		String a="a";
+//		String b="b";
+//		String c="c";
+//		final List<String> list=new ArrayList<String>();
+//		list.add(a);
+//		list.add(b);
+//		list.add(c);
+//		
+//		final JLabel label=new JLabel("<位置>");
+//		label.setBounds(59, Config.COBM_LOCATION_Y, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_CITY_WIDTH);
+//		label.addMouseListener(new MouseAdapter(){
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				Combox com=new Combox(list,label.getX(), label.getY()+15, label);
+//				com.setVisible(true);
+//				
+//			}
+//		});
+//		add(label);
+				
+		
 		cb_location.setBounds(59, Config.COBM_LOCATION_Y, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_CITY_WIDTH);
 		add(cb_location);
 		
@@ -154,11 +178,12 @@ public class SelectionPanel extends JPanel implements MouseListener{
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(59, 49, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_CITY_WIDTH);
+		comboBox.setBackground(Color.gray);
 		add(comboBox);
 		
-		JLabel label_1 = new JLabel("效率");
-		label_1.setBounds(560, 53, 35, 16);
-		add(label_1);
+		lb_efficiency.setForeground(Color.WHITE);
+		lb_efficiency.setBounds(560, 53, 35, 16);
+		add(lb_efficiency);
 		
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setBounds(21*Config.SORT_WIDTH-Config.SELECTION_COMB_TEAM_WIDTH, 49, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_CITY_WIDTH);
@@ -171,7 +196,7 @@ public class SelectionPanel extends JPanel implements MouseListener{
 	public void paintComponent(Graphics g)
 	      {
 				super.paintComponent(g);
-				g.drawImage(Config.PLAYER_SELECTION_BACKGROUND.getImage(), 0, 0,Config.UI_WIDTH,Config.SELECTION_HEIGHT ,this);
+				g.drawImage(Config.PLAYER_SELECTION_BACKGROUND.getImage(), 0, 0,Config.UI_WIDTH,Config.SELECTION_HEIGHT,this);
 	      }
 	
 	public void moveIn(){

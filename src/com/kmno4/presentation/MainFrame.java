@@ -3,12 +3,14 @@ package com.kmno4.presentation;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import com.kmno4.common.Config;
@@ -28,6 +30,29 @@ public class MainFrame extends JFrame implements MouseListener{
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		long begin_time=System.currentTimeMillis();
+		JFrame GFrame = new JFrame();	//创建窗口
+		SplashPanel DPanel = new SplashPanel();	//创建画板
+		/*设置JFrame*/
+		GFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		GFrame.setUndecorated(true);
+		Toolkit kit=Toolkit.getDefaultToolkit();
+		Dimension screensize=kit.getScreenSize();
+		int screenheight=screensize.height;
+		int screenwidth=screensize.width;
+		GFrame.setLocation(screenwidth/8,screenheight/8);
+		GFrame.setSize(Config.UI_WIDTH, Config.UI_HEIGHT);
+		GFrame.setVisible(true);
+		GFrame.add(DPanel);	//在JFrame中加入DPanel
+		DPanel.launch();					
+		while(true){
+			if(System.currentTimeMillis()-begin_time>7000){
+				GFrame.dispose();
+				break;
+			}
+		
+		}
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {					

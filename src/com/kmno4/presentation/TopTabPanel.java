@@ -2,6 +2,7 @@ package com.kmno4.presentation;
 
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class TopTabPanel extends JPanel {
 		this.setBounds(0, 0, Config.UI_WIDTH, Config.TOP_TAB_HEIGHT);
 		this.setBackground(Color.GRAY);
 		setLayout(null);
+		
 		
 		player = new JLabel("球员");
 		team = new JLabel("球队");
@@ -106,6 +108,15 @@ public class TopTabPanel extends JPanel {
 	}
 	
 	
+	
+	//画背景
+	public void paintComponent(Graphics g)
+	      {
+				super.paintComponent(g);
+				g.drawImage(Config.TOP_TAB_BACKGROUND.getImage(), 0, 0,Config.UI_WIDTH,Config.TOP_TAB_HEIGHT,this);
+	      }
+	
+	
 	private void showPlayerTable() {
 		if(tableBeShowing == null) { //第一次创建table
 			tableBeShowing = new Table(
@@ -155,7 +166,7 @@ public class TopTabPanel extends JPanel {
 		MainFrame.mainFrame.add(tableBeShowing);
 	}
 	private void setTableBounds() {
-		tableBeShowing.setBounds(0, 285, 500, 280);
+		tableBeShowing.setBounds(0, 300, 500, 280);
 	}
 	
 	
