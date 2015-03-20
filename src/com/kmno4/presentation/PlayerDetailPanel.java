@@ -1,6 +1,5 @@
 package com.kmno4.presentation;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
@@ -11,10 +10,12 @@ import javax.swing.JLabel;
 
 import com.kmno4.common.Config;
 import com.kmno4.presentation.button.BorderLabel;
+import com.kmno4.presentation.button.LabelButton;
 import com.kmno4.presentation.table.Table;
 
 @SuppressWarnings("serial")
 public class PlayerDetailPanel extends JPanel {
+	private PlayerDetailPanel playerDetailPanel = this;
 	private JLabel 
 	    player_icon,
 	    player_num,
@@ -27,15 +28,16 @@ public class PlayerDetailPanel extends JPanel {
 	    mainInfo, //主要信息表格
 	    sumInfo, //总计信息表格
 	    avgInfo; //场均信息表格
+	private GridBagLayout layout;
+	private GridBagConstraints c;
 	    
 	public PlayerDetailPanel() {
 		
 		setBounds(0, 0,
 				Config.PLAYER_DETAIL_UI_WIDTH,Config.PLAYER_DETATI_UI_TOP_HEIGHT);
-		setBackground(Color.WHITE);
-		GridBagLayout layout = new GridBagLayout();
+		layout = new GridBagLayout();
 		setLayout(layout);
-		GridBagConstraints c = new GridBagConstraints();
+		c = new GridBagConstraints();
 		player_icon = new BorderLabel("球员照片", JLabel.CENTER);
 		c.gridx = 0;
 		c.gridy = 0;
@@ -110,18 +112,41 @@ public class PlayerDetailPanel extends JPanel {
 		layout.setConstraints(blank2, c);
 		add(blank2);
 		
-		avg = new BorderLabel("场均", JLabel.CENTER);
+		avg = new LabelButton("场均", JLabel.CENTER);
 		avg.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				if(!avg.isEnabled()) return;
+				avg.setEnabled(false);
+				sum.setEnabled(true);
+				sumInfo.setVisible(false);
+				avgInfo.setVisible(true);
+				layout.setConstraints(avgInfo, c);
+				playerDetailPanel.remove(sumInfo);
+				playerDetailPanel.add(avgInfo);
+				playerDetailPanel.repaint();
 			}
 		});
 		c.gridx = 5;
 		layout.setConstraints(avg, c);
 		add(avg);
 		
-		sum = new BorderLabel("总计", JLabel.CENTER);
+		sum = new LabelButton("总计", JLabel.CENTER);
+		sum.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(!sum.isEnabled()) return;
+				sum.setEnabled(false);
+				avg.setEnabled(true);
+				avgInfo.setVisible(false);
+				sumInfo.setVisible(true);
+				layout.setConstraints(sumInfo, c);
+				playerDetailPanel.remove(avgInfo);
+				playerDetailPanel.add(sumInfo);
+				playerDetailPanel.repaint();
+			}
+		});
+		sum.setEnabled(false);
 		c.gridx = 6;
 		layout.setConstraints(sum, c);
 		add(sum);
@@ -143,11 +168,11 @@ public class PlayerDetailPanel extends JPanel {
 		add(mainInfo);
 		
 		sumInfo = new Table(
-				new String[] {"s1", "s2", "s3", "s4", "s5", "s6", "s7"},
+				new String[] {"s1", "s2", "s3", "s4", "s5", "s6"},
 				new String[][] {
-						{"0", "0", "0", "0", "0", "0", "0"},
-						{"0", "0", "0", "0", "0", "0", "0"},
-						{"0", "0", "0", "0", "0", "0", "0"}},
+						{"0", "0", "0", "0", "0", "0"},
+						{"0", "0", "0", "0", "0", "0"},
+						{"0", "0", "0", "0", "0", "0"}},
 				true);
 		c.gridx = 0;
 		c.gridy = 4;
