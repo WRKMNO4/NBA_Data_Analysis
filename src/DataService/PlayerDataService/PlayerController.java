@@ -43,8 +43,8 @@ public class PlayerController implements PlayerDataService{
 					default: break;
 					}
 				}
-				newPlayer.setPortraitURL("����һ����/players/portrait/"+newPlayer.getName()+".png");
-				newPlayer.setActionURL("����һ����/players/action/"+newPlayer.getName()+".png");
+				newPlayer.setPortraitURL("迭代一数据/players/portrait/"+newPlayer.getName()+".png");
+				newPlayer.setActionURL("迭代一数据/players/action/"+newPlayer.getName()+".png");
 			
 				players.addPlayer(newPlayer) ;
 			}

@@ -31,11 +31,11 @@ public class FileHelper {
 		
 	}
 	
-	public static ArrayList<String> analysisOfOneLine(String oneLine){   //½âÎöÃ¿ÐÐÊý¾Ý£¨¶ÔÇòÔ±ÐÅÏ¢ºÍÇò¶ÓÐÅÏ¢ÎÄ¼þÓÐÐ§£©
+	public static ArrayList<String> analysisOfOneLine(String oneLine){   //ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½Ä¼ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
 		ArrayList<String> results=new ArrayList<String>();
-		oneLine=oneLine.substring(1,oneLine.length()-1);//È¥µôÊ×Î²µÄ·Ç·¨×Ö·û
-		String[] eachString=oneLine.split("©¦");
-		for(int i=0;i<eachString.length;i++){     //È¥µô¿Õ¸ñ
+		oneLine=oneLine.substring(1,oneLine.length()-1);//È¥ï¿½ï¿½ï¿½ï¿½Î²ï¿½Ä·Ç·ï¿½ï¿½Ö·ï¿½
+		String[] eachString=oneLine.split("â”‚");
+		for(int i=0;i<eachString.length;i++){     //È¥ï¿½ï¿½ï¿½Õ¸ï¿½
 			results.add(eachString[i].trim());
 		}
 		
