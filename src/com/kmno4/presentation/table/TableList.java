@@ -38,15 +38,24 @@ public class TableList extends JPanel {
 		
 		for(int i = 0; i < ele.length; i ++) {
 			elements[i] = new JLabel(ele[i], JLabel.CENTER);
-			if(type == HEAD) {
-				elements[i].setFont(HEAD_FONT);
+			if(type == HEAD)
 			    elements[i].setForeground(HEAD_FONT_COLOR);
-			}
-			else {
-				elements[i].setFont(BODY_FONT);
-			}
 			add(elements[i]);
 		}
+	}
+	
+	public void setFont(Font f) {
+		if(elements == null) return;
+		for(JLabel j : elements)
+			j.setFont(f);
+	}
+	public void setForeground(Color c) {
+		if(elements == null) return;
+		for(JLabel j : elements)
+			j.setForeground(c);
+	}
+	public void setColor(Color c) {
+		//TODO
 	}
 	
 	
@@ -61,9 +70,6 @@ public class TableList extends JPanel {
 	    DOUB_COLOR = new Color(255, 255, 255, 200),
 	    BLANK_COLOR = new Color(0, 0, 0, 0),
 	    HEAD_FONT_COLOR = new Color(255, 255, 255, 255);
-	private static final Font
-	    HEAD_FONT = new Font("Arial", Font.BOLD, 25),
-	    BODY_FONT = new Font("Arial", Font.PLAIN, 18);
 	
 	
 }

@@ -1,10 +1,11 @@
 package com.kmno4.presentation.table;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 /**
  * 主table
  * @author hutao
@@ -51,8 +52,8 @@ public class Table extends JPanel {
 		setLayout(new GridLayout(rowNum + 2, 1));
 		head = new TableList(headStr, TableList.HEAD);
 		if(!isSmallData)
+			//head.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
 			head.addMouseListener(new MouseAdapter() {
-				Border bb;
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					for(int i = 0; i < rowNum; i ++) {
@@ -71,15 +72,13 @@ public class Table extends JPanel {
 				/*
 				@Override
 				public void mousePressed(MouseEvent e) {
-					bb = BorderFactory.createBevelBorder(
-							BevelBorder.LOWERED,
-							new Color(0, 0, 0, 255),
-							new Color(255, 255, 255, 255));
-					head.setBorder(bb);
+					head.setBorder(BorderFactory.createBevelBorder(
+							BevelBorder.LOWERED));
 				}
 				@Override
 				public void mouseReleased(MouseEvent e) {
-					head.setBorder(null);
+					head.setBorder(BorderFactory.createBevelBorder(
+							BevelBorder.RAISED));
 				}
 				*/
 			});
@@ -102,6 +101,24 @@ public class Table extends JPanel {
 		}
 	}
 	
+	public void setFont(Font f, boolean ishead) {
+		if(ishead) head.setFont(f);
+		else {
+			for(int i = body.length; i > 0; i --) {
+				for (int j = body[0].length; j > 0; j --)
+					body[i][j].setFont(f);
+			}
+		}
+	}
+	public void setForeground(Color c, boolean ishead) {
+		if(ishead) head.setForeground(c);
+		else {
+			for(int i = body.length; i > 0; i --) {
+				for (int j = body[0].length; j > 0; j --)
+					body[i][j].setForeground(c);
+			}
+		}
+	}
 	
 	
 	public void hidtp(boolean isHid) {

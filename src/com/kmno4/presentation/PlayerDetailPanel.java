@@ -1,5 +1,7 @@
 package com.kmno4.presentation;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
@@ -35,6 +37,7 @@ public class PlayerDetailPanel extends JPanel {
 		
 		setBounds(0, 0,
 				Config.PLAYER_DETAIL_UI_WIDTH,Config.PLAYER_DETATI_UI_TOP_HEIGHT);
+		setBackground(Color.WHITE);
 		layout = new GridBagLayout();
 		setLayout(layout);
 		c = new GridBagConstraints();
@@ -59,7 +62,9 @@ public class PlayerDetailPanel extends JPanel {
 		layout.setConstraints(blank1, c);
 		add(blank1);
 		
-		player_num = new BorderLabel("球衣号", JLabel.CENTER);
+		player_num = new JLabel("4", JLabel.CENTER);
+		player_num.setForeground(Color.RED);
+		player_num.setFont(new Font("default", Font.BOLD, 50));
 		c.gridx = 2;
 		c.gridy = 0;
 		c.gridwidth = 1;
@@ -69,7 +74,8 @@ public class PlayerDetailPanel extends JPanel {
 		layout.setConstraints(player_num, c);
 		add(player_num);
 		
-		player_name = new BorderLabel("name", JLabel.CENTER);
+		player_name = new JLabel("gaoyangyiqiao", JLabel.LEFT);
+		player_name.setFont(new Font("default", Font.PLAIN, 26));
 		c.gridx = 3;
 		c.gridy = 0;
 		c.gridwidth = 1;
@@ -79,7 +85,8 @@ public class PlayerDetailPanel extends JPanel {
 		layout.setConstraints(player_name, c);
 		add(player_name);
 		
-		player_place = new BorderLabel("位置", JLabel.CENTER);
+		player_place = new JLabel("前锋 / blabla城市", JLabel.LEFT);
+		player_place.setFont(new Font("default", Font.ITALIC, 17));
 		c.gridx = 3;
 		c.gridy = 1;
 		c.gridwidth = 1;
@@ -89,7 +96,9 @@ public class PlayerDetailPanel extends JPanel {
 		layout.setConstraints(player_place, c);
 		add(player_place);
 		
-		player_team = new BorderLabel("服役球队", JLabel.CENTER);
+		player_team = new JLabel("不知道什么队", JLabel.CENTER);
+		player_team.setForeground(Color.gray);
+		player_team.setFont(new Font("default", Font.BOLD, 17));
 		c.gridx = 4;
 		c.gridy = 0;
 		c.gridwidth = 3;
@@ -112,25 +121,6 @@ public class PlayerDetailPanel extends JPanel {
 		layout.setConstraints(blank2, c);
 		add(blank2);
 		
-		avg = new LabelButton("场均", JLabel.CENTER);
-		avg.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(!avg.isEnabled()) return;
-				avg.setEnabled(false);
-				sum.setEnabled(true);
-				sumInfo.setVisible(false);
-				avgInfo.setVisible(true);
-				layout.setConstraints(avgInfo, c);
-				playerDetailPanel.remove(sumInfo);
-				playerDetailPanel.add(avgInfo);
-				playerDetailPanel.repaint();
-			}
-		});
-		c.gridx = 5;
-		layout.setConstraints(avg, c);
-		add(avg);
-		
 		sum = new LabelButton("总计", JLabel.CENTER);
 		sum.addMouseListener(new MouseAdapter() {
 			@Override
@@ -147,15 +137,36 @@ public class PlayerDetailPanel extends JPanel {
 			}
 		});
 		sum.setEnabled(false);
-		c.gridx = 6;
+		c.gridx = 5;
 		layout.setConstraints(sum, c);
 		add(sum);
 		
+		avg = new LabelButton("场均", JLabel.CENTER);
+		avg.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(!avg.isEnabled()) return;
+				avg.setEnabled(false);
+				sum.setEnabled(true);
+				sumInfo.setVisible(false);
+				avgInfo.setVisible(true);
+				layout.setConstraints(avgInfo, c);
+				playerDetailPanel.remove(sumInfo);
+				playerDetailPanel.add(avgInfo);
+				playerDetailPanel.repaint();
+			}
+		});
+		c.gridx = 6;
+		layout.setConstraints(avg, c);
+		add(avg);
+		
 		
 		mainInfo = new Table(
-				new String[] {"A", "B", "C"},
+				new String[] {"场均得分", "场均篮板", "场均助攻"},
 				new String[][] {{"0", "0", "0"}},
 				true);
+		mainInfo.setFont(new Font("default", Font.PLAIN, 15), true);
+		//mainInfo.setForeground(Color, ishead); TODO
 		c.gridx = 1;
 		c.gridy = 2;
 		c.gridwidth = 3;
@@ -168,18 +179,18 @@ public class PlayerDetailPanel extends JPanel {
 		add(mainInfo);
 		
 		sumInfo = new Table(
-				new String[] {"s1", "s2", "s3", "s4", "s5", "s6"},
+				new String[] {"s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10"},
 				new String[][] {
-						{"0", "0", "0", "0", "0", "0"},
-						{"0", "0", "0", "0", "0", "0"},
-						{"0", "0", "0", "0", "0", "0"}},
+						{"0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
+						{"0", "0", "0", "0", "0", "0", "0", "0", "0", "0"},
+						{"0", "0", "0", "0", "0", "0", "0", "0", "0", "0"}},
 				true);
 		c.gridx = 0;
 		c.gridy = 4;
 		c.gridwidth = 7;
 		c.gridheight = 1;
 		c.weightx = 20;
-		c.weighty = 0.8;
+		c.weighty = 2.5;
 		c.fill = GridBagConstraints.BOTH;
 		layout.setConstraints(sumInfo, c);
 		add(sumInfo);
