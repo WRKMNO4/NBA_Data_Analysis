@@ -41,7 +41,7 @@ public class PlayerDataPO {
 	int double_double;  //��˫
 	double comprehension;  // �÷�/����/����
 	
-	public void calculatePlayerTotalDataInOneSeason(ArrayList<PlayerDataOfOneMatchPO> datas){
+	public void calculatePlayerTotalDataInOneSeason(ArrayList<PlayerDataOfOneMatchPO> datas,TeamDataPO teamdatas,DataForTotalCalculation otherDatas){
 		numberOfMatch = datas.size() ;
 		numberOfStarting = datas.size() ;
 		
