@@ -16,7 +16,6 @@ import com.kmno4.presentation.table.Table;
 public class TopTabPanel extends JPanel {
 	
 	public List<JLabel> tabs;
-<<<<<<< HEAD
 	
 	private JLabel player;
 	private JLabel match;
@@ -24,20 +23,12 @@ public class TopTabPanel extends JPanel {
 	private JLabel help;
 	private JLabel aboutus;
 	
-=======
->>>>>>> origin/master
+
 	/**
 	 * 用于引用当前显示的表格
 	 */
 	private Table tableBeShowing;
-<<<<<<< HEAD
-=======
-	public JLabel player;
-	public JLabel match;
-	public JLabel team;
-	public JLabel help;
-	public JLabel aboutus;
->>>>>>> origin/master
+
 
 	/**
 	 * Create the panel.
