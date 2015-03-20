@@ -88,7 +88,7 @@ public class MainFrame extends JFrame implements MouseListener{
 		});
 		
 		mainUI.start();
-		splash.start();
+//		splash.start();
 
 	}
 
