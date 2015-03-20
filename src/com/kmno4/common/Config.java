@@ -31,10 +31,15 @@ public class Config {
 	public static final int SELECTION_SEARCH_WIDTH=140;
 	public static final int TEXT_WIDTH=35;
 	public static final int TEXT_height=15;
-	public static final int SORT_WIDTH=23;
-	public static final int SORT_HEIGHT=23;
+	public static final int SORT_WIDTH=30;
+	public static final int SORT_HEIGHT=30;
 	public static final int COBM_LOCATION_Y=95;
 	public static final int COMB_TEXT_GAP=50;
+	
+	public static final int MATCH_SELECTION_PANEL_WIDTH=800;
+	public static final int MATCH_SELECTION_PANEL_HEIGHT=135;
+	public static final int MATCH_SELECTION_PANEL_LABEL_WIDTH=100;
+	public static final int MATCH_SELECTION_PANEL_LABEL_HEIGHT=100;
 	
 	public static final int MATCH_INFO_TEAM_ICON_WIDTH=80;
 	public static final int MATCH_INFO_TEAM_ICON_HEIGHT=80;
@@ -47,8 +52,8 @@ public class Config {
 
 	public static final int INTRODUCTION_WHITE=50;
 	
-	public static final int PLAYER_DETAIL_UI_WIDTH=620;
-	public static final int PLAYER_DETATI_UI_TOP_HEIGHT=240;
+	public static final int PLAYER_DETAIL_UI_WIDTH=700;
+	public static final int PLAYER_DETATI_UI_TOP_HEIGHT=400;
 	public static final int PLAYER_ICON_X=70;
 	public static final int PLAYER_ICON_Y=35;
 	public static final int PLAYER_ICON_WIDTH=130;

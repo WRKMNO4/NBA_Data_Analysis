@@ -35,7 +35,7 @@ public class SplashPanel extends JPanel {
 	
 	public void paint(Graphics g){
 		super.paint(g);
-		if(count<=1){
+		if(count<=2){
 			g.drawImage(Config.getLoadingMotions().get(i).getImage(), Config.SPLASH_MOTION_X,
 				Config.SPLASH_MOTION_Y, 
 				Config.getLoadingMotions().get(i).getIconWidth(), 

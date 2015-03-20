@@ -10,12 +10,16 @@ public class PageInfoPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public PageInfoPanel() {
+	public PageInfoPanel(String pageInfo) {
 		this.setBounds(0, Config.TOP_TAB_HEIGHT, Config.UI_WIDTH, Config.PAGE_INTRO_HEIGHT);
 		this.setLayout(null);
 		
-		page_name = new JLabel("球员");
+		page_name = new JLabel(pageInfo);
 		page_name.setBounds(6, 6, Config.PAGE_INTRO_LABEL_WIDTH, Config.PAGE_INTRO_LABEL_HEIGHT);
 		add(page_name);
+	}
+	
+	public void refreshInfo(String pageInfo){
+		this.page_name.setText(pageInfo);
 	}
 }

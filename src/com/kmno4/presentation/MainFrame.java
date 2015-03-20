@@ -22,7 +22,7 @@ public class MainFrame extends JFrame implements MouseListener{
 	public static SelectionPanel playerSelectionPanel;
 	public static TopTabPanel topTabPanel;
 	public static PageInfoPanel pageInfoPanel;
-	public static MatchInfoPanel matchInfoPanel;
+	public static TeamSelectionPanel teamSelectionPanel;
 
 	/**
 	 * Launch the application.
@@ -43,13 +43,13 @@ public class MainFrame extends JFrame implements MouseListener{
 					frame.setSize(Config.UI_WIDTH,Config.UI_HEIGHT);
 					frame.setLocation(screenwidth/8,screenheight/8);
 					//添加panel
-					topTabPanel.setLayout(null);
-					frame.add(topTabPanel);
-					
-
-					//以下是需要跳转的Panel
-					playerSelectionPanel.setLayout(null);
-					frame.add(playerSelectionPanel);
+//					topTabPanel.setLayout(null);
+//					frame.add(topTabPanel);
+//					
+//
+//					//以下是需要跳转的Panel
+//					playerSelectionPanel.setLayout(null);
+//					frame.add(playerSelectionPanel);
 					
 					playerSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
 				Config.UI_WIDTH, Config.SELECTION_HEIGHT);
@@ -76,26 +76,27 @@ public class MainFrame extends JFrame implements MouseListener{
 		contentPane.setLayout(null);
 		setContentPane(contentPane);	
 		
-		topTabPanel=new TopTabPanel();
-		playerSelectionPanel=new SelectionPanel();
+		this.initPanel();
 
-		for(int i=0;i<topTabPanel.tabs.size();i++){
-			topTabPanel.tabs.get(i).addMouseListener(this);
-		}
-		
 	}
-	
-	
+
 	public void initPanel(){
-		
+		pageInfoPanel=new PageInfoPanel("球员");
+		this.add(pageInfoPanel);
+		topTabPanel=new TopTabPanel();
+		this.add(topTabPanel);
+		playerSelectionPanel=new SelectionPanel();
+		this.add(playerSelectionPanel);
+		teamSelectionPanel=new TeamSelectionPanel();
+		this.add(teamSelectionPanel);
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		//如果点击球员tab
-		if(e.getSource()==topTabPanel.player){
-			
-		}
+//		if(e.getSource()==topTabPanel.player){
+//			
+//		}
 		// TODO Auto-generated method stub
 		
 	}

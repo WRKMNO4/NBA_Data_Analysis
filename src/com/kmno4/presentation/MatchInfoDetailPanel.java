@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 import com.kmno4.common.Config;
 import javax.swing.JLabel;
 
-public class MatchInfoPanel extends JPanel {
+public class MatchInfoDetailPanel extends JPanel {
 
 	public JLabel label_teamA_icon = new JLabel("TeamA_icon");
 	public JLabel label_teamB_icon = new JLabel("TeamB_icon");
@@ -20,7 +20,7 @@ public class MatchInfoPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public MatchInfoPanel() {
+	public MatchInfoDetailPanel() {
 		
 		this.setBounds(0, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		this.setLayout(null);
