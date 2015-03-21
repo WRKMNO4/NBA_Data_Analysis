@@ -16,6 +16,7 @@ public class PlayerListPO {
 		    	return ResultMessage.add_failure ;
 		}
 		allPlayers.add(thePlayer) ;
+		System.out.println(thePlayer.getName());
 		return ResultMessage.add_success ;
 			
 	}
@@ -28,9 +29,6 @@ public class PlayerListPO {
 		return null ;
 	}
 	
-	void updatePlayer(PlayerPO thePlayer){
-		
-	}
 
 	public static ArrayList<PlayerPO> getAllPlayers() {
 		return allPlayers;

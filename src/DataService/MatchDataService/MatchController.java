@@ -54,7 +54,7 @@ public class MatchController implements MatchDataService{
 					 default:  //读取每个球员的具体信息 
 						 PlayerDataOfOneMatchPO onePlayer = new PlayerDataOfOneMatchPO(splitString);
 						 PlayerPO thePlayer = PlayerListPO.findPlayerByName(onePlayer.getName());
-						 if(thePlayer == null){
+						 if(thePlayer == null){   //若原数组里没有此队员
 							 PlayerPO newPlayer = new PlayerPO();
 							 newPlayer.setName(onePlayer.getName());
 							 PlayerListPO.addPlayer(newPlayer) ;

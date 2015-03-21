@@ -3,29 +3,33 @@ package PO;
 import java.util.ArrayList;
 
 public class PlayerPO {
-	String name;
-	String position;  //λ��
+	String name = "Unknown";   //定义为Unknown是因为有些球员是在比赛中找到的，而球员数据中没有，所有需要使其有初始值
+	String position = "Unknown";  //λ��
 	
-	String number;       //���º���(��String����Ϊ��Щ�˵ĺ���Ϊ"N/A")
-	String height;    //���(Ӣ��-Ӣ��)
-	String weight;       //����(��)
-	String birth;     //����(��/��/��)
-	String age;
-	String exp;         //����
-	String school;    //��ҵѧУ                          
+	String number = "Unknown";       //���º���(��String����Ϊ��Щ�˵ĺ���Ϊ"N/A")
+	String height = "Unknown";    //���(Ӣ��-Ӣ��)
+	String weight = "Unknown";       //����(��)
+	String birth = "Unknown";     //����(��/��/��)
+	String age = "Unknown";
+	String exp = "Unknown";         //����
+	String school = "Unknown";    //��ҵѧУ                          
 	
-	String portraitURL;    //ͷ��ĵ�ַ
-	String actionURL;      //������Ƭ�ĵ�ַ
+	String portraitURL=null;    //ͷ��ĵ�ַ
+	String actionURL=null;      //������Ƭ�ĵ�ַ
 	
 	ArrayList<PlayerDataOfOneMatchPO> datas=new ArrayList<PlayerDataOfOneMatchPO>();
 	PlayerDataPO totalPlayerData = new PlayerDataPO();
 	PlayerDataPO averagePlayerData = new PlayerDataPO() ;
 	
 	DataForFinalCalculationPO dataOfOtherTeam = new DataForFinalCalculationPO() ;
-	String team ; //������ӣ�����nameȥfind TeamPO��
+	String team="Unknown" ; //������ӣ�����nameȥfind TeamPO��
 	
 	public void calculateFinalData(){
 		TeamPO team = TeamListPO.findTeamByShortName(this.team) ;
+		if(team==null)
+			return;
+//		System.out.println(this.name+" "+this.team);
+//		System.out.println(team.getFullName());
 		totalPlayerData.calculatePlayerTotalDataInOneSeason(datas);
 		averagePlayerData.calculatePlayerAverageDataInOneSeason(totalPlayerData,team.getTotalTeamData(),dataOfOtherTeam);
 	}
