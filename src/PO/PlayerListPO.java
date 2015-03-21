@@ -16,7 +16,6 @@ public class PlayerListPO {
 		    	return ResultMessage.add_failure ;
 		}
 		allPlayers.add(thePlayer) ;
-		System.out.println(thePlayer.getName());
 		return ResultMessage.add_success ;
 			
 	}

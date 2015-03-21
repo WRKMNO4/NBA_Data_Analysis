@@ -49,7 +49,6 @@ public class PlayerController implements PlayerDataService{
 				players.addPlayer(newPlayer) ;
 			}
 		}
-		System.out.println(players.getAllPlayers().size());
 	}
 	
 	
