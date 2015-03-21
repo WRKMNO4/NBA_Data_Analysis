@@ -2,11 +2,12 @@ package com.kmno4.presentation;
 
 import java.util.List;
 
+import PO.PlayerDataPO;
 import PO.PlayerPO;
 
 public class TableContentTransfer {
 
-	public static String[][] transfer(int cloums,List<PlayerPO> players){
+	public static String[][] transferPlayerBasicInfo(int cloums,List<PlayerPO> players){
 		String[][] body=new String[players.size()][cloums];
 		for(int i=0;i<players.size();i++){
 			PlayerPO player=players.get(i);
@@ -20,7 +21,17 @@ public class TableContentTransfer {
 			body[i][7]=player.getExp();
 			body[i][8]=player.getSchool();
 		}
-		
 		return body;
+	}
+	public static String[][] transferPlayerAvgInfo(int cloums,List<PlayerPO> players){
+		String[][] body = new String[players.size()][] ;
+		for(int i = 0 ; i<players.size();i++){
+			PlayerPO player = players.get(i) ;
+			PlayerDataPO avgData = player.getAveragePlayerData() ;
+			body[i][0] = avgData.getNumberOfRebound() ;
+			body[i][1] = 
+		
+		}
+		return body ;
 	}
 }
