@@ -10,6 +10,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 
+import PO.PlayerPO;
+
 import com.kmno4.common.Config;
 import com.kmno4.presentation.button.BorderLabel;
 import com.kmno4.presentation.button.LabelButton;
@@ -32,9 +34,10 @@ public class PlayerDetailPanel extends JPanel {
 	    avgInfo; //场均信息表格
 	private GridBagLayout layout;
 	private GridBagConstraints c;
-	    
-	public PlayerDetailPanel() {
-		
+	
+	private PlayerPO playerPO;
+	public PlayerDetailPanel(PlayerPO p) {
+		playerPO = p;
 		setBounds(0, 0,
 				Config.PLAYER_DETAIL_UI_WIDTH,Config.PLAYER_DETATI_UI_TOP_HEIGHT);
 		setBackground(Color.WHITE);
