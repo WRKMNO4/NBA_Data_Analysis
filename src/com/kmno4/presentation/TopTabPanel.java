@@ -139,10 +139,8 @@ public class TopTabPanel extends JPanel {
 	private void createAndShowPlayerTable() {
 		if(tableBeShowing == null) { //第一次创建table
 			tableBeShowing = new Table(
-				Config.PLAYER_BASIC_INFO, 
-					new String[][]{
-							{"player", "bb", "cc", "dd", "", "", "", "", ""}
-					});
+				Config.PLAYER_BASIC_INFO,
+					TableContentTransfer.transfer(Config.PLAYER_BASIC_INFO.length, MainFrame.mainFrame.players));
 			setTableBounds();
 			MainFrame.mainFrame.add(tableBeShowing);
 			addPlayerLink();
