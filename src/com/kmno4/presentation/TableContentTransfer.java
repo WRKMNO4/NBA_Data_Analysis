@@ -10,8 +10,8 @@ import PO.TeamPO;
 
 public class TableContentTransfer {
 
-	public static String[][] transferPlayerBasicInfo(List<PlayerPO> players){
-		String[][] body=new String[players.size()][];
+	public static String[][] transferPlayerBasicInfo(int colums,List<PlayerPO> players){
+		String[][] body=new String[players.size()][colums];
 		for(int i=0;i<players.size();i++){
 			PlayerPO player=players.get(i);
 			body[i][0]=player.getName();
@@ -26,8 +26,8 @@ public class TableContentTransfer {
 		}
 		return body;
 	}
-	public static String[][] transferPlayerAvgInfo(List<PlayerPO> players){
-		String[][] body = new String[players.size()][] ;
+	public static String[][] transferPlayerAvgInfo(int colums,List<PlayerPO> players){
+		String[][] body = new String[players.size()][colums] ;
 		for(int i = 0 ; i<players.size();i++){
 			PlayerPO player = players.get(i) ;
 			PlayerDataPO avgData = player.getAveragePlayerData() ;
@@ -59,8 +59,8 @@ public class TableContentTransfer {
 		}
 		return body ;
 	}
-	public static String[][] transferPlayerTotalInfo(List<PlayerPO> players){
-		String[][] body = new String[players.size()][] ;
+	public static String[][] transferPlayerTotalInfo(int colums,List<PlayerPO> players){
+		String[][] body = new String[players.size()][colums] ;
 		for(int i = 0;i<players.size();i++){
 			PlayerPO player = players.get(i) ;
 			PlayerDataPO totalData = player.getTotalPlayerData() ;
@@ -80,8 +80,8 @@ public class TableContentTransfer {
 		return body ;
 	}
 	
-	public static String[][] transferTeamBasicInfo(List<TeamPO> teams){
-		String[][] body = new String[teams.size()][] ;
+	public static String[][] transferTeamBasicInfo(int colums,List<TeamPO> teams){
+		String[][] body = new String[teams.size()][colums] ;
 		for(int i = 0 ; i<teams.size();i++){
 			TeamPO team = teams.get(i);
 			body[i][0]=team.getFullName();
@@ -95,8 +95,8 @@ public class TableContentTransfer {
 		return body;
 	}
 	
-	public static String[][] transferTeamAvgInfo(List<TeamPO> teams){
-		String[][] body = new String[teams.size()][] ;
+	public static String[][] transferTeamAvgInfo(int colums,List<TeamPO> teams){
+		String[][] body = new String[teams.size()][colums] ;
 		for(int i = 0 ; i<teams.size();i++){
 			TeamPO team= teams.get(i);
 			TeamDataPO avgData=team.getAverageTeamData();
@@ -132,8 +132,8 @@ public class TableContentTransfer {
 		
 	}
 
-	public static String[][] transferTeamTotalInfo(List<TeamPO> teams){
-		String[][] body = new String[teams.size()][] ;
+	public static String[][] transferTeamTotalInfo(int colums,List<TeamPO> teams){
+		String[][] body = new String[teams.size()][colums] ;
 		for(int i = 0 ; i<teams.size();i++){
 			TeamPO team= teams.get(i);
 			TeamDataPO totalData=team.getTotalTeamData();

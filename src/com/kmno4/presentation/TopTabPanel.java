@@ -139,14 +139,8 @@ public class TopTabPanel extends JPanel {
 	private void createAndShowPlayerTable() {
 		if(tableBeShowing == null) { //第一次创建table
 			tableBeShowing = new Table(
-<<<<<<< HEAD
-				Config.PLAYER_BASIC_INFO, 
-					TableContentTransfer.transfer(Config.PLAYER_BASIC_INFO.length, 
-							MainFrame.mainFrame.players));
-=======
 				Config.PLAYER_BASIC_INFO,
-					TableContentTransfer.transferPlayerBasicInfo(Config.PLAYER_BASIC_INFO.length, MainFrame.mainFrame.players));
->>>>>>> origin/master
+					TableContentTransfer.transferPlayerBasicInfo( Config.PLAYER_BASIC_INFO.length,MainFrame.mainFrame.players));
 			setTableBounds();
 			MainFrame.mainFrame.add(tableBeShowing);
 			addPlayerLink();
@@ -155,9 +149,8 @@ public class TopTabPanel extends JPanel {
 		tableBeShowing.setVisible(false);
 		MainFrame.mainFrame.remove(tableBeShowing);
 		tableBeShowing = new Table(
-				Config.PLAYER_BASIC_INFO, 
-				TableContentTransfer.transfer(Config.PLAYER_BASIC_INFO.length, 
-						MainFrame.mainFrame.players));
+				Config.PLAYER_BASIC_INFO,
+				TableContentTransfer.transferPlayerBasicInfo(Config.PLAYER_BASIC_INFO.length, MainFrame.mainFrame.players));
 		setTableBounds();
 		MainFrame.mainFrame.add(tableBeShowing);
 		addPlayerLink();
