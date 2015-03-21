@@ -9,7 +9,7 @@ import PO.PlayerPO;
 public class TableContentTransfer {
 
 	public static String[][] transferPlayerBasicInfo(int cloums,List<PlayerPO> players){
-		String[][] body=new String[players.size()][];
+		String[][] body=new String[players.size()][cloums];
 		for(int i=0;i<players.size();i++){
 			PlayerPO player=players.get(i);
 			body[i][0]=player.getName();
