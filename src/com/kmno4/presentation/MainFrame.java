@@ -104,6 +104,7 @@ public class MainFrame extends JFrame implements MouseListener{
 	 */
 	public MainFrame() {
 		mainFrame = this; //
+		this.setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(Config.MAIN_FRAME_X,Config.MAIN_FRAME_Y, 
 				Config.UI_WIDTH, Config.UI_HEIGHT);

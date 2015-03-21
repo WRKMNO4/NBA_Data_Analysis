@@ -23,6 +23,7 @@ public class TopTabPanel extends JPanel {
 	private JLabel team;
 	private JLabel help;
 	private JLabel aboutus;
+	private JLabel close;
 	
 
 	/**
@@ -40,6 +41,17 @@ public class TopTabPanel extends JPanel {
 		this.setBackground(Color.GRAY);
 		setLayout(null);
 		
+		close=new JLabel();
+		close.setIcon(Config.CLOSE_ICON);
+		close.setBounds(Config.UI_WIDTH-100,5, 100, 10);
+		close.addMouseListener(new MouseAdapter(){
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MainFrame.mainFrame.dispose();
+				System.exit(0);
+			}
+		});
+		this.add(close);
 		
 		player = new JLabel("球员");
 		team = new JLabel("球队");
@@ -174,9 +186,5 @@ public class TopTabPanel extends JPanel {
 				Config.UI_HEIGHT - y);
 	}
 	
-	
-	
-	
-	
-	
+
 }
