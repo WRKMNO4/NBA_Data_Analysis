@@ -44,19 +44,19 @@ public class LabelButton extends JLabel {
 	
 	
 	private void addSomething() {
-		lb.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
-		addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				if(!lb.isEnabled()) return;
-				lb.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-			}
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				lb.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
-			}
-			
-		});
+//		lb.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+//		addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mousePressed(MouseEvent e) {
+//				if(!lb.isEnabled()) return;
+//				lb.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+//			}
+//			@Override
+//			public void mouseReleased(MouseEvent e) {
+//				lb.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+//			}
+//			
+//		});
 	}
 
 }

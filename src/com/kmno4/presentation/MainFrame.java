@@ -116,7 +116,7 @@ public class MainFrame extends JFrame implements MouseListener{
 		this.initBL();
 		this.initPanel();
 		
-
+		MoveOfFrame m = new MoveOfFrame(this);
 	}
 
 	public void initPanel(){
