@@ -38,12 +38,14 @@ public class PlayerDetailFrame extends JFrame {
 		setBounds(100, 100, Config.PLAYER_DETAIL_UI_WIDTH, Config.PLAYER_DETATI_UI_TOP_HEIGHT);
 		setLayout(null);
 		setUndecorated(true);
-		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		playerDetailPanel = new PlayerDetailPanel(playerPO);
 		this.add(playerDetailPanel);
 		
 		setVisible(true);
+		
+		MoveOfFrame m = new MoveOfFrame(this);
 	}
 
 }

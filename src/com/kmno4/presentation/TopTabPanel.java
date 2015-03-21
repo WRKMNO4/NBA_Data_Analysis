@@ -191,17 +191,22 @@ public class TopTabPanel extends JPanel {
 				Config.UI_HEIGHT - y);
 	}
 	
+	private JLabel label;
 	private void addPlayerLink() {
-		//TODO
-		System.out.println("bbb");
 		TableList[][] t = tableBeShowing.body;
-		for(int i = t.length - 1; i > 0; i --) {
-			for(int j = t[0].length - 1; j > 0; j --) {
-				JLabel label = t[i][j].elements[l];
+		for(int i = 0; i < t.length; i ++) {
+			for(int j = 0; j < t[0].length; j ++) {
+			    try {
+			    	label = t[i][j].elements[l];
+			    }
+			    catch(Exception e) {//对于空条目
+			    	break;
+			    }
+				
 				label.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						System.out.println("aaaa");
+						
 						PlayerPO p = PlayerListPO.findPlayerByName(label.getText());
 						//if(p == null) return;
 						new PlayerDetailFrame(p).setVisible(true);
@@ -209,6 +214,7 @@ public class TopTabPanel extends JPanel {
 				});
 			}
 		}
+		
 	}
 
 }

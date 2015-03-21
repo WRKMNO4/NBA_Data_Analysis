@@ -57,7 +57,6 @@ public class Table extends JPanel {
 		setLayout(new GridLayout(rowNum + 2, 1));
 		head = new TableList(headStr, TableList.HEAD);
 		if(!isSmallData)
-			//head.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
 			head.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -65,8 +64,9 @@ public class Table extends JPanel {
 						body[TP.page][i].setVisible(false);
 						remove(body[TP.page][i]);
 					}
-					bodyStr = flip(bodyStr);
-					fillTable(bodyStr, body);
+					//bodyStr = flip(bodyStr);
+					//fillTable(bodyStr, body);
+					flip();
 					
 					for(int i = 0; i < rowNum; i ++) {
 					    add(body[TP.page][i]);
@@ -74,18 +74,6 @@ public class Table extends JPanel {
 					remove(turn);
 					add(turn);
 				}
-				/*
-				@Override
-				public void mousePressed(MouseEvent e) {
-					head.setBorder(BorderFactory.createBevelBorder(
-							BevelBorder.LOWERED));
-				}
-				@Override
-				public void mouseReleased(MouseEvent e) {
-					head.setBorder(BorderFactory.createBevelBorder(
-							BevelBorder.RAISED));
-				}
-				*/
 			});
 		add(head);
 		
@@ -154,18 +142,25 @@ public class Table extends JPanel {
 			}
 		}
 	}
-	private String[][] flip(String[][] str) {
-		int l1 = str.length;
-		if(l1 == 0) return null;
-		int l2 = str[0].length;
-		if(l2 == 0) return null;
-		String[][] flipedStr = new String[l1][l2];
-		for(int i = 0; i < l1; i ++) {
-			flipedStr[i] = str[l1 - i - 1];
-		}
-		return flipedStr;
-	}
 	
+	private void flip() {
+		TableList[][] newBody = new TableList[body.length][body[0].length];
+		int blankNum = 0;
+		for(int i = 0; i < body[0].length; i ++) {
+			if(body[body.length - 1][i].elements.length == 0) blankNum ++;
+		}
+		int k = body.length * body[0].length - 1 - blankNum;
+		for(int i = 0; i < body.length; i ++) {
+			for(int j = 0; j < body[0].length; j ++) {
+				if(k >= 0) newBody[i][j] = body[k / body[0].length][k % body[0].length];
+				else newBody[i][j] = body[i][j];
+				
+				k --;
+			}
+		}
+		body = newBody;
+		
+	}
 	
 	
 	/**
