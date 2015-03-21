@@ -40,6 +40,7 @@ public class Table extends JPanel {
 	
 	public Table(String[] headStr, String[][] bodyString, boolean isSmallData) {
 		super();
+		TP.page=0;
 		bodyStr = bodyString;
 		if(bodyStr.length == 0) {
 			System.out.println("bodyStr.length == 0");
@@ -171,11 +172,11 @@ public class Table extends JPanel {
 	/**
 	 * 最大列数（不包括表头）
 	 */
-	public static int rowNum;
+	public  int rowNum;
 	/**
 	 * 页数，不小于1
 	 */
-	private static int pageNum;
+	private  int pageNum;
 	public int getPageNum() {
 		return pageNum;
 	}

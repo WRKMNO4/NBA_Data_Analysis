@@ -1,5 +1,6 @@
 package com.kmno4.presentation.table;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
@@ -27,102 +28,107 @@ public class TP extends JPanel {
 	
 	private Table table;
 	
-	public TP(Table table) {
+	public TP(final Table table) {
 		super();
 		this.table = table;
 		setLayout(new GridLayout(1, 0));
 		
 		
-		firstPage = new LabelButton("FirstPage", JLabel.CENTER);
+		firstPage = new LabelButton("first", JLabel.RIGHT);
+		firstPage.setForeground(Color.GRAY);
 		firstPage.setFont(TP_FONT);
 		firstPage.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				turnToFirstPage();
+				turnToFirstPage(table);
 			}
 		});
 		add(firstPage);
 		
-		beforePage = new LabelButton("<<", JLabel.CENTER);
+		beforePage = new LabelButton("←", JLabel.CENTER);
+		beforePage.setForeground(Color.GRAY);
 		beforePage.setFont(TP_FONT);
 		beforePage.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				turnToBeforePage();
+				turnToBeforePage(table);
 			}
 		});
 		if(page == 0) beforePage.setEnabled(false);
 		else beforePage.setEnabled(true);
 		add(beforePage);
 		
-		nowaPage = new JLabel("page " + (page + 1), JLabel.CENTER);
+		nowaPage = new JLabel( "-"+(page + 1)+"-", JLabel.CENTER);
+		nowaPage.setForeground(Color.GRAY);
 		nowaPage.setFont(TP_FONT);
 		add(nowaPage);
 		
-		nextPage = new LabelButton(">>", JLabel.CENTER);
+		nextPage = new LabelButton("→", JLabel.CENTER);
+		nextPage.setForeground(Color.GRAY);
 		nextPage.setFont(TP_FONT);
 		nextPage.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				turnToNextPage();
+				turnToNextPage(table);
 			}
 		});
 		if(page == (table.getPageNum() - 1)) nextPage.setEnabled(false);
 		else nextPage.setEnabled(true);
 		add(nextPage);
 		
-		lastPage = new LabelButton("LastPage", JLabel.CENTER);
+		lastPage = new LabelButton("last", JLabel.LEFT);
+		lastPage.setForeground(Color.GRAY);
 		lastPage.setFont(TP_FONT);
 		lastPage.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				turnToLastPage();
+				turnToLastPage(table);
 			}
 		});
 		add(lastPage);
 		
 	}
 	
-	private void turnToFirstPage() {
+	private void turnToFirstPage(Table table) {
 		if(page == 0) return;
-		for(int i = 0; i < Table.rowNum; i ++) {
+		for(int i = 0; i < table.rowNum; i ++) {
 		    table.remove(table.body[page][i]);
 		}
 		page = 0;
-		for(int i = 0; i < Table.rowNum; i ++) {
+		for(int i = 0; i < table.rowNum; i ++) {
 		    table.add(table.body[TP.page][i]);
 		}
 		otherSet();
 	}
-	private void turnToBeforePage() {
+	private void turnToBeforePage(Table table) {
 		if(page == 0) return;
-		for(int i = 0; i < Table.rowNum; i ++) {
+		for(int i = 0; i < table.rowNum; i ++) {
 		    table.remove(table.body[page][i]);
 		}
 		page --;
-		for(int i = 0; i < Table.rowNum; i ++) {
+		for(int i = 0; i < table.rowNum; i ++) {
 		    table.add(table.body[TP.page][i]);
 		}
 		otherSet();
 	}
-	private void turnToNextPage() {
+	private void turnToNextPage(Table table) {
 		if(page == (table.getPageNum() - 1)) return;
-		for(int i = 0; i < Table.rowNum; i ++) {
+		for(int i = 0; i < table.rowNum; i ++) {
 		    table.remove(table.body[page][i]);
 		}
 		page ++;
-		for(int i = 0; i < Table.rowNum; i ++) {
+		for(int i = 0; i < table.rowNum; i ++) {
 		    table.add(table.body[TP.page][i]);
 		}
 		otherSet();
 	}
-	private void turnToLastPage() {
+	private void turnToLastPage(Table table) {
 		if(page == (table.getPageNum() - 1)) return;
-		for(int i = 0; i < Table.rowNum; i ++) {
+		for(int i = 0; i < table.rowNum; i ++) {
 		    table.remove(table.body[page][i]);
 		}
 		page = table.getPageNum() - 1;
-		for(int i = 0; i < Table.rowNum; i ++) {
+		for(int i = 0; i < table.rowNum; i ++) {
 		    table.add(table.body[TP.page][i]);
 		}
 		otherSet();
@@ -131,7 +137,7 @@ public class TP extends JPanel {
 	private void otherSet() {
 		table.remove(table.turn);
 		table.add(table.turn);
-		nowaPage.setText("page " + (page + 1));
+		nowaPage.setText("-" + (page + 1)+"-");
 		table.repaint();
 		beforePage.setEnabled(page == 0 ? false : true);
 		nextPage.setEnabled(page == (table.getPageNum() - 1) ? false : true);

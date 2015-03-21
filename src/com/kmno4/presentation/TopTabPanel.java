@@ -133,7 +133,8 @@ public class TopTabPanel extends JPanel {
 		if(tableBeShowing == null) { //第一次创建table
 			tableBeShowing = new Table(
 				Config.PLAYER_BASIC_INFO, 
-					TableContentTransfer.transfer(Config.PLAYER_BASIC_INFO.length, MainFrame.mainFrame.players));
+					TableContentTransfer.transfer(Config.PLAYER_BASIC_INFO.length, 
+							MainFrame.mainFrame.players));
 			setTableBounds();
 			MainFrame.mainFrame.add(tableBeShowing);
 			return;
@@ -141,11 +142,9 @@ public class TopTabPanel extends JPanel {
 		tableBeShowing.setVisible(false);
 		MainFrame.mainFrame.remove(tableBeShowing);
 		tableBeShowing = new Table(
-				new String[]{"a", "b", "c", "d"}, 
-				new String[][]{
-						{"player", "bb", "cc", "dd"},
-						{"player", "bb", "cc", "dd"}
-				});
+				Config.PLAYER_BASIC_INFO, 
+				TableContentTransfer.transfer(Config.PLAYER_BASIC_INFO.length, 
+						MainFrame.mainFrame.players));
 		setTableBounds();
 		MainFrame.mainFrame.add(tableBeShowing);
 		
