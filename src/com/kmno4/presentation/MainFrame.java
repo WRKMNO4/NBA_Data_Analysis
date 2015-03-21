@@ -1,17 +1,20 @@
 package com.kmno4.presentation;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+
+import BusinessLogic.BLService.BLService;
+import BusinessLogic.BLService.BLServiceController;
+import PO.MatchPO;
+import PO.PlayerPO;
+import PO.TeamPO;
 
 import com.kmno4.common.Config;
 
@@ -21,10 +24,14 @@ public class MainFrame extends JFrame implements MouseListener{
 	private JPanel contentPane;
 	
 	public static MainFrame mainFrame; //mainframe自身的静态引用
-	public static SelectionPanel playerSelectionPanel;
-	public static TopTabPanel topTabPanel;
-	public static PageInfoPanel pageInfoPanel;
-	public static TeamSelectionPanel teamSelectionPanel;
+	public  SelectionPanel playerSelectionPanel;
+	public  TopTabPanel topTabPanel;
+	public  PageInfoPanel pageInfoPanel;
+	public  TeamSelectionPanel teamSelectionPanel;
+	public  BLService bl;
+	public ArrayList<PlayerPO> players;
+	public ArrayList<TeamPO> teams;
+	public ArrayList<MatchPO> matches;
 
 	/**
 	 * Launch the application.
@@ -75,7 +82,7 @@ public class MainFrame extends JFrame implements MouseListener{
 				
 				frame.setSize(Config.UI_WIDTH,Config.UI_HEIGHT);
 				frame.setLocation(screenwidth/8,screenheight/8);				
-				playerSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
+				mainFrame.playerSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
 			Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 				
 				while(true){
@@ -105,7 +112,9 @@ public class MainFrame extends JFrame implements MouseListener{
 		contentPane.setLayout(null);
 		setContentPane(contentPane);	
 		
+		this.initBL();
 		this.initPanel();
+		
 
 	}
 
@@ -118,6 +127,14 @@ public class MainFrame extends JFrame implements MouseListener{
 		this.add(playerSelectionPanel);
 		teamSelectionPanel=new TeamSelectionPanel();
 		this.add(teamSelectionPanel);
+	}
+	
+	public void initBL(){
+		bl=new BLServiceController();
+		bl.init();
+		players=bl.getAllPlayers();
+		teams=bl.getAllTeamsOf13_14();
+		System.out.println(players.size()+"   "+teams.size());
 	}
 
 	@Override
