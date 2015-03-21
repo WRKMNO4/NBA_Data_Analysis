@@ -26,8 +26,10 @@ public class PlayerPO {
 	
 	public void calculateFinalData(){
 		TeamPO team = TeamListPO.findTeamByShortName(this.team) ;
-		if(team==null)
+		if(team==null){
+//			System.out.println(this.team+"  "+this.name);
 			return;
+		}
 //		System.out.println(this.name+" "+this.team);
 //		System.out.println(team.getFullName());
 		totalPlayerData.calculatePlayerTotalDataInOneSeason(datas);
