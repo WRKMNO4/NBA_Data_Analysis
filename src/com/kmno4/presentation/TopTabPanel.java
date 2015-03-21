@@ -11,8 +11,12 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import PO.PlayerListPO;
+import PO.PlayerPO;
+
 import com.kmno4.common.Config;
 import com.kmno4.presentation.table.Table;
+import com.kmno4.presentation.table.TableList;
 
 public class TopTabPanel extends JPanel {
 	
@@ -85,7 +89,7 @@ public class TopTabPanel extends JPanel {
 				MainFrame.mainFrame.teamSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 				MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.Player.toString());
 				
-				showPlayerTable();
+				createAndShowPlayerTable();
 				MainFrame.mainFrame.repaint();
 			}
 		});
@@ -98,7 +102,7 @@ public class TopTabPanel extends JPanel {
 				MainFrame.mainFrame.teamSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 				MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.Team.toString());
 				
-				showTeamTable();
+				createAndShowTeamTable();
 				MainFrame.mainFrame.repaint();
 			}
 		});
@@ -111,12 +115,12 @@ public class TopTabPanel extends JPanel {
 				MainFrame.mainFrame.teamSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 				MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.Match.toString());
 				
-				showMatchTable();
+				createAndShowMatchTable();
 				MainFrame.mainFrame.repaint();
 			}
 		});
 		
-		showPlayerTable();
+		createAndShowPlayerTable();
 	}
 	
 	
@@ -128,15 +132,24 @@ public class TopTabPanel extends JPanel {
 				g.drawImage(Config.TOP_TAB_BACKGROUND.getImage(), 0, 0,Config.UI_WIDTH,Config.TOP_TAB_HEIGHT,this);
 	      }
 	
-	
-	private void showPlayerTable() {
+	/**
+	 * 第l列为进入具体信息Frame的链接
+	 */
+	private static final int l = 0;
+	private void createAndShowPlayerTable() {
 		if(tableBeShowing == null) { //第一次创建table
 			tableBeShowing = new Table(
+<<<<<<< HEAD
 				Config.PLAYER_BASIC_INFO, 
 					TableContentTransfer.transfer(Config.PLAYER_BASIC_INFO.length, 
 							MainFrame.mainFrame.players));
+=======
+				Config.PLAYER_BASIC_INFO,
+					TableContentTransfer.transferPlayerBasicInfo(Config.PLAYER_BASIC_INFO.length, MainFrame.mainFrame.players));
+>>>>>>> origin/master
 			setTableBounds();
 			MainFrame.mainFrame.add(tableBeShowing);
+			addPlayerLink();
 			return;
 		}
 		tableBeShowing.setVisible(false);
@@ -147,9 +160,9 @@ public class TopTabPanel extends JPanel {
 						MainFrame.mainFrame.players));
 		setTableBounds();
 		MainFrame.mainFrame.add(tableBeShowing);
-		
+		addPlayerLink();
 	}
-	private void showTeamTable() {
+	private void createAndShowTeamTable() {
 		tableBeShowing.setVisible(false);
 		MainFrame.mainFrame.remove(tableBeShowing);
 		tableBeShowing = new Table(
@@ -161,7 +174,7 @@ public class TopTabPanel extends JPanel {
 		setTableBounds();
 		MainFrame.mainFrame.add(tableBeShowing);
 	}
-	private void showMatchTable() {
+	private void createAndShowMatchTable() {
 		tableBeShowing.setVisible(false);
 		MainFrame.mainFrame.remove(tableBeShowing);
 		tableBeShowing = new Table(
@@ -182,5 +195,30 @@ public class TopTabPanel extends JPanel {
 				Config.UI_HEIGHT - y);
 	}
 	
+	private JLabel label;
+	private void addPlayerLink() {
+		TableList[][] t = tableBeShowing.body;
+		for(int i = 0; i < t.length; i ++) {
+			for(int j = 0; j < t[0].length; j ++) {
+			    try {
+			    	label = t[i][j].elements[l];
+			    }
+			    catch(Exception e) {//对于空条目
+			    	break;
+			    }
+				
+				label.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						
+						PlayerPO p = PlayerListPO.findPlayerByName(label.getText());
+						//if(p == null) return;
+						new PlayerDetailFrame(p).setVisible(true);
+					}
+				});
+			}
+		}
+		
+	}
 
 }
