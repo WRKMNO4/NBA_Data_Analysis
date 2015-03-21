@@ -145,6 +145,7 @@ public class Table extends JPanel {
 	}
 	
 	private void flip() {
+		//TODO
 		TableList[][] newBody = new TableList[body.length][body[0].length];
 		int blankNum = 0;
 		for(int i = 0; i < body[0].length; i ++) {

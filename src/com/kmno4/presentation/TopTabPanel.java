@@ -18,6 +18,7 @@ import com.kmno4.common.Config;
 import com.kmno4.presentation.table.Table;
 import com.kmno4.presentation.table.TableList;
 
+@SuppressWarnings("serial")
 public class TopTabPanel extends JPanel {
 	
 	public List<JLabel> tabs;

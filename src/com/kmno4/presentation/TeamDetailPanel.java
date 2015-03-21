@@ -80,7 +80,7 @@ public class TeamDetailPanel extends JPanel {
 		layout.setConstraints(team_achi, c);
 		add(team_achi);
 		
-		sum = new BorderLabel();
+		sum = new BorderLabel("总计", JLabel.CENTER);
 		c.gridx = 4;
 		c.gridy = 2;
 		c.gridwidth = 1;
@@ -91,14 +91,15 @@ public class TeamDetailPanel extends JPanel {
 		layout.setConstraints(sum, c);
 		add(sum);
 		
-		avg = new BorderLabel();
+		avg = new BorderLabel("平均", JLabel.CENTER);
 		c.gridx = 5;
 		layout.setConstraints(avg, c);
 		add(avg);
 		
 		mainInfo = new Table(
-				new String[]{},
-				new String[][]{});
+				new String[]{"", "", "", ""},
+				new String[][]{{"", "", "", ""}},
+				true);
 		c.gridx = 1;
 		c.gridy = 2;
 		c.gridwidth = 3;
@@ -110,11 +111,14 @@ public class TeamDetailPanel extends JPanel {
 		add(mainInfo);
 		
 		sumInfo = new Table(
-				new String[]{},
-				new String[][]{});
+				new String[]{"", "", "", "", "", "", ""},
+				new String[][]{
+						{"", "", "", "", "", "", ""},
+						{"", "", "", "", "", "", ""}},
+				true);
 		c.gridx = 0;
-		c.gridy = 4;
-		c.gridwidth = 5;
+		c.gridy = 3;
+		c.gridwidth = 6;
 		c.gridheight = 1;
 		c.weightx = 12;
 		c.weighty = 3;
@@ -123,10 +127,13 @@ public class TeamDetailPanel extends JPanel {
 		add(sumInfo);
 		
 		avgInfo = new Table(
-				new String[]{},
-				new String[][]{});
+				new String[]{"", "", "", "", "", "", ""},
+				new String[][]{
+						{"", "", "", "", "", "", ""},
+						{"", "", "", "", "", "", ""}},
+				true);
 		layout.setConstraints(avgInfo, c);
-		add(avgInfo);
+		//add(avgInfo);
 		
 	}
 	
