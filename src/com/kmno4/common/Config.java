@@ -8,6 +8,14 @@ import javax.swing.ImageIcon;
 
 public class Config {
 	
+	public static final String[] PLAYER_BASIC_INFO={"姓名","位置","球衣号","身高","体重","生日","年龄","球龄","毕业学校"};
+	public static final String[] PLAYER_AVERAGE_INFO={"篮板数","助攻数","在场时间","投篮命中率","三分命中率","罚球命中率",
+		"进攻数","防守数","抢断数","盖帽数","失误数","犯规数","得分","效率",
+		"GmSc效率值","真实命中率","投篮效率","篮板率","进攻篮板率",
+		"防守篮板率","助攻率","抢断率",
+		"盖帽率","失误率","使用率",};
+	
+	
 	public static final int MAIN_FRAME_X=100;
 	public static final int MAIN_FRAME_Y=100;
 	public static final int UI_WIDTH=800;

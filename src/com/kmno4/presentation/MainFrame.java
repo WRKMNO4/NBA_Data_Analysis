@@ -135,7 +135,6 @@ public class MainFrame extends JFrame implements MouseListener{
 		bl.init();
 		players=bl.getAllPlayers();
 		teams=bl.getAllTeamsOf13_14();
-		System.out.println(players.size()+"   "+teams.size());
 	}
 
 	@Override
