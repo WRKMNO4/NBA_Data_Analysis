@@ -1,6 +1,5 @@
 package com.kmno4.presentation;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
