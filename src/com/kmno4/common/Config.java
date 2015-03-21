@@ -74,6 +74,7 @@ public class Config {
 	public static final ImageIcon TOP_TAB_BACKGROUND=new ImageIcon("images/top_tab_background.png");
 	public static final ImageIcon WELCOME=new ImageIcon("images/welcome.png");
 	public static final ImageIcon TEAM_SELECTION_BACKGROUND=new ImageIcon("images/team_selection_bg2.png");
+	
 	public static ArrayList<ImageIcon> getLoadingMotions(){
 		for(int i=1;i<100;i++){
 			motions.add(new ImageIcon("images/loading_motions/"+i+".png"));	

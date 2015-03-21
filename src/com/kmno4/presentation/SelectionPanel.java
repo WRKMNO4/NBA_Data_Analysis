@@ -54,13 +54,15 @@ public class SelectionPanel extends JPanel implements MouseListener{
 //	JLabel lblZ = new JLabel("Z");
 	
 	JLabel lb_percent=new JLabel("比率");
-	JLabel lb_efficiency=new JLabel("效率");
-	
+	JLabel lb_efficiency=new JLabel("效率");	
 	JLabel lb_location = new JLabel("位置");
+	JLabel lb_place = new JLabel("分区");
+
 	JComboBox cb_location = new JComboBox();
-	JLabel lb_team = new JLabel("分区");
-	JComboBox cb_team = new JComboBox();
-	private final JLabel label = new JLabel("比率");
+	JComboBox cb_palce = new JComboBox();
+	JComboBox cb_percent = new JComboBox();
+	JComboBox cb_effitency=new JComboBox();
+	
 
 
 
@@ -90,104 +92,36 @@ public class SelectionPanel extends JPanel implements MouseListener{
 		title.setBounds(15, 11, 30, 30);
 		add(title);
 		
-		//第二行
-//		sort=new ArrayList<JLabel>();
-//		sort.add(lblA);
-//		sort.add(lblB);
-//		sort.add(lblC);
-//		sort.add(lblD);
-//		sort.add(lblE);
-//		sort.add(lblF);
-//		sort.add(lblG);
-//		sort.add(lblH);
-//		sort.add(lblI);
-//		sort.add(lblJ);
-//		sort.add(lblK);
-//		sort.add(lblL);
-//		sort.add(lblM);
-//		sort.add(lblN);
-//		sort.add(lblO);
-//		sort.add(lblP);
-//		sort.add(lblQ);
-//		sort.add(lblR);
-//		sort.add(lblS);
-//		sort.add(lblT);
-//		sort.add(lblU);
-//		sort.add(lblV);
-//		sort.add(lblW);
-//		sort.add(lblX);
-//		sort.add(lblY);
-//		sort.add(lblZ);
 
-//		for(int i=0;i<14;i++){
-//			if(i==3){
-//				//有点长的
-//				sort.get(i).setBounds(15+i*Config.SORT_WIDTH, 45, Config.SORT_WIDTH*4, Config.SORT_HEIGHT);
-//			}else{
-//				sort.get(i).setBounds(15+i*Config.SORT_WIDTH, 45, Config.SORT_WIDTH, Config.SORT_HEIGHT);
-//				if(i>3){
-//					sort.get(i).setBounds(15+(i+2)*Config.SORT_WIDTH, 45, Config.SORT_WIDTH, Config.SORT_HEIGHT);
-//				}
-//			}
-//			sort.get(i).setBackground(Color.GRAY);
-//			add(sort.get(i));
-//			
-//			//设置监听
-//			sort.get(i).addMouseListener(this);
-//		}
-		
-		
-		//第三行
 		lb_location.setBounds(13, Config.COBM_LOCATION_Y, Config.TEXT_WIDTH, Config.TEXT_height);
 		add(lb_location);
-		
-		
-//		String a="a";
-//		String b="b";
-//		String c="c";
-//		final List<String> list=new ArrayList<String>();
-//		list.add(a);
-//		list.add(b);
-//		list.add(c);
-//		
-//		final JLabel label=new JLabel("<位置>");
-//		label.setBounds(59, Config.COBM_LOCATION_Y, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_CITY_WIDTH);
-//		label.addMouseListener(new MouseAdapter(){
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				Combox com=new Combox(list,label.getX(), label.getY()+15, label);
-//				com.setVisible(true);
-//				
-//			}
-//		});
-//		add(label);
-				
-		
+					
 		cb_location.setBounds(59, Config.COBM_LOCATION_Y, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_CITY_WIDTH);
+		cb_location.setBackground(Color.GRAY);
 		add(cb_location);
 		
 		
-		lb_team.setBounds(21*Config.SORT_WIDTH-Config.SELECTION_COMB_TEAM_WIDTH-Config.COMB_TEXT_GAP, Config.COBM_LOCATION_Y, Config.TEXT_WIDTH, Config.TEXT_height);
-		add(lb_team);
+		lb_place.setBounds(21*Config.SORT_WIDTH-Config.SELECTION_COMB_TEAM_WIDTH-Config.COMB_TEXT_GAP, Config.COBM_LOCATION_Y, Config.TEXT_WIDTH, Config.TEXT_height);
+		add(lb_place);
 		
-		cb_team.setBounds(21*Config.SORT_WIDTH-Config.SELECTION_COMB_TEAM_WIDTH, Config.COBM_LOCATION_Y, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_TEAM_WIDTH);
-		add(cb_team);
-		label.setBounds(15, 53, 35, 16);
+		cb_palce.setBounds(21*Config.SORT_WIDTH-Config.SELECTION_COMB_TEAM_WIDTH, Config.COBM_LOCATION_Y, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_TEAM_WIDTH);
+		cb_palce.setBackground(Color.GRAY);
+		add(cb_palce);
 		
-		add(label);
+		lb_percent.setBounds(15, 53, 35, 16);		
+		add(lb_percent);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(59, 49, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_CITY_WIDTH);
-		comboBox.setBackground(Color.gray);
-		add(comboBox);
+		cb_percent.setBounds(59, 49, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_CITY_WIDTH);
+		cb_percent.setBackground(Color.gray);
+		add(cb_percent);
 		
 		lb_efficiency.setForeground(Color.WHITE);
 		lb_efficiency.setBounds(560, 53, 35, 16);
 		add(lb_efficiency);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(21*Config.SORT_WIDTH-Config.SELECTION_COMB_TEAM_WIDTH, 49, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_CITY_WIDTH);
-		add(comboBox_1);
+		cb_effitency.setBounds(21*Config.SORT_WIDTH-Config.SELECTION_COMB_TEAM_WIDTH, 49, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_CITY_WIDTH);
+		cb_effitency.setBackground(Color.GRAY);
+		add(cb_effitency);
 
 
 	}

@@ -68,10 +68,10 @@ public class TopTabPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				//显示playerPanel，移开其他panel,所有PANEL统一隐藏在Frame左边
-				MainFrame.playerSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
+				MainFrame.mainFrame.playerSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
 						Config.UI_WIDTH, Config.SELECTION_HEIGHT);
-				MainFrame.teamSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
-				MainFrame.pageInfoPanel.refreshInfo(Pages.Player.toString());
+				MainFrame.mainFrame.teamSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
+				MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.Player.toString());
 				
 				showPlayerTable();
 				MainFrame.mainFrame.repaint();
@@ -81,10 +81,10 @@ public class TopTabPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				//显示teamPanel，移开其他panel,所有PANEL统一隐藏在Frame左边
-				MainFrame.playerSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
+				MainFrame.mainFrame.playerSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
 						Config.UI_WIDTH, Config.SELECTION_HEIGHT);
-				MainFrame.teamSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
-				MainFrame.pageInfoPanel.refreshInfo(Pages.Team.toString());
+				MainFrame.mainFrame.teamSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
+				MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.Team.toString());
 				
 				showTeamTable();
 				MainFrame.mainFrame.repaint();
@@ -94,10 +94,10 @@ public class TopTabPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				//显示matchPanel，移开其他panel,所有PANEL统一隐藏在Frame左边
-				MainFrame.playerSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
+				MainFrame.mainFrame.playerSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
 						Config.UI_WIDTH, Config.SELECTION_HEIGHT);
-				MainFrame.teamSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
-				MainFrame.pageInfoPanel.refreshInfo(Pages.Match.toString());
+				MainFrame.mainFrame.teamSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
+				MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.Match.toString());
 				
 				showMatchTable();
 				MainFrame.mainFrame.repaint();

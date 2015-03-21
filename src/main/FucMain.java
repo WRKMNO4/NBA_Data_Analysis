@@ -59,7 +59,7 @@ public class FucMain {
 				
 				frame.setSize(Config.UI_WIDTH,Config.UI_HEIGHT);
 				frame.setLocation(screenwidth/8,screenheight/8);				
-				MainFrame.playerSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
+				MainFrame.mainFrame.playerSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
 			Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 				
 				while(true){
