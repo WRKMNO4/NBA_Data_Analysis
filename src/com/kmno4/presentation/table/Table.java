@@ -61,6 +61,7 @@ public class Table extends JPanel {
 			head.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					/*
 					for(int i = 0; i < rowNum; i ++) {
 						body[TP.page][i].setVisible(false);
 						remove(body[TP.page][i]);
@@ -72,6 +73,7 @@ public class Table extends JPanel {
 					}
 					remove(turn);
 					add(turn);
+					*/
 				}
 			});
 		add(head);
