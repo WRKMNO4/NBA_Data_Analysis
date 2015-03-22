@@ -18,6 +18,7 @@ import PO.TeamPO;
 
 import com.kmno4.common.Config;
 
+@SuppressWarnings("serial")
 public class MainFrame extends JFrame implements MouseListener{
 
 	//panel统一从右边进入
