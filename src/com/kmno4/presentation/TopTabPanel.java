@@ -210,12 +210,15 @@ public class TopTabPanel extends JPanel {
 		
 	}
 	private static final int TEAM_LINK = 0;
+	private static final int SHORT_NAME_LABEL = 1;
+	private String shortName;
 	private void addTeamLink() {
 		TableList[][] t = tableBeShowing.body;
 		for(int i = 0; i < t.length; i ++) {
 			for(int j = 0; j < t[0].length; j ++) {
 			    try {
 			    	label = t[i][j].elements[TEAM_LINK];
+			    	shortName = t[i][j].elements[SHORT_NAME_LABEL].getText();
 			    }
 			    catch(Exception e) {//对于空条目
 			    	break;
@@ -223,7 +226,7 @@ public class TopTabPanel extends JPanel {
 				label.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						TeamPO t = TeamListPO.findTeamByShortName(label.getText());
+						TeamPO t = TeamListPO.findTeamByShortName(shortName);
 						if(t == null) return;
 						new TeamDetailFrame(t).setVisible(true);
 					}
