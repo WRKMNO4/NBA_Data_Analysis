@@ -157,10 +157,9 @@ public class TeamDetailPanel extends JPanel {
 		add(mainInfo);
 		
 		sumInfo = new Table(
-				new String[]{"l", "l", "l", "l", "l", "l", "l"},
-				new String[][]{
-						{"l", "l", "l", "l", "l", "l", "l"},
-						{"l", "l", "l", "l", "l", "l", "l"}},
+				Config.TEAM_TOTAL_INFO,
+				TableContentTransfer.transferTeamTotalInfo(Config.TEAM_TOTAL_INFO.length,
+						this.teamPO, 1),
 				true);
 		c.gridx = 0;
 		c.gridy = 3;
@@ -173,10 +172,9 @@ public class TeamDetailPanel extends JPanel {
 		add(sumInfo);
 		
 		avgInfo = new Table(
-				new String[]{"b", "b", "b", "b", "b", "b", "b"},
-				new String[][]{
-						{"b", "b", "b", "b", "b", "b", "b"},
-						{"b", "b", "b", "b", "b", "b", "b"}},
+				Config.TEAM_AVERAGE_INFO,
+				TableContentTransfer.transferTeamAvgInfo(Config.TEAM_AVERAGE_INFO.length,
+						this.teamPO, 1),
 				true);
 		//layout.setConstraints(avgInfo, c);
 		//add(avgInfo);
