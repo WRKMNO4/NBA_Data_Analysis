@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -11,7 +13,6 @@ import javax.swing.JPanel;
 import PO.TeamPO;
 
 import com.kmno4.common.Config;
-import com.kmno4.presentation.button.BorderLabel;
 import com.kmno4.presentation.table.Table;
 
 @SuppressWarnings("serial")
@@ -92,6 +93,20 @@ public class TeamDetailPanel extends JPanel {
 		add(team_achi);
 		
 		sum = new JLabel("总计", JLabel.CENTER);
+		sum.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(!sum.isEnabled()) return;
+				sum.setEnabled(false);
+				avg.setEnabled(true);
+				sumInfo.setVisible(true);
+				avgInfo.setVisible(false);
+				layout.setConstraints(sumInfo, c);
+				teamDetailPanel.remove(avgInfo);
+				teamDetailPanel.add(sumInfo);
+				teamDetailPanel.repaint();
+			}
+		});
 		sum.setFont(new Font("default", Font.BOLD, 15));
 		c.gridx = 4;
 		c.gridy = 2;
@@ -103,8 +118,23 @@ public class TeamDetailPanel extends JPanel {
 		c.anchor = GridBagConstraints.SOUTHEAST;
 		layout.setConstraints(sum, c);
 		add(sum);
+		sum.setEnabled(false);
 		
 		avg = new JLabel("平均", JLabel.CENTER);
+		avg.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(!avg.isEnabled()) return;
+				avg.setEnabled(false);
+				sum.setEnabled(true);
+				avgInfo.setVisible(true);
+				sumInfo.setVisible(false);
+				layout.setConstraints(avgInfo, c);
+				teamDetailPanel.remove(sumInfo);
+				teamDetailPanel.add(avgInfo);
+				teamDetailPanel.repaint();
+			}
+		});
 		avg.setFont(new Font("default", Font.BOLD, 15));
 		c.gridx = 5;
 		layout.setConstraints(avg, c);

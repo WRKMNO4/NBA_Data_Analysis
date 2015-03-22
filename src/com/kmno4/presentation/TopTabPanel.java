@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 
 import PO.PlayerListPO;
 import PO.PlayerPO;
+import PO.TeamListPO;
+import PO.TeamPO;
 
 import com.kmno4.common.Config;
 import com.kmno4.presentation.button.ExitLabel;
@@ -127,10 +129,6 @@ public class TopTabPanel extends JPanel {
 				g.drawImage(Config.TOP_TAB_BACKGROUND.getImage(), 0, 0,Config.UI_WIDTH,Config.TOP_TAB_HEIGHT,this);
 	      }
 	
-	/**
-	 * 第l列为进入具体信息Frame的链接
-	 */
-	private static final int l = 0;
 	//显示球员信息
 	private void createAndShowPlayerTable() {
 		if(tableBeShowing == null) { //第一次创建table
@@ -161,6 +159,7 @@ public class TopTabPanel extends JPanel {
 				TableContentTransfer.transferTeamBasicInfo(Config.TEAM_BASIC_INFO.length, MainFrame.mainFrame.teams));
 		setTableBounds();
 		MainFrame.mainFrame.add(tableBeShowing);
+		addTeamLink();
 	}
 	private void createAndShowMatchTable() {
 		tableBeShowing.setVisible(false);
@@ -184,29 +183,53 @@ public class TopTabPanel extends JPanel {
 	}
 	
 	private JLabel label;
+	/**
+	 * 第l列为进入具体信息Frame的链接
+	 */
+	private static final int PLAYER_LINK = 0;
 	private void addPlayerLink() {
 		TableList[][] t = tableBeShowing.body;
 		for(int i = 0; i < t.length; i ++) {
 			for(int j = 0; j < t[0].length; j ++) {
 			    try {
-			    	label = t[i][j].elements[l];
+			    	label = t[i][j].elements[PLAYER_LINK];
 			    }
 			    catch(Exception e) {//对于空条目
 			    	break;
 			    }
-				
 				label.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						
 						PlayerPO p = PlayerListPO.findPlayerByName(label.getText());
-						//if(p == null) return;
+						if(p == null) return;
 						new PlayerDetailFrame(p).setVisible(true);
 					}
 				});
 			}
 		}
 		
+	}
+	private static final int TEAM_LINK = 0;
+	private void addTeamLink() {
+		TableList[][] t = tableBeShowing.body;
+		for(int i = 0; i < t.length; i ++) {
+			for(int j = 0; j < t[0].length; j ++) {
+			    try {
+			    	label = t[i][j].elements[TEAM_LINK];
+			    }
+			    catch(Exception e) {//对于空条目
+			    	break;
+			    }
+				label.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						TeamPO t = TeamListPO.findTeamByShortName(label.getText());
+						if(t == null) return;
+						new TeamDetailFrame(t).setVisible(true);
+					}
+				});
+			}
+		}
 	}
 
 }
