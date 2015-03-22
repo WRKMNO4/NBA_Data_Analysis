@@ -7,8 +7,9 @@ import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import PO.PlayerPO;
 
@@ -45,6 +46,7 @@ public class PlayerDetailPanel extends JPanel {
 		setLayout(layout);
 		c = new GridBagConstraints();
 		player_icon = new BorderLabel("球员照片", JLabel.CENTER);
+		player_icon.setIcon(new ImageIcon(playerPO.getActionURL()));
 		player_icon.setFont(new Font("default", Font.PLAIN, 35));
 		c.gridx = 0;
 		c.gridy = 0;
@@ -78,7 +80,7 @@ public class PlayerDetailPanel extends JPanel {
 		layout.setConstraints(player_num, c);
 		add(player_num);
 		
-		player_name = new JLabel("gaoyangyiqiao", JLabel.LEFT);
+		player_name = new JLabel(playerPO.getName(), JLabel.LEFT);
 		player_name.setFont(new Font("default", Font.PLAIN, 26));
 		c.gridx = 3;
 		c.gridy = 0;
@@ -89,7 +91,7 @@ public class PlayerDetailPanel extends JPanel {
 		layout.setConstraints(player_name, c);
 		add(player_name);
 		
-		player_place = new JLabel("前锋 / blabla城市", JLabel.LEFT);
+		player_place = new JLabel(playerPO.getPosition()+" / "+playerPO.getSchool()+"城市", JLabel.LEFT);
 		player_place.setFont(new Font("default", Font.ITALIC, 17));
 		c.gridx = 3;
 		c.gridy = 1;
@@ -100,7 +102,7 @@ public class PlayerDetailPanel extends JPanel {
 		layout.setConstraints(player_place, c);
 		add(player_place);
 		
-		player_team = new JLabel("不知道什么队", JLabel.CENTER);
+		player_team = new JLabel(playerPO.getTeam(), JLabel.CENTER);
 		player_team.setForeground(Color.gray);
 		player_team.setFont(new Font("default", Font.BOLD, 17));
 		c.gridx = 4;
