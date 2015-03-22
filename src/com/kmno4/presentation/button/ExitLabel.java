@@ -6,11 +6,13 @@ import java.awt.event.MouseEvent;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import com.kmno4.common.Config;
 
 @SuppressWarnings("serial")
-public class ExitLabel extends LabelButton {
+public class ExitLabel extends JLabel {
 	private JFrame f;
-	private Icon image;
 	public ExitLabel(JFrame exitFrame) {
 		super();
 		f = exitFrame;
@@ -21,15 +23,12 @@ public class ExitLabel extends LabelButton {
 				f.dispose();
 			}
 		});
-		image = new ImageIcon(IMAGE);
-		setIcon(image);
+		setIcon(Config.CLOSE_ICON);
 		setSize(LABEL_X, LABEL_Y);
-		setLocation(f.getWidth() - LABEL_X, 0);
+		setLocation(f.getWidth() - 100, 5);
 	}
 	
 	private static final int 
-	    LABEL_X = 15,
-	    LABEL_Y = 15;
-	//TODO
-	private static final String IMAGE = "";
+	    LABEL_X = 100,
+	    LABEL_Y = 10;
 }

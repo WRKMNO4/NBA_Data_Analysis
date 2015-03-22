@@ -15,6 +15,7 @@ import PO.PlayerListPO;
 import PO.PlayerPO;
 
 import com.kmno4.common.Config;
+import com.kmno4.presentation.button.ExitLabel;
 import com.kmno4.presentation.table.Table;
 import com.kmno4.presentation.table.TableList;
 
@@ -46,17 +47,10 @@ public class TopTabPanel extends JPanel {
 		this.setBackground(Color.GRAY);
 		setLayout(null);
 		
-		close=new JLabel();
-		close.setIcon(Config.CLOSE_ICON);
-		close.setBounds(Config.UI_WIDTH-100,5, 100, 10);
-		close.addMouseListener(new MouseAdapter(){
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				MainFrame.mainFrame.dispose();
-				System.exit(0);
-			}
-		});
-		this.add(close);
+		
+		close = new ExitLabel(MainFrame.mainFrame);
+		add(close);
+		
 		
 		player = new JLabel("球员");
 		team = new JLabel("球队");

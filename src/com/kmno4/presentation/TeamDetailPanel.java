@@ -36,7 +36,7 @@ public class TeamDetailPanel extends JPanel {
 		teamPO = t;
 		setBounds(0, 0,
 				Config.PLAYER_DETAIL_UI_WIDTH,Config.PLAYER_DETATI_UI_TOP_HEIGHT);
-		setBackground(Color.WHITE);
+		setBackground(new Color(255, 255, 255, 50));
 		layout = new GridBagLayout();
 		setLayout(layout);
 		c = new GridBagConstraints();

@@ -3,11 +3,13 @@ package com.kmno4.presentation;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import PO.TeamPO;
 
 import com.kmno4.common.Config;
+import com.kmno4.presentation.button.ExitLabel;
 
 @SuppressWarnings("serial")
 public class TeamDetailFrame extends JFrame {
@@ -41,6 +43,9 @@ public class TeamDetailFrame extends JFrame {
 		
 		teamDetailPanel = new TeamDetailPanel(teamPO);
 		this.add(teamDetailPanel);
+		
+		JLabel close = new ExitLabel(this);
+		add(close);
 		
 		setVisible(true);
 		
