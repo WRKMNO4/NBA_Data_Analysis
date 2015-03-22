@@ -62,16 +62,16 @@ public class FucMain {
 				MainFrame.mainFrame.playerSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
 			Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 				frame.setVisible(true);
-//				while(true){
-//					if((System.currentTimeMillis()-begin_time)>7000){
-//						frame.setVisible(true);
-//						break;
-//					}
-//				}
+				while(true){
+					if((System.currentTimeMillis()-begin_time)>3000){
+						frame.setVisible(true);
+						break;
+					}
+				}
 			}			
 		});
 		
 		mainUI.start();
-//		splash.start();
+		splash.start();
 	}
 }

@@ -131,6 +131,7 @@ public class TopTabPanel extends JPanel {
 	 * 第l列为进入具体信息Frame的链接
 	 */
 	private static final int l = 0;
+	//显示球员信息
 	private void createAndShowPlayerTable() {
 		if(tableBeShowing == null) { //第一次创建table
 			tableBeShowing = new Table(
@@ -150,15 +151,14 @@ public class TopTabPanel extends JPanel {
 		MainFrame.mainFrame.add(tableBeShowing);
 		addPlayerLink();
 	}
+	
+	//显示球队信息
 	private void createAndShowTeamTable() {
 		tableBeShowing.setVisible(false);
 		MainFrame.mainFrame.remove(tableBeShowing);
 		tableBeShowing = new Table(
-				new String[]{"a", "b", "c", "d"}, 
-				new String[][]{
-						{"team", "bb", "cc", "dd"},
-						{"team", "bb", "cc", "dd"}
-				});
+				Config.TEAM_BASIC_INFO, 
+				TableContentTransfer.transferTeamBasicInfo(Config.TEAM_BASIC_INFO.length, MainFrame.mainFrame.teams));
 		setTableBounds();
 		MainFrame.mainFrame.add(tableBeShowing);
 	}

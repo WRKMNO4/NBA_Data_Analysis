@@ -12,6 +12,7 @@ public class HeadIconPanel extends JPanel {
 	 */
 	public HeadIconPanel(ImageIcon icon,String e_name) {
 		this.setLayout(null);
+		this.setBounds(0, 0, 200, 100);
 		
 		JLabel head = new JLabel("Icon");
 		head.setIcon(icon);
