@@ -26,7 +26,7 @@ public class TableContentTransfer {
 		}
 		return body;
 	}
-	public static String[][] transferPlayerAvgInfo(int colums,List<PlayerPO> players){
+	public static String[][] transferPlayerAvgInfo(int season_matches,PlayerPO player){
 		String[][] body = new String[players.size()][colums] ;
 		for(int i = 0 ; i<players.size();i++){
 			PlayerPO player = players.get(i) ;
