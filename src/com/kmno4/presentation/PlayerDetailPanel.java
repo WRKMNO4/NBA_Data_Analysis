@@ -184,7 +184,7 @@ public class PlayerDetailPanel extends JPanel {
 		
 		sumInfo = new Table(
 				Config.PLAYER_TOTAL_INFO,
-				TableContentTransfer.transferPlayerTotalInfo(Config.PLAYER_TOTAL_INFO.length, MainFrame.mainFrame.players),
+				TableContentTransfer.transferPlayerTotalInfo(Config.PLAYER_TOTAL_INFO.length, this.playerPO,1),
 				true);
 		c.gridx = 0;
 		c.gridy = 4;
@@ -198,7 +198,7 @@ public class PlayerDetailPanel extends JPanel {
 		
 		avgInfo = new Table(
 				Config.PLAYER_AVERAGE_INFO,
-				TableContentTransfer.transferPlayerAvgInfo(Config.PLAYER_AVERAGE_INFO.length,MainFrame.mainFrame.players ),
+				TableContentTransfer.transferPlayerAvgInfo(Config.PLAYER_AVERAGE_INFO.length,this.playerPO,1 ),
 				true);
 		layout.setConstraints(avgInfo, c);
 		//add(avgInfo);

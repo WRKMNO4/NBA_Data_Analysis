@@ -26,57 +26,56 @@ public class TableContentTransfer {
 		}
 		return body;
 	}
-	public static String[][] transferPlayerAvgInfo(int season_matches,PlayerPO player){
-		String[][] body = new String[players.size()][colums] ;
-		for(int i = 0 ; i<players.size();i++){
-			PlayerPO player = players.get(i) ;
+	public static String[][] transferPlayerAvgInfo(int colums,PlayerPO player,int seasons){
+		String[][] body = new String[seasons][colums] ;
+	
+			
 			PlayerDataPO avgData = player.getAveragePlayerData() ;
-			body[i][0] = cutTailOfAvgData(avgData.getNumberOfRebound()) ;
-			body[i][1] = cutTailOfAvgData(avgData.getNumberOfAssist()) ;
-			body[i][2] = avgData.getPresentTime() ;
-			body[i][3] = cutTailOfAvgData(avgData.getPercentageOfShooting()) ;
-			body[i][4] = cutTailOfAvgData(avgData.getPercentageOf3_Point()) ;
-			body[i][5] = cutTailOfAvgData(avgData.getPercentageOffreeThrow()) ;
-			body[i][6] = cutTailOfAvgData(avgData.getNumberOfAttack()) ;
-			body[i][7] = cutTailOfAvgData(avgData.getNumberOfDefense()) ;
-			body[i][8] = cutTailOfAvgData(avgData.getNumberOfSteal()) ;
-			body[i][9] = cutTailOfAvgData(avgData.getNumberOfBlock()) ;
-			body[i][10] = cutTailOfAvgData(avgData.getNumberOfFault()) ;
-			body[i][11] = cutTailOfAvgData(avgData.getNumberOfFoul()) ;
-			body[i][12] = cutTailOfAvgData(avgData.getScore()) ;
-			body[i][13] = cutTailOfAvgData(avgData.getEfficiency()) ;
-			body[i][14] = cutTailOfAvgData(avgData.getEfficiencyOfGmSc()) ;
-			body[i][15] = cutTailOfAvgData(avgData.getPercentageOfTrueShooting()) ;
-			body[i][16] = cutTailOfAvgData(avgData.getEfficiencyOfShooting()) ;
-			body[i][17] = cutTailOfAvgData(avgData.getPercentageOfRebound()) ;
-			body[i][18] = cutTailOfAvgData(avgData.getPercentageOfAttackingRebound()) ;
-			body[i][19] = cutTailOfAvgData(avgData.getPercentageOfDefenseRebound()) ;
-			body[i][20] = cutTailOfAvgData(avgData.getPercentageOfAssist()) ;
-			body[i][21] = cutTailOfAvgData(avgData.getPercentageOfSteal()) ;
-			body[i][22] = cutTailOfAvgData(avgData.getPercentageOfBlock()) ;
-			body[i][23] = cutTailOfAvgData(avgData.getPercentageOfFault()) ;
-			body[i][24] = cutTailOfAvgData(avgData.getPercentageOfUse()) ;
-		}
+			body[seasons-1][0] = cutTailOfAvgData(avgData.getNumberOfRebound()) ;
+			body[seasons-1][1] = cutTailOfAvgData(avgData.getNumberOfAssist()) ;
+			body[seasons-1][2] = avgData.getPresentTime() ;
+			body[seasons-1][3] = cutTailOfAvgData(avgData.getPercentageOfShooting()) ;
+			body[seasons-1][4] = cutTailOfAvgData(avgData.getPercentageOf3_Point()) ;
+			body[seasons-1][5] = cutTailOfAvgData(avgData.getPercentageOffreeThrow()) ;
+			body[seasons-1][6] = cutTailOfAvgData(avgData.getNumberOfAttack()) ;
+			body[seasons-1][7] = cutTailOfAvgData(avgData.getNumberOfDefense()) ;
+			body[seasons-1][8] = cutTailOfAvgData(avgData.getNumberOfSteal()) ;
+			body[seasons-1][9] = cutTailOfAvgData(avgData.getNumberOfBlock()) ;
+			body[seasons-1][10] = cutTailOfAvgData(avgData.getNumberOfFault()) ;
+			body[seasons-1][11] = cutTailOfAvgData(avgData.getNumberOfFoul()) ;
+			body[seasons-1][12] = cutTailOfAvgData(avgData.getScore()) ;
+			body[seasons-1][13] = cutTailOfAvgData(avgData.getEfficiency()) ;
+			body[seasons-1][14] = cutTailOfAvgData(avgData.getEfficiencyOfGmSc()) ;
+			body[seasons-1][15] = cutTailOfAvgData(avgData.getPercentageOfTrueShooting()) ;
+			body[seasons-1][16] = cutTailOfAvgData(avgData.getEfficiencyOfShooting()) ;
+			body[seasons-1][17] = cutTailOfAvgData(avgData.getPercentageOfRebound()) ;
+			body[seasons-1][18] = cutTailOfAvgData(avgData.getPercentageOfAttackingRebound()) ;
+			body[seasons-1][19] = cutTailOfAvgData(avgData.getPercentageOfDefenseRebound()) ;
+			body[seasons-1][20] = cutTailOfAvgData(avgData.getPercentageOfAssist()) ;
+			body[seasons-1][21] = cutTailOfAvgData(avgData.getPercentageOfSteal()) ;
+			body[seasons-1][22] = cutTailOfAvgData(avgData.getPercentageOfBlock()) ;
+			body[seasons-1][23] = cutTailOfAvgData(avgData.getPercentageOfFault()) ;
+			body[seasons-1][24] = cutTailOfAvgData(avgData.getPercentageOfUse()) ;
+		
 		return body ;
 	}
-	public static String[][] transferPlayerTotalInfo(int colums,List<PlayerPO> players){
-		String[][] body = new String[players.size()][colums] ;
-		for(int i = 0;i<players.size();i++){
-			PlayerPO player = players.get(i) ;
+	public static String[][] transferPlayerTotalInfo(int colums,PlayerPO player,int seasons){
+		String[][] body = new String[seasons][colums] ;
+			
 			PlayerDataPO totalData = player.getTotalPlayerData() ;
-			body[i][0] = cutTailOfTotalData(totalData.getNumberOfMatch()) ;
-			body[i][1] = cutTailOfTotalData(totalData.getNumberOfStarting()) ;
-			body[i][2] = cutTailOfTotalData(totalData.getNumberOfRebound()) ;
-			body[i][3] = cutTailOfTotalData(totalData.getNumberOfAssist()) ;
-			body[i][4] = totalData.getPresentTime() ;
-			body[i][5] = cutTailOfTotalData(totalData.getNumberOfAttack()) ;
-			body[i][6] = cutTailOfTotalData(totalData.getNumberOfDefense()) ;
-			body[i][7] = cutTailOfTotalData(totalData.getNumberOfSteal()) ;
-			body[i][8] = cutTailOfTotalData(totalData.getNumberOfBlock()) ;
-			body[i][9] = cutTailOfTotalData(totalData.getNumberOfFault()) ;
-			body[i][10] = cutTailOfTotalData(totalData.getNumberOfFoul()) ;
-			body[i][11] = cutTailOfTotalData(totalData.getScore()) ;
-		}
+			body[seasons-1][0] = cutTailOfTotalData(totalData.getNumberOfMatch()) ;
+			body[seasons-1][1] = cutTailOfTotalData(totalData.getNumberOfStarting()) ;
+			body[seasons-1][2] = cutTailOfTotalData(totalData.getNumberOfRebound()) ;
+			body[seasons-1][3] = cutTailOfTotalData(totalData.getNumberOfAssist()) ;
+			body[seasons-1][4] = totalData.getPresentTime() ;
+			body[seasons-1][5] = cutTailOfTotalData(totalData.getNumberOfAttack()) ;
+			body[seasons-1][6] = cutTailOfTotalData(totalData.getNumberOfDefense()) ;
+			body[seasons-1][7] = cutTailOfTotalData(totalData.getNumberOfSteal()) ;
+			body[seasons-1][8] = cutTailOfTotalData(totalData.getNumberOfBlock()) ;
+			body[seasons-1][9] = cutTailOfTotalData(totalData.getNumberOfFault()) ;
+			body[seasons-1][10] = cutTailOfTotalData(totalData.getNumberOfFoul()) ;
+			body[seasons-1][11] = cutTailOfTotalData(totalData.getScore()) ;
+		
 		return body ;
 	}
 	
