@@ -1,11 +1,14 @@
 package com.kmno4.presentation;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import PO.TeamPO;
 
 import com.kmno4.common.Config;
 import com.kmno4.presentation.button.BorderLabel;
@@ -28,7 +31,9 @@ public class TeamDetailPanel extends JPanel {
 	private GridBagLayout layout;
 	private GridBagConstraints c;
 	
-	public TeamDetailPanel() {
+	private TeamPO teamPO;
+	public TeamDetailPanel(TeamPO t) {
+		teamPO = t;
 		setBounds(0, 0,
 				Config.PLAYER_DETAIL_UI_WIDTH,Config.PLAYER_DETATI_UI_TOP_HEIGHT);
 		setBackground(Color.WHITE);
@@ -36,7 +41,8 @@ public class TeamDetailPanel extends JPanel {
 		setLayout(layout);
 		c = new GridBagConstraints();
 		
-		team_icon = new BorderLabel("队伍头像", JLabel.CENTER);
+		team_icon = new JLabel("队伍头像", JLabel.CENTER);
+		team_icon.setFont(new Font("default", Font.PLAIN, 40));
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 1;
@@ -47,7 +53,9 @@ public class TeamDetailPanel extends JPanel {
 		layout.setConstraints(team_icon, c);
 		add(team_icon);
 		
-		team_name = new BorderLabel("", JLabel.CENTER);
+		team_name = new JLabel("高锰酸钾队", JLabel.LEFT);
+		team_name.setFont(new Font("default", Font.BOLD, 35));
+		team_name.setForeground(new Color(0, 0, 0, 100));
 		c.gridx = 1;
 		c.gridy = 0;
 		c.gridwidth = 2;
@@ -58,7 +66,8 @@ public class TeamDetailPanel extends JPanel {
 		layout.setConstraints(team_name, c);
 		add(team_name);
 		
-		team_coach = new BorderLabel("", JLabel.CENTER);
+		team_coach = new JLabel("PA:姚锰舟", JLabel.LEFT);
+		team_coach.setFont(new Font("default", Font.ITALIC, 18));
 		c.gridx = 1;
 		c.gridy = 1;
 		c.gridwidth = 2;
@@ -69,7 +78,9 @@ public class TeamDetailPanel extends JPanel {
 		layout.setConstraints(team_coach, c);
 		add(team_coach);
 		
-		team_achi = new BorderLabel("", JLabel.CENTER);
+		team_achi = new JLabel("10胜|20负", JLabel.CENTER);
+		team_achi.setFont(new Font("default", Font.BOLD, 25));
+		team_achi.setForeground(Color.black);
 		c.gridx = 3;
 		c.gridy = 0;
 		c.gridwidth = 1;
@@ -80,25 +91,28 @@ public class TeamDetailPanel extends JPanel {
 		layout.setConstraints(team_achi, c);
 		add(team_achi);
 		
-		sum = new BorderLabel("总计", JLabel.CENTER);
+		sum = new JLabel("总计", JLabel.CENTER);
+		sum.setFont(new Font("default", Font.BOLD, 15));
 		c.gridx = 4;
 		c.gridy = 2;
 		c.gridwidth = 1;
 		c.gridheight = 1;
 		c.weightx = 1;
 		c.weighty = 1;
-		c.fill = GridBagConstraints.BOTH;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.anchor = GridBagConstraints.SOUTHEAST;
 		layout.setConstraints(sum, c);
 		add(sum);
 		
-		avg = new BorderLabel("平均", JLabel.CENTER);
+		avg = new JLabel("平均", JLabel.CENTER);
+		avg.setFont(new Font("default", Font.BOLD, 15));
 		c.gridx = 5;
 		layout.setConstraints(avg, c);
 		add(avg);
 		
 		mainInfo = new Table(
-				new String[]{"", "", "", ""},
-				new String[][]{{"", "", "", ""}},
+				new String[]{"场均得分", "场均助攻", "场均篮板", "对手得分"},
+				new String[][]{{"1th", "1th", "1th", "1th"}},
 				true);
 		c.gridx = 1;
 		c.gridy = 2;
@@ -111,10 +125,10 @@ public class TeamDetailPanel extends JPanel {
 		add(mainInfo);
 		
 		sumInfo = new Table(
-				new String[]{"", "", "", "", "", "", ""},
+				new String[]{"l", "l", "l", "l", "l", "l", "l"},
 				new String[][]{
-						{"", "", "", "", "", "", ""},
-						{"", "", "", "", "", "", ""}},
+						{"l", "l", "l", "l", "l", "l", "l"},
+						{"l", "l", "l", "l", "l", "l", "l"}},
 				true);
 		c.gridx = 0;
 		c.gridy = 3;
@@ -127,10 +141,10 @@ public class TeamDetailPanel extends JPanel {
 		add(sumInfo);
 		
 		avgInfo = new Table(
-				new String[]{"", "", "", "", "", "", ""},
+				new String[]{"b", "b", "b", "b", "b", "b", "b"},
 				new String[][]{
-						{"", "", "", "", "", "", ""},
-						{"", "", "", "", "", "", ""}},
+						{"b", "b", "b", "b", "b", "b", "b"},
+						{"b", "b", "b", "b", "b", "b", "b"}},
 				true);
 		layout.setConstraints(avgInfo, c);
 		//add(avgInfo);

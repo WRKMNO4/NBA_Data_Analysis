@@ -45,6 +45,7 @@ public class PlayerDetailPanel extends JPanel {
 		setLayout(layout);
 		c = new GridBagConstraints();
 		player_icon = new BorderLabel("球员照片", JLabel.CENTER);
+		player_icon.setFont(new Font("default", Font.PLAIN, 35));
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 1;
@@ -65,7 +66,7 @@ public class PlayerDetailPanel extends JPanel {
 		layout.setConstraints(blank1, c);
 		add(blank1);
 		
-		player_num = new BorderLabel("4", JLabel.CENTER);
+		player_num = new JLabel("4", JLabel.CENTER);
 		player_num.setForeground(Color.RED);
 		player_num.setFont(new Font("default", Font.BOLD, 50));
 		c.gridx = 2;
@@ -77,7 +78,7 @@ public class PlayerDetailPanel extends JPanel {
 		layout.setConstraints(player_num, c);
 		add(player_num);
 		
-		player_name = new BorderLabel("gaoyangyiqiao", JLabel.LEFT);
+		player_name = new JLabel("gaoyangyiqiao", JLabel.LEFT);
 		player_name.setFont(new Font("default", Font.PLAIN, 26));
 		c.gridx = 3;
 		c.gridy = 0;
@@ -88,7 +89,7 @@ public class PlayerDetailPanel extends JPanel {
 		layout.setConstraints(player_name, c);
 		add(player_name);
 		
-		player_place = new BorderLabel("前锋 / blabla城市", JLabel.LEFT);
+		player_place = new JLabel("前锋 / blabla城市", JLabel.LEFT);
 		player_place.setFont(new Font("default", Font.ITALIC, 17));
 		c.gridx = 3;
 		c.gridy = 1;
@@ -99,7 +100,7 @@ public class PlayerDetailPanel extends JPanel {
 		layout.setConstraints(player_place, c);
 		add(player_place);
 		
-		player_team = new BorderLabel("不知道什么队", JLabel.CENTER);
+		player_team = new JLabel("不知道什么队", JLabel.CENTER);
 		player_team.setForeground(Color.gray);
 		player_team.setFont(new Font("default", Font.BOLD, 17));
 		c.gridx = 4;

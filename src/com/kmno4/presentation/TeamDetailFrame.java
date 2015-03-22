@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import PO.TeamPO;
+
 import com.kmno4.common.Config;
 
 @SuppressWarnings("serial")
@@ -18,7 +20,7 @@ public class TeamDetailFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TeamDetailFrame frame = new TeamDetailFrame();
+					TeamDetailFrame frame = new TeamDetailFrame(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -30,16 +32,19 @@ public class TeamDetailFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TeamDetailFrame() {
+	public TeamDetailFrame(TeamPO teamPO) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, Config.PLAYER_DETAIL_UI_WIDTH, Config.PLAYER_DETATI_UI_TOP_HEIGHT);
 		setLayout(null);
 		setUndecorated(true);
 		
 		
-		teamDetailPanel = new TeamDetailPanel();
+		teamDetailPanel = new TeamDetailPanel(teamPO);
 		this.add(teamDetailPanel);
 		
 		setVisible(true);
+		
+		@SuppressWarnings("unused")
+		MoveOfFrame m = new MoveOfFrame(this);
 	}
 }

@@ -65,8 +65,6 @@ public class Table extends JPanel {
 						body[TP.page][i].setVisible(false);
 						remove(body[TP.page][i]);
 					}
-					//bodyStr = flip(bodyStr);
-					//fillTable(bodyStr, body);
 					flip();
 					
 					for(int i = 0; i < rowNum; i ++) {
@@ -157,6 +155,7 @@ public class Table extends JPanel {
 				if(k >= 0) newBody[i][j] = body[k / body[0].length][k % body[0].length];
 				else newBody[i][j] = body[i][j];
 				
+				//System.out.println(k + "," + (i * body.length + j));
 				k --;
 			}
 		}
