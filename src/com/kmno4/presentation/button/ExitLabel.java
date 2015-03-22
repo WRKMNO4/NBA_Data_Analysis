@@ -18,6 +18,7 @@ public class ExitLabel extends JLabel {
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
+				if(f.getDefaultCloseOperation() == JFrame.EXIT_ON_CLOSE) System.exit(0);
 				f.dispose();
 			}
 		});

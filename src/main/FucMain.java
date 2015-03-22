@@ -50,6 +50,7 @@ public class FucMain {
 				
 				MainFrame frame = new MainFrame();
 				frame.setLayout(null);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.setResizable(false);
 				//获取屏幕宽高
 				Toolkit kit=Toolkit.getDefaultToolkit();

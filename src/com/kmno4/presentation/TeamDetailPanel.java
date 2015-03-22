@@ -101,6 +101,7 @@ public class TeamDetailPanel extends JPanel {
 				avg.setEnabled(true);
 				sumInfo.setVisible(true);
 				avgInfo.setVisible(false);
+				layout.removeLayoutComponent(avgInfo);
 				layout.setConstraints(sumInfo, c);
 				teamDetailPanel.remove(avgInfo);
 				teamDetailPanel.add(sumInfo);
@@ -129,6 +130,7 @@ public class TeamDetailPanel extends JPanel {
 				sum.setEnabled(true);
 				avgInfo.setVisible(true);
 				sumInfo.setVisible(false);
+				layout.removeLayoutComponent(sumInfo);
 				layout.setConstraints(avgInfo, c);
 				teamDetailPanel.remove(sumInfo);
 				teamDetailPanel.add(avgInfo);
@@ -176,7 +178,7 @@ public class TeamDetailPanel extends JPanel {
 						{"b", "b", "b", "b", "b", "b", "b"},
 						{"b", "b", "b", "b", "b", "b", "b"}},
 				true);
-		layout.setConstraints(avgInfo, c);
+		//layout.setConstraints(avgInfo, c);
 		//add(avgInfo);
 		
 	}

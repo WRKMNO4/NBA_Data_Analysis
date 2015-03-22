@@ -134,10 +134,11 @@ public class PlayerDetailPanel extends JPanel {
 				avg.setEnabled(true);
 				avgInfo.setVisible(false);
 				sumInfo.setVisible(true);
+				layout.removeLayoutComponent(avgInfo);
 				layout.setConstraints(sumInfo, c);
 				playerDetailPanel.remove(avgInfo);
 				playerDetailPanel.add(sumInfo);
-				playerDetailPanel.repaint();
+				//playerDetailPanel.repaint();
 			}
 		});
 		sum.setEnabled(false);
@@ -154,10 +155,11 @@ public class PlayerDetailPanel extends JPanel {
 				sum.setEnabled(true);
 				sumInfo.setVisible(false);
 				avgInfo.setVisible(true);
+				layout.removeLayoutComponent(sumInfo);
 				layout.setConstraints(avgInfo, c);
 				playerDetailPanel.remove(sumInfo);
 				playerDetailPanel.add(avgInfo);
-				playerDetailPanel.repaint();
+				//playerDetailPanel.repaint();
 			}
 		});
 		c.gridx = 6;
@@ -200,7 +202,7 @@ public class PlayerDetailPanel extends JPanel {
 				Config.PLAYER_AVERAGE_INFO,
 				TableContentTransfer.transferPlayerAvgInfo(Config.PLAYER_AVERAGE_INFO.length,this.playerPO,1 ),
 				true);
-		layout.setConstraints(avgInfo, c);
+		//layout.setConstraints(avgInfo, c);
 		//add(avgInfo);
 		
 		
