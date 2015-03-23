@@ -20,7 +20,7 @@ public class MatchController implements MatchDataService{
 	
 	public MatchController(){
 		matches=new MatchListPO();
-		read("迭代一数据/matches") ;
+		read("Data/matches") ;
 	}
 	void read(String fileName){
 		File file = new File(fileName) ;

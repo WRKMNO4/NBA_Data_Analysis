@@ -14,7 +14,7 @@ public class PlayerController implements PlayerDataService{
 	
 	public PlayerController(){
 		players= new PlayerListPO();
-		read("迭代一数据/players/info");
+		read("Data/players/info");
 	}
 	
 	public void read(String fileName){
@@ -43,8 +43,8 @@ public class PlayerController implements PlayerDataService{
 					default: break;
 					}
 				}
-				newPlayer.setPortraitURL("迭代一数据/players/portrait/"+newPlayer.getName()+".png");
-				newPlayer.setActionURL("迭代一数据/players/action/"+newPlayer.getName()+".png");
+				newPlayer.setPortraitURL("Data/players/portrait/"+newPlayer.getName()+".png");
+				newPlayer.setActionURL("Data/players/action/"+newPlayer.getName()+".png");
 				if(!new File(newPlayer.getPortraitURL()).exists())  //portrait image not exists
 					newPlayer.setPortraitURL("images/nba_logo.png");
 				if(!new File(newPlayer.getActionURL()).exists())   //action image not exists
