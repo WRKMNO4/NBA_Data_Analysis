@@ -53,15 +53,15 @@ public class SelectionPanel extends JPanel implements MouseListener{
 //	JLabel lblY = new JLabel("Y");
 //	JLabel lblZ = new JLabel("Z");
 	
-	JLabel lb_percent=new JLabel("比率");
-	JLabel lb_efficiency=new JLabel("效率");	
+	JLabel lb_percent=new JLabel("标准");
+	JLabel lb_efficiency=new JLabel("类型");	
 	JLabel lb_location = new JLabel("位置");
 	JLabel lb_place = new JLabel("分区");
 
-	JComboBox cb_location = new JComboBox();
-	JComboBox cb_palce = new JComboBox();
-	JComboBox cb_percent = new JComboBox();
-	JComboBox cb_effitency=new JComboBox();
+	JComboBox cb_position = new JComboBox(Config.PICKUP_POSITION);
+	JComboBox db_district = new JComboBox(Config.PICKUP_DISTRICT);
+	JComboBox cb_standard = new JComboBox(Config.PICKUP_STANDARD);
+	JComboBox cb_type=new JComboBox(Config.PICKUP_TYPE);
 	
 
 
@@ -96,32 +96,32 @@ public class SelectionPanel extends JPanel implements MouseListener{
 		lb_location.setBounds(13, Config.COBM_LOCATION_Y, Config.TEXT_WIDTH, Config.TEXT_height);
 		add(lb_location);
 					
-		cb_location.setBounds(59, Config.COBM_LOCATION_Y, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_CITY_WIDTH);
-		cb_location.setBackground(Color.GRAY);
-		add(cb_location);
+		cb_position.setBounds(59, Config.COBM_LOCATION_Y, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_CITY_WIDTH);
+		cb_position.setBackground(Color.GRAY);
+		add(cb_position);
 		
 		
 		lb_place.setBounds(21*Config.SORT_WIDTH-Config.SELECTION_COMB_TEAM_WIDTH-Config.COMB_TEXT_GAP, Config.COBM_LOCATION_Y, Config.TEXT_WIDTH, Config.TEXT_height);
 		add(lb_place);
 		
-		cb_palce.setBounds(21*Config.SORT_WIDTH-Config.SELECTION_COMB_TEAM_WIDTH, Config.COBM_LOCATION_Y, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_TEAM_WIDTH);
-		cb_palce.setBackground(Color.GRAY);
-		add(cb_palce);
+		db_district.setBounds(21*Config.SORT_WIDTH-Config.SELECTION_COMB_TEAM_WIDTH, Config.COBM_LOCATION_Y, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_TEAM_WIDTH);
+		db_district.setBackground(Color.GRAY);
+		add(db_district);
 		
 		lb_percent.setBounds(15, 53, 35, 16);		
 		add(lb_percent);
 		
-		cb_percent.setBounds(59, 49, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_CITY_WIDTH);
-		cb_percent.setBackground(Color.gray);
-		add(cb_percent);
+		cb_standard.setBounds(59, 49, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_CITY_WIDTH);
+		cb_standard.setBackground(Color.gray);
+		add(cb_standard);
 		
 		lb_efficiency.setForeground(Color.WHITE);
 		lb_efficiency.setBounds(560, 53, 35, 16);
 		add(lb_efficiency);
 		
-		cb_effitency.setBounds(21*Config.SORT_WIDTH-Config.SELECTION_COMB_TEAM_WIDTH, 49, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_CITY_WIDTH);
-		cb_effitency.setBackground(Color.GRAY);
-		add(cb_effitency);
+		cb_type.setBounds(21*Config.SORT_WIDTH-Config.SELECTION_COMB_TEAM_WIDTH, 49, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_CITY_WIDTH);
+		cb_type.setBackground(Color.GRAY);
+		add(cb_type);
 
 
 	}
