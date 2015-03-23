@@ -60,13 +60,13 @@ public class Table extends JPanel {
 				public void mouseClicked(MouseEvent e) {
 					/*
 					for(int i = 0; i < rowNum; i ++) {
-						body[TP.page][i].setVisible(false);
-						remove(body[TP.page][i]);
+						body[page][i].setVisible(false);
+						remove(body[page][i]);
 					}
 					flip();
 					
 					for(int i = 0; i < rowNum; i ++) {
-					    add(body[TP.page][i]);
+					    add(body[page][i]);
 					}
 					remove(turn);
 					add(turn);
