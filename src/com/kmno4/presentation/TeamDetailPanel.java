@@ -146,9 +146,9 @@ public class TeamDetailPanel extends JPanel {
 		add(avg);
 		
 		mainInfo = new Table(
-				new String[]{"场均得分", "场均助攻", "场均篮板", "对手得分"},
+				new String[]{"场均得分", "场均助攻", "场均篮板", "场均抢断"},
 				new String[][]{{teamPO.getAverageTeamData().getScore()+"", teamPO.getAverageTeamData().getNumberOfAssist()+"",
-					teamPO.getAverageTeamData().getNumberOfRebound()+"", "-"}},
+					teamPO.getAverageTeamData().getNumberOfRebound()+"", teamPO.getAverageTeamData().getNumberOfSteal()+""}},
 				true);
 		c.gridx = 1;
 		c.gridy = 2;
