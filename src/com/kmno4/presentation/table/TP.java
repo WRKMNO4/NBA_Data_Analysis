@@ -27,12 +27,13 @@ public class TP extends JPanel {
 	    nowaPage;
 	
 	private Table table;
+	private GridLayout layout;
 	
-	public TP(final Table table) {
+	public TP(Table t) {
 		super();
-		this.table = table;
-		setLayout(new GridLayout(1, 0));
-		
+		this.table = t;
+		layout = new GridLayout(1, 0);
+		setLayout(layout);
 		
 		firstPage = new LabelButton("first", JLabel.RIGHT);
 		firstPage.setForeground(Color.GRAY);
@@ -92,7 +93,9 @@ public class TP extends JPanel {
 	private void turnToFirstPage(Table table) {
 		if(page == 0) return;
 		for(int i = 0; i < table.rowNum; i ++) {
+			table.body[page][i].setVisible(false);
 		    table.remove(table.body[page][i]);
+		    layout.removeLayoutComponent(table.body[page][i]);
 		}
 		page = 0;
 		for(int i = 0; i < table.rowNum; i ++) {
@@ -103,6 +106,7 @@ public class TP extends JPanel {
 	private void turnToBeforePage(Table table) {
 		if(page == 0) return;
 		for(int i = 0; i < table.rowNum; i ++) {
+			table.body[page][i].setVisible(false);
 		    table.remove(table.body[page][i]);
 		}
 		page --;
@@ -114,6 +118,7 @@ public class TP extends JPanel {
 	private void turnToNextPage(Table table) {
 		if(page == (table.getPageNum() - 1)) return;
 		for(int i = 0; i < table.rowNum; i ++) {
+			table.body[page][i].setVisible(false);
 		    table.remove(table.body[page][i]);
 		}
 		page ++;
@@ -125,6 +130,7 @@ public class TP extends JPanel {
 	private void turnToLastPage(Table table) {
 		if(page == (table.getPageNum() - 1)) return;
 		for(int i = 0; i < table.rowNum; i ++) {
+			table.body[page][i].setVisible(false);
 		    table.remove(table.body[page][i]);
 		}
 		page = table.getPageNum() - 1;

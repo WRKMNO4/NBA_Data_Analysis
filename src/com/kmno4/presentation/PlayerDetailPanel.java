@@ -4,9 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -48,16 +53,29 @@ public class PlayerDetailPanel extends JPanel {
 		layout = new GridBagLayout();
 		setLayout(layout);
 		c = new GridBagConstraints();
-		player_icon = new BorderLabel("球员照片", JLabel.CENTER);
+		player_icon = new JLabel("球员照片", JLabel.CENTER);
+		/*
+		Image i = null;
+		BufferedImage bi = new BufferedImage(100, 100, BufferedImage.TYPE_3BYTE_BGR);
+		try {
+			i = ImageIO.read(new File("images/迭代一数据/teams/ATL.svg"));
+		} catch (IOException e1) {
+			System.out.println("image load fail");
+			e1.printStackTrace();
+		}
+		bi.getGraphics().drawImage(i, 0, 0, 100, 100, null);
+		Image iiii = bi;
+		player_icon.setIcon(new ImageIcon(iiii));
+		*/
+		
 		player_icon.setIcon(new ImageIcon(playerPO.getActionURL()));
-		player_icon.setFont(new Font("default", Font.PLAIN, 35));
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 1;
 		c.gridheight = 4;
 		c.weightx = 7;
 		c.weighty = 5;
-		c.fill = GridBagConstraints.BOTH;
+		c.fill = GridBagConstraints.NONE;
 		layout.setConstraints(player_icon, c);
 		add(player_icon);
 		
@@ -68,6 +86,7 @@ public class PlayerDetailPanel extends JPanel {
 		c.gridheight = 1;
 		c.weightx = 1;
 		c.weighty = 2;
+		c.fill = GridBagConstraints.BOTH;
 		layout.setConstraints(blank1, c);
 		add(blank1);
 		

@@ -4,11 +4,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.List;
-
 import javax.swing.JPanel;
-
-import PO.PlayerPO;
 /**
  * 主table
  * @author hutao
