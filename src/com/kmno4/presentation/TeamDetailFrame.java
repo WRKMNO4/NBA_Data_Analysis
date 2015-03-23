@@ -36,7 +36,11 @@ public class TeamDetailFrame extends JFrame {
 	 */
 	public TeamDetailFrame(TeamPO teamPO) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, Config.PLAYER_DETAIL_UI_WIDTH, Config.PLAYER_DETATI_UI_TOP_HEIGHT);
+		setBounds(
+				MainFrame.mainFrame.getX() + 50,
+				MainFrame.mainFrame.getY() + 100,
+				Config.PLAYER_DETAIL_UI_WIDTH,
+				Config.PLAYER_DETATI_UI_TOP_HEIGHT);
 		setLayout(null);
 		setUndecorated(true);
 		
