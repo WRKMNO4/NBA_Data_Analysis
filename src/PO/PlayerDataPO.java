@@ -67,7 +67,7 @@ public class PlayerDataPO {
 			numberOfBlock += oneMatch.getNumberOfBlockOfOneMatch() ;
 			numberOfFault += oneMatch.getNumberOfFaultOfOneMatch() ;
 			numberOfFoul += oneMatch.getNumberOfFoulOfOneMatch() ;
-			score = oneMatch.getScoreOfOneMatch() ;
+			score += oneMatch.getScoreOfOneMatch() ;
 		   
 		    if(oneMatch.isDouble_double()==true)
 		    	double_double += 1;
@@ -80,7 +80,8 @@ public class PlayerDataPO {
 			numberOfFreeThrowAttempt += oneMatch.getNumberOfFreeThrowAttempt() ;
 			numberOfAttackRebound += oneMatch.getNumberOfAttackRebound() ;
 			numberOfDefenseRebound += oneMatch.getNumberOfDefenseRebound() ;
-		    
+			if(oneMatch.isDouble_double())
+		      double_double += 1 ;
 		    
 		}
 		presentTime ="" +totalTime/60+":"+totalTime%60 ;
@@ -127,7 +128,11 @@ public class PlayerDataPO {
         this.percentageOfFault = totalDataOfPlayer.getNumberOfFault()/(totalDataOfPlayer.getNumberOfShotAttempt()-totalDataOfPlayer.getNumberOf3_pointAttempt()+0.44*totalDataOfPlayer.getNumberOfFreeThrowAttempt()+totalDataOfPlayer.getNumberOfFault()) ;
         this.percentageOfUse = (totalDataOfPlayer.getNumberOfShotAttempt()+0.44*totalDataOfPlayer.getNumberOfFreeThrowAttempt()+totalDataOfPlayer.getNumberOfFault())
         		*otherTeamData.getTeamTotalTime()/seconds/(totalDataOfTeam.getNumberOfShotAttempt()+0.44*totalDataOfTeam.getNumberOfFreeThrowAttempt()+totalDataOfTeam.getNumberOfFault()) ;
+        this.comprehension = totalDataOfPlayer.getComprehension()/num ;
+        this.double_double = totalDataOfPlayer.getDouble_double()/num ;
 	}
+
+
 	int transportTime(String time){
 		int result = 0;
 		String[] strs = time.split(":") ;
