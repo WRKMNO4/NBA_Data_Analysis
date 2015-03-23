@@ -17,7 +17,6 @@ import com.kmno4.presentation.button.LabelButton;
  */
 @SuppressWarnings("serial")
 public class TP extends JPanel {
-	public static int page = 0;
 	
 	private JLabel 
 	    firstPage,
@@ -55,11 +54,11 @@ public class TP extends JPanel {
 				turnToBeforePage(table);
 			}
 		});
-		if(page == 0) beforePage.setEnabled(false);
+		if(table.page == 0) beforePage.setEnabled(false);
 		else beforePage.setEnabled(true);
 		add(beforePage);
 		
-		nowaPage = new JLabel( "-"+(page + 1)+"-", JLabel.CENTER);
+		nowaPage = new JLabel( "-"+(table.page + 1)+"-", JLabel.CENTER);
 		nowaPage.setForeground(Color.GRAY);
 		nowaPage.setFont(TP_FONT);
 		add(nowaPage);
@@ -73,7 +72,7 @@ public class TP extends JPanel {
 				turnToNextPage(table);
 			}
 		});
-		if(page == (table.getPageNum() - 1)) nextPage.setEnabled(false);
+		if(table.page == (table.getPageNum() - 1)) nextPage.setEnabled(false);
 		else nextPage.setEnabled(true);
 		add(nextPage);
 		
@@ -91,67 +90,66 @@ public class TP extends JPanel {
 	}
 	
 	private void turnToFirstPage(Table table) {
-		if(page == 0) return;
+		if(table.page == 0) return;
 		for(int i = 0; i < table.rowNum; i ++) {
-			table.body[page][i].setVisible(false);
-		    table.remove(table.body[page][i]);
-		    layout.removeLayoutComponent(table.body[page][i]);
+			table.body[table.page][i].setVisible(false);
+		    table.remove(table.body[table.page][i]);
+		    layout.removeLayoutComponent(table.body[table.page][i]);
 		}
-		page = 0;
+		table.page = 0;
 		for(int i = 0; i < table.rowNum; i ++) {
-			table.body[TP.page][i].setVisible(true);
-		    table.add(table.body[TP.page][i]);
+			table.body[table.page][i].setVisible(true);
+		    table.add(table.body[table.page][i]);
 		}
 		otherSet();
 	}
 	private void turnToBeforePage(Table table) {
-		if(page == 0) return;
+		if(table.page == 0) return;
 		for(int i = 0; i < table.rowNum; i ++) {
-			table.body[page][i].setVisible(false);
-		    table.remove(table.body[page][i]);
+			table.body[table.page][i].setVisible(false);
+		    table.remove(table.body[table.page][i]);
 		}
-		page --;
+		table.page --;
 		for(int i = 0; i < table.rowNum; i ++) {
-			table.body[TP.page][i].setVisible(true);
-		    table.add(table.body[TP.page][i]);
+			table.body[table.page][i].setVisible(true);
+		    table.add(table.body[table.page][i]);
 		}
 		otherSet();
 	}
 	private void turnToNextPage(Table table) {
-		if(page == (table.getPageNum() - 1)) return;
+		if(table.page == (table.getPageNum() - 1)) return;
 		for(int i = 0; i < table.rowNum; i ++) {
-			table.body[page][i].setVisible(false);
-		    table.remove(table.body[page][i]);
+			table.body[table.page][i].setVisible(false);
+		    table.remove(table.body[table.page][i]);
 		}
-		page ++;
+		table.page ++;
 		for(int i = 0; i < table.rowNum; i ++) {
-			table.body[TP.page][i].setVisible(true);
-		    table.add(table.body[TP.page][i]);
+			table.body[table.page][i].setVisible(true);
+		    table.add(table.body[table.page][i]);
 		}
 		otherSet();
 	}
 	private void turnToLastPage(Table table) {
-		if(page == (table.getPageNum() - 1)) return;
+		if(table.page == (table.getPageNum() - 1)) return;
 		for(int i = 0; i < table.rowNum; i ++) {
-			table.body[page][i].setVisible(false);
-		    table.remove(table.body[page][i]);
+			table.body[table.page][i].setVisible(false);
+		    table.remove(table.body[table.page][i]);
 		}
-		page = table.getPageNum() - 1;
+		table.page = table.getPageNum() - 1;
 		for(int i = 0; i < table.rowNum; i ++) {
-			table.body[TP.page][i].setVisible(true);
-		    table.add(table.body[TP.page][i]);
+			table.body[table.page][i].setVisible(true);
+		    table.add(table.body[table.page][i]);
 		}
 		otherSet();
 	}
 	
 	private void otherSet() {
-		System.out.println(TP.page);
 		table.remove(table.turn);
 		table.add(table.turn);
-		nowaPage.setText("-" + (page + 1)+"-");
+		nowaPage.setText("-" + (table.page + 1)+"-");
 		table.repaint();
-		beforePage.setEnabled(page == 0 ? false : true);
-		nextPage.setEnabled(page == (table.getPageNum() - 1) ? false : true);
+		beforePage.setEnabled(table.page == 0 ? false : true);
+		nextPage.setEnabled(table.page == (table.getPageNum() - 1) ? false : true);
 	}
 	
 	private static final Font TP_FONT = new Font("Arial", Font.BOLD, 18);

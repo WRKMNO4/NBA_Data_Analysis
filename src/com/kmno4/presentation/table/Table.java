@@ -12,6 +12,7 @@ import javax.swing.JPanel;
  */
 @SuppressWarnings("serial")
 public class Table extends JPanel {
+	public int page = 0;
 	/**
 	 * 表头
 	 */
@@ -36,7 +37,7 @@ public class Table extends JPanel {
 	
 	public Table(String[] headStr, String[][] bodyString, boolean isSmallData) {
 		super();
-		TP.page = 0;
+		page = 0;
 		bodyStr = bodyString;
 		if(bodyStr.length == 0) {
 			System.out.println("bodyStr.length == 0");
@@ -80,7 +81,7 @@ public class Table extends JPanel {
 		fillTable(bodyStr, body);
 		
 		for(int i = 0; i < rowNum; i ++) {
-		    add(body[TP.page][i]);
+		    add(body[page][i]);
 		}
 		
 		
