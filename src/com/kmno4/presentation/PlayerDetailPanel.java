@@ -20,7 +20,8 @@ import com.kmno4.presentation.table.Table;
 
 @SuppressWarnings("serial")
 public class PlayerDetailPanel extends JPanel {
-	private PlayerDetailPanel playerDetailPanel = this;
+	private PlayerDetailFrame playerDetailFrame;
+	private PlayerDetailPanel playerDetailPanel;
 	private JLabel 
 	    player_icon,
 	    player_num,
@@ -37,8 +38,10 @@ public class PlayerDetailPanel extends JPanel {
 	private GridBagConstraints c;
 	
 	private PlayerPO playerPO;
-	public PlayerDetailPanel(PlayerPO p) {
+	public PlayerDetailPanel(PlayerPO p, PlayerDetailFrame f) {
 		playerPO = p;
+		playerDetailPanel = this;
+		playerDetailFrame = f;
 		setBounds(0, 0,
 				Config.PLAYER_DETAIL_UI_WIDTH,Config.PLAYER_DETATI_UI_TOP_HEIGHT);
 		setBackground(new Color(255, 255, 255, 50));
@@ -136,11 +139,10 @@ public class PlayerDetailPanel extends JPanel {
 				avg.setEnabled(true);
 				avgInfo.setVisible(false);
 				sumInfo.setVisible(true);
-				layout.removeLayoutComponent(avgInfo);
 				layout.setConstraints(sumInfo, c);
 				playerDetailPanel.remove(avgInfo);
 				playerDetailPanel.add(sumInfo);
-				//playerDetailPanel.repaint();
+				playerDetailFrame.repaint();
 			}
 		});
 		sum.setEnabled(false);
@@ -157,11 +159,10 @@ public class PlayerDetailPanel extends JPanel {
 				sum.setEnabled(true);
 				sumInfo.setVisible(false);
 				avgInfo.setVisible(true);
-				layout.removeLayoutComponent(sumInfo);
 				layout.setConstraints(avgInfo, c);
 				playerDetailPanel.remove(sumInfo);
 				playerDetailPanel.add(avgInfo);
-				//playerDetailPanel.repaint();
+				playerDetailFrame.repaint();
 			}
 		});
 		c.gridx = 6;
@@ -173,8 +174,7 @@ public class PlayerDetailPanel extends JPanel {
 				new String[] {"场均得分", "场均篮板", "场均助攻"},
 				new String[][] {{"0", "0", "0"}},
 				true);
-		mainInfo.setFont(new Font("default", Font.PLAIN, 15), true);
-		//mainInfo.setForeground(Color, ishead); TODO
+		mainInfo.setFont(new Font("default", Font.PLAIN, 15), null);
 		c.gridx = 1;
 		c.gridy = 2;
 		c.gridwidth = 3;
@@ -199,13 +199,13 @@ public class PlayerDetailPanel extends JPanel {
 		c.fill = GridBagConstraints.BOTH;
 		layout.setConstraints(sumInfo, c);
 		add(sumInfo);
+		//sumInfo.setFont(new Font("default", Font.BOLD, 18), new Font("default", Font.PLAIN, 10));
 		
 		avgInfo = new Table(
 				Config.PLAYER_AVERAGE_INFO,
 				TableContentTransfer.transferPlayerAvgInfo(Config.PLAYER_AVERAGE_INFO.length,this.playerPO,1 ),
 				true);
-		//layout.setConstraints(avgInfo, c);
-		//add(avgInfo);
+		//avgInfo.setFont(new Font("default", Font.PLAIN, 7), new Font("default", Font.PLAIN, 8));
 		
 		
 	}

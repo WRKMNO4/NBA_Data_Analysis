@@ -4,7 +4,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import PO.PlayerPO;
 
@@ -14,7 +13,7 @@ import com.kmno4.presentation.button.ExitLabel;
 @SuppressWarnings("serial")
 public class PlayerDetailFrame extends JFrame {
 
-	public JPanel playerDetailPanel;
+	public PlayerDetailPanel playerDetailPanel;
 	
 	/**
 	 * Launch the application.
@@ -42,7 +41,7 @@ public class PlayerDetailFrame extends JFrame {
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
-		playerDetailPanel = new PlayerDetailPanel(playerPO);
+		playerDetailPanel = new PlayerDetailPanel(playerPO, this);
 		add(playerDetailPanel);
 		
 		JLabel close = new ExitLabel(this);
@@ -50,6 +49,7 @@ public class PlayerDetailFrame extends JFrame {
 		
 		setVisible(true);
 		
+		@SuppressWarnings("unused")
 		MoveOfFrame m = new MoveOfFrame(this);
 	}
 
