@@ -40,7 +40,7 @@ public class Table extends JPanel {
 	
 	public Table(String[] headStr, String[][] bodyString, boolean isSmallData) {
 		super();
-		TP.page=0;
+		TP.page = 0;
 		bodyStr = bodyString;
 		if(bodyStr.length == 0) {
 			System.out.println("bodyStr.length == 0");
@@ -95,21 +95,30 @@ public class Table extends JPanel {
 		}
 	}
 	
-	public void setFont(Font f, boolean ishead) {
-		if(ishead) head.setFont(f);
-		else {
-			for(int i = body.length; i > 0; i --) {
-				for (int j = body[0].length; j > 0; j --)
-					body[i][j].setFont(f);
+	public void setFont(Font headFont, Font bodyFont) {
+		if(headFont != null) head.setFont(headFont);
+		if(bodyFont != null) {
+			for(int i = 0; i < body.length; i ++) {
+				for (int j = 0; j > body[0].length; j ++)
+					body[i][j].setFont(bodyFont);
 			}
 		}
 	}
-	public void setForeground(Color c, boolean ishead) {
-		if(ishead) head.setForeground(c);
-		else {
-			for(int i = body.length; i > 0; i --) {
-				for (int j = body[0].length; j > 0; j --)
-					body[i][j].setForeground(c);
+	public void setForeground(Color headColor, Color bodyColor) {
+		if(headColor != null) head.setForeground(headColor);
+		if(bodyColor != null) {
+			for(int i = 0; i < body.length; i ++) {
+				for (int j = 0; j < body[0].length; j ++)
+					body[i][j].setForeground(bodyColor);
+			}
+		}
+	}
+	public void setBackground(Color headbg, Color bodybg) {
+		if(headbg != null) head.setBackground(headbg);
+		if(bodybg != null) {
+			for(int i = 0; i < body.length; i ++) {
+				for (int j = 0; j < body[0].length; j ++)
+					body[i][j].setBackground(bodybg);
 			}
 		}
 	}

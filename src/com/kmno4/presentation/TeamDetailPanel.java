@@ -17,7 +17,8 @@ import com.kmno4.presentation.table.Table;
 
 @SuppressWarnings("serial")
 public class TeamDetailPanel extends JPanel {
-	private TeamDetailPanel teamDetailPanel = this;
+	private TeamDetailPanel teamDetailPanel;
+	private TeamDetailFrame teamDetailFrame;
 	private JLabel
 	    team_icon,
 	    team_name,
@@ -33,8 +34,10 @@ public class TeamDetailPanel extends JPanel {
 	private GridBagConstraints c;
 	
 	private TeamPO teamPO;
-	public TeamDetailPanel(TeamPO t) {
+	public TeamDetailPanel(TeamPO t, TeamDetailFrame f) {
 		teamPO = t;
+		teamDetailPanel = this;
+		teamDetailFrame = f;
 		setBounds(0, 0,
 				Config.PLAYER_DETAIL_UI_WIDTH,Config.PLAYER_DETATI_UI_TOP_HEIGHT);
 		setBackground(new Color(255, 255, 255, 50));
@@ -101,11 +104,10 @@ public class TeamDetailPanel extends JPanel {
 				avg.setEnabled(true);
 				sumInfo.setVisible(true);
 				avgInfo.setVisible(false);
-				layout.removeLayoutComponent(avgInfo);
 				layout.setConstraints(sumInfo, c);
 				teamDetailPanel.remove(avgInfo);
 				teamDetailPanel.add(sumInfo);
-				teamDetailPanel.repaint();
+				teamDetailFrame.repaint();
 			}
 		});
 		sum.setFont(new Font("default", Font.BOLD, 15));
@@ -130,11 +132,10 @@ public class TeamDetailPanel extends JPanel {
 				sum.setEnabled(true);
 				avgInfo.setVisible(true);
 				sumInfo.setVisible(false);
-				layout.removeLayoutComponent(sumInfo);
 				layout.setConstraints(avgInfo, c);
 				teamDetailPanel.remove(sumInfo);
 				teamDetailPanel.add(avgInfo);
-				teamDetailPanel.repaint();
+				teamDetailFrame.repaint();
 			}
 		});
 		avg.setFont(new Font("default", Font.BOLD, 15));
@@ -152,7 +153,8 @@ public class TeamDetailPanel extends JPanel {
 		c.gridheight = 1;
 		c.weightx = 6;
 		c.weighty = 1;
-		c.fill = GridBagConstraints.BOTH;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.anchor = GridBagConstraints.NORTH;
 		layout.setConstraints(mainInfo, c);
 		add(mainInfo);
 		

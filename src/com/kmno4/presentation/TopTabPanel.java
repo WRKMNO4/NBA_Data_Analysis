@@ -182,7 +182,7 @@ public class TopTabPanel extends JPanel {
 				Config.UI_HEIGHT - y);
 	}
 	
-	private JLabel label;
+	
 	/**
 	 * 第l列为进入具体信息Frame的链接
 	 */
@@ -191,12 +191,8 @@ public class TopTabPanel extends JPanel {
 		TableList[][] t = tableBeShowing.body;
 		for(int i = 0; i < t.length; i ++) {
 			for(int j = 0; j < t[0].length; j ++) {
-			    try {
-			    	label = t[i][j].elements[PLAYER_LINK];
-			    }
-			    catch(Exception e) {//对于空条目
-			    	break;
-			    }
+				if(t[i][j].elements.length == 0) return;
+			    JLabel label = t[i][j].elements[PLAYER_LINK];
 				label.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
@@ -211,22 +207,17 @@ public class TopTabPanel extends JPanel {
 	}
 	private static final int TEAM_LINK = 0;
 	private static final int SHORT_NAME_LABEL = 1;
-	private String shortName;
 	private void addTeamLink() {
 		TableList[][] t = tableBeShowing.body;
 		for(int i = 0; i < t.length; i ++) {
 			for(int j = 0; j < t[0].length; j ++) {
-			    try {
-			    	label = t[i][j].elements[TEAM_LINK];
-			    	shortName = t[i][j].elements[SHORT_NAME_LABEL].getText();
-			    }
-			    catch(Exception e) {//对于空条目
-			    	break;
-			    }
+				if(t[i][j].elements.length == 0) return;
+			    JLabel label = t[i][j].elements[TEAM_LINK];
+			    JLabel shortNameLabel = t[i][j].elements[SHORT_NAME_LABEL];
 				label.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						TeamPO t = TeamListPO.findTeamByShortName(shortName);
+						TeamPO t = TeamListPO.findTeamByShortName(shortNameLabel.getText());
 						if(t == null) return;
 						new TeamDetailFrame(t).setVisible(true);
 					}

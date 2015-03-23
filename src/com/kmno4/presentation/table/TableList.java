@@ -54,10 +54,13 @@ public class TableList extends JPanel {
 		for(JLabel j : elements)
 			j.setForeground(c);
 	}
-	public void setColor(Color c) {
-		//TODO
+	/*
+	public void setBackground(Color c) {
+		if(elements == null) return;
+		for(JLabel j : elements)
+			j.setBackground(c);
 	}
-	
+	*/
 	
 	public static final int 
         HEAD = -1,

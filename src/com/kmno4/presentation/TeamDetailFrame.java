@@ -41,7 +41,7 @@ public class TeamDetailFrame extends JFrame {
 		setUndecorated(true);
 		
 		
-		teamDetailPanel = new TeamDetailPanel(teamPO);
+		teamDetailPanel = new TeamDetailPanel(teamPO, this);
 		this.add(teamDetailPanel);
 		
 		JLabel close = new ExitLabel(this);
