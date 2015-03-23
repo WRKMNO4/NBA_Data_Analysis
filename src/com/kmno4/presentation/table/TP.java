@@ -99,6 +99,7 @@ public class TP extends JPanel {
 		}
 		page = 0;
 		for(int i = 0; i < table.rowNum; i ++) {
+			table.body[TP.page][i].setVisible(true);
 		    table.add(table.body[TP.page][i]);
 		}
 		otherSet();
@@ -111,6 +112,7 @@ public class TP extends JPanel {
 		}
 		page --;
 		for(int i = 0; i < table.rowNum; i ++) {
+			table.body[TP.page][i].setVisible(true);
 		    table.add(table.body[TP.page][i]);
 		}
 		otherSet();
@@ -123,6 +125,7 @@ public class TP extends JPanel {
 		}
 		page ++;
 		for(int i = 0; i < table.rowNum; i ++) {
+			table.body[TP.page][i].setVisible(true);
 		    table.add(table.body[TP.page][i]);
 		}
 		otherSet();
@@ -135,12 +138,14 @@ public class TP extends JPanel {
 		}
 		page = table.getPageNum() - 1;
 		for(int i = 0; i < table.rowNum; i ++) {
+			table.body[TP.page][i].setVisible(true);
 		    table.add(table.body[TP.page][i]);
 		}
 		otherSet();
 	}
 	
 	private void otherSet() {
+		System.out.println(TP.page);
 		table.remove(table.turn);
 		table.add(table.turn);
 		nowaPage.setText("-" + (page + 1)+"-");
