@@ -74,10 +74,8 @@ public class Config {
 	
 	public static final int PLAYER_DETAIL_UI_WIDTH=700;
 	public static final int PLAYER_DETATI_UI_TOP_HEIGHT=400;
-	public static final int PLAYER_ICON_X=70;
-	public static final int PLAYER_ICON_Y=35;
-	public static final int PLAYER_ICON_WIDTH=130;
-	public static final int PLAYER_ICON_HEIGHT=160;
+	public static final int PLAYER_ICON_WIDTH=198;
+	public static final int PLAYER_ICON_HEIGHT=315;
 	public static final int PLAYER_NUMBER_WIDTH=60;
 	public static final int PLAYER_NUMBER_HEIGHT=70;
 	public static final int PLAYER_LABEL_HEIGHT=15;

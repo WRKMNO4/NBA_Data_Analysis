@@ -19,7 +19,6 @@ import javax.swing.JPanel;
 import PO.PlayerPO;
 
 import com.kmno4.common.Config;
-import com.kmno4.presentation.button.BorderLabel;
 import com.kmno4.presentation.button.LabelButton;
 import com.kmno4.presentation.table.Table;
 
@@ -49,26 +48,24 @@ public class PlayerDetailPanel extends JPanel {
 		playerDetailFrame = f;
 		setBounds(0, 0,
 				Config.PLAYER_DETAIL_UI_WIDTH,Config.PLAYER_DETATI_UI_TOP_HEIGHT);
-		setBackground(new Color(255, 255, 255, 50));
+		setBackground(new Color(255, 255, 255, 255));
 		layout = new GridBagLayout();
 		setLayout(layout);
 		c = new GridBagConstraints();
-		player_icon = new JLabel("球员照片", JLabel.CENTER);
-		/*
+		player_icon = new JLabel();
+		
 		Image i = null;
-		BufferedImage bi = new BufferedImage(100, 100, BufferedImage.TYPE_3BYTE_BGR);
+		BufferedImage bi = new BufferedImage(Config.PLAYER_ICON_WIDTH, Config.PLAYER_ICON_HEIGHT, BufferedImage.TYPE_3BYTE_BGR);
 		try {
-			i = ImageIO.read(new File("images/迭代一数据/teams/ATL.svg"));
+			i = ImageIO.read(new File(playerPO.getActionURL()));
 		} catch (IOException e1) {
 			System.out.println("image load fail");
 			e1.printStackTrace();
 		}
-		bi.getGraphics().drawImage(i, 0, 0, 100, 100, null);
-		Image iiii = bi;
-		player_icon.setIcon(new ImageIcon(iiii));
-		*/
+		bi.getGraphics().drawImage(i, 0, 0, Config.PLAYER_ICON_WIDTH, Config.PLAYER_ICON_HEIGHT, new Color(255, 255, 255, 0), null);
+		Image image = bi;
+		player_icon.setIcon(new ImageIcon(image));
 		
-		player_icon.setIcon(new ImageIcon(playerPO.getActionURL()));
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 1;
@@ -76,6 +73,7 @@ public class PlayerDetailPanel extends JPanel {
 		c.weightx = 7;
 		c.weighty = 5;
 		c.fill = GridBagConstraints.NONE;
+		c.anchor = GridBagConstraints.NORTHWEST;
 		layout.setConstraints(player_icon, c);
 		add(player_icon);
 		
