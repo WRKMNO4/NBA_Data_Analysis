@@ -23,7 +23,11 @@ public class Config {
 	public static final String[] TEAM_TOTAL_INFO = {"比赛场数","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数"
 		,"助攻数","抢断数","盖帽数","失误数","犯规数","得分","进攻回合"} ;
 	
-	
+	//筛选功能
+	public static final String[] PICKUP_POSITION={"前锋","中锋","后卫"};
+	public static final String[] PICKUP_DISTRICT={"东部","Southeast","Central","Atlantic","西部","Northwest","Southwest","Pacific"};
+	public static final String[] PICKUP_STANDARD={"得分","篮板","助攻","得分/篮板/助攻","盖帽","抢断","犯规","失误","分钟","效率","投篮","三分","罚球","两双"};
+	public static final String[] PICKUP_TYPE={"总计","场均"};
 	
 	public static final int MAIN_FRAME_X=100;
 	public static final int MAIN_FRAME_Y=100;

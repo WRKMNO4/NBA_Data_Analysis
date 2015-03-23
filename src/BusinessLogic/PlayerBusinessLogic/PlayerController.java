@@ -33,8 +33,8 @@ public class PlayerController implements PlayerBusinessLogic{
 		ArrayList<PlayerPO> results = new ArrayList<PlayerPO>();
 		for(PlayerPO onePlayer: playerController.getAllPlayers()){
 			TeamPO ofTeam = TeamListPO.findTeamByShortName(onePlayer.getTeam());
-			if(onePlayer.getPosition().equals(position) && ofTeam.getZone().equals(zone)&& 
-					(district.equals(null) || ofTeam.getDistrict().equals(district)))
+			if(onePlayer.getPosition().equals(position) && (ofTeam.getZone().equals(zone) || 
+					ofTeam.getDistrict().equals(district)))
 				results.add(onePlayer);
 		}
 		Collections.sort(results, new PlayerSortHelper(standard, dataType));
