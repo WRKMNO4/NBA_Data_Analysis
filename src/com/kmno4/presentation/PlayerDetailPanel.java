@@ -189,7 +189,9 @@ public class PlayerDetailPanel extends JPanel {
 		
 		mainInfo = new Table(
 				new String[] {"场均得分", "场均篮板", "场均助攻"},
-				new String[][] {{"0", "0", "0"}},
+				new String[][] {{""+playerPO.getAveragePlayerData().getScore(),
+					""+playerPO.getAveragePlayerData().getNumberOfRebound(),
+					""+playerPO.getAveragePlayerData().getNumberOfAssist()}},
 				true);
 		mainInfo.setFont(new Font("default", Font.PLAIN, 15), null);
 		c.gridx = 1;

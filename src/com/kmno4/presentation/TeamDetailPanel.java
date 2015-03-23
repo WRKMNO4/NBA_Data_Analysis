@@ -7,6 +7,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -46,6 +47,7 @@ public class TeamDetailPanel extends JPanel {
 		c = new GridBagConstraints();
 		
 		team_icon = new JLabel("队伍头像", JLabel.CENTER);
+		team_icon.setIcon(new ImageIcon(t.getTeamLogoURL()));
 		team_icon.setFont(new Font("default", Font.PLAIN, 40));
 		c.gridx = 0;
 		c.gridy = 0;
@@ -57,7 +59,7 @@ public class TeamDetailPanel extends JPanel {
 		layout.setConstraints(team_icon, c);
 		add(team_icon);
 		
-		team_name = new JLabel("高锰酸钾队", JLabel.LEFT);
+		team_name = new JLabel(t.getFullName(), JLabel.LEFT);
 		team_name.setFont(new Font("default", Font.BOLD, 35));
 		team_name.setForeground(new Color(0, 0, 0, 100));
 		c.gridx = 1;
@@ -70,7 +72,7 @@ public class TeamDetailPanel extends JPanel {
 		layout.setConstraints(team_name, c);
 		add(team_name);
 		
-		team_coach = new JLabel("PA:姚锰舟", JLabel.LEFT);
+		team_coach = new JLabel("PA:"+"-", JLabel.LEFT);
 		team_coach.setFont(new Font("default", Font.ITALIC, 18));
 		c.gridx = 1;
 		c.gridy = 1;
@@ -145,7 +147,8 @@ public class TeamDetailPanel extends JPanel {
 		
 		mainInfo = new Table(
 				new String[]{"场均得分", "场均助攻", "场均篮板", "对手得分"},
-				new String[][]{{"1th", "1th", "1th", "1th"}},
+				new String[][]{{teamPO.getAverageTeamData().getScore()+"", teamPO.getAverageTeamData().getNumberOfAssist()+"",
+					teamPO.getAverageTeamData().getNumberOfRebound()+"", "-"}},
 				true);
 		c.gridx = 1;
 		c.gridy = 2;

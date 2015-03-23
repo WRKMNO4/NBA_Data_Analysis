@@ -192,7 +192,7 @@ public class TopTabPanel extends JPanel {
 		for(int i = 0; i < t.length; i ++) {
 			for(int j = 0; j < t[0].length; j ++) {
 				if(t[i][j].elements.length == 0) return;
-			    JLabel label = t[i][j].elements[PLAYER_LINK];
+			    final JLabel label = t[i][j].elements[PLAYER_LINK];
 				label.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
@@ -213,7 +213,7 @@ public class TopTabPanel extends JPanel {
 			for(int j = 0; j < t[0].length; j ++) {
 				if(t[i][j].elements.length == 0) return;
 			    JLabel label = t[i][j].elements[TEAM_LINK];
-			    JLabel shortNameLabel = t[i][j].elements[SHORT_NAME_LABEL];
+			    final JLabel shortNameLabel = t[i][j].elements[SHORT_NAME_LABEL];
 				label.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
