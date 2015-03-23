@@ -45,6 +45,10 @@ public class PlayerController implements PlayerDataService{
 				}
 				newPlayer.setPortraitURL("迭代一数据/players/portrait/"+newPlayer.getName()+".png");
 				newPlayer.setActionURL("迭代一数据/players/action/"+newPlayer.getName()+".png");
+				if(!new File(newPlayer.getPortraitURL()).exists())  //portrait image not exists
+					newPlayer.setPortraitURL("images/nba_logo.png");
+				if(!new File(newPlayer.getActionURL()).exists())   //action image not exists
+					newPlayer.setActionURL("images/nba_logo.png");
 			
 				players.addPlayer(newPlayer) ;
 			}
