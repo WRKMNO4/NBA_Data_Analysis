@@ -14,8 +14,8 @@ public class PlayerPO {
 	String exp = "Unknown";         //����
 	String school = "Unknown";    //��ҵѧУ                          
 	
-	String portraitURL=null;    //ͷ��ĵ�ַ
-	String actionURL=null;      //������Ƭ�ĵ�ַ
+	String portraitURL="Unknown";    //ͷ��ĵ�ַ
+	String actionURL="Unknown";      //������Ƭ�ĵ�ַ
 	
 	ArrayList<PlayerDataOfOneMatchPO> datas=new ArrayList<PlayerDataOfOneMatchPO>();
 	PlayerDataPO totalPlayerData = new PlayerDataPO();

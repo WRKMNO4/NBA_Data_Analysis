@@ -57,6 +57,8 @@ public class MatchController implements MatchDataService{
 						 if(thePlayer == null){   //若原数组里没有此队员
 							 PlayerPO newPlayer = new PlayerPO();
 							 newPlayer.setName(onePlayer.getName());
+							 newPlayer.setPortraitURL("images/nba_logo.png");
+							 newPlayer.setActionURL("images/nba_logo.png");
 							 PlayerListPO.addPlayer(newPlayer) ;
 							 thePlayer = newPlayer ;
 						 }
