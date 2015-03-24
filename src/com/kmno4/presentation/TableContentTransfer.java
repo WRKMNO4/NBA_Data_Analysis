@@ -56,6 +56,10 @@ public class TableContentTransfer {
 			body[seasons-1][22] = cutTailOfAvgData(avgData.getPercentageOfBlock()) ;
 			body[seasons-1][23] = cutTailOfAvgData(avgData.getPercentageOfFault()) ;
 			body[seasons-1][24] = cutTailOfAvgData(avgData.getPercentageOfUse()) ;
+//			for(int i=0;i<body[seasons-1].length;i++){
+//				System.out.println(body[seasons-1][i]);
+//			}
+			
 		
 		return body ;
 	}

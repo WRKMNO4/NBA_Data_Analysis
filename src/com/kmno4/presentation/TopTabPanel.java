@@ -322,5 +322,9 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		}
 		
 	}
+	
+	public void refreshPlayerTable(List<PlayerPO> players){
+		
+	}
 
 }

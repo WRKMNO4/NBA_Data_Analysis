@@ -204,6 +204,8 @@ public class SelectionPanel extends JPanel implements MouseListener{
 						
 			//position为英文，三种单字母
 			ArrayList<PlayerPO> players=MainFrame.mainFrame.bl.pickUpPlayersByCondition(position, zone, district, standard, dataType);
+			MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
+		
 		}
 		
 	}
