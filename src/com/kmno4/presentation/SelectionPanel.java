@@ -3,7 +3,6 @@ package com.kmno4.presentation;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.TextField;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -13,6 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Enum.PlayerData;
 import Enum.Zone;
 import PO.PlayerPO;
 
@@ -21,7 +21,8 @@ import com.kmno4.common.Config;
 public class SelectionPanel extends JPanel implements MouseListener{
 	public  List<JLabel> sort_list;
 	private TextField tf_search;
-	
+	boolean isPickup=true;
+	boolean isAvg=true;
 	//方位
 	public int location_x;
 	public int location_y;
@@ -63,8 +64,8 @@ public class SelectionPanel extends JPanel implements MouseListener{
 
 	JComboBox cb_position = new JComboBox(Config.PICKUP_POSITION);
 	JComboBox cb_district = new JComboBox(Config.PICKUP_DISTRICT);
-	JComboBox cb_standard = new JComboBox(Config.PICKUP_STANDARD);
-	JComboBox cb_type=new JComboBox(Config.PICKUP_TYPE);
+	JComboBox cb_standard = new JComboBox(Config.PICKUP_TYPE);
+	JComboBox cb_type=new JComboBox(Config.PICKUP_STANDARD);
 	private final JLabel submit = new JLabel("提交");
 	
 	JLabel pickup = new JLabel("筛选");
@@ -111,9 +112,17 @@ public class SelectionPanel extends JPanel implements MouseListener{
 		sort_list.add(lblZ);
 
 		for(int i=0;i<sort_list.size();i++){
-			if(i<14)
-				sort_list.get(i).setBounds(15+i*Config.SORT_WIDTH,20+45, Config.SORT_WIDTH, Config.SORT_HEIGHT);
-			else{
+			if(i<14){
+				if(i==3){
+					//有点长的
+					sort_list.get(i).setBounds(15+i*Config.SORT_WIDTH, 45, Config.SORT_WIDTH*4, Config.SORT_HEIGHT);
+				}else{
+					sort_list.get(i).setBounds(15+i*Config.SORT_WIDTH, 45, Config.SORT_WIDTH, Config.SORT_HEIGHT);
+					if(i>3){
+						sort_list.get(i).setBounds(15+(i+2)*Config.SORT_WIDTH, 45, Config.SORT_WIDTH, Config.SORT_HEIGHT);
+					}
+				}
+			}else{
 				sort_list.get(i).setBounds(15+i*Config.SORT_WIDTH,20+70, Config.SORT_WIDTH, Config.SORT_HEIGHT);
 			}
 			sort_list.get(i).setBackground(Color.GRAY);
@@ -216,10 +225,11 @@ public class SelectionPanel extends JPanel implements MouseListener{
 			cb_position.setVisible(true);
 			cb_district.setVisible(true);
 			cb_standard.setVisible(true);
-			cb_type.setVisible(true);			
+			cb_type.setVisible(true);
 			for(int i=0;i<sort_list.size();i++){
 				sort_list.get(i).setVisible(false);
-			}			
+			}	
+			isPickup=true;
 		}if(e.getSource()==sort){
 			lb_percent.setVisible(false);
 			lb_efficiency.setVisible(false);	
@@ -232,35 +242,86 @@ public class SelectionPanel extends JPanel implements MouseListener{
 			for(int i=0;i<sort_list.size();i++){
 				this.add(sort_list.get(i));
 				sort_list.get(i).setVisible(true);
-			}	
+			}
+			isPickup=false;
 		}
 			
 		if(e.getSource()==submit){
-			String position=cb_position.getSelectedItem().toString();
-			String district=cb_district.getSelectedItem().toString();
-			String standard=cb_standard.getSelectedItem().toString();
-			String type=cb_type.getSelectedItem().toString();
-			
-			Zone zone=null;
-			if(district.equals("E")){
-				zone=Zone.E;
-				district=null;
-			}if(district.equals("W")){
-				zone=Zone.W;
-				district=null;
+			if(isPickup){
+				String position=cb_position.getSelectedItem().toString();
+				String district=cb_district.getSelectedItem().toString();
+				String standard=cb_standard.getSelectedItem().toString();
+				String type=cb_type.getSelectedItem().toString();			
+				PlayerData dataType;
+				Zone zone=null;
+				if(district.equals("E")){
+					zone=Zone.E;
+					district=null;
+				}if(district.equals("W")){
+					zone=Zone.W;
+					district=null;
+				}				
+				if(standard.equals("场均")){
+					standard="avg";
+				}if(standard.equals("总计")){
+					standard="total";
+				}
+				
+				switch(type){
+				case "得分":
+					dataType=PlayerData.score;
+					break;
+				case "篮板";
+					break;
+				case "助攻";
+					break;
+				case "得分/篮板/助攻";
+					break;
+				case "盖帽";
+					break;
+				case "抢断";
+					break;
+				case "犯规";
+					break;
+				case "失误";
+					break;
+				case "分钟";
+					break;
+				case "效率";
+					break;
+				case "投篮";
+					break;
+				case "三分";
+					break;
+				case "罚球";
+					break;
+				case "两双";
+					break;
+				}
+				//position为英文，三种单字母
+				ArrayList<PlayerPO> players=MainFrame.mainFrame.bl.pickUpPlayersByCondition(position, zone, district, standard, dataType);
+				if(players!=null){
+					MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
+					}
 			}
-			
-			if(standard.equals("场均")){
-				standard="avg";
-			}if(standard.equals("总计")){
-				standard="total";
-			}
-						
-			//position为英文，三种单字母
-//			ArrayList<PlayerPO> players=MainFrame.mainFrame.bl.pickUpPlayersByCondition(position, zone, district, standard, dataType);
-//			MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
-		
+
 		}
+		
+		//TODO 排序
+		if(isAvg){
+			for(int i=0;i<sort_list.size();i++){
+				if(e.getSource()==sort_list.get(i)){
+					
+				}
+			}
+		}else{
+			for(int i=0;i<sort_list.size();i++){
+				if(e.getSource()==sort_list.get(i)){
+					
+				}
+			}
+		}
+		
 		
 	}
 
