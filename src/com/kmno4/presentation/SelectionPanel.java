@@ -13,6 +13,9 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Enum.Zone;
+import PO.PlayerPO;
+
 import com.kmno4.common.Config;
 
 public class SelectionPanel extends JPanel implements MouseListener{
@@ -59,9 +62,10 @@ public class SelectionPanel extends JPanel implements MouseListener{
 	JLabel lb_place = new JLabel("分区");
 
 	JComboBox cb_position = new JComboBox(Config.PICKUP_POSITION);
-	JComboBox db_district = new JComboBox(Config.PICKUP_DISTRICT);
+	JComboBox cb_district = new JComboBox(Config.PICKUP_DISTRICT);
 	JComboBox cb_standard = new JComboBox(Config.PICKUP_STANDARD);
 	JComboBox cb_type=new JComboBox(Config.PICKUP_TYPE);
+	private final JLabel submit = new JLabel("提交");
 	
 
 
@@ -71,12 +75,18 @@ public class SelectionPanel extends JPanel implements MouseListener{
 	 */
 	public SelectionPanel() {
 		
+
 		this.setBounds(0, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
 				Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		this.setBackground(Color.GRAY);
 		setLayout(null);
 		
 				
+		cb_position.addMouseListener(this);
+		cb_district.addMouseListener(this);
+		cb_standard.addMouseListener(this);
+		cb_type.addMouseListener(this);
+
 		//第一行
 		lb_search.setBounds(606, 11, Config.TEXT_WIDTH, Config.TEXT_height);
 		add(lb_search);
@@ -104,9 +114,9 @@ public class SelectionPanel extends JPanel implements MouseListener{
 		lb_place.setBounds(21*Config.SORT_WIDTH-Config.SELECTION_COMB_TEAM_WIDTH-Config.COMB_TEXT_GAP, Config.COBM_LOCATION_Y, Config.TEXT_WIDTH, Config.TEXT_height);
 		add(lb_place);
 		
-		db_district.setBounds(21*Config.SORT_WIDTH-Config.SELECTION_COMB_TEAM_WIDTH, Config.COBM_LOCATION_Y, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_TEAM_WIDTH);
-		db_district.setBackground(Color.GRAY);
-		add(db_district);
+		cb_district.setBounds(21*Config.SORT_WIDTH-Config.SELECTION_COMB_TEAM_WIDTH, Config.COBM_LOCATION_Y, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_TEAM_WIDTH);
+		cb_district.setBackground(Color.GRAY);
+		add(cb_district);
 		
 		lb_percent.setBounds(15, 53, 35, 16);		
 		add(lb_percent);
@@ -122,6 +132,33 @@ public class SelectionPanel extends JPanel implements MouseListener{
 		cb_type.setBounds(21*Config.SORT_WIDTH-Config.SELECTION_COMB_TEAM_WIDTH, 49, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_CITY_WIDTH);
 		cb_type.setBackground(Color.GRAY);
 		add(cb_type);
+		
+		
+		//
+		JLabel pickup = new JLabel("筛选");
+		pickup.setBounds(69, 18, 61, 16);
+		add(pickup);
+		
+		JLabel sort = new JLabel("排序");
+		sort.setBounds(119, 18, 61, 16);
+		add(sort);
+		submit.setBounds(169, 18, 61, 16);
+		
+		add(submit);
+		
+		pickup.addMouseListener(new MouseAdapter(){
+		    public void mouseClicked(MouseEvent e) {
+		    	
+		    }
+		});
+		
+		sort.addMouseListener(new MouseAdapter(){
+		    public void mouseClicked(MouseEvent e) {
+		    	
+		    }
+		});
+		
+		submit.addMouseListener(this);
 
 
 	}
@@ -144,6 +181,30 @@ public class SelectionPanel extends JPanel implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
+		if(e.getSource()==submit){
+			String position=cb_position.getSelectedItem().toString();
+			String district=cb_district.getSelectedItem().toString();
+			String standard=cb_standard.getSelectedItem().toString();
+			String type=cb_type.getSelectedItem().toString();
+			
+			Zone zone=null;
+			if(district.equals("E")){
+				zone=Zone.E;
+				district=null;
+			}if(district.equals("W")){
+				zone=Zone.W;
+				district=null;
+			}
+			
+			if(standard.equals("场均")){
+				standard="avg";
+			}if(standard.equals("总计")){
+				standard="total";
+			}
+						
+			//position为英文，三种单字母
+			ArrayList<PlayerPO> players=MainFrame.mainFrame.bl.pickUpPlayersByCondition(position, zone, district, standard, dataType);
+		}
 		
 	}
 

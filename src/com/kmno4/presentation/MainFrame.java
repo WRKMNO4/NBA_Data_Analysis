@@ -137,6 +137,10 @@ public class MainFrame extends JFrame implements MouseListener{
 		players=bl.getAllPlayers();
 		teams=bl.getAllTeamsOf13_14();
 	}
+	
+	public void refreshPlayerTable(){
+		
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
