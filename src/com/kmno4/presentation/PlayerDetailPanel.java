@@ -22,7 +22,6 @@ import com.kmno4.common.Config;
 import com.kmno4.presentation.button.LabelButton;
 import com.kmno4.presentation.table.SlideTable;
 import com.kmno4.presentation.table.SmallTable;
-import com.kmno4.presentation.table.Table;
 
 @SuppressWarnings("serial")
 public class PlayerDetailPanel extends JPanel {
@@ -36,8 +35,8 @@ public class PlayerDetailPanel extends JPanel {
 	    player_team,
 	    avg, //场均切换标签
 	    sum; //总计切换标签
-	private Table
-	    mainInfo, //主要信息表格
+	private SmallTable mainInfo; //主要信息表格
+	private SlideTable
 	    sumInfo, //总计信息表格
 	    avgInfo; //场均信息表格
 	private GridBagLayout layout;
@@ -223,7 +222,7 @@ public class PlayerDetailPanel extends JPanel {
 		
 		avgInfo = new SlideTable(
 				Config.PLAYER_AVERAGE_INFO,
-				TableContentTransfer.transferPlayerAvgInfo(Config.PLAYER_AVERAGE_INFO.length,this.playerPO,1 ));
+				TableContentTransfer.transferPlayerAvgInfo(Config.PLAYER_AVERAGE_INFO.length,this.playerPO, 1));
 		//avgInfo.setFont(new Font("default", Font.PLAIN, 7), new Font("default", Font.PLAIN, 8));
 		
 		

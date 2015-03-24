@@ -16,7 +16,6 @@ import PO.TeamPO;
 import com.kmno4.common.Config;
 import com.kmno4.presentation.table.SlideTable;
 import com.kmno4.presentation.table.SmallTable;
-import com.kmno4.presentation.table.Table;
 
 @SuppressWarnings("serial")
 public class TeamDetailPanel extends JPanel {
@@ -29,8 +28,8 @@ public class TeamDetailPanel extends JPanel {
 	    team_achi,
 	    avg,
 	    sum;
-	private Table
-	    mainInfo,
+	private SmallTable mainInfo;
+	private SlideTable
 	    sumInfo,
 	    avgInfo;
 	private GridBagLayout layout;
