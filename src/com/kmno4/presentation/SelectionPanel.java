@@ -19,7 +19,7 @@ import PO.PlayerPO;
 import com.kmno4.common.Config;
 
 public class SelectionPanel extends JPanel implements MouseListener{
-	public  List<JLabel> sort;
+	public  List<JLabel> sort_list;
 	private TextField tf_search;
 	
 	//方位
@@ -29,32 +29,32 @@ public class SelectionPanel extends JPanel implements MouseListener{
 	JLabel title = new JLabel("球员");
 	JLabel lb_search = new JLabel("搜索");
 	
-//	JLabel lblA = new JLabel("得分");
-//	JLabel lblB = new JLabel("篮板");
-//	JLabel lblC = new JLabel("助攻");
-//	JLabel lblD = new JLabel("得分/篮板/助攻");
-//	JLabel lblE = new JLabel("盖帽");
-//	JLabel lblF = new JLabel("抢断");
-//	JLabel lblG = new JLabel("犯规");
-//	JLabel lblH = new JLabel("失误");
-//	JLabel lblI = new JLabel("分钟");
-//	JLabel lblJ = new JLabel("效率");
-//	JLabel lblK = new JLabel("投篮");
-//	JLabel lblL = new JLabel("三分");
-//	JLabel lblM = new JLabel("罚球");
-//	JLabel lblN = new JLabel("两双");
-//	JLabel lblO = new JLabel("O");
-//	JLabel lblP = new JLabel("P");
-//	JLabel lblQ = new JLabel("Q");
-//	JLabel lblR = new JLabel("R");
-//	JLabel lblS = new JLabel("S");
-//	JLabel lblT = new JLabel("T");
-//	JLabel lblU = new JLabel("U");
-//	JLabel lblV = new JLabel("V");
-//	JLabel lblW = new JLabel("W");
-//	JLabel lblX = new JLabel("X");
-//	JLabel lblY = new JLabel("Y");
-//	JLabel lblZ = new JLabel("Z");
+	JLabel lblA = new JLabel("得分");
+	JLabel lblB = new JLabel("篮板");
+	JLabel lblC = new JLabel("助攻");
+	JLabel lblD = new JLabel("得分/篮板/助攻");
+	JLabel lblE = new JLabel("盖帽");
+	JLabel lblF = new JLabel("抢断");
+	JLabel lblG = new JLabel("犯规");
+	JLabel lblH = new JLabel("失误");
+	JLabel lblI = new JLabel("分钟");
+	JLabel lblJ = new JLabel("效率");
+	JLabel lblK = new JLabel("投篮");
+	JLabel lblL = new JLabel("三分");
+	JLabel lblM = new JLabel("罚球");
+	JLabel lblN = new JLabel("两双");
+	JLabel lblO = new JLabel("O");
+	JLabel lblP = new JLabel("P");
+	JLabel lblQ = new JLabel("Q");
+	JLabel lblR = new JLabel("R");
+	JLabel lblS = new JLabel("S");
+	JLabel lblT = new JLabel("T");
+	JLabel lblU = new JLabel("U");
+	JLabel lblV = new JLabel("V");
+	JLabel lblW = new JLabel("W");
+	JLabel lblX = new JLabel("X");
+	JLabel lblY = new JLabel("Y");
+	JLabel lblZ = new JLabel("Z");
 	
 	JLabel lb_percent=new JLabel("标准");
 	JLabel lb_efficiency=new JLabel("类型");	
@@ -67,7 +67,8 @@ public class SelectionPanel extends JPanel implements MouseListener{
 	JComboBox cb_type=new JComboBox(Config.PICKUP_TYPE);
 	private final JLabel submit = new JLabel("提交");
 	
-
+	JLabel pickup = new JLabel("筛选");
+	JLabel sort = new JLabel("排序");
 
 
 	/**
@@ -81,7 +82,47 @@ public class SelectionPanel extends JPanel implements MouseListener{
 		this.setBackground(Color.GRAY);
 		setLayout(null);
 		
-				
+		sort_list=new ArrayList<JLabel>();
+		sort_list.add(lblA);
+		sort_list.add(lblB);
+		sort_list.add(lblC);
+		sort_list.add(lblD);
+		sort_list.add(lblE);
+		sort_list.add(lblF);
+		sort_list.add(lblG);
+		sort_list.add(lblH);
+		sort_list.add(lblI);
+		sort_list.add(lblJ);
+		sort_list.add(lblK);
+		sort_list.add(lblL);
+		sort_list.add(lblM);
+		sort_list.add(lblN);
+		sort_list.add(lblO);
+		sort_list.add(lblP);
+		sort_list.add(lblQ);
+		sort_list.add(lblR);
+		sort_list.add(lblS);
+		sort_list.add(lblT);
+		sort_list.add(lblU);
+		sort_list.add(lblV);
+		sort_list.add(lblW);
+		sort_list.add(lblX);
+		sort_list.add(lblY);
+		sort_list.add(lblZ);
+
+		for(int i=0;i<sort_list.size();i++){
+			if(i<14)
+				sort_list.get(i).setBounds(15+i*Config.SORT_WIDTH,20+45, Config.SORT_WIDTH, Config.SORT_HEIGHT);
+			else{
+				sort_list.get(i).setBounds(15+i*Config.SORT_WIDTH,20+70, Config.SORT_WIDTH, Config.SORT_HEIGHT);
+			}
+			sort_list.get(i).setBackground(Color.GRAY);
+			sort_list.get(i).setForeground(Color.WHITE);
+			add(sort_list.get(i));
+			sort_list.get(i).setVisible(false);
+		}
+		
+		
 		cb_position.addMouseListener(this);
 		cb_district.addMouseListener(this);
 		cb_standard.addMouseListener(this);
@@ -96,8 +137,6 @@ public class SelectionPanel extends JPanel implements MouseListener{
 		tf_search.setBounds(650, 11,Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_SEARCH_HEIGHT);
 		tf_search.setBackground(Color.GRAY);
 		add(tf_search);
-		
-		
 		
 		title.setBounds(15, 11, 30, 30);
 		add(title);
@@ -135,28 +174,16 @@ public class SelectionPanel extends JPanel implements MouseListener{
 		
 		
 		//
-		JLabel pickup = new JLabel("筛选");
-		pickup.setBounds(69, 18, 61, 16);
+		pickup.setBounds(69, 18, 35, 16);
 		add(pickup);
+		pickup.addMouseListener(this);
 		
-		JLabel sort = new JLabel("排序");
-		sort.setBounds(119, 18, 61, 16);
+		sort.setBounds(119, 18, 35, 16);
 		add(sort);
-		submit.setBounds(169, 18, 61, 16);
+		sort.addMouseListener(this);
+		submit.setBounds(169, 18, 35, 16);
 		
 		add(submit);
-		
-		pickup.addMouseListener(new MouseAdapter(){
-		    public void mouseClicked(MouseEvent e) {
-		    	
-		    }
-		});
-		
-		sort.addMouseListener(new MouseAdapter(){
-		    public void mouseClicked(MouseEvent e) {
-		    	
-		    }
-		});
 		
 		submit.addMouseListener(this);
 
@@ -180,7 +207,34 @@ public class SelectionPanel extends JPanel implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
+		if(e.getSource()==pickup){
+			lb_percent.setVisible(true);
+			lb_efficiency.setVisible(true);	
+			lb_location.setVisible(true);
+			lb_place.setVisible(true);
+			cb_position.setVisible(true);
+			cb_district.setVisible(true);
+			cb_standard.setVisible(true);
+			cb_type.setVisible(true);			
+			for(int i=0;i<sort_list.size();i++){
+				sort_list.get(i).setVisible(false);
+			}			
+		}if(e.getSource()==sort){
+			lb_percent.setVisible(false);
+			lb_efficiency.setVisible(false);	
+			lb_location.setVisible(false);
+			lb_place.setVisible(false);
+			cb_position.setVisible(false);
+			cb_district.setVisible(false);
+			cb_standard.setVisible(false);
+			cb_type.setVisible(false);			
+			for(int i=0;i<sort_list.size();i++){
+				this.add(sort_list.get(i));
+				sort_list.get(i).setVisible(true);
+			}	
+		}
+			
 		if(e.getSource()==submit){
 			String position=cb_position.getSelectedItem().toString();
 			String district=cb_district.getSelectedItem().toString();
@@ -203,8 +257,8 @@ public class SelectionPanel extends JPanel implements MouseListener{
 			}
 						
 			//position为英文，三种单字母
-			ArrayList<PlayerPO> players=MainFrame.mainFrame.bl.pickUpPlayersByCondition(position, zone, district, standard, dataType);
-			MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
+//			ArrayList<PlayerPO> players=MainFrame.mainFrame.bl.pickUpPlayersByCondition(position, zone, district, standard, dataType);
+//			MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
 		
 		}
 		
