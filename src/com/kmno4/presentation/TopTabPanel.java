@@ -97,7 +97,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 				MainFrame.mainFrame.teamSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 				MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.Player.toString());
 				
-				createAndShowPlayerTable();
+				refreshPlayerTable(MainFrame.mainFrame.players);
 				MainFrame.mainFrame.repaint();
 			}
 
@@ -111,7 +111,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 				MainFrame.mainFrame.teamSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 				MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.Team.toString());
 				
-				createAndShowTeamTable();
+				refreshTeamTable(MainFrame.mainFrame.teams);
 				MainFrame.mainFrame.repaint();
 			}
 		});
@@ -124,58 +124,62 @@ public class TopTabPanel extends JPanel implements MouseListener{
 				MainFrame.mainFrame.teamSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 				MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.Match.toString());
 				
-				createAndShowMatchTable();
+				refreshMatchTable();
 				MainFrame.mainFrame.repaint();
 			}
 		});
 		
-		createAndShowPlayerTable();
+		refreshPlayerTable(MainFrame.mainFrame.players);
 	}
 	
 	
 	
 	//画背景
-	public void paintComponent(Graphics g)
-	      {
-				super.paintComponent(g);
-				g.drawImage(Config.TOP_TAB_BACKGROUND.getImage(), 0, 0,Config.UI_WIDTH,Config.TOP_TAB_HEIGHT,this);
-	      }
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(Config.TOP_TAB_BACKGROUND.getImage(), 0, 0,Config.UI_WIDTH,Config.TOP_TAB_HEIGHT,this);
+	}
 	
-	//显示球员信息
-	private void createAndShowPlayerTable() {
-		if(tableBeShowing == null) { //第一次创建table
-			tableBeShowing = new Table(
-				Config.PLAYER_BASIC_INFO,
-					TableContentTransfer.transferPlayerBasicInfo( Config.PLAYER_BASIC_INFO.length,MainFrame.mainFrame.players));
-			setTableBounds();
-			MainFrame.mainFrame.add(tableBeShowing);
-			addPlayerLink();
-			return;
+	/**
+	 * 每次调用即刷新player列表
+	 * @param players
+	 */
+	public void refreshPlayerTable(List<PlayerPO> players){
+		if(tableBeShowing != null) {
+			tableBeShowing.setVisible(false);
+			MainFrame.mainFrame.remove(tableBeShowing);
 		}
-		tableBeShowing.setVisible(false);
-		MainFrame.mainFrame.remove(tableBeShowing);
 		tableBeShowing = new Table(
-				Config.PLAYER_BASIC_INFO,
-				TableContentTransfer.transferPlayerBasicInfo(Config.PLAYER_BASIC_INFO.length, MainFrame.mainFrame.players));
+			Config.PLAYER_BASIC_INFO,
+			TableContentTransfer.transferPlayerBasicInfo(Config.PLAYER_BASIC_INFO.length, players));
 		setTableBounds();
 		MainFrame.mainFrame.add(tableBeShowing);
 		addPlayerLink();
 	}
-	
-	//显示球队信息
-	private void createAndShowTeamTable() {
-		tableBeShowing.setVisible(false);
-		MainFrame.mainFrame.remove(tableBeShowing);
+	/**
+	 * 刷新team列表
+	 * @param teams
+	 */
+	public void refreshTeamTable(ArrayList<TeamPO> teams) {
+		if(tableBeShowing != null) {
+			tableBeShowing.setVisible(false);
+			MainFrame.mainFrame.remove(tableBeShowing);
+		}
 		tableBeShowing = new Table(
 				Config.TEAM_BASIC_INFO, 
-				TableContentTransfer.transferTeamBasicInfo(Config.TEAM_BASIC_INFO.length, MainFrame.mainFrame.teams));
+				TableContentTransfer.transferTeamBasicInfo(Config.TEAM_BASIC_INFO.length, teams));
 		setTableBounds();
 		MainFrame.mainFrame.add(tableBeShowing);
 		addTeamLink();
 	}
-	private void createAndShowMatchTable() {
-		tableBeShowing.setVisible(false);
-		MainFrame.mainFrame.remove(tableBeShowing);
+	/**
+	 * 刷新match列表
+	 */
+	public void refreshMatchTable() {
+		if(tableBeShowing != null) {
+			tableBeShowing.setVisible(false);
+			MainFrame.mainFrame.remove(tableBeShowing);
+		}
 		tableBeShowing = new Table(
 				new String[]{"a", "b", "c", "d"}, 
 				new String[][]{
@@ -185,6 +189,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		setTableBounds();
 		MainFrame.mainFrame.add(tableBeShowing);
 	}
+	
 	private void setTableBounds() {
 		int y = Config.TOP_TAB_HEIGHT + Config.INTRODUCTION_WHITE + Config.SELECTION_HEIGHT + 10;
 		tableBeShowing.setBounds(
@@ -194,10 +199,6 @@ public class TopTabPanel extends JPanel implements MouseListener{
 				Config.UI_HEIGHT - y);
 	}
 	
-	
-	/**
-	 * 第l列为进入具体信息Frame的链接
-	 */
 	private static final int PLAYER_LINK = 0;
 	private void addPlayerLink() {
 		TableList[][] t = tableBeShowing.body;
@@ -242,16 +243,12 @@ public class TopTabPanel extends JPanel implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-		
 	}
 
 
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 		if(e.getSource()==player){
 			player.setIcon(Config.TAB_PLAYER_CLICKED);
 		}if(e.getSource()==team){
@@ -263,14 +260,12 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		}if(e.getSource()==aboutus){
 			aboutus.setIcon(Config.TAB_ABOUT_CLICKED);
 		}
-		
 	}
 
 
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
 		if(e.getSource()==player){
 			player.setIcon(Config.TAB_PLAYER_UNPRESSED);
 		}if(e.getSource()==team){
@@ -289,7 +284,6 @@ public class TopTabPanel extends JPanel implements MouseListener{
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
 		if(e.getSource()==player){
 			player.setIcon(Config.TAB_PLAYER_ENTERED);
 		}if(e.getSource()==team){
@@ -308,7 +302,6 @@ public class TopTabPanel extends JPanel implements MouseListener{
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 		if(e.getSource()==player){
 			player.setIcon(Config.TAB_PLAYER_UNPRESSED);
 		}if(e.getSource()==team){
@@ -323,8 +316,4 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		
 	}
 	
-	public void refreshPlayerTable(List<PlayerPO> players){
-		
-	}
-
 }
