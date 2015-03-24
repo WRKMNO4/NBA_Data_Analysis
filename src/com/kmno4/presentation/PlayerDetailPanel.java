@@ -20,6 +20,8 @@ import PO.PlayerPO;
 
 import com.kmno4.common.Config;
 import com.kmno4.presentation.button.LabelButton;
+import com.kmno4.presentation.table.SlideTable;
+import com.kmno4.presentation.table.SmallTable;
 import com.kmno4.presentation.table.Table;
 
 @SuppressWarnings("serial")
@@ -187,12 +189,12 @@ public class PlayerDetailPanel extends JPanel {
 		add(avg);
 		
 		
-		mainInfo = new Table(
+		mainInfo = new SmallTable(
 				new String[] {"场均得分", "场均篮板", "场均助攻"},
-				new String[][] {{""+playerPO.getAveragePlayerData().getScore(),
-					""+playerPO.getAveragePlayerData().getNumberOfRebound(),
-					""+playerPO.getAveragePlayerData().getNumberOfAssist()}},
-				true);
+				new String[][] {{
+					"" + TableContentTransfer.cutTailOfAvgData(playerPO.getAveragePlayerData().getScore()),
+					"" + TableContentTransfer.cutTailOfAvgData(playerPO.getAveragePlayerData().getNumberOfRebound()),
+					"" + TableContentTransfer.cutTailOfAvgData(playerPO.getAveragePlayerData().getNumberOfAssist())}});
 		mainInfo.setFont(new Font("default", Font.PLAIN, 15), null);
 		c.gridx = 1;
 		c.gridy = 2;
@@ -205,10 +207,9 @@ public class PlayerDetailPanel extends JPanel {
 		layout.setConstraints(mainInfo, c);
 		add(mainInfo);
 		
-		sumInfo = new Table(
+		sumInfo = new SlideTable(
 				Config.PLAYER_TOTAL_INFO,
-				TableContentTransfer.transferPlayerTotalInfo(Config.PLAYER_TOTAL_INFO.length, this.playerPO,1),
-				true);
+				TableContentTransfer.transferPlayerTotalInfo(Config.PLAYER_TOTAL_INFO.length, this.playerPO,1));
 		c.gridx = 0;
 		c.gridy = 4;
 		c.gridwidth = 7;
@@ -220,10 +221,9 @@ public class PlayerDetailPanel extends JPanel {
 		add(sumInfo);
 		//sumInfo.setFont(new Font("default", Font.BOLD, 18), new Font("default", Font.PLAIN, 10));
 		
-		avgInfo = new Table(
+		avgInfo = new SlideTable(
 				Config.PLAYER_AVERAGE_INFO,
-				TableContentTransfer.transferPlayerAvgInfo(Config.PLAYER_AVERAGE_INFO.length,this.playerPO,1 ),
-				true);
+				TableContentTransfer.transferPlayerAvgInfo(Config.PLAYER_AVERAGE_INFO.length,this.playerPO,1 ));
 		//avgInfo.setFont(new Font("default", Font.PLAIN, 7), new Font("default", Font.PLAIN, 8));
 		
 		

@@ -30,14 +30,13 @@ public class Table extends JPanel {
 	private String[][] bodyStr;
 	
 	public Table(String[] headStr, String[][] bodyString) {
-		this(headStr, bodyString, false);
+		this(headStr, bodyString, DEFAULT_ROW_NUM);
 	}
 	
-	
-	
-	public Table(String[] headStr, String[][] bodyString, boolean isSmallData) {
+	public Table(String[] headStr, String[][] bodyString, int r) {
 		super();
 		page = 0;
+		rowNum = r;
 		bodyStr = bodyString;
 		if(bodyStr.length == 0) {
 			System.out.println("bodyStr.length == 0");
@@ -48,31 +47,9 @@ public class Table extends JPanel {
 			return;
 		}
 		setOpaque(true);
-		
-		if(isSmallData)
-			rowNum = bodyString.length;
-		if(rowNum == 0) rowNum = 8;//最大列数的初始化
 		setLayout(new GridLayout(rowNum + 2, 1));
 		head = new TableList(headStr, TableList.HEAD);
-		if(!isSmallData)
-			head.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					/*
-					for(int i = 0; i < rowNum; i ++) {
-						body[page][i].setVisible(false);
-						remove(body[page][i]);
-					}
-					flip();
-					
-					for(int i = 0; i < rowNum; i ++) {
-					    add(body[page][i]);
-					}
-					remove(turn);
-					add(turn);
-					*/
-				}
-			});
+		head.addMouseListener(flip = new Flip());
 		add(head);
 		
 		pageNum = (bodyStr.length - 1) / rowNum + 1;
@@ -84,12 +61,8 @@ public class Table extends JPanel {
 		    add(body[page][i]);
 		}
 		
-		
 		turn = new TP(this);
 		add(turn);
-		if(isSmallData) {
-			hidtp(true);
-		}
 	}
 	
 	public void setFont(Font headFont, Font bodyFont) {
@@ -120,20 +93,6 @@ public class Table extends JPanel {
 		}
 	}
 	
-	
-	public void hidtp(boolean isHid) {
-		if(isHid) {
-			turn.setVisible(false);
-			remove(turn);
-			setLayout(new GridLayout(rowNum + 1, 1));
-		}
-		else {
-			if(turn.getParent() == this) return;
-			setLayout(new GridLayout(rowNum + 2, 1));
-			add(turn);
-			turn.setVisible(true);
-		}
-	}
 	
 	
 	private void fillTable(String[][] bodyStr, TableList[][] body) {
@@ -175,14 +134,39 @@ public class Table extends JPanel {
 	/**
 	 * 最大列数（不包括表头）
 	 */
-	public  int rowNum;
+	protected  int rowNum;
+	private static final int DEFAULT_ROW_NUM = 8;
 	/**
 	 * 页数，不小于1
 	 */
-	private  int pageNum;
+	protected  int pageNum;
 	public int getPageNum() {
 		return pageNum;
 	}
 	
+	protected Flip flip;
+	/**
+	 * 翻转的响应
+	 * @author hutao
+	 *
+	 */
+	class Flip extends MouseAdapter {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			/*
+			for(int i = 0; i < rowNum; i ++) {
+				body[page][i].setVisible(false);
+				remove(body[page][i]);
+			}
+			flip();
+			
+			for(int i = 0; i < rowNum; i ++) {
+			    add(body[page][i]);
+			}
+			remove(turn);
+			add(turn);
+			*/
+		}
+	}
 
 }

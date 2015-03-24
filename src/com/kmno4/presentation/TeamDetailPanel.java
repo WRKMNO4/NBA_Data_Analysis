@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import PO.TeamPO;
 
 import com.kmno4.common.Config;
+import com.kmno4.presentation.table.SlideTable;
+import com.kmno4.presentation.table.SmallTable;
 import com.kmno4.presentation.table.Table;
 
 @SuppressWarnings("serial")
@@ -145,11 +147,13 @@ public class TeamDetailPanel extends JPanel {
 		layout.setConstraints(avg, c);
 		add(avg);
 		
-		mainInfo = new Table(
+		mainInfo = new SmallTable(
 				new String[]{"场均得分", "场均助攻", "场均篮板", "场均抢断"},
-				new String[][]{{teamPO.getAverageTeamData().getScore()+"", teamPO.getAverageTeamData().getNumberOfAssist()+"",
-					teamPO.getAverageTeamData().getNumberOfRebound()+"", teamPO.getAverageTeamData().getNumberOfSteal()+""}},
-				true);
+				new String[][]{{
+					TableContentTransfer.cutTailOfAvgData(teamPO.getAverageTeamData().getScore()) + "",
+					TableContentTransfer.cutTailOfAvgData(teamPO.getAverageTeamData().getNumberOfAssist()) + "",
+					TableContentTransfer.cutTailOfAvgData(teamPO.getAverageTeamData().getNumberOfRebound()) + "",
+					TableContentTransfer.cutTailOfAvgData(teamPO.getAverageTeamData().getNumberOfSteal()) + ""}});
 		c.gridx = 1;
 		c.gridy = 2;
 		c.gridwidth = 3;
@@ -161,11 +165,10 @@ public class TeamDetailPanel extends JPanel {
 		layout.setConstraints(mainInfo, c);
 		add(mainInfo);
 		
-		sumInfo = new Table(
+		sumInfo = new SlideTable(
 				Config.TEAM_TOTAL_INFO,
 				TableContentTransfer.transferTeamTotalInfo(Config.TEAM_TOTAL_INFO.length,
-						this.teamPO, 1),
-				true);
+						this.teamPO, 1));
 		c.gridx = 0;
 		c.gridy = 3;
 		c.gridwidth = 6;
@@ -176,11 +179,10 @@ public class TeamDetailPanel extends JPanel {
 		layout.setConstraints(sumInfo, c);
 		add(sumInfo);
 		
-		avgInfo = new Table(
+		avgInfo = new SlideTable(
 				Config.TEAM_AVERAGE_INFO,
 				TableContentTransfer.transferTeamAvgInfo(Config.TEAM_AVERAGE_INFO.length,
-						this.teamPO, 1),
-				true);
+						this.teamPO, 1));
 		//layout.setConstraints(avgInfo, c);
 		//add(avgInfo);
 		
