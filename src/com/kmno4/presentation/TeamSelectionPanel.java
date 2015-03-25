@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import com.kmno4.common.Config;
 
+@SuppressWarnings("serial")
 public class TeamSelectionPanel extends JPanel {
 
 	/**
