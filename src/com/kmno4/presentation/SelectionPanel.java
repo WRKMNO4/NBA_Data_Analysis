@@ -37,8 +37,8 @@ public class SelectionPanel extends JPanel implements MouseListener{
 
 	JComboBox cb_position = new JComboBox(Config.PICKUP_POSITION);
 	JComboBox cb_district = new JComboBox(Config.PICKUP_DISTRICT);
-	JComboBox cb_standard = new JComboBox(Config.PICKUP_TYPE);
-	JComboBox cb_type=new JComboBox(Config.PICKUP_STANDARD);
+	JComboBox cb_type = new JComboBox(Config.PICKUP_TYPE);
+	JComboBox cb_standard=new JComboBox(Config.PICKUP_STANDARD);
 	private final JLabel submit = new JLabel("提交");
 	
 	JLabel pickup = new JLabel("筛选");
@@ -64,8 +64,8 @@ public class SelectionPanel extends JPanel implements MouseListener{
 		
 		cb_position.addMouseListener(this);
 		cb_district.addMouseListener(this);
-		cb_standard.addMouseListener(this);
 		cb_type.addMouseListener(this);
+		cb_standard.addMouseListener(this);
 
 		//第一行
 		lb_search.setBounds(606, 11, Config.TEXT_WIDTH, Config.TEXT_height);
@@ -99,17 +99,17 @@ public class SelectionPanel extends JPanel implements MouseListener{
 		lb_standard.setBounds(15, 53, 35, 16);		
 		add(lb_standard);
 		
-		cb_standard.setBounds(59, 49, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_CITY_WIDTH);
-		cb_standard.setBackground(Color.gray);
-		add(cb_standard);
+		cb_type.setBounds(59, 49, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_CITY_WIDTH);
+		cb_type.setBackground(Color.gray);
+		add(cb_type);
 		
 		lb_type.setForeground(Color.WHITE);
 		lb_type.setBounds(560, 53, 35, 16);
 		add(lb_type);
 		
-		cb_type.setBounds(21*Config.SORT_WIDTH-Config.SELECTION_COMB_TEAM_WIDTH, 49, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_CITY_WIDTH);
-		cb_type.setBackground(Color.GRAY);
-		add(cb_type);
+		cb_standard.setBounds(21*Config.SORT_WIDTH-Config.SELECTION_COMB_TEAM_WIDTH, 49, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_CITY_WIDTH);
+		cb_standard.setBackground(Color.GRAY);
+		add(cb_standard);
 		
 		
 		//
@@ -163,8 +163,8 @@ public class SelectionPanel extends JPanel implements MouseListener{
 		lb_district.setVisible(true);
 		cb_position.setVisible(true);
 		cb_district.setVisible(true);
-		cb_standard.setVisible(true);
-		cb_type.setVisible(true);		
+		cb_type.setVisible(true);
+		cb_standard.setVisible(true);		
 		
 		avg_sort.setVisible(false);
 		total_sort.setVisible(false);
@@ -179,8 +179,8 @@ public class SelectionPanel extends JPanel implements MouseListener{
 		lb_district.setVisible(false);
 		cb_position.setVisible(false);
 		cb_district.setVisible(false);
-		cb_standard.setVisible(false);
-		cb_type.setVisible(false);			
+		cb_type.setVisible(false);
+		cb_standard.setVisible(false);			
 		
 		avg_sort.setVisible(true);
 		total_sort.setVisible(true);
@@ -220,8 +220,9 @@ public class SelectionPanel extends JPanel implements MouseListener{
 			if(isPickup){
 				String position=cb_position.getSelectedItem().toString();
 				String district=cb_district.getSelectedItem().toString();
-				String standard=cb_standard.getSelectedItem().toString();
-				String type=cb_type.getSelectedItem().toString();			
+				String type=cb_type.getSelectedItem().toString();
+				String standard=cb_standard.getSelectedItem().toString();		
+				System.out.println(standard+" "+type);
 				PlayerData dataType = null;
 				Zone zone=null;
 				if(position.equals("前锋"))
@@ -240,7 +241,7 @@ public class SelectionPanel extends JPanel implements MouseListener{
 				}				
 				if(standard.equals("场均")){
 					standard="avg";
-				}else if(standard.equals("总计")){
+				}else if(type.equals("总计")){
 					standard="total";
 				}
 				
@@ -288,6 +289,7 @@ public class SelectionPanel extends JPanel implements MouseListener{
 					dataType = PlayerData.double_double;
 					break;
 				}
+				System.out.println(dataType.toString());
 				//position为英文，三种单字母
 				ArrayList<PlayerPO> players=MainFrame.mainFrame.bl.pickUpPlayersByCondition(position, zone, district, standard, dataType);
 				
