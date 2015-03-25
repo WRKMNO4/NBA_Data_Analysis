@@ -160,8 +160,8 @@ public class TableContentTransfer {
 	}
 	
 	static String cutTailOfAvgData(double num){
-		DecimalFormat df = new DecimalFormat("#.0") ;
-		return df.format(num) ;
+		String result = String.format("%.2f", num) ;
+		return result ;
 	}
 	static String cutTailOfTotalData(double num){
 		int number = (int)num ;
