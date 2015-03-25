@@ -30,10 +30,10 @@ public class SelectionPanel extends JPanel implements MouseListener{
 	JLabel title = new JLabel("球员");
 	JLabel lb_search = new JLabel("搜索");
 	
-	JLabel lb_standard=new JLabel("标准");
-	JLabel lb_type=new JLabel("类型");	
-	JLabel lb_position = new JLabel("位置");
-	JLabel lb_district = new JLabel("分区");
+	JLabel lb_percent=new JLabel("标准");
+	JLabel lb_efficiency=new JLabel("类型");	
+	JLabel lb_location = new JLabel("位置");
+	JLabel lb_place = new JLabel("分区");
 
 	JComboBox cb_position = new JComboBox(Config.PICKUP_POSITION);
 	JComboBox cb_district = new JComboBox(Config.PICKUP_DISTRICT);
@@ -81,31 +81,31 @@ public class SelectionPanel extends JPanel implements MouseListener{
 		add(title);
 		
 
-		lb_position.setBounds(13, Config.COBM_LOCATION_Y, Config.TEXT_WIDTH, Config.TEXT_height);
-		add(lb_position);
+		lb_location.setBounds(13, Config.COBM_LOCATION_Y, Config.TEXT_WIDTH, Config.TEXT_height);
+		add(lb_location);
 					
 		cb_position.setBounds(59, Config.COBM_LOCATION_Y, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_CITY_WIDTH);
 		cb_position.setBackground(Color.GRAY);
 		add(cb_position);
 		
 		
-		lb_district.setBounds(21*Config.SORT_WIDTH-Config.SELECTION_COMB_TEAM_WIDTH-Config.COMB_TEXT_GAP, Config.COBM_LOCATION_Y, Config.TEXT_WIDTH, Config.TEXT_height);
-		add(lb_district);
+		lb_place.setBounds(21*Config.SORT_WIDTH-Config.SELECTION_COMB_TEAM_WIDTH-Config.COMB_TEXT_GAP, Config.COBM_LOCATION_Y, Config.TEXT_WIDTH, Config.TEXT_height);
+		add(lb_place);
 		
 		cb_district.setBounds(21*Config.SORT_WIDTH-Config.SELECTION_COMB_TEAM_WIDTH, Config.COBM_LOCATION_Y, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_TEAM_WIDTH);
 		cb_district.setBackground(Color.GRAY);
 		add(cb_district);
 		
-		lb_standard.setBounds(15, 53, 35, 16);		
-		add(lb_standard);
+		lb_percent.setBounds(15, 53, 35, 16);		
+		add(lb_percent);
 		
 		cb_standard.setBounds(59, 49, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_CITY_WIDTH);
 		cb_standard.setBackground(Color.gray);
 		add(cb_standard);
 		
-		lb_type.setForeground(Color.WHITE);
-		lb_type.setBounds(560, 53, 35, 16);
-		add(lb_type);
+		lb_efficiency.setForeground(Color.WHITE);
+		lb_efficiency.setBounds(560, 53, 35, 16);
+		add(lb_efficiency);
 		
 		cb_type.setBounds(21*Config.SORT_WIDTH-Config.SELECTION_COMB_TEAM_WIDTH, 49, Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_CITY_WIDTH);
 		cb_type.setBackground(Color.GRAY);
@@ -126,16 +126,14 @@ public class SelectionPanel extends JPanel implements MouseListener{
 
 		avg_sort.setBounds(15, 45, Config.SORT_WIDTH*2, Config.SORT_HEIGHT);
 		total_sort.setBounds(200, 45, Config.SORT_WIDTH*2, Config.SORT_HEIGHT);
-		cb_avg_sort_data.setBounds(15, 70, Config.SORT_WIDTH*8, Config.SORT_HEIGHT);
-		cb_total_sort_data.setBounds(15, 70, Config.SORT_WIDTH*8, Config.SORT_HEIGHT);
+		cb_avg_sort_data.setBounds(15, 70, Config.SORT_WIDTH*4, Config.SORT_HEIGHT);
+		cb_total_sort_data.setBounds(15, 70, Config.SORT_WIDTH*4, Config.SORT_HEIGHT);
 		add(avg_sort);
 		add(total_sort);
 		add(cb_avg_sort_data);
 		add(cb_total_sort_data);
 		avg_sort.setVisible(false);
 		total_sort.setVisible(false);
-		avg_sort.addMouseListener(this);
-		total_sort.addMouseListener(this);
 		cb_avg_sort_data.setVisible(false);
 		cb_total_sort_data.setVisible(false);
 
@@ -157,15 +155,14 @@ public class SelectionPanel extends JPanel implements MouseListener{
 	}
 	
 	public void showPickup(){
-		lb_standard.setVisible(true);
-		lb_type.setVisible(true);	
-		lb_position.setVisible(true);
-		lb_district.setVisible(true);
+		lb_percent.setVisible(true);
+		lb_efficiency.setVisible(true);	
+		lb_location.setVisible(true);
+		lb_place.setVisible(true);
 		cb_position.setVisible(true);
 		cb_district.setVisible(true);
 		cb_standard.setVisible(true);
 		cb_type.setVisible(true);		
-		
 		avg_sort.setVisible(false);
 		total_sort.setVisible(false);
 		cb_avg_sort_data.setVisible(false);	
@@ -173,15 +170,14 @@ public class SelectionPanel extends JPanel implements MouseListener{
 	}
 			
 	public void showSortAvg(){
-		lb_standard.setVisible(false);
-		lb_type.setVisible(false);	
-		lb_position.setVisible(false);
-		lb_district.setVisible(false);
+		lb_percent.setVisible(false);
+		lb_efficiency.setVisible(false);	
+		lb_location.setVisible(false);
+		lb_place.setVisible(false);
 		cb_position.setVisible(false);
 		cb_district.setVisible(false);
 		cb_standard.setVisible(false);
 		cb_type.setVisible(false);			
-		
 		avg_sort.setVisible(true);
 		total_sort.setVisible(true);
 		cb_avg_sort_data.setVisible(true);	
@@ -211,7 +207,6 @@ public class SelectionPanel extends JPanel implements MouseListener{
 		}
 		
 		if(e.getSource()==total_sort){
-		
 			showSortTotal();
 			isAvg=false;
 		}
@@ -224,23 +219,16 @@ public class SelectionPanel extends JPanel implements MouseListener{
 				String type=cb_type.getSelectedItem().toString();			
 				PlayerData dataType = null;
 				Zone zone=null;
-				if(position.equals("前锋"))
-					position="F";
-				else if(position.equals("中锋"))
-					position="C";
-				else 
-					position="G";
-				
-				if(district.equals("东部")){
+				if(district.equals("E")){
 					zone=Zone.E;
 					district=null;
-				}else if(district.equals("西部")){
+				}if(district.equals("W")){
 					zone=Zone.W;
 					district=null;
 				}				
 				if(standard.equals("场均")){
 					standard="avg";
-				}else if(standard.equals("总计")){
+				}if(standard.equals("总计")){
 					standard="total";
 				}
 				
@@ -290,20 +278,12 @@ public class SelectionPanel extends JPanel implements MouseListener{
 				}
 				//position为英文，三种单字母
 				ArrayList<PlayerPO> players=MainFrame.mainFrame.bl.pickUpPlayersByCondition(position, zone, district, standard, dataType);
-				
-				System.out.println(players.size());
-				
-				if(players!=null&&players.size()!=0){
+				if(players!=null){
 					MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
 					}
 			}else{
-				//此处是场均排序
+				//此处是筛选
 				if(isAvg){
-					
-//					ArrayList<PlayerPO> players=MainFrame.mainFrame.bl.sortPlayersByComprehension(standard, dataType)
-				}
-				//总计排序
-				else{
 					
 				}
 			}
