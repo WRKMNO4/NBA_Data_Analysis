@@ -12,19 +12,13 @@ import javax.swing.JPanel;
 import com.kmno4.common.Config;
 
 @SuppressWarnings("serial")
-<<<<<<< HEAD
 public class TeamSelectionPanel extends JPanel implements MouseListener{
 
-	/**
-	 * Create the panel.
-	 */
-=======
-public class TeamSelectionPanel extends JPanel {
+
 	private JComboBox<String> standrad;
 	private JComboBox<String> type;
 	
 	
->>>>>>> origin/master
 	public TeamSelectionPanel() {
 		setLayout(null);
 		this.setBounds(0, 0, Config.UI_WIDTH, Config.MATCH_SELECTION_PANEL_HEIGHT);
@@ -43,7 +37,6 @@ public class TeamSelectionPanel extends JPanel {
 				super.paintComponent(g);
 				g.drawImage(Config.TEAM_SELECTION_BACKGROUND.getImage(), 0, 0,Config.UI_WIDTH,Config.SELECTION_HEIGHT,this);
 	      }
-<<<<<<< HEAD
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -74,10 +67,5 @@ public class TeamSelectionPanel extends JPanel {
 		// TODO Auto-generated method stub
 		
 	}
-=======
-	
-	
-	
-	
->>>>>>> origin/master
+
 }
