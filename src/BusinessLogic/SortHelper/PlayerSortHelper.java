@@ -178,13 +178,11 @@ public class PlayerSortHelper implements Comparator<PlayerPO>{
 		}
 		if(number1>number2){
 			return -1;
-		}else{
-			if(number1 == number2 ){
-				return 0 ;
-			}else{
-				return 1 ;
-			}
 		}
+		else if(number1 == number2 )
+			return 0 ;
+		else
+			return 1 ;
 	}
 	int transform(String time){
 		String[] strs = time.split(":");
