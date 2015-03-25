@@ -30,13 +30,16 @@ public class PlayerController implements PlayerBusinessLogic{
 	public ArrayList<PlayerPO> pickUpPlayersByCondition(String position,
 			Zone zone, String district, String standard,PlayerData dataType) {
 		// TODO Auto-generated method stub
+		System.out.println(position+" "+zone.toString()+" ");
 		ArrayList<PlayerPO> results = new ArrayList<PlayerPO>();
 		for(PlayerPO onePlayer: playerController.getAllPlayers()){
 			TeamPO ofTeam = TeamListPO.findTeamByShortName(onePlayer.getTeam());
-			if(onePlayer.getPosition().equals(position) && (ofTeam.getZone().equals(zone) || 
+			System.out.println(ofTeam==null);
+			if(ofTeam!=null && onePlayer.getPosition().contains(position) && (ofTeam.getZone().equals(zone) || 
 					ofTeam.getDistrict().equals(district)))
 				results.add(onePlayer);
 		}
+		System.out.println(results.size()+"q");
 		Collections.sort(results, new PlayerSortHelper(standard, dataType));
 		if(results.size()>50)
 			results.subList(0, 50);

@@ -224,16 +224,23 @@ public class SelectionPanel extends JPanel implements MouseListener{
 				String type=cb_type.getSelectedItem().toString();			
 				PlayerData dataType = null;
 				Zone zone=null;
-				if(district.equals("E")){
+				if(position.equals("前锋"))
+					position="F";
+				else if(position.equals("中锋"))
+					position="C";
+				else 
+					position="G";
+				
+				if(district.equals("东部")){
 					zone=Zone.E;
 					district=null;
-				}if(district.equals("W")){
+				}else if(district.equals("西部")){
 					zone=Zone.W;
 					district=null;
 				}				
 				if(standard.equals("场均")){
 					standard="avg";
-				}if(standard.equals("总计")){
+				}else if(standard.equals("总计")){
 					standard="total";
 				}
 				
