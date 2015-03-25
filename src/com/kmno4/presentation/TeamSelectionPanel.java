@@ -2,6 +2,8 @@ package com.kmno4.presentation;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -10,11 +12,19 @@ import javax.swing.JPanel;
 import com.kmno4.common.Config;
 
 @SuppressWarnings("serial")
+<<<<<<< HEAD
+public class TeamSelectionPanel extends JPanel implements MouseListener{
+
+	/**
+	 * Create the panel.
+	 */
+=======
 public class TeamSelectionPanel extends JPanel {
 	private JComboBox<String> standrad;
 	private JComboBox<String> type;
 	
 	
+>>>>>>> origin/master
 	public TeamSelectionPanel() {
 		setLayout(null);
 		this.setBounds(0, 0, Config.UI_WIDTH, Config.MATCH_SELECTION_PANEL_HEIGHT);
@@ -33,8 +43,41 @@ public class TeamSelectionPanel extends JPanel {
 				super.paintComponent(g);
 				g.drawImage(Config.TEAM_SELECTION_BACKGROUND.getImage(), 0, 0,Config.UI_WIDTH,Config.SELECTION_HEIGHT,this);
 	      }
+<<<<<<< HEAD
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+=======
 	
 	
 	
 	
+>>>>>>> origin/master
 }
