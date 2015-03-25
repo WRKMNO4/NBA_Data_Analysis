@@ -55,5 +55,7 @@ public class TeamDetailFrame extends JFrame {
 		
 		@SuppressWarnings("unused")
 		MoveOfFrame m = new MoveOfFrame(this);
+		@SuppressWarnings("unused")
+		RightClickClose r = new RightClickClose(this);
 	}
 }

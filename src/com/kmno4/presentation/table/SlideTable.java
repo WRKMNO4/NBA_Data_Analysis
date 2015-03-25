@@ -12,7 +12,7 @@ import com.kmno4.common.Config;
 import com.kmno4.presentation.button.BorderLabel;
 
 /**
- * 
+ * TODO 更动感的移动
  * @author hutao
  *
  */
@@ -28,8 +28,9 @@ public class SlideTable extends JPanel {
 		this(headStr, bodyString, 0, 0, TABLE_UNIT_WIDTH * headStr.length, TABLE_HEIGHT);
 	}
 	private static final int TABLE_HEIGHT = 50;
-	private static final int TABLE_UNIT_WIDTH = 67;
+	private static final int TABLE_UNIT_WIDTH = 68;
 	
+	@SuppressWarnings("unused")
 	private final int tableX, tableY, tableWidth, tableHeight;
 	public SlideTable(String[] headStr, String[][] bodyString, int x, int y, int width, int height) {
 		super();
