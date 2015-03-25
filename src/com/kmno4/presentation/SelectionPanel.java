@@ -19,7 +19,7 @@ import PO.PlayerPO;
 import com.kmno4.common.Config;
 
 public class SelectionPanel extends JPanel implements MouseListener{
-	public  List<JLabel> sort_list;
+	public  List<JLabel> avg_sort_list;
 	private TextField tf_search;
 	boolean isPickup=true;
 	boolean isAvg=true;
@@ -29,33 +29,6 @@ public class SelectionPanel extends JPanel implements MouseListener{
 	
 	JLabel title = new JLabel("球员");
 	JLabel lb_search = new JLabel("搜索");
-	
-	JLabel lblA = new JLabel("得分");
-	JLabel lblB = new JLabel("篮板");
-	JLabel lblC = new JLabel("助攻");
-	JLabel lblD = new JLabel("得分/篮板/助攻");
-	JLabel lblE = new JLabel("盖帽");
-	JLabel lblF = new JLabel("抢断");
-	JLabel lblG = new JLabel("犯规");
-	JLabel lblH = new JLabel("失误");
-	JLabel lblI = new JLabel("分钟");
-	JLabel lblJ = new JLabel("效率");
-	JLabel lblK = new JLabel("投篮");
-	JLabel lblL = new JLabel("三分");
-	JLabel lblM = new JLabel("罚球");
-	JLabel lblN = new JLabel("两双");
-	JLabel lblO = new JLabel("O");
-	JLabel lblP = new JLabel("P");
-	JLabel lblQ = new JLabel("Q");
-	JLabel lblR = new JLabel("R");
-	JLabel lblS = new JLabel("S");
-	JLabel lblT = new JLabel("T");
-	JLabel lblU = new JLabel("U");
-	JLabel lblV = new JLabel("V");
-	JLabel lblW = new JLabel("W");
-	JLabel lblX = new JLabel("X");
-	JLabel lblY = new JLabel("Y");
-	JLabel lblZ = new JLabel("Z");
 	
 	JLabel lb_percent=new JLabel("标准");
 	JLabel lb_efficiency=new JLabel("类型");	
@@ -69,7 +42,12 @@ public class SelectionPanel extends JPanel implements MouseListener{
 	private final JLabel submit = new JLabel("提交");
 	
 	JLabel pickup = new JLabel("筛选");
+	
 	JLabel sort = new JLabel("排序");
+	JLabel avg_sort=new JLabel("场均数据");
+	JLabel total_sort=new JLabel("总数据");
+	JComboBox cb_avg_sort_data=new JComboBox(Config.PLAYER_AVERAGE_INFO);
+	JComboBox cb_total_sort_data=new JComboBox(Config.PLAYER_TOTAL_INFO);
 
 
 	/**
@@ -82,54 +60,6 @@ public class SelectionPanel extends JPanel implements MouseListener{
 				Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		this.setBackground(Color.GRAY);
 		setLayout(null);
-		
-		sort_list=new ArrayList<JLabel>();
-		sort_list.add(lblA);
-		sort_list.add(lblB);
-		sort_list.add(lblC);
-		sort_list.add(lblD);
-		sort_list.add(lblE);
-		sort_list.add(lblF);
-		sort_list.add(lblG);
-		sort_list.add(lblH);
-		sort_list.add(lblI);
-		sort_list.add(lblJ);
-		sort_list.add(lblK);
-		sort_list.add(lblL);
-		sort_list.add(lblM);
-		sort_list.add(lblN);
-		sort_list.add(lblO);
-		sort_list.add(lblP);
-		sort_list.add(lblQ);
-		sort_list.add(lblR);
-		sort_list.add(lblS);
-		sort_list.add(lblT);
-		sort_list.add(lblU);
-		sort_list.add(lblV);
-		sort_list.add(lblW);
-		sort_list.add(lblX);
-		sort_list.add(lblY);
-		sort_list.add(lblZ);
-
-		for(int i=0;i<sort_list.size();i++){
-			if(i<14){
-				if(i==3){
-					//有点长的
-					sort_list.get(i).setBounds(15+i*Config.SORT_WIDTH, 45, Config.SORT_WIDTH*4, Config.SORT_HEIGHT);
-				}else{
-					sort_list.get(i).setBounds(15+i*Config.SORT_WIDTH, 45, Config.SORT_WIDTH, Config.SORT_HEIGHT);
-					if(i>3){
-						sort_list.get(i).setBounds(15+(i+2)*Config.SORT_WIDTH, 45, Config.SORT_WIDTH, Config.SORT_HEIGHT);
-					}
-				}
-			}else{
-				sort_list.get(i).setBounds(15+i*Config.SORT_WIDTH,20+70, Config.SORT_WIDTH, Config.SORT_HEIGHT);
-			}
-			sort_list.get(i).setBackground(Color.GRAY);
-			sort_list.get(i).setForeground(Color.WHITE);
-			add(sort_list.get(i));
-			sort_list.get(i).setVisible(false);
-		}
 		
 		
 		cb_position.addMouseListener(this);
@@ -191,11 +121,21 @@ public class SelectionPanel extends JPanel implements MouseListener{
 		add(sort);
 		sort.addMouseListener(this);
 		submit.setBounds(169, 18, 35, 16);
-		
 		add(submit);
-		
 		submit.addMouseListener(this);
 
+		avg_sort.setBounds(15, 45, Config.SORT_WIDTH*2, Config.SORT_HEIGHT);
+		total_sort.setBounds(200, 45, Config.SORT_WIDTH*2, Config.SORT_HEIGHT);
+		cb_avg_sort_data.setBounds(15, 70, Config.SORT_WIDTH*4, Config.SORT_HEIGHT);
+		cb_total_sort_data.setBounds(15, 70, Config.SORT_WIDTH*4, Config.SORT_HEIGHT);
+		add(avg_sort);
+		add(total_sort);
+		add(cb_avg_sort_data);
+		add(cb_total_sort_data);
+		avg_sort.setVisible(false);
+		total_sort.setVisible(false);
+		cb_avg_sort_data.setVisible(false);
+		cb_total_sort_data.setVisible(false);
 
 	}
 	
@@ -213,37 +153,62 @@ public class SelectionPanel extends JPanel implements MouseListener{
 	public void moveOut(){
 		
 	}
+	
+	public void showPickup(){
+		lb_percent.setVisible(true);
+		lb_efficiency.setVisible(true);	
+		lb_location.setVisible(true);
+		lb_place.setVisible(true);
+		cb_position.setVisible(true);
+		cb_district.setVisible(true);
+		cb_standard.setVisible(true);
+		cb_type.setVisible(true);		
+		avg_sort.setVisible(false);
+		total_sort.setVisible(false);
+		cb_avg_sort_data.setVisible(false);	
+		cb_total_sort_data.setVisible(false);
+	}
+			
+	public void showSortAvg(){
+		lb_percent.setVisible(false);
+		lb_efficiency.setVisible(false);	
+		lb_location.setVisible(false);
+		lb_place.setVisible(false);
+		cb_position.setVisible(false);
+		cb_district.setVisible(false);
+		cb_standard.setVisible(false);
+		cb_type.setVisible(false);			
+		avg_sort.setVisible(true);
+		total_sort.setVisible(true);
+		cb_avg_sort_data.setVisible(true);	
+		cb_total_sort_data.setVisible(false);
+	}
+	
+	
+	public void showSortTotal(){
+		cb_avg_sort_data.setVisible(false);
+		cb_total_sort_data.setVisible(true);
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
 		if(e.getSource()==pickup){
-			lb_percent.setVisible(true);
-			lb_efficiency.setVisible(true);	
-			lb_location.setVisible(true);
-			lb_place.setVisible(true);
-			cb_position.setVisible(true);
-			cb_district.setVisible(true);
-			cb_standard.setVisible(true);
-			cb_type.setVisible(true);
-			for(int i=0;i<sort_list.size();i++){
-				sort_list.get(i).setVisible(false);
-			}	
+			showPickup();
 			isPickup=true;
 		}if(e.getSource()==sort){
-			lb_percent.setVisible(false);
-			lb_efficiency.setVisible(false);	
-			lb_location.setVisible(false);
-			lb_place.setVisible(false);
-			cb_position.setVisible(false);
-			cb_district.setVisible(false);
-			cb_standard.setVisible(false);
-			cb_type.setVisible(false);			
-			for(int i=0;i<sort_list.size();i++){
-				this.add(sort_list.get(i));
-				sort_list.get(i).setVisible(true);
-			}
+			showSortAvg();
 			isPickup=false;
+		}
+		
+		if(e.getSource()==avg_sort){
+			showSortAvg();
+			isAvg=true;
+		}
+		
+		if(e.getSource()==total_sort){
+			showSortTotal();
+			isAvg=false;
 		}
 			
 		if(e.getSource()==submit){
@@ -252,7 +217,7 @@ public class SelectionPanel extends JPanel implements MouseListener{
 				String district=cb_district.getSelectedItem().toString();
 				String standard=cb_standard.getSelectedItem().toString();
 				String type=cb_type.getSelectedItem().toString();			
-				PlayerData dataType;
+				PlayerData dataType = null;
 				Zone zone=null;
 				if(district.equals("E")){
 					zone=Zone.E;
@@ -316,26 +281,15 @@ public class SelectionPanel extends JPanel implements MouseListener{
 				if(players!=null){
 					MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
 					}
+			}else{
+				//此处是筛选
+				if(isAvg){
+					
+				}
 			}
 
 		}
-		
-		//TODO 排序
-		if(isAvg){
-			for(int i=0;i<sort_list.size();i++){
-				if(e.getSource()==sort_list.get(i)){
-					
-				}
-			}
-		}else{
-			for(int i=0;i<sort_list.size();i++){
-				if(e.getSource()==sort_list.get(i)){
-					
-				}
-			}
-		}
-		
-		
+						
 	}
 
 	@Override
@@ -362,3 +316,4 @@ public class SelectionPanel extends JPanel implements MouseListener{
 		
 	}
 }
+

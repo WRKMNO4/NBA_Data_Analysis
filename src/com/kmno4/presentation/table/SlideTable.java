@@ -12,7 +12,7 @@ import com.kmno4.common.Config;
 import com.kmno4.presentation.button.BorderLabel;
 
 /**
- * 
+ * TODO 更动感的移动
  * @author hutao
  *
  */
@@ -28,21 +28,21 @@ public class SlideTable extends JPanel {
 		this(headStr, bodyString, 0, 0, TABLE_UNIT_WIDTH * headStr.length, TABLE_HEIGHT);
 	}
 	private static final int TABLE_HEIGHT = 50;
-	private static final int TABLE_UNIT_WIDTH = 66;
+	private static final int TABLE_UNIT_WIDTH = 68;
 	
-	
+	@SuppressWarnings("unused")
+	private final int tableX, tableY, tableWidth, tableHeight;
 	public SlideTable(String[] headStr, String[][] bodyString, int x, int y, int width, int height) {
 		super();
-		max_address = Config.PLAYER_DETAIL_UI_WIDTH / TABLE_UNIT_WIDTH - headStr.length;
+		max_address = headStr.length - Config.PLAYER_DETAIL_UI_WIDTH / TABLE_UNIT_WIDTH;
 		setLayout(null);
 		table = new SmallTable(headStr, bodyString);
-		table.setLocation(x, y);
-		table.setSize(width, height);
+		table.setLocation((tableX = x), (tableY = y));
+		table.setSize((tableWidth = width), (tableHeight = height));
 		add(table);
 		
 		left = new BorderLabel("←", JLabel.CENTER);
-		left.setBounds(x, table.getHeight() + y, FLIG_LABEL_WIDTH, (int)(height * FLIG_LABEL_HEIGHT_RATE));
-		left.setEnabled(false);
+		left.setBounds(x, tableHeight + y, FLIG_LABEL_WIDTH, (int)(height * FLIG_LABEL_HEIGHT_RATE));
 		left.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				if(!left.isEnabled()) return;
@@ -57,6 +57,7 @@ public class SlideTable extends JPanel {
 		
 		right = new BorderLabel("→", JLabel.CENTER);
 		right.setBounds(x + left.getWidth(), left.getY(), FLIG_LABEL_WIDTH, (int)(height * FLIG_LABEL_HEIGHT_RATE));
+		right.setEnabled(false);
 		right.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				if(!right.isEnabled()) return;
@@ -68,6 +69,9 @@ public class SlideTable extends JPanel {
 			}
 		});
 		add(right);
+		
+		slideThread = new SlideThread();
+		slideThread.start();
 	}
 	private static final int FLIG_LABEL_WIDTH = 50;
 	private static final double FLIG_LABEL_HEIGHT_RATE = 0.3;
@@ -114,6 +118,8 @@ public class SlideTable extends JPanel {
 		if(!aFlag) { moving = MOVING_DIE; }
 		else {
 			if(slideThread != null && slideThread.isAlive()) return;
+			table.setLocation(tableX, tableY);
+			current_address = 0;
 			moving = MOVING_NONE;
 			slideThread = new SlideThread();
 			slideThread.start();
@@ -124,7 +130,30 @@ public class SlideTable extends JPanel {
 	class SlideThread extends Thread {
 		public void run() {
 			while(moving != MOVING_DIE) {
-				 
+				if(moving == MOVING_LEFT) {
+					current_address ++;
+					table.setLocation(table.getX() - TABLE_UNIT_WIDTH, table.getY());
+					if(current_address == max_address) {
+						left.setEnabled(false);
+						moving = MOVING_NONE;
+					}
+					if(!right.isEnabled()) right.setEnabled(true);
+				}
+				else if(moving == MOVING_RIGHT) {
+					current_address --;
+					table.setLocation(table.getX() + TABLE_UNIT_WIDTH, table.getY());
+					if(current_address == 0) {
+						right.setEnabled(false);
+						moving = MOVING_NONE;
+					}
+					if(!left.isEnabled()) left.setEnabled(true);
+				}
+				
+				try {
+					Thread.sleep(150);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}

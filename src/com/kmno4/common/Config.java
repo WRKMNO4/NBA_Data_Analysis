@@ -29,6 +29,9 @@ public class Config {
 	public static final String[] PICKUP_TYPE={"得分","篮板","助攻","得分/篮板/助攻","盖帽","抢断","犯规","失误","分钟","效率","投篮","三分","罚球","两双"};
 	public static final String[] PICKUP_STANDARD={"总计","场均"};
 	
+	public static final String[] SORT_TEAM_TYPE = {};
+	public static final String[] SORT_TEAM_STANDRAD = {"总计", "场均"};
+	
 	public static final int MAIN_FRAME_X=100;
 	public static final int MAIN_FRAME_Y=100;
 	public static final int UI_WIDTH=800;
@@ -55,7 +58,7 @@ public class Config {
 	public static final int SELECTION_SEARCH_WIDTH=140;
 	public static final int TEXT_WIDTH=35;
 	public static final int TEXT_height=15;
-	public static final int SORT_WIDTH=30;
+	public static final int SORT_WIDTH=60;
 	public static final int SORT_HEIGHT=30;
 	public static final int COBM_LOCATION_Y=95;
 	public static final int COMB_TEXT_GAP=50;
