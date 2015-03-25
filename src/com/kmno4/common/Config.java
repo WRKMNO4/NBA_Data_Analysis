@@ -55,7 +55,7 @@ public class Config {
 	public static final int SELECTION_SEARCH_WIDTH=140;
 	public static final int TEXT_WIDTH=35;
 	public static final int TEXT_height=15;
-	public static final int SORT_WIDTH=60;
+	public static final int SORT_WIDTH=30;
 	public static final int SORT_HEIGHT=30;
 	public static final int COBM_LOCATION_Y=95;
 	public static final int COMB_TEXT_GAP=50;
