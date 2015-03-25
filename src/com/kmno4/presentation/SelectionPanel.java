@@ -271,31 +271,44 @@ public class SelectionPanel extends JPanel implements MouseListener{
 				case "得分":
 					dataType=PlayerData.score;
 					break;
-				case "篮板";
+				case "篮板":
+					dataType=PlayerData.numberOfRebound;
 					break;
-				case "助攻";
+				case "助攻":
+					dataType=PlayerData.numberOfAssist;
 					break;
-				case "得分/篮板/助攻";
+				case "得分/篮板/助攻":
+					dataType=PlayerData.comprehension;
 					break;
-				case "盖帽";
+				case "盖帽":
+					dataType=PlayerData.numberOfBlock;
 					break;
-				case "抢断";
+				case "抢断":
+					dataType=PlayerData.numberOfSteal;
 					break;
-				case "犯规";
+				case "犯规":
+					dataType=PlayerData.numberOfFoul;
 					break;
-				case "失误";
+				case "失误":
+					dataType=PlayerData.numberOfFault;
 					break;
-				case "分钟";
+				case "分钟":
+					dataType=PlayerData.presentTime;
 					break;
-				case "效率";
+				case "效率":
+					dataType=PlayerData.efficiency;
 					break;
-				case "投篮";
+				case "投篮":
+					dataType=PlayerData.numberOfShooting;
 					break;
-				case "三分";
+				case "三分":
+					dataType=PlayerData.numberOf3_Point;
 					break;
-				case "罚球";
+				case "罚球":
+					dataType=PlayerData.numberOfFreeThrow;
 					break;
-				case "两双";
+				case "两双":
+					dataType = PlayerData.double_double;
 					break;
 				}
 				//position为英文，三种单字母

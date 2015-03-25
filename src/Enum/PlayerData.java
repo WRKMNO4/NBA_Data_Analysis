@@ -17,6 +17,7 @@ public enum PlayerData {
 	numberOfFoul ,
 	score ,
 	
+	efficiency ,
 	efficiencyOfGmSc ,
 	percentageOfTrueShooting ,
 	efficiencyOfShooting ,
@@ -26,6 +27,9 @@ public enum PlayerData {
 	percentageOfSteal ,
 	percentageOfBlock ,
 	percentageOfUse ,
+	numberOfShooting ,
+	numberOf3_Point ,
+	numberOfFreeThrow ,
 	
 	double_double ,
 	comprehension ,
