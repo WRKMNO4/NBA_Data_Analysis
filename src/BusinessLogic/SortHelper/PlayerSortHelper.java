@@ -35,7 +35,17 @@ public class PlayerSortHelper implements Comparator<PlayerPO>{
 				return -1 ;
 			}
 		}
-		
+		if(str.equals("nameOfTeam")){
+			if(o1.getTeam().compareTo(o2.getTeam())>0){
+				return 1 ;
+			}
+			if(o1.getTeam().compareTo(o2.getTeam()) == 0){
+				return 0 ;
+			}
+			if(o1.getTeam().compareTo(o2.getTeam()) < 0){
+				return -1 ;
+			}
+		}
 		return 0;
 	}
 	int comparePlayerData(PlayerDataPO player1,PlayerDataPO player2){
@@ -102,6 +112,10 @@ public class PlayerSortHelper implements Comparator<PlayerPO>{
 			number1 = player1.getScore() ;
 			number2 = player2.getScore() ;
 			break ;
+		case efficiency:
+			number1 = player1.getEfficiency() ;
+			number2 = player2.getEfficiency() ;
+			break ;
 		case efficiencyOfGmSc:
 			number1 = player1.getEfficiencyOfGmSc() ;
 			number2 = player2.getEfficiencyOfGmSc() ;
@@ -137,6 +151,18 @@ public class PlayerSortHelper implements Comparator<PlayerPO>{
 		case percentageOfUse:
 			number1 = player1.getPercentageOfUse() ;
 			number2 = player2.getPercentageOfUse() ;
+			break ;
+		case numberOfShooting:
+			number1 = player1.getNumberOfShooting() ;
+			number2 = player2.getNumberOfShooting() ;
+			break ;
+		case numberOf3_Point:
+			number1 =player1.getNumberOf3_point() ;
+			number2 = player2.getNumberOf3_point() ;
+			break ;
+		case numberOfFreeThrow:
+			number1 = player1.getNumberOfFreeThrow() ;
+			number2 = player2.getNumberOfFreeThrow() ;
 			break ;
 		case double_double:
 			number1 = player1.getDouble_double() ;

@@ -1,6 +1,5 @@
 package com.kmno4.presentation;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -55,6 +54,8 @@ public class PlayerDetailFrame extends JFrame {
 		
 		@SuppressWarnings("unused")
 		MoveOfFrame m = new MoveOfFrame(this);
+		@SuppressWarnings("unused")
+		RightClickClose r = new RightClickClose(this);
 	}
 
 }
