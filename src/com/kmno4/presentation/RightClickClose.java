@@ -5,9 +5,13 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 /**
- * 右键关闭
+ * 右键关闭的工具类
  * @author hutao
  *
+ * 在写的每一个JFrame子类的最后面写上
+ * 
+ * RightClickClose r = new RightClickClose(this);
+ * 
  */
 public class RightClickClose {
 	JFrame theFrame;
