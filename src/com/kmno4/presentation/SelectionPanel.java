@@ -161,14 +161,9 @@ public class SelectionPanel extends JPanel implements MouseListener{
 		lb_place.setVisible(true);
 		cb_position.setVisible(true);
 		cb_district.setVisible(true);
-<<<<<<< HEAD
-		cb_standard.setVisible(true);
-		cb_type.setVisible(true);		
-=======
 		cb_type.setVisible(true);
 		cb_standard.setVisible(true);		
 		
->>>>>>> origin/master
 		avg_sort.setVisible(false);
 		total_sort.setVisible(false);
 		cb_avg_sort_data.setVisible(false);	
@@ -182,14 +177,9 @@ public class SelectionPanel extends JPanel implements MouseListener{
 		lb_place.setVisible(false);
 		cb_position.setVisible(false);
 		cb_district.setVisible(false);
-<<<<<<< HEAD
-		cb_standard.setVisible(false);
-		cb_type.setVisible(false);			
-=======
 		cb_type.setVisible(false);
 		cb_standard.setVisible(false);			
 		
->>>>>>> origin/master
 		avg_sort.setVisible(true);
 		total_sort.setVisible(true);
 		cb_avg_sort_data.setVisible(true);	
@@ -241,11 +231,7 @@ public class SelectionPanel extends JPanel implements MouseListener{
 				}				
 				if(standard.equals("场均")){
 					standard="avg";
-<<<<<<< HEAD
 				}if(standard.equals("总计")){
-=======
-				}else if(type.equals("总计")){
->>>>>>> origin/master
 					standard="total";
 				}
 				
