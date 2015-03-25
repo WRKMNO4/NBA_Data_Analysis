@@ -218,8 +218,7 @@ public class SelectionPanel extends JPanel implements MouseListener{
 				String position=cb_position.getSelectedItem().toString();
 				String district=cb_district.getSelectedItem().toString();
 				String type=cb_type.getSelectedItem().toString();
-				String standard=cb_standard.getSelectedItem().toString();		
-				System.out.println(standard+" "+type);
+				String standard=cb_standard.getSelectedItem().toString();
 				PlayerData dataType = null;
 				Zone zone=null;
 				if(position.equals("前锋"))
@@ -287,7 +286,6 @@ public class SelectionPanel extends JPanel implements MouseListener{
 					dataType = PlayerData.double_double;
 					break;
 				}
-				System.out.println(dataType.toString());
 				//position为英文，三种单字母
 				ArrayList<PlayerPO> players=MainFrame.mainFrame.bl.pickUpPlayersByCondition(position, zone, district, standard, dataType);
 				if(players!=null){
