@@ -19,8 +19,8 @@ import com.kmno4.presentation.button.BorderLabel;
 @SuppressWarnings("serial")
 public class SlideTable extends JPanel {
 	private JLabel
-	    left,
-	    right;
+	    right,
+	    left;
 	private SmallTable table;
 	private SlideThread slideThread;
 	
@@ -40,32 +40,32 @@ public class SlideTable extends JPanel {
 		table.setLocation((tableX = x), (tableY = y));
 		table.setSize((tableWidth = width), (tableHeight = height));
 		add(table);
-		
+
 		left = new BorderLabel("←", JLabel.CENTER);
 		left.setBounds(x, tableHeight + y, FLIG_LABEL_WIDTH, (int)(height * FLIG_LABEL_HEIGHT_RATE));
+		left.setEnabled(false);
 		left.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				if(!left.isEnabled()) return;
-				moving = MOVING_LEFT; 
+				moving = MOVING_RIGHT;
 			}
 			public void mouseExited(MouseEvent e) {
 				if(!left.isEnabled()) return;
-				moving = MOVING_NONE; 
+				moving = MOVING_NONE;
 			}
 		});
 		add(left);
 		
 		right = new BorderLabel("→", JLabel.CENTER);
 		right.setBounds(x + left.getWidth(), left.getY(), FLIG_LABEL_WIDTH, (int)(height * FLIG_LABEL_HEIGHT_RATE));
-		right.setEnabled(false);
 		right.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				if(!right.isEnabled()) return;
-				moving = MOVING_RIGHT;
+				moving = MOVING_LEFT; 
 			}
 			public void mouseExited(MouseEvent e) {
 				if(!right.isEnabled()) return;
-				moving = MOVING_NONE;
+				moving = MOVING_NONE; 
 			}
 		});
 		add(right);
@@ -93,23 +93,23 @@ public class SlideTable extends JPanel {
 	public void setFont(Font headFont, Font bodyFont, Font labelFont) {
 		table.setFont(headFont, bodyFont);
 		if(labelFont != null) {
-			left.setFont(labelFont);
 			right.setFont(labelFont);
+			left.setFont(labelFont);
 		}
 	}
 	public void setForeground(Color headColor, Color bodyColor, Color labelColor) {
 		table.setForeground(headColor, bodyColor);
 		if(labelColor != null) {
-			left.setForeground(labelColor);
 			right.setForeground(labelColor);
+			left.setForeground(labelColor);
 		}
 	}
 	public void setBackground(Color headbg, Color bodybg, Color labelbg, Color bg) {
 		super.setBackground(bg);
 		table.setBackground(headbg, bodybg);
 		if(labelbg != null) {
-			left.setBackground(labelbg);
 			right.setBackground(labelbg);
+			left.setBackground(labelbg);
 		}
 	}
 	@Override
@@ -134,19 +134,19 @@ public class SlideTable extends JPanel {
 					current_address ++;
 					table.setLocation(table.getX() - TABLE_UNIT_WIDTH, table.getY());
 					if(current_address == max_address) {
-						left.setEnabled(false);
+						right.setEnabled(false);
 						moving = MOVING_NONE;
 					}
-					if(!right.isEnabled()) right.setEnabled(true);
+					if(!left.isEnabled()) left.setEnabled(true);
 				}
 				else if(moving == MOVING_RIGHT) {
 					current_address --;
 					table.setLocation(table.getX() + TABLE_UNIT_WIDTH, table.getY());
 					if(current_address == 0) {
-						right.setEnabled(false);
+						left.setEnabled(false);
 						moving = MOVING_NONE;
 					}
-					if(!left.isEnabled()) left.setEnabled(true);
+					if(!right.isEnabled()) right.setEnabled(true);
 				}
 				
 				try {
