@@ -214,7 +214,7 @@ public class PlayerDetailPanel extends JPanel {
 		c.gridwidth = 7;
 		c.gridheight = 1;
 		c.weightx = 20;
-		c.weighty = 2.5;
+		c.weighty = 20;
 		c.fill = GridBagConstraints.BOTH;
 		layout.setConstraints(sumInfo, c);
 		add(sumInfo);
