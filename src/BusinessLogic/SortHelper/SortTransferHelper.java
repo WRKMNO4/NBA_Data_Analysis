@@ -3,7 +3,7 @@ package BusinessLogic.SortHelper;
 import Enum.PlayerData;
 import Enum.TeamData;
 
-public class Test {
+public class SortTransferHelper {
 	public static PlayerData StringToDataTypeForPlayer(String key){
 		PlayerData dataType = null;
 		switch (key){
