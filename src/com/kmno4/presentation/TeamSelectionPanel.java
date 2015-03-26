@@ -20,8 +20,8 @@ public class TeamSelectionPanel extends JPanel implements MouseListener{
 
 	private boolean isAvg=true;
 
-	private JComboBox avg_data;
-	private JComboBox total_data;
+	private JComboBox cb_avg_data;
+	private JComboBox cb_total_data;
 	
 	public JLabel total_sort;
 	public JLabel avg_sort;
@@ -33,8 +33,8 @@ public class TeamSelectionPanel extends JPanel implements MouseListener{
 		this.setVisible(true);
 		this.setBackground(Color.gray);
 		
-		avg_data=new JComboBox(Config.TEAM_AVERAGE_INFO);
-		total_data=new JComboBox(Config.TEAM_TOTAL_INFO);
+		cb_avg_data=new JComboBox(Config.TEAM_AVERAGE_INFO);
+		cb_total_data=new JComboBox(Config.TEAM_TOTAL_INFO);
 
 		total_sort=new JLabel("总计");
 		total_sort.setBounds(85, 11, 41, 16);
@@ -45,12 +45,12 @@ public class TeamSelectionPanel extends JPanel implements MouseListener{
 		add(avg_sort);
 		add(total_sort);
 
-		avg_data.setBounds(127, 11, 150, 27);
-		total_data.setBounds(127, 11, 150, 27);
-		add(avg_data);
-		add(total_data);
-		total_data.setVisible(false);
-		avg_data.setVisible(false);
+		cb_avg_data.setBounds(127, 11, 150, 27);
+		cb_total_data.setBounds(127, 11, 150, 27);
+		add(cb_avg_data);
+		add(cb_total_data);
+		cb_total_data.setVisible(false);
+		cb_avg_data.setVisible(false);
 		
 				
 	}
@@ -64,14 +64,14 @@ public class TeamSelectionPanel extends JPanel implements MouseListener{
 
 	public void showAvg(){
 		isAvg=true;
-		avg_data.setVisible(true);
-		total_data.setVisible(false);
+		cb_avg_data.setVisible(true);
+		cb_total_data.setVisible(false);
 	}
 	
 	public void showTotal(){
 		isAvg=false;
-		avg_data.setVisible(false);
-		total_data.setVisible(true);
+		cb_avg_data.setVisible(false);
+		cb_total_data.setVisible(true);
 	}
 	
 	@Override
@@ -81,11 +81,11 @@ public class TeamSelectionPanel extends JPanel implements MouseListener{
 			showTotal();
 		}if(e.getSource()==avg_sort){
 			showAvg();
-		}if(e.getSource()==total_data){
+		}if(e.getSource()==cb_total_data){
 			//总数据
 			ArrayList<TeamPO> teams=MainFrame.mainFrame.bl.sortTeamsOf13_14ByComprehension(standard, dataType);
 			MainFrame.mainFrame.topTabPanel.refreshTeamTable(teams);
-		}if(e.getSource()==avg_data){
+		}if(e.getSource()==cb_avg_data){
 			//场均数据
 			ArrayList<TeamPO> teams=MainFrame.mainFrame.bl.sortPlayersByComprehension(standard, dataType);
 			MainFrame.mainFrame.topTabPanel.refreshTeamTable(teams);
