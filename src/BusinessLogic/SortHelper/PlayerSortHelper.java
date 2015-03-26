@@ -128,6 +128,10 @@ public class PlayerSortHelper implements Comparator<PlayerPO>{
 			number1 = player1.getEfficiencyOfShooting() ;
 			number2 = player2.getEfficiencyOfShooting() ;
 			break ;
+		case percentageOfRebound:
+			number1 = player1.getPercentageOfRebound();
+			number2 = player2.getPercentageOfRebound() ;
+			break ;
 		case percentageOfAttackingRebound:
 			number1 = player1.getPercentageOfAttackingRebound() ;
 			number2 = player2.getPercentageOfAttackingRebound() ;
@@ -147,6 +151,10 @@ public class PlayerSortHelper implements Comparator<PlayerPO>{
 		case percentageOfBlock:
 			number1 = player1.getPercentageOfBlock() ;
 			number2 = player2.getPercentageOfBlock() ;
+			break ;
+		case percentageOfFault:
+			number1 = player1.getPercentageOfFault() ;
+			number2 = player2.getPercentageOfFault() ;
 			break ;
 		case percentageOfUse:
 			number1 = player1.getPercentageOfUse() ;

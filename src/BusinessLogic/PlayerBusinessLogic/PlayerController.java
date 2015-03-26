@@ -52,7 +52,6 @@ public class PlayerController implements PlayerBusinessLogic{
 
 	@Override
 	public ArrayList<PlayerPO> sortPlayersByComprehension(String standard,PlayerData dataType) {
-		// TODO Auto-generated method stub
 		ArrayList<PlayerPO> results= (ArrayList<PlayerPO>) playerController.getAllPlayers().clone();
 		Collections.sort(results,new PlayerSortHelper(standard, dataType));
 		return results;
