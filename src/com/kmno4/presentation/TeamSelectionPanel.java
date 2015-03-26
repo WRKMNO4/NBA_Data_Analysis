@@ -2,10 +2,11 @@ package com.kmno4.presentation;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -18,7 +19,7 @@ import PO.TeamPO;
 import com.kmno4.common.Config;
 
 @SuppressWarnings("serial")
-public class TeamSelectionPanel extends JPanel implements MouseListener{
+public class TeamSelectionPanel extends JPanel implements MouseListener,ActionListener{
 
 	private boolean isAvg=true;
 
@@ -41,14 +42,16 @@ public class TeamSelectionPanel extends JPanel implements MouseListener{
 		cb_total_data.setBounds(127, 11, 150, 27);
 		this.add(cb_avg_data);
 		this.add(cb_total_data);
-		cb_avg_data.setVisible(true);
+		cb_avg_data.setVisible(false);
 		cb_total_data.setVisible(false);
+		cb_total_data.addActionListener(this);
+		cb_avg_data.addActionListener(this);
 		
 		total_sort=new JLabel("总计");
-		total_sort.setBounds(85, 11, 41, 16);
+		total_sort.setBounds(85, 5, 40, 15);
 		total_sort.addMouseListener(this);
 		avg_sort=new JLabel("场均");
-		avg_sort.setBounds(85, 26, 41, 16);
+		avg_sort.setBounds(85, 20, 40, 15);
 		avg_sort.addMouseListener(this);
 		add(avg_sort);
 		add(total_sort);
@@ -81,18 +84,6 @@ public class TeamSelectionPanel extends JPanel implements MouseListener{
 			showTotal();
 		}if(e.getSource()==avg_sort){
 			showAvg();
-		}if(e.getSource()==cb_total_data){
-			//总数据
-			String data=cb_total_data.getSelectedItem().toString();
-			TeamData dataType=TransferSortHelper.StringToDataTypeForTeam(data);
-			ArrayList<TeamPO> teams=MainFrame.mainFrame.bl.sortTeamsOf13_14ByComprehension("total", dataType);
-			MainFrame.mainFrame.topTabPanel.refreshTeamTable(teams);
-		}if(e.getSource()==cb_avg_data){
-			//场均数据
-			String data=cb_avg_data.getSelectedItem().toString();
-			TeamData dataType=TransferSortHelper.StringToDataTypeForTeam(data);
-			ArrayList<TeamPO> teams=MainFrame.mainFrame.bl.sortTeamsOf13_14ByComprehension("avg", dataType);
-			MainFrame.mainFrame.topTabPanel.refreshTeamTable(teams);
 		}
 	}
 
@@ -118,5 +109,23 @@ public class TeamSelectionPanel extends JPanel implements MouseListener{
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource()==cb_total_data){
+			//总数据
+			String data=cb_total_data.getSelectedItem().toString();
+			TeamData dataType=TransferSortHelper.StringToDataTypeForTeam(data);
+			ArrayList<TeamPO> teams=MainFrame.mainFrame.bl.sortTeamsOf13_14ByComprehension("total", dataType);
+			MainFrame.mainFrame.topTabPanel.refreshTeamTable(teams);
+		}if(e.getSource()==cb_avg_data){
+			//场均数据
+			String data=cb_avg_data.getSelectedItem().toString();
+			TeamData dataType=TransferSortHelper.StringToDataTypeForTeam(data);
+			ArrayList<TeamPO> teams=MainFrame.mainFrame.bl.sortTeamsOf13_14ByComprehension("avg", dataType);
+			MainFrame.mainFrame.topTabPanel.refreshTeamTable(teams);
+		}
 	}
 }

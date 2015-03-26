@@ -143,9 +143,9 @@ public class SelectionPanel extends JPanel implements MouseListener,
 				.setBounds(200, 45, Config.SORT_WIDTH * 2, Config.SORT_HEIGHT);
 		avg_sort.addMouseListener(this);
 		total_sort.addMouseListener(this);
-		cb_avg_sort_data.setBounds(15, 70, Config.SORT_WIDTH * 4,
+		cb_avg_sort_data.setBounds(15, 70, Config.SORT_WIDTH * 8,
 				Config.SORT_HEIGHT);
-		cb_total_sort_data.setBounds(15, 70, Config.SORT_WIDTH * 4,
+		cb_total_sort_data.setBounds(15, 70, Config.SORT_WIDTH *8,
 				Config.SORT_HEIGHT);
 		cb_avg_sort_data.addMouseListener(this);
 		cb_total_sort_data.addMouseListener(this);
