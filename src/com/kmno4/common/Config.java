@@ -116,7 +116,7 @@ public class Config {
 	public static final ImageIcon PLAYER_SELECTION_BACKGROUND=new ImageIcon("images/selection_bg.png");
 	public static final ImageIcon TOP_TAB_BACKGROUND=new ImageIcon("images/top_tab_background.png");
 	public static final ImageIcon WELCOME=new ImageIcon("images/welcome.png");
-	public static final ImageIcon TEAM_SELECTION_BACKGROUND=new ImageIcon("images/team_selection_bg2.png");
+	public static final ImageIcon TEAM_SELECTION_BACKGROUND=new ImageIcon("images/team_selection_bg3.png");
 	public static final ImageIcon CLOSE_ICON=new ImageIcon("images/close.png");
 	
 	public static ArrayList<ImageIcon> getLoadingMotions(){

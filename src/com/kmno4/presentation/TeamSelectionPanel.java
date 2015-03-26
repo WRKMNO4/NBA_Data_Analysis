@@ -50,6 +50,8 @@ public class TeamSelectionPanel extends JPanel implements MouseListener{
 		add(avg_data);
 		add(total_data);
 		total_data.setVisible(false);
+		avg_data.setVisible(false);
+		
 				
 	}
 	
