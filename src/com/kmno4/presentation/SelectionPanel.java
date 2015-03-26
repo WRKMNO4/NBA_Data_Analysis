@@ -123,9 +123,11 @@ public class SelectionPanel extends JPanel implements MouseListener{
 		submit.setBounds(169, 18, 35, 16);
 		add(submit);
 		submit.addMouseListener(this);
-
+		
 		avg_sort.setBounds(15, 45, Config.SORT_WIDTH*2, Config.SORT_HEIGHT);
 		total_sort.setBounds(200, 45, Config.SORT_WIDTH*2, Config.SORT_HEIGHT);
+		avg_sort.addMouseListener(this);
+		total_sort.addMouseListener(this);
 		cb_avg_sort_data.setBounds(15, 70, Config.SORT_WIDTH*4, Config.SORT_HEIGHT);
 		cb_total_sort_data.setBounds(15, 70, Config.SORT_WIDTH*4, Config.SORT_HEIGHT);
 		add(avg_sort);
@@ -294,7 +296,11 @@ public class SelectionPanel extends JPanel implements MouseListener{
 			}else{
 				//此处是场均排序
 				if(isAvg){
-					
+					ArrayList<PlayerPO> players=MainFrame.mainFrame.bl.sortTeamsOf13_14ByComprehension(standard, dataType);
+					MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
+				}else{
+					ArrayList<PlayerPO> players=MainFrame.mainFrame.bl.sortTeamsOf13_14ByComprehension(standard, dataType);
+					MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
 				}
 			}
 
