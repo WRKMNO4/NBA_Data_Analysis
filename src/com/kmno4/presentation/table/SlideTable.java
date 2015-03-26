@@ -12,7 +12,6 @@ import com.kmno4.common.Config;
 import com.kmno4.presentation.button.BorderLabel;
 
 /**
- * TODO 更动感的移动
  * @author hutao
  *
  */
@@ -128,8 +127,8 @@ public class SlideTable extends JPanel {
 	}
 	
 	
-	private static final double MOVE_TIME = (double)60 / 1000;
-	private static final double MOVE_UNIT_TIME = (double)10 / 1000;
+	private static final double MOVE_TIME = (double)150 / 1000;
+	private static final double MOVE_UNIT_TIME = (double)15 / 1000;
 	private static final double MOVE_UNIT_WIDTH = TABLE_UNIT_WIDTH * MOVE_UNIT_TIME / MOVE_TIME;
 	class SlideThread extends Thread {
 		private double x, targetX;
@@ -175,11 +174,6 @@ public class SlideTable extends JPanel {
 						moving = MOVING_NONE;
 					}
 					if(!right.isEnabled()) right.setEnabled(true);
-				}
-				try {
-					Thread.sleep((long)(MOVE_TIME * 1000));
-				} catch (InterruptedException e) {
-					e.printStackTrace();
 				}
 			}
 		}
