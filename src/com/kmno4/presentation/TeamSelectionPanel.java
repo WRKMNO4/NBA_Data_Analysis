@@ -49,10 +49,12 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 		
 		total_sort=new JLabel("总计");
 		total_sort.setBounds(85, 5, 40, 15);
+		total_sort.setForeground(Color.white);
 		total_sort.addMouseListener(this);
 		avg_sort=new JLabel("场均");
-		avg_sort.setBounds(85, 20, 40, 15);
+		avg_sort.setBounds(85, 25, 40, 15);
 		avg_sort.addMouseListener(this);
+		avg_sort.setForeground(Color.WHITE);
 		add(avg_sort);
 		add(total_sort);
 
