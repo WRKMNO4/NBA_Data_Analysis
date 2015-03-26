@@ -12,11 +12,13 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import BusinessLogic.SortHelper.TransferSortHelper;
 import Enum.PlayerData;
 import Enum.Zone;
 import PO.PlayerPO;
 
 import com.kmno4.common.Config;
+import com.sun.media.jfxmedia.events.PlayerStateEvent.PlayerState;
 
 public class SelectionPanel extends JPanel implements MouseListener{
 	public  List<JLabel> avg_sort_list;
@@ -301,14 +303,16 @@ public class SelectionPanel extends JPanel implements MouseListener{
 		//场均排序
 		if(e.getSource()==cb_avg_sort_data){
 				String data=cb_avg_sort_data.getSelectedItem().toString();
-				ArrayList<PlayerPO> players=MainFrame.mainFrame.bl.sortPlayersByComprehension(standard, dataType);
+				PlayerData dataType=TransferSortHelper.StringToDataTypeForPlayer(data);
+				ArrayList<PlayerPO> players=MainFrame.mainFrame.bl.sortPlayersByComprehension("avg", dataType);
 				MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
 		}
 		
 		//总排序
 		if(e.getSource()==cb_total_sort_data){
-			String data=cb_avg_sort_data.getSelectedItem().toString();
-			ArrayList<PlayerPO> players=MainFrame.mainFrame.bl.sortPlayersByComprehension(standard, dataType);
+			String data=cb_total_sort_data.getSelectedItem().toString();
+			PlayerData dataType=TransferSortHelper.StringToDataTypeForPlayer(data);
+			ArrayList<PlayerPO> players=MainFrame.mainFrame.bl.sortPlayersByComprehension("total", dataType);
 			MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
 		}
 						
