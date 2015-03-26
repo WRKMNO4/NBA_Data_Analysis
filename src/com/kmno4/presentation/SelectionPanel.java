@@ -298,12 +298,14 @@ public class SelectionPanel extends JPanel implements MouseListener{
 		
 		//场均排序
 		if(e.getSource()==cb_avg_sort_data){
+				String data=cb_avg_sort_data.getSelectedItem().toString();
 				ArrayList<PlayerPO> players=MainFrame.mainFrame.bl.sortPlayersByComprehension(standard, dataType);
 				MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
 		}
 		
 		//总排序
 		if(e.getSource()==cb_total_sort_data){
+			String data=cb_avg_sort_data.getSelectedItem().toString();
 			ArrayList<PlayerPO> players=MainFrame.mainFrame.bl.sortPlayersByComprehension(standard, dataType);
 			MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
 		}
