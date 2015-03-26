@@ -173,7 +173,7 @@ public class TeamDetailPanel extends JPanel {
 		c.gridwidth = 6;
 		c.gridheight = 1;
 		c.weightx = 12;
-		c.weighty = 3;
+		c.weighty = 1.3;
 		c.fill = GridBagConstraints.BOTH;
 		layout.setConstraints(sumInfo, c);
 		add(sumInfo);
