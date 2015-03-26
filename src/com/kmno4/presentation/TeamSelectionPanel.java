@@ -14,8 +14,10 @@ import com.kmno4.common.Config;
 @SuppressWarnings("serial")
 public class TeamSelectionPanel extends JPanel implements MouseListener{
 
+	private boolean isAvg=true;
 
-	private JComboBox standrad;
+	private JComboBox avg_data;
+	private JComboBox total_data;
 	
 	public JLabel total_sort;
 	public JLabel avg_sort;
@@ -27,23 +29,24 @@ public class TeamSelectionPanel extends JPanel implements MouseListener{
 		this.setVisible(true);
 		this.setBackground(Color.gray);
 		
-		standrad = new JComboBox(Config.SORT_TEAM_STANDRAD);
-		add(standrad);
+		avg_data=new JComboBox(Config.TEAM_AVERAGE_INFO);
+		total_data=new JComboBox(Config.TEAM_TOTAL_INFO);
 
 		total_sort=new JLabel("总计");
-		total_sort.setBounds(85, 6, 61, 16);
+		total_sort.setBounds(85, 11, 41, 16);
 		total_sort.addMouseListener(this);
 		avg_sort=new JLabel("场均");
-		avg_sort.setBounds(x, y, width, height);
+		avg_sort.setBounds(85, 26, 41, 16);
 		avg_sort.addMouseListener(this);
-		
-		JLabel label = new JLabel("场均");
-		label.setBounds(85, 6, 61, 16);
-		add(label);
-		
-		JLabel label_1 = new JLabel("总计");
-		label_1.setBounds(85, 25, 61, 16);
-		add(label_1);
+		add(avg_sort);
+		add(total_sort);
+
+		avg_data.setBounds(127, 11, 150, 27);
+		total_data.setBounds(127, 11, 150, 27);
+		add(avg_data);
+		add(total_data);
+		total_data.setVisible(false);
+				
 	}
 	
 	//画背景
@@ -53,10 +56,31 @@ public class TeamSelectionPanel extends JPanel implements MouseListener{
 				g.drawImage(Config.TEAM_SELECTION_BACKGROUND.getImage(), 0, 0,Config.UI_WIDTH,Config.SELECTION_HEIGHT,this);
 	      }
 
+	public void showAvg(){
+		isAvg=true;
+		avg_data.setVisible(true);
+		total_data.setVisible(false);
+	}
+	
+	public void showTotal(){
+		isAvg=false;
+		avg_data.setVisible(false);
+		total_data.setVisible(true);
+	}
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource()==total_sort){
+			showTotal();
+		}if(e.getSource()==avg_sort){
+			showAvg();
+		}if(e.getSource()==total_data){
+			//总数据
+		}if(e.getSource()==avg_data){
+			//场均数据
+			MainFrame.mainFrame.bl.sortPlayersByComprehension(standard, dataType);
+		}
 	}
 
 	@Override
