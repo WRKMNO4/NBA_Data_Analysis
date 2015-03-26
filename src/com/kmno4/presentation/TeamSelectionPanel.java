@@ -37,7 +37,13 @@ public class TeamSelectionPanel extends JPanel implements MouseListener{
 		
 		cb_avg_data=new JComboBox(Config.TEAM_AVERAGE_INFO);
 		cb_total_data=new JComboBox(Config.TEAM_TOTAL_INFO);
-
+		cb_avg_data.setBounds(127, 11, 150, 27);
+		cb_total_data.setBounds(127, 11, 150, 27);
+		this.add(cb_avg_data);
+		this.add(cb_total_data);
+		cb_avg_data.setVisible(true);
+		cb_total_data.setVisible(false);
+		
 		total_sort=new JLabel("总计");
 		total_sort.setBounds(85, 11, 41, 16);
 		total_sort.addMouseListener(this);
@@ -47,14 +53,6 @@ public class TeamSelectionPanel extends JPanel implements MouseListener{
 		add(avg_sort);
 		add(total_sort);
 
-		cb_avg_data.setBounds(127, 11, 150, 27);
-		cb_total_data.setBounds(127, 11, 150, 27);
-		add(cb_avg_data);
-		add(cb_total_data);
-		cb_total_data.setVisible(false);
-		cb_avg_data.setVisible(false);
-		
-				
 	}
 	
 	//画背景
