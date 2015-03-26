@@ -28,7 +28,7 @@ public class SlideTable extends JPanel {
 		this(headStr, bodyString, 0, 0, TABLE_UNIT_WIDTH * headStr.length, TABLE_HEIGHT);
 	}
 	private static final int TABLE_HEIGHT = 50;
-	private static final int TABLE_UNIT_WIDTH = 68;
+	private static final int TABLE_UNIT_WIDTH = 70;
 	
 	@SuppressWarnings("unused")
 	private final int tableX, tableY, tableWidth, tableHeight;
@@ -121,18 +121,35 @@ public class SlideTable extends JPanel {
 			table.setLocation(tableX, tableY);
 			current_address = 0;
 			moving = MOVING_NONE;
+			left.setEnabled(false);
 			slideThread = new SlideThread();
 			slideThread.start();
 		}
 	}
 	
 	
+	private static final double MOVE_TIME = (double)60 / 1000;
+	private static final double MOVE_UNIT_TIME = (double)10 / 1000;
+	private static final double MOVE_UNIT_WIDTH = TABLE_UNIT_WIDTH * MOVE_UNIT_TIME / MOVE_TIME;
 	class SlideThread extends Thread {
+		private double x, targetX;
+		
 		public void run() {
 			while(moving != MOVING_DIE) {
 				if(moving == MOVING_LEFT) {
 					current_address ++;
-					table.setLocation(table.getX() - TABLE_UNIT_WIDTH, table.getY());
+					x = (double)table.getX();
+					targetX = x - (double)TABLE_UNIT_WIDTH;
+					while(x > targetX) {
+						x -= MOVE_UNIT_WIDTH;
+						table.setLocation((int)x, table.getY());
+						try {
+							Thread.sleep((long)(MOVE_UNIT_TIME * 1000));
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						} 
+					}
+					table.setLocation((int)targetX, table.getY());
 					if(current_address == max_address) {
 						right.setEnabled(false);
 						moving = MOVING_NONE;
@@ -141,16 +158,26 @@ public class SlideTable extends JPanel {
 				}
 				else if(moving == MOVING_RIGHT) {
 					current_address --;
-					table.setLocation(table.getX() + TABLE_UNIT_WIDTH, table.getY());
+					x = (double)table.getX();
+					targetX = x + (double)TABLE_UNIT_WIDTH;
+					while(x < targetX) {
+						x += MOVE_UNIT_WIDTH;
+						table.setLocation((int)x, table.getY());
+						try {
+							Thread.sleep((long)(MOVE_UNIT_TIME * 1000));
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						} 
+					}
+					table.setLocation((int)targetX, table.getY());
 					if(current_address == 0) {
 						left.setEnabled(false);
 						moving = MOVING_NONE;
 					}
 					if(!right.isEnabled()) right.setEnabled(true);
 				}
-				
 				try {
-					Thread.sleep(150);
+					Thread.sleep((long)(MOVE_TIME * 1000));
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
