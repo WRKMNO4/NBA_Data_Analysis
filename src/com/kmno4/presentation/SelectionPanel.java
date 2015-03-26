@@ -293,17 +293,19 @@ public class SelectionPanel extends JPanel implements MouseListener{
 				if(players!=null){
 					MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
 					}
-			}else{
-				//此处是场均排序
-				if(isAvg){
-					ArrayList<PlayerPO> players=MainFrame.mainFrame.bl.sortTeamsOf13_14ByComprehension(standard, dataType);
-					MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
-				}else{
-					ArrayList<PlayerPO> players=MainFrame.mainFrame.bl.sortTeamsOf13_14ByComprehension(standard, dataType);
-					MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
-				}
 			}
-
+		}
+		
+		//场均排序
+		if(e.getSource()==cb_avg_sort_data){
+				ArrayList<PlayerPO> players=MainFrame.mainFrame.bl.sortPlayersByComprehension(standard, dataType);
+				MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
+		}
+		
+		//总排序
+		if(e.getSource()==cb_total_sort_data){
+			ArrayList<PlayerPO> players=MainFrame.mainFrame.bl.sortPlayersByComprehension(standard, dataType);
+			MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
 		}
 						
 	}
