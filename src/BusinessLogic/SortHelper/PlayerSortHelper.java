@@ -193,8 +193,11 @@ public class PlayerSortHelper implements Comparator<PlayerPO>{
 			return 1 ;
 	}
 	int transform(String time){
-		String[] strs = time.split(":");
-		int seconds = Integer.parseInt(strs[0])*60+Integer.parseInt(strs[1]) ;
-		return seconds ;
+		if(time!=null){
+			String[] strs = time.split(":");
+			int seconds = Integer.parseInt(strs[0])*60+Integer.parseInt(strs[1]) ;
+			return seconds ;
+		}
+		return 0;
 	}
 }

@@ -242,7 +242,7 @@ public class SelectionPanel extends JPanel implements MouseListener,
 				String district = cb_district.getSelectedItem().toString();
 				String type = cb_type.getSelectedItem().toString();
 				String standard = cb_standard.getSelectedItem().toString();
-				PlayerData dataType = null;
+				PlayerData dataType = TransferSortHelper.StringToDataTypeForPlayer(type);
 				Zone zone = null;
 				if (position.equals("前锋"))
 					position = "F";
@@ -265,50 +265,6 @@ public class SelectionPanel extends JPanel implements MouseListener,
 					standard = "total";
 				}
 
-				switch (type) {
-				case "得分":
-					dataType = PlayerData.score;
-					break;
-				case "篮板":
-					dataType = PlayerData.numberOfRebound;
-					break;
-				case "助攻":
-					dataType = PlayerData.numberOfAssist;
-					break;
-				case "得分/篮板/助攻":
-					dataType = PlayerData.comprehension;
-					break;
-				case "盖帽":
-					dataType = PlayerData.numberOfBlock;
-					break;
-				case "抢断":
-					dataType = PlayerData.numberOfSteal;
-					break;
-				case "犯规":
-					dataType = PlayerData.numberOfFoul;
-					break;
-				case "失误":
-					dataType = PlayerData.numberOfFault;
-					break;
-				case "分钟":
-					dataType = PlayerData.presentTime;
-					break;
-				case "效率":
-					dataType = PlayerData.efficiency;
-					break;
-				case "投篮":
-					dataType = PlayerData.numberOfShooting;
-					break;
-				case "三分":
-					dataType = PlayerData.numberOf3_Point;
-					break;
-				case "罚球":
-					dataType = PlayerData.numberOfFreeThrow;
-					break;
-				case "两双":
-					dataType = PlayerData.double_double;
-					break;
-				}
 				// position为英文，三种单字母
 				ArrayList<PlayerPO> players = MainFrame.mainFrame.bl
 						.pickUpPlayersByCondition(position, zone, district,
