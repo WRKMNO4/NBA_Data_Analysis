@@ -15,8 +15,10 @@ import com.kmno4.common.Config;
 public class TeamSelectionPanel extends JPanel implements MouseListener{
 
 
-	private JComboBox<String> standrad;
-	private JComboBox<String> type;
+	private JComboBox standrad;
+	
+	public JLabel total_sort;
+	public JLabel avg_sort;
 	
 	
 	public TeamSelectionPanel() {
@@ -25,10 +27,23 @@ public class TeamSelectionPanel extends JPanel implements MouseListener{
 		this.setVisible(true);
 		this.setBackground(Color.gray);
 		
-		standrad = new JComboBox<String>(Config.SORT_TEAM_STANDRAD);
+		standrad = new JComboBox(Config.SORT_TEAM_STANDRAD);
 		add(standrad);
-		type = new JComboBox<String>(Config.SORT_TEAM_TYPE);
-		add(type);
+
+		total_sort=new JLabel("总计");
+		total_sort.setBounds(85, 6, 61, 16);
+		total_sort.addMouseListener(this);
+		avg_sort=new JLabel("场均");
+		avg_sort.setBounds(x, y, width, height);
+		avg_sort.addMouseListener(this);
+		
+		JLabel label = new JLabel("场均");
+		label.setBounds(85, 6, 61, 16);
+		add(label);
+		
+		JLabel label_1 = new JLabel("总计");
+		label_1.setBounds(85, 25, 61, 16);
+		add(label_1);
 	}
 	
 	//画背景
@@ -67,5 +82,4 @@ public class TeamSelectionPanel extends JPanel implements MouseListener{
 		// TODO Auto-generated method stub
 		
 	}
-
 }
