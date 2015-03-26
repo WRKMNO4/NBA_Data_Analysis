@@ -292,7 +292,7 @@ public class SelectionPanel extends JPanel implements MouseListener{
 					MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
 					}
 			}else{
-				//此处是筛选
+				//此处是场均排序
 				if(isAvg){
 					
 				}
