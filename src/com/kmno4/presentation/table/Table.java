@@ -110,7 +110,6 @@ public class Table extends JPanel {
 	}
 	
 	private void flip() {
-		//TODO
 		TableList[][] newBody = new TableList[body.length][body[0].length];
 		int blankNum = 0;
 		for(int i = 0; i < body[0].length; i ++) {
@@ -121,8 +120,6 @@ public class Table extends JPanel {
 			for(int j = 0; j < body[0].length; j ++) {
 				if(k >= 0) newBody[i][j] = body[k / body[0].length][k % body[0].length];
 				else newBody[i][j] = body[i][j];
-				
-				//System.out.println(k + "," + (i * body.length + j));
 				k --;
 			}
 		}
@@ -153,7 +150,7 @@ public class Table extends JPanel {
 	class Flip extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			/*
+			
 			for(int i = 0; i < rowNum; i ++) {
 				body[page][i].setVisible(false);
 				remove(body[page][i]);
@@ -161,11 +158,12 @@ public class Table extends JPanel {
 			flip();
 			
 			for(int i = 0; i < rowNum; i ++) {
+				body[page][i].setVisible(true);
 			    add(body[page][i]);
 			}
 			remove(turn);
 			add(turn);
-			*/
+			
 		}
 	}
 
