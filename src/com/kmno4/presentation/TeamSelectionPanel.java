@@ -4,10 +4,14 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import PO.TeamPO;
 
 import com.kmno4.common.Config;
 
@@ -77,9 +81,12 @@ public class TeamSelectionPanel extends JPanel implements MouseListener{
 			showAvg();
 		}if(e.getSource()==total_data){
 			//总数据
+			ArrayList<TeamPO> teams=MainFrame.mainFrame.bl.sortTeamsOf13_14ByComprehension(standard, dataType);
+			MainFrame.mainFrame.topTabPanel.refreshTeamTable(teams);
 		}if(e.getSource()==avg_data){
 			//场均数据
-			MainFrame.mainFrame.bl.sortPlayersByComprehension(standard, dataType);
+			ArrayList<TeamPO> teams=MainFrame.mainFrame.bl.sortPlayersByComprehension(standard, dataType);
+			MainFrame.mainFrame.topTabPanel.refreshTeamTable(teams);
 		}
 	}
 
