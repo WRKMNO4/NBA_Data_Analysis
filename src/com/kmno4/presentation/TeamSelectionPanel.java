@@ -11,6 +11,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import BusinessLogic.SortHelper.TransferSortHelper;
+import Enum.TeamData;
 import PO.TeamPO;
 
 import com.kmno4.common.Config;
@@ -83,11 +85,15 @@ public class TeamSelectionPanel extends JPanel implements MouseListener{
 			showAvg();
 		}if(e.getSource()==cb_total_data){
 			//总数据
-			ArrayList<TeamPO> teams=MainFrame.mainFrame.bl.sortTeamsOf13_14ByComprehension(standard, dataType);
+			String data=cb_total_data.getSelectedItem().toString();
+			TeamData dataType=TransferSortHelper.StringToDataTypeForTeam(data);
+			ArrayList<TeamPO> teams=MainFrame.mainFrame.bl.sortTeamsOf13_14ByComprehension("total", dataType);
 			MainFrame.mainFrame.topTabPanel.refreshTeamTable(teams);
 		}if(e.getSource()==cb_avg_data){
 			//场均数据
-			ArrayList<TeamPO> teams=MainFrame.mainFrame.bl.sortPlayersByComprehension(standard, dataType);
+			String data=cb_avg_data.getSelectedItem().toString();
+			TeamData dataType=TransferSortHelper.StringToDataTypeForTeam(data);
+			ArrayList<TeamPO> teams=MainFrame.mainFrame.bl.sortTeamsOf13_14ByComprehension("avg", dataType);
 			MainFrame.mainFrame.topTabPanel.refreshTeamTable(teams);
 		}
 	}
