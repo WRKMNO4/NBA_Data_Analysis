@@ -19,7 +19,7 @@ public class TeamSortHelper implements Comparator<TeamPO>{
 		// TODO Auto-generated method stub
 		//Sort by total team data. (Some data does not belong to a total one)
 		if(str.equals("total")){     
-			return compareTeamData(o1.getTotalTeamData(), o2.getAverageTeamData());
+			return compareTeamData(o1.getTotalTeamData(), o2.getTotalTeamData());
 		}
 		//Sort by average team data.
 		else if(str.equals("avg"))   {
