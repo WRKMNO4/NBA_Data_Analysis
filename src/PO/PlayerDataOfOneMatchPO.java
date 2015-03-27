@@ -3,58 +3,58 @@ package PO;
 import java.util.ArrayList;
 
 public class PlayerDataOfOneMatchPO {
-	//Ä³³¡±ÈÈüÖÐµÄÊý¾Ý
-	String name ;//Ãû×Ö
-	String position ;//Î»ÖÃ
-	String presentTimeOfOneMatch ;//ÔÚ³¡Ê±¼ä
-	double numberOfShooting ;//Í¶ÀºÃüÖÐÊý
-	double numberOfShotAttempt ; // Í¶Àº³öÊÖÊý£¬
-	double numberOf3_point ;//Èý·ÖÃüÖÐÊý£¬
-	double numberOf3_pointAttempt ;//Èý·Ö³öÊÖÊý£¬
-	double numberOfFreeThrow ;//·£ÇòÃüÖÐÊý£¬
-	double numberOfFreeThrowAttempt ;//·£Çò³öÊÖÊý£¬
-	double numberOfAttackRebound ;//½ø¹¥£¨Ç°³¡£©Àº°åÇò£¬
-	double numberOfDefenseRebound ;//·ÀÊØ£¨ºó³¡£©Àº°åÇò£¬
-	double numberOfReboundOfOneMatch ;//×ÜÀº°åÇò£¬
-	double numberOfAssistOfOneMatch ;//Öú¹¥Êý£¬
-	double numberOfSteal;  //ÇÀ¶ÏÊý
-	double numberOfBlockOfOneMatch ;//¸ÇÃ±Êý£¬
-	double numberOfFaultOfOneMatch ;//Ê§ÎóÊý£¬
+	//Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½
+	String name ;//ï¿½ï¿½ï¿½ï¿½
+	String position ;//Î»ï¿½ï¿½
+	String presentTimeOfOneMatch ;//ï¿½Ú³ï¿½Ê±ï¿½ï¿½
+	double numberOfShooting ;//Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfShotAttempt ; // Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOf3_point ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOf3_pointAttempt ;//ï¿½ï¿½ï¿½Ö³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfFreeThrow ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfFreeThrowAttempt ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfAttackRebound ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfDefenseRebound ;//ï¿½ï¿½ï¿½Ø£ï¿½ï¿½ó³¡£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfReboundOfOneMatch ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfAssistOfOneMatch ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfSteal;  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfBlockOfOneMatch ;//ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½
+	double numberOfFaultOfOneMatch ;//Ê§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	double numberOfFoulOfOneMatch ;//·¸¹æÊý£¬
-	double scoreOfOneMatch ;//¸öÈËµÃ·Ö
+	double numberOfFoulOfOneMatch ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double scoreOfOneMatch ;//ï¿½ï¿½ï¿½ËµÃ·ï¿½
 	
 	
 	
-	double percentageOfShooting ;//Í¶ÀºÃüÖÐÂÊ
-	double percentageOf3_Point ;//Èý·ÖÃüÖÐÂÊ
-	double percentageOffreeThrow ;//·£ÇòÃüÖÐÂÊ
+	double percentageOfShooting ;//Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double percentageOf3_Point ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double percentageOffreeThrow ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	
-	double numberOfAttack ;//½ø¹¥Êý
-	double numberOfDefense ;//·ÀÊØÊý
-	double efficiency ;//Ð§ÂÊ£¬
+	double numberOfAttack ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double numberOfDefense ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	double efficiency ;//Ð§ï¿½Ê£ï¿½
 	
-	double efficiencyOfGmSc ;//GmScÐ§ÂÊÖµ£¬
-	double percentageOfTrueShooting ;//ÕæÊµÃüÖÐÂÊ£¬
-	double efficiencyOfShooting ;//Í¶ÀºÐ§ÂÊ£¬
-	double percentageOfRebound ; //Àº°åÂÊ£¬
-	double percentageOfAttackingRebound ;//½ø¹¥Àº°åÂÊ£¬
-	double percentageOfDefenseRebound ;//·ÀÊØÀº°åÂÊ£¬
-	double percentageOfAssist ;// Öú¹¥ÂÊ£¬
-	double percentageOfSteal ;//ÇÀ¶ÏÂÊ£¬
-	double percentageOfBlock ;//¸ÇÃ±ÂÊ£¬
-	double percentageOfFault ;//Ê§ÎóÂÊ£¬
-	double percentageOfUse ;//Ê¹ÓÃÂÊ
+	double efficiencyOfGmSc ;//GmScÐ§ï¿½ï¿½Öµï¿½ï¿½
+	double percentageOfTrueShooting ;//ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½
+	double efficiencyOfShooting ;//Í¶ï¿½ï¿½Ð§ï¿½Ê£ï¿½
+	double percentageOfRebound ; //ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½
+	double percentageOfAttackingRebound ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½
+	double percentageOfDefenseRebound ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½
+	double percentageOfAssist ;// ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½
+	double percentageOfSteal ;//ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½
+	double percentageOfBlock ;//ï¿½ï¿½Ã±ï¿½Ê£ï¿½
+	double percentageOfFault ;//Ê§ï¿½ï¿½ï¿½Ê£ï¿½
+	double percentageOfUse ;//Ê¹ï¿½ï¿½ï¿½ï¿½
 	
-	boolean double_double;  //Á½Ë«
+	boolean double_double;  //ï¿½ï¿½Ë«
 	
 	
 	public PlayerDataOfOneMatchPO(){
 		
 	}
 	public PlayerDataOfOneMatchPO(String[] splitString){
-	   	this.setName(splitString[0]);//Ãû×Ö
-    	this.setPosition(splitString[1]);//Î»ÖÃ
+	   	this.setName(splitString[0]);
+    	this.setPosition(splitString[1]);
 		this.setPresentTimeOfOneMatch(splitString[2]);
 		this.setNumberOfShooting(Integer.parseInt(splitString[3]));
 		this.setNumberOfShotAttempt(Integer.parseInt(splitString[4]));
@@ -80,10 +80,10 @@ public class PlayerDataOfOneMatchPO {
 		
 	}
 	
-	public void calculatePlayerData(int totalTime,TeamDataPO teamData,TeamDataPO theOtherTeamData,ArrayList<PlayerDataOfOneMatchPO> playersData ){//ËùÓÐÇòÔ±ÔÚ³¤Ê±¼äºÍ¶ÔÊÖ×ÜÀº°å
-		percentageOfShooting = (double)numberOfShooting/numberOfShotAttempt ;//Í¶ÀºÃüÖÐÂÊ
-		percentageOf3_Point = (double)numberOf3_point/numberOf3_pointAttempt ;//Èý·ÖÃüÖÐÂÊ
-		percentageOffreeThrow = (double)numberOfFreeThrow/numberOfFreeThrowAttempt ;//·£ÇòÃüÖÐÂÊ
+	public void calculatePlayerData(int totalTime,TeamDataPO teamData,TeamDataPO theOtherTeamData,ArrayList<PlayerDataOfOneMatchPO> playersData ){//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½Ú³ï¿½Ê±ï¿½ï¿½Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		percentageOfShooting = (double)numberOfShooting/numberOfShotAttempt ;//Í¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		percentageOf3_Point = (double)numberOf3_point/numberOf3_pointAttempt ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		percentageOffreeThrow = (double)numberOfFreeThrow/numberOfFreeThrowAttempt ;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		efficiency = (scoreOfOneMatch+numberOfReboundOfOneMatch+numberOfAssistOfOneMatch+numberOfSteal+numberOfBlockOfOneMatch)
 				-(numberOfShotAttempt - numberOfShooting)-(numberOfFreeThrowAttempt-numberOfFreeThrow)-numberOfFaultOfOneMatch ;
 		
@@ -100,7 +100,7 @@ public class PlayerDataOfOneMatchPO {
 		percentageOfFault = numberOfFaultOfOneMatch/( (theOtherTeamData.getNumberOfShotAttempt()-theOtherTeamData.getNumberOf3_pointAttempt()) + 0.44*numberOfFreeThrowAttempt+numberOfFaultOfOneMatch) ;
 		percentageOfUse = (numberOfShotAttempt+0.44*numberOfFreeThrowAttempt+numberOfFaultOfOneMatch)*(totalTime/5.0)/transfromTime(presentTimeOfOneMatch,playersData,totalTime)/(teamData.getNumberOfShotAttempt()+0.44*teamData.getNumberOfFreeThrowAttempt()+teamData.getNumberOfFault());
 	}
-	int transfromTime(String time,ArrayList<PlayerDataOfOneMatchPO> playersData,int totalTime){//×ª»¯Ê±¼äÎªÕûÊý£¬µ¥Î»Ãë
+	int transfromTime(String time,ArrayList<PlayerDataOfOneMatchPO> playersData,int totalTime){//×ªï¿½ï¿½Ê±ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
 		int result = 0 ;
 		if(time.equals("null")||time.equals("None")){
 			result = totalTime *5;
@@ -112,7 +112,7 @@ public class PlayerDataOfOneMatchPO {
 			if(result<0){
 				result = 0;
 			}
-			presentTimeOfOneMatch = ""+result/60+":"+result%60 ;//ÉèÖÃÈ±Ê§µÄÉÏ³¡Ê±¼ä
+			presentTimeOfOneMatch = ""+result/60+":"+result%60 ;//ï¿½ï¿½ï¿½ï¿½È±Ê§ï¿½ï¿½ï¿½Ï³ï¿½Ê±ï¿½ï¿½
 //			System.out.println(result+"  "+presentTimeOfOneMatch);
 			return result ;
 		}

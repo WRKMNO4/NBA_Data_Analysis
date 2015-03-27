@@ -184,6 +184,12 @@ public class PlayerSortHelper implements Comparator<PlayerPO>{
 		default:
 			break ;
 		}
+		if(number1!=number1){      //判断number1是否为NaN
+			number1=-1;
+		}
+		if(number2!=number2)      //判断number2是否为NaN
+			number2=-1;
+		
 		if(number1>number2){
 			return -1;
 		}

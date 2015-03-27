@@ -191,6 +191,11 @@ public class TeamSortHelper implements Comparator<TeamPO>{
 		default:
 			break;
 		}
+		if(data1!=data1)
+			data1=-1;
+		if(data2!=data2)
+			data2=-1;
+		
 		if(data1 > data2)
 			return -1 ;
 		else if(data1 == data2)

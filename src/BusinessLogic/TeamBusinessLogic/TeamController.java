@@ -31,6 +31,10 @@ public class TeamController implements TeamBusinessLogic{
 	@Override
 	public ArrayList<TeamPO> sortTeamsOf13_14ByComprehension(String standard,TeamData dataType) {
 		// TODO Auto-generated method stub
+		if(dataType==TeamData.teamFullName)
+			standard="name";
+		else if(dataType==TeamData.numberOfMatches)
+			standard="matches";
 		ArrayList<TeamPO> results= (ArrayList<TeamPO>) teamController.getAllTeamsOf13_14().clone();
 		Collections.sort(results,new TeamSortHelper(standard, dataType));
 		return results;

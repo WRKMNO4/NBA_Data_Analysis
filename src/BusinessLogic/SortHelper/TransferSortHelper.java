@@ -131,6 +131,12 @@ public class TransferSortHelper {
 	public static TeamData StringToDataTypeForTeam(String key){
 		TeamData dataType=null;
 		switch(key){
+		case "球队名称":
+			dataType=TeamData.teamFullName;
+			break;
+		case "比赛场数":
+			dataType=TeamData.numberOfMatches;
+			break;
 		case "投篮命中数":
 			dataType=TeamData.numberOfShooting;
 			break;
