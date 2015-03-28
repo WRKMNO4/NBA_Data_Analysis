@@ -122,7 +122,7 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 			TeamData dataType=TransferSortHelper.StringToDataTypeForTeam(data);
 			ArrayList<TeamPO> teams=MainFrame.mainFrame.bl.sortTeamsOf13_14ByComprehension("total", dataType);
 			MainFrame.mainFrame.topTabPanel.refreshTeamTable(teams);
-		}if(e.getSource()==cb_avg_data){
+		}else if(e.getSource()==cb_avg_data){
 			//场均数据
 			String data=cb_avg_data.getSelectedItem().toString();
 			TeamData dataType=TransferSortHelper.StringToDataTypeForTeam(data);
