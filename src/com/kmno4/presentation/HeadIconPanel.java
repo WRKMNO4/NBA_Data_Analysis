@@ -12,6 +12,7 @@ import PO.PlayerPO;
 public class HeadIconPanel extends JPanel {
 	private JLabel head;
 	private JLabel name;
+	private JLabel team;
 	
 	public HeadIconPanel(PlayerPO po) {
 		this.setLayout(new GridBagLayout());

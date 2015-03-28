@@ -207,11 +207,25 @@ public class TopTabPanel extends JPanel implements MouseListener{
 				if(t[i][j].elements.length == 0) return;
 			    final JLabel label = t[i][j].elements[PLAYER_LINK];
 				label.addMouseListener(new MouseAdapter() {
+					HeadIconFrame headIconFrame;
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						PlayerPO p = PlayerListPO.findPlayerByName(label.getText());
 						if(p == null) return;
 						new PlayerDetailFrame(p).setVisible(true);
+					}
+					@Override
+					public void mouseEntered(MouseEvent e) {
+						/*
+						headIconFrame = new HeadIconFrame(
+								PlayerListPO.findPlayerByName(label.getText()),
+								,
+								);
+						*/
+					}
+					@Override
+					public void mouseExited(MouseEvent e) {
+						//TODO
 					}
 				});
 			}
