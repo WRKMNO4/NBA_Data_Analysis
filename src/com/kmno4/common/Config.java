@@ -88,6 +88,11 @@ public class Config {
 	public static final int PLAYER_LABEL_HEIGHT=15;
 	public static final int PLAYER_LABEL_WIDTH=60;
 	
+	public static final int HEAD_ICON_FRAME_WIDTH = 368;
+	public static final int HEAD_ICON_FRAME_HEIGHT = 148;
+	public static final int HEAD_ICON_WIDTH = 184;
+	public static final int HEAD_ICON_HEIGHT = 184;
+	
 	//所有图片
 		//tabPanel Label切换图片
 	public static final ImageIcon TAB_PLAYER_CLICKED=new ImageIcon("images/tab_player_clicked.png");

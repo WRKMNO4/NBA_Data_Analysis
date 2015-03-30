@@ -132,6 +132,9 @@ public class Table extends JPanel {
 	 * 最大列数（不包括表头）
 	 */
 	protected  int rowNum;
+	public int getRowNum() {
+		return rowNum;
+	}
 	private static final int DEFAULT_ROW_NUM = 8;
 	/**
 	 * 页数，不小于1

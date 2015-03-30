@@ -198,7 +198,8 @@ public class TopTabPanel extends JPanel implements MouseListener{
 				Config.UI_WIDTH,
 				Config.UI_HEIGHT - y);
 	}
-	
+	private HeadIconFrame headIconFrame;
+	private int columNum;
 	private static final int PLAYER_LINK = 0;
 	private void addPlayerLink() {
 		TableList[][] t = tableBeShowing.body;
@@ -206,8 +207,8 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			for(int j = 0; j < t[0].length; j ++) {
 				if(t[i][j].elements.length == 0) return;
 			    final JLabel label = t[i][j].elements[PLAYER_LINK];
+			    final int fj = j;
 				label.addMouseListener(new MouseAdapter() {
-					HeadIconFrame headIconFrame;
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						PlayerPO p = PlayerListPO.findPlayerByName(label.getText());
@@ -216,16 +217,30 @@ public class TopTabPanel extends JPanel implements MouseListener{
 					}
 					@Override
 					public void mouseEntered(MouseEvent e) {
-						/*
-						headIconFrame = new HeadIconFrame(
+						columNum = fj + 1;
+						double labelHeight = (double)tableBeShowing.getHeight() / (double)(tableBeShowing.getRowNum() + 2);
+						double x = (double)MainFrame.mainFrame.getX() +
+								   (double)tableBeShowing.getX() + 
+								   (double)tableBeShowing.getWidth() / tableBeShowing.head.elements.length;
+						double y = (double)MainFrame.mainFrame.getY() +
+								   (double)tableBeShowing.getY() + 
+								   (double)(columNum + 1) * labelHeight;
+						HeadIconFrame f = new HeadIconFrame(
 								PlayerListPO.findPlayerByName(label.getText()),
-								,
-								);
-						*/
+								(int)x,
+								(int)y);
+						if(headIconFrame != null && headIconFrame.isVisible()) {
+							headIconFrame.setVisible(false);
+							headIconFrame.dispose();
+						}
+						headIconFrame = f;
 					}
 					@Override
 					public void mouseExited(MouseEvent e) {
-						//TODO
+						if(headIconFrame != null && headIconFrame.isVisible()) {
+							headIconFrame.setVisible(false);
+							headIconFrame.dispose();
+						}
 					}
 				});
 			}
