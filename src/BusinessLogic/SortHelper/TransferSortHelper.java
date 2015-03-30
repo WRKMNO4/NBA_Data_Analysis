@@ -209,8 +209,8 @@ public class TransferSortHelper {
 		case "助攻率":
 			dataType=TeamData.efficiencyOfAssist;
 			break;
-			
-			
+		case "胜率":
+			dataType=TeamData.percentageOfWinning;
 		}
 		return  dataType;
 	}

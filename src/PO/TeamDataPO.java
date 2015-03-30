@@ -104,6 +104,7 @@ public class TeamDataPO {
 			percentageOfFreeThrow += teamData.getPercentageOfFreeThrow();
 			
 			roundOfAttack += teamData.getRoundOfAttack();
+			roundOfDefense+=teamData.getRoundOfDefense();
 			
 			efficiencyOfAttack += teamData.getEfficiencyOfAttack();
 			efficiencyOfDefense += teamData.getEfficiencyOfDefense();

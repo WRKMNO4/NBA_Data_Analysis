@@ -35,6 +35,8 @@ public class TeamController implements TeamBusinessLogic{
 			standard="name";
 		else if(dataType==TeamData.numberOfMatches)
 			standard="matches";
+		else if(dataType==TeamData.percentageOfWinning)
+			standard="perOfWin";
 		ArrayList<TeamPO> results= (ArrayList<TeamPO>) teamController.getAllTeamsOf13_14().clone();
 		Collections.sort(results,new TeamSortHelper(standard, dataType));
 		return results;
