@@ -2,6 +2,8 @@ package PO;
 
 import java.util.ArrayList;
 
+import Enum.Season;
+
 public class PlayerPO {
 	String name = "Unknown";   //定义为Unknown是因为有些球员是在比赛中找到的，而球员数据中没有，所有需要使其有初始值
 	String position = "Unknown";  //λ��
@@ -24,6 +26,11 @@ public class PlayerPO {
 	DataForFinalCalculationPO dataOfOtherTeam = new DataForFinalCalculationPO() ;
 	String team="Unknown" ; //������ӣ�����nameȥfind TeamPO��
 	
+	SeasonInfoForPlayer seasonInfo12_13;
+	SeasonInfoForPlayer seasonInfo13_14;
+	SeasonInfoForPlayer seasonInfo14_15;
+	
+	
 	public void calculateFinalData(){
 		TeamPO team = TeamListPO.findTeamByShortName(this.team) ;
 		if(team==null){
@@ -41,6 +48,17 @@ public class PlayerPO {
 	}
 	public void addDataOfOneMatchOfOnePlayer(PlayerDataOfOneMatchPO onePlayer){
 		datas.add(onePlayer);
+	}
+	public SeasonInfoForPlayer getSeasonInfo(Season season){
+		switch(season){
+		case season12_13:
+			return seasonInfo12_13;
+		case season13_14:
+			return seasonInfo13_14;
+		case season14_15:
+			return seasonInfo14_15;
+		}
+			return null;
 	}
 	public String getName() {
 		return name;

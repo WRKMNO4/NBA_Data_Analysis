@@ -42,6 +42,10 @@ public class MatchController implements MatchDataService{
 						
 					switch(j){
 					case 0: newMatch.setDate(splitString[0]);
+					        if(splitString[1].split("-")[0].equals("NOH"))
+					        	splitString[1].split("-")[0]="NOP";
+					        else if(splitString[1].split("-")[1].equals("NOH"))
+					        	splitString[1].split("-")[1]="NOP";
 					        newMatch.setFirstTeam(splitString[1].split("-")[0]);
 					        newMatch.setSecondTeam(splitString[1].split("-")[1]);
 					        newMatch.setFinalScore(new ScoreOfMatchPO(splitString[2]));

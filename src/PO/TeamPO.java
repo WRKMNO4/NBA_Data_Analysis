@@ -2,6 +2,7 @@ package PO;
 
 import java.util.ArrayList;
 
+import Enum.Season;
 import Enum.Zone;
 
 public class TeamPO {
@@ -22,10 +23,14 @@ public class TeamPO {
 	
 	int numberOfMatches;
 	int numberOfWinning;
-	double percentageOfWinning ; //ʤ��
+	double percentageOfWinning ; 
 	
-	ArrayList<PlayerPO> players = new ArrayList<PlayerPO>() ;//��Ա����
-	ArrayList<MatchPO> matches = new ArrayList<MatchPO>();  //��������
+	ArrayList<PlayerPO> players = new ArrayList<PlayerPO>() ;
+	ArrayList<MatchPO> matches = new ArrayList<MatchPO>();  
+	
+	SeasonInfoForTeam seasonInfo12_13;
+	SeasonInfoForTeam seasonInfo13_14;
+	SeasonInfoForTeam seasonInfo14_15;
 	
 	public void addPlayer(PlayerPO onePlayer){
 		if(ifContainThePlayer(onePlayer)){
@@ -56,6 +61,18 @@ public class TeamPO {
 		averageTeamData.calculateTeamAverageDataInOneSeason(totalTeamData, matches.size(),dataOfOtherTeams);
 	}
 	
+	public SeasonInfoForTeam getSeasonInfo(Season season){
+		switch(season){
+		case season12_13:
+			return seasonInfo12_13;
+		case season13_14:
+			return seasonInfo13_14;
+		case season14_15:
+			return seasonInfo14_15;
+		}
+		return null;
+	}
+	
 	public void updateOtherTeamData(double score){
 		dataOfOtherTeams.update(score) ;
 	}
@@ -72,6 +89,9 @@ public class TeamPO {
 	}
 	public void setShortName(String shortName) {
 		this.shortName = shortName;
+		seasonInfo12_13.setShortName(shortName);
+		seasonInfo13_14.setShortName(shortName);
+		seasonInfo14_15.setShortName(shortName);
 	}
 	public String getCity() {
 		return city;

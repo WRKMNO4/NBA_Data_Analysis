@@ -19,7 +19,7 @@ public class MatchPO {
 	TeamDataPO firstTeamData;
 	TeamDataPO secondTeamData;
 	
-	int totalTime ;//������Ա�ϳ�ʱ�䣬��λ��
+	int totalTime ;
 	
 	public MatchPO(){
 		firstTeam_PlayerData = new ArrayList<>() ;
