@@ -56,11 +56,12 @@ public class TeamPO {
 	}
 	
 	public void calculateTeamDataInOneSeason(){
-		percentageOfWinning = numberOfWinning / matches.size() ;
+		percentageOfWinning = (double)numberOfWinning / matches.size() ;
 		totalTeamData.calculateTeamTotalDataInOneSeason(matches, shortName);
 		averageTeamData.calculateTeamAverageDataInOneSeason(totalTeamData, matches.size(),dataOfOtherTeams);
 	}
 	
+<<<<<<< HEAD
 	public SeasonInfoForTeam getSeasonInfo(Season season){
 		switch(season){
 		case season12_13:
@@ -74,7 +75,11 @@ public class TeamPO {
 	}
 	
 	public void updateOtherTeamData(double score){
+=======
+	public void updateOtherTeamData(double score,int totalTime,TeamDataPO otherTeamData){
+>>>>>>> origin/master
 		dataOfOtherTeams.update(score) ;
+		dataOfOtherTeams.update(totalTime, otherTeamData);
 	}
 
 	

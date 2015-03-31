@@ -166,6 +166,15 @@ public class MatchPO {
 		this.secondTeamData = secondTeamData;
 	}
 
+	public int getTotalTime() {
+		return totalTime;
+	}
+
+	public void setTotalTime(int totalTime) {
+		this.totalTime = totalTime;
+	}
+	
+
 	
 	
 }

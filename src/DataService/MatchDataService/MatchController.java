@@ -90,8 +90,8 @@ public class MatchController implements MatchDataService{
 				secondTeam.addMatch(newMatch);
 				
 				//更新球队的对手信息
-				firstTeam.updateOtherTeamData(newMatch.getFinalScore().getSecondScore());
-				secondTeam.updateOtherTeamData(newMatch.getFinalScore().getFirstScore());
+				firstTeam.updateOtherTeamData(newMatch.getFinalScore().getSecondScore(),newMatch.getTotalTime(),newMatch.getSecondTeamData());
+				secondTeam.updateOtherTeamData(newMatch.getFinalScore().getFirstScore(),newMatch.getTotalTime(),newMatch.getFirstTeamData());
 				
 				//更新球员的对手信息 
 				newMatch.updateOtherTeamDataForPlayers();

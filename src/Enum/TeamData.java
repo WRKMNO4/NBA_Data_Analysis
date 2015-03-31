@@ -29,6 +29,8 @@ public enum TeamData {
 	 efficiencyOfSteal,
 	 efficiencyOfAssist,
 	 
+	 percentageOfWinning,
+	 
 	 
 	 
 }

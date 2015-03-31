@@ -109,8 +109,8 @@ public class TeamSortHelper implements Comparator<TeamPO>{
 			break;
 			
 		case numberOfRebound:
-			data1=o1.getNumberOf3_pointAttempt();
-			data2=o2.getNumberOf3_pointAttempt();
+			data1=o1.getNumberOfRebound();
+			data2=o2.getNumberOfRebound();
 			break;
 			
 		case numberOfAssist:
@@ -160,8 +160,8 @@ public class TeamSortHelper implements Comparator<TeamPO>{
 			break;
 			
 		case roundOfAttack:
-			data1=o1.getPercentageOfShooting();
-			data2=o2.getPercentageOfShooting();
+			data1=o1.getRoundOfAttack();
+			data2=o2.getRoundOfAttack();
 			break;
 			
 		case efficiencyOfAttack:
@@ -172,6 +172,7 @@ public class TeamSortHelper implements Comparator<TeamPO>{
 		case efficiencyOfDefense:
 			data1=o1.getEfficiencyOfDefense();
 			data2=o2.getEfficiencyOfDefense();
+			break;
 			
 		case efficiencyOfRebound:
 			data1=o1.getEfficiencyOfRebound();
