@@ -28,9 +28,9 @@ public class TeamPO {
 	ArrayList<PlayerPO> players = new ArrayList<PlayerPO>() ;
 	ArrayList<MatchPO> matches = new ArrayList<MatchPO>();  
 	
-	SeasonInfoForTeam seasonInfo12_13;
-	SeasonInfoForTeam seasonInfo13_14;
-	SeasonInfoForTeam seasonInfo14_15;
+	SeasonInfoForTeam seasonInfo12_13=new SeasonInfoForTeam();
+	SeasonInfoForTeam seasonInfo13_14=new SeasonInfoForTeam();
+	SeasonInfoForTeam seasonInfo14_15=new SeasonInfoForTeam();
 	
 	public void addPlayer(PlayerPO onePlayer){
 		if(ifContainThePlayer(onePlayer)){
@@ -90,9 +90,9 @@ public class TeamPO {
 	}
 	public void setShortName(String shortName) {
 		this.shortName = shortName;
-//		seasonInfo12_13.setShortName(shortName);
-//		seasonInfo13_14.setShortName(shortName);
-//		seasonInfo14_15.setShortName(shortName);
+		seasonInfo12_13.setShortName(shortName);
+		seasonInfo13_14.setShortName(shortName);
+		seasonInfo14_15.setShortName(shortName);
 	}
 	public String getCity() {
 		return city;

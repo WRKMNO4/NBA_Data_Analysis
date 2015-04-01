@@ -26,9 +26,9 @@ public class PlayerPO {
 	DataForFinalCalculationPO dataOfOtherTeam = new DataForFinalCalculationPO() ;
 	String team="Unknown" ; //������ӣ�����nameȥfind TeamPO��
 	
-	SeasonInfoForPlayer seasonInfo12_13;
-	SeasonInfoForPlayer seasonInfo13_14;
-	SeasonInfoForPlayer seasonInfo14_15;
+	SeasonInfoForPlayer seasonInfo12_13=new SeasonInfoForPlayer();
+	SeasonInfoForPlayer seasonInfo13_14=new SeasonInfoForPlayer();
+	SeasonInfoForPlayer seasonInfo14_15=new SeasonInfoForPlayer();
 	
 	
 	public void calculateFinalData(){
