@@ -51,12 +51,12 @@ public class TeamDetailPanel extends JPanel {
 		teamDetailFrame = f;
 		setBounds(0, 0, Config.PLAYER_DETAIL_UI_WIDTH,
 				Config.PLAYER_DETATI_UI_TOP_HEIGHT);
-		setBackground(new Color(255, 255, 255, 50));
+		setBackground(new Color(255, 255, 255, 255));
 		layout = new GridBagLayout();
 		setLayout(layout);
 		c = new GridBagConstraints();
 
-		team_icon = new JLabel("队伍头像", JLabel.CENTER);
+		team_icon = new JLabel();
 		fillIcon(team_icon, t.getTeamLogoURL());
 		c.gridx = 0;
 		c.gridy = 0;
@@ -65,6 +65,7 @@ public class TeamDetailPanel extends JPanel {
 		c.weightx = 4;
 		c.weighty = 4;
 		c.fill = GridBagConstraints.BOTH;
+		c.anchor = GridBagConstraints.NORTHWEST;
 		layout.setConstraints(team_icon, c);
 		add(team_icon);
 
@@ -81,7 +82,7 @@ public class TeamDetailPanel extends JPanel {
 		layout.setConstraints(team_name, c);
 		add(team_name);
 
-		team_coach = new JLabel("PA:" + "-", JLabel.LEFT);
+		team_coach = new JLabel("教练:" + "XXX", JLabel.LEFT);
 		team_coach.setFont(new Font("default", Font.ITALIC, 18));
 		c.gridx = 1;
 		c.gridy = 1;
@@ -187,7 +188,7 @@ public class TeamDetailPanel extends JPanel {
 		c.gridwidth = 6;
 		c.gridheight = 1;
 		c.weightx = 12;
-		c.weighty = 1.3;
+		c.weighty = 18;
 		c.fill = GridBagConstraints.BOTH;
 		layout.setConstraints(sumInfo, c);
 		add(sumInfo);

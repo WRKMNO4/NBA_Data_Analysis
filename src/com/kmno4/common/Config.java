@@ -93,8 +93,8 @@ public class Config {
 	public static final int HEAD_ICON_WIDTH = 184;
 	public static final int HEAD_ICON_HEIGHT = 184;
 	
-	public static final int TEAM_ICON_WIDTH = 200;
-	public static final int TEAM_ICON_HEIGHT = 200;
+	public static final int TEAM_ICON_WIDTH = 315;
+	public static final int TEAM_ICON_HEIGHT = 315;
 	
 	//所有图片
 		//tabPanel Label切换图片
