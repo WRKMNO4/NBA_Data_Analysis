@@ -90,9 +90,6 @@ public class TeamPO {
 	}
 	public void setShortName(String shortName) {
 		this.shortName = shortName;
-		seasonInfo12_13.setShortName(shortName);
-		seasonInfo13_14.setShortName(shortName);
-		seasonInfo14_15.setShortName(shortName);
 	}
 	public String getCity() {
 		return city;
