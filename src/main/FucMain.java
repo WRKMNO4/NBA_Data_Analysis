@@ -33,7 +33,7 @@ public class FucMain {
 				GFrame.add(DPanel);	//在JFrame中加入DPanel
 				DPanel.launch();					
 				while(true){
-					if(System.currentTimeMillis()-begin_time>7000){
+					if(System.currentTimeMillis()-begin_time>3000){
 						GFrame.dispose();
 						break;
 					}				
@@ -64,7 +64,7 @@ public class FucMain {
 			Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 				frame.setVisible(true);
 				while(true){
-					if((System.currentTimeMillis()-begin_time)>7000){
+					if((System.currentTimeMillis()-begin_time)>3000){
 						frame.setVisible(true);
 						break;
 					}
