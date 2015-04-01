@@ -21,7 +21,7 @@ import PO.PlayerPO;
 
 import com.kmno4.common.Config;
 
-public class SelectionPanel extends JPanel implements MouseListener,
+public class PlayerSelectionPanel extends JPanel implements MouseListener,
 		ActionListener {
 	public List<JLabel> avg_sort_list;
 	private TextField tf_search;
@@ -56,7 +56,7 @@ public class SelectionPanel extends JPanel implements MouseListener,
 	/**
 	 * Create the panel.
 	 */
-	public SelectionPanel() {
+	public PlayerSelectionPanel() {
 
 		this.setBounds(0, Config.TOP_TAB_HEIGHT + Config.INTRODUCTION_WHITE,
 				Config.UI_WIDTH, Config.SELECTION_HEIGHT);

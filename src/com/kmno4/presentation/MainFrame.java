@@ -25,7 +25,7 @@ public class MainFrame extends JFrame implements MouseListener{
 	private JPanel contentPane;
 	
 	public static MainFrame mainFrame; //mainframe自身的静态引用
-	public  SelectionPanel playerSelectionPanel;
+	public  PlayerSelectionPanel playerSelectionPanel;
 	public  TopTabPanel topTabPanel;
 	public  PageInfoPanel pageInfoPanel;
 	public  TeamSelectionPanel teamSelectionPanel;
@@ -125,7 +125,7 @@ public class MainFrame extends JFrame implements MouseListener{
 		this.add(pageInfoPanel);
 		topTabPanel=new TopTabPanel();
 		this.add(topTabPanel);
-		playerSelectionPanel=new SelectionPanel();
+		playerSelectionPanel=new PlayerSelectionPanel();
 		this.add(playerSelectionPanel);
 		teamSelectionPanel=new TeamSelectionPanel();
 		this.add(teamSelectionPanel);

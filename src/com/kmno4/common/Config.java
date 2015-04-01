@@ -101,19 +101,19 @@ public class Config {
 	public static final ImageIcon TAB_PLAYER_CLICKED=new ImageIcon("images/tab_player_clicked.png");
 	public static final ImageIcon TAB_TEAM_CLICKED=new ImageIcon("images/tab_team_clicked.png");
 	public static final ImageIcon TAB_MATCH_CLICKED=new ImageIcon("images/tab_match_clicked.png");
-	public static final ImageIcon TAB_HELP_CLICKED=new ImageIcon("images/tab_help_clicked.png");
+	public static final ImageIcon TAB_HOT_CLICKED=new ImageIcon("images/tab_hot_clicked.png");
 	public static final ImageIcon TAB_ABOUT_CLICKED=new ImageIcon("images/tab_about_clicked.png");
 
 	public static final ImageIcon TAB_PLAYER_ENTERED=new ImageIcon("images/tab_player_entered.png");
 	public static final ImageIcon TAB_TEAM_ENTERED=new ImageIcon("images/tab_team_entered.png");
 	public static final ImageIcon TAB_MATCH_ENTERED=new ImageIcon("images/tab_match_entered.png");
-	public static final ImageIcon TAB_HELP_ENTERED=new ImageIcon("images/tab_help_entered.png");
+	public static final ImageIcon TAB_HOT_ENTERED=new ImageIcon("images/tab_hot_entered.png");
 	public static final ImageIcon TAB_ABOUT_ENTERED=new ImageIcon("images/tab_about_entered.png");
 
 	public static final ImageIcon TAB_PLAYER_UNPRESSED=new ImageIcon("images/tab_player_unpressed.png");
 	public static final ImageIcon TAB_TEAM_UNPRESSED=new ImageIcon("images/tab_team_unpressed.png");
 	public static final ImageIcon TAB_MATCH_UNPRESSED=new ImageIcon("images/tab_match_unpressed.png");
-	public static final ImageIcon TAB_HELP_UNPRESSED=new ImageIcon("images/tab_help_unpressed.png");
+	public static final ImageIcon TAB_HOT_UNPRESSED=new ImageIcon("images/tab_hot_unpressed.png");
 	public static final ImageIcon TAB_ABOUT_UNPRESSED=new ImageIcon("images/tab_about_unpressed.png");
 
 	public static final ImageIcon TAB_PLAYER_PRESSED=new ImageIcon("images/tab_player_pressed.png");

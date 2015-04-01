@@ -30,7 +30,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	private JLabel player;
 	private JLabel match;
 	private JLabel team;
-	private JLabel help;
+	private JLabel hot;
 	private JLabel aboutus;
 	private JLabel close;
 	
@@ -64,9 +64,9 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		match = new JLabel("比赛");
 		match.addMouseListener(this);
 		match.setIcon(Config.TAB_MATCH_UNPRESSED);
-		help = new JLabel("帮助");
-		help.addMouseListener(this);
-		help.setIcon(Config.TAB_HELP_UNPRESSED);
+		hot = new JLabel("帮助");
+		hot.addMouseListener(this);
+		hot.setIcon(Config.TAB_HOT_UNPRESSED);
 		aboutus = new JLabel("关于");
 		aboutus.addMouseListener(this);
 		aboutus.setIcon(Config.TAB_ABOUT_UNPRESSED);
@@ -76,7 +76,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		tabs.add(player);
 		tabs.add(team);
 		tabs.add(match);
-		tabs.add(help);
+		tabs.add(hot);
 		tabs.add(aboutus);
 		
 		for(int i=0;i<tabs.size();i++){
@@ -284,8 +284,8 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			team.setIcon(Config.TAB_TEAM_CLICKED);
 		}if(e.getSource()==match){
 			match.setIcon(Config.TAB_MATCH_CLICKED);
-		}if(e.getSource()==help){
-			help.setIcon(Config.TAB_HELP_CLICKED);
+		}if(e.getSource()==hot){
+			hot.setIcon(Config.TAB_HOT_CLICKED);
 		}if(e.getSource()==aboutus){
 			aboutus.setIcon(Config.TAB_ABOUT_CLICKED);
 		}
@@ -301,8 +301,8 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			team.setIcon(Config.TAB_TEAM_UNPRESSED);
 		}if(e.getSource()==match){
 			match.setIcon(Config.TAB_MATCH_UNPRESSED);
-		}if(e.getSource()==help){
-			help.setIcon(Config.TAB_HELP_UNPRESSED);
+		}if(e.getSource()==hot){
+			hot.setIcon(Config.TAB_HOT_UNPRESSED);
 		}if(e.getSource()==aboutus){
 			aboutus.setIcon(Config.TAB_ABOUT_UNPRESSED);
 		}
@@ -319,8 +319,8 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			team.setIcon(Config.TAB_TEAM_ENTERED);
 		}if(e.getSource()==match){
 			match.setIcon(Config.TAB_MATCH_ENTERED);
-		}if(e.getSource()==help){
-			help.setIcon(Config.TAB_HELP_ENTERED);
+		}if(e.getSource()==hot){
+			hot.setIcon(Config.TAB_HOT_ENTERED);
 		}if(e.getSource()==aboutus){
 			aboutus.setIcon(Config.TAB_ABOUT_ENTERED);
 		}
@@ -337,8 +337,8 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			team.setIcon(Config.TAB_TEAM_UNPRESSED);
 		}if(e.getSource()==match){
 			match.setIcon(Config.TAB_MATCH_UNPRESSED);
-		}if(e.getSource()==help){
-			help.setIcon(Config.TAB_HELP_UNPRESSED);
+		}if(e.getSource()==hot){
+			hot.setIcon(Config.TAB_HOT_UNPRESSED);
 		}if(e.getSource()==aboutus){
 			aboutus.setIcon(Config.TAB_ABOUT_UNPRESSED);
 		}
