@@ -35,4 +35,9 @@ public enum PlayerData {
 	
 	double_double ,
 	comprehension ,
+	
+	improveRateOfScore ,
+	improveRateOfRebound ,
+	improveRateOfAssist ,
+	
 }

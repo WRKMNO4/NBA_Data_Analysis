@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import DataService.FileHelper.FileHelper;
+import Enum.Season;
 import PO.MatchListPO;
 import PO.MatchPO;
 import PO.PlayerDataOfOneMatchPO;
@@ -32,8 +33,23 @@ public class MatchController implements MatchDataService{
 				MatchPO newMatch = new MatchPO() ;
 				newMatch.setName(allFiles[i].getName());
 				
-				boolean isFirstTeam = false ; //�ж���һֻ���
-				for(int j = 0;j<tempString.size() ;j++){      //��ÿ�����¼�¼���ÿһ�н��з���
+				//Set season for newMatch
+				String theFileName=allFiles[i].getName();
+				String seasonName = theFileName.substring(0,5) ;
+				switch(seasonName){
+				case "12-13":
+					newMatch.setSeason(Season.season12_13);
+					break;
+				case "13-14":
+					newMatch.setSeason(Season.season13_14);
+					break;
+				case "14-15":
+					newMatch.setSeason(Season.season14_15);
+					break;
+				}
+				
+				boolean isFirstTeam = false ; 
+				for(int j = 0;j<tempString.size() ;j++){ 
 					String[] splitString=tempString.get(j).split(";");
 					if(tempString.get(j).length() == 3){
 						isFirstTeam =!isFirstTeam ;
@@ -66,17 +82,17 @@ public class MatchController implements MatchDataService{
 							 PlayerListPO.addPlayer(newPlayer) ;
 							 thePlayer = newPlayer ;
 						 }
-						 thePlayer.addDataOfOneMatchOfOnePlayer(onePlayer);
+						 thePlayer.addDataOfOneMatchOfOnePlayer(onePlayer,newMatch.getSeason());
 						 
 						 if(isFirstTeam){
 							 newMatch.addDataOfOnePlayerOfFirstTeam(onePlayer);
-							 thePlayer.setTeam(newMatch.getFirstTeam());
+							 thePlayer.setTeam(newMatch.getFirstTeam(),newMatch.getSeason());
 						 }else{
 							 newMatch.addDataOfOnePlayerOfSecondTeam(onePlayer);
-							 thePlayer.setTeam(newMatch.getSecondTeam());
+							 thePlayer.setTeam(newMatch.getSecondTeam(),newMatch.getSeason());
 						 }
-						 TeamPO theTeam = TeamListPO.findTeamByShortName(thePlayer.getTeam()) ;
-						 theTeam.addPlayer(thePlayer);
+						 TeamPO theTeam = TeamListPO.findTeamByShortName(thePlayer.getTeam(newMatch.getSeason())) ;
+						 theTeam.addPlayer(thePlayer,newMatch.getSeason());
 					}	
 				}
 				
@@ -86,12 +102,12 @@ public class MatchController implements MatchDataService{
 				
 				TeamPO firstTeam = TeamListPO.findTeamByShortName(newMatch.getFirstTeam());
 				TeamPO secondTeam = TeamListPO.findTeamByShortName(newMatch.getSecondTeam());
-				firstTeam.addMatch(newMatch);
-				secondTeam.addMatch(newMatch);
+				firstTeam.addMatch(newMatch,newMatch.getSeason());
+				secondTeam.addMatch(newMatch,newMatch.getSeason());
 				
 				//更新球队的对手信息
-				firstTeam.updateOtherTeamData(newMatch.getFinalScore().getSecondScore(),newMatch.getTotalTime(),newMatch.getSecondTeamData());
-				secondTeam.updateOtherTeamData(newMatch.getFinalScore().getFirstScore(),newMatch.getTotalTime(),newMatch.getFirstTeamData());
+				firstTeam.updateOtherTeamData(newMatch.getFinalScore().getSecondScore(),newMatch.getTotalTime(),newMatch.getSecondTeamData(),newMatch.getSeason());
+				secondTeam.updateOtherTeamData(newMatch.getFinalScore().getFirstScore(),newMatch.getTotalTime(),newMatch.getFirstTeamData(),newMatch.getSeason());
 				
 				//更新球员的对手信息 
 				newMatch.updateOtherTeamDataForPlayers();

@@ -3,25 +3,29 @@ package BusinessLogic.SortHelper;
 import java.util.Comparator;
 
 import Enum.PlayerData;
+import Enum.Season;
 import PO.PlayerDataPO;
 import PO.PlayerPO;
+import PO.SeasonInfoForPlayer;
 
 public class PlayerSortHelper implements Comparator<PlayerPO>{
 	String str ;
 	PlayerData dataType ;
-	public PlayerSortHelper(String standard,PlayerData dataType){
+	Season season ;
+	public PlayerSortHelper(String standard,PlayerData dataType,Season season){
 		this.str = standard ;
 		this.dataType = dataType ;
+		this.season = season ;
 	}
 	@Override
 	public int compare(PlayerPO o1, PlayerPO o2) {
 		// TODO Auto-generated method stub
 		if(str.equals("total")){
-			return comparePlayerData(o1.getTotalPlayerData(),o2.getTotalPlayerData()) ;
+			return comparePlayerData(o1.getSeasonInfo(season),o2.getSeasonInfo(season),1) ;
 		}
 		
 		if(str.equals("avg")){
-			return comparePlayerData(o1.getAveragePlayerData(), o2.getAveragePlayerData()) ;
+			return comparePlayerData(o1.getSeasonInfo(season),o2.getSeasonInfo(season),2) ;
 		}
 		
 		if(str.equals("name")){
@@ -35,6 +39,7 @@ public class PlayerSortHelper implements Comparator<PlayerPO>{
 				return -1 ;
 			}
 		}
+		/*
 		if(str.equals("nameOfTeam")){
 			if(o1.getTeam().compareTo(o2.getTeam())>0){
 				return 1 ;
@@ -45,10 +50,21 @@ public class PlayerSortHelper implements Comparator<PlayerPO>{
 			if(o1.getTeam().compareTo(o2.getTeam()) < 0){
 				return -1 ;
 			}
-		}
+		}*/
 		return 0;
 	}
-	int comparePlayerData(PlayerDataPO player1,PlayerDataPO player2){
+	int comparePlayerData(SeasonInfoForPlayer firstPlayer,SeasonInfoForPlayer secondPlayer,int mark){
+		//参数mark表示总数或者平均值，当mark = 1 时，代表求总数。
+		PlayerDataPO player1 = null ;
+		PlayerDataPO player2 = null ;
+		if(mark == 1){
+			player1 = firstPlayer.getTotalPlayerData() ;
+			player2 = secondPlayer.getTotalPlayerData() ;
+		}else{
+			player1 = firstPlayer.getAveragePlayerData() ;
+			player2 = secondPlayer.getAveragePlayerData() ;
+		}
+	
 		double number1 = 0 ;
 		double number2 = 0 ;
 		switch(dataType){
@@ -180,7 +196,18 @@ public class PlayerSortHelper implements Comparator<PlayerPO>{
 			number1 = player1.getComprehension() ;
 			number2 = player2.getComprehension() ;
 			break ;
-			
+		case improveRateOfScore :
+			number1 = firstPlayer.getImprovedRateOfScore() ;
+			number2 = secondPlayer.getImprovedRateOfScore() ;
+			break ;
+		case improveRateOfRebound :
+		    number1 = firstPlayer.getImprovedRateOfRebound() ;
+	    	number2 = secondPlayer.getImprovedRateOfRebound() ;
+	    	break ;
+		case improveRateOfAssist :
+			number1 = firstPlayer.getImprovedRateOfAssist() ;
+			number2 = secondPlayer.getImprovedRateOfAssist() ;
+			break ;
 		default:
 			break ;
 		}

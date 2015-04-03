@@ -16,7 +16,6 @@ public class SeasonListPO {
 	 }
 	 
 	 public static SeasonPO findSeasonByYear(String key){
-		 SeasonPO theSeason = null ;
 		 if(key.substring(0,5).equals("12-13"))
 			 return seasons.get(0);
 		 else if(key.substring(0,5).equals("13-14"))

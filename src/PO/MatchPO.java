@@ -2,15 +2,16 @@ package PO;
 
 import java.util.ArrayList;
 
+import Enum.Season;
+
 public class MatchPO {
-	String name;    //�������ļ�����
+	String name;
 	
-	String season;
+	Season season;
 	String date;
 	String firstTeam;
 	String secondTeam;
 	ScoreOfMatchPO finalScore;
-	/*ScorePO firstScore,secondScore,thirdScore,fourthScore;*/
 	ArrayList<ScoreOfMatchPO> allScore ;
 	
 	ArrayList<PlayerDataOfOneMatchPO> firstTeam_PlayerData;
@@ -61,18 +62,18 @@ public class MatchPO {
 		return null;
 	}
 	
-	public void calculateTotalTime(){//����������Ա���ϳ�ʱ��
+	public void calculateTotalTime(){
 		totalTime = (48+(allScore.size()-4)*5)*60 ;
 	}
 	
 	public void updateOtherTeamDataForPlayers(){
 		for(PlayerDataOfOneMatchPO onePlayer: firstTeam_PlayerData ){
 			PlayerPO thePlayer = PlayerListPO.findPlayerByName(onePlayer.getName()) ;
-			thePlayer.updateDataOfOtherData(this.totalTime, this.secondTeamData);
+			thePlayer.updateDataOfOtherData(this.totalTime, this.secondTeamData,this.season);
 		}
 		for(PlayerDataOfOneMatchPO onePlayer: secondTeam_PlayerData ){
 			PlayerPO thePlayer = PlayerListPO.findPlayerByName(onePlayer.getName()) ;
-			thePlayer.updateDataOfOtherData(this.totalTime, this.firstTeamData);
+			thePlayer.updateDataOfOtherData(this.totalTime, this.firstTeamData,this.season);
 		}
 	}
 	public String getNameOfWinner(){
@@ -95,10 +96,10 @@ public class MatchPO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getSeason() {
+	public Season getSeason() {
 		return season;
 	}
-	public void setSeason(String season) {
+	public void setSeason(Season season) {
 		this.season = season;
 	}
 	public String getDate() {

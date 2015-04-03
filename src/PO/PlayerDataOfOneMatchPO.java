@@ -3,50 +3,49 @@ package PO;
 import java.util.ArrayList;
 
 public class PlayerDataOfOneMatchPO {
-	//ĳ�������е�����
-	String name ;//����
-	String position ;//λ��
-	String presentTimeOfOneMatch ;//�ڳ�ʱ��
-	double numberOfShooting ;//Ͷ��������
-	double numberOfShotAttempt ; // Ͷ����������
-	double numberOf3_point ;//������������
-	double numberOf3_pointAttempt ;//���ֳ�������
-	double numberOfFreeThrow ;//������������
-	double numberOfFreeThrowAttempt ;//�����������
-	double numberOfAttackRebound ;//������ǰ����������
-	double numberOfDefenseRebound ;//���أ��󳡣�������
-	double numberOfReboundOfOneMatch ;//��������
-	double numberOfAssistOfOneMatch ;//��������
-	double numberOfSteal;  //������
-	double numberOfBlockOfOneMatch ;//��ñ����
-	double numberOfFaultOfOneMatch ;//ʧ������
+	String name ;
+	String position ;
+	String presentTimeOfOneMatch ;
+	double numberOfShooting ;
+	double numberOfShotAttempt ;
+	double numberOf3_point ;
+	double numberOf3_pointAttempt ;
+	double numberOfFreeThrow ;
+	double numberOfFreeThrowAttempt ;
+	double numberOfAttackRebound ;
+	double numberOfDefenseRebound ;
+	double numberOfReboundOfOneMatch ;
+	double numberOfAssistOfOneMatch ;
+	double numberOfSteal;  
+	double numberOfBlockOfOneMatch ;
+	double numberOfFaultOfOneMatch ;
 	
-	double numberOfFoulOfOneMatch ;//��������
-	double scoreOfOneMatch ;//���˵÷�
-	
+	double numberOfFoulOfOneMatch ;
+	double scoreOfOneMatch ;
 	
 	
-	double percentageOfShooting ;//Ͷ��������
-	double percentageOf3_Point ;//����������
-	double percentageOffreeThrow ;//����������
 	
-	double numberOfAttack ;//������
-	double numberOfDefense ;//������
-	double efficiency ;//Ч�ʣ�
+	double percentageOfShooting ;
+	double percentageOf3_Point ;
+	double percentageOffreeThrow ;
 	
-	double efficiencyOfGmSc ;//GmScЧ��ֵ��
-	double percentageOfTrueShooting ;//��ʵ�����ʣ�
-	double efficiencyOfShooting ;//Ͷ��Ч�ʣ�
-	double percentageOfRebound ; //�����ʣ�
-	double percentageOfAttackingRebound ;//���������ʣ�
-	double percentageOfDefenseRebound ;//���������ʣ�
-	double percentageOfAssist ;// �����ʣ�
-	double percentageOfSteal ;//�����ʣ�
-	double percentageOfBlock ;//��ñ�ʣ�
-	double percentageOfFault ;//ʧ���ʣ�
-	double percentageOfUse ;//ʹ����
+	double numberOfAttack ;
+	double numberOfDefense ;
+	double efficiency ;
 	
-	boolean double_double;  //��˫
+	double efficiencyOfGmSc ;
+	double percentageOfTrueShooting ;
+	double efficiencyOfShooting ;
+	double percentageOfRebound ;
+	double percentageOfAttackingRebound ;
+	double percentageOfDefenseRebound ;
+	double percentageOfAssist ;
+	double percentageOfSteal ;
+	double percentageOfBlock ;
+	double percentageOfFault ;
+	double percentageOfUse ;
+	
+	boolean double_double;
 	
 	
 	public PlayerDataOfOneMatchPO(){
@@ -80,10 +79,10 @@ public class PlayerDataOfOneMatchPO {
 		
 	}
 	
-	public void calculatePlayerData(int totalTime,TeamDataPO teamData,TeamDataPO theOtherTeamData,ArrayList<PlayerDataOfOneMatchPO> playersData ){//������Ա�ڳ�ʱ��Ͷ���������
-		percentageOfShooting = (double)numberOfShooting/numberOfShotAttempt ;//Ͷ��������
-		percentageOf3_Point = (double)numberOf3_point/numberOf3_pointAttempt ;//����������
-		percentageOffreeThrow = (double)numberOfFreeThrow/numberOfFreeThrowAttempt ;//����������
+	public void calculatePlayerData(int totalTime,TeamDataPO teamData,TeamDataPO theOtherTeamData,ArrayList<PlayerDataOfOneMatchPO> playersData ){
+		percentageOfShooting = (double)numberOfShooting/numberOfShotAttempt ;
+		percentageOf3_Point = (double)numberOf3_point/numberOf3_pointAttempt ;
+		percentageOffreeThrow = (double)numberOfFreeThrow/numberOfFreeThrowAttempt ;
 		efficiency = (scoreOfOneMatch+numberOfReboundOfOneMatch+numberOfAssistOfOneMatch+numberOfSteal+numberOfBlockOfOneMatch)
 				-(numberOfShotAttempt - numberOfShooting)-(numberOfFreeThrowAttempt-numberOfFreeThrow)-numberOfFaultOfOneMatch ;
 		
@@ -100,7 +99,7 @@ public class PlayerDataOfOneMatchPO {
 		percentageOfFault = numberOfFaultOfOneMatch/( (theOtherTeamData.getNumberOfShotAttempt()-theOtherTeamData.getNumberOf3_pointAttempt()) + 0.44*numberOfFreeThrowAttempt+numberOfFaultOfOneMatch) ;
 		percentageOfUse = (numberOfShotAttempt+0.44*numberOfFreeThrowAttempt+numberOfFaultOfOneMatch)*(totalTime/5.0)/transfromTime(presentTimeOfOneMatch,playersData,totalTime)/(teamData.getNumberOfShotAttempt()+0.44*teamData.getNumberOfFreeThrowAttempt()+teamData.getNumberOfFault());
 	}
-	int transfromTime(String time,ArrayList<PlayerDataOfOneMatchPO> playersData,int totalTime){//ת��ʱ��Ϊ��������λ��
+	int transfromTime(String time,ArrayList<PlayerDataOfOneMatchPO> playersData,int totalTime){
 		int result = 0 ;
 		if(time.equals("null")||time.equals("None")){
 			result = totalTime *5;
@@ -112,8 +111,7 @@ public class PlayerDataOfOneMatchPO {
 			if(result<0){
 				result = 0;
 			}
-			presentTimeOfOneMatch = ""+result/60+":"+result%60 ;//����ȱʧ���ϳ�ʱ��
-//			System.out.println(result+"  "+presentTimeOfOneMatch);
+			presentTimeOfOneMatch = ""+result/60+":"+result%60 ;
 			return result ;
 		}
 		String[] strs = time.split(":");

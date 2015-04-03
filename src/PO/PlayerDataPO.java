@@ -3,43 +3,41 @@ package PO;
 import java.util.ArrayList;
 
 public class PlayerDataPO {
-
-	//����Ա����������
-	int numberOfMatch ;//��������
-	int numberOfStarting ;//�׷�����
-	double numberOfRebound ;//������
-	double numberOfAssist ;//������
-	String presentTime ;//�ڳ�ʱ��
+	int numberOfMatch ;
+	int numberOfStarting ;
+	double numberOfRebound ;
+	double numberOfAssist ;
+	String presentTime ;
 	
 	
 	
-	double percentageOfShooting ;//Ͷ��������
-	double percentageOf3_Point ;//����������
-	double percentageOffreeThrow ;//����������
+	double percentageOfShooting ;
+	double percentageOf3_Point ;
+	double percentageOffreeThrow ;
 	
-	double numberOfAttack ;//������
-	double numberOfDefense ;//������
-	double numberOfSteal ;//������
-	double numberOfBlock ;//��ñ�� 
-	double numberOfFault ;//ʧ����
-	double numberOfFoul ;//��������
-	double score ;//�÷֣�
-	double efficiency ;//Ч�ʣ�
+	double numberOfAttack ;
+	double numberOfDefense ;
+	double numberOfSteal ;
+	double numberOfBlock ; 
+	double numberOfFault ;
+	double numberOfFoul ;
+	double score ;
+	double efficiency ;
 	
-	double efficiencyOfGmSc ;//GmScЧ��ֵ��
-	double percentageOfTrueShooting ;//��ʵ�����ʣ�
-	double efficiencyOfShooting ;//Ͷ��Ч�ʣ�
-	double percentageOfRebound ; //�����ʣ�
-	double percentageOfAttackingRebound ;//���������ʣ�
-	double percentageOfDefenseRebound ;//���������ʣ�
-	double percentageOfAssist ;// �����ʣ�
-	double percentageOfSteal ;//�����ʣ�
-	double percentageOfBlock ;//��ñ�ʣ�
-	double percentageOfFault ;//ʧ���ʣ�
-	double percentageOfUse ;//ʹ����
+	double efficiencyOfGmSc ;
+	double percentageOfTrueShooting ;
+	double efficiencyOfShooting ;
+	double percentageOfRebound ; 
+	double percentageOfAttackingRebound ;
+	double percentageOfDefenseRebound ;
+	double percentageOfAssist ;
+	double percentageOfSteal ;
+	double percentageOfBlock ;
+	double percentageOfFault ;
+	double percentageOfUse ;
 	
-	int double_double;  //��˫
-	double comprehension;  // �÷�/����/����
+	int double_double;  
+	double comprehension;  
 	
 	double numberOfShotAttempt ;
 	double numberOfShooting ;

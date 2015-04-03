@@ -1,53 +1,40 @@
 package PO;
 
-import java.util.ArrayList;
-
 import Enum.Season;
 
 public class PlayerPO {
-	String name = "Unknown";   //定义为Unknown是因为有些球员是在比赛中找到的，而球员数据中没有，所有需要使其有初始值
-	String position = "Unknown";  //λ��
+	String name = "Unknown";   
+	String position = "Unknown"; 
 	
-	String number = "Unknown";       //���º���(��String����Ϊ��Щ�˵ĺ���Ϊ"N/A")
-	String height = "Unknown";    //���(Ӣ��-Ӣ��)
-	String weight = "Unknown";       //����(��)
-	String birth = "Unknown";     //����(��/��/��)
+	String number = "Unknown";       
+	String height = "Unknown";    
+	String weight = "Unknown";       
+	String birth = "Unknown";     
 	String age = "Unknown";
-	String exp = "Unknown";         //����
-	String school = "Unknown";    //��ҵѧУ                          
+	String exp = "Unknown";         
+	String school = "Unknown";                          
 	
-	String portraitURL="Unknown";    //ͷ��ĵ�ַ
-	String actionURL="Unknown";      //������Ƭ�ĵ�ַ
+	String portraitURL="Unknown";    
+	String actionURL="Unknown";     
 	
-	ArrayList<PlayerDataOfOneMatchPO> datas=new ArrayList<PlayerDataOfOneMatchPO>();
-	PlayerDataPO totalPlayerData = new PlayerDataPO();
-	PlayerDataPO averagePlayerData = new PlayerDataPO() ;
-	
-	DataForFinalCalculationPO dataOfOtherTeam = new DataForFinalCalculationPO() ;
-	String team="Unknown" ; //������ӣ�����nameȥfind TeamPO��
-	
-	SeasonInfoForPlayer seasonInfo12_13=new SeasonInfoForPlayer();
-	SeasonInfoForPlayer seasonInfo13_14=new SeasonInfoForPlayer();
-	SeasonInfoForPlayer seasonInfo14_15=new SeasonInfoForPlayer();
+	SeasonInfoForPlayer seasonInfo12_13=new SeasonInfoForPlayer(Season.season12_13);
+	SeasonInfoForPlayer seasonInfo13_14=new SeasonInfoForPlayer(Season.season13_14);
+	SeasonInfoForPlayer seasonInfo14_15=new SeasonInfoForPlayer(Season.season14_15);
 	
 	
 	public void calculateFinalData(){
-		TeamPO team = TeamListPO.findTeamByShortName(this.team) ;
-		if(team==null){
-//			System.out.println(this.team+"  "+this.name);
-			return;
-		}
-//		System.out.println(this.name+" "+this.team);
-//		System.out.println(team.getFullName());
-		totalPlayerData.calculatePlayerTotalDataInOneSeason(datas);
-		averagePlayerData.calculatePlayerAverageDataInOneSeason(totalPlayerData,team.getTotalTeamData(),dataOfOtherTeam);
+		seasonInfo12_13.calculateFinalData();
+		seasonInfo13_14.calculateFinalData();
+		seasonInfo14_15.calculateFinalData();
 	}
 	
-	public void updateDataOfOtherData(int totalTime,TeamDataPO dataOfOtherTeam){
-		this.dataOfOtherTeam.update(totalTime, dataOfOtherTeam) ;
+	public void updateDataOfOtherData(int totalTime,TeamDataPO dataOfOtherTeam,Season season){
+		SeasonInfoForPlayer seasonInfo=getSeasonInfo(season);
+		seasonInfo.updateDataOfOtherData(totalTime, dataOfOtherTeam);
 	}
-	public void addDataOfOneMatchOfOnePlayer(PlayerDataOfOneMatchPO onePlayer){
-		datas.add(onePlayer);
+	public void addDataOfOneMatchOfOnePlayer(PlayerDataOfOneMatchPO onePlayer,Season season){
+		SeasonInfoForPlayer seasonInfo=getSeasonInfo(season);
+		seasonInfo.addDataOfOneMatchOfOnePlayer(onePlayer);
 	}
 	public SeasonInfoForPlayer getSeasonInfo(Season season){
 		switch(season){
@@ -59,6 +46,14 @@ public class PlayerPO {
 			return seasonInfo14_15;
 		}
 			return null;
+	}
+	public void setTeam(String team,Season season){
+		SeasonInfoForPlayer seasonInfo=getSeasonInfo(season);
+		seasonInfo.setTeam(team);
+	}
+	public String getTeam(Season season){
+		SeasonInfoForPlayer seasonInfo=getSeasonInfo(season);
+		return seasonInfo.getTeam();
 	}
 	public String getName() {
 		return name;
@@ -148,36 +143,4 @@ public class PlayerPO {
 		this.actionURL = actionURL;
 	}
 
-	public ArrayList<PlayerDataOfOneMatchPO> getDatas() {
-		return datas;
-	}
-
-	public void setDatas(ArrayList<PlayerDataOfOneMatchPO> datas) {
-		this.datas = datas;
-	}
-
-	
-
-	public PlayerDataPO getTotalPlayerData() {
-		return totalPlayerData;
-	}
-	public void setTotalPlayerData(PlayerDataPO totalPlayerData) {
-		this.totalPlayerData = totalPlayerData;
-	}
-	public PlayerDataPO getAveragePlayerData() {
-		return averagePlayerData;
-	}
-	public void setAveragePlayerData(PlayerDataPO averagePlayerData) {
-		this.averagePlayerData = averagePlayerData;
-	}
-	public String getTeam() {
-		return team;
-	}
-
-	public void setTeam(String team) {
-		this.team = team;
-	}
-	
-	
-	
 }
