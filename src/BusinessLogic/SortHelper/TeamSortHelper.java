@@ -2,6 +2,7 @@ package BusinessLogic.SortHelper;
 
 import java.util.Comparator;
 
+import Enum.Season;
 import Enum.TeamData;
 import PO.TeamDataPO;
 import PO.TeamPO;
@@ -9,21 +10,23 @@ import PO.TeamPO;
 public class TeamSortHelper implements Comparator<TeamPO>{
 	String str ;
 	TeamData dataType;
-	public TeamSortHelper(String str,TeamData dataType) {
+	Season season;
+	public TeamSortHelper(String str,TeamData dataType,Season season) {
 		// TODO Auto-generated constructor stub
 		this.str = str ;
 		this.dataType = dataType ;
+		this.season=season;
 	}
 	@Override
 	public int compare(TeamPO o1, TeamPO o2) {
 		// TODO Auto-generated method stub
 		//Sort by total team data. (Some data does not belong to a total one)
 		if(str.equals("total")){     
-			return compareTeamData(o1.getTotalTeamData(), o2.getTotalTeamData());
+			return compareTeamData(o1.getTotalTeamData(season), o2.getTotalTeamData(season));
 		}
 		//Sort by average team data.
 		else if(str.equals("avg"))   {
-			return compareTeamData(o1.getAverageTeamData(), o2.getAverageTeamData());
+			return compareTeamData(o1.getAverageTeamData(season), o2.getAverageTeamData(season));
 		}
 		//sort by the full name of the team
 		else if(str.equals("name")){
@@ -38,8 +41,8 @@ public class TeamSortHelper implements Comparator<TeamPO>{
 		}
 		//Sort by number of matches
 		else if(str.equals("matches")){
-			int matches1=o1.getNumberOfMatches();
-			int matches2=o2.getNumberOfMatches();
+			int matches1=o1.getSeasonInfo(season).getNumberOfMatches();
+			int matches2=o2.getSeasonInfo(season).getNumberOfMatches();
 			if(matches1>matches2)
 				return -1;
 			else if(matches1==matches2)
@@ -49,8 +52,8 @@ public class TeamSortHelper implements Comparator<TeamPO>{
 		}
 		//Sort by percentage of winning
 		else if(str.equals("perOfWin")){ 
-			double win1=o1.getPercentageOfWinning();
-			double win2=o2.getPercentageOfWinning();
+			double win1=o1.getSeasonInfo(season).getNumberOfWinning();
+			double win2=o2.getSeasonInfo(season).getNumberOfWinning();
 			if(win1>win2)
 				return -1;
 			else if(win1==win2)

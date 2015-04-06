@@ -7,6 +7,7 @@ import BusinessLogic.SortHelper.PlayerSortHelper;
 import BusinessLogic.SortHelper.TeamSortHelper;
 import DataService.TeamDataService.TeamDataService;
 import Enum.PlayerData;
+import Enum.Season;
 import Enum.TeamData;
 import PO.PlayerPO;
 import PO.TeamPO;
@@ -29,7 +30,7 @@ public class TeamController implements TeamBusinessLogic{
 		return teamController.getAllTeamsOf13_14();
 	}
 	@Override
-	public ArrayList<TeamPO> sortTeamsOf13_14ByComprehension(String standard,TeamData dataType) {
+	public ArrayList<TeamPO> sortTeamsOf13_14ByComprehension(String standard,TeamData dataType,Season season) {
 		// TODO Auto-generated method stub
 		if(dataType==TeamData.teamFullName)
 			standard="name";
@@ -38,7 +39,7 @@ public class TeamController implements TeamBusinessLogic{
 		else if(dataType==TeamData.percentageOfWinning)
 			standard="perOfWin";
 		ArrayList<TeamPO> results= (ArrayList<TeamPO>) teamController.getAllTeamsOf13_14().clone();
-		Collections.sort(results,new TeamSortHelper(standard, dataType));
+		Collections.sort(results,new TeamSortHelper(standard, dataType,season));
 		return results;
 	}
 	

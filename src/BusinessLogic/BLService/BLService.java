@@ -3,6 +3,7 @@ package BusinessLogic.BLService;
 import java.util.ArrayList;
 
 import Enum.PlayerData;
+import Enum.Season;
 import Enum.TeamData;
 import Enum.Zone;
 import PO.PlayerPO;
@@ -18,14 +19,14 @@ public interface BLService {
 	 * @param dataType 技术类型
 	 * @return 球队的排序结果
 	 */
-	public ArrayList<PlayerPO> sortPlayersByComprehension(String  standard,PlayerData dataType) ;
+	public ArrayList<PlayerPO> sortPlayersByComprehension(String  standard,PlayerData dataType,Season season) ;
 	/**
 	 * 
 	 * @param standard 标准（总数据、场均或队伍全名或队伍胜率等）
 	 * @param dataType 技术类型
 	 * @return 球员的排序结果
 	 */
-	public ArrayList<TeamPO> sortTeamsOf13_14ByComprehension(String standard,TeamData dataType);
+	public ArrayList<TeamPO> sortTeamsOf13_14ByComprehension(String standard,TeamData dataType,Season season);
 	//以下方法为：根据球员位置、东西部、具体分区和排序依据返回所有满足条件的前50名球员序列,其中standard和dataType参数同排序方法中的参数
 	/**
 	 * 
@@ -37,5 +38,5 @@ public interface BLService {
 	 * @return 球员的筛选结果
 	 */
 	public ArrayList<PlayerPO> pickUpPlayersByCondition(String position,
-			Zone zone, String district, String standard,PlayerData dataType);   
+			Zone zone, String district, String standard,PlayerData dataType,Season season);
 }

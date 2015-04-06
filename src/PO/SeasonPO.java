@@ -6,17 +6,17 @@ import Enum.Season;
 
 public class SeasonPO {
 	Season season;
-	ArrayList<MatchPO> matches;
+	MatchListPO matches;
 	
 	public SeasonPO(Season season){
 		this.season=season;
-		matches=new ArrayList<MatchPO>();
+		matches=new MatchListPO();
 	}
 	public void addMatch(MatchPO oneMatch){
-		matches.add(oneMatch);
+		matches.addMatch(oneMatch);
 	}
 	public MatchPO findMatchByName(String matchName){
-		for(MatchPO match: matches){
+		for(MatchPO match: matches.getMatches()){
 			if(match.getName().equals(matchName))
 				return match;
 		}
@@ -26,7 +26,7 @@ public class SeasonPO {
 		return season;
 	}
 	public ArrayList<MatchPO> getMatches() {
-		return matches;
+		return matches.getMatches();
 	}
 	
 	

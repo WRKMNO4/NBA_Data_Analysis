@@ -2,6 +2,8 @@ package DataService.MatchDataService;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 
 import DataService.FileHelper.FileHelper;
 import Enum.Season;
@@ -27,6 +29,8 @@ public class MatchController implements MatchDataService{
 		File file = new File(fileName) ;
 		if(file.isDirectory()){
 			File[] allFiles = file.listFiles() ;
+			Arrays.sort(allFiles,new CompareByTime());
+			
 			for(int i = 0; i<allFiles.length;i++){   //����matches�ļ����������ļ�
 				ArrayList<String> tempString  = FileHelper.readByLine(allFiles[i]) ;
 //				System.out.println(allFiles[i].getName());
@@ -130,5 +134,18 @@ public class MatchController implements MatchDataService{
 		return null;
 	}
 	
-
+	class CompareByTime implements Comparator {
+		@Override
+		public int compare(Object o1, Object o2) {
+			File f1=(File)o1;
+			File f2=(File)o2;
+			if(f1.lastModified()>f2.lastModified())
+				return 1;
+			else if(f1.lastModified()==f2.lastModified())
+				return 0;
+			else
+				return -1;
+		}
+		
+	}
 }

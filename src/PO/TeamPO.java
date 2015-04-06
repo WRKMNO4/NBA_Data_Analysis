@@ -60,6 +60,10 @@ public class TeamPO {
 		SeasonInfoForTeam seasonInfo=getSeasonInfo(season);
 		return seasonInfo.getTotalTeamData();
 	}
+	public TeamDataPO getAverageTeamData(Season season){
+		SeasonInfoForTeam seasonInfo=getSeasonInfo(season);
+		return seasonInfo.getAverageTeamData();
+	}
 	
 	public String getFullName() {
 		return fullName;

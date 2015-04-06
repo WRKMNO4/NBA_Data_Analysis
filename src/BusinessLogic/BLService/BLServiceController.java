@@ -12,6 +12,7 @@ import DataService.PlayerDataService.PlayerDataService;
 import DataService.TeamDataService.TeamController;
 import DataService.TeamDataService.TeamDataService;
 import Enum.PlayerData;
+import Enum.Season;
 import Enum.TeamData;
 import Enum.Zone;
 import PO.PlayerPO;
@@ -54,23 +55,23 @@ public class BLServiceController implements BLService{
 
 	@Override
 	public ArrayList<PlayerPO> sortPlayersByComprehension(String standard,
-			PlayerData dataType) {
+			PlayerData dataType,Season season) {
 		// TODO Auto-generated method stub
-		return playerController.sortPlayersByComprehension(standard, dataType);
+		return playerController.sortPlayersByComprehension(standard, dataType,season);
 	}
 
 	@Override
 	public ArrayList<TeamPO> sortTeamsOf13_14ByComprehension(String standard,
-			TeamData dataType) {
+			TeamData dataType,Season season) {
 		// TODO Auto-generated method stub
-		return teamController.sortTeamsOf13_14ByComprehension(standard, dataType) ;
+		return teamController.sortTeamsOf13_14ByComprehension(standard, dataType,season) ;
 	}
 
 	@Override
 	public ArrayList<PlayerPO> pickUpPlayersByCondition(String position,
-			Zone zone, String district, String standard, PlayerData dataType) {
+			Zone zone, String district, String standard, PlayerData dataType,Season season) {
 		// TODO Auto-generated method stub
-		return playerController.pickUpPlayersByCondition(position, zone, district,standard, dataType);
+		return playerController.pickUpPlayersByCondition(position, zone, district,standard, dataType,season);
 	}
 	
 	
