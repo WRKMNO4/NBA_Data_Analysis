@@ -68,11 +68,11 @@ public class MatchPO {
 	
 	public void updateOtherTeamDataForPlayers(){
 		for(PlayerDataOfOneMatchPO onePlayer: firstTeam_PlayerData ){
-			PlayerPO thePlayer = PlayerListPO.findPlayerByName(onePlayer.getName()) ;
+			PlayerPO thePlayer = PlayerListPO.findPlayerAccurately(onePlayer.getName()) ;
 			thePlayer.updateDataOfOtherData(this.totalTime, this.secondTeamData,this.season);
 		}
 		for(PlayerDataOfOneMatchPO onePlayer: secondTeam_PlayerData ){
-			PlayerPO thePlayer = PlayerListPO.findPlayerByName(onePlayer.getName()) ;
+			PlayerPO thePlayer = PlayerListPO.findPlayerAccurately(onePlayer.getName()) ;
 			thePlayer.updateDataOfOtherData(this.totalTime, this.firstTeamData,this.season);
 		}
 	}

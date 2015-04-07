@@ -3,8 +3,12 @@ package DataService.PlayerDataService;
 import java.io.File;
 import java.util.ArrayList;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+
 import DataService.FileHelper.FileHelper;
+import Enum.PlayerData;
 import Enum.ResultMessage;
+import Enum.Season;
 import PO.PlayerListPO;
 import PO.PlayerPO;
 
@@ -63,9 +67,9 @@ public class PlayerController implements PlayerDataService{
 	}
 
 	@Override
-	public PlayerPO findPlayerByName(String name) {
+	public ArrayList<PlayerPO> findPlayerByName(String name) {
 		// TODO Auto-generated method stub
-		return players.findPlayerByName(name);
+		return players.findPlayerFaintly(name);
 	}
 
 	public ArrayList<PlayerPO> getAllPlayers() {
@@ -78,6 +82,14 @@ public class PlayerController implements PlayerDataService{
 		for(PlayerPO onePlayer:players.getAllPlayers()){
 			onePlayer.calculateFinalData();
 		}
+	}
+
+	@Override
+	public ArrayList<PlayerPO> getDailyStandingPlayers(Season season,
+			String date, PlayerData dataType) {
+		// TODO Auto-generated method stub
+		
+		return null;
 	}
 	
 	

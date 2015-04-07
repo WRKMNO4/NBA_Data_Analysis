@@ -15,9 +15,9 @@ public class SeasonPO {
 	public void addMatch(MatchPO oneMatch){
 		matches.addMatch(oneMatch);
 	}
-	public MatchPO findMatchByName(String matchName){
+	public MatchPO findMatch(String date,String nameOfTeams){
 		for(MatchPO match: matches.getMatches()){
-			if(match.getName().equals(matchName))
+			if(match.getDate().equals(date) && match.getName().contains(nameOfTeams)) ;
 				return match;
 		}
 		return null;

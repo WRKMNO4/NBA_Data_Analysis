@@ -13,4 +13,6 @@ public interface PlayerBusinessLogic {
 	public ArrayList<PlayerPO> pickUpPlayersByCondition(String position, Zone zone, String district, String standard,PlayerData dataType,Season season);  //根据条件筛选球员
 	public void calculateFinalData() ;
 	public ArrayList<PlayerPO> getAllPlayers() ;
+	public ArrayList<PlayerPO> findPlayerByName(String name) ;
+	public ArrayList<PlayerPO> getDailyStandingPlayers(Season season,String date, PlayerData dataType);
 }

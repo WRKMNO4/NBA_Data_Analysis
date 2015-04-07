@@ -27,7 +27,7 @@ public class MatchDriver {
 		System.out.println(players.getAllPlayers().size()+" players");
 		System.out.println(players.getAllPlayers().get(448).getName());
 //		
-		PlayerPO player= PlayerListPO.findPlayerByName("Alex Len");
+		PlayerPO player= PlayerListPO.findPlayerAccurately("Alex Len");
 //		System.out.println(player.getDatas().size()+" matches");
 //		System.out.println(player.getTeam());
 //		for(int i =0 ;i<player.getDatas().size();i++){

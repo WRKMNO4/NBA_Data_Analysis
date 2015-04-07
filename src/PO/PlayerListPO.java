@@ -20,10 +20,19 @@ public class PlayerListPO {
 			
 	}
 	
-	public static PlayerPO findPlayerByName(String name){
+	public ArrayList<PlayerPO> findPlayerFaintly(String name){
+		ArrayList<PlayerPO> result = new ArrayList<>() ;
 		for(PlayerPO onePlayer : allPlayers){
-			if(onePlayer.getName().equals(name))
+			if(onePlayer.getName().contains(name))
+				result.add(onePlayer) ;
+		}
+		return result ;
+	}
+	public static PlayerPO findPlayerAccurately(String name){
+		for(PlayerPO onePlayer:allPlayers){
+			if(onePlayer.getName().equals(name)){
 				return onePlayer ;
+			}
 		}
 		return null ;
 	}

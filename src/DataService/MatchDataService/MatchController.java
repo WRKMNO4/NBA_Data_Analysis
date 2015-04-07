@@ -14,15 +14,16 @@ import PO.PlayerDataPO;
 import PO.PlayerListPO;
 import PO.PlayerPO;
 import PO.ScoreOfMatchPO;
+import PO.SeasonListPO;
 import PO.TeamDataPO;
 import PO.TeamListPO;
 import PO.TeamPO;
 
 public class MatchController implements MatchDataService{
-	MatchListPO matches ;
+//	MatchListPO matches ;
 	
 	public MatchController(){
-		matches=new MatchListPO();
+//		matches=new MatchListPO();
 		read("Data/matches") ;
 	}
 	void read(String fileName){
@@ -31,9 +32,8 @@ public class MatchController implements MatchDataService{
 			File[] allFiles = file.listFiles() ;
 			Arrays.sort(allFiles,new CompareByTime());
 			
-			for(int i = 0; i<allFiles.length;i++){   //����matches�ļ����������ļ�
+			for(int i = 0; i<allFiles.length;i++){ 
 				ArrayList<String> tempString  = FileHelper.readByLine(allFiles[i]) ;
-//				System.out.println(allFiles[i].getName());
 				MatchPO newMatch = new MatchPO() ;
 				newMatch.setName(allFiles[i].getName());
 				
@@ -77,7 +77,7 @@ public class MatchController implements MatchDataService{
 					        break;
 					 default:  //读取每个球员的具体信息 
 						 PlayerDataOfOneMatchPO onePlayer = new PlayerDataOfOneMatchPO(splitString);
-						 PlayerPO thePlayer = PlayerListPO.findPlayerByName(onePlayer.getName());
+						 PlayerPO thePlayer = PlayerListPO.findPlayerAccurately(onePlayer.getName());
 						 if(thePlayer == null){   //若原数组里没有此队员
 							 PlayerPO newPlayer = new PlayerPO();
 							 newPlayer.setName(onePlayer.getName());
@@ -116,22 +116,22 @@ public class MatchController implements MatchDataService{
 				//更新球员的对手信息 
 				newMatch.updateOtherTeamDataForPlayers();
 				
-				addMatch(newMatch);
+				addMatch(newMatch.getSeason(),newMatch);
 			}
 		}
 	}
 	
 	
 	@Override
-	public void addMatch(MatchPO oneMatch) {
+	public void addMatch(Season season,MatchPO oneMatch) {
 		// TODO Auto-generated method stub
-		matches.addMatch(oneMatch);
+		SeasonListPO.addMatch(season, oneMatch);
 	}
 
 	@Override
-	public MatchPO findMatchByName(String name) {
+	public MatchPO findMatch(Season season,String date,String nameOfTeams) {
 		// TODO Auto-generated method stub
-		return null;
+		return SeasonListPO.findMatch(season,date,nameOfTeams);
 	}
 	
 	class CompareByTime implements Comparator {

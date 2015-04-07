@@ -6,6 +6,7 @@ import Enum.PlayerData;
 import Enum.Season;
 import Enum.TeamData;
 import Enum.Zone;
+import PO.MatchPO;
 import PO.PlayerPO;
 import PO.TeamPO;
 
@@ -39,4 +40,32 @@ public interface BLService {
 	 */
 	public ArrayList<PlayerPO> pickUpPlayersByCondition(String position,
 			Zone zone, String district, String standard,PlayerData dataType,Season season);
+	/**
+	 *  仅限精确查找
+	 * @param season 赛季（枚举类型）
+	 * @param date 日期（如01-01）
+	 * @param nameOfTeams 两队名字（CHA-LAC）
+	 * @return 查找的比赛
+	 */
+	public MatchPO findMatch(Season season,String date,String nameOfTeams) ;
+	/**
+	 * 
+	 * @param name 球员名称
+	 * @return 球员列表
+	 */
+	public ArrayList<PlayerPO> findPlayerByName(String name) ;
+	/**
+	 *  
+	 * @param name 球队名称（缩写或者全名）
+	 * @return 球队列表
+	 */
+	public ArrayList<TeamPO>findTeamByName(String name) ;
+	/**
+	 * 
+	 * @param season 赛季
+	 * @param date 日期（如01-01）
+	 * @return 前五名球员列表,如果不存在即返回null。
+	 */
+	public ArrayList<PlayerPO> getDailyStandingPlayers(Season season,String date,PlayerData dataType) ;
+	
 }

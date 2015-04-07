@@ -15,17 +15,21 @@ import Enum.PlayerData;
 import Enum.Season;
 import Enum.TeamData;
 import Enum.Zone;
+import PO.MatchPO;
 import PO.PlayerPO;
+import PO.SeasonListPO;
 import PO.TeamPO;
 
 import com.sun.org.apache.bcel.internal.generic.VariableLengthInstruction;
 
 public class BLServiceController implements BLService{
+	SeasonListPO seasonList ;
 	TeamBusinessLogic teamController ;
 	PlayerBusinessLogic playerController ;
 	MatchBusinessLogic matchController ;
 	
 	public BLServiceController() {
+		this.seasonList = new SeasonListPO() ;
 		this.teamController = new BusinessLogic.TeamBusinessLogic.TeamController() ;
 		this.playerController = new BusinessLogic.PlayerBusinessLogic.PlayerController() ;
 		this.matchController = new BusinessLogic.MatchBusinessLogic.MatchController() ;
@@ -72,6 +76,32 @@ public class BLServiceController implements BLService{
 			Zone zone, String district, String standard, PlayerData dataType,Season season) {
 		// TODO Auto-generated method stub
 		return playerController.pickUpPlayersByCondition(position, zone, district,standard, dataType,season);
+	}
+
+	@Override
+	public MatchPO findMatch(Season season, String date, String nameOfTeams) {
+		// TODO Auto-generated method stub
+		return matchController.findMatch(season, date, nameOfTeams) ;
+	}
+
+	@Override
+	public ArrayList<PlayerPO> findPlayerByName(String name) {
+		// TODO Auto-generated method stub
+		return playerController.findPlayerByName(name);
+	}
+
+	@Override
+	public ArrayList<TeamPO> findTeamByName(String name) {
+		// TODO Auto-generated method stub
+		return teamController.findTeamByName(name);
+	}
+
+	@Override
+	public ArrayList<PlayerPO> getDailyStandingPlayers(Season season,
+			String date, PlayerData dataType) {
+		// TODO Auto-generated method stub
+		return playerController.getDailyStandingPlayers(season,
+				date, dataType);
 	}
 	
 	

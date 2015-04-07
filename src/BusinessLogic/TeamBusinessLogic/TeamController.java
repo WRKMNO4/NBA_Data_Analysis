@@ -42,5 +42,13 @@ public class TeamController implements TeamBusinessLogic{
 		Collections.sort(results,new TeamSortHelper(standard, dataType,season));
 		return results;
 	}
+	@Override
+	public ArrayList<TeamPO> findTeamByName(String name) {
+		// TODO Auto-generated method stub
+		/*
+		 * 舟舟说不写
+		 */
+		return null ;
+	}
 	
 }

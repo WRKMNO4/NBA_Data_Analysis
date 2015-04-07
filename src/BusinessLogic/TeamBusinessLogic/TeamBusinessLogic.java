@@ -12,4 +12,5 @@ public interface TeamBusinessLogic {
 	public ArrayList<TeamPO> getAllTeamsOf13_14() ;
 	ArrayList<TeamPO> sortTeamsOf13_14ByComprehension(String standard,
 			TeamData dataType,Season season);
+	public ArrayList<TeamPO> findTeamByName(String name) ;
 }

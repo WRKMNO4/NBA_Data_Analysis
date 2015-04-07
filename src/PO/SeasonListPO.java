@@ -25,5 +25,32 @@ public class SeasonListPO {
 		 else
 			 return null;
 	 }
-	
+	 public static void addMatch(Season season,MatchPO oneMatch){
+		 SeasonPO theSeason = getSeasonPO(season) ;
+		 theSeason.addMatch(oneMatch);
+	 }
+   
+	 public static MatchPO findMatch(Season season,String date,String nameOfTeams){
+		SeasonPO theSeason = getSeasonPO(season) ;
+		return theSeason.findMatch(date,nameOfTeams) ;
+		
+	 }
+	 
+	 public static ArrayList<MatchPO> getMatchesOfOneSeason(Season season){
+		 SeasonPO theSeason=getSeasonPO(season);
+		 return theSeason.getMatches();
+	 }
+	 
+	 static SeasonPO getSeasonPO(Season season){
+		 switch(season){
+		 case season12_13:
+			 return seasons.get(0) ;
+		 case season13_14 :
+			 return seasons.get(1) ;
+		 case season14_15 :
+			 return seasons.get(2) ;
+		 default :
+			 return null ;
+		 }
+	 }
 }

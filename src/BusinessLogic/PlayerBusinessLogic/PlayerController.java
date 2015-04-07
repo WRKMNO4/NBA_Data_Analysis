@@ -55,6 +55,16 @@ public class PlayerController implements PlayerBusinessLogic{
 		// TODO Auto-generated method stub
 		return playerController.getAllPlayers();
 	}
+	@Override
+	public ArrayList<PlayerPO> findPlayerByName(String name) {
+		// TODO Auto-generated method stub
+		return playerController.findPlayerByName(name);
+	}
+	@Override
+	public ArrayList<PlayerPO> getDailyStandingPlayers(Season season, String date, PlayerData dataType) {
+		// TODO Auto-generated method stub
+		return playerController.getDailyStandingPlayers(season, date, dataType);
+	}
 	
 
 }
