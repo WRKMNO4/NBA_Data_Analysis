@@ -2,15 +2,19 @@ package DataService.PlayerDataService;
 
 import java.io.File;
 import java.util.ArrayList;
-
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+import java.util.Collections;
+import java.util.Comparator;
 
 import DataService.FileHelper.FileHelper;
 import Enum.PlayerData;
 import Enum.ResultMessage;
 import Enum.Season;
+import PO.MatchPO;
+import PO.PlayerDataOfOneMatchPO;
 import PO.PlayerListPO;
 import PO.PlayerPO;
+import PO.SeasonListPO;
+import PO.StandingDataPO;
 
 public class PlayerController implements PlayerDataService{
 
@@ -85,13 +89,93 @@ public class PlayerController implements PlayerDataService{
 	}
 
 	@Override
-	public ArrayList<PlayerPO> getDailyStandingPlayers(Season season,
+	public ArrayList<StandingDataPO> getDatasOfDailyStandingPlayers(Season season,
 			String date, PlayerData dataType) {
 		// TODO Auto-generated method stub
+		ArrayList<MatchPO> matches = SeasonListPO.getMatchesOfOneDay(season,date);
+		if(matches.size()==0)
+			return null;
+		ArrayList<PlayerDataOfOneMatchPO> datas=new ArrayList<>();
+		for(MatchPO oneMatch : matches){
+			datas.addAll(oneMatch.getFirstTeam_PlayerData());
+			datas.addAll(oneMatch.getSecondTeam_PlayerData());
+		}
+		Collections.sort(datas,new PlayerDataComparator(dataType));
 		
-		return null;
+		double[] standingDataArray = new double[5];
+		switch(dataType){
+		case score:
+			for(int i=0;i<5;i++)
+				standingDataArray[i]=datas.get(i).getScoreOfOneMatch();
+			break;
+		case numberOfRebound:
+			for(int i=0;i<5;i++)
+				standingDataArray[i]=datas.get(i).getNumberOfReboundOfOneMatch();
+			break;
+		case numberOfAssist:
+			for(int i=0;i<5;i++)
+				standingDataArray[i]=datas.get(i).getNumberOfAssistOfOneMatch();
+			break;
+		case numberOfBlock:
+			for(int i=0;i<5;i++)
+				standingDataArray[i]=datas.get(i).getNumberOfBlockOfOneMatch();
+			break;
+		case numberOfSteal:
+			for(int i=0;i<5;i++)
+				standingDataArray[i]=datas.get(i).getNumberOfSteal();
+		}
+		//Find Players
+		ArrayList<StandingDataPO> standingDatas=new ArrayList<StandingDataPO>();
+		for(int i=0;i<5;i++){      //select top 5
+			PlayerDataOfOneMatchPO oneMatchData=datas.get(i);
+			PlayerPO thePlayer=PlayerListPO.findPlayerAccurately(oneMatchData.getName());
+			standingDatas.add(new StandingDataPO(thePlayer.getName(), thePlayer.getPosition(), 
+					thePlayer.getTeam(season),standingDataArray[i]));
+		}
+		return standingDatas;
 	}
 	
-	
+	class PlayerDataComparator implements Comparator {
+		PlayerData dataType;
+		public PlayerDataComparator(PlayerData dataType){
+			this.dataType=dataType;
+		}
+		
+		public int compare(Object o1, Object o2) {
+			PlayerDataOfOneMatchPO f1=(PlayerDataOfOneMatchPO)o1;
+			PlayerDataOfOneMatchPO f2=(PlayerDataOfOneMatchPO)o2;
+			double number1 = 0;
+			double number2 = 0;
+			switch(dataType){
+			case score:
+				number1=f1.getScoreOfOneMatch();
+				number2=f2.getScoreOfOneMatch();
+				break;
+			case numberOfRebound:
+				number1=f1.getNumberOfReboundOfOneMatch();
+				number2=f2.getNumberOfReboundOfOneMatch();
+				break;
+			case numberOfAssist:
+				number1=f1.getNumberOfAssistOfOneMatch();
+				number2=f2.getNumberOfAssistOfOneMatch();
+				break;
+			case numberOfBlock:
+				number1=f1.getNumberOfBlockOfOneMatch();
+				number2=f2.getNumberOfBlockOfOneMatch();
+				break;
+			case numberOfSteal:
+				number1=f1.getNumberOfSteal();
+				number2=f2.getNumberOfSteal();
+				break;
+			}
+			
+			if(number1>number2)
+				return -1;
+			else if(number1==number2)
+				return 0;
+			else
+				return 1;
+		}
+	}
 
 }

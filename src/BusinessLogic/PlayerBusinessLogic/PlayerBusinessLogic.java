@@ -6,6 +6,7 @@ import Enum.PlayerData;
 import Enum.Season;
 import Enum.Zone;
 import PO.PlayerPO;
+import PO.StandingDataPO;
 
 public interface PlayerBusinessLogic {
 	public void init();
@@ -14,5 +15,5 @@ public interface PlayerBusinessLogic {
 	public void calculateFinalData() ;
 	public ArrayList<PlayerPO> getAllPlayers() ;
 	public ArrayList<PlayerPO> findPlayerByName(String name) ;
-	public ArrayList<PlayerPO> getDailyStandingPlayers(Season season,String date, PlayerData dataType);
+	public ArrayList<StandingDataPO> getDatasOfDailyStandingPlayers(Season season,String date, PlayerData dataType);
 }

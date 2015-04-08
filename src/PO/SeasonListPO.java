@@ -41,6 +41,17 @@ public class SeasonListPO {
 		 return theSeason.getMatches();
 	 }
 	 
+	 public static ArrayList<MatchPO> getMatchesOfOneDay(Season season,String date){
+		 ArrayList<MatchPO> matches=getMatchesOfOneSeason(season);
+		 ArrayList <MatchPO> matchesOfOneDay=new ArrayList<>();
+		 for(int i=0;i<matches.size();i++){
+			 MatchPO oneMatch=matches.get(i);
+			 if(oneMatch.getDate().equals(date))
+				 matchesOfOneDay.add(oneMatch);
+		 }
+		 return matchesOfOneDay;
+	 }
+	 
 	 static SeasonPO getSeasonPO(Season season){
 		 switch(season){
 		 case season12_13:

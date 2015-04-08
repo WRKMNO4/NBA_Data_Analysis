@@ -18,6 +18,7 @@ import Enum.Zone;
 import PO.MatchPO;
 import PO.PlayerPO;
 import PO.SeasonListPO;
+import PO.StandingDataPO;
 import PO.TeamPO;
 
 import com.sun.org.apache.bcel.internal.generic.VariableLengthInstruction;
@@ -97,10 +98,10 @@ public class BLServiceController implements BLService{
 	}
 
 	@Override
-	public ArrayList<PlayerPO> getDailyStandingPlayers(Season season,
+	public ArrayList<StandingDataPO> getDatasOfDailyStandingPlayers(Season season,
 			String date, PlayerData dataType) {
 		// TODO Auto-generated method stub
-		return playerController.getDailyStandingPlayers(season,
+		return playerController.getDatasOfDailyStandingPlayers(season,
 				date, dataType);
 	}
 	

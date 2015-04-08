@@ -8,6 +8,7 @@ import Enum.TeamData;
 import Enum.Zone;
 import PO.MatchPO;
 import PO.PlayerPO;
+import PO.StandingDataPO;
 import PO.TeamPO;
 
 public interface BLService {
@@ -64,8 +65,8 @@ public interface BLService {
 	 * 
 	 * @param season 赛季
 	 * @param date 日期（如01-01）
-	 * @return 前五名球员列表,如果不存在即返回null。
+	 * @return 前五名球员列表,如果不存在即null.
 	 */
-	public ArrayList<PlayerPO> getDailyStandingPlayers(Season season,String date,PlayerData dataType) ;
+	public ArrayList<StandingDataPO> getDatasOfDailyStandingPlayers(Season season,String date,PlayerData dataType) ;
 	
 }

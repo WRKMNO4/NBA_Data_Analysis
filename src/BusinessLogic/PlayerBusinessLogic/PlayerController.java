@@ -11,6 +11,7 @@ import Enum.PlayerData;
 import Enum.Season;
 import Enum.Zone;
 import PO.PlayerPO;
+import PO.StandingDataPO;
 import PO.TeamListPO;
 import PO.TeamPO;
 
@@ -61,9 +62,9 @@ public class PlayerController implements PlayerBusinessLogic{
 		return playerController.findPlayerByName(name);
 	}
 	@Override
-	public ArrayList<PlayerPO> getDailyStandingPlayers(Season season, String date, PlayerData dataType) {
+	public ArrayList<StandingDataPO> getDatasOfDailyStandingPlayers(Season season, String date, PlayerData dataType) {
 		// TODO Auto-generated method stub
-		return playerController.getDailyStandingPlayers(season, date, dataType);
+		return playerController.getDatasOfDailyStandingPlayers(season, date, dataType);
 	}
 	
 
