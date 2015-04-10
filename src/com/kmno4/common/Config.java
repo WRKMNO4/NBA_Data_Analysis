@@ -129,6 +129,12 @@ public class Config {
 	public static final ImageIcon TEAM_SELECTION_BACKGROUND=new ImageIcon("images/team_selection_bg3.png");
 	public static final ImageIcon CLOSE_ICON=new ImageIcon("images/close.png");
 	
+	//match界面所有的icon
+	public static final ImageIcon MATCH_SELECTION_BACKGROUND=new ImageIcon("images/match_selection_bg.png");
+	public static final ImageIcon SCHEDULE=new ImageIcon("images/schedule.png");
+	public static final ImageIcon TEAM_SELECTION=new ImageIcon("images/select_team.png");
+	
+	
 	public static ArrayList<ImageIcon> getLoadingMotions(){
 		for(int i=1;i<100;i++){
 			motions.add(new ImageIcon("images/loading_motions/"+i+".png"));	

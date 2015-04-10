@@ -91,45 +91,93 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		player.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//显示playerPanel，移开其他panel,所有PANEL统一隐藏在Frame左边
-				MainFrame.mainFrame.playerSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
-						Config.UI_WIDTH, Config.SELECTION_HEIGHT);
-				MainFrame.mainFrame.teamSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
-				MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.Player.toString());
-				
-				refreshPlayerTable(MainFrame.mainFrame.players);
-				MainFrame.mainFrame.repaint();
+				showPlayerInfo();
 			}
 
 		});
 		team.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//显示teamPanel，移开其他panel,所有PANEL统一隐藏在Frame左边
-				MainFrame.mainFrame.playerSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
-						Config.UI_WIDTH, Config.SELECTION_HEIGHT);
-				MainFrame.mainFrame.teamSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
-				MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.Team.toString());
-				
-				refreshTeamTable(MainFrame.mainFrame.teams);
-				MainFrame.mainFrame.repaint();
+				showTeamInfo();
 			}
 		});
 		match.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//显示matchPanel，移开其他panel,所有PANEL统一隐藏在Frame左边
-				MainFrame.mainFrame.playerSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
-						Config.UI_WIDTH, Config.SELECTION_HEIGHT);
-				MainFrame.mainFrame.teamSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
-				MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.Match.toString());
-				
-				refreshMatchTable();
-				MainFrame.mainFrame.repaint();
+				showMatchInfo();
 			}
 		});
 		
+		hot.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				showHotInfo();
+			}
+		});
+		
+		aboutus.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				showAboutUsInfo();
+			}
+		});
+		
+		
 		refreshPlayerTable(MainFrame.mainFrame.players);
+	}
+	
+	public void showPlayerInfo(){
+		//显示playerPanel，移开其他panel,所有PANEL统一隐藏在Frame左边
+		MainFrame.mainFrame.playerSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
+				Config.UI_WIDTH, Config.SELECTION_HEIGHT);
+		MainFrame.mainFrame.matchSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
+		MainFrame.mainFrame.teamSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
+		MainFrame.mainFrame.hotSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
+		
+		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.Player.toString());
+		
+		refreshPlayerTable(MainFrame.mainFrame.players);
+		MainFrame.mainFrame.repaint();
+	}
+	
+	public void showTeamInfo(){
+		//显示teamPanel，移开其他panel,所有PANEL统一隐藏在Frame左边		
+		MainFrame.mainFrame.teamSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
+		MainFrame.mainFrame.hotSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
+		MainFrame.mainFrame.playerSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
+				Config.UI_WIDTH, Config.SELECTION_HEIGHT);
+		MainFrame.mainFrame.matchSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
+		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.Team.toString());
+		
+		refreshTeamTable(MainFrame.mainFrame.teams);
+		MainFrame.mainFrame.repaint();
+	}
+	
+	public void showMatchInfo(){
+		//显示matchPanel，移开其他panel,所有PANEL统一隐藏在Frame左边
+		MainFrame.mainFrame.playerSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
+				Config.UI_WIDTH, Config.SELECTION_HEIGHT);
+		MainFrame.mainFrame.matchSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
+		MainFrame.mainFrame.teamSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
+		MainFrame.mainFrame.hotSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
+		
+		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.Match.toString());
+		
+		refreshMatchTable();
+		MainFrame.mainFrame.repaint();
+	}
+	
+	public void showHotInfo(){
+		MainFrame.mainFrame.playerSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
+				Config.UI_WIDTH, Config.SELECTION_HEIGHT);
+		MainFrame.mainFrame.matchSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
+		MainFrame.mainFrame.teamSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
+		MainFrame.mainFrame.hotSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
+		
+	}
+	
+	public void showAboutUsInfo(){
+		
 	}
 	
 	
