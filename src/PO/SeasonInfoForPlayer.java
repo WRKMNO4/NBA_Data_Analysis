@@ -65,7 +65,7 @@ public class SeasonInfoForPlayer {
 		}
 		totalPlayerData.calculatePlayerTotalDataInOneSeason(datas);
 		averagePlayerData.calculatePlayerAverageDataInOneSeason(totalPlayerData,team.getTotalTeamData(season),dataOfOtherTeam);
-        this.calculateImprovedRate(); 	
+        this.calculateImprovedRate();
  	}
 	
 	public void updateDataOfOtherData(int totalTime,TeamDataPO dataOfOtherTeam){

@@ -22,6 +22,7 @@ import PO.StandingDataPO;
 import PO.TeamPO;
 
 import com.sun.org.apache.bcel.internal.generic.VariableLengthInstruction;
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 public class BLServiceController implements BLService{
 	SeasonListPO seasonList ;
@@ -91,11 +92,11 @@ public class BLServiceController implements BLService{
 		return playerController.findPlayerByName(name);
 	}
 
-	@Override
-	public ArrayList<TeamPO> findTeamByName(String name) {
-		// TODO Auto-generated method stub
-		return teamController.findTeamByName(name);
-	}
+//	@Override
+//	public ArrayList<TeamPO> findTeamByName(String name) {
+//		// TODO Auto-generated method stub
+//		return teamController.findTeamByName(name);
+//	}
 
 	@Override
 	public ArrayList<StandingDataPO> getDatasOfDailyStandingPlayers(Season season,

@@ -55,12 +55,12 @@ public interface BLService {
 	 * @return 球员列表
 	 */
 	public ArrayList<PlayerPO> findPlayerByName(String name) ;
-	/**
-	 *  
-	 * @param name 球队名称（缩写或者全名）
-	 * @return 球队列表
-	 */
-	public ArrayList<TeamPO>findTeamByName(String name) ;
+//	/**
+//	 *  
+//	 * @param name 球队名称（缩写或者全名）
+//	 * @return 球队列表
+//	 */
+//	/*public ArrayList<TeamPO>findTeamByName(String name) ;*/
 	/**
 	 * 
 	 * @param season 赛季

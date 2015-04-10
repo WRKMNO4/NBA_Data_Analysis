@@ -13,6 +13,24 @@ public class StandingDataPO {
 		this.team = team;
 		this.data = data;
 	}
+
+	public String getPlayerName() {
+		return playerName;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public String getTeam() {
+		return team;
+	}
+
+	public double getData() {
+		return data;
+	}
+	
+	
 	
 	
 }

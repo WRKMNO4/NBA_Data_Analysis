@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 
+import com.sun.org.apache.bcel.internal.generic.NEWARRAY;
+
 import BusinessLogic.SortHelper.PlayerSortHelper;
 import DataService.PlayerDataService.PlayerDataService;
 import DataService.TeamDataService.TeamController;
@@ -47,7 +49,7 @@ public class PlayerController implements PlayerBusinessLogic{
 		}
 		Collections.sort(results, new PlayerSortHelper(standard, dataType,season));
 		if(results.size()>50)
-			results = (ArrayList<PlayerPO>) results.subList(0, 50);
+			results = new ArrayList<>(results.subList(0, 50)) ;
 		return results;
 	}
 
@@ -118,7 +120,7 @@ public class PlayerController implements PlayerBusinessLogic{
 		// TODO Auto-generated method stub
 		ArrayList<PlayerPO> allPlayers = playerController.getAllPlayers() ;
 		Collections.sort(allPlayers,new PlayerSortHelper("avg", dataType, season));
-		ArrayList<PlayerPO> result = (ArrayList<PlayerPO>) allPlayers.subList(0,5) ;
+		ArrayList<PlayerPO> result =new ArrayList<>(allPlayers.subList(0,5));
 		return result ;
 	}
 	class PlayerDataComparator implements Comparator {
@@ -169,7 +171,7 @@ public class PlayerController implements PlayerBusinessLogic{
 		// TODO Auto-generated method stub
 		ArrayList<PlayerPO> allPlayers = playerController.getAllPlayers() ;
 		Collections.sort(allPlayers,new PlayerSortHelper("avg", dataType, season));
-		ArrayList<PlayerPO> result = (ArrayList<PlayerPO>) allPlayers.subList(0, 5) ;
+		ArrayList<PlayerPO> result = new ArrayList<>(allPlayers.subList(0, 5));
 		return result ;
 	}
 	

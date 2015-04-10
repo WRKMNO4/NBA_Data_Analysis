@@ -56,7 +56,7 @@ public class TeamController implements TeamBusinessLogic{
 		// TODO Auto-generated method stub
 		ArrayList<TeamPO> allTeams = teamController.getAllTeams() ;
 		Collections.sort(allTeams,new TeamSortHelper("avg", dataType, season));
-		ArrayList<TeamPO> result = (ArrayList<TeamPO>) allTeams.subList(0, 5) ;
+		ArrayList<TeamPO> result = new ArrayList<>(allTeams.subList(0, 5)) ;
 		return result ;
 	}
 	

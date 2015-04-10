@@ -36,7 +36,7 @@ public class PlayerDataPO {
 	double percentageOfFault ;
 	double percentageOfUse ;
 	
-	int double_double;  
+	double double_double;  
 	double comprehension;  
 	
 	double numberOfShotAttempt ;
@@ -127,7 +127,7 @@ public class PlayerDataPO {
         this.percentageOfUse = (totalDataOfPlayer.getNumberOfShotAttempt()+0.44*totalDataOfPlayer.getNumberOfFreeThrowAttempt()+totalDataOfPlayer.getNumberOfFault())
         		*otherTeamData.getTeamTotalTime()/seconds/(totalDataOfTeam.getNumberOfShotAttempt()+0.44*totalDataOfTeam.getNumberOfFreeThrowAttempt()+totalDataOfTeam.getNumberOfFault()) ;
         this.comprehension = totalDataOfPlayer.getComprehension()/num ;
-        this.double_double = totalDataOfPlayer.getDouble_double()/num ;
+        this.double_double = (double)totalDataOfPlayer.getDouble_double()/num ;
 	}
 
 
@@ -219,7 +219,7 @@ public class PlayerDataPO {
 	public double getPercentageOfUse() {
 		return percentageOfUse;
 	}
-	public int getDouble_double() {
+	public double getDouble_double() {
 		return double_double;
 	}
 	public double getComprehension() {
