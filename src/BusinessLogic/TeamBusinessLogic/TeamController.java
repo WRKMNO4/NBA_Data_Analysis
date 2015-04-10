@@ -25,12 +25,12 @@ public class TeamController implements TeamBusinessLogic{
 		teamController.calculateFinalData() ;
 	}
 	@Override
-	public ArrayList<TeamPO> getAllTeamsOf13_14() {
+	public ArrayList<TeamPO> getAllTeams() {
 		// TODO Auto-generated method stub
-		return teamController.getAllTeamsOf13_14();
+		return teamController.getAllTeams();
 	}
 	@Override
-	public ArrayList<TeamPO> sortTeamsOf13_14ByComprehension(String standard,TeamData dataType,Season season) {
+	public ArrayList<TeamPO> sortTeamsByComprehension(String standard,TeamData dataType,Season season) {
 		// TODO Auto-generated method stub
 		if(dataType==TeamData.teamFullName)
 			standard="name";
@@ -38,7 +38,7 @@ public class TeamController implements TeamBusinessLogic{
 			standard="matches";
 		else if(dataType==TeamData.percentageOfWinning)
 			standard="perOfWin";
-		ArrayList<TeamPO> results= (ArrayList<TeamPO>) teamController.getAllTeamsOf13_14().clone();
+		ArrayList<TeamPO> results= (ArrayList<TeamPO>) teamController.getAllTeams().clone();
 		Collections.sort(results,new TeamSortHelper(standard, dataType,season));
 		return results;
 	}
@@ -49,6 +49,15 @@ public class TeamController implements TeamBusinessLogic{
 		 * 舟舟说不写
 		 */
 		return null ;
+	}
+	@Override
+	public ArrayList<TeamPO> getSeasonStandingTeam(Season season,
+			TeamData dataType) {
+		// TODO Auto-generated method stub
+		ArrayList<TeamPO> allTeams = teamController.getAllTeams() ;
+		Collections.sort(allTeams,new TeamSortHelper("avg", dataType, season));
+		ArrayList<TeamPO> result = (ArrayList<TeamPO>) allTeams.subList(0, 5) ;
+		return result ;
 	}
 	
 }

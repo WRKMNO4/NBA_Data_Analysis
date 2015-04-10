@@ -135,7 +135,7 @@ public class MainFrame extends JFrame implements MouseListener{
 		bl=new BLServiceController();
 		bl.init();
 		players=bl.getAllPlayers();
-		teams=bl.getAllTeamsOf13_14();
+		teams=bl.getAllTeams();
 	}
 	
 	public void refreshPlayerTable(){

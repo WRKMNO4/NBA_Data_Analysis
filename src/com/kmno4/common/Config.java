@@ -32,6 +32,8 @@ public class Config {
 	public static final String[] SORT_TEAM_TYPE = {};
 	public static final String[] SORT_TEAM_STANDRAD = {"总计", "场均"};
 	
+	public static final String[] STANDING_TYPE = {"场均得分提升率","场均篮板提升率","场均助攻提升率"} ;
+	
 	public static final int MAIN_FRAME_X=100;
 	public static final int MAIN_FRAME_Y=100;
 	public static final int UI_WIDTH=800;

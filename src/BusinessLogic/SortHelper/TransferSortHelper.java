@@ -125,6 +125,15 @@ public class TransferSortHelper {
 		case "两双":
 			dataType = PlayerData.double_double;
 			break ;
+		case "场均得分提升率":
+			dataType = PlayerData.improveRateOfScore ;
+			break ;
+		case "场均篮板提升率":
+			dataType = PlayerData.improveRateOfRebound ;
+			break ;
+		case "场均助攻提升率":
+			dataType = PlayerData.improveRateOfAssist ;
+			break ;
 		}
 		return dataType;
 	}

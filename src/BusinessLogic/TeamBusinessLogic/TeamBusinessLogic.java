@@ -9,8 +9,10 @@ import PO.TeamPO;
 public interface TeamBusinessLogic {
 	public void init();
 	public void calculateFinalData() ;
-	public ArrayList<TeamPO> getAllTeamsOf13_14() ;
-	ArrayList<TeamPO> sortTeamsOf13_14ByComprehension(String standard,
+	public ArrayList<TeamPO> getAllTeams() ;
+	ArrayList<TeamPO> sortTeamsByComprehension(String standard,
 			TeamData dataType,Season season);
 	public ArrayList<TeamPO> findTeamByName(String name) ;
+	public ArrayList<TeamPO> getSeasonStandingTeam(Season season,
+			TeamData dataType);
 }

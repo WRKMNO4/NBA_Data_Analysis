@@ -13,6 +13,5 @@ public interface PlayerDataService {
 	public ArrayList<PlayerPO> findPlayerByName(String name);
 	public ArrayList<PlayerPO> getAllPlayers() ;
 	public void calculateFinalData() ;
-	public ArrayList<StandingDataPO> getDatasOfDailyStandingPlayers(Season season, String date, PlayerData dataType);
 	
 }

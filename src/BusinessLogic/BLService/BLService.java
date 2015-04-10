@@ -14,7 +14,7 @@ import PO.TeamPO;
 public interface BLService {
 	public void init();
 	public ArrayList<PlayerPO> getAllPlayers() ;
-	public ArrayList<TeamPO> getAllTeamsOf13_14() ;
+	public ArrayList<TeamPO> getAllTeams() ;
 	/**
 	 * 
 	 * @param standard 标准（总数据、场均或姓名）
@@ -28,7 +28,7 @@ public interface BLService {
 	 * @param dataType 技术类型
 	 * @return 球员的排序结果
 	 */
-	public ArrayList<TeamPO> sortTeamsOf13_14ByComprehension(String standard,TeamData dataType,Season season);
+	public ArrayList<TeamPO> sortTeamsByComprehension(String standard,TeamData dataType,Season season);
 	//以下方法为：根据球员位置、东西部、具体分区和排序依据返回所有满足条件的前50名球员序列,其中standard和dataType参数同排序方法中的参数
 	/**
 	 * 
@@ -65,8 +65,29 @@ public interface BLService {
 	 * 
 	 * @param season 赛季
 	 * @param date 日期（如01-01）
+	 *  @param dataType 筛选条件
 	 * @return 前五名球员列表,如果不存在即null.
 	 */
 	public ArrayList<StandingDataPO> getDatasOfDailyStandingPlayers(Season season,String date,PlayerData dataType) ;
-	
+	/**
+	 * 
+	 * @param season 赛季
+	 * @param dataType 筛选条件
+	 * @return 前五名球员列表，如果不存在返回null
+	 */
+	public ArrayList<PlayerPO> getSeasonStandingPlayer(Season season , PlayerData dataType) ;
+	/**
+	 * 
+	 * @param season 赛季
+	 * @param dataType 筛选条件
+	 * @return 返回前五只球队，如果不存在返回null
+	 */
+	public ArrayList<TeamPO> getSeasonStandingTeam(Season season , TeamData dataType) ;
+	/**
+	 * 
+	 * @param season 赛季
+	 * @param dataType 筛选条件
+	 * @return 返回前五名球员，如果不存在返回null
+	 */
+	public ArrayList<PlayerPO> getMostImprovePlayer(Season season ,PlayerData dataType) ;
 }

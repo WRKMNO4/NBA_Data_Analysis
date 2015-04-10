@@ -61,15 +61,15 @@ public class TeamController implements TeamDataService{
 	@Override
 	public void calculateFinalData() {
 		// TODO Auto-generated method stub
-		for(TeamPO oneTeam:teams.getAllTeamsOf13_14()){
+		for(TeamPO oneTeam:teams.getAllTeams()){
 			oneTeam.calculateTeamDataInOneSeason();
 		}
 	}
 
 	@Override
-	public ArrayList<TeamPO> getAllTeamsOf13_14() {
+	public ArrayList<TeamPO> getAllTeams() {
 		// TODO Auto-generated method stub
-		return teams.getAllTeamsOf13_14() ;
+		return teams.getAllTeams() ;
 	}
 	
 }

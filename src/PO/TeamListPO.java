@@ -5,17 +5,17 @@ import java.util.ArrayList;
 import Enum.ResultMessage;
 
 public class TeamListPO {
-	public static ArrayList<TeamPO> allTeamsOf13_14 ;
+	public static ArrayList<TeamPO> allTeams ;
 	public TeamListPO(){
-		allTeamsOf13_14= new ArrayList<TeamPO>() ;
+		allTeams= new ArrayList<TeamPO>() ;
 	}
 	
 	public ResultMessage addTeam(TeamPO theTeam){
-		for(TeamPO oneTeam:allTeamsOf13_14){
+		for(TeamPO oneTeam:allTeams){
 			if(oneTeam.getFullName().equals(theTeam.getFullName()))
 				return ResultMessage.add_failure ;
 		}
-		allTeamsOf13_14.add(theTeam) ;
+		allTeams.add(theTeam) ;
 		return ResultMessage.add_success ;
 	}
 	
@@ -24,14 +24,14 @@ public class TeamListPO {
 	}
 	
 	public static TeamPO findTeamByShortName(String name){
-		for(TeamPO oneTeam:allTeamsOf13_14){
+		for(TeamPO oneTeam:allTeams){
 			if(oneTeam.getShortName().equals(name)){
 				return oneTeam ;
 			}
 		}
 		return null ;
 	}
-	public ArrayList<TeamPO> getAllTeamsOf13_14(){
-		return allTeamsOf13_14 ;
+	public ArrayList<TeamPO> getAllTeams(){
+		return allTeams ;
 	}
 }

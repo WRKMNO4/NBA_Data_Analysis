@@ -53,9 +53,9 @@ public class BLServiceController implements BLService{
 	}
 
 	@Override
-	public ArrayList<TeamPO> getAllTeamsOf13_14() {
+	public ArrayList<TeamPO> getAllTeams() {
 		// TODO Auto-generated method stub
-		return teamController.getAllTeamsOf13_14();
+		return teamController.getAllTeams();
 	}
 
 	@Override
@@ -66,10 +66,10 @@ public class BLServiceController implements BLService{
 	}
 
 	@Override
-	public ArrayList<TeamPO> sortTeamsOf13_14ByComprehension(String standard,
+	public ArrayList<TeamPO> sortTeamsByComprehension(String standard,
 			TeamData dataType,Season season) {
 		// TODO Auto-generated method stub
-		return teamController.sortTeamsOf13_14ByComprehension(standard, dataType,season) ;
+		return teamController.sortTeamsByComprehension(standard, dataType,season) ;
 	}
 
 	@Override
@@ -103,6 +103,27 @@ public class BLServiceController implements BLService{
 		// TODO Auto-generated method stub
 		return playerController.getDatasOfDailyStandingPlayers(season,
 				date, dataType);
+	}
+
+	@Override
+	public ArrayList<PlayerPO> getSeasonStandingPlayer(Season season,
+			PlayerData dataType) {
+		// TODO Auto-generated method stub
+		return playerController.getSeasonStandingPlayer(season,dataType);
+	}
+
+	@Override
+	public ArrayList<TeamPO> getSeasonStandingTeam(Season season,
+			TeamData dataType) {
+		// TODO Auto-generated method stub
+		return teamController.getSeasonStandingTeam(season,dataType) ;
+	}
+
+	@Override
+	public ArrayList<PlayerPO> getMostImprovePlayer(Season season,
+			PlayerData dataType) {
+		// TODO Auto-generated method stub
+		return playerController.getMostImprovePlayer(season,dataType);
 	}
 	
 	
