@@ -24,7 +24,7 @@ import PO.TeamPO;
 import com.sun.org.apache.bcel.internal.generic.VariableLengthInstruction;
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
-public class BLServiceController implements BLService{
+public class BLServiceController implements  BLService{
 	SeasonListPO seasonList ;
 	TeamBusinessLogic teamController ;
 	PlayerBusinessLogic playerController ;
@@ -45,8 +45,16 @@ public class BLServiceController implements BLService{
 		matchController.init();
 		teamController.calculateFinalData();
 		playerController.calculateFinalData();
+		Runnable refresh = new Refresh() ;
+		Thread t = new Thread(refresh) ;
+		t.start();
 	}
 
+	void refresh(){
+		matchController.init();
+		teamController.calculateFinalData();
+		playerController.calculateFinalData();
+	}
 	@Override
 	public ArrayList<PlayerPO> getAllPlayers() {
 		// TODO Auto-generated method stub
@@ -127,6 +135,28 @@ public class BLServiceController implements BLService{
 		return playerController.getMostImprovePlayer(season,dataType);
 	}
 	
+	class Refresh implements Runnable{
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			while(true){
+				MatchPO theMatch = findMatch(Season.season12_13, "11-01", "OKC-SAS") ;
+				if(theMatch != null){
+	        		System.out.println("True");
+	        		break ;
+				}
+		    	refresh();
+			}
+		}
+		
+	}
+
+	@Override
+	public ArrayList<MatchPO> getAllMatches(Season season) {
+		// TODO Auto-generated method stub
+		return matchController.getAllMatches(season);
+	}
 	
 
 	

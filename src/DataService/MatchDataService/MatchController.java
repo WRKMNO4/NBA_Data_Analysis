@@ -20,10 +20,8 @@ import PO.TeamListPO;
 import PO.TeamPO;
 
 public class MatchController implements MatchDataService{
-//	MatchListPO matches ;
 	
 	public MatchController(){
-//		matches=new MatchListPO();
 		read("Data/matches") ;
 	}
 	void read(String fileName){
@@ -62,12 +60,16 @@ public class MatchController implements MatchDataService{
 						
 					switch(j){
 					case 0: newMatch.setDate(splitString[0]);
-					        if(splitString[1].split("-")[0].equals("NOH"))
-					        	splitString[1].split("-")[0]="NOP";
-					        else if(splitString[1].split("-")[1].equals("NOH"))
-					        	splitString[1].split("-")[1]="NOP";
+//					        if(splitString[1].split("-")[0].equals("NOH"))
+//					        	splitString[1].split("-")[0]="NOP";
+//					        else if(splitString[1].split("-")[1].equals("NOH"))
+//					        	splitString[1].split("-")[1]="NOP";
 					        newMatch.setFirstTeam(splitString[1].split("-")[0]);
 					        newMatch.setSecondTeam(splitString[1].split("-")[1]);
+					        if(newMatch.getFirstTeam().equals("NOH"))
+					        	newMatch.setFirstTeam("NOP");
+					        if(newMatch.getSecondTeam().equals("NOH"))
+					        	newMatch.setSecondTeam("NOP");
 					        newMatch.setFinalScore(new ScoreOfMatchPO(splitString[2]));
 					        break;
 					case 1: ArrayList<ScoreOfMatchPO> allScore = new ArrayList<ScoreOfMatchPO>();
@@ -99,7 +101,7 @@ public class MatchController implements MatchDataService{
 						 theTeam.addPlayer(thePlayer,newMatch.getSeason());
 					}	
 				}
-				
+				System.out.println(newMatch.getName());
 				newMatch.calculateTeamData();
 				newMatch.calculateTotalTime();
 				newMatch.calculatePlayersData();
@@ -147,5 +149,10 @@ public class MatchController implements MatchDataService{
 				return -1;
 		}
 		
+	}
+
+	public ArrayList<MatchPO> getAllMatches(Season season) {
+		// TODO Auto-generated method stub
+		return SeasonListPO.getMatchesOfOneSeason(season);
 	}
 }

@@ -90,4 +90,10 @@ public interface BLService {
 	 * @return 返回前五名球员，如果不存在返回null
 	 */
 	public ArrayList<PlayerPO> getMostImprovePlayer(Season season ,PlayerData dataType) ;
+	/**
+	 * 
+	 * @param season 赛季
+	 * @return 返回该赛季所有比赛列表
+	 */
+	public ArrayList<MatchPO> getAllMatches(Season season);
 }
