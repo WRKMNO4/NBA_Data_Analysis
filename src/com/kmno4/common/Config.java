@@ -8,7 +8,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 public class Config {
-	
+	public static final String[] Seasons={"2012-2013赛季","2013-2014赛季","2014-2015赛季"};
 	public static final String[] PLAYER_BASIC_INFO={"姓名","位置","球衣号","身高","体重","生日","年龄","球龄","毕业学校"};
 	public static final String[] PLAYER_AVERAGE_INFO={"篮板数","助攻数","在场时间","投篮命中率","三分命中率","罚球命中率",
 		"进攻数","防守数","抢断数","盖帽数","失误数","犯规数","得分","效率",

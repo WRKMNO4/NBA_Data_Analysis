@@ -5,18 +5,21 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class MatchListPO {
-	public ArrayList<MatchPO> allMatchListOf13_14 ;
+	public ArrayList<MatchPO> allMatchList ;
 	
 	public MatchListPO(){
-		allMatchListOf13_14 = new ArrayList<MatchPO>();
+		allMatchList = new ArrayList<MatchPO>();
 	}
 	
 	public void addMatch(MatchPO newMatch){
-		allMatchListOf13_14.add(newMatch) ;
+		allMatchList.add(newMatch) ;
 	}
 	
 	public ArrayList<MatchPO> getMatches(){
-		return allMatchListOf13_14;
+		return allMatchList;
 	}
 	
+	public int getSizeOfMatches(){
+		return allMatchList.size();
+	}
 }

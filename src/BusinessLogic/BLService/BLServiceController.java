@@ -1,6 +1,8 @@
 package BusinessLogic.BLService;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import BusinessLogic.MatchBusinessLogic.MatchBusinessLogic;
 import BusinessLogic.PlayerBusinessLogic.PlayerBusinessLogic;
@@ -135,29 +137,30 @@ public class BLServiceController implements  BLService{
 		return playerController.getMostImprovePlayer(season,dataType);
 	}
 	
+	public ArrayList<MatchPO> getAllMatches(Season season) {
+		// TODO Auto-generated method stub
+		return matchController.getAllMatches(season);
+	}
+	
 	class Refresh implements Runnable{
 
 		@Override
 		public void run() {
 			// TODO Auto-generated method stub
 			while(true){
-				MatchPO theMatch = findMatch(Season.season12_13, "11-01", "OKC-SAS") ;
-				if(theMatch != null){
-	        		System.out.println("True");
-	        		break ;
-				}
-		    	refresh();
+				refresh();
+		    	System.out.println("In 2012 There are "+getAllMatches(Season.season12_13).size()+"matches");
+		    	System.out.println("In 2013 There are "+getAllMatches(Season.season13_14).size()+"matches");
+		    	System.out.println("End one turn");
+		    	try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					} 
+		    	}
 			}
 		}
-		
 	}
 
-	@Override
-	public ArrayList<MatchPO> getAllMatches(Season season) {
-		// TODO Auto-generated method stub
-		return matchController.getAllMatches(season);
-	}
 	
-
-	
-}

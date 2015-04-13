@@ -1,6 +1,7 @@
 package BusinessLogic.SortHelper;
 
 import Enum.PlayerData;
+import Enum.Season;
 import Enum.TeamData;
 
 public class TransferSortHelper {
@@ -222,5 +223,20 @@ public class TransferSortHelper {
 			dataType=TeamData.percentageOfWinning;
 		}
 		return  dataType;
+	}
+	public static Season StringToSeason(String str){
+		Season season=null;
+		switch(str){
+		case "2012-2013赛季":
+			season=Season.season12_13;
+			break;
+		case "2013-2014赛季":
+			season=Season.season13_14;
+			break;
+		case "2014-2015赛季":
+			season=Season.season14_15;
+			break;
+		}
+		return season;
 	}
 }

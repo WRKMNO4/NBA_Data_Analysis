@@ -20,7 +20,6 @@ import PO.TeamListPO;
 import PO.TeamPO;
 
 public class MatchController implements MatchDataService{
-	
 	public MatchController(){
 		read("Data/matches") ;
 	}
@@ -28,6 +27,7 @@ public class MatchController implements MatchDataService{
 		File file = new File(fileName) ;
 		if(file.isDirectory()){
 			File[] allFiles = file.listFiles() ;
+			System.out.println(allFiles.length);
 			Arrays.sort(allFiles,new CompareByTime());
 			
 			for(int i = 0; i<allFiles.length;i++){ 
@@ -49,6 +49,10 @@ public class MatchController implements MatchDataService{
 					newMatch.setSeason(Season.season14_15);
 					break;
 				}
+				//check if this match exists.
+				if(ifMatchExist(newMatch.getSeason(), newMatch.getName()))
+					continue;
+				
 				
 				boolean isFirstTeam = false ; 
 				for(int j = 0;j<tempString.size() ;j++){ 
@@ -101,7 +105,6 @@ public class MatchController implements MatchDataService{
 						 theTeam.addPlayer(thePlayer,newMatch.getSeason());
 					}	
 				}
-				System.out.println(newMatch.getName());
 				newMatch.calculateTeamData();
 				newMatch.calculateTotalTime();
 				newMatch.calculatePlayersData();
@@ -141,12 +144,31 @@ public class MatchController implements MatchDataService{
 		public int compare(Object o1, Object o2) {
 			File f1=(File)o1;
 			File f2=(File)o2;
-			if(f1.lastModified()>f2.lastModified())
+			String str1=f1.getName();String str2=f2.getName();
+			String date1=str1.substring(6,11); String date2=str2.substring(6,11);
+			int month1=Integer.parseInt(date1.substring(0,2));  int month2=Integer.parseInt(date2.substring(0, 2));
+			int day1= Integer.parseInt(date1.substring(3,5));  int day2=Integer.parseInt(date2.substring(3,5));
+			
+			month1=(month1+2)%12;  
+			month2=(month2+2)%12;
+			if(month1>month2)
 				return 1;
-			else if(f1.lastModified()==f2.lastModified())
-				return 0;
-			else
+			else if(month1<month2)
 				return -1;
+			else{
+				if(day1>day2)
+					return 1;
+				else if(day1==day2)
+					return 0;
+				else 
+					return -1;
+			}
+//			if(f1.lastModified()>f2.lastModified())
+//				return 1;
+//			else if(f1.lastModified()==f2.lastModified())
+//				return 0;
+//			else
+//				return -1;
 		}
 		
 	}
@@ -155,4 +177,23 @@ public class MatchController implements MatchDataService{
 		// TODO Auto-generated method stub
 		return SeasonListPO.getMatchesOfOneSeason(season);
 	}
-}
+	
+	public boolean ifMatchExist(Season season, String matchName){
+		ArrayList<MatchPO> matches=getAllMatches(season);
+		if(matches.size()==0)
+			return false;
+		
+		int thisMonth=Integer.parseInt(matchName.substring(6,8));
+		int existMonth=Integer.parseInt(matches.get(matches.size()-1).getDate().substring(0,2));
+		thisMonth = (thisMonth + 2) % 12;
+		existMonth = (existMonth + 2) % 12;  //Calculate the absolute month to a season.
+		if(thisMonth < existMonth ){
+			return true;
+			
+		}
+		for(MatchPO searchMatch:matches)
+			if(searchMatch.getName().equals(matchName))
+				return true;
+		return false;
+		}
+	}
