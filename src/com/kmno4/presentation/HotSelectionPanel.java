@@ -2,15 +2,18 @@ package com.kmno4.presentation;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.kmno4.common.Config;
-import javax.swing.JLabel;
-import javax.swing.JRadioButton;
 
-public class HotSelectionPanel extends JPanel {
-
+public class HotSelectionPanel extends JPanel implements MouseListener{
+	
+	
 	/**
 	 * Create the panel.
 	 */
@@ -33,26 +36,68 @@ public class HotSelectionPanel extends JPanel {
 		lb_season_team.setBounds(600, 0, 200, 30);
 		add(lb_season_team);
 		
-		JRadioButton radioButton = new JRadioButton("第一赛季");
-		radioButton.setBounds(0, 35, 141, 23);
-		add(radioButton);
+		JComboBox team_a = new JComboBox();
+		team_a.setBounds(27, 58, 168, 27);
+		add(team_a);
 		
-		JRadioButton radioButton_1 = new JRadioButton("第二赛季");
-		radioButton_1.setBounds(0, 61, 141, 23);
-		add(radioButton_1);
+		JComboBox team_b = new JComboBox();
+		team_b.setBounds(259, 58, 168, 27);
+		add(team_b);
 		
-		JRadioButton radioButton_2 = new JRadioButton("第三赛季");
-		radioButton_2.setBounds(0, 85, 141, 23);
-		add(radioButton_2);
+		JLabel lb_date = new JLabel("日历");
+		lb_date.setBounds(600, 62, 61, 16);
+		add(lb_date);
+
+	}
+	
+	
+	public void showSeasonPlayer(){
 		
-		JRadioButton radioButton_3 = new JRadioButton("第四赛季");
-		radioButton_3.setBounds(0, 106, 141, 23);
-		add(radioButton_3);
+	}
+	
+	public void showSeasonTeam(){
 		
+	}
+	
+	public void showDailyPlayer(){
+		
+	}
+	
+	public void showMostProvementPlayer(){
 		
 	}
 
 	public void paintComponent(Graphics g){
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 }
