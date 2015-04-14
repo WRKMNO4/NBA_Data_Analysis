@@ -6,7 +6,7 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JPanel;
 
-import com.kmno4.common.Config;
+import com.kmno4.presentation.table.SlideTable;
 import com.kmno4.presentation.table.Table;
 
 import javax.swing.JLabel;
@@ -93,16 +93,63 @@ public class MatchInfoDetailPanel extends JPanel {
 		private JLabel 
 		    headLabel,
 		    blankLabel;
-		private Table
+		private SlideTable
 		    scoreTable,
 		    dataTable;
-		private boolean isScoreTable = true;
+		private boolean isScoreTable;
+		private GridBagLayout gbl;
+		private GridBagConstraints gbc;
 		public TeamPanel() {
+			isScoreTable = false;
+			gbl = new GridBagLayout();
+			setLayout(gbl);
+			gbc = new GridBagConstraints();
 			
+			headLabel = new JLabel();
+			gbc.gridx = 0;
+			gbc.gridy = 0;
+			gbc.gridwidth = 1;
+			gbc.gridheight = 2;
+			gbc.weightx = 3;
+			gbc.weighty = 2;
+			gbl.setConstraints(headLabel, gbc);
+			add(headLabel);
+			//TODO
+			blankLabel = new JLabel();
+			gbc.gridx = 1;
+			gbc.gridy = 0;
+			gbc.gridwidth = 1;
+			gbc.gridheight = 1;
+			gbc.weightx = 8;
+			gbc.weighty = 1;
+			gbl.setConstraints(blankLabel, gbc);
+			add(blankLabel);
+			
+			scoreTable = new SlideTable(null, null);
+			gbc.gridx = 1;
+			gbc.gridy = 1;
+			gbc.gridwidth = 1;
+			gbc.gridheight = 1;
+			gbc.weightx = 8;
+			gbc.weighty = 1;
+			gbl.setConstraints(scoreTable, gbc);
+			add(scoreTable);
+			
+			dataTable = new SlideTable(null, null);
 		}
 		
 		public void changeTable() {
-			
+			if(isScoreTable) {
+				remove(scoreTable);
+				gbl.setConstraints(dataTable, gbc);
+				add(dataTable);
+			}
+			else {
+				remove(dataTable);
+				gbl.setConstraints(scoreTable, gbc);
+				add(scoreTable);
+			}
+			matchInfoDetailFrame.repaint();
 		}
 		
 	}
