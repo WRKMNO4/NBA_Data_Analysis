@@ -23,7 +23,7 @@ public class TeamDetailFrame extends JFrame {
 			public void run() {
 				try {
 					TeamDetailFrame frame = new TeamDetailFrame(null);
-					frame.setVisible(true);
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

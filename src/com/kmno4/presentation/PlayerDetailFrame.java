@@ -23,7 +23,7 @@ public class PlayerDetailFrame extends JFrame {
 			public void run() {
 				try {
 					PlayerDetailFrame frame = new PlayerDetailFrame(null);
-					frame.setVisible(true);
+					frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -35,7 +35,6 @@ public class PlayerDetailFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public PlayerDetailFrame(PlayerPO playerPO) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(MainFrame.mainFrame.getX() + 50,
 				MainFrame.mainFrame.getY() + 100,
 				Config.PLAYER_DETAIL_UI_WIDTH,
