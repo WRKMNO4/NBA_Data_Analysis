@@ -11,12 +11,12 @@ public class MatchInfoDetailFrame extends JFrame {
 	public MatchInfoDetailPanel matchInfoDetailPanel;
 	
 	public MatchInfoDetailFrame() {
-		setBounds(0, 0, Config.UI_WIDTH, Config.SELECTION_HEIGHT);
+		setBounds(0, 0, 700, 600);
 		setLayout(null);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
-		matchInfoDetailPanel = new MatchInfoDetailPanel();
+		matchInfoDetailPanel = new MatchInfoDetailPanel(this);
 		add(matchInfoDetailPanel);
 		add(new ExitLabel(this));
 		setVisible(true);
