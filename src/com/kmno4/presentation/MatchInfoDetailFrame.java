@@ -2,7 +2,6 @@ package com.kmno4.presentation;
 
 import javax.swing.JFrame;
 
-import com.kmno4.common.Config;
 import com.kmno4.presentation.button.ExitLabel;
 
 @SuppressWarnings("serial")
@@ -30,6 +29,6 @@ public class MatchInfoDetailFrame extends JFrame {
 	
 	
 	public static void main(String[] args) {
-		new MatchInfoDetailFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		new MatchInfoDetailFrame();
 	}
 }

@@ -24,15 +24,19 @@ public class SlideTable extends JPanel {
 	private SlideThread slideThread;
 	
 	public SlideTable(String[] headStr, String[][] bodyString) {
-		this(headStr, bodyString, 0, 0, TABLE_UNIT_WIDTH * headStr.length, TABLE_HEIGHT);
+		this(headStr, bodyString, 0, 0, TABLE_UNIT_WIDTH, TABLE_HEIGHT);
 	}
 	private static final int TABLE_HEIGHT = 50;
 	private static final int TABLE_UNIT_WIDTH = 70;
 	
 	@SuppressWarnings("unused")
 	private final int tableX, tableY, tableWidth, tableHeight;
-	public SlideTable(String[] headStr, String[][] bodyString, int x, int y, int width, int height) {
+	public SlideTable(String[] headStr, String[][] bodyString, int x, int y, int table_unit_width, int table_height) {
 		super();
+		//TODO
+		int 
+		    width = table_unit_width * headStr.length,
+			height = table_height * bodyString.length;
 		max_address = headStr.length - Config.PLAYER_DETAIL_UI_WIDTH / TABLE_UNIT_WIDTH;
 		setLayout(null);
 		table = new SmallTable(headStr, bodyString);

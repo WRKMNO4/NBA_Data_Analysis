@@ -57,7 +57,7 @@ public class TeamDetailPanel extends JPanel {
 		c = new GridBagConstraints();
 
 		team_icon = new JLabel();
-		fillIcon(team_icon, t.getTeamLogoURL());
+		fillIcon(team_icon, t.getTeamLogoURL(), Config.TEAM_ICON_WIDTH, Config.TEAM_ICON_HEIGHT);
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 1;
@@ -201,7 +201,7 @@ public class TeamDetailPanel extends JPanel {
 
 	}
 
-	private void fillIcon(JLabel head, String url) {
+	public static void fillIcon(JLabel head, String url, int width, int height) {
 		File pngBuffer = new File(bufferURL);
 		FileOutputStream fos = null;
 		try {
@@ -226,16 +226,14 @@ public class TeamDetailPanel extends JPanel {
 			}
 
 		Image i = null;
-		BufferedImage bi = new BufferedImage(Config.TEAM_ICON_WIDTH,
-				Config.TEAM_ICON_HEIGHT, BufferedImage.TYPE_3BYTE_BGR);
+		BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
 		try {
 			i = ImageIO.read(pngBuffer);
 		} catch (IOException e) {
 			System.out.println("pngBuffer read fail");
 			e.printStackTrace();
 		}
-		bi.getGraphics().drawImage(i, 0, 0, Config.TEAM_ICON_WIDTH,
-				Config.TEAM_ICON_HEIGHT, new Color(255, 255, 255, 0), null);
+		bi.getGraphics().drawImage(i, 0, 0, width, height, new Color(255, 255, 255, 0), null);
 		Image image = bi;
 		head.setIcon(new ImageIcon(image));
 
@@ -243,7 +241,7 @@ public class TeamDetailPanel extends JPanel {
 
 	}
 
-	private void convertToPNG(String url, OutputStream os) {
+	public static void convertToPNG(String url, OutputStream os) {
 		File svg = new File(url);
 		Document doc = null;
 		try {
