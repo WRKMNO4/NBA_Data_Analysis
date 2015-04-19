@@ -25,14 +25,11 @@ public class HotSelectionPanel extends JPanel {
 	    team_a,
 	    team_b;
 	
-<<<<<<< HEAD
-	JComboBox team_a;
-	JComboBox team_b;
+
 	/**
 	 * Create the panel.
 	 */
-=======
->>>>>>> origin/master
+
 	public HotSelectionPanel() {
 		setLayout(null);
 		this.setBounds(0, 0, Config.UI_WIDTH, Config.MATCH_SELECTION_PANEL_HEIGHT);
@@ -78,19 +75,12 @@ public class HotSelectionPanel extends JPanel {
 			}
 		});
 		
-<<<<<<< HEAD
-		team_a = new JComboBox();
-		team_a.setBounds(27, 58, 168, 27);
-		add(team_a);
-		
-		team_b = new JComboBox();
-=======
+
 		team_a = new JComboBox<String>();
 		team_a.setBounds(27, 58, 168, 27);
 		add(team_a);
 		
 		team_b = new JComboBox<String>();
->>>>>>> origin/master
 		team_b.setBounds(259, 58, 168, 27);
 		add(team_b);
 		

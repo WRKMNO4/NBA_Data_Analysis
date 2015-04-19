@@ -63,31 +63,19 @@ public class MainFrame extends JFrame implements MouseListener{
 
 	public void initPanel(){
 		topTabPanel=new TopTabPanel();
-<<<<<<< HEAD
-		this.add(topTabPanel);	
-=======
 		this.add(topTabPanel);
 		pageInfoPanel=new PageInfoPanel("球员");
 		this.add(pageInfoPanel);
 		playerSelectionPanel=new PlayerSelectionPanel();
 		this.add(playerSelectionPanel);
->>>>>>> origin/master
 		teamSelectionPanel=new TeamSelectionPanel();
 		this.add(teamSelectionPanel);
 		matchSelectionPanel=new MatchSelectionPanel();
 		this.add(matchSelectionPanel);
 		hotSelectionPanel=new HotSelectionPanel();
 		this.add(hotSelectionPanel);
-<<<<<<< HEAD
-		playerSelectionPanel=new PlayerSelectionPanel();
-		this.add(playerSelectionPanel);
-		
-		topTabPanel.showPlayerInfo();
 
-=======
-		
 		topTabPanel.ini();
->>>>>>> origin/master
 	}
 	
 	public void initBL(){

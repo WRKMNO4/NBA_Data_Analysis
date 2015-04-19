@@ -22,17 +22,12 @@ public class MatchSelectionPanel extends JPanel {
 	    lb_firstSeason,
 		lb_secondSeason,
 		lb_thirdSeason,
-<<<<<<< HEAD
-		lb_forthSeason;
-	JComboBox cb_team1 ;
-	JComboBox cb_team2;
-=======
+		lb_forthSeason,
 		lblNewLabel_1,
 		lb_vs;
 	JComboBox<String> 
-	    comboBox,
-	    comboBox_1;
->>>>>>> origin/master
+	    cb_team1,
+	    cb_team2;
 	
 	public MatchSelectionPanel() {
 		setLayout(null);
@@ -40,18 +35,10 @@ public class MatchSelectionPanel extends JPanel {
 		this.setVisible(true);
 		this.setBackground(new Color(0, 0, 0, 0));
 		
-<<<<<<< HEAD
 		cb_team1=new JComboBox();
 		cb_team1.setBounds(22, 75, 186, 27);
 		add(cb_team1);
-=======
-		
-		comboBox = new JComboBox<String>();
-		comboBox.setBounds(22, 75, 186, 27);
-		add(comboBox);
->>>>>>> origin/master
-		
-		
+			
 		seasonPanel = new JPanel();
 		seasonPanel.setBounds(0, 0, 800, 45);
 		seasonPanel.setBackground(new Color(0, 0, 0, 0));
@@ -87,15 +74,10 @@ public class MatchSelectionPanel extends JPanel {
 		lblNewLabel_1.setBounds(660, 66, 98, 43);
 		add(lblNewLabel_1);
 		
-<<<<<<< HEAD
-		cb_team2 = new JComboBox();
+
+		cb_team2 = new JComboBox<String>();
 		cb_team2.setBounds(275, 75, 164, 27);
 		add(cb_team2);
-=======
-		comboBox_1 = new JComboBox<String>();
-		comboBox_1.setBounds(275, 75, 164, 27);
-		add(comboBox_1);
->>>>>>> origin/master
 		
 		lb_vs = new JLabel("VS");
 		lb_vs.setBounds(213, 79, 61, 16);
