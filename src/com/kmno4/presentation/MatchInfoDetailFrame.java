@@ -2,6 +2,9 @@ package com.kmno4.presentation;
 
 import javax.swing.JFrame;
 
+import PO.MatchPO;
+
+import com.kmno4.common.Config;
 import com.kmno4.presentation.button.ExitLabel;
 
 @SuppressWarnings("serial")
@@ -9,13 +12,13 @@ public class MatchInfoDetailFrame extends JFrame {
 
 	public MatchInfoDetailPanel matchInfoDetailPanel;
 	
-	public MatchInfoDetailFrame() {
-		setBounds(0, 0, 700, 600);
+	public MatchInfoDetailFrame(MatchPO matchPO) {
+		setBounds(0, 0, Config.MATCH_DETAIL_WIDTH, Config.MATCH_DETAIL_HEIGHT);
 		setLayout(null);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
-		matchInfoDetailPanel = new MatchInfoDetailPanel(this);
+		matchInfoDetailPanel = new MatchInfoDetailPanel(matchPO, this);
 		add(matchInfoDetailPanel);
 		add(new ExitLabel(this));
 		setVisible(true);
@@ -29,6 +32,6 @@ public class MatchInfoDetailFrame extends JFrame {
 	
 	
 	public static void main(String[] args) {
-		new MatchInfoDetailFrame();
+		new MatchInfoDetailFrame(null);
 	}
 }

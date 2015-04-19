@@ -38,6 +38,10 @@ public class Config {
 	public static final String[] STANDING_SEASONTEAM_TYPE={"得分","篮板","助攻","盖帽","抢断","三分命中率","投篮命中率","罚球命中率"} ;
 	public static final String[] STANDING_IMPROVED_TYPE = {"场均得分提升率","场均篮板提升率","场均助攻提升率"} ;
 	
+	public static final int 
+	    MATCH_DETAIL_WIDTH = 700,
+	    MATCH_DETAIL_HEIGHT = 600;
+	
 	public static final int MAIN_FRAME_X=100;
 	public static final int MAIN_FRAME_Y=100;
 	public static final int UI_WIDTH=800;

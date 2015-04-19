@@ -8,6 +8,9 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JPanel;
 
+import PO.MatchPO;
+
+import com.kmno4.common.Config;
 import com.kmno4.presentation.button.BorderLabel;
 import com.kmno4.presentation.table.SlideTable;
 import com.kmno4.presentation.table.SmallTable;
@@ -17,6 +20,7 @@ import javax.swing.JLabel;
 @SuppressWarnings("serial")
 public class MatchInfoDetailPanel extends JPanel {
 	private MatchInfoDetailFrame matchInfoDetailFrame;
+	private MatchPO matchPO;
 	
 	private TeamPanel team1, team2;
 	private JLabel 
@@ -26,10 +30,12 @@ public class MatchInfoDetailPanel extends JPanel {
 	private GridBagLayout layout;
 	private GridBagConstraints c;
 	
-	public MatchInfoDetailPanel(MatchInfoDetailFrame f) {
+	
+	public MatchInfoDetailPanel(MatchPO p, MatchInfoDetailFrame f) {
 		matchInfoDetailFrame = f;
-		setBounds(0, 0, 700, 600);
-		setBackground(new Color(255, 255, 255, 255));
+		matchPO = p;
+		setBounds(0, 0, f.getWidth(), f.getHeight());
+		setBackground(new Color(255, 255, 255, 0));
 		layout = new GridBagLayout();
 		setLayout(layout);
 		c = new GridBagConstraints();
@@ -109,6 +115,9 @@ public class MatchInfoDetailPanel extends JPanel {
 		});
 	}
 	
+	private static final int 
+	    HEAD_ICON_WIDTH = 200,
+	    HEAD_ICON_HEIGHT = 200;
 	
 	class TeamPanel extends JPanel {
 		private JLabel 
@@ -165,7 +174,7 @@ public class MatchInfoDetailPanel extends JPanel {
 					new String[][]{{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"},
 					               {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"},
 					               {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"}},
-					0, 0, 50, 50, 300);
+					0, 0, 50, 50, Config.MATCH_DETAIL_WIDTH - HEAD_ICON_WIDTH);
 			dataTable.setVisible(false);
 			
 			addTeamLink();
