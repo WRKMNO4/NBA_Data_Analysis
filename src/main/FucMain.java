@@ -27,8 +27,8 @@ public class FucMain {
 		// 组件
 		WebLookAndFeel.install();
 		// look$feel——————second choice
-		JFrame.setDefaultLookAndFeelDecorated(true);
-		JDialog.setDefaultLookAndFeelDecorated(true);
+//		JFrame.setDefaultLookAndFeelDecorated(true);
+//		JDialog.setDefaultLookAndFeelDecorated(true);
 //		try {
 //			UIManager.setLookAndFeel(new SubstanceLookAndFeel());
 //			JFrame.setDefaultLookAndFeelDecorated(true);
