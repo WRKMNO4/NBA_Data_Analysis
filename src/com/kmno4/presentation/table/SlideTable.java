@@ -8,7 +8,6 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.kmno4.common.Config;
 import com.kmno4.presentation.button.BorderLabel;
 
 /**
@@ -23,29 +22,33 @@ public class SlideTable extends JPanel {
 	private SmallTable table;
 	private SlideThread slideThread;
 	
-	public SlideTable(String[] headStr, String[][] bodyString) {
-		this(headStr, bodyString, 0, 0, TABLE_UNIT_WIDTH, TABLE_HEIGHT);
-	}
-	private static final int TABLE_HEIGHT = 50;
-	private static final int TABLE_UNIT_WIDTH = 70;
+	private final int 
+	    table_unit_height, 
+	    table_unit_width,
+	    table_ui_width;
 	
-	@SuppressWarnings("unused")
 	private final int tableX, tableY, tableWidth, tableHeight;
-	public SlideTable(String[] headStr, String[][] bodyString, int x, int y, int table_unit_width, int table_height) {
+	public SlideTable(String[] headStr, String[][] bodyString, int x, int y, int tableUnitWidth, int tableUnitHeight, int tableUiWidth) {
 		super();
-		//TODO
-		int 
-		    width = table_unit_width * headStr.length,
-			height = table_height * bodyString.length;
-		max_address = headStr.length - Config.PLAYER_DETAIL_UI_WIDTH / TABLE_UNIT_WIDTH;
+		table_unit_height = tableUnitHeight;
+		table_unit_width = tableUnitWidth;
+		table_ui_width = tableUiWidth;
+		move_time = (double)150 / 1000;
+		move_unit_time = (double)15 / 1000;
+		move_unit_width = table_unit_width * move_unit_time / move_time;
+		
+		
+		tableWidth = table_unit_width * headStr.length;
+		tableHeight = table_unit_height * bodyString.length;
+		max_address = headStr.length - table_ui_width / table_unit_width;
 		setLayout(null);
 		table = new SmallTable(headStr, bodyString);
 		table.setLocation((tableX = x), (tableY = y));
-		table.setSize((tableWidth = width), (tableHeight = height));
+		table.setSize(tableWidth, tableHeight);
 		add(table);
 
 		left = new BorderLabel("←", JLabel.CENTER);
-		left.setBounds(x, tableHeight + y, FLIG_LABEL_WIDTH, (int)(height * FLIG_LABEL_HEIGHT_RATE));
+		left.setBounds(x, tableHeight + y, FLIG_LABEL_WIDTH, (int)(table_unit_height * FLIG_LABEL_HEIGHT_RATE));
 		left.setEnabled(false);
 		left.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
@@ -60,7 +63,7 @@ public class SlideTable extends JPanel {
 		add(left);
 		
 		right = new BorderLabel("→", JLabel.CENTER);
-		right.setBounds(x + left.getWidth(), left.getY(), FLIG_LABEL_WIDTH, (int)(height * FLIG_LABEL_HEIGHT_RATE));
+		right.setBounds(x + left.getWidth(), left.getY(), FLIG_LABEL_WIDTH, (int)(table_unit_height * FLIG_LABEL_HEIGHT_RATE));
 		right.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				if(!right.isEnabled()) return;
@@ -131,9 +134,9 @@ public class SlideTable extends JPanel {
 	}
 	
 	
-	private static final double MOVE_TIME = (double)150 / 1000;
-	private static final double MOVE_UNIT_TIME = (double)15 / 1000;
-	private static final double MOVE_UNIT_WIDTH = TABLE_UNIT_WIDTH * MOVE_UNIT_TIME / MOVE_TIME;
+	private final double move_time;
+	private final double move_unit_time;
+	private final double move_unit_width;
 	class SlideThread extends Thread {
 		private double x, targetX;
 		
@@ -142,12 +145,12 @@ public class SlideTable extends JPanel {
 				if(moving == MOVING_LEFT) {
 					current_address ++;
 					x = (double)table.getX();
-					targetX = x - (double)TABLE_UNIT_WIDTH;
+					targetX = x - (double)table_unit_width;
 					while(x > targetX) {
-						x -= MOVE_UNIT_WIDTH;
+						x -= move_unit_width;
 						table.setLocation((int)x, table.getY());
 						try {
-							Thread.sleep((long)(MOVE_UNIT_TIME * 1000));
+							Thread.sleep((long)(move_unit_time * 1000));
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						} 
@@ -162,12 +165,12 @@ public class SlideTable extends JPanel {
 				else if(moving == MOVING_RIGHT) {
 					current_address --;
 					x = (double)table.getX();
-					targetX = x + (double)TABLE_UNIT_WIDTH;
+					targetX = x + (double)table_unit_width;
 					while(x < targetX) {
-						x += MOVE_UNIT_WIDTH;
+						x += move_unit_width;
 						table.setLocation((int)x, table.getY());
 						try {
-							Thread.sleep((long)(MOVE_UNIT_TIME * 1000));
+							Thread.sleep((long)(move_unit_time * 1000));
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						} 

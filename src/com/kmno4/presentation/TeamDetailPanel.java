@@ -161,14 +161,14 @@ public class TeamDetailPanel extends JPanel {
 				new String[] { "场均得分", "场均助攻", "场均篮板", "场均抢断" },
 				new String[][] { {
 						TableContentTransfer.cutTailOfAvgData(teamPO
-								.getAverageTeamData().getScore()) + "",
+								.getAverageTeamData(Config.LASTEST_SEASON).getScore()) + "",
 						TableContentTransfer.cutTailOfAvgData(teamPO
-								.getAverageTeamData().getNumberOfAssist()) + "",
+								.getAverageTeamData(Config.LASTEST_SEASON).getNumberOfAssist()) + "",
 						TableContentTransfer.cutTailOfAvgData(teamPO
-								.getAverageTeamData().getNumberOfRebound())
+								.getAverageTeamData(Config.LASTEST_SEASON).getNumberOfRebound())
 								+ "",
 						TableContentTransfer.cutTailOfAvgData(teamPO
-								.getAverageTeamData().getNumberOfSteal()) + "" } });
+								.getAverageTeamData(Config.LASTEST_SEASON).getNumberOfSteal()) + "" } });
 		c.gridx = 1;
 		c.gridy = 2;
 		c.gridwidth = 3;
@@ -180,9 +180,11 @@ public class TeamDetailPanel extends JPanel {
 		layout.setConstraints(mainInfo, c);
 		add(mainInfo);
 
-		sumInfo = new SlideTable(Config.TEAM_TOTAL_INFO,
+		sumInfo = new SlideTable(
+				Config.TEAM_TOTAL_INFO,
 				TableContentTransfer.transferTeamTotalInfo(
-						Config.TEAM_TOTAL_INFO.length, this.teamPO, 1));
+						Config.TEAM_TOTAL_INFO.length, this.teamPO, 1),
+				0, 0, 50, 70, Config.PLAYER_DETAIL_UI_WIDTH);
 		c.gridx = 0;
 		c.gridy = 3;
 		c.gridwidth = 6;
@@ -193,9 +195,11 @@ public class TeamDetailPanel extends JPanel {
 		layout.setConstraints(sumInfo, c);
 		add(sumInfo);
 
-		avgInfo = new SlideTable(Config.TEAM_AVERAGE_INFO,
+		avgInfo = new SlideTable(
+				Config.TEAM_AVERAGE_INFO,
 				TableContentTransfer.transferTeamAvgInfo(
-						Config.TEAM_AVERAGE_INFO.length, this.teamPO, 1));
+						Config.TEAM_AVERAGE_INFO.length, this.teamPO, 1),
+				0, 0, 50, 70, Config.PLAYER_DETAIL_UI_WIDTH);
 		// layout.setConstraints(avgInfo, c);
 		// add(avgInfo);
 

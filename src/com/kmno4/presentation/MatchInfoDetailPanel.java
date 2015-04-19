@@ -159,29 +159,51 @@ public class MatchInfoDetailPanel extends JPanel {
 			add(scoreTable);
 			
 			gbc_data = (GridBagConstraints) gbc.clone();
-			gbc_data.weighty = 1;
-			dataTable = new SlideTable(new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"}, 
+			gbc_data.weighty = 3;
+			dataTable = new SlideTable(
+					new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"}, 
 					new String[][]{{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"},
 					               {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"},
-					               {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"}}
-					               );
+					               {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"}},
+					0, 0, 50, 50, 300);
+			dataTable.setVisible(false);
+			
+			addTeamLink();
+			addPlayerLink();
 		}
 		
 		private GridBagConstraints gbc_score, gbc_data;
 		
 		public void changeTable() {
 			if(isScoreTable) {
+				scoreTable.setVisible(false);
 				remove(scoreTable);
+				dataTable.setVisible(true);
 				gbl.setConstraints(dataTable, gbc_data);
 				add(dataTable);
 			}
 			else {
+				dataTable.setVisible(false);
 				remove(dataTable);
+				scoreTable.setVisible(true);
 				gbl.setConstraints(scoreTable, gbc_score);
 				add(scoreTable);
 			}
 			isScoreTable = !isScoreTable;
 			matchInfoDetailFrame.repaint();
+		}
+		
+		
+		private void addTeamLink() {
+			headLabel.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					//TODO
+				}
+			});
+		}
+		private void addPlayerLink() {
+			//TODO
 		}
 		
 	}

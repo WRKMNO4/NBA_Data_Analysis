@@ -208,7 +208,8 @@ public class PlayerDetailPanel extends JPanel {
 		
 		sumInfo = new SlideTable(
 				Config.PLAYER_TOTAL_INFO,
-				TableContentTransfer.transferPlayerTotalInfo(Config.PLAYER_TOTAL_INFO.length, this.playerPO,1));
+				TableContentTransfer.transferPlayerTotalInfo(Config.PLAYER_TOTAL_INFO.length, this.playerPO,1),
+				0, 0, 50, 70, Config.PLAYER_DETAIL_UI_WIDTH);
 		c.gridx = 0;
 		c.gridy = 4;
 		c.gridwidth = 7;
@@ -222,7 +223,8 @@ public class PlayerDetailPanel extends JPanel {
 		
 		avgInfo = new SlideTable(
 				Config.PLAYER_AVERAGE_INFO,
-				TableContentTransfer.transferPlayerAvgInfo(Config.PLAYER_AVERAGE_INFO.length,this.playerPO, 1));
+				TableContentTransfer.transferPlayerAvgInfo(Config.PLAYER_AVERAGE_INFO.length,this.playerPO, 1),
+				0, 0, 50, 70, Config.PLAYER_DETAIL_UI_WIDTH);
 		//avgInfo.setFont(new Font("default", Font.PLAIN, 7), new Font("default", Font.PLAIN, 8));
 		
 		
