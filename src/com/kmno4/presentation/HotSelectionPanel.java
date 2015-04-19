@@ -13,7 +13,8 @@ import com.kmno4.common.Config;
 
 public class HotSelectionPanel extends JPanel implements MouseListener{
 	
-	
+	JComboBox team_a;
+	JComboBox team_b;
 	/**
 	 * Create the panel.
 	 */
@@ -36,11 +37,11 @@ public class HotSelectionPanel extends JPanel implements MouseListener{
 		lb_season_team.setBounds(600, 0, 200, 30);
 		add(lb_season_team);
 		
-		JComboBox team_a = new JComboBox();
+		team_a = new JComboBox();
 		team_a.setBounds(27, 58, 168, 27);
 		add(team_a);
 		
-		JComboBox team_b = new JComboBox();
+		team_b = new JComboBox();
 		team_b.setBounds(259, 58, 168, 27);
 		add(team_b);
 		

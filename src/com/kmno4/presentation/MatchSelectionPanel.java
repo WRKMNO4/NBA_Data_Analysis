@@ -19,6 +19,8 @@ public class MatchSelectionPanel extends JPanel {
 		lb_secondSeason,
 		lb_thirdSeason,
 		lb_forthSeason;
+	JComboBox cb_team1 ;
+	JComboBox cb_team2;
 	
 	public MatchSelectionPanel() {
 		setLayout(null);
@@ -26,10 +28,9 @@ public class MatchSelectionPanel extends JPanel {
 		this.setVisible(true);
 		this.setBackground(Color.gray);
 		
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(22, 75, 186, 27);
-		add(comboBox);
+		cb_team1=new JComboBox();
+		cb_team1.setBounds(22, 75, 186, 27);
+		add(cb_team1);
 		
 		lb_firstSeason = new JLabel("第一赛季");
 		lb_firstSeason.setBounds(0, 0, 200, 30);
@@ -49,9 +50,9 @@ public class MatchSelectionPanel extends JPanel {
 		lblNewLabel_1.setBounds(660, 66, 98, 43);
 		add(lblNewLabel_1);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(275, 75, 164, 27);
-		add(comboBox_1);
+		cb_team2 = new JComboBox();
+		cb_team2.setBounds(275, 75, 164, 27);
+		add(cb_team2);
 		
 		JLabel lblVs = new JLabel("VS");
 		lblVs.setBounds(213, 79, 61, 16);
