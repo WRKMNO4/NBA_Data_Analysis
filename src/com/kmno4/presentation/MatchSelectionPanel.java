@@ -6,15 +6,20 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import com.kmno4.common.Config;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+@SuppressWarnings("serial")
 public class MatchSelectionPanel extends JPanel {
-
-	/**
-	 * Create the panel.
-	 */
+	
+	JLabel 
+	    lb_firstSeason,
+		lb_secondSeason,
+		lb_thirdSeason,
+		lb_forthSeason;
+	
 	public MatchSelectionPanel() {
 		setLayout(null);
 		this.setBounds(0, 0, Config.UI_WIDTH, Config.MATCH_SELECTION_PANEL_HEIGHT);
@@ -26,16 +31,16 @@ public class MatchSelectionPanel extends JPanel {
 		comboBox.setBounds(22, 75, 186, 27);
 		add(comboBox);
 		
-		JLabel lb_firstSeason = new JLabel("第一赛季");
+		lb_firstSeason = new JLabel("第一赛季");
 		lb_firstSeason.setBounds(0, 0, 200, 30);
 		add(lb_firstSeason);
-		JLabel lb_secondSeason = new JLabel("第二赛季");
+		lb_secondSeason = new JLabel("第二赛季");
 		lb_secondSeason.setBounds(200,0, 200, 30);
 		add(lb_secondSeason);
-		JLabel lb_thirdSeason = new JLabel("第三赛季");
+		lb_thirdSeason = new JLabel("第三赛季");
 		lb_thirdSeason.setBounds(400,0, 200, 30);
 		add(lb_thirdSeason);
-		JLabel lb_forthSeason = new JLabel("第四赛季");
+		lb_forthSeason = new JLabel("第四赛季");
 		lb_forthSeason.setBounds(600,0, 200, 30);
 		add(lb_forthSeason);
 		
