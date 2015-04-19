@@ -5,6 +5,7 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
+import com.alee.laf.WebLookAndFeel;
 import com.kmno4.common.Config;
 import com.kmno4.presentation.MainFrame;
 import com.kmno4.presentation.SplashPanel;
@@ -14,6 +15,8 @@ public class FucMain {
 	
 
 	public static void main(String[] args){
+		WebLookAndFeel.install();
+		
 		Thread splash=new Thread(new Runnable(){
 			@Override
 			public void run() {

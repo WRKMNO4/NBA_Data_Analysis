@@ -32,5 +32,6 @@
 	<classpathentry kind="lib" path="batik-1.7-jre13/batik-1.7/lib/xerces_2_5_0.jar"/>
 	<classpathentry kind="lib" path="batik-1.7-jre13/batik-1.7/lib/xml-apis-ext.jar"/>
 	<classpathentry kind="lib" path="batik-1.7-jre13/batik-1.7/lib/xml-apis.jar"/>
+	<classpathentry kind="lib" path="libs/weblaf-complete-1.28.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
