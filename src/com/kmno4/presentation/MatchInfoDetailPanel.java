@@ -160,11 +160,11 @@ public class MatchInfoDetailPanel extends JPanel {
 			
 			gbc_data = (GridBagConstraints) gbc.clone();
 			gbc_data.weighty = 1;
-			dataTable = new SlideTable(new String[]{"1", "2", "3", "4", "5", "6", "7", "8"}, 
-					new String[][]{{"1", "2", "3", "4", "5", "6", "7", "8"},
-					               {"1", "2", "3", "4", "5", "6", "7", "8"},
-					               {"1", "2", "3", "4", "5", "6", "7", "8"}},
-					               0, 0, 50, 50);
+			dataTable = new SlideTable(new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"}, 
+					new String[][]{{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"},
+					               {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"},
+					               {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"}}
+					               );
 		}
 		
 		private GridBagConstraints gbc_score, gbc_data;

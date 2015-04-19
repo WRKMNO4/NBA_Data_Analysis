@@ -23,8 +23,8 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 
 	private boolean isAvg=true;
 
-	private JComboBox cb_avg_data;
-	private JComboBox cb_total_data;
+	private JComboBox<String> cb_avg_data;
+	private JComboBox<String> cb_total_data;
 	
 	public JLabel total_sort;
 	public JLabel avg_sort;
@@ -36,8 +36,8 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 		this.setVisible(true);
 		this.setBackground(Color.gray);
 		
-		cb_avg_data=new JComboBox(Config.TEAM_AVERAGE_INFO);
-		cb_total_data=new JComboBox(Config.TEAM_TOTAL_INFO);
+		cb_avg_data=new JComboBox<String>(Config.TEAM_AVERAGE_INFO);
+		cb_total_data=new JComboBox<String>(Config.TEAM_TOTAL_INFO);
 		cb_avg_data.setBounds(127, 11, 150, 27);
 		cb_total_data.setBounds(127, 11, 150, 27);
 		this.add(cb_avg_data);
@@ -81,7 +81,6 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
 		if(e.getSource()==total_sort){
 			showTotal();
 		}if(e.getSource()==avg_sort){
@@ -91,31 +90,22 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		if(e.getSource()==cb_total_data){
 			//总数据
 			String data=cb_total_data.getSelectedItem().toString();

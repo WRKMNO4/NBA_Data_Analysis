@@ -21,6 +21,7 @@ import com.kmno4.common.Config;
 import com.kmno4.presentation.button.ExitLabel;
 import com.kmno4.presentation.table.Table;
 import com.kmno4.presentation.table.TableList;
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 
 @SuppressWarnings("serial")
 public class TopTabPanel extends JPanel implements MouseListener{
@@ -125,6 +126,10 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		
 		refreshPlayerTable(MainFrame.mainFrame.players);
 	}
+	/**
+	 * 在所有panel初始化之后的初始化
+	 */
+	public void ini() { showPlayerInfo(); }
 	
 	public void showPlayerInfo(){
 		//显示playerPanel，移开其他panel,所有PANEL统一隐藏在Frame左边
@@ -236,6 +241,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 				});
 		setTableBounds();
 		MainFrame.mainFrame.add(tableBeShowing);
+		addMatchLink();
 	}
 	
 	private void setTableBounds() {
@@ -259,7 +265,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 				label.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						PlayerPO p = PlayerListPO.findPlayerByName(label.getText());
+						PlayerPO p = PlayerListPO.findPlayerAccurately(label.getText());
 						if(p == null) return;
 						new PlayerDetailFrame(p).setVisible(true);
 					}
@@ -274,7 +280,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 								   (double)tableBeShowing.getY() + 
 								   (double)(columNum + 1) * labelHeight;
 						HeadIconFrame f = new HeadIconFrame(
-								PlayerListPO.findPlayerByName(label.getText()),
+								PlayerListPO.findPlayerAccurately(label.getText()),
 								(int)x,
 								(int)y);
 						if(headIconFrame != null && headIconFrame.isVisible()) {
@@ -307,6 +313,26 @@ public class TopTabPanel extends JPanel implements MouseListener{
 				label.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
+						TeamPO t = TeamListPO.findTeamByShortName(shortNameLabel.getText());
+						if(t == null) return;
+						new TeamDetailFrame(t).setVisible(true);
+					}
+				});
+			}
+		}
+	}
+	private void addMatchLink() {
+		TableList[][] t = tableBeShowing.body;
+		for(int i = 0; i < t.length; i ++) {
+			for(int j = 0; j < t[0].length; j ++) {
+				if(t[i][j].elements.length == 0) return;
+			    JPanel panel = t[i][j];
+			    //final JLabel shortNameLabel = t[i][j].elements[SHORT_NAME_LABEL];
+				panel.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						//MainFrame.mainFrame.bl.findMatch(season, date, nameOfTeams)
+						//TODO
 						TeamPO t = TeamListPO.findTeamByShortName(shortNameLabel.getText());
 						if(t == null) return;
 						new TeamDetailFrame(t).setVisible(true);
