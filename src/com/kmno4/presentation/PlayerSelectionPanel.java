@@ -21,6 +21,7 @@ import PO.PlayerPO;
 
 import com.kmno4.common.Config;
 
+@SuppressWarnings("serial")
 public class PlayerSelectionPanel extends JPanel implements MouseListener,
 		ActionListener {
 	public List<JLabel> avg_sort_list;
@@ -39,10 +40,10 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 	JLabel lb_location = new JLabel("位置");
 	JLabel lb_place = new JLabel("分区");
 
-	JComboBox cb_position = new JComboBox(Config.PICKUP_POSITION);
-	JComboBox cb_district = new JComboBox(Config.PICKUP_DISTRICT);
-	JComboBox cb_type = new JComboBox(Config.PICKUP_TYPE);
-	JComboBox cb_standard = new JComboBox(Config.PICKUP_STANDARD);
+	JComboBox<String> cb_position = new JComboBox<String>(Config.PICKUP_POSITION);
+	JComboBox<String> cb_district = new JComboBox<String>(Config.PICKUP_DISTRICT);
+	JComboBox<String> cb_type = new JComboBox<String>(Config.PICKUP_TYPE);
+	JComboBox<String> cb_standard = new JComboBox<String>(Config.PICKUP_STANDARD);
 	private final JLabel submit = new JLabel("提交");
 
 	JLabel pickup = new JLabel("筛选");
@@ -50,8 +51,8 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 	JLabel sort = new JLabel("排序");
 	JLabel avg_sort = new JLabel("场均数据");
 	JLabel total_sort = new JLabel("总数据");
-	JComboBox cb_avg_sort_data = new JComboBox(Config.PLAYER_AVERAGE_INFO);
-	JComboBox cb_total_sort_data = new JComboBox(Config.PLAYER_TOTAL_INFO);
+	JComboBox<String> cb_avg_sort_data = new JComboBox<String>(Config.PLAYER_AVERAGE_INFO);
+	JComboBox<String> cb_total_sort_data = new JComboBox<String>(Config.PLAYER_TOTAL_INFO);
 
 	/**
 	 * Create the panel.
@@ -279,31 +280,22 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		// 场均排序
 		if (e.getSource() == cb_avg_sort_data) {
 			String data = cb_avg_sort_data.getSelectedItem().toString();

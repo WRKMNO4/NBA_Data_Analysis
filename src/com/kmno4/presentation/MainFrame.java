@@ -1,7 +1,5 @@
 package com.kmno4.presentation;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -59,14 +57,15 @@ public class MainFrame extends JFrame implements MouseListener{
 		this.initBL();
 		this.initPanel();
 		
+		@SuppressWarnings("unused")
 		MoveOfFrame m = new MoveOfFrame(this);
 	}
 
 	public void initPanel(){
-		pageInfoPanel=new PageInfoPanel("球员");
-		this.add(pageInfoPanel);
 		topTabPanel=new TopTabPanel();
 		this.add(topTabPanel);
+		pageInfoPanel=new PageInfoPanel("球员");
+		this.add(pageInfoPanel);
 		playerSelectionPanel=new PlayerSelectionPanel();
 		this.add(playerSelectionPanel);
 		teamSelectionPanel=new TeamSelectionPanel();
@@ -75,6 +74,8 @@ public class MainFrame extends JFrame implements MouseListener{
 		this.add(matchSelectionPanel);
 		hotSelectionPanel=new HotSelectionPanel();
 		this.add(hotSelectionPanel);
+		
+		topTabPanel.ini();
 	}
 	
 	public void initBL(){
@@ -100,26 +101,18 @@ public class MainFrame extends JFrame implements MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

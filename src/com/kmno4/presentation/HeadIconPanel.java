@@ -71,7 +71,7 @@ public class HeadIconPanel extends JPanel {
 		layout.setConstraints(name, c);
 		add(name);
 		
-		team = new JLabel(playerPO.getTeam(), JLabel.LEFT);
+		team = new JLabel(playerPO.getTeam(Config.LASTEST_SEASON), JLabel.LEFT);
 		team.setFont(new Font("default", Font.ITALIC, 25));
 		c.gridx = 1;
 		c.gridy = 1;

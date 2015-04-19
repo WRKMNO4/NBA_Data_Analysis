@@ -123,7 +123,7 @@ public class PlayerDetailPanel extends JPanel {
 		layout.setConstraints(player_place, c);
 		add(player_place);
 		
-		player_team = new JLabel(playerPO.getTeam(), JLabel.CENTER);
+		player_team = new JLabel(playerPO.getTeam(Config.LASTEST_SEASON), JLabel.CENTER);
 		player_team.setForeground(Color.gray);
 		player_team.setFont(new Font("default", Font.BOLD, 17));
 		c.gridx = 4;
