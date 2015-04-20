@@ -5,6 +5,7 @@ import java.awt.Toolkit;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 import org.jvnet.substance.SubstanceLookAndFeel;
@@ -25,29 +26,29 @@ public class FucMain {
 
 	public static void main(String[] args) {
 		// 组件
-		WebLookAndFeel.install();
+		 WebLookAndFeel.install();
 		// look$feel——————second choice
-//		JFrame.setDefaultLookAndFeelDecorated(true);
-//		JDialog.setDefaultLookAndFeelDecorated(true);
-//		try {
-//			UIManager.setLookAndFeel(new SubstanceLookAndFeel());
-//			JFrame.setDefaultLookAndFeelDecorated(true);
-//			JDialog.setDefaultLookAndFeelDecorated(true);
-//			SubstanceLookAndFeel
-//					.setCurrentTheme(new SubstanceTerracottaTheme());
-//			SubstanceLookAndFeel.setSkin(new EmeraldDuskSkin());
-//			SubstanceLookAndFeel
-//					.setCurrentButtonShaper(new ClassicButtonShaper());
-//			SubstanceLookAndFeel
-//					.setCurrentWatermark(new SubstanceBubblesWatermark());
-//			SubstanceLookAndFeel
-//					.setCurrentBorderPainter(new StandardBorderPainter());
-//			SubstanceLookAndFeel
-//					.setCurrentGradientPainter(new StandardGradientPainter());
-//			SubstanceLookAndFeel.setCurrentTitlePainter(new FlatTitlePainter());
-//		} catch (Exception e) {
-//			System.err.println("Something went wrong!");
-//		}
+		// JFrame.setDefaultLookAndFeelDecorated(true);
+		// JDialog.setDefaultLookAndFeelDecorated(true);
+		// try {
+		// UIManager.setLookAndFeel(new SubstanceLookAndFeel());
+		// JFrame.setDefaultLookAndFeelDecorated(true);
+		// JDialog.setDefaultLookAndFeelDecorated(true);
+		// SubstanceLookAndFeel
+		// .setCurrentTheme(new SubstanceTerracottaTheme());
+		// SubstanceLookAndFeel.setSkin(new EmeraldDuskSkin());
+		// SubstanceLookAndFeel
+		// .setCurrentButtonShaper(new ClassicButtonShaper());
+		// SubstanceLookAndFeel
+		// .setCurrentWatermark(new SubstanceBubblesWatermark());
+		// SubstanceLookAndFeel
+		// .setCurrentBorderPainter(new StandardBorderPainter());
+		// SubstanceLookAndFeel
+		// .setCurrentGradientPainter(new StandardGradientPainter());
+		// SubstanceLookAndFeel.setCurrentTitlePainter(new FlatTitlePainter());
+		// } catch (Exception e) {
+		// System.err.println("Something went wrong!");
+		// }
 		Thread splash = new Thread(new Runnable() {
 			@Override
 			public void run() {
