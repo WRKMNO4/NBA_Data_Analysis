@@ -96,4 +96,9 @@ public interface BLService {
 	 * @return 返回该赛季所有比赛列表
 	 */
 	public ArrayList<MatchPO> getAllMatches(Season season);
+	/**
+	 * 
+	 * @return 返回最新的球队信息列表
+	 */
+	public ArrayList<MatchPO> getLatestTeam();
 }

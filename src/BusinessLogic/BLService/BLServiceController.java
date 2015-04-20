@@ -161,6 +161,12 @@ public class BLServiceController implements  BLService{
 		    	}
 			}
 		}
+
+	@Override
+	public ArrayList<MatchPO> getLatestTeam() {
+		// TODO Auto-generated method stub
+		return getAllMatches(Season.season13_14);
+	}
 	}
 
 	
