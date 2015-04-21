@@ -30,6 +30,7 @@ import org.w3c.dom.Document;
 import PO.TeamPO;
 
 import com.kmno4.common.Config;
+import com.kmno4.presentation.button.BorderLabel;
 import com.kmno4.presentation.table.SlideTable;
 import com.kmno4.presentation.table.SmallTable;
 
@@ -82,7 +83,7 @@ public class TeamDetailPanel extends JPanel {
 		layout.setConstraints(team_name, c);
 		add(team_name);
 
-		team_coach = new JLabel("教练:" + "XXX", JLabel.LEFT);
+		team_coach = new BorderLabel("近期比赛", JLabel.LEFT);
 		team_coach.setFont(new Font("default", Font.ITALIC, 18));
 		c.gridx = 1;
 		c.gridy = 1;
@@ -90,12 +91,12 @@ public class TeamDetailPanel extends JPanel {
 		c.gridheight = 1;
 		c.weightx = 3;
 		c.weighty = 1;
-		c.fill = GridBagConstraints.BOTH;
+		c.fill = GridBagConstraints.NONE;
 		layout.setConstraints(team_coach, c);
 		add(team_coach);
 
-		team_achi = new JLabel("10胜|20负", JLabel.CENTER);
-		team_achi.setFont(new Font("default", Font.BOLD, 25));
+		team_achi = new JLabel("球队球员", JLabel.CENTER);
+		team_achi.setFont(new Font("default", Font.BOLD, 20));
 		team_achi.setForeground(Color.black);
 		c.gridx = 3;
 		c.gridy = 0;
@@ -103,7 +104,7 @@ public class TeamDetailPanel extends JPanel {
 		c.gridheight = 1;
 		c.weightx = 3;
 		c.weighty = 2;
-		c.fill = GridBagConstraints.BOTH;
+		c.fill = GridBagConstraints.NONE;
 		layout.setConstraints(team_achi, c);
 		add(team_achi);
 
@@ -184,7 +185,7 @@ public class TeamDetailPanel extends JPanel {
 				Config.TEAM_TOTAL_INFO,
 				TableContentTransfer.transferTeamTotalInfo(
 						Config.TEAM_TOTAL_INFO.length, this.teamPO, 1),
-				0, 0, 50, 70, Config.PLAYER_DETAIL_UI_WIDTH);
+				50, 70, Config.PLAYER_DETAIL_UI_WIDTH);
 		c.gridx = 0;
 		c.gridy = 3;
 		c.gridwidth = 6;
@@ -199,7 +200,7 @@ public class TeamDetailPanel extends JPanel {
 				Config.TEAM_AVERAGE_INFO,
 				TableContentTransfer.transferTeamAvgInfo(
 						Config.TEAM_AVERAGE_INFO.length, this.teamPO, 1),
-				0, 0, 50, 70, Config.PLAYER_DETAIL_UI_WIDTH);
+				50, 70, Config.PLAYER_DETAIL_UI_WIDTH);
 		// layout.setConstraints(avgInfo, c);
 		// add(avgInfo);
 

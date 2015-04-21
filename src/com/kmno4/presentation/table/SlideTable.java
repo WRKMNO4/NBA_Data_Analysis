@@ -42,8 +42,7 @@ public class SlideTable extends JPanel {
 		
 		
 		tableWidth = table_unit_width * headStr.length;
-		//TODO
-		tableHeight = (int)((double)table_unit_height * ((double)bodyString.length + FLIG_LABEL_HEIGHT_RATE));
+		tableHeight = table_unit_height * bodyString.length;
 		max_address = headStr.length - table_ui_width / table_unit_width;
 		setLayout(null);
 		table = new SmallTable(headStr, bodyString);
