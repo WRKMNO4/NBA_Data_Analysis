@@ -132,5 +132,9 @@ public class SeasonInfoForPlayer {
 	public String getTeam() {
 		return team;
 	}
+	public ArrayList<MatchPO> getMatches() {
+		// TODO Auto-generated method stub
+		return allMatches;
+	}
 	
 }

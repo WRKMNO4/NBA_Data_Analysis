@@ -1,5 +1,7 @@
 package PO;
 
+import java.util.ArrayList;
+
 import Enum.Season;
 import Enum.Zone;
 
@@ -21,6 +23,11 @@ public class TeamPO {
 	public void addPlayer(PlayerPO onePlayer,Season season){
 		SeasonInfoForTeam seasonInfo=getSeasonInfo(season);
 		seasonInfo.addPlayer(onePlayer);
+	}
+	
+	public ArrayList<MatchPO> getMatches(Season season){
+		SeasonInfoForTeam seasonInfo = getSeasonInfo(season) ;
+		return seasonInfo.getMatches() ;
 	}
 	
 	public void addMatch(MatchPO oneMatch,Season season){

@@ -178,7 +178,7 @@ public class BLServiceController implements  BLService{
 	@Override
 	public ArrayList<MatchPO> getLatest5MatchesForTeam(TeamPO team) {
 		// TODO Auto-generated method stub
-		return null;
+		return teamController.getLatest5Matches(team);
 	}
 	}
 

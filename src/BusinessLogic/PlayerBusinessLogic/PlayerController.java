@@ -178,8 +178,12 @@ public class PlayerController implements PlayerBusinessLogic{
 	@Override
 	public ArrayList<MatchPO> getLatest5Matches(PlayerPO player) {
 		// TODO Auto-generated method stub
-		ArrayList<MatchPO> allMatches = player.getSeasonInfo(Config.LASTEST_SEASON).get
-		return null;
+		ArrayList<MatchPO> allMatches = player.getMatches(Config.LASTEST_SEASON) ;
+		if(allMatches.size()<5){
+	        return allMatches ;
+		}
+		ArrayList<MatchPO> latest5Matches = new ArrayList<>(allMatches.subList(allMatches.size()-5, allMatches.size())) ;
+		return latest5Matches ;
 	}
 	
 

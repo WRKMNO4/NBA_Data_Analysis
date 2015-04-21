@@ -3,12 +3,15 @@ package BusinessLogic.TeamBusinessLogic;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import com.kmno4.common.Config;
+
 import BusinessLogic.SortHelper.PlayerSortHelper;
 import BusinessLogic.SortHelper.TeamSortHelper;
 import DataService.TeamDataService.TeamDataService;
 import Enum.PlayerData;
 import Enum.Season;
 import Enum.TeamData;
+import PO.MatchPO;
 import PO.PlayerPO;
 import PO.TeamPO;
 
@@ -58,6 +61,16 @@ public class TeamController implements TeamBusinessLogic{
 		Collections.sort(allTeams,new TeamSortHelper("avg", dataType, season));
 		ArrayList<TeamPO> result = new ArrayList<>(allTeams.subList(0, 5)) ;
 		return result ;
+	}
+	@Override
+	public ArrayList<MatchPO> getLatest5Matches(TeamPO team) {
+		// TODO Auto-generated method stub
+		ArrayList<MatchPO> allMatches = team.getMatches(Config.LASTEST_SEASON) ;
+		if(allMatches.size()<5){
+			return allMatches ;
+		}
+		ArrayList<MatchPO> latest5Matches = new ArrayList<>(allMatches.subList(allMatches.size()-5, allMatches.size())) ;
+		return latest5Matches ;
 	}
 	
 }

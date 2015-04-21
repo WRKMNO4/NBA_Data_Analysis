@@ -1,5 +1,7 @@
 package PO;
 
+import java.util.ArrayList;
+
 import Enum.Season;
 
 public class PlayerPO {
@@ -60,6 +62,10 @@ public class PlayerPO {
 	}
 	public String getName() {
 		return name;
+	}
+	public ArrayList<MatchPO> getMatches(Season season){
+		SeasonInfoForPlayer seasonInfo = getSeasonInfo(season) ;
+		return seasonInfo.getMatches() ;
 	}
 
 	public void setName(String name) {

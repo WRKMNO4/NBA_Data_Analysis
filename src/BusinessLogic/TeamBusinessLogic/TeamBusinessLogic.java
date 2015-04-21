@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Enum.Season;
 import Enum.TeamData;
+import PO.MatchPO;
 import PO.TeamPO;
 
 public interface TeamBusinessLogic {
@@ -15,4 +16,5 @@ public interface TeamBusinessLogic {
 	public ArrayList<TeamPO> findTeamByName(String name) ;
 	public ArrayList<TeamPO> getSeasonStandingTeam(Season season,
 			TeamData dataType);
+	public ArrayList<MatchPO> getLatest5Matches(TeamPO team);
 }
