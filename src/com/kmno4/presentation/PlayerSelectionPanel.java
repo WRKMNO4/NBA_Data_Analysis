@@ -81,8 +81,9 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 		cb_standard.addMouseListener(this);
 		submit.addMouseListener(this);
 
-		initPickupLocation();
-
+		initPickupBounds();
+		initSortBounds();
+		showPickup();
 		// 第一行
 		lb_search.setBounds(606, 11, Config.TEXT_WIDTH, Config.TEXT_height);
 		add(lb_search);
@@ -149,13 +150,13 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 
 	}
 
-	public void initPickupLocation() {
+	public void initPickupBounds() {
 		lb_location.setBounds(13, Config.COBM_LOCATION_Y, Config.TEXT_WIDTH,
 				Config.TEXT_height);
 		add(lb_location);
 
 		cb_district
-				.setBounds(10 * Config.SORT_WIDTH
+				.setBounds(13 * Config.SORT_WIDTH
 						- Config.SELECTION_COMB_TEAM_WIDTH,
 						Config.COBM_LOCATION_Y, Config.SELECTION_SEARCH_WIDTH,
 						Config.SELECTION_COMB_TEAM_WIDTH);
@@ -171,20 +172,20 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 		add(cb_type);
 
 		lb_efficiency.setForeground(Color.WHITE);
-		lb_efficiency.setBounds(10 * Config.SORT_WIDTH
+		lb_efficiency.setBounds(13 * Config.SORT_WIDTH
 				- Config.SELECTION_COMB_TEAM_WIDTH - Config.COMB_TEXT_GAP, 53,
 				35, 16);
 		add(lb_efficiency);
 
 		cb_standard
-				.setBounds(10 * Config.SORT_WIDTH
+				.setBounds(13 * Config.SORT_WIDTH
 						- Config.SELECTION_COMB_TEAM_WIDTH, 49,
 						Config.SELECTION_SEARCH_WIDTH,
 						Config.SELECTION_COMB_CITY_WIDTH);
 		cb_standard.setBackground(Color.GRAY);
 		add(cb_standard);
 
-		lb_place.setBounds(10 * Config.SORT_WIDTH
+		lb_place.setBounds(13 * Config.SORT_WIDTH
 				- Config.SELECTION_COMB_TEAM_WIDTH - Config.COMB_TEXT_GAP,
 				Config.COBM_LOCATION_Y, Config.TEXT_WIDTH, Config.TEXT_height);
 		add(lb_place);
@@ -213,14 +214,14 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 
 	}
 
-	public void initSortLocation() {
+	public void initSortBounds() {
 
-		avg_sort.setBounds(15, 45, Config.SORT_WIDTH * 2, Config.SORT_HEIGHT);
-		total_sort.setBounds(15, 90, Config.SORT_WIDTH * 2, Config.SORT_HEIGHT);
-		cb_avg_sort_data.setBounds(45, 72, Config.SORT_WIDTH * 8,
-				Config.SORT_HEIGHT);
-		cb_total_sort_data.setBounds(45, 72, Config.SORT_WIDTH * 8,
-				Config.SORT_HEIGHT);
+		avg_sort.setBounds(100, 45, Config.SORT_WIDTH * 2, Config.SORT_HEIGHT);
+		total_sort.setBounds(100, 90, Config.SORT_WIDTH * 2, Config.SORT_HEIGHT);
+		cb_avg_sort_data.setBounds(160, 72, Config.SELECTION_SEARCH_WIDTH,
+				Config.SELECTION_COMB_TEAM_WIDTH);
+		cb_total_sort_data.setBounds(160, 72, Config.SELECTION_SEARCH_WIDTH,
+				Config.SELECTION_COMB_TEAM_WIDTH);
 		lb_sort_season.setBounds(15 * Config.SORT_WIDTH
 				- Config.SELECTION_COMB_TEAM_WIDTH - Config.COMB_TEXT_GAP, 72,
 				Config.TEXT_WIDTH, Config.TEXT_height);

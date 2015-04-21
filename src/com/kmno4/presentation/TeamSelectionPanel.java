@@ -56,6 +56,7 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 		lb_season=new JLabel("赛季");
 		lb_season.setBounds(300, 15, 40, 15);
 		lb_season.setForeground(Color.WHITE);
+		add(lb_season);
 		
 		
 		total_sort=new JLabel("总计");
