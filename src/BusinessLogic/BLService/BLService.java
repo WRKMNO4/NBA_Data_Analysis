@@ -101,4 +101,16 @@ public interface BLService {
 	 * @return 返回最新的球队信息列表
 	 */
 	public ArrayList<MatchPO> getLatestTeam();
+	/**
+	 * 
+	 * @param player 传入查询球员
+	 * @return 返回该球员在最新赛季最近五场比赛，如少于五场，则传最新赛季所有比赛
+	 */
+	public ArrayList<MatchPO> getLatest5MatchesForPlayer(PlayerPO player);
+	/**
+	 * 
+	 * @param team 传入查询球队
+	 * @return 返回该球队在最新赛季最近五场比赛，如少于五场，则返回最新赛季所有比赛
+	 */
+	public ArrayList<MatchPO> getLatest5MatchesForTeam(TeamPO team);
 }
