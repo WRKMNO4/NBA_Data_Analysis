@@ -56,10 +56,10 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 	private JButton submit = new JButton("提交");
 
 	JLabel pickup = new JLabel("筛选");
-
 	JLabel sort = new JLabel("排序");
 	JLabel avg_sort = new JLabel("场均数据");
 	JLabel total_sort = new JLabel("总数据");
+
 	JComboBox<String> cb_avg_sort_data = new JComboBox<String>(
 			Config.PLAYER_AVERAGE_INFO);
 	JComboBox<String> cb_total_sort_data = new JComboBox<String>(
@@ -72,18 +72,9 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 
 		this.setBounds(0, Config.TOP_TAB_HEIGHT + Config.INTRODUCTION_WHITE,
 				Config.UI_WIDTH, Config.SELECTION_HEIGHT);
-		this.setBackground(Color.GRAY);
+		// this.setBackground(Color.GRAY);
 		setLayout(null);
 
-		cb_position.addMouseListener(this);
-		cb_district.addMouseListener(this);
-		cb_type.addMouseListener(this);
-		cb_standard.addMouseListener(this);
-		submit.addMouseListener(this);
-
-		initPickupBounds();
-		initSortBounds();
-		showPickup();
 		// 第一行
 		lb_search.setBounds(606, 11, Config.TEXT_WIDTH, Config.TEXT_height);
 		add(lb_search);
@@ -102,15 +93,24 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 		//
 		pickup.setBounds(69, 18, 35, 16);
 		add(pickup);
-		pickup.addMouseListener(this);
 
 		sort.setBounds(119, 18, 35, 16);
 		add(sort);
-		sort.addMouseListener(this);
+		
+		initPickupBounds();
+		initSortBounds();
+		showPickup();
+		setLabelColor();
 
+		pickup.addMouseListener(this);
+		cb_position.addMouseListener(this);
+		cb_district.addMouseListener(this);
+		cb_type.addMouseListener(this);
+		cb_standard.addMouseListener(this);
+		submit.addMouseListener(this);
+		sort.addMouseListener(this);
 		avg_sort.addMouseListener(this);
 		total_sort.addMouseListener(this);
-
 		cb_avg_sort_data.addMouseListener(this);
 		cb_total_sort_data.addMouseListener(this);
 		cb_avg_sort_data.addActionListener(this);
@@ -122,6 +122,7 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 		add(cb_total_sort_data);
 		add(lb_sort_season);
 		add(cb_sort_season);
+		// 初始化默认不显示排序
 		avg_sort.setVisible(false);
 		total_sort.setVisible(false);
 		cb_avg_sort_data.setVisible(false);
@@ -135,9 +136,11 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 		if (isPickup) {
 			g.drawImage(Config.PLAYER_SELECTION_BACKGROUND.getImage(), 0, 0,
 					Config.UI_WIDTH, Config.SELECTION_HEIGHT, this);
+			repaint();
 		} else {
 			g.drawImage(Config.PLAYER_SELECTION_SORT_BACKGROUND.getImage(), 0,
 					0, Config.UI_WIDTH, Config.SELECTION_HEIGHT, this);
+			repaint();
 		}
 
 	}
@@ -147,6 +150,20 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 	}
 
 	public void moveOut() {
+
+	}
+
+	public void setLabelColor() {
+		title.setForeground(Color.WHITE);
+		lb_search.setForeground(Color.WHITE);
+		lb_percent.setForeground(Color.WHITE);
+		lb_efficiency.setForeground(Color.WHITE);
+		lb_location.setForeground(Color.WHITE);
+		lb_place.setForeground(Color.WHITE);
+		lb_season.setForeground(Color.WHITE);
+		lb_sort_season.setForeground(Color.WHITE);
+		avg_sort.setForeground(Color.WHITE);
+		total_sort.setForeground(Color.WHITE);
 
 	}
 
@@ -217,17 +234,18 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 	public void initSortBounds() {
 
 		avg_sort.setBounds(100, 45, Config.SORT_WIDTH * 2, Config.SORT_HEIGHT);
-		total_sort.setBounds(100, 90, Config.SORT_WIDTH * 2, Config.SORT_HEIGHT);
-		cb_avg_sort_data.setBounds(160, 72, Config.SELECTION_SEARCH_WIDTH,
+		total_sort
+				.setBounds(100, 90, Config.SORT_WIDTH * 2, Config.SORT_HEIGHT);
+		cb_avg_sort_data.setBounds(160, 77, Config.SELECTION_SEARCH_WIDTH,
 				Config.SELECTION_COMB_TEAM_WIDTH);
-		cb_total_sort_data.setBounds(160, 72, Config.SELECTION_SEARCH_WIDTH,
+		cb_total_sort_data.setBounds(160, 77, Config.SELECTION_SEARCH_WIDTH,
 				Config.SELECTION_COMB_TEAM_WIDTH);
 		lb_sort_season.setBounds(15 * Config.SORT_WIDTH
-				- Config.SELECTION_COMB_TEAM_WIDTH - Config.COMB_TEXT_GAP, 72,
+				- Config.SELECTION_COMB_TEAM_WIDTH - Config.COMB_TEXT_GAP, 77,
 				Config.TEXT_WIDTH, Config.TEXT_height);
 		cb_sort_season
 				.setBounds(15 * Config.SORT_WIDTH
-						- Config.SELECTION_COMB_TEAM_WIDTH, 72,
+						- Config.SELECTION_COMB_TEAM_WIDTH, 77,
 						Config.SELECTION_SEARCH_WIDTH,
 						Config.SELECTION_COMB_TEAM_WIDTH);
 	}
@@ -364,24 +382,28 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// 场均排序
-		if (e.getSource() == cb_avg_sort_data||e.getSource()==cb_sort_season) {
+		if (e.getSource() == cb_avg_sort_data
+				|| e.getSource() == cb_sort_season) {
 			String data = cb_avg_sort_data.getSelectedItem().toString();
-			Season season=TransferSortHelper.StringToSeason(cb_sort_season.getSelectedItem().toString());
+			Season season = TransferSortHelper.StringToSeason(cb_sort_season
+					.getSelectedItem().toString());
 			PlayerData dataType = TransferSortHelper
 					.StringToDataTypeForPlayer(data);
 			ArrayList<PlayerPO> players = MainFrame.mainFrame.bl
-					.sortPlayersByComprehension("avg", dataType,season);
+					.sortPlayersByComprehension("avg", dataType, season);
 			MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
 		}
 
 		// 总排序
-		if (e.getSource() == cb_total_sort_data||e.getSource()==cb_sort_season) {
+		if (e.getSource() == cb_total_sort_data
+				|| e.getSource() == cb_sort_season) {
 			String data = cb_total_sort_data.getSelectedItem().toString();
-			Season season=TransferSortHelper.StringToSeason(cb_sort_season.getSelectedItem().toString());
+			Season season = TransferSortHelper.StringToSeason(cb_sort_season
+					.getSelectedItem().toString());
 			PlayerData dataType = TransferSortHelper
 					.StringToDataTypeForPlayer(data);
 			ArrayList<PlayerPO> players = MainFrame.mainFrame.bl
-					.sortPlayersByComprehension("total", dataType,season);
+					.sortPlayersByComprehension("total", dataType, season);
 			MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
 		}
 	}
