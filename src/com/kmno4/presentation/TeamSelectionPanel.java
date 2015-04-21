@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import BusinessLogic.SortHelper.TransferSortHelper;
+import Enum.Season;
 import Enum.TeamData;
 import PO.TeamPO;
 
@@ -25,9 +26,11 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 
 	private JComboBox<String> cb_avg_data;
 	private JComboBox<String> cb_total_data;
+	private JComboBox<String> cb_season;
 	
 	public JLabel total_sort;
 	public JLabel avg_sort;
+	public JLabel lb_season;
 	
 	
 	public TeamSelectionPanel() {
@@ -38,14 +41,22 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 		
 		cb_avg_data=new JComboBox<String>(Config.TEAM_AVERAGE_INFO);
 		cb_total_data=new JComboBox<String>(Config.TEAM_TOTAL_INFO);
+		cb_season=new JComboBox<String>(Config.Seasons);
 		cb_avg_data.setBounds(127, 11, 150, 27);
 		cb_total_data.setBounds(127, 11, 150, 27);
+		cb_season.setBounds(400,11,150,27);
 		this.add(cb_avg_data);
 		this.add(cb_total_data);
-		cb_avg_data.setVisible(false);
+		this.add(cb_season);
+		cb_avg_data.setVisible(true);
 		cb_total_data.setVisible(false);
 		cb_total_data.addActionListener(this);
 		cb_avg_data.addActionListener(this);
+		
+		lb_season=new JLabel("赛季");
+		lb_season.setBounds(300, 15, 40, 15);
+		lb_season.setForeground(Color.WHITE);
+		
 		
 		total_sort=new JLabel("总计");
 		total_sort.setBounds(85, 5, 40, 15);
@@ -106,17 +117,18 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==cb_total_data){
+		Season season=TransferSortHelper.StringToSeason(cb_season.getSelectedItem().toString());
+		if(e.getSource()==cb_total_data||e.getSource()==cb_season){
 			//总数据
 			String data=cb_total_data.getSelectedItem().toString();
 			TeamData dataType=TransferSortHelper.StringToDataTypeForTeam(data);
-			ArrayList<TeamPO> teams=MainFrame.mainFrame.bl.sortTeamsOf13_14ByComprehension("total", dataType);
+			ArrayList<TeamPO> teams=MainFrame.mainFrame.bl.sortTeamsByComprehension("total", dataType,season);
 			MainFrame.mainFrame.topTabPanel.refreshTeamTable(teams);
-		}else if(e.getSource()==cb_avg_data){
+		}else if(e.getSource()==cb_avg_data||e.getSource()==cb_season){
 			//场均数据
 			String data=cb_avg_data.getSelectedItem().toString();
 			TeamData dataType=TransferSortHelper.StringToDataTypeForTeam(data);
-			ArrayList<TeamPO> teams=MainFrame.mainFrame.bl.sortTeamsOf13_14ByComprehension("avg", dataType);
+			ArrayList<TeamPO> teams=MainFrame.mainFrame.bl.sortTeamsByComprehension("avg", dataType,season);
 			MainFrame.mainFrame.topTabPanel.refreshTeamTable(teams);
 		}
 	}

@@ -333,9 +333,9 @@ public class TopTabPanel extends JPanel implements MouseListener{
 					public void mouseClicked(MouseEvent e) {
 						//MainFrame.mainFrame.bl.findMatch(season, date, nameOfTeams)
 						//TODO
-						TeamPO t = TeamListPO.findTeamByShortName(shortNameLabel.getText());
-						if(t == null) return;
-						new TeamDetailFrame(t).setVisible(true);
+//						TeamPO t = TeamListPO.findTeamByShortName(shortNameLabel.getText());
+//						if(t == null) return;
+//						new TeamDetailFrame(t).setVisible(true);
 					}
 				});
 			}

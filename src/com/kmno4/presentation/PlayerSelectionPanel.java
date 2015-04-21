@@ -42,6 +42,7 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 	JLabel lb_location = new JLabel("位置");
 	JLabel lb_place = new JLabel("分区");
 	JLabel lb_season = new JLabel("赛季");
+	JLabel lb_sort_season = new JLabel("赛季");
 
 	JComboBox<String> cb_position = new JComboBox<String>(
 			Config.PICKUP_POSITION);
@@ -51,6 +52,7 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 	JComboBox<String> cb_standard = new JComboBox<String>(
 			Config.PICKUP_STANDARD);
 	JComboBox<String> cb_season = new JComboBox<String>(Config.Seasons);
+	JComboBox<String> cb_sort_season = new JComboBox<String>(Config.Seasons);
 	private JButton submit = new JButton("提交");
 
 	JLabel pickup = new JLabel("筛选");
@@ -107,15 +109,18 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 
 		avg_sort.addMouseListener(this);
 		total_sort.addMouseListener(this);
-		
+
 		cb_avg_sort_data.addMouseListener(this);
 		cb_total_sort_data.addMouseListener(this);
 		cb_avg_sort_data.addActionListener(this);
 		cb_total_sort_data.addActionListener(this);
+		cb_sort_season.addMouseListener(this);
 		add(avg_sort);
 		add(total_sort);
 		add(cb_avg_sort_data);
 		add(cb_total_sort_data);
+		add(lb_sort_season);
+		add(cb_sort_season);
 		avg_sort.setVisible(false);
 		total_sort.setVisible(false);
 		cb_avg_sort_data.setVisible(false);
@@ -126,14 +131,14 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 	// 画背景
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		if(isPickup){
+		if (isPickup) {
 			g.drawImage(Config.PLAYER_SELECTION_BACKGROUND.getImage(), 0, 0,
 					Config.UI_WIDTH, Config.SELECTION_HEIGHT, this);
-		}else{
-			g.drawImage(Config.PLAYER_SELECTION_SORT_BACKGROUND.getImage(), 0, 0, Config.UI_WIDTH, Config.SELECTION_HEIGHT, this);
+		} else {
+			g.drawImage(Config.PLAYER_SELECTION_SORT_BACKGROUND.getImage(), 0,
+					0, Config.UI_WIDTH, Config.SELECTION_HEIGHT, this);
 		}
 
-		
 	}
 
 	public void moveIn() {
@@ -188,28 +193,27 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 				.setBounds(59, Config.COBM_LOCATION_Y,
 						Config.SELECTION_SEARCH_WIDTH,
 						Config.SELECTION_COMB_CITY_WIDTH);
-		cb_position.setBackground(Color.GRAY);
 		add(cb_position);
 
 		lb_season.setBounds(21 * Config.SORT_WIDTH
 				- Config.SELECTION_COMB_TEAM_WIDTH - Config.COMB_TEXT_GAP, 49,
 				Config.TEXT_WIDTH, Config.TEXT_height);
 		add(lb_season);
-		cb_season.setBounds(21 * Config.SORT_WIDTH
-						- Config.SELECTION_COMB_TEAM_WIDTH,
-						49, Config.SELECTION_SEARCH_WIDTH,
+		cb_season
+				.setBounds(21 * Config.SORT_WIDTH
+						- Config.SELECTION_COMB_TEAM_WIDTH, 49,
+						Config.SELECTION_SEARCH_WIDTH,
 						Config.SELECTION_COMB_TEAM_WIDTH);
 		add(cb_season);
-		
+
 		submit.setBounds(21 * Config.SORT_WIDTH
-				- Config.SELECTION_COMB_TEAM_WIDTH,
-				Config.COBM_LOCATION_Y, Config.SELECTION_SEARCH_WIDTH,
-				Config.SELECTION_COMB_TEAM_WIDTH);
+				- Config.SELECTION_COMB_TEAM_WIDTH, Config.COBM_LOCATION_Y,
+				Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_TEAM_WIDTH);
 		add(submit);
 
 	}
-	
-	public void initSortLocation(){
+
+	public void initSortLocation() {
 
 		avg_sort.setBounds(15, 45, Config.SORT_WIDTH * 2, Config.SORT_HEIGHT);
 		total_sort.setBounds(15, 90, Config.SORT_WIDTH * 2, Config.SORT_HEIGHT);
@@ -217,6 +221,14 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 				Config.SORT_HEIGHT);
 		cb_total_sort_data.setBounds(45, 72, Config.SORT_WIDTH * 8,
 				Config.SORT_HEIGHT);
+		lb_sort_season.setBounds(15 * Config.SORT_WIDTH
+				- Config.SELECTION_COMB_TEAM_WIDTH - Config.COMB_TEXT_GAP, 72,
+				Config.TEXT_WIDTH, Config.TEXT_height);
+		cb_sort_season
+				.setBounds(15 * Config.SORT_WIDTH
+						- Config.SELECTION_COMB_TEAM_WIDTH, 72,
+						Config.SELECTION_SEARCH_WIDTH,
+						Config.SELECTION_COMB_TEAM_WIDTH);
 	}
 
 	public void showPickup() {
@@ -236,6 +248,8 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 		total_sort.setVisible(false);
 		cb_avg_sort_data.setVisible(false);
 		cb_total_sort_data.setVisible(false);
+		lb_sort_season.setVisible(false);
+		cb_sort_season.setVisible(false);
 	}
 
 	public void showSortAvg() {
@@ -254,7 +268,9 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 		avg_sort.setVisible(true);
 		total_sort.setVisible(true);
 		cb_avg_sort_data.setVisible(true);
-		cb_total_sort_data.setVisible(false);
+		cb_total_sort_data.setVisible(true);
+		lb_sort_season.setVisible(true);
+		cb_sort_season.setVisible(true);
 	}
 
 	public void showSortTotal() {
@@ -290,7 +306,8 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 				String district = cb_district.getSelectedItem().toString();
 				String type = cb_type.getSelectedItem().toString();
 				String standard = cb_standard.getSelectedItem().toString();
-				Season season=TransferSortHelper.StringToSeason(cb_season.getSelectedItem().toString());
+				Season season = TransferSortHelper.StringToSeason(cb_season
+						.getSelectedItem().toString());
 				PlayerData dataType = TransferSortHelper
 						.StringToDataTypeForPlayer(type);
 				Zone zone = null;
@@ -318,7 +335,7 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 				// position为英文，三种单字母
 				ArrayList<PlayerPO> players = MainFrame.mainFrame.bl
 						.pickUpPlayersByCondition(position, zone, district,
-								standard, dataType,season);
+								standard, dataType, season);
 				if (players != null) {
 					MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
 				}
@@ -346,22 +363,24 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// 场均排序
-		if (e.getSource() == cb_avg_sort_data) {
+		if (e.getSource() == cb_avg_sort_data||e.getSource()==cb_sort_season) {
 			String data = cb_avg_sort_data.getSelectedItem().toString();
+			Season season=TransferSortHelper.StringToSeason(cb_sort_season.getSelectedItem().toString());
 			PlayerData dataType = TransferSortHelper
 					.StringToDataTypeForPlayer(data);
 			ArrayList<PlayerPO> players = MainFrame.mainFrame.bl
-					.sortPlayersByComprehension("avg", dataType);
+					.sortPlayersByComprehension("avg", dataType,season);
 			MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
 		}
 
 		// 总排序
-		if (e.getSource() == cb_total_sort_data) {
+		if (e.getSource() == cb_total_sort_data||e.getSource()==cb_sort_season) {
 			String data = cb_total_sort_data.getSelectedItem().toString();
+			Season season=TransferSortHelper.StringToSeason(cb_sort_season.getSelectedItem().toString());
 			PlayerData dataType = TransferSortHelper
 					.StringToDataTypeForPlayer(data);
 			ArrayList<PlayerPO> players = MainFrame.mainFrame.bl
-					.sortPlayersByComprehension("total", dataType);
+					.sortPlayersByComprehension("total", dataType,season);
 			MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
 		}
 	}

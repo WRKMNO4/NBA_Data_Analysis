@@ -191,9 +191,9 @@ public class PlayerDetailPanel extends JPanel {
 		mainInfo = new SmallTable(
 				new String[] {"场均得分", "场均篮板", "场均助攻"},
 				new String[][] {{
-					"" + TableContentTransfer.cutTailOfAvgData(playerPO.getAveragePlayerData().getScore()),
-					"" + TableContentTransfer.cutTailOfAvgData(playerPO.getAveragePlayerData().getNumberOfRebound()),
-					"" + TableContentTransfer.cutTailOfAvgData(playerPO.getAveragePlayerData().getNumberOfAssist())}});
+					"" + TableContentTransfer.cutTailOfAvgData(playerPO.getSeasonInfo(Config.LASTEST_SEASON).getAveragePlayerData().getScore()),
+					"" + TableContentTransfer.cutTailOfAvgData(playerPO.getSeasonInfo(Config.LASTEST_SEASON).getAveragePlayerData().getNumberOfRebound()),
+					"" + TableContentTransfer.cutTailOfAvgData(playerPO.getSeasonInfo(Config.LASTEST_SEASON).getAveragePlayerData().getNumberOfAssist())}});
 		mainInfo.setFont(new Font("default", Font.PLAIN, 15), null);
 		c.gridx = 1;
 		c.gridy = 2;

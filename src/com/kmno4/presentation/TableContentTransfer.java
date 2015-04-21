@@ -3,6 +3,8 @@ package com.kmno4.presentation;
 import java.text.DecimalFormat;
 import java.util.List;
 
+import com.kmno4.common.Config;
+
 import PO.PlayerDataPO;
 import PO.PlayerPO;
 import PO.TeamDataPO;
@@ -30,7 +32,7 @@ public class TableContentTransfer {
 		String[][] body = new String[seasons][colums] ;
 	
 			
-			PlayerDataPO avgData = player.getAveragePlayerData() ;
+			PlayerDataPO avgData = player.getSeasonInfo(Config.LASTEST_SEASON).getAveragePlayerData() ;
 			body[seasons-1][0] = cutTailOfAvgData(avgData.getNumberOfRebound()) ;
 			body[seasons-1][1] = cutTailOfAvgData(avgData.getNumberOfAssist()) ;
 			body[seasons-1][2] = avgData.getPresentTime() ;
@@ -66,7 +68,7 @@ public class TableContentTransfer {
 	public static String[][] transferPlayerTotalInfo(int colums,PlayerPO player,int seasons){
 		String[][] body = new String[seasons][colums] ;
 			
-			PlayerDataPO totalData = player.getTotalPlayerData() ;
+			PlayerDataPO totalData = player.getSeasonInfo(Config.LASTEST_SEASON).getTotalPlayerData() ;
 			body[seasons-1][0] = cutTailOfTotalData(totalData.getNumberOfMatch()) ;
 			body[seasons-1][1] = cutTailOfTotalData(totalData.getNumberOfStarting()) ;
 			body[seasons-1][2] = cutTailOfTotalData(totalData.getNumberOfRebound()) ;
@@ -101,7 +103,7 @@ public class TableContentTransfer {
 	public static String[][] transferTeamAvgInfo(int colums,TeamPO team, int seasons){
 		String[][] body = new String[seasons][colums] ;
 	
-			TeamDataPO avgData=team.getAverageTeamData();
+			TeamDataPO avgData=team.getSeasonInfo(Config.LASTEST_SEASON).getAverageTeamData();
 			body[seasons-1][0]= cutTailOfAvgData(avgData.getNumberOfShooting());
 			body[seasons-1][1]= cutTailOfAvgData(avgData.getNumberOfShotAttempt());
 			body[seasons-1][2]= cutTailOfAvgData(avgData.getNumberOf3_point());
@@ -122,7 +124,7 @@ public class TableContentTransfer {
 			body[seasons-1][16]= cutTailOfAvgData(avgData.getPercentageOf3_point());
 			body[seasons-1][17]= cutTailOfAvgData(avgData.getPercentageOfFreeThrow());
 			
-			body[seasons-1][18]= cutTailOfAvgData(team.getPercentageOfWinning());
+			body[seasons-1][18]= cutTailOfAvgData(team.getSeasonInfo(Config.LASTEST_SEASON).getPercentageOfWinning());
 			body[seasons-1][19]= cutTailOfAvgData(avgData.getRoundOfAttack());
 			body[seasons-1][20]= cutTailOfAvgData(avgData.getEfficiencyOfAttack());
 			body[seasons-1][21]= cutTailOfAvgData(avgData.getEfficiencyOfDefense());
@@ -137,8 +139,8 @@ public class TableContentTransfer {
 	public static String[][] transferTeamTotalInfo(int colums,TeamPO team, int seasons){
 		String[][] body = new String[seasons][colums] ;
 			
-			TeamDataPO totalData=team.getTotalTeamData();
-			body[seasons-1][0]=cutTailOfTotalData(team.getNumberOfMatches());
+			TeamDataPO totalData=team.getSeasonInfo(Config.LASTEST_SEASON).getTotalTeamData();
+			body[seasons-1][0]=cutTailOfTotalData(team.getSeasonInfo(Config.LASTEST_SEASON).getNumberOfMatches());
 			body[seasons-1][1]= cutTailOfTotalData(totalData.getNumberOfShooting());
 			body[seasons-1][2]= cutTailOfTotalData(totalData.getNumberOfShotAttempt());
 			body[seasons-1][3]= cutTailOfTotalData(totalData.getNumberOf3_point());
