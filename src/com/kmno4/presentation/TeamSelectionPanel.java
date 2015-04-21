@@ -54,7 +54,7 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 		cb_avg_data.addActionListener(this);
 		
 		lb_season=new JLabel("赛季");
-		lb_season.setBounds(300, 15, 40, 15);
+		lb_season.setBounds(350, 15, 40, 15);
 		lb_season.setForeground(Color.WHITE);
 		add(lb_season);
 		
