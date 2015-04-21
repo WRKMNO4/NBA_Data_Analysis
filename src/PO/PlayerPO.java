@@ -27,7 +27,10 @@ public class PlayerPO {
 		seasonInfo13_14.calculateFinalData();
 		seasonInfo14_15.calculateFinalData();
 	}
-	
+	public void addMatch(Season season,MatchPO match){
+		SeasonInfoForPlayer seasonInfo = getSeasonInfo(season) ;
+		seasonInfo.addMatch(match);
+	}
 	public void updateDataOfOtherData(int totalTime,TeamDataPO dataOfOtherTeam,Season season){
 		SeasonInfoForPlayer seasonInfo=getSeasonInfo(season);
 		seasonInfo.updateDataOfOtherData(totalTime, dataOfOtherTeam);
@@ -142,5 +145,5 @@ public class PlayerPO {
 	public void setActionURL(String actionURL) {
 		this.actionURL = actionURL;
 	}
-
+	
 }

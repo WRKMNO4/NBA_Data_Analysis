@@ -6,6 +6,7 @@ import Enum.PlayerData;
 import Enum.Season;
 import Enum.TeamData;
 import Enum.Zone;
+import PO.MatchPO;
 import PO.PlayerPO;
 import PO.StandingDataPO;
 import PO.TeamPO;
@@ -22,4 +23,5 @@ public interface PlayerBusinessLogic {
 			PlayerData dataType);
 	public ArrayList<PlayerPO> getMostImprovePlayer(Season season,
 			PlayerData dataType);
+	public ArrayList<MatchPO> getLatest5Matches(PlayerPO player);
 }

@@ -23,6 +23,7 @@ import PO.SeasonListPO;
 import PO.StandingDataPO;
 import PO.TeamPO;
 
+import com.kmno4.common.Config;
 import com.sun.org.apache.bcel.internal.generic.VariableLengthInstruction;
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
@@ -165,7 +166,19 @@ public class BLServiceController implements  BLService{
 	@Override
 	public ArrayList<MatchPO> getLatestTeam() {
 		// TODO Auto-generated method stub
-		return getAllMatches(Season.season13_14);
+		return getAllMatches(Config.LASTEST_SEASON);
+	}
+
+	@Override
+	public ArrayList<MatchPO> getLatest5MatchesForPlayer(PlayerPO player) {
+		// TODO Auto-generated method stub
+		return playerController.getLatest5Matches(player);
+	}
+
+	@Override
+	public ArrayList<MatchPO> getLatest5MatchesForTeam(TeamPO team) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	}
 

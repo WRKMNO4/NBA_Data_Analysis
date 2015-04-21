@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 
+import com.kmno4.common.Config;
 import com.sun.org.apache.bcel.internal.generic.NEWARRAY;
 
 import BusinessLogic.SortHelper.PlayerSortHelper;
@@ -173,6 +174,12 @@ public class PlayerController implements PlayerBusinessLogic{
 		Collections.sort(allPlayers,new PlayerSortHelper("avg", dataType, season));
 		ArrayList<PlayerPO> result = new ArrayList<>(allPlayers.subList(0, 5));
 		return result ;
+	}
+	@Override
+	public ArrayList<MatchPO> getLatest5Matches(PlayerPO player) {
+		// TODO Auto-generated method stub
+		ArrayList<MatchPO> allMatches = player.getSeasonInfo(Config.LASTEST_SEASON).get
+		return null;
 	}
 	
 

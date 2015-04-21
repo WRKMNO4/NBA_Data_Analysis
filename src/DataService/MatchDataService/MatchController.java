@@ -93,6 +93,7 @@ public class MatchController implements MatchDataService{
 							 thePlayer = newPlayer ;
 						 }
 						 thePlayer.addDataOfOneMatchOfOnePlayer(onePlayer,newMatch.getSeason());
+						 thePlayer.addMatch(newMatch.getSeason(), newMatch);
 						 
 						 if(isFirstTeam){
 							 newMatch.addDataOfOnePlayerOfFirstTeam(onePlayer);

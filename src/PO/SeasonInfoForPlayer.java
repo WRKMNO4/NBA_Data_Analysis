@@ -9,6 +9,7 @@ public class SeasonInfoForPlayer {
 	ArrayList<PlayerDataOfOneMatchPO> datas=new ArrayList<PlayerDataOfOneMatchPO>();
 	PlayerDataPO totalPlayerData = new PlayerDataPO();
 	PlayerDataPO averagePlayerData = new PlayerDataPO() ;
+	ArrayList<MatchPO> allMatches = new ArrayList<MatchPO>() ;
 	
 	DataForFinalCalculationPO dataOfOtherTeam = new DataForFinalCalculationPO() ;
 	
@@ -19,6 +20,9 @@ public class SeasonInfoForPlayer {
 	String team="Unknown" ; 
 	public SeasonInfoForPlayer(Season season){
 		this.season=season;
+	}
+	public void addMatch(MatchPO match){
+		allMatches.add(match) ;
 	}
 	public void calculateImprovedRate(){
 		if(datas.size()>5){
