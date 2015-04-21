@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 
 import PO.MatchPO;
 
+import com.alee.laf.WebLookAndFeel;
 import com.kmno4.common.Config;
 import com.kmno4.presentation.button.ExitLabel;
 
@@ -32,6 +33,7 @@ public class MatchInfoDetailFrame extends JFrame {
 	
 	
 	public static void main(String[] args) {
+		WebLookAndFeel.install();
 		new MatchInfoDetailFrame(null);
 	}
 }

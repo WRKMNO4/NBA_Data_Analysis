@@ -21,12 +21,22 @@ public class LastestGamePanel extends JPanel {
 	
 	public LastestGamePanel(TeamPO t) {
 		teamPO = t;
+		ini(t);
 	}
 	public LastestGamePanel(PlayerPO p) {
 		playerPO = p;
+		ini(p);
 	}
 	
-	private void ini() {
+	private void ini(Object o) {
+		if(o instanceof TeamPO) {
+			TeamPO t = (TeamPO) o;
+			
+		}
+		else if(o instanceof PlayerPO) {
+			
+		}
+		else return;
 		table = new SmallTable(
 				    new String[]{"11", "11", "11", "11"},
 				    new String[][] {

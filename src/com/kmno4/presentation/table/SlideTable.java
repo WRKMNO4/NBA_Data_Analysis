@@ -28,6 +28,9 @@ public class SlideTable extends JPanel {
 	    table_ui_width;
 	
 	private final int tableX, tableY, tableWidth, tableHeight;
+	public SlideTable(String[] headStr, String[][] bodyString, int tableUnitWidth, int tableUnitHeight, int tableUiWidth) {
+		this(headStr, bodyString, 0, 0, tableUnitWidth, tableUnitHeight, tableUiWidth);
+	}
 	public SlideTable(String[] headStr, String[][] bodyString, int x, int y, int tableUnitWidth, int tableUnitHeight, int tableUiWidth) {
 		super();
 		table_unit_height = tableUnitHeight;
@@ -39,7 +42,8 @@ public class SlideTable extends JPanel {
 		
 		
 		tableWidth = table_unit_width * headStr.length;
-		tableHeight = table_unit_height * bodyString.length;
+		//TODO
+		tableHeight = (int)((double)table_unit_height * ((double)bodyString.length + FLIG_LABEL_HEIGHT_RATE));
 		max_address = headStr.length - table_ui_width / table_unit_width;
 		setLayout(null);
 		table = new SmallTable(headStr, bodyString);

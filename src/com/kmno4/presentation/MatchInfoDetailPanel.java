@@ -134,7 +134,8 @@ public class MatchInfoDetailPanel extends JPanel {
 			setLayout(gbl);
 			gbc = new GridBagConstraints();
 			
-			headLabel = new BorderLabel("头像");
+			headLabel = new BorderLabel();
+			TeamDetailPanel.fillIcon(headLabel, "Data/matches/teams/BKN.svg", HEAD_ICON_WIDTH, HEAD_ICON_HEIGHT);
 			gbc.gridx = 0;
 			gbc.gridy = 0;
 			gbc.gridwidth = 1;
@@ -174,7 +175,7 @@ public class MatchInfoDetailPanel extends JPanel {
 					new String[][]{{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"},
 					               {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"},
 					               {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"}},
-					0, 0, 50, 50, Config.MATCH_DETAIL_WIDTH - HEAD_ICON_WIDTH);
+					50, 50, Config.MATCH_DETAIL_WIDTH - HEAD_ICON_WIDTH);
 			dataTable.setVisible(false);
 			
 			addTeamLink();
