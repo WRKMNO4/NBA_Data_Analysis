@@ -168,6 +168,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 		season_hot_team_season = new JComboBox<String>(Config.Seasons);
 		season_hot_team_season.setBounds(45, 73, 168, 27);
 		season_hot_team_season.setFont(new Font("default", Font.PLAIN, 14));
+		season_hot_team_season.setSelectedIndex(1);
 		add(season_hot_team_season);
 		
 		season_hot_team_datatype = new JComboBox<String>(Config.STANDING_SEASONTEAM_TYPE);

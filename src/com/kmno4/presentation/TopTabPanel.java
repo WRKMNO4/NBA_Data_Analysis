@@ -186,12 +186,12 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.hotSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		
 		//TODO
-		//refreshDailyPlayerTable();
+		//refreshDailyPlayerTable(Config.LASTEST_SEASON, ,);
 		MainFrame.mainFrame.repaint();
 		
 	}
 	
-	public void showAboutUsInfo(){
+	public void showAboutUsInfo(){ 
 		
 	}
 	
@@ -201,7 +201,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(Config.TOP_TAB_BACKGROUND.getImage(), 0, 0,Config.UI_WIDTH,Config.TOP_TAB_HEIGHT,this);
-	}
+	} 
 	
 	/**
 	 * 每次调用即刷新player列表
@@ -212,6 +212,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			tableBeShowing.setVisible(false);
 			MainFrame.mainFrame.remove(tableBeShowing);
 		}
+		if(players == null || players.size() == 0) return;
 		tableBeShowing = new Table(
 			Config.PLAYER_BASIC_INFO,
 			TableContentTransfer.transferPlayerBasicInfo(Config.PLAYER_BASIC_INFO.length, players));
@@ -228,6 +229,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			tableBeShowing.setVisible(false);
 			MainFrame.mainFrame.remove(tableBeShowing);
 		}
+		if(teams == null || teams.size() == 0) return;
 		tableBeShowing = new Table(
 				Config.TEAM_BASIC_INFO, 
 				TableContentTransfer.transferTeamBasicInfo(Config.TEAM_BASIC_INFO.length, teams));
@@ -255,6 +257,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			tableBeShowing.setVisible(false);
 			MainFrame.mainFrame.remove(tableBeShowing);
 		}
+		if(season == null || date == null || dataType == null) return;
 		tableBeShowing = new Table(
 				Config.STANDING_DAILYPLAYER_TABLEHEAD,
 				TableContentTransfer.transferStandingDailyPlayerInfo(
@@ -270,6 +273,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			tableBeShowing.setVisible(false);
 			MainFrame.mainFrame.remove(tableBeShowing);
 		}
+		if(season == null || dataType == null) return;
 		tableBeShowing = new Table(
 				Config.STANDING_SEASONPLAYER_TABLEHEAD,
 				TableContentTransfer.transferStandingSeasonPlayerInfo(
@@ -284,6 +288,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			tableBeShowing.setVisible(false);
 			MainFrame.mainFrame.remove(tableBeShowing);
 		}
+		if(season == null || dataType == null) return;
 		tableBeShowing = new Table(
 				Config.STANDING_IMPROVE_TABLEHEAD,
 				TableContentTransfer.transferStandingImprovedInfo(
@@ -298,6 +303,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			tableBeShowing.setVisible(false);
 			MainFrame.mainFrame.remove(tableBeShowing);
 		}
+		if(season == null || dataType == null) return;
 		tableBeShowing = new Table(
 				Config.STANDING_SEASONTEAM_TABLEHEAD,
 				TableContentTransfer.transferStandingSeasonTeamInfo(
