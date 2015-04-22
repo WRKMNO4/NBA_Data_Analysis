@@ -6,14 +6,12 @@ import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Enum.Season;
 
 import com.kmno4.common.Config;
-
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
 public class MatchSelectionPanel extends JPanel {
@@ -83,6 +81,7 @@ public class MatchSelectionPanel extends JPanel {
 //		lb_vs = new JLabel("VS");
 //		lb_vs.setBounds(213, 79, 61, 16);
 //		add(lb_vs);
+		new refThread().start();
 	}
 	
 	
@@ -100,12 +99,23 @@ public class MatchSelectionPanel extends JPanel {
 	
 	
 	class refThread extends Thread {
-		private int matchesNum;
+		private int matchesNum=MainFrame.mainFrame.bl.getAllMatches(current_season).size();
+		
 		public refThread() {
 			
 		}
 		public void run() {
-			
+			while(true){
+				try {
+					if(MainFrame.mainFrame.bl.getAllMatches(current_season).size()>matchesNum){
+						changeSeason(current_season);
+					}
+					Thread.sleep(10*1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 	
