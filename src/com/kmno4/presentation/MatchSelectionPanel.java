@@ -68,7 +68,7 @@ public class MatchSelectionPanel extends JPanel {
 				changeSeason(Season.season14_15);
 			}
 		});
-		changeSeason(Season.season12_13);
+		changeSeason(Season.season13_14);
 		
 //		lblNewLabel_1 = new JLabel("日历");
 //		lblNewLabel_1.setIcon(Config.SCHEDULE);
