@@ -133,6 +133,8 @@ public class PlayerDetailPanel extends JPanel {
 		c.gridheight = 1;
 		c.weightx = 5;
 		c.weighty = 1;
+		c.fill = GridBagConstraints.NONE;
+		c.anchor = GridBagConstraints.WEST;
 		layout.setConstraints(player_recent_matches, c);
 		add(player_recent_matches);
 		player_recent_matches.addMouseListener(new MouseAdapter() {
@@ -255,13 +257,13 @@ public class PlayerDetailPanel extends JPanel {
 		c.fill = GridBagConstraints.BOTH;
 		layout.setConstraints(sumInfo, c);
 		add(sumInfo);
-		sumInfo.setFont(new Font("default", Font.BOLD, 13), new Font("default", Font.PLAIN, 11), null);
+		sumInfo.setFont(new Font("default", Font.BOLD, 12), new Font("default", Font.PLAIN, 11), null);
 		
 		avgInfo = new SlideTable(
 				Config.PLAYER_AVERAGE_INFO,
 				TableContentTransfer.transferPlayerAvgInfo(Config.PLAYER_AVERAGE_INFO.length,this.playerPO, 1),
 				70, 50, Config.PLAYER_DETAIL_UI_WIDTH);
-		avgInfo.setFont(new Font("default", Font.PLAIN, 13), new Font("default", Font.PLAIN, 11), null);
+		avgInfo.setFont(new Font("default", Font.PLAIN, 12), new Font("default", Font.PLAIN, 11), null);
 		
 		
 	}

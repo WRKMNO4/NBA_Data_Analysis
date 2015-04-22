@@ -136,7 +136,7 @@ public class TeamDetailPanel extends JPanel {
 				teamDetailFrame.repaint();
 			}
 		});
-		sum.setFont(new Font("default", Font.BOLD, 15));
+		//sum.setFont(new Font("default", Font.BOLD, 15));
 		c.gridx = 4;
 		c.gridy = 2;
 		c.gridwidth = 1;
@@ -165,7 +165,7 @@ public class TeamDetailPanel extends JPanel {
 				teamDetailFrame.repaint();
 			}
 		});
-		avg.setFont(new Font("default", Font.BOLD, 15));
+		//avg.setFont(new Font("default", Font.BOLD, 15));
 		c.gridx = 5;
 		layout.setConstraints(avg, c);
 		add(avg);
@@ -207,12 +207,14 @@ public class TeamDetailPanel extends JPanel {
 		c.fill = GridBagConstraints.BOTH;
 		layout.setConstraints(sumInfo, c);
 		add(sumInfo);
+		sumInfo.setFont(new Font("default", Font.PLAIN, 12), new Font("default", Font.PLAIN, 11), null);
 
 		avgInfo = new SlideTable(
 				Config.TEAM_AVERAGE_INFO,
 				TableContentTransfer.transferTeamAvgInfo(
 						Config.TEAM_AVERAGE_INFO.length, this.teamPO, 1),
 				70, 50, Config.PLAYER_DETAIL_UI_WIDTH);
+		avgInfo.setFont(new Font("default", Font.PLAIN, 12), new Font("default", Font.PLAIN, 11), null);
 		// layout.setConstraints(avgInfo, c);
 		// add(avgInfo);
 

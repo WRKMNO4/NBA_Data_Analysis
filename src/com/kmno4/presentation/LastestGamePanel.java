@@ -1,8 +1,6 @@
 package com.kmno4.presentation;
 
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -39,12 +37,11 @@ public class LastestGamePanel extends JPanel {
 	}
 	
 	private void iniFrameSize(LastestGameFrame frame) {
-		frame.setSize(Config.LASTEST_GAME_FRAME_WIDTH, Config.LASTEST_GAME_FRAME_UNIT_HEIGHT * matches.size());
+		frame.setSize(Config.LASTEST_GAME_FRAME_WIDTH, Config.LASTEST_GAME_FRAME_HEIGHT);
 		setSize(frame.getWidth(), frame.getHeight());
 	}
 	
 	private void ini(Object o) {
-		setLayout(new FlowLayout());
 		if(o instanceof TeamPO) {
 			matches = MainFrame.mainFrame.bl.getLatest5MatchesForTeam((TeamPO) o);
 		}

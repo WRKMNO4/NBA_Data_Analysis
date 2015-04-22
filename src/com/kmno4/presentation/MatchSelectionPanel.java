@@ -25,9 +25,9 @@ public class MatchSelectionPanel extends JPanel {
 		lb_forthSeason,
 		lblNewLabel_1,
 		lb_vs;
-	JComboBox<String> 
-	    cb_team1,
-	    cb_team2;
+//	JComboBox<String> 
+//	    cb_team1,
+//	    cb_team2;
 	
 	public MatchSelectionPanel() {
 		setLayout(null);
@@ -35,9 +35,9 @@ public class MatchSelectionPanel extends JPanel {
 		this.setVisible(true);
 		this.setBackground(new Color(0, 0, 0, 0));
 		
-		cb_team1=new JComboBox();
-		cb_team1.setBounds(22, 75, 186, 27);
-		add(cb_team1);
+//		cb_team1=new JComboBox();
+//		cb_team1.setBounds(22, 75, 186, 27);
+//		add(cb_team1);
 			
 		seasonPanel = new JPanel();
 		seasonPanel.setBounds(0, 0, 800, 45);
@@ -68,20 +68,21 @@ public class MatchSelectionPanel extends JPanel {
 				changeSeason(Season.season14_15);
 			}
 		});
+		changeSeason(Season.season12_13);
 		
-		lblNewLabel_1 = new JLabel("日历");
-		lblNewLabel_1.setIcon(Config.SCHEDULE);
-		lblNewLabel_1.setBounds(660, 66, 98, 43);
-		add(lblNewLabel_1);
+//		lblNewLabel_1 = new JLabel("日历");
+//		lblNewLabel_1.setIcon(Config.SCHEDULE);
+//		lblNewLabel_1.setBounds(660, 66, 98, 43);
+//		add(lblNewLabel_1);
 		
 
-		cb_team2 = new JComboBox<String>();
-		cb_team2.setBounds(275, 75, 164, 27);
-		add(cb_team2);
-		
-		lb_vs = new JLabel("VS");
-		lb_vs.setBounds(213, 79, 61, 16);
-		add(lb_vs);
+//		cb_team2 = new JComboBox<String>();
+//		cb_team2.setBounds(275, 75, 164, 27);
+//		add(cb_team2);
+//		
+//		lb_vs = new JLabel("VS");
+//		lb_vs.setBounds(213, 79, 61, 16);
+//		add(lb_vs);
 	}
 	
 	
@@ -90,8 +91,22 @@ public class MatchSelectionPanel extends JPanel {
 				Config.UI_WIDTH, Config.SELECTION_HEIGHT, null);
 	}
 	
+	private Season current_season;
 	private void changeSeason(Season season) {
+		current_season = season;
 		MainFrame.mainFrame.topTabPanel.refreshMatchTable(MainFrame.mainFrame.bl.getAllMatches(season));
+	}
+	
+	
+	
+	class refThread extends Thread {
+		private int matchesNum;
+		public refThread() {
+			
+		}
+		public void run() {
+			
+		}
 	}
 	
 }
