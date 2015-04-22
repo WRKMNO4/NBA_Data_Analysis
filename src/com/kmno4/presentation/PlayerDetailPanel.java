@@ -255,13 +255,13 @@ public class PlayerDetailPanel extends JPanel {
 		c.fill = GridBagConstraints.BOTH;
 		layout.setConstraints(sumInfo, c);
 		add(sumInfo);
-		//sumInfo.setFont(new Font("default", Font.BOLD, 18), new Font("default", Font.PLAIN, 10));
+		sumInfo.setFont(new Font("default", Font.BOLD, 13), new Font("default", Font.PLAIN, 11), null);
 		
 		avgInfo = new SlideTable(
 				Config.PLAYER_AVERAGE_INFO,
 				TableContentTransfer.transferPlayerAvgInfo(Config.PLAYER_AVERAGE_INFO.length,this.playerPO, 1),
 				70, 50, Config.PLAYER_DETAIL_UI_WIDTH);
-		//avgInfo.setFont(new Font("default", Font.PLAIN, 7), new Font("default", Font.PLAIN, 8));
+		avgInfo.setFont(new Font("default", Font.PLAIN, 13), new Font("default", Font.PLAIN, 11), null);
 		
 		
 	}

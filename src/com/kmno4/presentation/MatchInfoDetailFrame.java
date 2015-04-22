@@ -18,6 +18,7 @@ public class MatchInfoDetailFrame extends JFrame {
 		setLayout(null);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setLocationRelativeTo(null);
 		
 		matchInfoDetailPanel = new MatchInfoDetailPanel(matchPO, this);
 		add(matchInfoDetailPanel);

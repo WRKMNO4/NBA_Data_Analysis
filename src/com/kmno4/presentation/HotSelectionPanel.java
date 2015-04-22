@@ -124,10 +124,12 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 		//当日热点球员组件
 				daily_player_season = new JComboBox<String>(Config.Seasons);
 				daily_player_season.setBounds(45, 73, 168, 27);
+				daily_player_season.setFont(new Font("default", Font.PLAIN, 14));
 				add(daily_player_season);
 				
 				daily_player_datatype = new JComboBox<String>(Config.STANDING_DAILYPLAYER_TYPE);
 				daily_player_datatype.setBounds(250, 73, 168, 27);
+				daily_player_datatype.setFont(new Font("default", Font.PLAIN, 14));
 				add(daily_player_datatype);
 				
 				//设置为当前日期
@@ -148,32 +150,38 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 	}
 	
 	public void initSeasonMostPlayer(){
-		season_hot_player_season = new JComboBox(Config.Seasons);
+		season_hot_player_season = new JComboBox<String>(Config.Seasons);
 		season_hot_player_season.setBounds(45, 73, 168, 27);
+		season_hot_player_season.setFont(new Font("default", Font.PLAIN, 14));
 		add(season_hot_player_season);
 		
-		season_hot_player_datetype = new JComboBox(Config.STANDING_SEASONPLAYER_TYPE);
+		season_hot_player_datetype = new JComboBox<String>(Config.STANDING_SEASONPLAYER_TYPE);
 		season_hot_player_datetype.setBounds(250, 73, 168, 27);
+		season_hot_player_datetype.setFont(new Font("default", Font.PLAIN, 14));
 		add(season_hot_player_datetype);
 	}
 	
 	public void initSeasonHotTeam(){
-		season_hot_team_season = new JComboBox(Config.Seasons);
+		season_hot_team_season = new JComboBox<String>(Config.Seasons);
 		season_hot_team_season.setBounds(45, 73, 168, 27);
+		season_hot_team_season.setFont(new Font("default", Font.PLAIN, 14));
 		add(season_hot_team_season);
 		
-		season_hot_team_datatype = new JComboBox(Config.STANDING_SEASONTEAM_TYPE);
+		season_hot_team_datatype = new JComboBox<String>(Config.STANDING_SEASONTEAM_TYPE);
 		season_hot_team_datatype.setBounds(250, 73, 168, 27);
+		season_hot_team_datatype.setFont(new Font("default", Font.PLAIN, 14));
 		add(season_hot_team_datatype);
 	}
 	
 	public void initMostProvementPlayer(){
-		most_improve_season = new JComboBox(Config.Seasons);
+		most_improve_season = new JComboBox<String>(Config.Seasons);
 		most_improve_season.setBounds(45, 73, 168, 27);
+		most_improve_season.setFont(new Font("default", Font.PLAIN, 14));
 		add(most_improve_season);
 		
-		most_improve_datatype = new JComboBox(Config.STANDING_IMPROVED_TYPE);
+		most_improve_datatype = new JComboBox<String>(Config.STANDING_IMPROVED_TYPE);
 		most_improve_datatype.setBounds(250, 73, 168, 27);
+		most_improve_datatype.setFont(new Font("default", Font.PLAIN, 14));
 		add(most_improve_datatype);
 	}
 	

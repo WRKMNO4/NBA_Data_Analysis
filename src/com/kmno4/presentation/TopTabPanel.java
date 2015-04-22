@@ -2,6 +2,7 @@ package com.kmno4.presentation;
 
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -12,6 +13,9 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Enum.PlayerData;
+import Enum.Season;
+import Enum.TeamData;
 import PO.MatchListPO;
 import PO.MatchPO;
 import PO.PlayerListPO;
@@ -182,7 +186,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.hotSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		
 		
-		refreshDailyPlayerTable();
+		//refreshDailyPlayerTable();
 		MainFrame.mainFrame.repaint();
 		
 	}
@@ -245,30 +249,62 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		addMatchLink();
 	}
 	
-	public void refreshDailyPlayerTable() {
+	public void refreshDailyPlayerTable(Season season, String date, PlayerData dataType) {
 		if(tableBeShowing != null) {
 			tableBeShowing.setVisible(false);
 			MainFrame.mainFrame.remove(tableBeShowing);
 		}
+		tableBeShowing = new Table(
+				Config.STANDING_DAILYPLAYER_TABLEHEAD,
+				TableContentTransfer.transferStandingDailyPlayerInfo(
+						Config.STANDING_DAILYPLAYER_TABLEHEAD.length,
+						MainFrame.mainFrame.bl.getDatasOfDailyStandingPlayers(season, date, dataType)));
+		setTableBounds();
+		MainFrame.mainFrame.add(tableBeShowing);
+		addDailyPlayerLink();
 		
 	}
-	public void refreshSeasonPlayerTable() {
+	public void refreshSeasonPlayerTable(Season season, PlayerData dataType) {
 		if(tableBeShowing != null) {
 			tableBeShowing.setVisible(false);
 			MainFrame.mainFrame.remove(tableBeShowing);
 		}
+		tableBeShowing = new Table(
+				Config.STANDING_SEASONPLAYER_TABLEHEAD,
+				TableContentTransfer.transferStandingSeasonPlayerInfo(
+						Config.STANDING_SEASONPLAYER_TABLEHEAD.length,
+						MainFrame.mainFrame.bl.getSeasonStandingPlayer(season, dataType), season, dataType));
+		setTableBounds();
+		MainFrame.mainFrame.add(tableBeShowing);
+		addSeasonPlayerLink();
 	}
-	public void refreshImprovePlayerTable() {
+	public void refreshImprovePlayerTable(Season season, PlayerData dataType) {
 		if(tableBeShowing != null) {
 			tableBeShowing.setVisible(false);
 			MainFrame.mainFrame.remove(tableBeShowing);
 		}
+		tableBeShowing = new Table(
+				Config.STANDING_IMPROVE_TABLEHEAD,
+				TableContentTransfer.transferStandingImprovedInfo(
+						Config.STANDING_IMPROVE_TABLEHEAD.length,
+						MainFrame.mainFrame.bl.getMostImprovePlayer(season, dataType), season, dataType));
+		setTableBounds();
+		MainFrame.mainFrame.add(tableBeShowing);
+		addImprovePlayerLink();
 	}
-	public void refreshSeasonTeamTable() {
+	public void refreshSeasonTeamTable(Season season, TeamData dataType) {
 		if(tableBeShowing != null) {
 			tableBeShowing.setVisible(false);
 			MainFrame.mainFrame.remove(tableBeShowing);
 		}
+		tableBeShowing = new Table(
+				Config.STANDING_SEASONTEAM_TABLEHEAD,
+				TableContentTransfer.transferStandingSeasonTeamInfo(
+						Config.STANDING_SEASONTEAM_TABLEHEAD.length,
+						MainFrame.mainFrame.bl.getSeasonStandingTeam(season, dataType), season, dataType));
+		setTableBounds();
+		MainFrame.mainFrame.add(tableBeShowing);
+		addSeasonTeamLink();
 	}
 	
 	
@@ -280,6 +316,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 				y,
 				Config.UI_WIDTH,
 				Config.UI_HEIGHT - y);
+		tableBeShowing.setFont(new Font("default", Font.BOLD, 13), new Font("default", Font.PLAIN, 12));
 	}
 	private HeadIconFrame headIconFrame;
 	private int columNum;

@@ -1,6 +1,7 @@
 package com.kmno4.presentation;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
@@ -44,15 +45,16 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 	JLabel lb_season = new JLabel("赛季");
 	JLabel lb_sort_season = new JLabel("赛季");
 
-	JComboBox<String> cb_position = new JComboBox<String>(
-			Config.PICKUP_POSITION);
-	JComboBox<String> cb_district = new JComboBox<String>(
-			Config.PICKUP_DISTRICT);
-	JComboBox<String> cb_type = new JComboBox<String>(Config.PICKUP_TYPE);
-	JComboBox<String> cb_standard = new JComboBox<String>(
-			Config.PICKUP_STANDARD);
-	JComboBox<String> cb_season = new JComboBox<String>(Config.Seasons);
-	JComboBox<String> cb_sort_season = new JComboBox<String>(Config.Seasons);
+	JComboBox<String> 
+	    cb_position, 
+	    cb_district, 
+	    cb_type,
+	    cb_standard,
+	    cb_season,
+	    cb_sort_season,
+	    cb_avg_sort_data,
+	    cb_total_sort_data;
+	
 	private JButton submit = new JButton("提交");
 
 	JLabel pickup = new JLabel("筛选");
@@ -60,10 +62,6 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 	JLabel avg_sort = new JLabel("场均数据");
 	JLabel total_sort = new JLabel("总数据");
 
-	JComboBox<String> cb_avg_sort_data = new JComboBox<String>(
-			Config.PLAYER_AVERAGE_INFO);
-	JComboBox<String> cb_total_sort_data = new JComboBox<String>(
-			Config.PLAYER_TOTAL_INFO);
 
 	/**
 	 * Create the panel.
@@ -74,7 +72,31 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 				Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		// this.setBackground(Color.GRAY);
 		setLayout(null);
+		
+		cb_position = new JComboBox<String>(
+				Config.PICKUP_POSITION);
+		cb_district = new JComboBox<String>(
+				Config.PICKUP_DISTRICT);
+		cb_type = new JComboBox<String>(Config.PICKUP_TYPE);
+		cb_standard = new JComboBox<String>(
+				Config.PICKUP_STANDARD);
+		cb_season = new JComboBox<String>(Config.Seasons);
+		cb_sort_season = new JComboBox<String>(Config.Seasons);
+		cb_avg_sort_data = new JComboBox<String>(
+				Config.PLAYER_AVERAGE_INFO);
+		cb_total_sort_data = new JComboBox<String>(
+				Config.PLAYER_TOTAL_INFO);
 
+		cb_position.setFont(new Font("default", Font.PLAIN, 13));
+		cb_district.setFont(new Font("default", Font.PLAIN, 13));
+		cb_type.setFont(new Font("default", Font.PLAIN, 13));
+		cb_standard.setFont(new Font("default", Font.PLAIN, 13));
+		cb_season.setFont(new Font("default", Font.PLAIN, 13));
+		cb_sort_season.setFont(new Font("default", Font.PLAIN, 13));
+		cb_avg_sort_data.setFont(new Font("default", Font.PLAIN, 13));
+		cb_total_sort_data.setFont(new Font("default", Font.PLAIN, 13));
+		
+		
 		// 第一行
 		lb_search.setBounds(606, 11, Config.TEXT_WIDTH, Config.TEXT_height);
 		add(lb_search);
