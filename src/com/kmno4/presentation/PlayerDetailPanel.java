@@ -222,6 +222,7 @@ public class PlayerDetailPanel extends JPanel {
 		layout.setConstraints(avg, c);
 		add(avg);
 		
+		System.out.println(playerPO.getSeasonInfo(Config.LASTEST_SEASON).getAveragePlayerData().getScore());
 		
 		mainInfo = new SmallTable(
 				new String[] {"场均得分", "场均篮板", "场均助攻"},

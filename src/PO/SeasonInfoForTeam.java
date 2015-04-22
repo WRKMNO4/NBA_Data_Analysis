@@ -47,6 +47,8 @@ public class SeasonInfoForTeam {
 	
 	public void calculateTeamDataInOneSeason(){
 		percentageOfWinning = (double)numberOfWinning / matches.size() ;
+		totalTeamData=new TeamDataPO();
+		averageTeamData=new TeamDataPO();
 		totalTeamData.calculateTeamTotalDataInOneSeason(matches, shortName);
 		averageTeamData.calculateTeamAverageDataInOneSeason(totalTeamData, matches.size(),dataOfOtherTeams);
 	}

@@ -18,6 +18,7 @@ import Enum.Season;
 import Enum.TeamData;
 import Enum.Zone;
 import PO.MatchPO;
+import PO.PlayerListPO;
 import PO.PlayerPO;
 import PO.SeasonListPO;
 import PO.StandingDataPO;
@@ -57,6 +58,7 @@ public class BLServiceController implements  BLService{
 		matchController.init();
 		teamController.calculateFinalData();
 		playerController.calculateFinalData();
+		
 	}
 	@Override
 	public ArrayList<PlayerPO> getAllPlayers() {
@@ -154,7 +156,7 @@ public class BLServiceController implements  BLService{
 //		    	System.out.println("In 2013 There are "+getAllMatches(Season.season13_14).size()+"matches");
 //		    	System.out.println("End one turn");
 		    	try {
-					Thread.sleep(2000);
+					Thread.sleep(5000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -179,7 +181,5 @@ public class BLServiceController implements  BLService{
 	public ArrayList<MatchPO> getLatest5MatchesForTeam(TeamPO team) {
 		// TODO Auto-generated method stub
 		return teamController.getLatest5Matches(team);
+		}
 	}
-	}
-
-	

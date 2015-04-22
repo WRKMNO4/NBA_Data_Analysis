@@ -53,7 +53,6 @@ public class MatchController implements MatchDataService{
 				if(ifMatchExist(newMatch.getSeason(), newMatch.getName()))
 					continue;
 				
-				
 				boolean isFirstTeam = false ; 
 				for(int j = 0;j<tempString.size() ;j++){ 
 					String[] splitString=tempString.get(j).split(";");
