@@ -143,11 +143,11 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 	
 	public void initSeasonMostPlayer(){
 		season_hot_player_season = new JComboBox(Config.Seasons);
-		season_hot_player_season.setBounds(95, 74, 166, 27);
+		season_hot_player_season.setBounds(45, 73, 168, 27);
 		add(season_hot_player_season);
 		
 		season_hot_player_datetype = new JComboBox(Config.STANDING_SEASONPLAYER_TYPE);
-		season_hot_player_datetype.setBounds(365, 74, 166, 27);
+		season_hot_player_datetype.setBounds(328, 73, 168, 27);
 		add(season_hot_player_datetype);
 	}
 	
@@ -225,29 +225,19 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 	}
 
 	public void paintComponent(Graphics g){
-		/*
-		g.drawImage(Config.MATCH_SELECTION_BACKGROUND.getImage(), 0, 0, 
+		
+		g.drawImage(Config.HOT_SELECTION_BACKGROUND.getImage(), 0, 0, 
 				Config.UI_WIDTH, Config.SELECTION_HEIGHT, null);
-		*/
+		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-//		daily_player_season,
-//	    daily_player_datatype,
-//	    season_hot_player_season,
-//	    season_hot_player_datetype,
-//	    season_hot_team_season,
-//	    season_hot_team_datatype,
-//	    most_improve_season,
-//	    most_improve_datatype;
-//		tf_date;
-		
+		//TODO 未刷新表格
 		if(e.getSource()==daily_player_season||e.getSource()==daily_player_datatype){
 			Season season=TransferSortHelper.StringToSeason(daily_player_season.getSelectedItem().toString());
 			PlayerData type=TransferSortHelper.StringToDataTypeForPlayer(daily_player_datatype.getSelectedItem().toString());
 			String date=tf_date.getText();	
-			MainFrame.mainFrame.topTabPanel;
 		}
 		if(e.getSource()==season_hot_player_season||e.getSource()==season_hot_player_datetype){
 			Season season=TransferSortHelper.StringToSeason(season_hot_player_season.getSelectedItem().toString());

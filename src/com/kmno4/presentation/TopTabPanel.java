@@ -12,6 +12,8 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import PO.MatchListPO;
+import PO.MatchPO;
 import PO.PlayerListPO;
 import PO.PlayerPO;
 import PO.TeamListPO;
@@ -168,7 +170,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		
 		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.Match.toString());
 		
-		refreshMatchTable();
+		refreshMatchTable(MainFrame.mainFrame.matches);
 		MainFrame.mainFrame.repaint();
 	}
 	
@@ -232,17 +234,12 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	/**
 	 * 刷新match列表
 	 */
-	public void refreshMatchTable() {
+	public void refreshMatchTable(ArrayList<MatchPO> matches) {
 		if(tableBeShowing != null) {
 			tableBeShowing.setVisible(false);
 			MainFrame.mainFrame.remove(tableBeShowing);
 		}
-		tableBeShowing = new Table(
-				new String[]{"a", "b", "c", "d"}, 
-				new String[][]{
-						{"match1", "---", "---", "---"},
-						{"match2", "---", "---", "---"}
-				});
+		tableBeShowing = new Table(Config.MATCH_INFO, TableContentTransfer.transferMatchInfo(Config.MATCH_INFO.length, matches));
 		setTableBounds();
 		MainFrame.mainFrame.add(tableBeShowing);
 		addMatchLink();

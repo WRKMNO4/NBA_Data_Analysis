@@ -1,10 +1,11 @@
 package com.kmno4.presentation;
 
-import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.kmno4.common.Config;
 
+import PO.MatchPO;
 import PO.PlayerDataPO;
 import PO.PlayerPO;
 import PO.TeamDataPO;
@@ -160,6 +161,23 @@ public class TableContentTransfer {
 			
 		return body;
 	}
+	
+	public static String[][] transferMatchInfo(int colums, ArrayList<MatchPO> ml) {
+		String body[][] = new String[ml.size()][colums];
+		for(int i = 0; i < ml.size(); i ++) {
+			MatchPO m = ml.get(i);
+			body[i][0] = m.getSeason().toString();
+			body[i][1] = m.getDate();
+			body[i][2] = m.getFirstTeam();
+			body[i][3] = m.getSecondTeam();
+			body[i][4] = Integer.toString(m.getFinalScore().getFirstScore());
+			body[i][5] = Integer.toString(m.getFinalScore().getSecondScore());
+		}
+		
+		
+		return body;
+	}
+	
 	
 	static String cutTailOfAvgData(double num){
 		String result = String.format("%.2f", num) ;
