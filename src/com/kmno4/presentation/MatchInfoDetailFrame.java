@@ -14,7 +14,7 @@ public class MatchInfoDetailFrame extends JFrame {
 	public MatchInfoDetailPanel matchInfoDetailPanel;
 	
 	public MatchInfoDetailFrame(MatchPO matchPO) {
-		setBounds(0, 0, Config.MATCH_DETAIL_WIDTH, Config.MATCH_DETAIL_HEIGHT);
+		setSize(Config.MATCH_DETAIL_WIDTH, Config.MATCH_DETAIL_HEIGHT);
 		setLayout(null);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

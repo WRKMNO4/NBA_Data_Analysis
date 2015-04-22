@@ -393,16 +393,24 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		for(int i = 0; i < t.length; i ++) {
 			for(int j = 0; j < t[0].length; j ++) {
 				if(t[i][j].elements.length == 0) return;
-			    JPanel panel = t[i][j];
-			    //final JLabel shortNameLabel = t[i][j].elements[SHORT_NAME_LABEL];
+			    TableList panel = t[i][j];
+			    final Season season;
+			    final String date, team;
+			    String s = panel.elements[0].getText();
+			    switch(s) {
+			    case "2012-2013赛季" : season = Season.season12_13; break;
+			    case "2013-2014赛季" : season = Season.season13_14; break;
+			    case "2014-2015赛季" : season = Season.season14_15; break;
+			    default: season = Season.season12_13;
+			    }
+			    date = panel.elements[1].getText();
+			    team = panel.elements[2].getText() + "-" + panel.elements[5].getText();
+			    
 				panel.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						//MainFrame.mainFrame.bl.findMatch(season, date, nameOfTeams)
-						//TODO
-//						TeamPO t = TeamListPO.findTeamByShortName(shortNameLabel.getText());
-//						if(t == null) return;
-//						new TeamDetailFrame(t).setVisible(true);
+						MatchInfoDetailFrame f = new MatchInfoDetailFrame(MainFrame.mainFrame.bl.findMatch(season, date, team));
+					    f.setVisible(true);
 					}
 				});
 			}
