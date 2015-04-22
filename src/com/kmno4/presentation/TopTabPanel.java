@@ -243,7 +243,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			tableBeShowing.setVisible(false);
 			MainFrame.mainFrame.remove(tableBeShowing);
 		}
-		if(matches == null) return;
+		if(matches == null || matches.size() == 0) return;
 		tableBeShowing = new Table(Config.MATCH_BASIC_INFO, TableContentTransfer.transferMatchBasicInfo(Config.MATCH_BASIC_INFO.length, matches));
 		setTableBounds();
 		MainFrame.mainFrame.add(tableBeShowing);
