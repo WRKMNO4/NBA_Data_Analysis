@@ -142,7 +142,7 @@ public class MatchInfoDetailPanel extends JPanel {
 					HEAD_ICON_WIDTH,
 					HEAD_ICON_HEIGHT);
 			gbc.gridx = 0;
-			gbc.gridy = 0;
+			gbc.gridy = 0;	
 			gbc.gridwidth = 1;
 			gbc.gridheight = 2;
 			gbc.weightx = 3;
@@ -162,6 +162,9 @@ public class MatchInfoDetailPanel extends JPanel {
 			gbl.setConstraints(blankLabel, gbc);
 			add(blankLabel);
 			
+			
+			
+			//TODO
 			scoreTable = new SmallTable(new String[]{"第一节", "第二节", "第三节", "第四节", "总计"}, 
 					new String[][]{{"10", "20", "30", "40", "100"}});
 			gbc.gridx = 1;

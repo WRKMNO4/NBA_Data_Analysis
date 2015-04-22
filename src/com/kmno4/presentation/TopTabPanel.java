@@ -245,10 +245,31 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		addMatchLink();
 	}
 	
-	public void refreshDailyPlayerTable() {}
-	public void refreshSeasonPlayerTable() {}
-	public void refreshImprovePlayerTable() {}
-	public void refreshSeasonTeamTable() {}
+	public void refreshDailyPlayerTable() {
+		if(tableBeShowing != null) {
+			tableBeShowing.setVisible(false);
+			MainFrame.mainFrame.remove(tableBeShowing);
+		}
+		
+	}
+	public void refreshSeasonPlayerTable() {
+		if(tableBeShowing != null) {
+			tableBeShowing.setVisible(false);
+			MainFrame.mainFrame.remove(tableBeShowing);
+		}
+	}
+	public void refreshImprovePlayerTable() {
+		if(tableBeShowing != null) {
+			tableBeShowing.setVisible(false);
+			MainFrame.mainFrame.remove(tableBeShowing);
+		}
+	}
+	public void refreshSeasonTeamTable() {
+		if(tableBeShowing != null) {
+			tableBeShowing.setVisible(false);
+			MainFrame.mainFrame.remove(tableBeShowing);
+		}
+	}
 	
 	
 	
@@ -350,6 +371,10 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		}
 	}
 
+	private void addDailyPlayerLink() {}
+	private void addSeasonPlayerLink() {}
+	private void addImprovePlayerLink() {}
+	private void addSeasonTeamLink() {}
 
 
 	@Override
