@@ -174,7 +174,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		
 		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.Match.toString());
 		
-		refreshMatchTable(MainFrame.mainFrame.matches);
+		refreshMatchTable(MainFrame.mainFrame.bl.getAllMatches(Config.LASTEST_SEASON));
 		MainFrame.mainFrame.repaint();
 	}
 	
@@ -185,7 +185,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.teamSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		MainFrame.mainFrame.hotSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		
-		
+		//TODO
 		//refreshDailyPlayerTable();
 		MainFrame.mainFrame.repaint();
 		
