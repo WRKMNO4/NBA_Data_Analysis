@@ -173,6 +173,8 @@ public class Config {
 		return motions;
 	}
 	
+	public static final ImageIcon CALENDAR_BACKGROUND=new ImageIcon("images/calendar_bg.png");
+	
 	
 	
 }
