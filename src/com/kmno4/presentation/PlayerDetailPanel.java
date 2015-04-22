@@ -146,9 +146,6 @@ public class PlayerDetailPanel extends JPanel {
 						playerPO,
 						player_recent_matches.getX() + playerDetailFrame.getX(),
 						player_recent_matches.getY() + playerDetailFrame.getY() + player_recent_matches.getHeight());
-				
-				
-				new MatchInfoDetailFrame(null);
 			}
 		});
 		
