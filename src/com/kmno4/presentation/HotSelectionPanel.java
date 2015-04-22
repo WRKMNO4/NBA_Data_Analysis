@@ -1,6 +1,7 @@
 package com.kmno4.presentation;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -14,7 +15,6 @@ import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import BusinessLogic.SortHelper.TransferSortHelper;
 import Enum.PlayerData;
@@ -32,8 +32,8 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 	    lb_daily_player,
 	    lb_season_player,
 	    lb_improve_player,
-	    lb_season_team,
-	    lb_date;
+	    lb_season_team
+	    ;
 	JComboBox<String>
 	    daily_player_season,
 	    daily_player_datatype,
@@ -43,7 +43,8 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 	    season_hot_team_datatype,
 	    most_improve_season,
 	    most_improve_datatype;
-	
+	JLabel
+		lb_date;
 //		JTextField tf_date;
 	
 
@@ -52,6 +53,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 	 */
 
 	public HotSelectionPanel() {
+		
 		setLayout(null);
 		this.setBounds(0, 0, Config.UI_WIDTH, Config.MATCH_SELECTION_PANEL_HEIGHT);
 		this.setVisible(true);
@@ -131,10 +133,11 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 				//设置为当前日期
 				Date dt=new Date();//
 				DateFormat df = new SimpleDateFormat("MM-dd");
-				lb_date = new JLabel(df.format(dt));
-				lb_date.setBackground(Color.blue);
+				String content=df.format(dt);
+				lb_date = new JLabel(content);
+//				lb_date.setIcon(Config.LABEL_CALENDAR_BACKGROUND);
 				lb_date.setForeground(Color.white);
-				lb_date.setBounds(500, 77, 48, 16);
+				lb_date.setBounds(500, 73, 168, 27);
 				add(lb_date);
 				
 				
@@ -250,7 +253,9 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 		if(e.getSource()==daily_player_season||e.getSource()==daily_player_datatype){
 			Season season=TransferSortHelper.StringToSeason(daily_player_season.getSelectedItem().toString());
 			PlayerData type=TransferSortHelper.StringToDataTypeForPlayer(daily_player_datatype.getSelectedItem().toString());
-			String date=lb_date.getText();	
+//			String date=lb_date.getText();	
+			String date=lb_date.toString();
+//			MainFrame.mainFrame.topTabPanel.
 		}
 		if(e.getSource()==season_hot_player_season||e.getSource()==season_hot_player_datetype){
 			Season season=TransferSortHelper.StringToSeason(season_hot_player_season.getSelectedItem().toString());

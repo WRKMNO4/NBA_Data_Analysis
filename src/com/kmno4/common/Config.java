@@ -158,6 +158,7 @@ public class Config {
 	
 	
 	public static final ImageIcon HOT_SELECTION_BACKGROUND=new ImageIcon("images/hot_selection_bg.png");
+	public static final ImageIcon LABEL_CALENDAR_BACKGROUND=new ImageIcon("images/label_calendar_bg_1.png");
 	
 	public static ArrayList<ImageIcon> getLoadingMotions(){
 		for(int i=1;i<100;i++){
