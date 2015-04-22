@@ -1,6 +1,7 @@
 package com.kmno4.presentation;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
@@ -38,14 +39,20 @@ public class MatchSelectionPanel extends JPanel {
 //		add(cb_team1);
 			
 		seasonPanel = new JPanel();
-		seasonPanel.setBounds(0, 0, 800, 45);
+		seasonPanel.setBounds(0, 0, Config.UI_WIDTH, 134);
 		seasonPanel.setBackground(new Color(0, 0, 0, 0));
 		seasonPanel.setLayout(new GridLayout(1, 0));
-		lb_firstSeason = new JLabel("12_13", JLabel.LEFT);
+		lb_firstSeason = new JLabel("2012-2013赛季", JLabel.CENTER);
+		lb_firstSeason.setFont(new Font("default", Font.ITALIC, 20));
+		lb_firstSeason.setForeground(Color.white);
 		seasonPanel.add(lb_firstSeason);
-		lb_secondSeason = new JLabel("13_14", JLabel.LEFT);
+		lb_secondSeason = new JLabel("2013-2014赛季", JLabel.CENTER);
+		lb_secondSeason.setFont(new Font("default", Font.ITALIC, 20));
+		lb_secondSeason.setForeground(Color.white);
 		seasonPanel.add(lb_secondSeason);
-		lb_thirdSeason = new JLabel("14_15", JLabel.LEFT);
+		lb_thirdSeason = new JLabel("2014-2015赛季", JLabel.CENTER);
+		lb_thirdSeason.setFont(new Font("default", Font.ITALIC, 20));
+		lb_thirdSeason.setForeground(Color.white);
 		seasonPanel.add(lb_thirdSeason);
 		add(seasonPanel);
 		lb_firstSeason.addMouseListener(new MouseAdapter() {
