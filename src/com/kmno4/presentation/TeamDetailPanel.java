@@ -96,15 +96,18 @@ public class TeamDetailPanel extends JPanel {
 		team_recent_game.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				@SuppressWarnings("unused")
-				LastestGameFrame lFrame = new LastestGameFrame(
+				if(LastestGameFrame.lgf != null) {
+					LastestGameFrame.lgf.setVisible(false);
+					LastestGameFrame.lgf.dispose();
+				}
+				LastestGameFrame.lgf = new LastestGameFrame(
 						teamPO,
 						team_recent_game.getX() + teamDetailFrame.getX(),
 						team_recent_game.getY() + teamDetailFrame.getY() + team_recent_game.getHeight());
 			}
 		});
 
-		team_achi = new JLabel("球队球员", JLabel.CENTER);
+		team_achi = new JLabel();
 		team_achi.setFont(new Font("default", Font.BOLD, 20));
 		team_achi.setForeground(Color.black);
 		c.gridx = 3;
@@ -215,7 +218,7 @@ public class TeamDetailPanel extends JPanel {
 
 	}
 
-	public static void fillIcon(JLabel head, String url, int width, int height) {
+	public synchronized static void fillIcon(JLabel head, String url, int width, int height) {
 		File pngBuffer = new File(bufferURL);
 		FileOutputStream fos = null;
 		try {
@@ -255,7 +258,7 @@ public class TeamDetailPanel extends JPanel {
 
 	}
 
-	public static void convertToPNG(String url, OutputStream os) {
+	public synchronized static void convertToPNG(String url, OutputStream os) {
 		File svg = new File(url);
 		Document doc = null;
 		try {

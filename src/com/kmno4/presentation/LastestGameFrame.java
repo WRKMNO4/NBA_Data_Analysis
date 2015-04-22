@@ -1,7 +1,7 @@
 package com.kmno4.presentation;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
 
 import javax.swing.JFrame;
 
@@ -10,8 +10,10 @@ import PO.TeamPO;
 
 @SuppressWarnings("serial")
 public class LastestGameFrame extends JFrame {
-	LastestGameFrame frame;
-	LastestGamePanel lastestGamePanel;
+	public static LastestGameFrame lgf;
+	
+	private LastestGameFrame frame;
+	private LastestGamePanel lastestGamePanel;
 	
 	public LastestGameFrame(TeamPO teamPO, int x, int y) {
 		lastestGamePanel = new LastestGamePanel(teamPO, this);
@@ -29,6 +31,16 @@ public class LastestGameFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(null);
 		setUndecorated(true);
+		addWindowFocusListener(new WindowFocusListener() {
+			@Override
+			public void windowLostFocus(WindowEvent e) {
+				frame.setVisible(false);
+				frame.dispose();
+			}
+			@Override
+			public void windowGainedFocus(WindowEvent e) {}
+		});
+		
 		
 		setVisible(true);
 

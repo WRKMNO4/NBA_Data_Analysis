@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import PO.PlayerPO;
+import PO.TeamListPO;
 
 import com.kmno4.common.Config;
 import com.kmno4.presentation.button.LabelButton;
@@ -33,6 +34,7 @@ public class PlayerDetailPanel extends JPanel {
 	    player_name,
 	    player_place,
 	    player_team,
+	    player_recent_matches,
 	    avg, //场均切换标签
 	    sum; //总计切换标签
 	private SmallTable mainInfo; //主要信息表格
@@ -70,7 +72,7 @@ public class PlayerDetailPanel extends JPanel {
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 1;
-		c.gridheight = 4;
+		c.gridheight = 5;
 		c.weightx = 7;
 		c.weighty = 5;
 		c.fill = GridBagConstraints.NONE;
@@ -84,7 +86,7 @@ public class PlayerDetailPanel extends JPanel {
 		c.gridwidth = 1;
 		c.gridheight = 1;
 		c.weightx = 1;
-		c.weighty = 2;
+		c.weighty = 0.8;
 		c.fill = GridBagConstraints.BOTH;
 		layout.setConstraints(blank1, c);
 		add(blank1);
@@ -97,7 +99,7 @@ public class PlayerDetailPanel extends JPanel {
 		c.gridwidth = 1;
 		c.gridheight = 1;
 		c.weightx = 2;
-		c.weighty = 2;
+		c.weighty = 0.8;
 		layout.setConstraints(player_num, c);
 		add(player_num);
 		
@@ -108,7 +110,7 @@ public class PlayerDetailPanel extends JPanel {
 		c.gridwidth = 1;
 		c.gridheight = 1;
 		c.weightx = 5;
-		c.weighty = 2;
+		c.weighty = 0.8;
 		layout.setConstraints(player_name, c);
 		add(player_name);
 		
@@ -123,22 +125,58 @@ public class PlayerDetailPanel extends JPanel {
 		layout.setConstraints(player_place, c);
 		add(player_place);
 		
+		player_recent_matches = new JLabel("查看最近比赛");
+		player_recent_matches.setFont(new Font("default", Font.PLAIN, 17));
+		c.gridx = 3;
+		c.gridy = 2;
+		c.gridwidth = 1;
+		c.gridheight = 1;
+		c.weightx = 5;
+		c.weighty = 1;
+		layout.setConstraints(player_recent_matches, c);
+		add(player_recent_matches);
+		player_recent_matches.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(LastestGameFrame.lgf != null) {
+					LastestGameFrame.lgf.setVisible(false);
+					LastestGameFrame.lgf.dispose();
+				}
+				LastestGameFrame.lgf = new LastestGameFrame(
+						playerPO,
+						player_recent_matches.getX() + playerDetailFrame.getX(),
+						player_recent_matches.getY() + playerDetailFrame.getY() + player_recent_matches.getHeight());
+				
+				
+				new MatchInfoDetailFrame(null);
+			}
+		});
+		
 		player_team = new JLabel(playerPO.getTeam(Config.LASTEST_SEASON), JLabel.CENTER);
 		player_team.setForeground(Color.gray);
 		player_team.setFont(new Font("default", Font.BOLD, 17));
 		c.gridx = 4;
 		c.gridy = 0;
 		c.gridwidth = 3;
-		c.gridheight = 1;
+		c.gridheight = 2;
 		c.weightx = 5;
 		c.weighty = 2;
+		c.fill = GridBagConstraints.NONE;
+		c.anchor = GridBagConstraints.CENTER;
 		layout.setConstraints(player_team, c);
 		add(player_team);
+		player_team.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				TeamDetailFrame tdf = new TeamDetailFrame(TeamListPO.findTeamByShortName(player_team.getText()));
+				tdf.setBounds(playerDetailFrame.getBounds());
+			}
+		});
+		 
 		
 		
 		JLabel blank2 = new JLabel();
 		c.gridx = 4;
-		c.gridy = 3;
+		c.gridy = 4;
 		c.gridwidth = 1;
 		c.gridheight = 1;
 		c.weightx = 1;
@@ -196,7 +234,7 @@ public class PlayerDetailPanel extends JPanel {
 					"" + TableContentTransfer.cutTailOfAvgData(playerPO.getSeasonInfo(Config.LASTEST_SEASON).getAveragePlayerData().getNumberOfAssist())}});
 		mainInfo.setFont(new Font("default", Font.PLAIN, 15), null);
 		c.gridx = 1;
-		c.gridy = 2;
+		c.gridy = 3;
 		c.gridwidth = 3;
 		c.gridheight = 2;
 		c.weightx = 8;
@@ -209,9 +247,9 @@ public class PlayerDetailPanel extends JPanel {
 		sumInfo = new SlideTable(
 				Config.PLAYER_TOTAL_INFO,
 				TableContentTransfer.transferPlayerTotalInfo(Config.PLAYER_TOTAL_INFO.length, this.playerPO,1),
-				0, 0, 50, 70, Config.PLAYER_DETAIL_UI_WIDTH);
+				50, 70, Config.PLAYER_DETAIL_UI_WIDTH);
 		c.gridx = 0;
-		c.gridy = 4;
+		c.gridy = 5;
 		c.gridwidth = 7;
 		c.gridheight = 1;
 		c.weightx = 20;
@@ -224,7 +262,7 @@ public class PlayerDetailPanel extends JPanel {
 		avgInfo = new SlideTable(
 				Config.PLAYER_AVERAGE_INFO,
 				TableContentTransfer.transferPlayerAvgInfo(Config.PLAYER_AVERAGE_INFO.length,this.playerPO, 1),
-				0, 0, 50, 70, Config.PLAYER_DETAIL_UI_WIDTH);
+				50, 70, Config.PLAYER_DETAIL_UI_WIDTH);
 		//avgInfo.setFont(new Font("default", Font.PLAIN, 7), new Font("default", Font.PLAIN, 8));
 		
 		

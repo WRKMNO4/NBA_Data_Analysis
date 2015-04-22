@@ -25,12 +25,12 @@ public class LastestGamePanel extends JPanel {
 	
 	public LastestGamePanel(TeamPO t, LastestGameFrame frame) {
 		teamPO = t;
-		ini(t);
+		ini(teamPO);
 		iniFrameSize(frame);
 	}
 	public LastestGamePanel(PlayerPO p, LastestGameFrame frame) {
 		playerPO = p;
-		ini(p);
+		ini(playerPO);
 		iniFrameSize(frame);
 	}
 	
@@ -60,8 +60,9 @@ public class LastestGamePanel extends JPanel {
 		table.head.setVisible(false);
 		table.remove(table.head);
 		table.setLayout(new GridLayout(table.getRowNum(), 1));
-		
 		addLink();
+		add(table);
+		
 	}
 	
 	private void addLink() {
@@ -69,7 +70,8 @@ public class LastestGamePanel extends JPanel {
 			table.body[0][i].addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					//TODO
+					//MatchInfoDetailFrame m = new MatchInfoDetailFrame()
+					
 				}
 			});
 		}

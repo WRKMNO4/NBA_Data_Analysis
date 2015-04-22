@@ -59,7 +59,7 @@ public class HeadIconPanel extends JPanel {
 		
 		
 		
-		name = new JLabel(playerPO.getName(), JLabel.CENTER);
+		name = new JLabel(playerPO.getName(), JLabel.LEFT);
 		name.setFont(new Font("default", Font.PLAIN, 20));
 		c.gridx = 1;
 		c.gridy = 0;
