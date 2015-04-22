@@ -8,7 +8,7 @@ import Enum.Zone;
 public class TeamPO {
 	String fullName;    
 	String shortName;   
-	String city;       
+	String city;
 	Zone zone;          
 	String district;    
 	String homeCourt;     

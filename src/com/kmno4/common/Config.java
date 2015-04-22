@@ -23,7 +23,7 @@ public class Config {
 		,"助攻数","抢断数","盖帽数","失误数","犯规数","得分","投篮命中率","三分命中率","罚球命中率","胜率","进攻回合","进攻效率","防守效率","篮板效率","抢断效率","助攻率"} ;
 	public static final String[] TEAM_TOTAL_INFO = {"比赛场数","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数"
 		,"助攻数","抢断数","盖帽数","失误数","犯规数","得分","进攻回合"} ;
-	public static final String[] MATCH_INFO = {"赛季", "日期", "队伍", "队伍", "得分", "得分"};
+	public static final String[] MATCH_BASIC_INFO = {"赛季", "日期", "球队",  "得分", "得分","球队"};
 	
 	//筛选功能
 	public static final String[] PICKUP_POSITION={"前锋","中锋","后卫"};
@@ -34,10 +34,18 @@ public class Config {
 	public static final String[] SORT_TEAM_TYPE = {};
 	public static final String[] SORT_TEAM_STANDRAD = {"总计", "场均"};
 	
+	
 	public static final String[] STANDING_DAILYPLAYER_TYPE={"得分","篮板","助攻","盖帽","抢断"} ;
+	public static final String[] STANDING_DAILYPLAYER_TABLEHEAD = {"球员名称" ,"所属球队","球员位置","比赛数据"} ;
+	
 	public static final String[] STANDING_SEASONPLAYER_TYPE={"得分","篮板","助攻","盖帽","抢断","三分命中率","投篮命中率","罚球命中率"} ;
+	public static final String[] STANDING_SEASONPLAYER_TABLEHEAD = {"球员名称" ,"所属球队","球员位置","比赛数据"} ;
+	
 	public static final String[] STANDING_SEASONTEAM_TYPE={"得分","篮板","助攻","盖帽","抢断","三分命中率","投篮命中率","罚球命中率"} ;
+    public static final String[] STANDING_SEASONTEAM_TABLEHEAD = {"球队名称","所属联盟","比赛数据"} ;
+    
 	public static final String[] STANDING_IMPROVED_TYPE = {"场均得分提升率","场均篮板提升率","场均助攻提升率"} ;
+	public static final String[] STANDING_IMPROVE_TABLEHEAD = {"球员名称","所属球队","近五场提升率"} ;
 	
 	public static final int 
 	    MATCH_DETAIL_WIDTH = 700,
