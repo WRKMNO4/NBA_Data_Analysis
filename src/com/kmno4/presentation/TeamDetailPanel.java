@@ -197,7 +197,7 @@ public class TeamDetailPanel extends JPanel {
 				Config.TEAM_TOTAL_INFO,
 				TableContentTransfer.transferTeamTotalInfo(
 						Config.TEAM_TOTAL_INFO.length, this.teamPO, 1),
-				50, 70, Config.PLAYER_DETAIL_UI_WIDTH);
+				70, 50, Config.PLAYER_DETAIL_UI_WIDTH);
 		c.gridx = 0;
 		c.gridy = 3;
 		c.gridwidth = 6;
@@ -212,7 +212,7 @@ public class TeamDetailPanel extends JPanel {
 				Config.TEAM_AVERAGE_INFO,
 				TableContentTransfer.transferTeamAvgInfo(
 						Config.TEAM_AVERAGE_INFO.length, this.teamPO, 1),
-				50, 70, Config.PLAYER_DETAIL_UI_WIDTH);
+				70, 50, Config.PLAYER_DETAIL_UI_WIDTH);
 		// layout.setConstraints(avgInfo, c);
 		// add(avgInfo);
 

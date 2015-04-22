@@ -1,5 +1,6 @@
 package com.kmno4.presentation;
 
+import java.awt.FlowLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
@@ -29,7 +30,7 @@ public class LastestGameFrame extends JFrame {
 		add(lastestGamePanel);
 		frame = this;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setLayout(null);
+		setLayout(new FlowLayout());
 		setUndecorated(true);
 		addWindowFocusListener(new WindowFocusListener() {
 			@Override
