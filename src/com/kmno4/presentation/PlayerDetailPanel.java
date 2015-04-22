@@ -13,6 +13,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -37,6 +38,9 @@ public class PlayerDetailPanel extends JPanel {
 	    player_recent_matches,
 	    avg, //场均切换标签
 	    sum; //总计切换标签
+	
+	private JComboBox<String> seasonBox;
+	
 	private SmallTable mainInfo; //主要信息表格
 	private SlideTable
 	    sumInfo, //总计信息表格
@@ -151,9 +155,9 @@ public class PlayerDetailPanel extends JPanel {
 			}
 		});
 		
-		player_team = new JLabel(playerPO.getTeam(Config.LASTEST_SEASON), JLabel.CENTER);
+		player_team = new JLabel("现役于" + playerPO.getTeam(Config.LASTEST_SEASON) + "球队", JLabel.CENTER);
 		player_team.setForeground(Color.gray);
-		player_team.setFont(new Font("default", Font.BOLD, 17));
+		player_team.setFont(new Font("default", Font.ITALIC, 17));
 		c.gridx = 4;
 		c.gridy = 0;
 		c.gridwidth = 3;
@@ -166,14 +170,15 @@ public class PlayerDetailPanel extends JPanel {
 		add(player_team);
 		player_team.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				TeamDetailFrame tdf = new TeamDetailFrame(TeamListPO.findTeamByShortName(player_team.getText()));
+				TeamDetailFrame tdf = new TeamDetailFrame(TeamListPO.findTeamByShortName(playerPO.getTeam(Config.LASTEST_SEASON)));
 				tdf.setBounds(playerDetailFrame.getBounds());
 			}
 		});
 		 
 		
-		
-		JLabel blank2 = new JLabel();
+		seasonBox = new JComboBox<String>(Config.Seasons);
+		seasonBox.setFont(new Font("default", Font.PLAIN, 11));
+		seasonBox.setSelectedIndex(1);
 		c.gridx = 4;
 		c.gridy = 4;
 		c.gridwidth = 1;
@@ -182,8 +187,8 @@ public class PlayerDetailPanel extends JPanel {
 		c.weighty = 1;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.SOUTHEAST;
-		layout.setConstraints(blank2, c);
-		add(blank2);
+		layout.setConstraints(seasonBox, c);
+		add(seasonBox);
 		
 		sum = new LabelButton("总计", JLabel.CENTER);
 		sum.addMouseListener(new MouseAdapter() {
