@@ -7,6 +7,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
 
 import org.jvnet.substance.SubstanceLookAndFeel;
 import org.jvnet.substance.border.StandardBorderPainter;
@@ -26,7 +27,9 @@ public class FucMain {
 
 	public static void main(String[] args) {
 		// 组件
-//		 WebLookAndFeel.install();
+		 WebLookAndFeel.globalControlFont  = new FontUIResource("隶书",0, 15);
+		 WebLookAndFeel.install();
+		
 		// look$feel——————second choice
 		// JFrame.setDefaultLookAndFeelDecorated(true);
 		// JDialog.setDefaultLookAndFeelDecorated(true);
