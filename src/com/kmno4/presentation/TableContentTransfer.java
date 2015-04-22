@@ -1,12 +1,10 @@
 package com.kmno4.presentation;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.kmno4.common.Config;
 
-import PO.MatchListPO;
 import PO.MatchPO;
 import PO.PlayerDataPO;
 import PO.PlayerPO;
@@ -164,8 +162,7 @@ public class TableContentTransfer {
 		return body;
 	}
 	
-	public static String[][] transferMatchInfo(int colums, MatchListPO mp) {
-		ArrayList<MatchPO> ml = mp.allMatchList;
+	public static String[][] transferMatchInfo(int colums, ArrayList<MatchPO> ml) {
 		String body[][] = new String[ml.size()][colums];
 		for(int i = 0; i < ml.size(); i ++) {
 			MatchPO m = ml.get(i);
