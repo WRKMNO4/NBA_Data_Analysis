@@ -42,6 +42,10 @@ public class Config {
 	    MATCH_DETAIL_WIDTH = 700,
 	    MATCH_DETAIL_HEIGHT = 600;
 	
+	public static final int
+	    LASTEST_GAME_FRAME_UNIT_HEIGHT = 50,
+	    LASTEST_GAME_FRAME_WIDTH = 300;
+	
 	public static final int MAIN_FRAME_X=100;
 	public static final int MAIN_FRAME_Y=100;
 	public static final int UI_WIDTH=800;

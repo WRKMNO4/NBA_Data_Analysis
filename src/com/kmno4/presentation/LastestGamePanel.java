@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import com.kmno4.common.Config;
 import com.kmno4.presentation.table.SmallTable;
 
 import PO.MatchPO;
@@ -22,13 +23,19 @@ public class LastestGamePanel extends JPanel {
 	
 	private SmallTable table;
 	
-	public LastestGamePanel(TeamPO t) {
+	public LastestGamePanel(TeamPO t, LastestGameFrame frame) {
 		teamPO = t;
 		ini(t);
+		iniFrameSize(frame);
 	}
-	public LastestGamePanel(PlayerPO p) {
+	public LastestGamePanel(PlayerPO p, LastestGameFrame frame) {
 		playerPO = p;
 		ini(p);
+		iniFrameSize(frame);
+	}
+	
+	private void iniFrameSize(LastestGameFrame frame) {
+		frame.setSize(Config.LASTEST_GAME_FRAME_WIDTH, Config.LASTEST_GAME_FRAME_UNIT_HEIGHT * matches.size());
 	}
 	
 	private void ini(Object o) {

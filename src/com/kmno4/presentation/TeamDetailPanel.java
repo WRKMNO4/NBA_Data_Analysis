@@ -30,7 +30,6 @@ import org.w3c.dom.Document;
 import PO.TeamPO;
 
 import com.kmno4.common.Config;
-import com.kmno4.presentation.button.BorderLabel;
 import com.kmno4.presentation.table.SlideTable;
 import com.kmno4.presentation.table.SmallTable;
 
@@ -38,7 +37,7 @@ import com.kmno4.presentation.table.SmallTable;
 public class TeamDetailPanel extends JPanel {
 	private TeamDetailPanel teamDetailPanel;
 	private TeamDetailFrame teamDetailFrame;
-	private JLabel team_icon, team_name, team_coach, team_achi, avg, sum;
+	private JLabel team_icon, team_name, team_recent_game, team_achi, avg, sum;
 	private SmallTable mainInfo;
 	private SlideTable sumInfo, avgInfo;
 	private GridBagLayout layout;
@@ -83,8 +82,8 @@ public class TeamDetailPanel extends JPanel {
 		layout.setConstraints(team_name, c);
 		add(team_name);
 
-		team_coach = new BorderLabel("近期比赛", JLabel.LEFT);
-		team_coach.setFont(new Font("default", Font.ITALIC, 18));
+		team_recent_game = new JLabel("查看近期比赛", JLabel.LEFT);
+		team_recent_game.setFont(new Font("default", Font.ITALIC, 18));
 		c.gridx = 1;
 		c.gridy = 1;
 		c.gridwidth = 2;
@@ -92,8 +91,18 @@ public class TeamDetailPanel extends JPanel {
 		c.weightx = 3;
 		c.weighty = 1;
 		c.fill = GridBagConstraints.NONE;
-		layout.setConstraints(team_coach, c);
-		add(team_coach);
+		layout.setConstraints(team_recent_game, c);
+		add(team_recent_game);
+		team_recent_game.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				@SuppressWarnings("unused")
+				LastestGameFrame lFrame = new LastestGameFrame(
+						teamPO,
+						team_recent_game.getX() + teamDetailFrame.getX(),
+						team_recent_game.getY() + teamDetailFrame.getY() + team_recent_game.getHeight());
+			}
+		});
 
 		team_achi = new JLabel("球队球员", JLabel.CENTER);
 		team_achi.setFont(new Font("default", Font.BOLD, 20));
@@ -104,7 +113,7 @@ public class TeamDetailPanel extends JPanel {
 		c.gridheight = 1;
 		c.weightx = 3;
 		c.weighty = 2;
-		c.fill = GridBagConstraints.NONE;
+		c.fill = GridBagConstraints.BOTH;
 		layout.setConstraints(team_achi, c);
 		add(team_achi);
 
