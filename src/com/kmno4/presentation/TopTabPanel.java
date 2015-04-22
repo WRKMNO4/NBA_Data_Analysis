@@ -12,6 +12,7 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import PO.MatchListPO;
 import PO.PlayerListPO;
 import PO.PlayerPO;
 import PO.TeamListPO;
@@ -232,17 +233,12 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	/**
 	 * 刷新match列表
 	 */
-	public void refreshMatchTable() {
+	public void refreshMatchTable(MatchListPO matchListPO) {
 		if(tableBeShowing != null) {
 			tableBeShowing.setVisible(false);
 			MainFrame.mainFrame.remove(tableBeShowing);
 		}
-		tableBeShowing = new Table(
-				new String[]{"a", "b", "c", "d"}, 
-				new String[][]{
-						{"match1", "---", "---", "---"},
-						{"match2", "---", "---", "---"}
-				});
+		tableBeShowing = new Table(Config.MATCH_INFO, TableContentTransfer.transferMatchInfo(Config.MATCH_INFO.length, matchListPO));
 		setTableBounds();
 		MainFrame.mainFrame.add(tableBeShowing);
 		addMatchLink();
