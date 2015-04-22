@@ -32,7 +32,8 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 	    lb_daily_player,
 	    lb_season_player,
 	    lb_improve_player,
-	    lb_season_team;
+	    lb_season_team
+	    ;
 	JComboBox<String>
 	    daily_player_season,
 	    daily_player_datatype,
