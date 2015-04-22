@@ -225,6 +225,11 @@ public class MatchInfoDetailPanel extends JPanel {
 			//TODO
 		}
 		
+		
+		
+		
+		
+		
 	}
 
 }
