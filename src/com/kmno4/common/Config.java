@@ -24,6 +24,9 @@ public class Config {
 	public static final String[] TEAM_TOTAL_INFO = {"比赛场数","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数"
 		,"助攻数","抢断数","盖帽数","失误数","犯规数","得分","进攻回合"} ;
 	public static final String[] MATCH_BASIC_INFO = {"赛季", "日期", "球队",  "得分", "得分","球队"};
+	public static final String[] MATCH_DETAIL_INFO = {"球员名","位置","在场时间","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数", "罚球出手数","进攻篮板",
+		"防守篮板","总篮板数","助攻数","抢断数","盖帽数","失误数","犯规数","个人得分"} ;
+	
 	
 	//筛选功能
 	public static final String[] PICKUP_POSITION={"前锋","中锋","后卫"};
