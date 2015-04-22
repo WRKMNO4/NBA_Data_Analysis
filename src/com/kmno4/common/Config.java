@@ -152,7 +152,7 @@ public class Config {
 	public static final ImageIcon CLOSE_ICON=new ImageIcon("images/close.png");
 	
 	//match界面所有的icon
-	public static final ImageIcon MATCH_SELECTION_BACKGROUND=new ImageIcon("images/match_selection_bg.png");
+	public static final ImageIcon MATCH_SELECTION_BACKGROUND=new ImageIcon("images/match_selection_bg_1.png");
 	public static final ImageIcon SCHEDULE=new ImageIcon("images/schedule.png");
 	public static final ImageIcon TEAM_SELECTION=new ImageIcon("images/select_team.png");
 	
