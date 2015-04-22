@@ -144,20 +144,20 @@ public class Config {
 	public static ArrayList<ImageIcon> motions=new ArrayList<ImageIcon>();
 	public static final Icon SPLASH_TITLE=new ImageIcon("images/splash_title.png");
 	public static final Icon SPLASH_BACKGROUND=new ImageIcon("images/splash_bg.png");
-	public static final ImageIcon PLAYER_SELECTION_SORT_BACKGROUND=new ImageIcon("images/player_selection_sort_bg.png");
-	public static final ImageIcon PLAYER_SELECTION_BACKGROUND=new ImageIcon("images/selection_bg.png");
-	public static final ImageIcon TOP_TAB_BACKGROUND=new ImageIcon("images/top_tab_background.png");
+	public static final ImageIcon PLAYER_SELECTION_SORT_BACKGROUND=new ImageIcon("images/player_selection_sort_bg2.png");
+	public static final ImageIcon PLAYER_SELECTION_BACKGROUND=new ImageIcon("images/selection_bg3.png");
+	public static final ImageIcon TOP_TAB_BACKGROUND=new ImageIcon("images/top_tab_background2.png");
 	public static final ImageIcon WELCOME=new ImageIcon("images/welcome.png");
-	public static final ImageIcon TEAM_SELECTION_BACKGROUND=new ImageIcon("images/team_selection_bg3.png");
+	public static final ImageIcon TEAM_SELECTION_BACKGROUND=new ImageIcon("images/team_selection_bg4.png");
 	public static final ImageIcon CLOSE_ICON=new ImageIcon("images/close.png");
 	
 	//match界面所有的icon
-	public static final ImageIcon MATCH_SELECTION_BACKGROUND=new ImageIcon("images/match_selection_bg_1.png");
+	public static final ImageIcon MATCH_SELECTION_BACKGROUND=new ImageIcon("images/match_selection_bg_2.png");
 	public static final ImageIcon SCHEDULE=new ImageIcon("images/schedule.png");
 	public static final ImageIcon TEAM_SELECTION=new ImageIcon("images/select_team.png");
 	
 	
-	public static final ImageIcon HOT_SELECTION_BACKGROUND=new ImageIcon("images/hot_selection_bg.png");
+	public static final ImageIcon HOT_SELECTION_BACKGROUND=new ImageIcon("images/hot_selection_bg2.png");
 	public static final ImageIcon LABEL_CALENDAR_BACKGROUND=new ImageIcon("images/label_calendar_bg_1.png");
 	
 	public static ArrayList<ImageIcon> getLoadingMotions(){

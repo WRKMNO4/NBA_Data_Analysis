@@ -62,13 +62,17 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 		playerPanel.setBounds(0, 0, 800, 45);
 		playerPanel.setBackground(new Color(0, 0, 0, 0));
 		playerPanel.setLayout(new GridLayout(1, 0));
-		lb_daily_player = new JLabel("当日热点球员");
+		lb_daily_player = new JLabel("当日热点球员",JLabel.CENTER);
+		lb_daily_player.setForeground(Color.white);
 		playerPanel.add(lb_daily_player);
-		lb_season_player = new JLabel("赛季热点球员");
+		lb_season_player = new JLabel("赛季热点球员",JLabel.CENTER);
+		lb_season_player.setForeground(Color.white);
 		playerPanel.add(lb_season_player);
-		lb_improve_player = new JLabel("进步最快球员");
+		lb_improve_player = new JLabel("进步最快球员",JLabel.CENTER);
+		lb_improve_player.setForeground(Color.white);
 		playerPanel.add(lb_improve_player);
-		lb_season_team = new JLabel("赛季热点球队");
+		lb_season_team = new JLabel("赛季热点球队",JLabel.CENTER);
+		lb_season_team.setForeground(Color.white);
 		playerPanel.add(lb_season_team);
 		add(playerPanel);	
 		
