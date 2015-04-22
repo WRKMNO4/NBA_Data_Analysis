@@ -123,6 +123,7 @@ public class Config {
 	public static final int TEAM_ICON_HEIGHT = 315;
 	
 	//所有图片
+	public static final ImageIcon FRAME_BACKGROUND=new ImageIcon("images/bg.png");
 		//tabPanel Label切换图片
 	public static final ImageIcon TAB_PLAYER_CLICKED=new ImageIcon("images/tab_player_clicked.png");
 	public static final ImageIcon TAB_TEAM_CLICKED=new ImageIcon("images/tab_team_clicked.png");
@@ -141,12 +142,14 @@ public class Config {
 	public static final ImageIcon TAB_MATCH_UNPRESSED=new ImageIcon("images/tab_match_unpressed.png");
 	public static final ImageIcon TAB_HOT_UNPRESSED=new ImageIcon("images/tab_hot_unpressed.png");
 	public static final ImageIcon TAB_ABOUT_UNPRESSED=new ImageIcon("images/tab_about_unpressed.png");
-
 	public static final ImageIcon TAB_PLAYER_PRESSED=new ImageIcon("images/tab_player_pressed.png");
-	public static final ImageIcon INTRO_PAGE_BG=new ImageIcon("images/intro_bg.png");
+	
+	public static final ImageIcon INTRO_PAGE_BG=new ImageIcon("images/intro_bg5.png");
+	
 	public static ArrayList<ImageIcon> motions=new ArrayList<ImageIcon>();
 	public static final Icon SPLASH_TITLE=new ImageIcon("images/splash_title.png");
 	public static final Icon SPLASH_BACKGROUND=new ImageIcon("images/splash_bg.png");
+	
 	public static final ImageIcon PLAYER_SELECTION_SORT_BACKGROUND=new ImageIcon("images/player_selection_sort_bg2.png");
 	public static final ImageIcon PLAYER_SELECTION_BACKGROUND=new ImageIcon("images/selection_bg3.png");
 	public static final ImageIcon TOP_TAB_BACKGROUND=new ImageIcon("images/top_tab_background2.png");
@@ -169,6 +172,8 @@ public class Config {
 		}			
 		return motions;
 	}
+	
+	public static final ImageIcon CALENDAR_BACKGROUND=new ImageIcon("images/calendar_bg.png");
 	
 	
 	

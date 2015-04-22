@@ -1,5 +1,6 @@
 package com.kmno4.presentation;
 
+import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ import com.kmno4.common.Config;
 public class MainFrame extends JFrame implements MouseListener{
 
 	//panel统一从右边进入
-	private JPanel contentPane;
+	private ContentPanel contentPane;
 	
 	public static MainFrame mainFrame; //mainframe自身的静态引用
 	public  PlayerSelectionPanel playerSelectionPanel;
@@ -49,10 +50,10 @@ public class MainFrame extends JFrame implements MouseListener{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(Config.MAIN_FRAME_X,Config.MAIN_FRAME_Y, 
 				Config.UI_WIDTH, Config.UI_HEIGHT);
-		contentPane = new JPanel();
+		contentPane = new ContentPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		contentPane.setLayout(null);
-		setContentPane(contentPane);	
+		setContentPane(contentPane);
 		
 		this.initBL();
 		this.initPanel();
@@ -60,6 +61,7 @@ public class MainFrame extends JFrame implements MouseListener{
 		@SuppressWarnings("unused")
 		MoveOfFrame m = new MoveOfFrame(this);
 	}
+	
 
 	public void initPanel(){		
 		topTabPanel=new TopTabPanel();

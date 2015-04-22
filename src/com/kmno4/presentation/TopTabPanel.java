@@ -145,7 +145,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.teamSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		MainFrame.mainFrame.hotSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		
-		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.Player.toString());
+		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.球员信息.toString());
 		
 		refreshPlayerTable(MainFrame.mainFrame.players);
 		MainFrame.mainFrame.repaint();
@@ -158,7 +158,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.playerSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
 				Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		MainFrame.mainFrame.matchSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
-		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.Team.toString());
+		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.球队信息.toString());
 		
 		refreshTeamTable(MainFrame.mainFrame.teams);
 		MainFrame.mainFrame.repaint();
@@ -172,7 +172,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.teamSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		MainFrame.mainFrame.hotSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		
-		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.Match.toString());
+		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.比赛信息.toString());
 		
 		refreshMatchTable(MainFrame.mainFrame.bl.getAllMatches(Config.LASTEST_SEASON));
 		MainFrame.mainFrame.repaint();
@@ -185,6 +185,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.teamSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		MainFrame.mainFrame.hotSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		
+		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.热点信息.toString());
 		//TODO
 		//refreshDailyPlayerTable(Config.LASTEST_SEASON, ,);
 		MainFrame.mainFrame.repaint();
