@@ -91,8 +91,7 @@ public class MatchSelectionPanel extends JPanel {
 	}
 	
 	private void changeSeason(Season season) {
-		//MainFrame.mainFrame.topTabPanel.refreshMatchTable();
-		//TODO
+		MainFrame.mainFrame.topTabPanel.refreshMatchTable(MainFrame.mainFrame.bl.getAllMatches(season));
 	}
 	
 }
