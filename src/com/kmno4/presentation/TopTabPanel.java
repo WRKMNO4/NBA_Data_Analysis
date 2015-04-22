@@ -179,6 +179,10 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.teamSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		MainFrame.mainFrame.hotSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		
+		
+		refreshDailyPlayerTable();
+		MainFrame.mainFrame.repaint();
+		
 	}
 	
 	public void showAboutUsInfo(){
@@ -243,6 +247,13 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.add(tableBeShowing);
 		addMatchLink();
 	}
+	
+	public void refreshDailyPlayerTable() {}
+	public void refreshSeasonPlayerTable() {}
+	public void refreshImprovePlayerTable() {}
+	public void refreshSeasonTeamTable() {}
+	
+	
 	
 	private void setTableBounds() {
 		int y = Config.TOP_TAB_HEIGHT + Config.INTRODUCTION_WHITE + Config.SELECTION_HEIGHT + 10;

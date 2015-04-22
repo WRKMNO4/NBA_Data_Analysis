@@ -9,7 +9,9 @@ import javax.swing.JPanel;
 
 import com.kmno4.common.Config;
 import com.kmno4.presentation.table.SmallTable;
+import com.kmno4.presentation.table.TableList;
 
+import Enum.Season;
 import PO.MatchPO;
 import PO.PlayerPO;
 import PO.TeamPO;
@@ -36,6 +38,7 @@ public class LastestGamePanel extends JPanel {
 	
 	private void iniFrameSize(LastestGameFrame frame) {
 		frame.setSize(Config.LASTEST_GAME_FRAME_WIDTH, Config.LASTEST_GAME_FRAME_UNIT_HEIGHT * matches.size());
+		setSize(frame.getWidth(), frame.getHeight());
 	}
 	
 	private void ini(Object o) {
@@ -46,17 +49,19 @@ public class LastestGamePanel extends JPanel {
 			matches = MainFrame.mainFrame.bl.getLatest5MatchesForPlayer((PlayerPO) o);
 		}
 		else return;
-		String[] head = new String[]{"日期", "队伍", "", "比分", "", "", "", "", ""};
-		String[][] body = new String[matches.size()][9];
+		String[] head = new String[]{"赛季","日期", "队伍", "", "比分", ""};
+		String[][] body = new String[matches.size()][6];
+		for(int i = 0; i < matches.size(); i ++) {
+			MatchPO m = matches.get(i);
+			body[i][0] = m.getSeason().toString();
+			body[i][1] = m.getDate();
+			body[i][2] = m.getFirstTeam();
+			body[i][3] = m.getSecondTeam();
+			body[i][4] = Integer.toString(m.getFinalScore().getFirstScore());
+			body[i][5] = Integer.toString(m.getFinalScore().getSecondScore());
+		}
 		
-		
-		table = new SmallTable(
-				    new String[]{"11", "11", "11", "11"},
-				    new String[][] {
-				    		{"11", "11", "11", "11"},
-				    		{"11", "11", "11", "11"},
-				    		{"11", "11", "11", "11"},
-				    		{"11", "11", "11", "11"}});
+		table = new SmallTable(head, body);
 		table.head.setVisible(false);
 		table.remove(table.head);
 		table.setLayout(new GridLayout(table.getRowNum(), 1));
@@ -67,10 +72,24 @@ public class LastestGamePanel extends JPanel {
 	
 	private void addLink() {
 		for(int i = 0; i < table.getRowNum(); i ++) {
-			table.body[0][i].addMouseListener(new MouseAdapter() {
+			final int j = i;
+			table.body[0][j].addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					//MatchInfoDetailFrame m = new MatchInfoDetailFrame()
+					TableList t = table.body[0][j];			
+					Season s = Season.season12_13;
+					switch(t.elements[0].getText()) {
+					case "season12_13" : s = Season.season12_13; break;
+					case "season13_14" : s = Season.season13_14; break;
+					case "season14_15" : s = Season.season14_15; break;
+					default:
+					}
+					
+					MatchInfoDetailFrame m = new MatchInfoDetailFrame(
+							MainFrame.mainFrame.bl.findMatch(
+									s,
+									t.elements[1].getText(),
+									t.elements[2].getText() + "-" + t.elements[3].getText()));
 					
 				}
 			});

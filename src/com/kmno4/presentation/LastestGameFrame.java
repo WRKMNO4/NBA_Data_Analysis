@@ -43,11 +43,6 @@ public class LastestGameFrame extends JFrame {
 		
 		
 		setVisible(true);
-
-		@SuppressWarnings("unused")
-		MoveOfFrame m = new MoveOfFrame(this);
-		@SuppressWarnings("unused")
-		RightClickClose r = new RightClickClose(this);
 	}
 	
 	

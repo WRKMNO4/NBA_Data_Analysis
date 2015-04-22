@@ -218,7 +218,7 @@ public class TeamDetailPanel extends JPanel {
 
 	}
 
-	public synchronized static void fillIcon(JLabel head, String url, int width, int height) {
+	public static void fillIcon(JLabel head, String url, int width, int height) {
 		File pngBuffer = new File(bufferURL);
 		FileOutputStream fos = null;
 		try {
@@ -258,7 +258,7 @@ public class TeamDetailPanel extends JPanel {
 
 	}
 
-	public synchronized static void convertToPNG(String url, OutputStream os) {
+	public static void convertToPNG(String url, OutputStream os) {
 		File svg = new File(url);
 		Document doc = null;
 		try {

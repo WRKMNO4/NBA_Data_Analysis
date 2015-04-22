@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
 
 import PO.MatchPO;
+import PO.TeamListPO;
 
 import com.kmno4.common.Config;
 import com.kmno4.presentation.button.BorderLabel;
@@ -40,7 +41,7 @@ public class MatchInfoDetailPanel extends JPanel {
 		setLayout(layout);
 		c = new GridBagConstraints();
 		
-		team1 = new TeamPanel();
+		team1 = new TeamPanel(true);
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 3;
@@ -51,7 +52,7 @@ public class MatchInfoDetailPanel extends JPanel {
 		layout.setConstraints(team1, c);
 		add(team1);
 		
-		team2 = new TeamPanel();
+		team2 = new TeamPanel(false);
 		c.gridx = 0;
 		c.gridy = 2;
 		c.gridwidth = 3;
@@ -116,8 +117,8 @@ public class MatchInfoDetailPanel extends JPanel {
 	}
 	
 	private static final int 
-	    HEAD_ICON_WIDTH = 200,
-	    HEAD_ICON_HEIGHT = 200;
+	    HEAD_ICON_WIDTH = 250,
+	    HEAD_ICON_HEIGHT = 250;
 	
 	class TeamPanel extends JPanel {
 		private JLabel 
@@ -128,14 +129,18 @@ public class MatchInfoDetailPanel extends JPanel {
 		private boolean isScoreTable;
 		private GridBagLayout gbl;
 		private GridBagConstraints gbc;
-		public TeamPanel() {
+		public TeamPanel(boolean isFirstTeam) {
 			isScoreTable = true;
 			gbl = new GridBagLayout();
 			setLayout(gbl);
 			gbc = new GridBagConstraints();
 			
-			headLabel = new BorderLabel();
-			TeamDetailPanel.fillIcon(headLabel, "Data/matches/teams/BKN.svg", HEAD_ICON_WIDTH, HEAD_ICON_HEIGHT);
+			headLabel = new JLabel();
+			TeamDetailPanel.fillIcon(
+					headLabel,
+					isFirstTeam ? TeamListPO.findTeamByShortName(matchPO.getFirstTeam()).getTeamLogoURL() : TeamListPO.findTeamByShortName(matchPO.getSecondTeam()).getTeamLogoURL(),
+					HEAD_ICON_WIDTH,
+					HEAD_ICON_HEIGHT);
 			gbc.gridx = 0;
 			gbc.gridy = 0;
 			gbc.gridwidth = 1;
@@ -153,6 +158,7 @@ public class MatchInfoDetailPanel extends JPanel {
 			gbc.gridheight = 1;
 			gbc.weightx = 8;
 			gbc.weighty = 1;
+			gbc.fill = GridBagConstraints.BOTH;
 			gbl.setConstraints(blankLabel, gbc);
 			add(blankLabel);
 			

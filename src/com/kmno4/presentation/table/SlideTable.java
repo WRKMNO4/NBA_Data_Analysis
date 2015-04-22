@@ -67,6 +67,7 @@ public class SlideTable extends JPanel {
 		
 		right = new BorderLabel("→", JLabel.CENTER);
 		right.setBounds(x + left.getWidth(), left.getY(), FLIG_LABEL_WIDTH, (int)(table_unit_height * FLIG_LABEL_HEIGHT_RATE));
+		right.setEnabled(true);
 		right.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				if(!right.isEnabled()) return;
