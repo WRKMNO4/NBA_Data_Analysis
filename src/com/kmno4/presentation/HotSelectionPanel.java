@@ -27,7 +27,7 @@ import com.kmno4.presentation.calendarPanel.CalendarPanel;
 @SuppressWarnings("serial")
 public class HotSelectionPanel extends JPanel implements ActionListener{
 	JPanel playerPanel;
-	CalendarPanel calendarPanel;
+	public CalendarPanel calendarPanel;
 	JLabel
 	    lb_daily_player,
 	    lb_season_player,
@@ -44,7 +44,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 	    most_improve_season,
 	    most_improve_datatype;
 	
-		JTextField tf_date;
+//		JTextField tf_date;
 	
 
 	/**
@@ -76,9 +76,9 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 		initSeasonHotTeam();
 		initSeasonMostPlayer();
 		//
-		calendarPanel=new CalendarPanel(tf_date,"MM-dd");
+		calendarPanel=new CalendarPanel(lb_date,"MM-dd");
 		calendarPanel.initCalendarPanel();
-		
+		MainFrame.mainFrame.add(calendarPanel);
 		showDailyPlayer();
 		
 		lb_daily_player.addMouseListener(new MouseAdapter() {
@@ -106,7 +106,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 			}
 		});
 
-		tf_date.addActionListener(this);
+//		tf_date.addActionListener(this);
 		
 		daily_player_season.addActionListener(this);
 	    daily_player_datatype.addActionListener(this);
@@ -125,20 +125,23 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 				add(daily_player_season);
 				
 				daily_player_datatype = new JComboBox<String>(Config.STANDING_DAILYPLAYER_TYPE);
-				daily_player_datatype.setBounds(328, 73, 168, 27);
+				daily_player_datatype.setBounds(250, 73, 168, 27);
 				add(daily_player_datatype);
-				
-				lb_date = new JLabel("日期");
-				lb_date.setBounds(598, 77, 48, 16);
-				add(lb_date);
 				
 				//设置为当前日期
 				Date dt=new Date();//
 				DateFormat df = new SimpleDateFormat("MM-dd");
-				tf_date = new JTextField();
-				tf_date.setText(df.format(dt));
-				tf_date.setBounds(658, 71, 134, 28);
-				add(tf_date);
+				lb_date = new JLabel(df.format(dt));
+				lb_date.setBackground(Color.blue);
+				lb_date.setForeground(Color.white);
+				lb_date.setBounds(500, 77, 48, 16);
+				add(lb_date);
+				
+				
+//				tf_date = new JTextField();
+//				tf_date.setText(df.format(dt));
+//				tf_date.setBounds(658, 71, 134, 28);
+//				add(tf_date);
 	}
 	
 	public void initSeasonMostPlayer(){
@@ -147,27 +150,27 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 		add(season_hot_player_season);
 		
 		season_hot_player_datetype = new JComboBox(Config.STANDING_SEASONPLAYER_TYPE);
-		season_hot_player_datetype.setBounds(328, 73, 168, 27);
+		season_hot_player_datetype.setBounds(250, 73, 168, 27);
 		add(season_hot_player_datetype);
 	}
 	
 	public void initSeasonHotTeam(){
 		season_hot_team_season = new JComboBox(Config.Seasons);
-		season_hot_team_season.setBounds(95, 74, 166, 27);
+		season_hot_team_season.setBounds(45, 73, 168, 27);
 		add(season_hot_team_season);
 		
 		season_hot_team_datatype = new JComboBox(Config.STANDING_SEASONTEAM_TYPE);
-		season_hot_team_datatype.setBounds(365, 74, 166, 27);
+		season_hot_team_datatype.setBounds(250, 73, 168, 27);
 		add(season_hot_team_datatype);
 	}
 	
 	public void initMostProvementPlayer(){
 		most_improve_season = new JComboBox(Config.Seasons);
-		most_improve_season.setBounds(95, 74, 166, 27);
+		most_improve_season.setBounds(45, 73, 168, 27);
 		add(most_improve_season);
 		
 		most_improve_datatype = new JComboBox(Config.STANDING_IMPROVED_TYPE);
-		most_improve_datatype.setBounds(365, 74, 166, 27);
+		most_improve_datatype.setBounds(250, 73, 168, 27);
 		add(most_improve_datatype);
 	}
 	
@@ -182,11 +185,13 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 	    season_hot_team_datatype.setVisible(false);
 	    most_improve_season.setVisible(false);
 	    most_improve_datatype.setVisible(false);	
-	    tf_date.setVisible(true);
+//	    tf_date.setVisible(false);
+	    
+	    calendarPanel.setVisible(false);
 	}
 	
 	public void showSeasonTeam(){
-		 lb_date.setVisible(false);
+		 	lb_date.setVisible(false);
 		    daily_player_season.setVisible(false);
 		    daily_player_datatype.setVisible(false);
 		    season_hot_player_season.setVisible(false);
@@ -195,11 +200,14 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 		    season_hot_team_datatype.setVisible(true);
 		    most_improve_season.setVisible(false);
 		    most_improve_datatype.setVisible(false);	
-		    tf_date.setVisible(false);
+//		    tf_date.setVisible(false);
+		    
+		    calendarPanel.setVisible(false);
+
 	}
 	
 	public void showDailyPlayer(){
-		 lb_date.setVisible(true);
+		 	lb_date.setVisible(true);
 		    daily_player_season.setVisible(true);
 		    daily_player_datatype.setVisible(true);
 		    season_hot_player_season.setVisible(false);
@@ -208,11 +216,14 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 		    season_hot_team_datatype.setVisible(false);
 		    most_improve_season.setVisible(false);
 		    most_improve_datatype.setVisible(false);	
-		    tf_date.setVisible(false);
+//		    tf_date.setVisible(true);
+		    
+		    calendarPanel.setVisible(false);
+
 	}
 	
 	public void showMostProvementPlayer(){
-		 lb_date.setVisible(false);
+			lb_date.setVisible(false);
 		    daily_player_season.setVisible(false);
 		    daily_player_datatype.setVisible(false);
 		    season_hot_player_season.setVisible(false);
@@ -221,7 +232,9 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 		    season_hot_team_datatype.setVisible(false);
 		    most_improve_season.setVisible(true);
 		    most_improve_datatype.setVisible(true);	
-		    tf_date.setVisible(false);
+//		    tf_date.setVisible(false);
+		    
+		    calendarPanel.setVisible(false);
 	}
 
 	public void paintComponent(Graphics g){
@@ -237,7 +250,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 		if(e.getSource()==daily_player_season||e.getSource()==daily_player_datatype){
 			Season season=TransferSortHelper.StringToSeason(daily_player_season.getSelectedItem().toString());
 			PlayerData type=TransferSortHelper.StringToDataTypeForPlayer(daily_player_datatype.getSelectedItem().toString());
-			String date=tf_date.getText();	
+			String date=lb_date.getText();	
 		}
 		if(e.getSource()==season_hot_player_season||e.getSource()==season_hot_player_datetype){
 			Season season=TransferSortHelper.StringToSeason(season_hot_player_season.getSelectedItem().toString());
@@ -250,8 +263,10 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 		if(e.getSource()==most_improve_season||e.getSource()==most_improve_datatype){
 			Season season=TransferSortHelper.StringToSeason(most_improve_season.getSelectedItem().toString());
 			PlayerData type=TransferSortHelper.StringToDataTypeForPlayer(most_improve_datatype.getSelectedItem().toString());
-		}
-		
+		}		
+//		if(e.getSource()==this){
+//			calendarPanel.setVisible(false);
+//		}		
 	}
 
 }

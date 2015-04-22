@@ -61,11 +61,7 @@ public class MainFrame extends JFrame implements MouseListener{
 		MoveOfFrame m = new MoveOfFrame(this);
 	}
 
-	public void initPanel(){
-		topTabPanel=new TopTabPanel();
-		this.add(topTabPanel);
-		pageInfoPanel=new PageInfoPanel("球员");
-		this.add(pageInfoPanel);
+	public void initPanel(){		
 		playerSelectionPanel=new PlayerSelectionPanel();
 		this.add(playerSelectionPanel);
 		teamSelectionPanel=new TeamSelectionPanel();
@@ -74,7 +70,10 @@ public class MainFrame extends JFrame implements MouseListener{
 		this.add(matchSelectionPanel);
 		hotSelectionPanel=new HotSelectionPanel();
 		this.add(hotSelectionPanel);
-
+		topTabPanel=new TopTabPanel();
+		this.add(topTabPanel);	
+		pageInfoPanel=new PageInfoPanel("球员");
+		this.add(pageInfoPanel);
 		topTabPanel.ini();
 	}
 	

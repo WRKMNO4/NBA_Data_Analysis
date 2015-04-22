@@ -149,7 +149,7 @@ public class Config {
 	public static final ImageIcon TEAM_SELECTION=new ImageIcon("images/select_team.png");
 	
 	
-	public static final ImageIcon HOT_SELECTION_BACKGROUND=new ImageIcon("images/hot_selectino_bg.png");
+	public static final ImageIcon HOT_SELECTION_BACKGROUND=new ImageIcon("images/hot_selection_bg.png");
 	
 	public static ArrayList<ImageIcon> getLoadingMotions(){
 		for(int i=1;i<100;i++){
