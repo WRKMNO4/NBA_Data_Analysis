@@ -451,7 +451,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			final int j = i;
 			t[j].addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
-					new PlayerDetailFrame(TeamListPO.findTeamByFullName(tableBeShowing.body[0][j].elements[0].getText()));
+					new TeamDetailFrame(TeamListPO.findTeamByFullName(tableBeShowing.body[0][j].elements[0].getText()));
 				}
 			});
 		}
