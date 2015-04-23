@@ -73,6 +73,9 @@ public class PlayerController implements PlayerBusinessLogic{
 	@Override
 	public ArrayList<StandingDataPO> getDatasOfDailyStandingPlayers(Season season, String date, PlayerData dataType) {
 		// TODO Auto-generated method stub
+		//transfer the date format
+		date = date.substring(5,7) + "-" + date.substring(8,10);
+		
 		ArrayList<MatchPO> matches = SeasonListPO.getMatchesOfOneDay(season,date);
 		if(matches.size()==0)
 			return null;
