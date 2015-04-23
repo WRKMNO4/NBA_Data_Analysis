@@ -372,7 +372,7 @@ public class CalendarPanel extends JPanel {
   lb_datetime.setText(nowDatetime);
   
   lblNewLabel = new JLabel("日");
-  lblNewLabel.setForeground(Color.RED);
+  lblNewLabel.setForeground(Color.WHITE);
   lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
   lblNewLabel.setBounds(2, 22, 27, 23);
   add(lblNewLabel);
@@ -403,7 +403,7 @@ public class CalendarPanel extends JPanel {
   add(label_4);
   
   label_5 = new JLabel("六");
-  label_5.setForeground(Color.GREEN);
+  label_5.setForeground(Color.WHITE);
   label_5.setHorizontalAlignment(SwingConstants.CENTER);
   label_5.setBounds(221, 22, 27, 23);
   add(label_5);
