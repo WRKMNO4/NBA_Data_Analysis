@@ -123,7 +123,7 @@ public class Config {
 	public static final int TEAM_ICON_HEIGHT = 315;
 	
 	//所有图片
-	public static final ImageIcon FRAME_BACKGROUND=new ImageIcon("images/bg.png");
+	public static final ImageIcon FRAME_BACKGROUND=new ImageIcon("images/bg2.png");
 		//tabPanel Label切换图片
 	public static final ImageIcon TAB_PLAYER_CLICKED=new ImageIcon("images/tab_player_clicked.png");
 	public static final ImageIcon TAB_TEAM_CLICKED=new ImageIcon("images/tab_team_clicked.png");
