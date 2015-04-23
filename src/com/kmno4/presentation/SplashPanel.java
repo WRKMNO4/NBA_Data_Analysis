@@ -82,5 +82,8 @@ public class SplashPanel extends JPanel {
 		}
 	}
 	
+	public JLabel getBg() {
+		return bg;
+	}
 
 }
