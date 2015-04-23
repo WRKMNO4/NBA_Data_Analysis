@@ -198,31 +198,31 @@ public class PlayerDetailPanel extends JPanel {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				// TODO Auto-generated method stub
-				SlideTable t;
-				if(sumInfo.isVisible()) t = sumInfo;
-				else t = avgInfo;
-				sumInfo.setVisible(false);
-				avgInfo.setVisible(false);
-				remove(t);
-				if(seasonBox.getSelectedIndex() == 0) {
-					System.out.println("000");
-					sumInfoIni(Season.season12_13);
-					avgInfoIni(Season.season12_13);
-				}
-				else if(seasonBox.getSelectedIndex() == 1) {
-					System.out.println("111");
-					sumInfoIni(Season.season13_14);
-					avgInfoIni(Season.season13_14);
-				}
-				else {
-					sumInfoIni(Season.season14_15);
-					avgInfoIni(Season.season14_15);
-				}
-				t.setVisible(true);
-				add(t);
-				layout.setConstraints(t, c);
-				
-				MainFrame.mainFrame.repaint();
+//				SlideTable t;
+//				if(sumInfo.isVisible()) t = sumInfo;
+//				else t = avgInfo;
+//				sumInfo.setVisible(false);
+//				avgInfo.setVisible(false);
+//				remove(t);
+//				if(seasonBox.getSelectedIndex() == 0) {
+//					System.out.println("000");
+//					sumInfoIni(Season.season12_13);
+//					avgInfoIni(Season.season12_13);
+//				}
+//				else if(seasonBox.getSelectedIndex() == 1) {
+//					System.out.println("111");
+//					sumInfoIni(Season.season13_14);
+//					avgInfoIni(Season.season13_14);
+//				}
+//				else {
+//					sumInfoIni(Season.season14_15);
+//					avgInfoIni(Season.season14_15);
+//				}
+//				t.setVisible(true);
+//				add(t);
+//				layout.setConstraints(t, c);
+//				
+//				MainFrame.mainFrame.repaint();
 			}
 			
 		});
