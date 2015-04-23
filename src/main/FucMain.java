@@ -61,12 +61,13 @@ public class FucMain {
 				/* 设置JFrame */
 				GFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				GFrame.setUndecorated(true);
-				Toolkit kit = Toolkit.getDefaultToolkit();
-				Dimension screensize = kit.getScreenSize();
-				int screenheight = screensize.height;
-				int screenwidth = screensize.width;
-				GFrame.setLocation(screenwidth / 8, screenheight / 8);
+				//Toolkit kit = Toolkit.getDefaultToolkit();
+				//Dimension screensize = kit.getScreenSize();
+				//int screenheight = screensize.height;
+				//int screenwidth = screensize.width;
+				//GFrame.setLocation(screenwidth / 8, screenheight / 8);
 				GFrame.setSize(Config.UI_WIDTH, Config.UI_HEIGHT);
+				GFrame.setLocationRelativeTo(null);
 				GFrame.setVisible(true);
 				GFrame.add(DPanel); // 在JFrame中加入DPanel
 				DPanel.launch();
@@ -91,13 +92,14 @@ public class FucMain {
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.setResizable(false);
 				// 获取屏幕宽高
-				Toolkit kit = Toolkit.getDefaultToolkit();
-				Dimension screensize = kit.getScreenSize();
-				int screenheight = screensize.height;
-				int screenwidth = screensize.width;
+				//Toolkit kit = Toolkit.getDefaultToolkit();
+				//Dimension screensize = kit.getScreenSize();
+				//int screenheight = screensize.height;
+				//int screenwidth = screensize.width;
 
 				frame.setSize(Config.UI_WIDTH, Config.UI_HEIGHT);
-				frame.setLocation(screenwidth / 8, screenheight / 8);
+				//frame.setLocation(screenwidth / 8, screenheight / 8);
+				frame.setLocationRelativeTo(null);
 				MainFrame.mainFrame.playerSelectionPanel.setBounds(0,
 						Config.TOP_TAB_HEIGHT + Config.INTRODUCTION_WHITE,
 						Config.UI_WIDTH, Config.SELECTION_HEIGHT);

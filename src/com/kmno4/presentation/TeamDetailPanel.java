@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -16,6 +18,7 @@ import java.io.OutputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -38,6 +41,7 @@ public class TeamDetailPanel extends JPanel {
 	private TeamDetailPanel teamDetailPanel;
 	private TeamDetailFrame teamDetailFrame;
 	private JLabel team_icon, team_name, team_recent_game, team_achi, avg, sum;
+	private JComboBox<String> seasonBox;
 	private SmallTable mainInfo;
 	private SlideTable sumInfo, avgInfo;
 	private GridBagLayout layout;
@@ -61,7 +65,7 @@ public class TeamDetailPanel extends JPanel {
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 1;
-		c.gridheight = 3;
+		c.gridheight = 4;
 		c.weightx = 4;
 		c.weighty = 4;
 		c.fill = GridBagConstraints.BOTH;
@@ -120,6 +124,27 @@ public class TeamDetailPanel extends JPanel {
 		layout.setConstraints(team_achi, c);
 		add(team_achi);
 
+		seasonBox = new JComboBox<String>(Config.Seasons);
+		seasonBox.setFont(new Font("default", Font.PLAIN, 11));
+		seasonBox.setSelectedIndex(1);
+		c.gridx = 3;
+		c.gridy = 3;
+		c.gridwidth = 1;
+		c.gridheight = 1;
+		c.weightx = 1;
+		c.weighty = 1;
+		c.fill = GridBagConstraints.NONE;
+		c.anchor = GridBagConstraints.SOUTHEAST;
+		layout.setConstraints(seasonBox, c);
+		add(seasonBox);
+		seasonBox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 		sum = new JLabel("总计", JLabel.CENTER);
 		sum.addMouseListener(new MouseAdapter() {
 			@Override
@@ -136,9 +161,9 @@ public class TeamDetailPanel extends JPanel {
 				teamDetailFrame.repaint();
 			}
 		});
-		sum.setFont(new Font("default", Font.BOLD, 15));
+		//sum.setFont(new Font("default", Font.BOLD, 15));
 		c.gridx = 4;
-		c.gridy = 2;
+		c.gridy = 3;
 		c.gridwidth = 1;
 		c.gridheight = 1;
 		c.weightx = 1;
@@ -165,7 +190,7 @@ public class TeamDetailPanel extends JPanel {
 				teamDetailFrame.repaint();
 			}
 		});
-		avg.setFont(new Font("default", Font.BOLD, 15));
+		//avg.setFont(new Font("default", Font.BOLD, 15));
 		c.gridx = 5;
 		layout.setConstraints(avg, c);
 		add(avg);
@@ -189,17 +214,17 @@ public class TeamDetailPanel extends JPanel {
 		c.weightx = 6;
 		c.weighty = 1;
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.anchor = GridBagConstraints.NORTH;
+		c.anchor = GridBagConstraints.WEST;
 		layout.setConstraints(mainInfo, c);
 		add(mainInfo);
 
 		sumInfo = new SlideTable(
 				Config.TEAM_TOTAL_INFO,
 				TableContentTransfer.transferTeamTotalInfo(
-						Config.TEAM_TOTAL_INFO.length, this.teamPO, 1),
-				50, 70, Config.PLAYER_DETAIL_UI_WIDTH);
+						Config.TEAM_TOTAL_INFO.length, this.teamPO, Config.LASTEST_SEASON),
+				70, 50, Config.PLAYER_DETAIL_UI_WIDTH);
 		c.gridx = 0;
-		c.gridy = 3;
+		c.gridy = 4;
 		c.gridwidth = 6;
 		c.gridheight = 1;
 		c.weightx = 12;
@@ -207,12 +232,14 @@ public class TeamDetailPanel extends JPanel {
 		c.fill = GridBagConstraints.BOTH;
 		layout.setConstraints(sumInfo, c);
 		add(sumInfo);
+		sumInfo.setFont(new Font("default", Font.PLAIN, 12), new Font("default", Font.PLAIN, 11), null);
 
 		avgInfo = new SlideTable(
 				Config.TEAM_AVERAGE_INFO,
 				TableContentTransfer.transferTeamAvgInfo(
-						Config.TEAM_AVERAGE_INFO.length, this.teamPO, 1),
-				50, 70, Config.PLAYER_DETAIL_UI_WIDTH);
+						Config.TEAM_AVERAGE_INFO.length, this.teamPO, Config.LASTEST_SEASON),
+				70, 50, Config.PLAYER_DETAIL_UI_WIDTH);
+		avgInfo.setFont(new Font("default", Font.PLAIN, 12), new Font("default", Font.PLAIN, 11), null);
 		// layout.setConstraints(avgInfo, c);
 		// add(avgInfo);
 

@@ -1,20 +1,25 @@
 package com.kmno4.presentation;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
 import PO.MatchPO;
+import PO.PlayerDataOfOneMatchPO;
+import PO.PlayerListPO;
 import PO.TeamListPO;
 
 import com.kmno4.common.Config;
 import com.kmno4.presentation.button.BorderLabel;
 import com.kmno4.presentation.table.SlideTable;
 import com.kmno4.presentation.table.SmallTable;
+import com.kmno4.presentation.table.TableList;
 
 import javax.swing.JLabel;
 
@@ -36,7 +41,7 @@ public class MatchInfoDetailPanel extends JPanel {
 		matchInfoDetailFrame = f;
 		matchPO = p;
 		setBounds(0, 0, f.getWidth(), f.getHeight());
-		setBackground(new Color(255, 255, 255, 0));
+		setBackground(Color.white);
 		layout = new GridBagLayout();
 		setLayout(layout);
 		c = new GridBagConstraints();
@@ -117,8 +122,8 @@ public class MatchInfoDetailPanel extends JPanel {
 	}
 	
 	private static final int 
-	    HEAD_ICON_WIDTH = 250,
-	    HEAD_ICON_HEIGHT = 250;
+	    HEAD_ICON_WIDTH = 290,
+	    HEAD_ICON_HEIGHT = 290;
 	
 	class TeamPanel extends JPanel {
 		private JLabel 
@@ -129,11 +134,17 @@ public class MatchInfoDetailPanel extends JPanel {
 		private boolean isScoreTable;
 		private GridBagLayout gbl;
 		private GridBagConstraints gbc;
+		
+		private boolean isFirstTeam;
 		public TeamPanel(boolean isFirstTeam) {
+			this.isFirstTeam = isFirstTeam;
+			setBackground(Color.white);
 			isScoreTable = true;
 			gbl = new GridBagLayout();
 			setLayout(gbl);
 			gbc = new GridBagConstraints();
+			gbc_data = new GridBagConstraints();
+			gbc_score = new GridBagConstraints();
 			
 			headLabel = new JLabel();
 			TeamDetailPanel.fillIcon(
@@ -142,11 +153,11 @@ public class MatchInfoDetailPanel extends JPanel {
 					HEAD_ICON_WIDTH,
 					HEAD_ICON_HEIGHT);
 			gbc.gridx = 0;
-			gbc.gridy = 0;
+			gbc.gridy = 0;	
 			gbc.gridwidth = 1;
 			gbc.gridheight = 2;
-			gbc.weightx = 3;
-			gbc.weighty = 2;
+			gbc.weightx = 2;
+			gbc.weighty = 1;
 			gbc.fill = GridBagConstraints.BOTH;
 			gbl.setConstraints(headLabel, gbc);
 			add(headLabel);
@@ -162,26 +173,54 @@ public class MatchInfoDetailPanel extends JPanel {
 			gbl.setConstraints(blankLabel, gbc);
 			add(blankLabel);
 			
-			scoreTable = new SmallTable(new String[]{"第一节", "第二节", "第三节", "第四节", "总计"}, 
-					new String[][]{{"10", "20", "30", "40", "100"}});
-			gbc.gridx = 1;
-			gbc.gridy = 1;
-			gbc.gridwidth = 1;
-			gbc.gridheight = 1;
-			gbc.weightx = 8;
-			gbc.weighty = 0.5;
-			gbc_score = (GridBagConstraints)gbc.clone();
+			String[] score_head;
+			String[][] score_body;
+			score_head = new String[matchPO.getAllScore().size()];
+			score_head[0] = new String("第1节");
+			score_head[1] = new String("第2节");
+			score_head[2] = new String("第3节");
+			score_head[3] = new String("第4节");
+			if(score_head.length > 4) {
+				for(int i = 4; i < score_head.length; i ++) {
+					score_head[i] = new String("加时第" + (i - 3) + "节");
+				}
+			}
+			score_body = TableContentTransfer.transferMatchScores(
+					matchPO.getAllScore(),
+					matchPO.getAllScore().size(),
+					isFirstTeam ? 1 : 2);
+			scoreTable = new SmallTable(score_head, score_body);
+			scoreTable.setFont(new Font("default", Font.PLAIN, 17), new Font("default", Font.PLAIN, 15));
+			gbc_score.gridx = 1;
+			gbc_score.gridy = 1;
+			gbc_score.gridwidth = 1;
+			gbc_score.gridheight = 1;
+			gbc_score.weightx = 8;
+			gbc_score.weighty = 0.5;
+			gbc_score.fill = GridBagConstraints.HORIZONTAL;
 			gbl.setConstraints(scoreTable, gbc_score);
 			add(scoreTable);
 			
-			gbc_data = (GridBagConstraints) gbc.clone();
-			gbc_data.weighty = 3;
+			
+			String[][] data_body;
+			ArrayList<PlayerDataOfOneMatchPO> pd;
+			if(isFirstTeam) pd = matchPO.getFirstTeam_PlayerData();
+			else pd = matchPO.getSecondTeam_PlayerData();
+			data_body = TableContentTransfer.transferMatchDetailInfo(pd, Config.MATCH_DETAIL_INFO.length);
+			System.out.println(data_body[0].length + "   " + Config.MATCH_DETAIL_INFO.length);
 			dataTable = new SlideTable(
-					new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"}, 
-					new String[][]{{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"},
-					               {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"},
-					               {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"}},
-					50, 50, Config.MATCH_DETAIL_WIDTH - HEAD_ICON_WIDTH);
+					Config.MATCH_DETAIL_INFO, 
+					data_body,
+					70, 50, Config.MATCH_DETAIL_WIDTH - HEAD_ICON_WIDTH);
+			dataTable.setFont(new Font("default", Font.PLAIN, 15), new Font("default", Font.PLAIN, 15), null);
+			gbc_data.gridx = 1;
+			gbc_data.gridy = 1;
+			gbc_data.gridwidth = 1;
+			gbc_data.gridheight = 1;
+			gbc_data.weightx = 8;
+			gbc_data.weighty = 30;
+			gbc_data.fill = GridBagConstraints.HORIZONTAL;
+			
 			dataTable.setVisible(false);
 			
 			addTeamLink();
@@ -214,13 +253,30 @@ public class MatchInfoDetailPanel extends JPanel {
 			headLabel.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					//TODO
+					if(isFirstTeam) 
+						new TeamDetailFrame(TeamListPO.findTeamByShortName(matchPO.getFirstTeam()));
+					else
+						new TeamDetailFrame(TeamListPO.findTeamByShortName(matchPO.getSecondTeam()));
 				}
 			});
 		}
 		private void addPlayerLink() {
-			//TODO
+			TableList[] t = dataTable.table.body[0];
+			for(int i = 0; i < t.length; i ++) {
+				final int j = i;
+				t[j].addMouseListener(new MouseAdapter() {
+					public void mouseClicked(MouseEvent e) {
+						new PlayerDetailFrame(PlayerListPO.findPlayerAccurately(t[j].elements[0].getText()));
+					}
+				});
+			}
+			
 		}
+		
+		
+		
+		
+		
 		
 	}
 

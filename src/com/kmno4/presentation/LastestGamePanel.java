@@ -1,6 +1,6 @@
 package com.kmno4.presentation;
 
-import java.awt.GridLayout;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class LastestGamePanel extends JPanel {
 	}
 	
 	private void iniFrameSize(LastestGameFrame frame) {
-		frame.setSize(Config.LASTEST_GAME_FRAME_WIDTH, Config.LASTEST_GAME_FRAME_UNIT_HEIGHT * matches.size());
+		frame.setSize(Config.LASTEST_GAME_FRAME_WIDTH, Config.LASTEST_GAME_FRAME_HEIGHT);
 		setSize(frame.getWidth(), frame.getHeight());
 	}
 	
@@ -62,9 +62,10 @@ public class LastestGamePanel extends JPanel {
 		}
 		
 		table = new SmallTable(head, body);
-		table.head.setVisible(false);
-		table.remove(table.head);
-		table.setLayout(new GridLayout(table.getRowNum(), 1));
+		table.setFont(new Font("default", Font.PLAIN, 15), new Font("default", Font.PLAIN, 15));
+		//table.head.setVisible(false);
+		//table.remove(table.head);
+		//table.setLayout(new GridLayout(table.getRowNum(), 1));
 		addLink();
 		add(table);
 		

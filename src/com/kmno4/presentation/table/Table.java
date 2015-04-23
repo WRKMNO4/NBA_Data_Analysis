@@ -69,7 +69,7 @@ public class Table extends JPanel {
 		if(headFont != null) head.setFont(headFont);
 		if(bodyFont != null) {
 			for(int i = 0; i < body.length; i ++) {
-				for (int j = 0; j > body[0].length; j ++)
+				for (int j = 0; j < body[0].length; j ++)
 					body[i][j].setFont(bodyFont);
 			}
 		}

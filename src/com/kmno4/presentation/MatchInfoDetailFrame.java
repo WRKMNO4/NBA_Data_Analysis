@@ -1,5 +1,7 @@
 package com.kmno4.presentation;
 
+import java.awt.Color;
+
 import javax.swing.JFrame;
 
 import PO.MatchPO;
@@ -14,10 +16,12 @@ public class MatchInfoDetailFrame extends JFrame {
 	public MatchInfoDetailPanel matchInfoDetailPanel;
 	
 	public MatchInfoDetailFrame(MatchPO matchPO) {
-		setBounds(0, 0, Config.MATCH_DETAIL_WIDTH, Config.MATCH_DETAIL_HEIGHT);
+		setSize(Config.MATCH_DETAIL_WIDTH, Config.MATCH_DETAIL_HEIGHT);
 		setLayout(null);
 		setUndecorated(true);
+		setBackground(Color.white);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setLocationRelativeTo(null);
 		
 		matchInfoDetailPanel = new MatchInfoDetailPanel(matchPO, this);
 		add(matchInfoDetailPanel);

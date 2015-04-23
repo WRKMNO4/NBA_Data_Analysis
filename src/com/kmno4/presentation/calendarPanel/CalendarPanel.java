@@ -2,8 +2,8 @@ package com.kmno4.presentation.calendarPanel;
 
 
 import java.net.UnknownHostException;
-
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.TextField;
@@ -25,6 +25,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.tools.JavaCompiler;
+
+import com.kmno4.common.Config;
 
 public class CalendarPanel extends JPanel {
 
@@ -166,6 +168,7 @@ public class CalendarPanel extends JPanel {
 
 		// 创建新的日期部分的面板
 		panel_maincalenderpanel = new JPanel();
+		panel_maincalenderpanel.setOpaque(true);
 		panel_maincalenderpanel.setBackground(Color.WHITE);
 		panel_maincalenderpanel.setBounds(2, 47, 247, 156);
 		panel_maincalenderpanel.setLayout(new GridLayout(6, 7));
@@ -428,9 +431,45 @@ public class CalendarPanel extends JPanel {
   btn_today.addActionListener(new ActionListener() {
    @Override
    public void actionPerformed(ActionEvent e) {
-    createCalendarPanle(nowDatetime); 
-    lb_datetime.setText(nowDatetime);
-   }
+	   String dateStr = nowDatetime;
+		try {
+//			dateStr = sdf.format(sdf.parse(dateStr));
+//			dateStr = dateStr.substring(0, dateStr.length() - 2);
+			if (component instanceof java.awt.TextField) {
+				TextField txt = (TextField) component;
+				txt.setText(dateStr);
+			}
+			if (component instanceof java.awt.Label) {
+				Label label = (Label) component;
+				label.setText(dateStr);
+
+			}
+			if (component instanceof javax.swing.JTextField) {
+				JTextField txt = (JTextField) component;
+				txt.setText(dateStr);
+
+			}
+			if (component instanceof javax.swing.JLabel) {
+				JLabel label = (JLabel) component;
+				label.setText(dateStr);
+			}
+
+		} catch (Exception e2) {
+			e2.printStackTrace();
+		}
+
+		// 为了能够让那个载体组件自用空，这里也需要设置returnDateStr并调用回调接口
+		returnDateStr = dateStr;
+		if (callBack != null) {
+			callBack.callback();
+		}
+
+		// 选择日期后需要将日历控件隐藏
+		CalendarPanel.this.setVisible(false);
+
+	}
+//    createCalendarPanle(nowDatetime); 
+//    lb_datetime.setText(nowDatetime);   
   });
   
   
@@ -501,8 +540,8 @@ public class CalendarPanel extends JPanel {
 			int h = j.getHeight();
 			int x = j.getX();
 			int y = j.getY();
-			System.out.println("with:" + w + "height:" + h + "x:" + x + "y:"
-					+ y);
+//			System.out.println("with:" + w + "height:" + h + "x:" + x + "y:"
+//					+ y);
 			this.setComponent(component);
 			this.setBounds((x), y + h, 251, 245);
 			this.setVisible(false);
@@ -518,6 +557,12 @@ public class CalendarPanel extends JPanel {
 				}
 			});
 		}
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		// TODO Auto-generated method stub
+		g.drawImage(Config.CALENDAR_BACKGROUND.getImage(), 0,0, 251, 245, null);
 	}
 
 }

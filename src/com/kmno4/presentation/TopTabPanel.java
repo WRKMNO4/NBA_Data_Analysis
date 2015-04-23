@@ -2,6 +2,7 @@ package com.kmno4.presentation;
 
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -12,15 +13,20 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Enum.PlayerData;
+import Enum.Season;
+import Enum.TeamData;
 import PO.MatchListPO;
 import PO.MatchPO;
 import PO.PlayerListPO;
 import PO.PlayerPO;
+import PO.StandingDataPO;
 import PO.TeamListPO;
 import PO.TeamPO;
 
 import com.kmno4.common.Config;
 import com.kmno4.presentation.button.ExitLabel;
+import com.kmno4.presentation.table.SmallTable;
 import com.kmno4.presentation.table.Table;
 import com.kmno4.presentation.table.TableList;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
@@ -141,7 +147,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.teamSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		MainFrame.mainFrame.hotSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		
-		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.Player.toString());
+		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.球员信息.toString());
 		
 		refreshPlayerTable(MainFrame.mainFrame.players);
 		MainFrame.mainFrame.repaint();
@@ -154,7 +160,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.playerSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
 				Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		MainFrame.mainFrame.matchSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
-		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.Team.toString());
+		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.球队信息.toString());
 		
 		refreshTeamTable(MainFrame.mainFrame.teams);
 		MainFrame.mainFrame.repaint();
@@ -168,9 +174,9 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.teamSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		MainFrame.mainFrame.hotSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		
-		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.Match.toString());
+		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.比赛信息.toString());
 		
-		refreshMatchTable(MainFrame.mainFrame.matches);
+		refreshMatchTable(MainFrame.mainFrame.bl.getAllMatches(Config.LASTEST_SEASON));
 		MainFrame.mainFrame.repaint();
 	}
 	
@@ -181,13 +187,14 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.teamSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		MainFrame.mainFrame.hotSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		
+		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.热点信息.toString());
 		
-		refreshDailyPlayerTable();
+		refreshDailyPlayerTable(null, null, null);
 		MainFrame.mainFrame.repaint();
 		
 	}
 	
-	public void showAboutUsInfo(){
+	public void showAboutUsInfo(){ 
 		
 	}
 	
@@ -197,7 +204,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(Config.TOP_TAB_BACKGROUND.getImage(), 0, 0,Config.UI_WIDTH,Config.TOP_TAB_HEIGHT,this);
-	}
+	} 
 	
 	/**
 	 * 每次调用即刷新player列表
@@ -208,6 +215,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			tableBeShowing.setVisible(false);
 			MainFrame.mainFrame.remove(tableBeShowing);
 		}
+		if(players == null || players.size() == 0) return;
 		tableBeShowing = new Table(
 			Config.PLAYER_BASIC_INFO,
 			TableContentTransfer.transferPlayerBasicInfo(Config.PLAYER_BASIC_INFO.length, players));
@@ -224,6 +232,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			tableBeShowing.setVisible(false);
 			MainFrame.mainFrame.remove(tableBeShowing);
 		}
+		if(teams == null || teams.size() == 0) return;
 		tableBeShowing = new Table(
 				Config.TEAM_BASIC_INFO, 
 				TableContentTransfer.transferTeamBasicInfo(Config.TEAM_BASIC_INFO.length, teams));
@@ -239,16 +248,76 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			tableBeShowing.setVisible(false);
 			MainFrame.mainFrame.remove(tableBeShowing);
 		}
-		tableBeShowing = new Table(Config.MATCH_INFO, TableContentTransfer.transferMatchInfo(Config.MATCH_INFO.length, matches));
+		if(matches == null || matches.size() == 0) return;
+		tableBeShowing = new Table(Config.MATCH_BASIC_INFO, TableContentTransfer.transferMatchBasicInfo(Config.MATCH_BASIC_INFO.length, matches));
 		setTableBounds();
 		MainFrame.mainFrame.add(tableBeShowing);
 		addMatchLink();
 	}
 	
-	public void refreshDailyPlayerTable() {}
-	public void refreshSeasonPlayerTable() {}
-	public void refreshImprovePlayerTable() {}
-	public void refreshSeasonTeamTable() {}
+	public void refreshDailyPlayerTable(Season season, String date, PlayerData dataType) {
+		if(tableBeShowing != null) {
+			tableBeShowing.setVisible(false);
+			MainFrame.mainFrame.remove(tableBeShowing);
+		}
+		if(season == null || date == null || dataType == null) return;
+		ArrayList<StandingDataPO> sps = MainFrame.mainFrame.bl.getDatasOfDailyStandingPlayers(season, date, dataType);
+		if(sps == null || sps.size() == 0) return;
+		tableBeShowing = new SmallTable(
+				Config.STANDING_DAILYPLAYER_TABLEHEAD,
+				TableContentTransfer.transferStandingDailyPlayerInfo(
+						Config.STANDING_DAILYPLAYER_TABLEHEAD.length,
+						sps));
+		setTableBounds();
+		MainFrame.mainFrame.add(tableBeShowing);
+		addDailyPlayerLink();
+		
+	}
+	public void refreshSeasonPlayerTable(Season season, PlayerData dataType) {
+		if(tableBeShowing != null) {
+			tableBeShowing.setVisible(false);
+			MainFrame.mainFrame.remove(tableBeShowing);
+		}
+		if(season == null || dataType == null) return;
+		tableBeShowing = new SmallTable(
+				Config.STANDING_SEASONPLAYER_TABLEHEAD,
+				TableContentTransfer.transferStandingSeasonPlayerInfo(
+						Config.STANDING_SEASONPLAYER_TABLEHEAD.length,
+						MainFrame.mainFrame.bl.getSeasonStandingPlayer(season, dataType), season, dataType));
+		setTableBounds();
+		MainFrame.mainFrame.add(tableBeShowing);
+		addSeasonPlayerLink();
+	}
+	public void refreshImprovePlayerTable(Season season, PlayerData dataType) {
+		if(tableBeShowing != null) {
+			tableBeShowing.setVisible(false);
+			MainFrame.mainFrame.remove(tableBeShowing);
+		}
+		if(season == null || dataType == null) return;
+		tableBeShowing = new SmallTable(
+				Config.STANDING_IMPROVE_TABLEHEAD,
+				TableContentTransfer.transferStandingImprovedInfo(
+						Config.STANDING_IMPROVE_TABLEHEAD.length,
+						MainFrame.mainFrame.bl.getMostImprovePlayer(season, dataType), season, dataType));
+		setTableBounds();
+		MainFrame.mainFrame.add(tableBeShowing);
+		addImprovePlayerLink();
+	}
+	public void refreshSeasonTeamTable(Season season, TeamData dataType) {
+		if(tableBeShowing != null) {
+			tableBeShowing.setVisible(false);
+			MainFrame.mainFrame.remove(tableBeShowing);
+		}
+		if(season == null || dataType == null) return;
+		tableBeShowing = new SmallTable(
+				Config.STANDING_SEASONTEAM_TABLEHEAD,
+				TableContentTransfer.transferStandingSeasonTeamInfo(
+						Config.STANDING_SEASONTEAM_TABLEHEAD.length,
+						MainFrame.mainFrame.bl.getSeasonStandingTeam(season, dataType), season, dataType));
+		setTableBounds();
+		MainFrame.mainFrame.add(tableBeShowing);
+		addSeasonTeamLink();
+	}
 	
 	
 	
@@ -259,6 +328,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 				y,
 				Config.UI_WIDTH,
 				Config.UI_HEIGHT - y);
+		tableBeShowing.setFont(new Font("default", Font.BOLD, 13), new Font("default", Font.PLAIN, 12));
 	}
 	private HeadIconFrame headIconFrame;
 	private int columNum;
@@ -334,22 +404,58 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		for(int i = 0; i < t.length; i ++) {
 			for(int j = 0; j < t[0].length; j ++) {
 				if(t[i][j].elements.length == 0) return;
-			    JPanel panel = t[i][j];
-			    //final JLabel shortNameLabel = t[i][j].elements[SHORT_NAME_LABEL];
+			    TableList panel = t[i][j];
+			    final Season season;
+			    final String date, team;
+			    String s = panel.elements[0].getText();
+			    switch(s) {
+			    case "2012-2013赛季" : season = Season.season12_13; break;
+			    case "2013-2014赛季" : season = Season.season13_14; break;
+			    case "2014-2015赛季" : season = Season.season14_15; break;
+			    default: season = Season.season12_13;
+			    }
+			    date = panel.elements[1].getText();
+			    team = panel.elements[2].getText() + "-" + panel.elements[5].getText();
+			    
 				panel.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						//MainFrame.mainFrame.bl.findMatch(season, date, nameOfTeams)
-						//TODO
-//						TeamPO t = TeamListPO.findTeamByShortName(shortNameLabel.getText());
-//						if(t == null) return;
-//						new TeamDetailFrame(t).setVisible(true);
+						MatchInfoDetailFrame f = new MatchInfoDetailFrame(MainFrame.mainFrame.bl.findMatch(season, date, team));
+					    f.setVisible(true);
 					}
 				});
 			}
 		}
 	}
 
+	private void addDailyPlayerLink() {
+		TableList[] t = tableBeShowing.body[0];
+		for(int i = 0; i < t.length; i ++) {
+			final int j = i;
+			t[j].addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					new PlayerDetailFrame(PlayerListPO.findPlayerAccurately(tableBeShowing.body[0][j].elements[0].getText()));
+				}
+			});
+		}
+	}
+	private void addSeasonPlayerLink() {
+		addDailyPlayerLink();
+	}
+	private void addImprovePlayerLink() {
+		addDailyPlayerLink();
+	}
+	private void addSeasonTeamLink() {
+		TableList[] t = tableBeShowing.body[0];
+		for(int i = 0; i < t.length; i ++) {
+			final int j = i;
+			t[j].addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					new PlayerDetailFrame(TeamListPO.findTeamByFullName(tableBeShowing.body[0][j].elements[0].getText()));
+				}
+			});
+		}
+	}
 
 
 	@Override

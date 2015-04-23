@@ -1,6 +1,7 @@
 package com.kmno4.presentation;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -45,6 +46,10 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 		cb_avg_data.setBounds(127, 11, 150, 27);
 		cb_total_data.setBounds(127, 11, 150, 27);
 		cb_season.setBounds(400,11,150,27);
+		
+		cb_avg_data.setFont(new Font("default", Font.PLAIN, 14));
+		cb_total_data.setFont(new Font("default", Font.PLAIN, 14));
+		cb_season.setFont(new Font("default", Font.PLAIN, 14));
 		this.add(cb_avg_data);
 		this.add(cb_total_data);
 		this.add(cb_season);

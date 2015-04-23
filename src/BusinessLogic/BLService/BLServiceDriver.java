@@ -16,7 +16,6 @@ public class BLServiceDriver {
 	public void drive(){
 		BLService bl=new BLServiceController();
 		bl.init();
-		
 		}
 	
 	public static void main(String[] args){

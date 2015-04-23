@@ -1,5 +1,6 @@
 package com.kmno4.presentation;
 
+import java.awt.Font;
 import java.awt.Graphics;
 
 import javax.swing.JLabel;
@@ -17,7 +18,8 @@ public class PageInfoPanel extends JPanel {
 		this.setLayout(null);		
 		
 		page_name = new JLabel(pageInfo);
-		page_name.setBounds(6, 6, Config.PAGE_INTRO_LABEL_WIDTH, Config.PAGE_INTRO_LABEL_HEIGHT);
+		page_name.setFont(new Font("default", Font.ITALIC, 20));
+		page_name.setBounds(6, 6, Config.PAGE_INTRO_LABEL_WIDTH*4, Config.PAGE_INTRO_LABEL_HEIGHT);
 		add(page_name);
 	}
 	

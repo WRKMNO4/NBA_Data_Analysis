@@ -5,6 +5,10 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -13,9 +17,11 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Enum.Season;
 import PO.PlayerPO;
 import PO.TeamListPO;
 
@@ -37,6 +43,9 @@ public class PlayerDetailPanel extends JPanel {
 	    player_recent_matches,
 	    avg, //场均切换标签
 	    sum; //总计切换标签
+	
+	private JComboBox<String> seasonBox;
+	
 	private SmallTable mainInfo; //主要信息表格
 	private SlideTable
 	    sumInfo, //总计信息表格
@@ -133,6 +142,8 @@ public class PlayerDetailPanel extends JPanel {
 		c.gridheight = 1;
 		c.weightx = 5;
 		c.weighty = 1;
+		c.fill = GridBagConstraints.NONE;
+		c.anchor = GridBagConstraints.WEST;
 		layout.setConstraints(player_recent_matches, c);
 		add(player_recent_matches);
 		player_recent_matches.addMouseListener(new MouseAdapter() {
@@ -149,9 +160,9 @@ public class PlayerDetailPanel extends JPanel {
 			}
 		});
 		
-		player_team = new JLabel(playerPO.getTeam(Config.LASTEST_SEASON), JLabel.CENTER);
+		player_team = new JLabel("现役于" + playerPO.getTeam(Config.LASTEST_SEASON) + "球队", JLabel.CENTER);
 		player_team.setForeground(Color.gray);
-		player_team.setFont(new Font("default", Font.BOLD, 17));
+		player_team.setFont(new Font("default", Font.ITALIC, 17));
 		c.gridx = 4;
 		c.gridy = 0;
 		c.gridwidth = 3;
@@ -164,14 +175,15 @@ public class PlayerDetailPanel extends JPanel {
 		add(player_team);
 		player_team.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				TeamDetailFrame tdf = new TeamDetailFrame(TeamListPO.findTeamByShortName(player_team.getText()));
+				TeamDetailFrame tdf = new TeamDetailFrame(TeamListPO.findTeamByShortName(playerPO.getTeam(Config.LASTEST_SEASON)));
 				tdf.setBounds(playerDetailFrame.getBounds());
 			}
 		});
 		 
 		
-		
-		JLabel blank2 = new JLabel();
+		seasonBox = new JComboBox<String>(Config.Seasons);
+		seasonBox.setFont(new Font("default", Font.PLAIN, 11));
+		seasonBox.setSelectedIndex(1);
 		c.gridx = 4;
 		c.gridy = 4;
 		c.gridwidth = 1;
@@ -180,8 +192,43 @@ public class PlayerDetailPanel extends JPanel {
 		c.weighty = 1;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.SOUTHEAST;
-		layout.setConstraints(blank2, c);
-		add(blank2);
+		layout.setConstraints(seasonBox, c);
+		add(seasonBox);
+		seasonBox.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// TODO Auto-generated method stub
+				SlideTable t;
+				if(sumInfo.isVisible()) t = sumInfo;
+				else t = avgInfo;
+				sumInfo.setVisible(false);
+				avgInfo.setVisible(false);
+				remove(t);
+				if(seasonBox.getSelectedIndex() == 0) {
+					System.out.println("000");
+					sumInfoIni(Season.season12_13);
+					avgInfoIni(Season.season12_13);
+				}
+				else if(seasonBox.getSelectedIndex() == 1) {
+					System.out.println("111");
+					sumInfoIni(Season.season13_14);
+					avgInfoIni(Season.season13_14);
+				}
+				else {
+					sumInfoIni(Season.season14_15);
+					avgInfoIni(Season.season14_15);
+				}
+				t.setVisible(true);
+				add(t);
+				layout.setConstraints(t, c);
+				
+				MainFrame.mainFrame.repaint();
+			}
+			
+		});
+		
+		
+		
 		
 		sum = new LabelButton("总计", JLabel.CENTER);
 		sum.addMouseListener(new MouseAdapter() {
@@ -242,10 +289,7 @@ public class PlayerDetailPanel extends JPanel {
 		layout.setConstraints(mainInfo, c);
 		add(mainInfo);
 		
-		sumInfo = new SlideTable(
-				Config.PLAYER_TOTAL_INFO,
-				TableContentTransfer.transferPlayerTotalInfo(Config.PLAYER_TOTAL_INFO.length, this.playerPO,1),
-				50, 70, Config.PLAYER_DETAIL_UI_WIDTH);
+		sumInfoIni(Config.LASTEST_SEASON);
 		c.gridx = 0;
 		c.gridy = 5;
 		c.gridwidth = 7;
@@ -255,14 +299,25 @@ public class PlayerDetailPanel extends JPanel {
 		c.fill = GridBagConstraints.BOTH;
 		layout.setConstraints(sumInfo, c);
 		add(sumInfo);
-		//sumInfo.setFont(new Font("default", Font.BOLD, 18), new Font("default", Font.PLAIN, 10));
 		
+		avgInfoIni(Config.LASTEST_SEASON);
+		
+		
+		
+	}
+	
+	private void sumInfoIni(Season season) {
+		sumInfo = new SlideTable(
+				Config.PLAYER_TOTAL_INFO,
+				TableContentTransfer.transferPlayerTotalInfo(Config.PLAYER_TOTAL_INFO.length, this.playerPO, season),
+				70, 50, Config.PLAYER_DETAIL_UI_WIDTH);
+		sumInfo.setFont(new Font("default", Font.BOLD, 12), new Font("default", Font.PLAIN, 11), new Font("default", Font.PLAIN, 20));
+	}
+	private void avgInfoIni(Season season) {
 		avgInfo = new SlideTable(
 				Config.PLAYER_AVERAGE_INFO,
-				TableContentTransfer.transferPlayerAvgInfo(Config.PLAYER_AVERAGE_INFO.length,this.playerPO, 1),
-				50, 70, Config.PLAYER_DETAIL_UI_WIDTH);
-		//avgInfo.setFont(new Font("default", Font.PLAIN, 7), new Font("default", Font.PLAIN, 8));
-		
-		
+				TableContentTransfer.transferPlayerAvgInfo(Config.PLAYER_AVERAGE_INFO.length,this.playerPO, season),
+				70, 50, Config.PLAYER_DETAIL_UI_WIDTH);
+		avgInfo.setFont(new Font("default", Font.PLAIN, 12), new Font("default", Font.PLAIN, 11), new Font("default", Font.PLAIN, 20));
 	}
 }

@@ -23,7 +23,10 @@ public class Config {
 		,"助攻数","抢断数","盖帽数","失误数","犯规数","得分","投篮命中率","三分命中率","罚球命中率","胜率","进攻回合","进攻效率","防守效率","篮板效率","抢断效率","助攻率"} ;
 	public static final String[] TEAM_TOTAL_INFO = {"比赛场数","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数","罚球出手数","进攻篮板数","防守篮板数","篮板数"
 		,"助攻数","抢断数","盖帽数","失误数","犯规数","得分","进攻回合"} ;
-	public static final String[] MATCH_INFO = {"赛季", "日期", "队伍", "队伍", "得分", "得分"};
+	public static final String[] MATCH_BASIC_INFO = {"赛季", "日期", "球队",  "得分", "得分","球队"};
+	public static final String[] MATCH_DETAIL_INFO = {"球员名","位置","在场时间","投篮命中数","投篮出手数","三分命中数","三分出手数","罚球命中数", "罚球出手数","进攻篮板",
+		"防守篮板","总篮板数","助攻数","抢断数","盖帽数","失误数","犯规数","个人得分"} ;
+	
 	
 	//筛选功能
 	public static final String[] PICKUP_POSITION={"前锋","中锋","后卫"};
@@ -34,18 +37,26 @@ public class Config {
 	public static final String[] SORT_TEAM_TYPE = {};
 	public static final String[] SORT_TEAM_STANDRAD = {"总计", "场均"};
 	
+	
 	public static final String[] STANDING_DAILYPLAYER_TYPE={"得分","篮板","助攻","盖帽","抢断"} ;
+	public static final String[] STANDING_DAILYPLAYER_TABLEHEAD = {"球员名称" ,"所属球队","球员位置","比赛数据"} ;
+	
 	public static final String[] STANDING_SEASONPLAYER_TYPE={"得分","篮板","助攻","盖帽","抢断","三分命中率","投篮命中率","罚球命中率"} ;
+	public static final String[] STANDING_SEASONPLAYER_TABLEHEAD = {"球员名称" ,"所属球队","球员位置","比赛数据"} ;
+	
 	public static final String[] STANDING_SEASONTEAM_TYPE={"得分","篮板","助攻","盖帽","抢断","三分命中率","投篮命中率","罚球命中率"} ;
+    public static final String[] STANDING_SEASONTEAM_TABLEHEAD = {"球队名称","所属联盟","比赛数据"} ;
+    
 	public static final String[] STANDING_IMPROVED_TYPE = {"场均得分提升率","场均篮板提升率","场均助攻提升率"} ;
+	public static final String[] STANDING_IMPROVE_TABLEHEAD = {"球员名称","所属球队","近五场提升率"} ;
 	
 	public static final int 
 	    MATCH_DETAIL_WIDTH = 700,
 	    MATCH_DETAIL_HEIGHT = 600;
 	
 	public static final int
-	    LASTEST_GAME_FRAME_UNIT_HEIGHT = 30,
-	    LASTEST_GAME_FRAME_WIDTH = 500;
+	    LASTEST_GAME_FRAME_HEIGHT = 130,
+	    LASTEST_GAME_FRAME_WIDTH = 530;
 	
 	public static final int MAIN_FRAME_X=100;
 	public static final int MAIN_FRAME_Y=100;
@@ -112,6 +123,7 @@ public class Config {
 	public static final int TEAM_ICON_HEIGHT = 315;
 	
 	//所有图片
+	public static final ImageIcon FRAME_BACKGROUND=new ImageIcon("images/bg.png");
 		//tabPanel Label切换图片
 	public static final ImageIcon TAB_PLAYER_CLICKED=new ImageIcon("images/tab_player_clicked.png");
 	public static final ImageIcon TAB_TEAM_CLICKED=new ImageIcon("images/tab_team_clicked.png");
@@ -130,26 +142,29 @@ public class Config {
 	public static final ImageIcon TAB_MATCH_UNPRESSED=new ImageIcon("images/tab_match_unpressed.png");
 	public static final ImageIcon TAB_HOT_UNPRESSED=new ImageIcon("images/tab_hot_unpressed.png");
 	public static final ImageIcon TAB_ABOUT_UNPRESSED=new ImageIcon("images/tab_about_unpressed.png");
-
 	public static final ImageIcon TAB_PLAYER_PRESSED=new ImageIcon("images/tab_player_pressed.png");
-	public static final ImageIcon INTRO_PAGE_BG=new ImageIcon("images/intro_bg.png");
+	
+	public static final ImageIcon INTRO_PAGE_BG=new ImageIcon("images/intro_bg5.png");
+	
 	public static ArrayList<ImageIcon> motions=new ArrayList<ImageIcon>();
 	public static final Icon SPLASH_TITLE=new ImageIcon("images/splash_title.png");
 	public static final Icon SPLASH_BACKGROUND=new ImageIcon("images/splash_bg.png");
-	public static final ImageIcon PLAYER_SELECTION_SORT_BACKGROUND=new ImageIcon("images/player_selection_sort_bg.png");
-	public static final ImageIcon PLAYER_SELECTION_BACKGROUND=new ImageIcon("images/selection_bg.png");
-	public static final ImageIcon TOP_TAB_BACKGROUND=new ImageIcon("images/top_tab_background.png");
+	
+	public static final ImageIcon PLAYER_SELECTION_SORT_BACKGROUND=new ImageIcon("images/player_selection_sort_bg2.png");
+	public static final ImageIcon PLAYER_SELECTION_BACKGROUND=new ImageIcon("images/selection_bg3.png");
+	public static final ImageIcon TOP_TAB_BACKGROUND=new ImageIcon("images/top_tab_background2.png");
 	public static final ImageIcon WELCOME=new ImageIcon("images/welcome.png");
-	public static final ImageIcon TEAM_SELECTION_BACKGROUND=new ImageIcon("images/team_selection_bg3.png");
+	public static final ImageIcon TEAM_SELECTION_BACKGROUND=new ImageIcon("images/team_selection_bg4.png");
 	public static final ImageIcon CLOSE_ICON=new ImageIcon("images/close.png");
 	
 	//match界面所有的icon
-	public static final ImageIcon MATCH_SELECTION_BACKGROUND=new ImageIcon("images/match_selection_bg.png");
+	public static final ImageIcon MATCH_SELECTION_BACKGROUND=new ImageIcon("images/match_selection_bg_2.png");
 	public static final ImageIcon SCHEDULE=new ImageIcon("images/schedule.png");
 	public static final ImageIcon TEAM_SELECTION=new ImageIcon("images/select_team.png");
 	
 	
-	public static final ImageIcon HOT_SELECTION_BACKGROUND=new ImageIcon("images/hot_selectino_bg.png");
+	public static final ImageIcon HOT_SELECTION_BACKGROUND=new ImageIcon("images/hot_selection_bg2.png");
+	public static final ImageIcon LABEL_CALENDAR_BACKGROUND=new ImageIcon("images/label_calendar_bg_1.png");
 	
 	public static ArrayList<ImageIcon> getLoadingMotions(){
 		for(int i=1;i<100;i++){
@@ -157,6 +172,8 @@ public class Config {
 		}			
 		return motions;
 	}
+	
+	public static final ImageIcon CALENDAR_BACKGROUND=new ImageIcon("images/calendar_bg.png");
 	
 	
 	

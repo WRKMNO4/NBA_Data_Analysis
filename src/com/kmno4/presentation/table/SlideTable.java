@@ -8,18 +8,16 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.kmno4.presentation.button.BorderLabel;
-
 /**
  * @author hutao
  *
  */
 @SuppressWarnings("serial")
 public class SlideTable extends JPanel {
-	private JLabel
+	public JLabel
 	    right,
 	    left;
-	private SmallTable table;
+	public SmallTable table;
 	private SlideThread slideThread;
 	
 	private final int 
@@ -50,8 +48,9 @@ public class SlideTable extends JPanel {
 		table.setSize(tableWidth, tableHeight);
 		add(table);
 
-		left = new BorderLabel("←", JLabel.CENTER);
-		left.setBounds(x, tableHeight + y, FLIG_LABEL_WIDTH, (int)(table_unit_height * FLIG_LABEL_HEIGHT_RATE));
+		left = new JLabel("←", JLabel.CENTER);
+		left.setSize(FLIG_LABEL_WIDTH, (int)(table_unit_height * FLIG_LABEL_HEIGHT_RATE));
+		left.setLocation(x + table_ui_width / 2 - left.getWidth(), tableHeight + y);
 		left.setEnabled(false);
 		left.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
@@ -65,8 +64,9 @@ public class SlideTable extends JPanel {
 		});
 		add(left);
 		
-		right = new BorderLabel("→", JLabel.CENTER);
-		right.setBounds(x + left.getWidth(), left.getY(), FLIG_LABEL_WIDTH, (int)(table_unit_height * FLIG_LABEL_HEIGHT_RATE));
+		right = new JLabel("→", JLabel.CENTER);
+		right.setSize(FLIG_LABEL_WIDTH, left.getHeight());
+		right.setLocation(x + table_ui_width / 2, left.getY());
 		right.setEnabled(true);
 		right.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
