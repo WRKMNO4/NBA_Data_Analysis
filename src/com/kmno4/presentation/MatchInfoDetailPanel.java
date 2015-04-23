@@ -12,12 +12,14 @@ import javax.swing.JPanel;
 
 import PO.MatchPO;
 import PO.PlayerDataOfOneMatchPO;
+import PO.PlayerListPO;
 import PO.TeamListPO;
 
 import com.kmno4.common.Config;
 import com.kmno4.presentation.button.BorderLabel;
 import com.kmno4.presentation.table.SlideTable;
 import com.kmno4.presentation.table.SmallTable;
+import com.kmno4.presentation.table.TableList;
 
 import javax.swing.JLabel;
 
@@ -258,7 +260,16 @@ public class MatchInfoDetailPanel extends JPanel {
 			});
 		}
 		private void addPlayerLink() {
-			//TODO
+			TableList[] t = dataTable.table.body[0];
+			for(int i = 0; i < t.length; i ++) {
+				final int j = i;
+				t[j].addMouseListener(new MouseAdapter() {
+					public void mouseClicked(MouseEvent e) {
+						new PlayerDetailFrame(PlayerListPO.findPlayerAccurately(t[j].elements[0].getText()));
+					}
+				});
+			}
+			
 		}
 		
 		

@@ -26,6 +26,7 @@ import PO.TeamPO;
 
 import com.kmno4.common.Config;
 import com.kmno4.presentation.button.ExitLabel;
+import com.kmno4.presentation.table.SmallTable;
 import com.kmno4.presentation.table.Table;
 import com.kmno4.presentation.table.TableList;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
@@ -262,7 +263,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		if(season == null || date == null || dataType == null) return;
 		ArrayList<StandingDataPO> sps = MainFrame.mainFrame.bl.getDatasOfDailyStandingPlayers(season, date, dataType);
 		if(sps == null || sps.size() == 0) return;
-		tableBeShowing = new Table(
+		tableBeShowing = new SmallTable(
 				Config.STANDING_DAILYPLAYER_TABLEHEAD,
 				TableContentTransfer.transferStandingDailyPlayerInfo(
 						Config.STANDING_DAILYPLAYER_TABLEHEAD.length,
@@ -278,7 +279,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			MainFrame.mainFrame.remove(tableBeShowing);
 		}
 		if(season == null || dataType == null) return;
-		tableBeShowing = new Table(
+		tableBeShowing = new SmallTable(
 				Config.STANDING_SEASONPLAYER_TABLEHEAD,
 				TableContentTransfer.transferStandingSeasonPlayerInfo(
 						Config.STANDING_SEASONPLAYER_TABLEHEAD.length,
@@ -293,7 +294,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			MainFrame.mainFrame.remove(tableBeShowing);
 		}
 		if(season == null || dataType == null) return;
-		tableBeShowing = new Table(
+		tableBeShowing = new SmallTable(
 				Config.STANDING_IMPROVE_TABLEHEAD,
 				TableContentTransfer.transferStandingImprovedInfo(
 						Config.STANDING_IMPROVE_TABLEHEAD.length,
@@ -308,7 +309,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			MainFrame.mainFrame.remove(tableBeShowing);
 		}
 		if(season == null || dataType == null) return;
-		tableBeShowing = new Table(
+		tableBeShowing = new SmallTable(
 				Config.STANDING_SEASONTEAM_TABLEHEAD,
 				TableContentTransfer.transferStandingSeasonTeamInfo(
 						Config.STANDING_SEASONTEAM_TABLEHEAD.length,

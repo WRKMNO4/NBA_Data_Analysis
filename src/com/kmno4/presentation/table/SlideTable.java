@@ -14,10 +14,10 @@ import javax.swing.JPanel;
  */
 @SuppressWarnings("serial")
 public class SlideTable extends JPanel {
-	private JLabel
+	public JLabel
 	    right,
 	    left;
-	private SmallTable table;
+	public SmallTable table;
 	private SlideThread slideThread;
 	
 	private final int 
