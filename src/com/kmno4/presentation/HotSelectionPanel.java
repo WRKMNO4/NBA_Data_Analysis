@@ -82,7 +82,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 		initSeasonHotTeam();
 		initSeasonMostPlayer();
 		//
-		calendarPanel=new CalendarPanel(lb_date,"MM-dd");
+		calendarPanel=new CalendarPanel(lb_date,"yyyy-MM-dd");
 		calendarPanel.initCalendarPanel();
 		MainFrame.mainFrame.add(calendarPanel);
 		showDailyPlayer();
@@ -138,11 +138,12 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 				
 				//设置为当前日期
 				Date dt=new Date();//
-				DateFormat df = new SimpleDateFormat("MM-dd");
+				DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 				String content=df.format(dt);
-				lb_date = new JLabel(content);
+				lb_date = new JLabel(content+"  ▼");
 //				lb_date.setIcon(Config.LABEL_CALENDAR_BACKGROUND);
 				lb_date.setForeground(Color.white);
+				lb_date.setFont(new Font("default", Font.ITALIC, 20));
 				lb_date.setBounds(500, 73, 168, 27);
 				add(lb_date);
 				
