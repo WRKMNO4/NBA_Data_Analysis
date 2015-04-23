@@ -217,8 +217,8 @@ public class MatchInfoDetailPanel extends JPanel {
 			dataTable = new SlideTable(
 					Config.MATCH_DETAIL_INFO, 
 					data_body,
-					70, 23, 300);
-			//dataTable.setFont(new Font("default", Font.PLAIN, 15), new Font("default", Font.PLAIN, 15), null);
+					70, 23, 500);
+			dataTable.setFont(new Font("default", Font.PLAIN, 11), new Font("default", Font.PLAIN, 11), null);
 			gbc_data.gridx = 1;
 			gbc_data.gridy = 1;
 			gbc_data.gridwidth = 1;

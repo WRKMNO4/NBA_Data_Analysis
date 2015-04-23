@@ -133,6 +133,7 @@ public class SlideTable extends JPanel {
 			current_address = 0;
 			moving = MOVING_NONE;
 			left.setEnabled(false);
+			right.setEnabled(true);
 			slideThread = new SlideThread();
 			slideThread.start();
 		}

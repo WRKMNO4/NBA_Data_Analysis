@@ -51,7 +51,7 @@ public class Config {
 	public static final String[] STANDING_IMPROVE_TABLEHEAD = {"球员名称","所属球队","近五场提升率"} ;
 	
 	public static final int 
-	    MATCH_DETAIL_WIDTH = 700,
+	    MATCH_DETAIL_WIDTH = 800,
 	    MATCH_DETAIL_HEIGHT = 600;
 	
 	public static final int
