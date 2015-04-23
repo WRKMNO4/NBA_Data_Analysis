@@ -27,7 +27,6 @@ public class MatchController implements MatchDataService{
 		File file = new File(fileName) ;
 		if(file.isDirectory()){
 			File[] allFiles = file.listFiles() ;
-//			System.out.println(allFiles.length);
 			Arrays.sort(allFiles,new CompareByTime());
 			
 			for(int i = 0; i<allFiles.length;i++){ 

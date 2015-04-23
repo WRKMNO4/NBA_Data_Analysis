@@ -152,11 +152,8 @@ public class BLServiceController implements  BLService{
 			// TODO Auto-generated method stub
 			while(true){
 				refresh();
-//		    	System.out.println("In 2012 There are "+getAllMatches(Season.season12_13).size()+"matches");
-//		    	System.out.println("In 2013 There are "+getAllMatches(Season.season13_14).size()+"matches");
-//		    	System.out.println("End one turn");
 		    	try {
-					Thread.sleep(5000);
+					Thread.sleep(6000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
