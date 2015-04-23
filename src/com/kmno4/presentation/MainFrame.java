@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -50,10 +51,17 @@ public class MainFrame extends JFrame implements MouseListener{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(Config.MAIN_FRAME_X,Config.MAIN_FRAME_Y, 
 				Config.UI_WIDTH, Config.UI_HEIGHT);
-		contentPane = new ContentPanel();
-		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
-		contentPane.setLayout(null);
-		setContentPane(contentPane);
+		
+		((JPanel)mainFrame.getContentPane()).setOpaque(false);
+		JLabel l = new JLabel(Config.FRAME_BACKGROUND);
+		l.setBounds(0, 0, Config.FRAME_BACKGROUND.getIconWidth(), Config.FRAME_BACKGROUND.getIconHeight());
+		mainFrame.getLayeredPane().setLayout(null);
+		mainFrame.getLayeredPane().add(l, new Integer(Integer.MIN_VALUE));
+		
+		//contentPane = new ContentPanel();
+		//contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+		//contentPane.setLayout(null);
+		//setContentPane(contentPane);
 		
 		this.initBL();
 		this.initPanel();

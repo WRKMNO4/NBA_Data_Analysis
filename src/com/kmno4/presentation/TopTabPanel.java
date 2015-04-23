@@ -239,6 +239,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		setTableBounds();
 		MainFrame.mainFrame.add(tableBeShowing);
 		addTeamLink();
+		MainFrame.mainFrame.repaint();
 	}
 	/**
 	 * 刷新match列表
@@ -253,6 +254,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		setTableBounds();
 		MainFrame.mainFrame.add(tableBeShowing);
 		addMatchLink();
+		MainFrame.mainFrame.repaint();
 	}
 	
 	public void refreshDailyPlayerTable(Season season, String date, PlayerData dataType) {
@@ -271,7 +273,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		setTableBounds();
 		MainFrame.mainFrame.add(tableBeShowing);
 		addDailyPlayerLink();
-		
+		MainFrame.mainFrame.repaint();
 	}
 	public void refreshSeasonPlayerTable(Season season, PlayerData dataType) {
 		if(tableBeShowing != null) {
@@ -287,6 +289,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		setTableBounds();
 		MainFrame.mainFrame.add(tableBeShowing);
 		addSeasonPlayerLink();
+		MainFrame.mainFrame.repaint();
 	}
 	public void refreshImprovePlayerTable(Season season, PlayerData dataType) {
 		if(tableBeShowing != null) {
@@ -302,6 +305,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		setTableBounds();
 		MainFrame.mainFrame.add(tableBeShowing);
 		addImprovePlayerLink();
+		MainFrame.mainFrame.repaint();
 	}
 	public void refreshSeasonTeamTable(Season season, TeamData dataType) {
 		if(tableBeShowing != null) {
@@ -317,6 +321,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		setTableBounds();
 		MainFrame.mainFrame.add(tableBeShowing);
 		addSeasonTeamLink();
+		MainFrame.mainFrame.repaint();
 	}
 	
 	
