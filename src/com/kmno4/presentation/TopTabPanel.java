@@ -188,7 +188,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.hotSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		
 		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.热点信息.toString());
-		//TODO
+		
 		refreshDailyPlayerTable(null, null, null);
 		MainFrame.mainFrame.repaint();
 		
@@ -429,11 +429,33 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	}
 
 	private void addDailyPlayerLink() {
-		
+		TableList[] t = tableBeShowing.body[0];
+		for(int i = 0; i < t.length; i ++) {
+			final int j = i;
+			t[j].addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					new PlayerDetailFrame(PlayerListPO.findPlayerAccurately(tableBeShowing.body[0][j].elements[0].getText()));
+				}
+			});
+		}
 	}
-	private void addSeasonPlayerLink() {}
-	private void addImprovePlayerLink() {}
-	private void addSeasonTeamLink() {}
+	private void addSeasonPlayerLink() {
+		addDailyPlayerLink();
+	}
+	private void addImprovePlayerLink() {
+		addDailyPlayerLink();
+	}
+	private void addSeasonTeamLink() {
+		TableList[] t = tableBeShowing.body[0];
+		for(int i = 0; i < t.length; i ++) {
+			final int j = i;
+			t[j].addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					new PlayerDetailFrame(TeamListPO.findTeamByFullName(tableBeShowing.body[0][j].elements[0].getText()));
+				}
+			});
+		}
+	}
 
 
 	@Override

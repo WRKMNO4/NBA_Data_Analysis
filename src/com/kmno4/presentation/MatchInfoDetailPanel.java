@@ -207,6 +207,7 @@ public class MatchInfoDetailPanel extends JPanel {
 			if(isFirstTeam) pd = matchPO.getFirstTeam_PlayerData();
 			else pd = matchPO.getSecondTeam_PlayerData();
 			data_body = TableContentTransfer.transferMatchDetailInfo(pd, Config.MATCH_DETAIL_INFO.length);
+			System.out.println(data_body[0].length + "   " + Config.MATCH_DETAIL_INFO.length);
 			dataTable = new SlideTable(
 					Config.MATCH_DETAIL_INFO, 
 					data_body,
