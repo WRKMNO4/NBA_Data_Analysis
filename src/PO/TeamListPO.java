@@ -31,6 +31,15 @@ public class TeamListPO {
 		}
 		return null ;
 	}
+	
+	public static TeamPO findTeamByFullName(String name){
+		for(TeamPO oneTeam:allTeams){
+			if(oneTeam.getFullName().equals(name))
+				return oneTeam ;
+		}
+		return null;
+	}
+	
 	public ArrayList<TeamPO> getAllTeams(){
 		return allTeams ;
 	}
