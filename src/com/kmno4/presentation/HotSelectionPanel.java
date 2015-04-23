@@ -49,6 +49,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 //		JTextField tf_date;
 	JLabel
 		btn_submit;
+	boolean isDailyPlayer=false,isSeasonPlayer=false,isImprovePlayer=false,isSeasonTeam=false;
 	
 
 	/**
@@ -130,11 +131,28 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 		btn_submit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Season season=TransferSortHelper.StringToSeason(daily_player_season.getSelectedItem().toString());
-				PlayerData type=TransferSortHelper.StringToDataTypeForPlayer(daily_player_datatype.getSelectedItem().toString());
-//				String date=lb_date.getText();	
-				String date=lb_date.getText();
-				MainFrame.mainFrame.topTabPanel.refreshDailyPlayerTable(season, date, type);
+				if(isDailyPlayer){
+					Season season=TransferSortHelper.StringToSeason(daily_player_season.getSelectedItem().toString());
+					PlayerData type=TransferSortHelper.StringToDataTypeForPlayer(daily_player_datatype.getSelectedItem().toString());
+//					String date=lb_date.getText();	
+					String date=lb_date.getText();
+					MainFrame.mainFrame.topTabPanel.refreshDailyPlayerTable(season, date, type);
+				}
+				if(isSeasonPlayer){
+					Season season=TransferSortHelper.StringToSeason(season_hot_player_season.getSelectedItem().toString());
+					PlayerData type=TransferSortHelper.StringToDataTypeForPlayer(season_hot_player_datetype.getSelectedItem().toString());
+					MainFrame.mainFrame.topTabPanel.refreshSeasonPlayerTable(season,type);
+				}
+				if(isSeasonTeam){
+					Season season=TransferSortHelper.StringToSeason(season_hot_team_season.getSelectedItem().toString());
+					TeamData type=TransferSortHelper.StringToDataTypeForTeam(season_hot_team_datatype.getSelectedItem().toString());
+					MainFrame.mainFrame.topTabPanel.refreshSeasonTeamTable(season, type);
+				}
+				if(isImprovePlayer){
+					Season season=TransferSortHelper.StringToSeason(most_improve_season.getSelectedItem().toString());
+					PlayerData type=TransferSortHelper.StringToDataTypeForPlayer(most_improve_datatype.getSelectedItem().toString());
+					MainFrame.mainFrame.topTabPanel.refreshImprovePlayerTable(season,type);
+				}
 			}
 		});
 		daily_player_season.addActionListener(this);
@@ -222,6 +240,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 	
 	
 	public void showSeasonPlayer(){
+		isDailyPlayer=false;isSeasonPlayer=true;isImprovePlayer=false;isSeasonTeam=false;
 	    lb_date.setVisible(false);
 	    daily_player_season.setVisible(false);
 	    daily_player_datatype.setVisible(false);
@@ -234,10 +253,11 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 //	    tf_date.setVisible(false);
 	    
 	    calendarPanel.setVisible(false);
-	    btn_submit.setVisible(false);
+//	    btn_submit.setVisible(false);
 	}
 	
 	public void showSeasonTeam(){
+		isDailyPlayer=false;isSeasonPlayer=false;isImprovePlayer=false;isSeasonTeam=true;
 		 	lb_date.setVisible(false);
 		    daily_player_season.setVisible(false);
 		    daily_player_datatype.setVisible(false);
@@ -250,11 +270,12 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 //		    tf_date.setVisible(false);
 		    
 		    calendarPanel.setVisible(false);
-		    btn_submit.setVisible(false);
+//		    btn_submit.setVisible(false);
 
 	}
 	
 	public void showDailyPlayer(){
+		isDailyPlayer=true;isSeasonPlayer=false;isImprovePlayer=false;isSeasonTeam=false;
 		 	lb_date.setVisible(true);
 		    daily_player_season.setVisible(true);
 		    daily_player_datatype.setVisible(true);
@@ -267,10 +288,11 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 //		    tf_date.setVisible(true);
 		    
 		    calendarPanel.setVisible(false);
-		    btn_submit.setVisible(true);
+//		    btn_submit.setVisible(true);
 	}
 	
 	public void showMostProvementPlayer(){
+		isDailyPlayer=false;isSeasonPlayer=false;isImprovePlayer=true;isSeasonTeam=false;
 			lb_date.setVisible(false);
 		    daily_player_season.setVisible(false);
 		    daily_player_datatype.setVisible(false);
@@ -283,7 +305,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 //		    tf_date.setVisible(false);
 		    
 		    calendarPanel.setVisible(false);
-		    btn_submit.setVisible(false);
+//		    btn_submit.setVisible(false);
 	}
 
 	public void paintComponent(Graphics g){
@@ -320,7 +342,8 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 		}		
 //		if(e.getSource()==this){
 //			calendarPanel.setVisible(false);
-//		}		
+//		}	
+		MainFrame.mainFrame.repaint();
 	}
 
 }

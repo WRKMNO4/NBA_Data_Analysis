@@ -46,6 +46,7 @@ public class SlideTable extends JPanel {
 		table = new SmallTable(headStr, bodyString);
 		table.setLocation((tableX = x), (tableY = y));
 		table.setSize(tableWidth, tableHeight);
+		setSize(table_ui_width, tableHeight);
 		add(table);
 
 		left = new JLabel("←", JLabel.CENTER);

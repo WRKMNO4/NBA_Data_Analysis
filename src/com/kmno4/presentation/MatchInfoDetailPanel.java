@@ -122,8 +122,8 @@ public class MatchInfoDetailPanel extends JPanel {
 	}
 	
 	private static final int 
-	    HEAD_ICON_WIDTH = 290,
-	    HEAD_ICON_HEIGHT = 290;
+	    HEAD_ICON_WIDTH = 250,
+	    HEAD_ICON_HEIGHT = 250;
 	
 	class TeamPanel extends JPanel {
 		private JLabel 
@@ -196,10 +196,13 @@ public class MatchInfoDetailPanel extends JPanel {
 			gbc_score.gridwidth = 1;
 			gbc_score.gridheight = 1;
 			gbc_score.weightx = 8;
-			gbc_score.weighty = 0.5;
+			gbc_score.weighty = 1;
 			gbc_score.fill = GridBagConstraints.HORIZONTAL;
 			gbl.setConstraints(scoreTable, gbc_score);
 			add(scoreTable);
+			
+			
+			
 			
 			
 			String[][] data_body;
@@ -207,19 +210,23 @@ public class MatchInfoDetailPanel extends JPanel {
 			if(isFirstTeam) pd = matchPO.getFirstTeam_PlayerData();
 			else pd = matchPO.getSecondTeam_PlayerData();
 			data_body = TableContentTransfer.transferMatchDetailInfo(pd, Config.MATCH_DETAIL_INFO.length);
-			System.out.println(data_body[0].length + "   " + Config.MATCH_DETAIL_INFO.length);
+			for(int i = 0; i < data_body.length; i ++)
+				for(int j = 0; j < data_body[0].length; j ++)
+					System.out.println(data_body[i][j]);
+			
 			dataTable = new SlideTable(
 					Config.MATCH_DETAIL_INFO, 
 					data_body,
-					70, 50, Config.MATCH_DETAIL_WIDTH - HEAD_ICON_WIDTH);
-			dataTable.setFont(new Font("default", Font.PLAIN, 15), new Font("default", Font.PLAIN, 15), null);
+					110, 23, 300);
+			//dataTable.setFont(new Font("default", Font.PLAIN, 15), new Font("default", Font.PLAIN, 15), null);
 			gbc_data.gridx = 1;
 			gbc_data.gridy = 1;
 			gbc_data.gridwidth = 1;
 			gbc_data.gridheight = 1;
-			gbc_data.weightx = 8;
-			gbc_data.weighty = 30;
-			gbc_data.fill = GridBagConstraints.HORIZONTAL;
+			gbc_data.weightx = 14;
+			gbc_data.weighty = 16;
+			gbc_data.fill = GridBagConstraints.BOTH;
+			gbc_data.anchor = GridBagConstraints.WEST;
 			
 			dataTable.setVisible(false);
 			

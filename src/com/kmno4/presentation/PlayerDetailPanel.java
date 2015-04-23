@@ -307,6 +307,10 @@ public class PlayerDetailPanel extends JPanel {
 	}
 	
 	private void sumInfoIni(Season season) {
+		if(sumInfo != null) {
+			sumInfo.setVisible(false);
+			remove(sumInfo);
+		}
 		sumInfo = new SlideTable(
 				Config.PLAYER_TOTAL_INFO,
 				TableContentTransfer.transferPlayerTotalInfo(Config.PLAYER_TOTAL_INFO.length, this.playerPO, season),
