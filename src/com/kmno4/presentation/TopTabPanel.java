@@ -222,6 +222,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		setTableBounds();
 		MainFrame.mainFrame.add(tableBeShowing);
 		addPlayerLink();
+		MainFrame.mainFrame.repaint();
 	}
 	/**
 	 * 刷新team列表
@@ -290,6 +291,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.add(tableBeShowing);
 		addSeasonPlayerLink();
 		MainFrame.mainFrame.repaint();
+		tableBeShowing.repaint();
 	}
 	public void refreshImprovePlayerTable(Season season, PlayerData dataType) {
 		if(tableBeShowing != null) {

@@ -342,7 +342,8 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 		}		
 //		if(e.getSource()==this){
 //			calendarPanel.setVisible(false);
-//		}		
+//		}	
+		MainFrame.mainFrame.repaint();
 	}
 
 }
