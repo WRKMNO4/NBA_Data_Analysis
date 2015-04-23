@@ -20,6 +20,7 @@ import PO.MatchListPO;
 import PO.MatchPO;
 import PO.PlayerListPO;
 import PO.PlayerPO;
+import PO.StandingDataPO;
 import PO.TeamListPO;
 import PO.TeamPO;
 
@@ -187,7 +188,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		
 		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.热点信息.toString());
 		//TODO
-		//refreshDailyPlayerTable(Config.LASTEST_SEASON, ,);
+		refreshDailyPlayerTable(null, null, null);
 		MainFrame.mainFrame.repaint();
 		
 	}
@@ -259,11 +260,13 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			MainFrame.mainFrame.remove(tableBeShowing);
 		}
 		if(season == null || date == null || dataType == null) return;
+		ArrayList<StandingDataPO> sps = MainFrame.mainFrame.bl.getDatasOfDailyStandingPlayers(season, date, dataType);
+		if(sps == null || sps.size() == 0) return;
 		tableBeShowing = new Table(
 				Config.STANDING_DAILYPLAYER_TABLEHEAD,
 				TableContentTransfer.transferStandingDailyPlayerInfo(
 						Config.STANDING_DAILYPLAYER_TABLEHEAD.length,
-						MainFrame.mainFrame.bl.getDatasOfDailyStandingPlayers(season, date, dataType)));
+						sps));
 		setTableBounds();
 		MainFrame.mainFrame.add(tableBeShowing);
 		addDailyPlayerLink();
@@ -424,7 +427,9 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		}
 	}
 
-	private void addDailyPlayerLink() {}
+	private void addDailyPlayerLink() {
+		
+	}
 	private void addSeasonPlayerLink() {}
 	private void addImprovePlayerLink() {}
 	private void addSeasonTeamLink() {}

@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -135,6 +137,13 @@ public class TeamDetailPanel extends JPanel {
 		c.anchor = GridBagConstraints.SOUTHEAST;
 		layout.setConstraints(seasonBox, c);
 		add(seasonBox);
+		seasonBox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		sum = new JLabel("总计", JLabel.CENTER);
 		sum.addMouseListener(new MouseAdapter() {
@@ -212,7 +221,7 @@ public class TeamDetailPanel extends JPanel {
 		sumInfo = new SlideTable(
 				Config.TEAM_TOTAL_INFO,
 				TableContentTransfer.transferTeamTotalInfo(
-						Config.TEAM_TOTAL_INFO.length, this.teamPO, 1),
+						Config.TEAM_TOTAL_INFO.length, this.teamPO, Config.LASTEST_SEASON),
 				70, 50, Config.PLAYER_DETAIL_UI_WIDTH);
 		c.gridx = 0;
 		c.gridy = 4;
@@ -228,7 +237,7 @@ public class TeamDetailPanel extends JPanel {
 		avgInfo = new SlideTable(
 				Config.TEAM_AVERAGE_INFO,
 				TableContentTransfer.transferTeamAvgInfo(
-						Config.TEAM_AVERAGE_INFO.length, this.teamPO, 1),
+						Config.TEAM_AVERAGE_INFO.length, this.teamPO, Config.LASTEST_SEASON),
 				70, 50, Config.PLAYER_DETAIL_UI_WIDTH);
 		avgInfo.setFont(new Font("default", Font.PLAIN, 12), new Font("default", Font.PLAIN, 11), null);
 		// layout.setConstraints(avgInfo, c);
