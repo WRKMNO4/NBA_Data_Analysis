@@ -221,6 +221,19 @@ public class TransferSortHelper {
 			break;
 		case "胜率":
 			dataType=TeamData.percentageOfWinning;
+			break;
+		case "篮板":
+			dataType=TeamData.numberOfRebound;
+			break;
+		case "助攻":
+			dataType=TeamData.numberOfAssist;
+			break;
+		case "抢断":
+			dataType=TeamData.numberOfSteal;
+			break;
+		case "盖帽":
+			dataType=TeamData.numberOfBlock;
+			break;
 		}
 		return  dataType;
 	}
