@@ -285,41 +285,7 @@ public class TeamDetailPanel extends JPanel {
 
 	}
 
-	public static void convertToPNG(String url, OutputStream os) {
-		File svg = new File(url);
-		Document doc = null;
-		try {
-			doc = new SAXSVGDocumentFactory(
-					XMLResourceDescriptor.getXMLParserClassName())
-					.createDocument(svg.toURI().toString());
-		} catch (IOException e) {
-			System.out.println("document create fail");
-			e.printStackTrace();
-		}
-		PNGTranscoder trans = new PNGTranscoder();
-		TranscoderInput input = new TranscoderInput(doc);
-		TranscoderOutput output = new TranscoderOutput(os);
-		try {
-			trans.transcode(input, output);
-		} catch (TranscoderException e) {
-			System.out.println("trans fail");
-			e.printStackTrace();
-		}
-		try {
-			os.flush();
-		} catch (IOException e) {
-			System.out.println("os flush fail");
-			e.printStackTrace();
-		}
-		if (os != null)
-			try {
-				os.close();
-			} catch (IOException e) {
-				System.out.println("os close fail");
-				e.printStackTrace();
-			}
-
-	}
+	
 
 	private static final String bufferURL = "buffer/teamHeadIconImageBuffer.png";
 

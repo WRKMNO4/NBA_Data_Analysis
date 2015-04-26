@@ -27,7 +27,7 @@ public class FucMain {
 
 	public static void main(String[] args) {
 		// 组件
-		 WebLookAndFeel.globalControlFont  = new FontUIResource("隶书",0, 15);
+		 WebLookAndFeel.globalControlFont  = new FontUIResource("黑体",0, 15);
 		 WebLookAndFeel.install();
 		
 		// look$feel——————second choice
