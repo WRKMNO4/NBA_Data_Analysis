@@ -14,8 +14,8 @@ import PO.TeamPO;
 public class BLServiceDriver {
 	
 	public void drive(){
-		BLService bl=new BLServiceController();
-		bl.init();
+//		BLService bl=new BLServiceController();
+//		bl.init("Data/teams/teams");
 		}
 	
 	public static void main(String[] args){

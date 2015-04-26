@@ -34,5 +34,8 @@
 	<classpathentry kind="lib" path="batik-1.7-jre13/batik-1.7/lib/xml-apis.jar"/>
 	<classpathentry kind="lib" path="libs/weblaf-complete-1.28.jar"/>
 	<classpathentry kind="lib" path="libs/substance.jar"/>
+	<classpathentry kind="lib" path="E:/大二下/软工三/测试/docs/功能测试/testData.jar"/>
+	<classpathentry kind="lib" path="E:/大二下/软工三/测试/Test Tool V1.2 Beta 1/batch/AutoInvoker.jar"/>
+	<classpathentry kind="lib" path="E:/大二下/软工三/测试/Test Tool V1.2 Beta 1/batch/AutoTester.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -27,9 +27,9 @@ import PO.TeamPO;
 public class PlayerController implements PlayerBusinessLogic{
 	PlayerDataService playerController;
 	@Override
-	public void init() {
+	public void init(String fileAddress) {
 		// TODO Auto-generated method stub
-		playerController = new DataService.PlayerDataService.PlayerController() ;
+		playerController = new DataService.PlayerDataService.PlayerController(fileAddress) ;
 	}
 	public void calculateFinalData(){
 		playerController.calculateFinalData() ;

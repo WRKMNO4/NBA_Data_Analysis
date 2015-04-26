@@ -12,9 +12,9 @@ import PO.TeamPO;
 public class TeamController implements TeamDataService{
 	
 	TeamListPO teams ;
-	public TeamController(){
+	public TeamController(String fileAddress){
 		teams = new TeamListPO();
-		read("Data/teams/teams") ;
+		read(fileAddress+"/teams/teams") ;
 	}
 	
 	public void read(String fileName){

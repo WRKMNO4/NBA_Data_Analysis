@@ -33,20 +33,22 @@ public class BLServiceController implements  BLService{
 	TeamBusinessLogic teamController ;
 	PlayerBusinessLogic playerController ;
 	MatchBusinessLogic matchController ;
+	String fileAddress;
 	
-	public BLServiceController() {
+	public BLServiceController(String fileAddress) {
 		this.seasonList = new SeasonListPO() ;
 		this.teamController = new BusinessLogic.TeamBusinessLogic.TeamController() ;
 		this.playerController = new BusinessLogic.PlayerBusinessLogic.PlayerController() ;
 		this.matchController = new BusinessLogic.MatchBusinessLogic.MatchController() ;
+		this.fileAddress=fileAddress;
 	}
 
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		teamController.init();
-		playerController.init();
-		matchController.init();
+		teamController.init(fileAddress);
+		playerController.init(fileAddress);
+		matchController.init(fileAddress);
 		teamController.calculateFinalData();
 		playerController.calculateFinalData();
 		Runnable refresh = new Refresh() ;
@@ -55,7 +57,7 @@ public class BLServiceController implements  BLService{
 	}
 
 	void refresh(){
-		matchController.init();
+		matchController.init(fileAddress);
 		teamController.calculateFinalData();
 		playerController.calculateFinalData();
 		

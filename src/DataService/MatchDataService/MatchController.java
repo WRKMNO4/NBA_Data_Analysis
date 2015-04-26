@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
+import com.kmno4.common.Config;
+
 import DataService.FileHelper.FileHelper;
 import Enum.Season;
 import PO.MatchListPO;
@@ -20,8 +22,8 @@ import PO.TeamListPO;
 import PO.TeamPO;
 
 public class MatchController implements MatchDataService{
-	public MatchController(){
-		read("Data/matches") ;
+	public MatchController(String fileAddress){
+		read(fileAddress+"/matches") ;
 	}
 	void read(String fileName){
 		File file = new File(fileName) ;
@@ -51,6 +53,9 @@ public class MatchController implements MatchDataService{
 				//check if this match exists.
 				if(ifMatchExist(newMatch.getSeason(), newMatch.getName()))
 					continue;
+				
+				if(newMatch.getSeason().compareTo(Config.LASTEST_SEASON)>0)
+				Config.setLatestSeason(newMatch.getSeason());
 				
 				boolean isFirstTeam = false ; 
 				for(int j = 0;j<tempString.size() ;j++){ 

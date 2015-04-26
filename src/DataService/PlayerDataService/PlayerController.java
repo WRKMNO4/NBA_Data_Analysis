@@ -20,9 +20,9 @@ public class PlayerController implements PlayerDataService{
 
 	public PlayerListPO players ;
 	
-	public PlayerController(){
+	public PlayerController(String fileAddress ){
 		players= new PlayerListPO();
-		read("Data/players/info");
+		read(fileAddress+"/players/info");
 	}
 	
 	public void read(String fileName){

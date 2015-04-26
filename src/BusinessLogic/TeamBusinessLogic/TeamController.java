@@ -18,9 +18,9 @@ import PO.TeamPO;
 public class TeamController implements TeamBusinessLogic{
 	TeamDataService teamController;
 	@Override
-	public void init() {
+	public void init(String fileAddress) {
 		// TODO Auto-generated method stub
-		teamController = new DataService.TeamDataService.TeamController();
+		teamController = new DataService.TeamDataService.TeamController(fileAddress);
 	}
 	@Override
 	public void calculateFinalData() {

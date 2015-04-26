@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 import Enum.Season;
 
 public class Config {
-	public static final Season LASTEST_SEASON = Season.season13_14;
+	public static Season LASTEST_SEASON = Season.season12_13;
 	public static final String[] Seasons={"2014-2015赛季","2013-2014赛季","2012-2013赛季"};
 	public static final String[] PLAYER_BASIC_INFO={"姓名","位置","球衣号","身高","体重","生日","年龄","球龄","毕业学校"};
 	public static final String[] PLAYER_AVERAGE_INFO={"篮板数","助攻数","在场时间","投篮命中率","三分命中率","罚球命中率",
@@ -175,6 +175,9 @@ public class Config {
 	
 	public static final ImageIcon CALENDAR_BACKGROUND=new ImageIcon("images/calendar_bg.png");
 	
+	public static void setLatestSeason(Season season){
+		Config.LASTEST_SEASON = season;
+	}
 	
 	
 }

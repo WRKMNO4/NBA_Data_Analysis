@@ -88,7 +88,7 @@ public class MainFrame extends JFrame implements MouseListener{
 	}
 	
 	public void initBL(){
-		bl=new BLServiceController();
+		bl=new BLServiceController("Data");
 		bl.init();
 		players=bl.getAllPlayers();
 		teams=bl.getAllTeams();

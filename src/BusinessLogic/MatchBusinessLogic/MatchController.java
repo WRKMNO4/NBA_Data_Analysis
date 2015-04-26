@@ -8,9 +8,9 @@ import PO.MatchPO;
 public class MatchController implements MatchBusinessLogic{
 	DataService.MatchDataService.MatchDataService matchController;
 	@Override
-	public void init() {
+	public void init(String fileAddress) {
 		// TODO Auto-generated method stub
-		matchController = new DataService.MatchDataService.MatchController();
+		matchController = new DataService.MatchDataService.MatchController(fileAddress);
 	}
 	@Override
 	public MatchPO findMatch(Season season, String date, String nameOfTeams) {

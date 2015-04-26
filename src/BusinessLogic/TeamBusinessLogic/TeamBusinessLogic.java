@@ -8,7 +8,7 @@ import PO.MatchPO;
 import PO.TeamPO;
 
 public interface TeamBusinessLogic {
-	public void init();
+	public void init(String fileAddress);
 	public void calculateFinalData() ;
 	public ArrayList<TeamPO> getAllTeams() ;
 	ArrayList<TeamPO> sortTeamsByComprehension(String standard,
