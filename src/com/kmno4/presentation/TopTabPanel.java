@@ -12,6 +12,8 @@ import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.TableModel;
 
 import Enum.PlayerData;
 import Enum.Season;
@@ -43,6 +45,8 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	private JLabel aboutus;
 	private JLabel close;
 	
+	private JTable dataTable;
+	private TableModel dataTableModel;
 
 	/**
 	 * 用于引用当前显示的表格

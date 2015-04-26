@@ -23,6 +23,7 @@ import Enum.Season;
 import Enum.TeamData;
 
 import com.kmno4.common.Config;
+import com.kmno4.presentation.button.LMouseAdapter;
 import com.kmno4.presentation.calendarPanel.CalendarPanel;
 
 @SuppressWarnings("serial")
@@ -91,25 +92,25 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 		MainFrame.mainFrame.add(calendarPanel);
 		showDailyPlayer();
 		
-		lb_daily_player.addMouseListener(new MouseAdapter() {
+		lb_daily_player.addMouseListener(new LMouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				showDailyPlayer();
 			}
 		});
-		lb_season_player.addMouseListener(new MouseAdapter() {
+		lb_season_player.addMouseListener(new LMouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				showSeasonPlayer();
 			}
 		});
-		lb_improve_player.addMouseListener(new MouseAdapter() {
+		lb_improve_player.addMouseListener(new LMouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				showMostProvementPlayer();
 			}
 		});
-		lb_season_team.addMouseListener(new MouseAdapter() {
+		lb_season_team.addMouseListener(new LMouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				showSeasonTeam();
@@ -117,7 +118,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 		});
 
 //		tf_date.addActionListener(this);
-		lb_date.addMouseListener(new MouseAdapter() {
+		lb_date.addMouseListener(new LMouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Season season=TransferSortHelper.StringToSeason(daily_player_season.getSelectedItem().toString());
@@ -128,7 +129,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 			}
 		});
 		
-		btn_submit.addMouseListener(new MouseAdapter() {
+		btn_submit.addMouseListener(new LMouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(isDailyPlayer){

@@ -9,12 +9,20 @@ import javax.swing.JComponent;
 public class LMouseAdapter extends MouseAdapter {
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		((JComponent)e.getSource()).setOpaque(true);
-		((JComponent)e.getSource()).setBackground(LMouseAdapter.L);
+		enter(e);
 	}
 	@Override
 	public void mouseExited(MouseEvent e) {
-		((JComponent)e.getSource()).setOpaque(false);
+		exit(e);
+	}
+	
+	public static void enter(MouseEvent event) {
+//		((JComponent)event.getSource()).setOpaque(true));
+//		((JComponent)event.getSource()).setBackground(LMouseAdapter.L);
+	}
+	public static void exit(MouseEvent event) {
+//		((JComponent)event.getSource()).setOpaque(false);
+//		((JComponent)event.getSource()).repaint();
 	}
 	
 	public static final Color L = new Color(255, 255, 255, 100);

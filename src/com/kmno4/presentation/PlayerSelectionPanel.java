@@ -397,13 +397,12 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		((JComponent)e.getSource()).setOpaque(true);
-		((JComponent)e.getSource()).setBackground(LMouseAdapter.L);
+		LMouseAdapter.enter(e);
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		((JComponent)e.getSource()).setOpaque(false);
+		LMouseAdapter.exit(e);
 	}
 
 	@Override

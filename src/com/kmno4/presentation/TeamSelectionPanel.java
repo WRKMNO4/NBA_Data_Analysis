@@ -10,6 +10,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -19,6 +20,7 @@ import Enum.TeamData;
 import PO.TeamPO;
 
 import com.kmno4.common.Config;
+import com.kmno4.presentation.button.LMouseAdapter;
 
 @SuppressWarnings("serial")
 public class TeamSelectionPanel extends JPanel implements MouseListener,ActionListener{
@@ -115,10 +117,12 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
+		LMouseAdapter.enter(e);
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
+		LMouseAdapter.exit(e);
 	}
 
 	@Override
