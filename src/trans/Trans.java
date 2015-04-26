@@ -13,7 +13,11 @@ import org.apache.batik.transcoder.TranscoderOutput;
 import org.apache.batik.transcoder.image.PNGTranscoder;
 import org.apache.batik.util.XMLResourceDescriptor;
 import org.w3c.dom.Document;
-
+/**
+ * 转png
+ * @author hutao
+ *
+ */
 public class Trans {
 	public static void main(String[] args) {
 		

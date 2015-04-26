@@ -1,23 +1,7 @@
 package main;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
-import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
-
-import org.jvnet.substance.SubstanceLookAndFeel;
-import org.jvnet.substance.border.StandardBorderPainter;
-import org.jvnet.substance.button.ClassicButtonShaper;
-import org.jvnet.substance.painter.StandardGradientPainter;
-import org.jvnet.substance.skin.EmeraldDuskSkin;
-import org.jvnet.substance.theme.SubstanceTerracottaTheme;
-import org.jvnet.substance.title.FlatTitlePainter;
-import org.jvnet.substance.watermark.SubstanceBubblesWatermark;
-
 import com.alee.laf.WebLookAndFeel;
 import com.kmno4.common.Config;
 import com.kmno4.presentation.MainFrame;
@@ -84,7 +68,6 @@ public class FucMain {
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				long begin_time = System.currentTimeMillis();
 
 				MainFrame frame = new MainFrame();

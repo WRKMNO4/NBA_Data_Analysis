@@ -13,6 +13,7 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -23,6 +24,7 @@ import Enum.Zone;
 import PO.PlayerPO;
 
 import com.kmno4.common.Config;
+import com.kmno4.presentation.button.LMouseAdapter;
 
 @SuppressWarnings("serial")
 public class PlayerSelectionPanel extends JPanel implements MouseListener,
@@ -395,10 +397,13 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
+		((JComponent)e.getSource()).setOpaque(true);
+		((JComponent)e.getSource()).setBackground(LMouseAdapter.L);
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
+		((JComponent)e.getSource()).setOpaque(false);
 	}
 
 	@Override

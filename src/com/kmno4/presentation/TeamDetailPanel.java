@@ -246,42 +246,43 @@ public class TeamDetailPanel extends JPanel {
 	}
 
 	public static void fillIcon(JLabel head, String url, int width, int height) {
-		File pngBuffer = new File(bufferURL);
-		FileOutputStream fos = null;
-		try {
-			pngBuffer.createNewFile();
-		} catch (IOException e) {
-			System.out.println("imageBuffer create fail");
-			e.printStackTrace();
-		}
-		try {
-			fos = new FileOutputStream(pngBuffer);
-		} catch (FileNotFoundException e) {
-			System.out.println("imageBuffer not found");
-			e.printStackTrace();
-		}
-		convertToPNG(url, fos);
-		if (fos != null)
-			try {
-				fos.close();
-			} catch (IOException e) {
-				System.out.println("fileoutputstream close fail");
-				e.printStackTrace();
-			}
-
-		Image i = null;
-		BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
-		try {
-			i = ImageIO.read(pngBuffer);
-		} catch (IOException e) {
-			System.out.println("pngBuffer read fail");
-			e.printStackTrace();
-		}
-		bi.getGraphics().drawImage(i, 0, 0, width, height, new Color(255, 255, 255, 0), null);
-		Image image = bi;
-		head.setIcon(new ImageIcon(image));
-
-		pngBuffer.delete();
+		//TODO
+//		File pngBuffer = new File(bufferURL);
+//		FileOutputStream fos = null;
+//		try {
+//			pngBuffer.createNewFile();
+//		} catch (IOException e) {
+//			System.out.println("imageBuffer create fail");
+//			e.printStackTrace();
+//		}
+//		try {
+//			fos = new FileOutputStream(pngBuffer);
+//		} catch (FileNotFoundException e) {
+//			System.out.println("imageBuffer not found");
+//			e.printStackTrace();
+//		}
+//		convertToPNG(url, fos);
+//		if (fos != null)
+//			try {
+//				fos.close();
+//			} catch (IOException e) {
+//				System.out.println("fileoutputstream close fail");
+//				e.printStackTrace();
+//			}
+//
+//		Image i = null;
+//		BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
+//		try {
+//			i = ImageIO.read(pngBuffer);
+//		} catch (IOException e) {
+//			System.out.println("pngBuffer read fail");
+//			e.printStackTrace();
+//		}
+//		bi.getGraphics().drawImage(i, 0, 0, width, height, new Color(255, 255, 255, 0), null);
+//		Image image = bi;
+//		head.setIcon(new ImageIcon(image));
+//
+//		pngBuffer.delete();
 
 	}
 
