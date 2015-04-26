@@ -4,7 +4,10 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
+
+import com.kmno4.presentation.MainFrame;
 
 public class LMouseAdapter extends MouseAdapter {
 	@Override
@@ -17,12 +20,17 @@ public class LMouseAdapter extends MouseAdapter {
 	}
 	
 	public static void enter(MouseEvent event) {
-//		((JComponent)event.getSource()).setOpaque(true));
-//		((JComponent)event.getSource()).setBackground(LMouseAdapter.L);
+		if(event.getSource() instanceof JComboBox) return;
+		((JComponent)event.getSource()).setOpaque(true);
+		((JComponent)event.getSource()).setBackground(LMouseAdapter.L);
+		MainFrame.mainFrame.repaint();
 	}
 	public static void exit(MouseEvent event) {
-//		((JComponent)event.getSource()).setOpaque(false);
-//		((JComponent)event.getSource()).repaint();
+		if(event.getSource() instanceof JComboBox) return;
+		((JComponent)event.getSource()).setOpaque(false);
+		((JComponent)event.getSource()).setBackground(new Color(0, 0, 0, 0));
+//		((JComponent)event.getSource()).getParent().repaint();
+		MainFrame.mainFrame.repaint();
 	}
 	
 	public static final Color L = new Color(255, 255, 255, 100);

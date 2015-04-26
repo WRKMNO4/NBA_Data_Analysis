@@ -1,6 +1,5 @@
 package com.kmno4.presentation.button;
 
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
@@ -15,7 +14,7 @@ public class ExitLabel extends JLabel {
 		super();
 		f = exitFrame;
 		
-		addMouseListener(new MouseAdapter() {
+		addMouseListener(new LMouseAdapter() {
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				if(f.getDefaultCloseOperation() == JFrame.EXIT_ON_CLOSE) System.exit(0);

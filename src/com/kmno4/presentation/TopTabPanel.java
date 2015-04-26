@@ -13,12 +13,12 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 
 import Enum.PlayerData;
 import Enum.Season;
 import Enum.TeamData;
-import PO.MatchListPO;
 import PO.MatchPO;
 import PO.PlayerListPO;
 import PO.PlayerPO;
@@ -31,7 +31,6 @@ import com.kmno4.presentation.button.ExitLabel;
 import com.kmno4.presentation.table.SmallTable;
 import com.kmno4.presentation.table.Table;
 import com.kmno4.presentation.table.TableList;
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 
 @SuppressWarnings("serial")
 public class TopTabPanel extends JPanel implements MouseListener{
@@ -47,6 +46,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	
 	private JTable dataTable;
 	private TableModel dataTableModel;
+	private TableCellRenderer tcr;
 
 	/**
 	 * 用于引用当前显示的表格
