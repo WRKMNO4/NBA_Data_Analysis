@@ -45,8 +45,8 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 		cb_avg_data=new JComboBox<String>(Config.TEAM_AVERAGE_INFO);
 		cb_total_data=new JComboBox<String>(Config.TEAM_TOTAL_INFO);
 		cb_season=new JComboBox<String>(Config.Seasons);
-		cb_avg_data.setBounds(127, 11, 150, 27);
-		cb_total_data.setBounds(127, 11, 150, 27);
+		cb_avg_data.setBounds(127+20, 11, Config.COMBOBOX_WIDTH, Config.COMBOBOX_HEIGHT);
+		cb_total_data.setBounds(127+20, 11, Config.COMBOBOX_WIDTH, Config.COMBOBOX_HEIGHT);
 		cb_season.setBounds(400,11,150,27);
 		
 		cb_avg_data.setFont(new Font("default", Font.PLAIN, 14));
@@ -67,11 +67,11 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 		
 		
 		total_sort=new JLabel("总计");
-		total_sort.setBounds(85, 5, 40, 15);
+		total_sort.setBounds(85+20, 5, 40, 15);
 		total_sort.setForeground(Color.white);
 		total_sort.addMouseListener(this);
 		avg_sort=new JLabel("场均");
-		avg_sort.setBounds(85, 25, 40, 15);
+		avg_sort.setBounds(85+20, 25, 40, 15);
 		avg_sort.addMouseListener(this);
 		avg_sort.setForeground(Color.WHITE);
 		add(avg_sort);

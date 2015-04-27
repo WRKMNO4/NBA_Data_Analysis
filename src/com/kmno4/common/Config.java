@@ -60,8 +60,11 @@ public class Config {
 	
 	public static final int MAIN_FRAME_X=100;
 	public static final int MAIN_FRAME_Y=100;
-	public static final int UI_WIDTH=800;
-	public static final int UI_HEIGHT=600;
+	public static final int UI_WIDTH=1000;
+	public static final int UI_HEIGHT=750;
+	
+	public static final int COMBOBOX_HEIGHT=27;
+	public static final int COMBOBOX_WIDTH=150;
 	
 	public static final int COMBOX_WIDTH=20;
 	public static final int LABEL_HEIGHT=15;
@@ -123,7 +126,7 @@ public class Config {
 	public static final int TEAM_ICON_HEIGHT = 315;
 	
 	//所有图片
-	public static final ImageIcon FRAME_BACKGROUND=new ImageIcon("images/bg2.png");
+	public static final ImageIcon FRAME_BACKGROUND=new ImageIcon("images/frame_bg_black.png");
 		//tabPanel Label切换图片
 	public static final ImageIcon TAB_PLAYER_CLICKED=new ImageIcon("images/tab_player_clicked.png");
 	public static final ImageIcon TAB_TEAM_CLICKED=new ImageIcon("images/tab_team_clicked.png");
@@ -150,9 +153,9 @@ public class Config {
 	public static final Icon SPLASH_TITLE=new ImageIcon("images/splash_title.png");
 	public static final Icon SPLASH_BACKGROUND=new ImageIcon("images/splash_bg.png");
 	
-	public static final ImageIcon PLAYER_SELECTION_SORT_BACKGROUND=new ImageIcon("images/player_selection_sort_bg2.png");
+	public static final ImageIcon PLAYER_SELECTION_SORT_BACKGROUND=new ImageIcon("images/player_selection_sort_bg.png");
 	public static final ImageIcon PLAYER_SELECTION_BACKGROUND=new ImageIcon("images/selection_bg3.png");
-	public static final ImageIcon TOP_TAB_BACKGROUND=new ImageIcon("images/top_tab_background2.png");
+	public static final ImageIcon TOP_TAB_BACKGROUND=new ImageIcon("images/top_tab_background_4.png");
 	public static final ImageIcon WELCOME=new ImageIcon("images/welcome.png");
 	public static final ImageIcon TEAM_SELECTION_BACKGROUND=new ImageIcon("images/team_selection_bg4.png");
 	public static final ImageIcon CLOSE_ICON=new ImageIcon("images/close.png");

@@ -29,7 +29,7 @@ import com.kmno4.presentation.button.LMouseAdapter;
 public class PlayerSelectionPanel extends JPanel implements MouseListener,
 		ActionListener {
 	public List<JLabel> avg_sort_list;
-	private TextField tf_search;
+//	private TextField tf_search;
 	boolean isPickup = true;
 	boolean isAvg = true;
 	// 方位
@@ -37,7 +37,7 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 	public int location_y;
 
 	JLabel title = new JLabel("球员");
-	JLabel lb_search = new JLabel("搜索");
+//	JLabel lb_search = new JLabel("搜索");
 
 	JLabel lb_percent = new JLabel("标准");
 	JLabel lb_efficiency = new JLabel("类型");
@@ -99,15 +99,15 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 		
 		
 		// 第一行
-		lb_search.setBounds(606, 11, Config.TEXT_WIDTH, Config.TEXT_height);
-		add(lb_search);
+//		lb_search.setBounds(606, 11, Config.TEXT_WIDTH, Config.TEXT_height);
+//		add(lb_search);
 
-		tf_search = new TextField();
-		// tf_search.setText("输入关键字");
-		tf_search.setBounds(650, 11, Config.SELECTION_SEARCH_WIDTH,
-				Config.SELECTION_SEARCH_HEIGHT);
-		tf_search.setBackground(Color.GRAY);
-		add(tf_search);
+//		tf_search = new TextField();
+//		// tf_search.setText("输入关键字");
+//		tf_search.setBounds(650, 11, Config.SELECTION_SEARCH_WIDTH,
+//				Config.SELECTION_SEARCH_HEIGHT);
+//		tf_search.setBackground(Color.GRAY);
+//		add(tf_search);
 
 		title.setBounds(15, 11, 30, 30);
 		title.setBackground(Color.WHITE);
@@ -178,7 +178,7 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 
 	public void setLabelColor() {
 		title.setForeground(Color.WHITE);
-		lb_search.setForeground(Color.WHITE);
+//		lb_search.setForeground(Color.WHITE);
 		lb_percent.setForeground(Color.WHITE);
 		lb_efficiency.setForeground(Color.WHITE);
 		lb_location.setForeground(Color.WHITE);
@@ -199,7 +199,7 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 				.setBounds(13 * Config.SORT_WIDTH
 						- Config.SELECTION_COMB_TEAM_WIDTH,
 						Config.COBM_LOCATION_Y, Config.SELECTION_SEARCH_WIDTH,
-						Config.SELECTION_COMB_TEAM_WIDTH);
+						Config.COMBOBOX_HEIGHT);
 		cb_district.setBackground(Color.GRAY);
 		add(cb_district);
 
@@ -207,7 +207,7 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 		add(lb_percent);
 
 		cb_type.setBounds(59, 49, Config.SELECTION_SEARCH_WIDTH,
-				Config.SELECTION_COMB_CITY_WIDTH);
+				Config.COMBOBOX_HEIGHT);
 		cb_type.setBackground(Color.gray);
 		add(cb_type);
 
@@ -221,7 +221,7 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 				.setBounds(13 * Config.SORT_WIDTH
 						- Config.SELECTION_COMB_TEAM_WIDTH, 49,
 						Config.SELECTION_SEARCH_WIDTH,
-						Config.SELECTION_COMB_CITY_WIDTH);
+						Config.COMBOBOX_HEIGHT);
 		cb_standard.setBackground(Color.GRAY);
 		add(cb_standard);
 
@@ -233,7 +233,7 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 		cb_position
 				.setBounds(59, Config.COBM_LOCATION_Y,
 						Config.SELECTION_SEARCH_WIDTH,
-						Config.SELECTION_COMB_CITY_WIDTH);
+						Config.COMBOBOX_HEIGHT);
 		add(cb_position);
 
 		lb_season.setBounds(21 * Config.SORT_WIDTH
@@ -244,7 +244,7 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 				.setBounds(21 * Config.SORT_WIDTH
 						- Config.SELECTION_COMB_TEAM_WIDTH, 49,
 						Config.SELECTION_SEARCH_WIDTH,
-						Config.SELECTION_COMB_TEAM_WIDTH);
+						Config.COMBOBOX_HEIGHT);
 		add(cb_season);
 
 		submit.setBounds(21 * Config.SORT_WIDTH
@@ -256,13 +256,13 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 
 	public void initSortBounds() {
 
-		avg_sort.setBounds(100, 45, Config.SORT_WIDTH * 2, Config.SORT_HEIGHT);
+		avg_sort.setBounds(100+50, 45, Config.SORT_WIDTH * 2, Config.SORT_HEIGHT);
 		total_sort
-				.setBounds(100, 90, Config.SORT_WIDTH * 2, Config.SORT_HEIGHT);
-		cb_avg_sort_data.setBounds(160, 77, Config.SELECTION_SEARCH_WIDTH,
-				Config.SELECTION_COMB_TEAM_WIDTH);
+				.setBounds(100+50, 90, Config.SORT_WIDTH * 2, Config.SORT_HEIGHT);
+		cb_avg_sort_data.setBounds(160+30, 77, Config.SELECTION_SEARCH_WIDTH,
+				Config.COMBOBOX_HEIGHT);
 		cb_total_sort_data.setBounds(160, 77, Config.SELECTION_SEARCH_WIDTH,
-				Config.SELECTION_COMB_TEAM_WIDTH);
+				Config.COMBOBOX_HEIGHT);
 		lb_sort_season.setBounds(15 * Config.SORT_WIDTH
 				- Config.SELECTION_COMB_TEAM_WIDTH - Config.COMB_TEXT_GAP, 77,
 				Config.TEXT_WIDTH, Config.TEXT_height);
@@ -270,7 +270,7 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 				.setBounds(15 * Config.SORT_WIDTH
 						- Config.SELECTION_COMB_TEAM_WIDTH, 77,
 						Config.SELECTION_SEARCH_WIDTH,
-						Config.SELECTION_COMB_TEAM_WIDTH);
+						Config.COMBOBOX_HEIGHT);
 	}
 
 	public void showPickup() {
@@ -310,7 +310,7 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 		avg_sort.setVisible(true);
 		total_sort.setVisible(true);
 		cb_avg_sort_data.setVisible(true);
-		cb_total_sort_data.setVisible(true);
+		cb_total_sort_data.setVisible(false);
 		lb_sort_season.setVisible(true);
 		cb_sort_season.setVisible(true);
 	}

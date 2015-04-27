@@ -63,7 +63,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 		this.setBackground(new Color(0, 0, 0, 0));
 		
 		playerPanel = new JPanel();
-		playerPanel.setBounds(0, 0, 800, 45);
+		playerPanel.setBounds(0, 0, Config.UI_WIDTH, 45);
 		playerPanel.setBackground(new Color(0, 0, 0, 0));
 		playerPanel.setLayout(new GridLayout(1, 0));
 		lb_daily_player = new JLabel("当日热点球员",JLabel.CENTER);
