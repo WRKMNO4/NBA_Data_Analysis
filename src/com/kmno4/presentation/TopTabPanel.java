@@ -2,6 +2,7 @@ package com.kmno4.presentation;
 
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
@@ -12,6 +13,7 @@ import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
@@ -44,6 +46,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	private JLabel aboutus;
 	private JLabel close;
 	
+	private JScrollPane dataTableSP;
 	private JTable dataTable;
 	private TableModel dataTableModel;
 	private TableCellRenderer tcr;
@@ -135,8 +138,9 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			}
 		});
 		
+//		makeATable();
 		
-		refreshPlayerTable(MainFrame.mainFrame.players);
+//		refreshPlayerTable(MainFrame.mainFrame.players);
 	}
 	/**
 	 * 在所有panel初始化之后的初始化
@@ -215,119 +219,121 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	 * @param players
 	 */
 	public void refreshPlayerTable(List<PlayerPO> players){
-		if(tableBeShowing != null) {
-			tableBeShowing.setVisible(false);
-			MainFrame.mainFrame.remove(tableBeShowing);
-		}
-		if(players == null || players.size() == 0) return;
-		tableBeShowing = new Table(
-			Config.PLAYER_BASIC_INFO,
-			TableContentTransfer.transferPlayerBasicInfo(Config.PLAYER_BASIC_INFO.length, players));
-		setTableBounds();
-		MainFrame.mainFrame.add(tableBeShowing);
-		addPlayerLink();
-		MainFrame.mainFrame.repaint();
+		System.out.println("TopTabPanel.refreshPlayerTable()");
+		makeATable();
+//		if(tableBeShowing != null) {
+//			tableBeShowing.setVisible(false);
+//			MainFrame.mainFrame.remove(tableBeShowing);
+//		}
+//		if(players == null || players.size() == 0) return;
+//		tableBeShowing = new Table(
+//			Config.PLAYER_BASIC_INFO,
+//			TableContentTransfer.transferPlayerBasicInfo(Config.PLAYER_BASIC_INFO.length, players));
+//		setTableBounds();
+//		MainFrame.mainFrame.add(tableBeShowing);
+//		addPlayerLink();
+//		MainFrame.mainFrame.repaint();
 	}
 	/**
 	 * 刷新team列表
 	 * @param teams
 	 */
 	public void refreshTeamTable(ArrayList<TeamPO> teams) {
-		if(tableBeShowing != null) {
-			tableBeShowing.setVisible(false);
-			MainFrame.mainFrame.remove(tableBeShowing);
-		}
-		if(teams == null || teams.size() == 0) return;
-		tableBeShowing = new Table(
-				Config.TEAM_BASIC_INFO, 
-				TableContentTransfer.transferTeamBasicInfo(Config.TEAM_BASIC_INFO.length, teams));
-		setTableBounds();
-		MainFrame.mainFrame.add(tableBeShowing);
-		addTeamLink();
-		MainFrame.mainFrame.repaint();
+//		if(tableBeShowing != null) {
+//			tableBeShowing.setVisible(false);
+//			MainFrame.mainFrame.remove(tableBeShowing);
+//		}
+//		if(teams == null || teams.size() == 0) return;
+//		tableBeShowing = new Table(
+//				Config.TEAM_BASIC_INFO, 
+//				TableContentTransfer.transferTeamBasicInfo(Config.TEAM_BASIC_INFO.length, teams));
+//		setTableBounds();
+//		MainFrame.mainFrame.add(tableBeShowing);
+//		addTeamLink();
+//		MainFrame.mainFrame.repaint();
 	}
 	/**
 	 * 刷新match列表
 	 */
 	public void refreshMatchTable(ArrayList<MatchPO> matches) {
-		if(tableBeShowing != null) {
-			tableBeShowing.setVisible(false);
-			MainFrame.mainFrame.remove(tableBeShowing);
-		}
-		if(matches == null || matches.size() == 0) return;
-		tableBeShowing = new Table(Config.MATCH_BASIC_INFO, TableContentTransfer.transferMatchBasicInfo(Config.MATCH_BASIC_INFO.length, matches));
-		setTableBounds();
-		MainFrame.mainFrame.add(tableBeShowing);
-		addMatchLink();
-		MainFrame.mainFrame.repaint();
+//		if(tableBeShowing != null) {
+//			tableBeShowing.setVisible(false);
+//			MainFrame.mainFrame.remove(tableBeShowing);
+//		}
+//		if(matches == null || matches.size() == 0) return;
+//		tableBeShowing = new Table(Config.MATCH_BASIC_INFO, TableContentTransfer.transferMatchBasicInfo(Config.MATCH_BASIC_INFO.length, matches));
+//		setTableBounds();
+//		MainFrame.mainFrame.add(tableBeShowing);
+//		addMatchLink();
+//		MainFrame.mainFrame.repaint();
 	}
 	
 	public void refreshDailyPlayerTable(Season season, String date, PlayerData dataType) {
-		if(tableBeShowing != null) {
-			tableBeShowing.setVisible(false);
-			MainFrame.mainFrame.remove(tableBeShowing);
-		}
-		if(season == null || date == null || dataType == null) return;
-		ArrayList<StandingDataPO> sps = MainFrame.mainFrame.bl.getDatasOfDailyStandingPlayers(season, date, dataType);
-		if(sps == null || sps.size() == 0) return;
-		tableBeShowing = new SmallTable(
-				Config.STANDING_DAILYPLAYER_TABLEHEAD,
-				TableContentTransfer.transferStandingDailyPlayerInfo(
-						Config.STANDING_DAILYPLAYER_TABLEHEAD.length,
-						sps));
-		setTableBounds();
-		MainFrame.mainFrame.add(tableBeShowing);
-		addDailyPlayerLink();
-		MainFrame.mainFrame.repaint();
+//		if(tableBeShowing != null) {
+//			tableBeShowing.setVisible(false);
+//			MainFrame.mainFrame.remove(tableBeShowing);
+//		}
+//		if(season == null || date == null || dataType == null) return;
+//		ArrayList<StandingDataPO> sps = MainFrame.mainFrame.bl.getDatasOfDailyStandingPlayers(dataType);
+//		if(sps == null || sps.size() == 0) return;
+//		tableBeShowing = new SmallTable(
+//				Config.STANDING_DAILYPLAYER_TABLEHEAD,
+//				TableContentTransfer.transferStandingDailyPlayerInfo(
+//						Config.STANDING_DAILYPLAYER_TABLEHEAD.length,
+//						sps));
+//		setTableBounds();
+//		MainFrame.mainFrame.add(tableBeShowing);
+//		addDailyPlayerLink();
+//		MainFrame.mainFrame.repaint();
 	}
 	public void refreshSeasonPlayerTable(Season season, PlayerData dataType) {
-		if(tableBeShowing != null) {
-			tableBeShowing.setVisible(false);
-			MainFrame.mainFrame.remove(tableBeShowing);
-		}
-		if(season == null || dataType == null) return;
-		tableBeShowing = new SmallTable(
-				Config.STANDING_SEASONPLAYER_TABLEHEAD,
-				TableContentTransfer.transferStandingSeasonPlayerInfo(
-						Config.STANDING_SEASONPLAYER_TABLEHEAD.length,
-						MainFrame.mainFrame.bl.getSeasonStandingPlayer(season, dataType), season, dataType));
-		setTableBounds();
-		MainFrame.mainFrame.add(tableBeShowing);
-		addSeasonPlayerLink();
-		MainFrame.mainFrame.repaint();
-		tableBeShowing.repaint();
+//		if(tableBeShowing != null) {
+//			tableBeShowing.setVisible(false);
+//			MainFrame.mainFrame.remove(tableBeShowing);
+//		}
+//		if(season == null || dataType == null) return;
+//		tableBeShowing = new SmallTable(
+//				Config.STANDING_SEASONPLAYER_TABLEHEAD,
+//				TableContentTransfer.transferStandingSeasonPlayerInfo(
+//						Config.STANDING_SEASONPLAYER_TABLEHEAD.length,
+//						MainFrame.mainFrame.bl.getSeasonStandingPlayer(season, dataType), season, dataType));
+//		setTableBounds();
+//		MainFrame.mainFrame.add(tableBeShowing);
+//		addSeasonPlayerLink();
+//		MainFrame.mainFrame.repaint();
+//		tableBeShowing.repaint();
 	}
 	public void refreshImprovePlayerTable(Season season, PlayerData dataType) {
-		if(tableBeShowing != null) {
-			tableBeShowing.setVisible(false);
-			MainFrame.mainFrame.remove(tableBeShowing);
-		}
-		if(season == null || dataType == null) return;
-		tableBeShowing = new SmallTable(
-				Config.STANDING_IMPROVE_TABLEHEAD,
-				TableContentTransfer.transferStandingImprovedInfo(
-						Config.STANDING_IMPROVE_TABLEHEAD.length,
-						MainFrame.mainFrame.bl.getMostImprovePlayer(season, dataType), season, dataType));
-		setTableBounds();
-		MainFrame.mainFrame.add(tableBeShowing);
-		addImprovePlayerLink();
-		MainFrame.mainFrame.repaint();
+//		if(tableBeShowing != null) {
+//			tableBeShowing.setVisible(false);
+//			MainFrame.mainFrame.remove(tableBeShowing);
+//		}
+//		if(season == null || dataType == null) return;
+//		tableBeShowing = new SmallTable(
+//				Config.STANDING_IMPROVE_TABLEHEAD,
+//				TableContentTransfer.transferStandingImprovedInfo(
+//						Config.STANDING_IMPROVE_TABLEHEAD.length,
+//						MainFrame.mainFrame.bl.getMostImprovePlayer(season, dataType), season, dataType));
+//		setTableBounds();
+//		MainFrame.mainFrame.add(tableBeShowing);
+//		addImprovePlayerLink();
+//		MainFrame.mainFrame.repaint();
 	}
 	public void refreshSeasonTeamTable(Season season, TeamData dataType) {
-		if(tableBeShowing != null) {
-			tableBeShowing.setVisible(false);
-			MainFrame.mainFrame.remove(tableBeShowing);
-		}
-		if(season == null || dataType == null) return;
-		tableBeShowing = new SmallTable(
-				Config.STANDING_SEASONTEAM_TABLEHEAD,
-				TableContentTransfer.transferStandingSeasonTeamInfo(
-						Config.STANDING_SEASONTEAM_TABLEHEAD.length,
-						MainFrame.mainFrame.bl.getSeasonStandingTeam(season, dataType), season, dataType));
-		setTableBounds();
-		MainFrame.mainFrame.add(tableBeShowing);
-		addSeasonTeamLink();
-		MainFrame.mainFrame.repaint();
+//		if(tableBeShowing != null) {
+//			tableBeShowing.setVisible(false);
+//			MainFrame.mainFrame.remove(tableBeShowing);
+//		}
+//		if(season == null || dataType == null) return;
+//		tableBeShowing = new SmallTable(
+//				Config.STANDING_SEASONTEAM_TABLEHEAD,
+//				TableContentTransfer.transferStandingSeasonTeamInfo(
+//						Config.STANDING_SEASONTEAM_TABLEHEAD.length,
+//						MainFrame.mainFrame.bl.getSeasonStandingTeam(season, dataType), season, dataType));
+//		setTableBounds();
+//		MainFrame.mainFrame.add(tableBeShowing);
+//		addSeasonTeamLink();
+//		MainFrame.mainFrame.repaint();
 	}
 	
 	
@@ -544,4 +550,31 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		
 	}
 	
+	public void makeATable() {
+		//TODO
+		System.out.println("TopTabPanel.makeATable()");
+		dataTable = new JTable(
+			TableContentTransfer.transferPlayerBasicInfo(Config.PLAYER_BASIC_INFO.length, MainFrame.mainFrame.players),
+			Config.PLAYER_BASIC_INFO);
+		
+		int y = Config.TOP_TAB_HEIGHT + Config.INTRODUCTION_WHITE + Config.SELECTION_HEIGHT + 10;
+		
+		dataTable.setPreferredSize(new Dimension(Config.UI_WIDTH,
+				MainFrame.mainFrame.players.size() * 30));
+		dataTable.setRowHeight(30);
+		dataTable.setAutoResizeMode(0);
+		dataTable.setEnabled(false);
+		dataTable.setFont(new Font("default", 0, 16));
+		dataTable.getTableHeader().setReorderingAllowed(false);
+		dataTable.getTableHeader().setEnabled(false);
+		dataTable.getTableHeader().setFont(new Font("default", 1, 17));
+		dataTable.getTableHeader().setPreferredSize(new Dimension(0, 45));
+		dataTableSP = new JScrollPane(dataTable);
+		dataTableSP.setBounds(
+				0, 
+				y,
+				Config.UI_WIDTH,
+				Config.UI_HEIGHT - y);
+		MainFrame.mainFrame.add(dataTableSP);
+	}
 }
