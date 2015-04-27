@@ -14,6 +14,7 @@ import java.util.List;
 
 
 
+
 import Enum.PlayerData;
 import Enum.Season;
 import Enum.TeamData;
@@ -160,6 +161,72 @@ public class TableContentTransfer {
 			body[i][4]=team.getDistrict();
 			body[i][5]=team.getHomeCourt();
 			body[i][6]=""+team.getTimeOfEstablishment();
+		}
+		return body;
+	}
+	
+	public static String[][] transferTeamSortAvgInfo(int columns, ArrayList<TeamPO> teams,Season season){
+		String[][] body = new String[teams.size()][columns];
+		
+		for(int i=0;i<teams.size();i++){
+			TeamPO theTeam=teams.get(i);
+			TeamDataPO avgData = theTeam.getSeasonInfo(season).getAverageTeamData();
+			body[i][0]=theTeam.getFullName();
+			body[i][1]= cutTailOfAvgData(avgData.getNumberOfShooting());
+			body[i][2]= cutTailOfAvgData(avgData.getNumberOfShotAttempt());
+			body[i][3]= cutTailOfAvgData(avgData.getNumberOf3_point());
+			body[i][4]= cutTailOfAvgData(avgData.getNumberOf3_pointAttempt());
+			body[i][5]= cutTailOfAvgData(avgData.getNumberOfFreeThrow());
+			body[i][6]= cutTailOfAvgData(avgData.getNumberOfFreeThrowAttempt());
+			body[i][7]= cutTailOfAvgData(avgData.getNumberOfAttackRebound());
+			body[i][8]= cutTailOfAvgData(avgData.getNumberOfDefenseRebound());
+			body[i][9]= cutTailOfAvgData(avgData.getNumberOfRebound());
+			body[i][10]= cutTailOfAvgData(avgData.getNumberOfAssist());
+			body[i][11]= cutTailOfAvgData(avgData.getNumberOfSteal());
+			body[i][12]= cutTailOfAvgData(avgData.getNumberOfBlock());
+			body[i][13]= cutTailOfAvgData(avgData.getNumberOfFault());
+			body[i][14]= cutTailOfAvgData(avgData.getNumberOfFoul());
+			body[i][15]= cutTailOfAvgData(avgData.getScore());
+		
+			body[i][16]= cutTailOfAvgData(avgData.getPercentageOfShooting());
+			body[i][17]= cutTailOfAvgData(avgData.getPercentageOf3_point());
+			body[i][18]= cutTailOfAvgData(avgData.getPercentageOfFreeThrow());
+			
+			body[i][19]= cutTailOfAvgData(theTeam.getSeasonInfo(season).getPercentageOfWinning());
+			body[i][20]= cutTailOfAvgData(avgData.getRoundOfAttack());
+
+			body[i][21]= cutTailOfAvgData(avgData.getEfficiencyOfAttack());
+			body[i][22]= cutTailOfAvgData(avgData.getEfficiencyOfDefense());
+			body[i][23]= cutTailOfAvgData(avgData.getEfficiencyOfRebound());
+			body[i][24]= cutTailOfAvgData(avgData.getEfficiencyOfSteal());
+			body[i][25]= cutTailOfAvgData(avgData.getEfficiencyOfAssist());
+		}
+		return body;
+	}
+	
+	public static String[][] transferTeamSortTotalInfo(int columns,ArrayList<TeamPO> teams,Season season){
+		String[][] body = new String[teams.size()][columns];
+		for(int i=0;i<teams.size();i++){
+			TeamPO theTeam = teams.get(i);
+			TeamDataPO totalData = theTeam.getTotalTeamData(season) ;
+			body[i][0] = theTeam.getFullName();
+			body[i][1]=cutTailOfTotalData(theTeam.getSeasonInfo(season).getNumberOfMatches());
+			body[i][2]= cutTailOfTotalData(totalData.getNumberOfShooting());
+			body[i][3]= cutTailOfTotalData(totalData.getNumberOfShotAttempt());
+			body[i][4]= cutTailOfTotalData(totalData.getNumberOf3_point());
+			body[i][5]= cutTailOfTotalData(totalData.getNumberOf3_pointAttempt());
+			body[i][6]= cutTailOfTotalData(totalData.getNumberOfFreeThrow());
+			body[i][7]= cutTailOfTotalData(totalData.getNumberOfFreeThrowAttempt());
+			body[i][8]= cutTailOfTotalData(totalData.getNumberOfAttackRebound());
+			body[i][9]= cutTailOfTotalData(totalData.getNumberOfDefenseRebound());
+			body[i][10]= cutTailOfTotalData(totalData.getNumberOfRebound());
+			body[i][11]= cutTailOfTotalData(totalData.getNumberOfAssist());
+			body[i][12]= cutTailOfTotalData(totalData.getNumberOfSteal());
+			body[i][13]= cutTailOfTotalData(totalData.getNumberOfBlock());
+			body[i][14]= cutTailOfTotalData(totalData.getNumberOfFault());
+			body[i][15]= cutTailOfTotalData(totalData.getNumberOfFoul());
+			body[i][16]= cutTailOfTotalData(totalData.getScore());
+			body[i][17]= cutTailOfTotalData(totalData.getRoundOfAttack());
 		}
 		return body;
 	}
