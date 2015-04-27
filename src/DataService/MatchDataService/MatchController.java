@@ -55,7 +55,9 @@ public class MatchController implements MatchDataService{
 					continue;
 				
 				if(newMatch.getSeason().compareTo(Config.LASTEST_SEASON)>0)
-				Config.setLatestSeason(newMatch.getSeason());
+					Config.setLatestSeason(newMatch.getSeason());
+				if(newMatch.getSeason().equals(Config.LASTEST_SEASON))
+					Config.LASTEST_DATE=newMatch.getDate();
 				
 				boolean isFirstTeam = false ; 
 				for(int j = 0;j<tempString.size() ;j++){ 

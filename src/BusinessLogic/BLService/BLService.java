@@ -63,12 +63,10 @@ public interface BLService {
 //	/*public ArrayList<TeamPO>findTeamByName(String name) ;*/
 	/**
 	 * 
-	 * @param season 赛季
-	 * @param date 日期（如01-01）
 	 *  @param dataType 筛选条件
 	 * @return 前五名球员列表,如果不存在即null.
 	 */
-	public ArrayList<StandingDataPO> getDatasOfDailyStandingPlayers(Season season,String date,PlayerData dataType) ;
+	public ArrayList<StandingDataPO> getDatasOfDailyStandingPlayers(PlayerData dataType) ;
 	/**
 	 * 
 	 * @param season 赛季
