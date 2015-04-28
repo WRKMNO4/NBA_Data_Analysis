@@ -2,8 +2,6 @@ package com.kmno4.presentation;
 
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -30,9 +28,7 @@ import PO.TeamPO;
 
 import com.kmno4.common.Config;
 import com.kmno4.presentation.button.ExitLabel;
-import com.kmno4.presentation.table.SmallTable;
-import com.kmno4.presentation.table.Table;
-import com.kmno4.presentation.table.TableList;
+import com.kmno4.presentation.table.TableFactory;
 
 @SuppressWarnings("serial")
 public class TopTabPanel extends JPanel implements MouseListener{
@@ -50,12 +46,6 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	private JTable dataTable;
 	private TableModel dataTableModel;
 	private TableCellRenderer tcr;
-
-	/**
-	 * 用于引用当前显示的表格
-	 */
-	private Table tableBeShowing;
-
 
 	/**
 	 * Create the panel.
@@ -137,10 +127,6 @@ public class TopTabPanel extends JPanel implements MouseListener{
 				showAboutUsInfo();
 			}
 		});
-		
-//		makeATable();
-		
-//		refreshPlayerTable(MainFrame.mainFrame.players);
 	}
 	/**
 	 * 在所有panel初始化之后的初始化
@@ -202,9 +188,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		
 	}
 	
-	public void showAboutUsInfo(){ 
-		
-	}
+	public void showAboutUsInfo(){}
 	
 	
 	
@@ -220,241 +204,212 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	 */
 	public void refreshPlayerTable(List<PlayerPO> players){
 		System.out.println("TopTabPanel.refreshPlayerTable()");
-		makeATable();
-//		if(tableBeShowing != null) {
-//			tableBeShowing.setVisible(false);
-//			MainFrame.mainFrame.remove(tableBeShowing);
-//		}
-//		if(players == null || players.size() == 0) return;
-//		tableBeShowing = new Table(
-//			Config.PLAYER_BASIC_INFO,
-//			TableContentTransfer.transferPlayerBasicInfo(Config.PLAYER_BASIC_INFO.length, players));
-//		setTableBounds();
-//		MainFrame.mainFrame.add(tableBeShowing);
-//		addPlayerLink();
-//		MainFrame.mainFrame.repaint();
+		if(dataTable != null) dataTable.setVisible(false);
+		if(dataTableSP != null) {
+			dataTableSP.setVisible(false);
+			MainFrame.mainFrame.remove(dataTableSP);
+		}
+		if(players == null || players.size() == 0) return;
+		setTable(TableContentTransfer.transferPlayerBasicInfo(Config.PLAYER_BASIC_INFO.length, players));
+		addPlayerLink();
+		MainFrame.mainFrame.repaint();
 	}
 	/**
 	 * 刷新team列表
 	 * @param teams
 	 */
 	public void refreshTeamTable(ArrayList<TeamPO> teams) {
-//		if(tableBeShowing != null) {
-//			tableBeShowing.setVisible(false);
-//			MainFrame.mainFrame.remove(tableBeShowing);
-//		}
-//		if(teams == null || teams.size() == 0) return;
-//		tableBeShowing = new Table(
-//				Config.TEAM_BASIC_INFO, 
-//				TableContentTransfer.transferTeamBasicInfo(Config.TEAM_BASIC_INFO.length, teams));
-//		setTableBounds();
-//		MainFrame.mainFrame.add(tableBeShowing);
-//		addTeamLink();
-//		MainFrame.mainFrame.repaint();
+		System.out.println("TopTabPanel.refreshTeamTable()");
+		if(dataTable != null) dataTable.setVisible(false);
+		if(dataTableSP != null) {
+			dataTableSP.setVisible(false);
+			MainFrame.mainFrame.remove(dataTableSP);
+		}
+		if(teams == null || teams.size() == 0) return;
+		setTable(TableContentTransfer.transferTeamBasicInfo(Config.TEAM_BASIC_INFO.length, teams));
+		addTeamLink();
+		MainFrame.mainFrame.repaint();
 	}
 	/**
 	 * 刷新match列表
 	 */
 	public void refreshMatchTable(ArrayList<MatchPO> matches) {
-//		if(tableBeShowing != null) {
-//			tableBeShowing.setVisible(false);
-//			MainFrame.mainFrame.remove(tableBeShowing);
-//		}
-//		if(matches == null || matches.size() == 0) return;
-//		tableBeShowing = new Table(Config.MATCH_BASIC_INFO, TableContentTransfer.transferMatchBasicInfo(Config.MATCH_BASIC_INFO.length, matches));
-//		setTableBounds();
-//		MainFrame.mainFrame.add(tableBeShowing);
-//		addMatchLink();
-//		MainFrame.mainFrame.repaint();
+		System.out.println("TopTabPanel.refreshMatchTable()");
+		if(dataTable != null) dataTable.setVisible(false);
+		if(dataTableSP != null) {
+			dataTableSP.setVisible(false);
+			MainFrame.mainFrame.remove(dataTableSP);
+		}
+		if(matches == null || matches.size() == 0) return;
+		setTable(TableContentTransfer.transferMatchBasicInfo(Config.MATCH_BASIC_INFO.length, matches));
+		addMatchLink();
+		MainFrame.mainFrame.repaint();
 	}
 	
 	public void refreshDailyPlayerTable(Season season, String date, PlayerData dataType) {
-//		if(tableBeShowing != null) {
-//			tableBeShowing.setVisible(false);
-//			MainFrame.mainFrame.remove(tableBeShowing);
-//		}
-//		if(season == null || date == null || dataType == null) return;
-//		ArrayList<StandingDataPO> sps = MainFrame.mainFrame.bl.getDatasOfDailyStandingPlayers(dataType);
-//		if(sps == null || sps.size() == 0) return;
-//		tableBeShowing = new SmallTable(
-//				Config.STANDING_DAILYPLAYER_TABLEHEAD,
-//				TableContentTransfer.transferStandingDailyPlayerInfo(
-//						Config.STANDING_DAILYPLAYER_TABLEHEAD.length,
-//						sps));
-//		setTableBounds();
-//		MainFrame.mainFrame.add(tableBeShowing);
-//		addDailyPlayerLink();
-//		MainFrame.mainFrame.repaint();
+		if(dataTable != null) dataTable.setVisible(false);
+		if(dataTableSP != null) {
+			dataTableSP.setVisible(false);
+			MainFrame.mainFrame.remove(dataTableSP);
+		}
+		if(season == null || date == null || dataType == null) return;
+		ArrayList<StandingDataPO> sps = MainFrame.mainFrame.bl.getDatasOfDailyStandingPlayers(dataType);
+		if(sps == null || sps.size() == 0) return;
+		setTable(TableContentTransfer.transferStandingDailyPlayerInfo(
+						Config.STANDING_DAILYPLAYER_TABLEHEAD.length,
+						sps));
+		addDailyPlayerLink();
+		MainFrame.mainFrame.repaint();
 	}
 	public void refreshSeasonPlayerTable(Season season, PlayerData dataType) {
-//		if(tableBeShowing != null) {
-//			tableBeShowing.setVisible(false);
-//			MainFrame.mainFrame.remove(tableBeShowing);
-//		}
-//		if(season == null || dataType == null) return;
-//		tableBeShowing = new SmallTable(
-//				Config.STANDING_SEASONPLAYER_TABLEHEAD,
-//				TableContentTransfer.transferStandingSeasonPlayerInfo(
-//						Config.STANDING_SEASONPLAYER_TABLEHEAD.length,
-//						MainFrame.mainFrame.bl.getSeasonStandingPlayer(season, dataType), season, dataType));
-//		setTableBounds();
-//		MainFrame.mainFrame.add(tableBeShowing);
-//		addSeasonPlayerLink();
-//		MainFrame.mainFrame.repaint();
-//		tableBeShowing.repaint();
+		if(dataTable != null) dataTable.setVisible(false);
+		if(dataTableSP != null) {
+			dataTableSP.setVisible(false);
+			MainFrame.mainFrame.remove(dataTableSP);
+		}
+		if(season == null || dataType == null) return;
+		setTable(TableContentTransfer.transferStandingSeasonPlayerInfo(
+						Config.STANDING_SEASONPLAYER_TABLEHEAD.length,
+						MainFrame.mainFrame.bl.getSeasonStandingPlayer(season, dataType), season, dataType));
+		addSeasonPlayerLink();
+		MainFrame.mainFrame.repaint();
 	}
 	public void refreshImprovePlayerTable(Season season, PlayerData dataType) {
-//		if(tableBeShowing != null) {
-//			tableBeShowing.setVisible(false);
-//			MainFrame.mainFrame.remove(tableBeShowing);
-//		}
-//		if(season == null || dataType == null) return;
-//		tableBeShowing = new SmallTable(
-//				Config.STANDING_IMPROVE_TABLEHEAD,
-//				TableContentTransfer.transferStandingImprovedInfo(
-//						Config.STANDING_IMPROVE_TABLEHEAD.length,
-//						MainFrame.mainFrame.bl.getMostImprovePlayer(season, dataType), season, dataType));
-//		setTableBounds();
-//		MainFrame.mainFrame.add(tableBeShowing);
-//		addImprovePlayerLink();
-//		MainFrame.mainFrame.repaint();
+		if(dataTable != null) dataTable.setVisible(false);
+		if(dataTableSP != null) {
+			dataTableSP.setVisible(false);
+			MainFrame.mainFrame.remove(dataTableSP);
+		}
+		if(season == null || dataType == null) return;
+		setTable(TableContentTransfer.transferStandingImprovedInfo(
+						Config.STANDING_IMPROVE_TABLEHEAD.length,
+						MainFrame.mainFrame.bl.getMostImprovePlayer(season, dataType), season, dataType));
+		addImprovePlayerLink();
+		MainFrame.mainFrame.repaint();
 	}
 	public void refreshSeasonTeamTable(Season season, TeamData dataType) {
-//		if(tableBeShowing != null) {
-//			tableBeShowing.setVisible(false);
-//			MainFrame.mainFrame.remove(tableBeShowing);
-//		}
-//		if(season == null || dataType == null) return;
-//		tableBeShowing = new SmallTable(
-//				Config.STANDING_SEASONTEAM_TABLEHEAD,
-//				TableContentTransfer.transferStandingSeasonTeamInfo(
-//						Config.STANDING_SEASONTEAM_TABLEHEAD.length,
-//						MainFrame.mainFrame.bl.getSeasonStandingTeam(season, dataType), season, dataType));
-//		setTableBounds();
-//		MainFrame.mainFrame.add(tableBeShowing);
-//		addSeasonTeamLink();
-//		MainFrame.mainFrame.repaint();
+		if(dataTable != null) dataTable.setVisible(false);
+		if(dataTableSP != null) {
+			dataTableSP.setVisible(false);
+			MainFrame.mainFrame.remove(dataTableSP);
+		}
+		if(season == null || dataType == null) return;
+		setTable(TableContentTransfer.transferStandingSeasonTeamInfo(
+						Config.STANDING_SEASONTEAM_TABLEHEAD.length,
+						MainFrame.mainFrame.bl.getSeasonStandingTeam(season, dataType), season, dataType));
+		addSeasonTeamLink();
+		MainFrame.mainFrame.repaint();
 	}
 	
 	
-	
-	private void setTableBounds() {
-		int y = Config.TOP_TAB_HEIGHT + Config.INTRODUCTION_WHITE + Config.SELECTION_HEIGHT + 10;
-		tableBeShowing.setBounds(
-				0, 
-				y,
-				Config.UI_WIDTH,
-				Config.UI_HEIGHT - y);
-		tableBeShowing.setFont(new Font("default", Font.BOLD, 13), new Font("default", Font.PLAIN, 12));
-	}
 	private HeadIconFrame headIconFrame;
 	private int columNum;
 	private static final int PLAYER_LINK = 0;
 	private void addPlayerLink() {
-		TableList[][] t = tableBeShowing.body;
-		for(int i = 0; i < t.length; i ++) {
-			for(int j = 0; j < t[0].length; j ++) {
-				if(t[i][j].elements.length == 0) return;
-			    final JLabel label = t[i][j].elements[PLAYER_LINK];
-			    final int fj = j;
-				label.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						PlayerPO p = PlayerListPO.findPlayerAccurately(label.getText());
-						if(p == null) return;
-						new PlayerDetailFrame(p).setVisible(true);
-					}
-					@Override
-					public void mouseEntered(MouseEvent e) {
-						columNum = fj + 1;
-						double labelHeight = (double)tableBeShowing.getHeight() / (double)(tableBeShowing.getRowNum() + 2);
-						double x = (double)MainFrame.mainFrame.getX() +
-								   (double)tableBeShowing.getX() + 
-								   (double)tableBeShowing.getWidth() / tableBeShowing.head.elements.length;
-						double y = (double)MainFrame.mainFrame.getY() +
-								   (double)tableBeShowing.getY() + 
-								   (double)(columNum + 1) * labelHeight;
-						HeadIconFrame f = new HeadIconFrame(
-								PlayerListPO.findPlayerAccurately(label.getText()),
-								(int)x,
-								(int)y);
-						if(headIconFrame != null && headIconFrame.isVisible()) {
-							headIconFrame.setVisible(false);
-							headIconFrame.dispose();
-						}
-						headIconFrame = f;
-					}
-					@Override
-					public void mouseExited(MouseEvent e) {
-						if(headIconFrame != null && headIconFrame.isVisible()) {
-							headIconFrame.setVisible(false);
-							headIconFrame.dispose();
-						}
-					}
-				});
-			}
-		}
+//		TableList[][] t = tableBeShowing.body;
+//		for(int i = 0; i < t.length; i ++) {
+//			for(int j = 0; j < t[0].length; j ++) {
+//				if(t[i][j].elements.length == 0) return;
+//			    final JLabel label = t[i][j].elements[PLAYER_LINK];
+//			    final int fj = j;
+//				label.addMouseListener(new MouseAdapter() {
+//					@Override
+//					public void mouseClicked(MouseEvent e) {
+//						PlayerPO p = PlayerListPO.findPlayerAccurately(label.getText());
+//						if(p == null) return;
+//						new PlayerDetailFrame(p).setVisible(true);
+//					}
+//					@Override
+//					public void mouseEntered(MouseEvent e) {
+//						columNum = fj + 1;
+//						double labelHeight = (double)tableBeShowing.getHeight() / (double)(tableBeShowing.getRowNum() + 2);
+//						double x = (double)MainFrame.mainFrame.getX() +
+//								   (double)tableBeShowing.getX() + 
+//								   (double)tableBeShowing.getWidth() / tableBeShowing.head.elements.length;
+//						double y = (double)MainFrame.mainFrame.getY() +
+//								   (double)tableBeShowing.getY() + 
+//								   (double)(columNum + 1) * labelHeight;
+//						HeadIconFrame f = new HeadIconFrame(
+//								PlayerListPO.findPlayerAccurately(label.getText()),
+//								(int)x,
+//								(int)y);
+//						if(headIconFrame != null && headIconFrame.isVisible()) {
+//							headIconFrame.setVisible(false);
+//							headIconFrame.dispose();
+//						}
+//						headIconFrame = f;
+//					}
+//					@Override
+//					public void mouseExited(MouseEvent e) {
+//						if(headIconFrame != null && headIconFrame.isVisible()) {
+//							headIconFrame.setVisible(false);
+//							headIconFrame.dispose();
+//						}
+//					}
+//				});
+//			}
+//		}
 		
 	}
 	private static final int TEAM_LINK = 0;
 	private static final int SHORT_NAME_LABEL = 1;
 	private void addTeamLink() {
-		TableList[][] t = tableBeShowing.body;
-		for(int i = 0; i < t.length; i ++) {
-			for(int j = 0; j < t[0].length; j ++) {
-				if(t[i][j].elements.length == 0) return;
-			    JLabel label = t[i][j].elements[TEAM_LINK];
-			    final JLabel shortNameLabel = t[i][j].elements[SHORT_NAME_LABEL];
-				label.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						TeamPO t = TeamListPO.findTeamByShortName(shortNameLabel.getText());
-						if(t == null) return;
-						new TeamDetailFrame(t).setVisible(true);
-					}
-				});
-			}
-		}
+//		TableList[][] t = tableBeShowing.body;
+//		for(int i = 0; i < t.length; i ++) {
+//			for(int j = 0; j < t[0].length; j ++) {
+//				if(t[i][j].elements.length == 0) return;
+//			    JLabel label = t[i][j].elements[TEAM_LINK];
+//			    final JLabel shortNameLabel = t[i][j].elements[SHORT_NAME_LABEL];
+//				label.addMouseListener(new MouseAdapter() {
+//					@Override
+//					public void mouseClicked(MouseEvent e) {
+//						TeamPO t = TeamListPO.findTeamByShortName(shortNameLabel.getText());
+//						if(t == null) return;
+//						new TeamDetailFrame(t).setVisible(true);
+//					}
+//				});
+//			}
+//		}
 	}
 	private void addMatchLink() {
-		TableList[][] t = tableBeShowing.body;
-		for(int i = 0; i < t.length; i ++) {
-			for(int j = 0; j < t[0].length; j ++) {
-				if(t[i][j].elements.length == 0) return;
-			    TableList panel = t[i][j];
-			    final Season season;
-			    final String date, team;
-			    String s = panel.elements[0].getText();
-			    switch(s) {
-			    case "2012-2013赛季" : season = Season.season12_13; break;
-			    case "2013-2014赛季" : season = Season.season13_14; break;
-			    case "2014-2015赛季" : season = Season.season14_15; break;
-			    default: season = Season.season12_13;
-			    }
-			    date = panel.elements[1].getText();
-			    team = panel.elements[2].getText() + "-" + panel.elements[5].getText();
-			    
-				panel.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						MatchInfoDetailFrame f = new MatchInfoDetailFrame(MainFrame.mainFrame.bl.findMatch(season, date, team));
-					    f.setVisible(true);
-					}
-				});
-			}
-		}
+//		TableList[][] t = tableBeShowing.body;
+//		for(int i = 0; i < t.length; i ++) {
+//			for(int j = 0; j < t[0].length; j ++) {
+//				if(t[i][j].elements.length == 0) return;
+//			    TableList panel = t[i][j];
+//			    final Season season;
+//			    final String date, team;
+//			    String s = panel.elements[0].getText();
+//			    switch(s) {
+//			    case "2012-2013赛季" : season = Season.season12_13; break;
+//			    case "2013-2014赛季" : season = Season.season13_14; break;
+//			    case "2014-2015赛季" : season = Season.season14_15; break;
+//			    default: season = Season.season12_13;
+//			    }
+//			    date = panel.elements[1].getText();
+//			    team = panel.elements[2].getText() + "-" + panel.elements[5].getText();
+//			    
+//				panel.addMouseListener(new MouseAdapter() {
+//					@Override
+//					public void mouseClicked(MouseEvent e) {
+//						MatchInfoDetailFrame f = new MatchInfoDetailFrame(MainFrame.mainFrame.bl.findMatch(season, date, team));
+//					    f.setVisible(true);
+//					}
+//				});
+//			}
+//		}
 	}
 
 	private void addDailyPlayerLink() {
-		TableList[] t = tableBeShowing.body[0];
-		for(int i = 0; i < t.length; i ++) {
-			final int j = i;
-			t[j].addMouseListener(new MouseAdapter() {
-				public void mouseClicked(MouseEvent e) {
-					new PlayerDetailFrame(PlayerListPO.findPlayerAccurately(tableBeShowing.body[0][j].elements[0].getText()));
-				}
-			});
-		}
+//		TableList[] t = tableBeShowing.body[0];
+//		for(int i = 0; i < t.length; i ++) {
+//			final int j = i;
+//			t[j].addMouseListener(new MouseAdapter() {
+//				public void mouseClicked(MouseEvent e) {
+//					new PlayerDetailFrame(PlayerListPO.findPlayerAccurately(tableBeShowing.body[0][j].elements[0].getText()));
+//				}
+//			});
+//		}
 	}
 	private void addSeasonPlayerLink() {
 		addDailyPlayerLink();
@@ -463,17 +418,17 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		addDailyPlayerLink();
 	}
 	private void addSeasonTeamLink() {
-		TableList[] t = tableBeShowing.body[0];
-		for(int i = 0; i < t.length; i ++) {
-			final int j = i;
-			t[j].addMouseListener(new MouseAdapter() {
-				public void mouseClicked(MouseEvent e) {
-					new TeamDetailFrame(TeamListPO.findTeamByFullName(tableBeShowing.body[0][j].elements[0].getText()));
-				}
-			});
-		}
+//		TableList[] t = tableBeShowing.body[0];
+//		for(int i = 0; i < t.length; i ++) {
+//			final int j = i;
+//			t[j].addMouseListener(new MouseAdapter() {
+//				public void mouseClicked(MouseEvent e) {
+//					new TeamDetailFrame(TeamListPO.findTeamByFullName(tableBeShowing.body[0][j].elements[0].getText()));
+//				}
+//			});
+//		}
 	}
-
+	
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -550,31 +505,12 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		
 	}
 	
-	public void makeATable() {
-		//TODO
-		System.out.println("TopTabPanel.makeATable()");
-		dataTable = new JTable(
-			TableContentTransfer.transferPlayerBasicInfo(Config.PLAYER_BASIC_INFO.length, MainFrame.mainFrame.players),
-			Config.PLAYER_BASIC_INFO);
-		
-		int y = Config.TOP_TAB_HEIGHT + Config.INTRODUCTION_WHITE + Config.SELECTION_HEIGHT + 10;
-		
-		dataTable.setPreferredSize(new Dimension(Config.UI_WIDTH,
-				MainFrame.mainFrame.players.size() * 30));
-		dataTable.setRowHeight(30);
-		dataTable.setAutoResizeMode(0);
-		dataTable.setEnabled(false);
-		dataTable.setFont(new Font("default", 0, 16));
-		dataTable.getTableHeader().setReorderingAllowed(false);
-		dataTable.getTableHeader().setEnabled(false);
-		dataTable.getTableHeader().setFont(new Font("default", 1, 17));
-		dataTable.getTableHeader().setPreferredSize(new Dimension(0, 45));
-		dataTableSP = new JScrollPane(dataTable);
-		dataTableSP.setBounds(
-				0, 
-				y,
-				Config.UI_WIDTH,
-				Config.UI_HEIGHT - y);
-		MainFrame.mainFrame.add(dataTableSP);
+	public void setTable(Object[][] body) {
+		int y = Config.TOP_TAB_HEIGHT + Config.INTRODUCTION_WHITE + Config.SELECTION_HEIGHT;
+		TableFactory.createTable(dataTable, dataTableSP,
+				MainFrame.mainFrame,
+				body,
+				Config.UI_WIDTH, Config.UI_HEIGHT - y,
+				0, y);
 	}
 }
