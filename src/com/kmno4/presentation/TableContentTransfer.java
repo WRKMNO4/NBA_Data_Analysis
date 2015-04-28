@@ -15,6 +15,10 @@ import java.util.List;
 
 
 
+
+
+import com.kmno4.common.Config;
+
 import Enum.PlayerData;
 import Enum.Season;
 import Enum.TeamData;
@@ -46,9 +50,16 @@ public class TableContentTransfer {
 		}
 		return body;
 	}
+	public static final String[] PLAYER_SORT_AVERAGE={"球员","篮板数","助攻数","在场时间","投篮命中率","三分命中率","罚球命中率",
+		"进攻数","防守数","抢断数","盖帽数","失误数","犯规数","得分","效率",
+		"GmSc效率值","真实命中率","投篮效率","篮板率","进攻篮板率",
+		"防守篮板率","助攻率","抢断率",
+		"盖帽率","失误率","使用率"} ;
+	
 	public static String[][] transferPlayerSortTotalInfo(int columns,ArrayList<PlayerPO> players ,Season season){
 		String[][] body = new String[players.size()][columns] ;
-		for(int i = 0;i<players.size();i++){
+		body[0] =  Config.PLAYER_SORT_TOTAL ;
+		for(int i = 1;i<players.size();i++){
 			PlayerPO onePlayer = players.get(i) ;
 			PlayerDataPO totalData = onePlayer.getSeasonInfo(season).getTotalPlayerData() ;
 			body[i][0] = onePlayer.getName() ;
@@ -69,7 +80,8 @@ public class TableContentTransfer {
 }
 	public static String[][] transferPlayerSortAvgInfo(int columns,ArrayList<PlayerPO> players,Season season){
 		String[][] body = new String[players.size()][columns] ;
-		for(int i= 0;i<players.size();i++){
+		body[0] = Config.PLAYER_SORT_AVERAGE ;
+		for(int i= 1;i<players.size();i++){
 			PlayerPO onePlayer = players.get(i) ; 
 			PlayerDataPO avgData = onePlayer.getSeasonInfo(season).getAveragePlayerData() ;
 			body[i][0] = onePlayer.getName() ;
