@@ -18,7 +18,7 @@ public interface PlayerBusinessLogic {
 	public void calculateFinalData() ;
 	public ArrayList<PlayerPO> getAllPlayers() ;
 	public ArrayList<PlayerPO> findPlayerByName(String name) ;
-	public ArrayList<StandingDataPO> getDatasOfDailyStandingPlayers(Season season,String date, PlayerData dataType);
+	public StandingDataPO getDatasOfDailyStandingPlayers(Season season,String date, PlayerData dataType);
 	public ArrayList<PlayerPO> getSeasonStandingPlayer(Season season,
 			PlayerData dataType);
 	public ArrayList<PlayerPO> getMostImprovePlayer(Season season,

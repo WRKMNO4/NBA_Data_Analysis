@@ -114,7 +114,7 @@ public class BLServiceController implements  BLService{
 //	}
 
 	@Override
-	public ArrayList<StandingDataPO> getDatasOfDailyStandingPlayers(PlayerData dataType) {
+	public StandingDataPO getDatasOfDailyStandingPlayers(PlayerData dataType) {
 		// TODO Auto-generated method stub
 		return playerController.getDatasOfDailyStandingPlayers(Config.LASTEST_SEASON,
 				Config.LASTEST_DATE , dataType);

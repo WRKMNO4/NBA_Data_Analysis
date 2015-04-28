@@ -16,6 +16,7 @@ import PO.SeasonInfoForPlayer;
 import PO.TeamListPO;
 import PO.TeamPO;
 import test.data.PlayerHighInfo;
+import test.data.PlayerHotInfo;
 import test.data.PlayerNormalInfo;
 
 public class Console {
@@ -25,14 +26,20 @@ public class Console {
 		ArrayList<PlayerPO> allPlayers=bl.getAllPlayers();
 		
 		System.setOut(out);
-		
+//-----------------------------------------------------------------------------		
+//		PlayerHotInfo playerHot = new PlayerHotInfo() ;
+//		switch(field){
+//		
+//		}
+//		playerHot.setField();
+//		playerHot.setName(name);
+//-----------------------------------------------------------------------------		
 		for(PlayerPO onePlayer : allPlayers){
 			TeamPO team = TeamListPO.findTeamByShortName(onePlayer.getTeam(Config.LASTEST_SEASON));
 			SeasonInfoForPlayer info = onePlayer.getSeasonInfo(Config.LASTEST_SEASON);
 			PlayerDataPO avgInfo=info.getAveragePlayerData();
 			PlayerDataPO totalInfo = info.getTotalPlayerData() ;
 			PlayerHighInfo playerHighInfo = new PlayerHighInfo() ;
-			
 			playerHighInfo.setAssistEfficient(avgInfo.getPercentageOfAssist());
 			playerHighInfo.setBlockShotEfficient(avgInfo.getPercentageOfBlock());
 			playerHighInfo.setDefendReboundEfficient(avgInfo.getPercentageOfDefenseRebound());
@@ -50,20 +57,33 @@ public class Console {
 			playerHighInfo.setStealEfficient(avgInfo.getPercentageOfSteal());
 			if(team!=null)
 			playerHighInfo.setTeamName(team.getShortName());
-			System.out.print(playerHighInfo) ;
+			out.print(playerHighInfo);
+		}
+//--------------------------------------------------------------------------------
+		for(PlayerPO onePlayer : allPlayers){
+			PlayerNormalInfo playerNormalInfo = new PlayerNormalInfo() ;
+			SeasonInfoForPlayer infoOfSeason = onePlayer.getSeasonInfo(Config.LASTEST_SEASON) ;
+			PlayerDataPO totalInfo = infoOfSeason.getTotalPlayerData() ;
+			PlayerDataPO avgInfo = infoOfSeason.getAveragePlayerData() ;
+			playerNormalInfo.setAge(Integer.parseInt(onePlayer.getAge()));
+			playerNormalInfo.setAssist(totalInfo.getNumberOfAssist());
+			playerNormalInfo.setBlockShot(totalInfo.getNumberOfBlock()) ;
+			playerNormalInfo.setDefend(totalInfo.getNumberOfDefense());
+			playerNormalInfo.setEfficiency(avgInfo.getEfficiencyOfTotal());
+			playerNormalInfo.setFault(totalInfo.getNumberOfFault());
+			playerNormalInfo.setFoul(totalInfo.getNumberOfFoul());
+			playerNormalInfo.setMinute(PlayerDataPO.transportTime(totalInfo.getPresentTime())/60.0);
+			playerNormalInfo.setName(onePlayer.getName() );
+			playerNormalInfo.setNumOfGame(totalInfo.getNumberOfMatch());
+			playerNormalInfo.setOffend(totalInfo.getNumberOfAttack());
+			playerNormalInfo.setPenalty(avgInfo.getPercentageOffreeThrow());
+			playerNormalInfo.setPoint(totalInfo.getScore());
+			playerNormalInfo.setRebound(totalInfo.getNumberOfRebound());
+			playerNormalInfo.setShot(avgInfo.getPercentageOfShooting());
+			playerNormalInfo.setStart(totalInfo.getNumberOfStarting());
+			playerNormalInfo.setSteal(totalInfo.getNumberOfSteal());
+			playerNormalInfo.setTeamName(infoOfSeason.getTeam());
+			playerNormalInfo.setThree(avgInfo.getPercentageOf3_Point());
 		}
 	}
-//	public static void main(String[] args){
-//		Console c = new Console() ;
-//		File file = new File("aaaa") ;
-//		PrintStream str;
-//		try {
-//			str = new PrintStream(file);
-//			c.execute(str, null);
-//		} catch (FileNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//	}
 }

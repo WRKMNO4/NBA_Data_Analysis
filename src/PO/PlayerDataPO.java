@@ -48,6 +48,9 @@ public class PlayerDataPO {
 	double numberOfAttackRebound ;
 	double numberOfDefenseRebound ;
 	
+	
+	double efficiencyOfTotal;
+	
 	public void calculatePlayerTotalDataInOneSeason(ArrayList<PlayerDataOfOneMatchPO> datas){
 		numberOfMatch = datas.size() ;
 		numberOfStarting = datas.size() ;
@@ -66,7 +69,7 @@ public class PlayerDataPO {
 			numberOfFault += oneMatch.getNumberOfFaultOfOneMatch() ;
 			numberOfFoul += oneMatch.getNumberOfFoulOfOneMatch() ;
 			score += oneMatch.getScoreOfOneMatch() ;
-		   
+			
 		    if(oneMatch.isDouble_double()==true)
 		    	double_double += 1;
 		    
@@ -106,9 +109,10 @@ public class PlayerDataPO {
 		this.numberOfFault = totalDataOfPlayer.getNumberOfFault()/num ;
 		this.numberOfFoul = totalDataOfPlayer.getNumberOfFoul()/num ;
 		this.score = totalDataOfPlayer.getScore()/num ;
-		this.efficiency = ((totalDataOfPlayer.getScore()+totalDataOfPlayer.getNumberOfRebound()+totalDataOfPlayer.getNumberOfAssist()+totalDataOfPlayer.getNumberOfSteal()+totalDataOfPlayer.getNumberOfBlock())
+		this.efficiencyOfTotal = ((totalDataOfPlayer.getScore()+totalDataOfPlayer.getNumberOfRebound()+totalDataOfPlayer.getNumberOfAssist()+totalDataOfPlayer.getNumberOfSteal()+totalDataOfPlayer.getNumberOfBlock())
 				          -(totalDataOfPlayer.getNumberOfShotAttempt()-totalDataOfPlayer.getNumberOfShooting())-(totalDataOfPlayer.getNumberOfFreeThrowAttempt()-totalDataOfPlayer.getNumberOfFreeThrow())
-				          -totalDataOfPlayer.getNumberOfFault())/num ;
+				          -totalDataOfPlayer.getNumberOfFault()) ;
+		this.efficiency = this.efficiencyOfTotal/num ;
 		this.efficiencyOfGmSc = totalDataOfPlayer.getScore()+0.4*totalDataOfPlayer.getNumberOfShooting()-0.7*totalDataOfPlayer.getNumberOfShotAttempt()-0.4*(totalDataOfPlayer.getNumberOfFreeThrowAttempt()-totalDataOfPlayer.getNumberOfFreeThrow())
 				+0.7*totalDataOfPlayer.getNumberOfAttackRebound()+0.3*totalDataOfPlayer.getNumberOfDefenseRebound()
 				+totalDataOfPlayer.getNumberOfSteal()+0.7*totalDataOfPlayer.getNumberOfAssist()+0.7*totalDataOfPlayer.getNumberOfBlock()
@@ -131,7 +135,11 @@ public class PlayerDataPO {
 	}
 
 
-	int transportTime(String time){
+	public double getEfficiencyOfTotal() {
+		return efficiencyOfTotal;
+	}
+
+	public static int transportTime(String time){
 		int result = 0;
 		String[] strs = time.split(":") ;
 		result = Integer.parseInt(strs[0])*60 + Integer.parseInt(strs[1]) ;

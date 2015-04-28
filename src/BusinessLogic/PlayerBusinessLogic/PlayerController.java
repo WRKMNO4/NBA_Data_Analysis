@@ -71,7 +71,7 @@ public class PlayerController implements PlayerBusinessLogic{
 		return playerController.findPlayerByName(name);
 	}
 	@Override
-	public ArrayList<StandingDataPO> getDatasOfDailyStandingPlayers(Season season, String date, PlayerData dataType) {
+	public StandingDataPO getDatasOfDailyStandingPlayers(Season season, String date, PlayerData dataType) {
 		// TODO Auto-generated method stub
 		//transfer the date format
 		date = date.substring(5,7) + "-" + date.substring(8,10);
@@ -86,37 +86,29 @@ public class PlayerController implements PlayerBusinessLogic{
 		}
 		Collections.sort(datas,new PlayerDataComparator(dataType));
 		
-		double[] standingDataArray = new double[5];
+		double standingData = 0 ;
 		switch(dataType){
 		case score:
-			for(int i=0;i<5;i++)
-				standingDataArray[i]=datas.get(i).getScoreOfOneMatch();
+				standingData=datas.get(0).getScoreOfOneMatch();
 			break;
 		case numberOfRebound:
-			for(int i=0;i<5;i++)
-				standingDataArray[i]=datas.get(i).getNumberOfReboundOfOneMatch();
+				standingData=datas.get(0).getNumberOfReboundOfOneMatch();
 			break;
 		case numberOfAssist:
-			for(int i=0;i<5;i++)
-				standingDataArray[i]=datas.get(i).getNumberOfAssistOfOneMatch();
+				standingData=datas.get(0).getNumberOfAssistOfOneMatch();
 			break;
 		case numberOfBlock:
-			for(int i=0;i<5;i++)
-				standingDataArray[i]=datas.get(i).getNumberOfBlockOfOneMatch();
+				standingData=datas.get(0).getNumberOfBlockOfOneMatch();
 			break;
 		case numberOfSteal:
-			for(int i=0;i<5;i++)
-				standingDataArray[i]=datas.get(i).getNumberOfSteal();
+				standingData=datas.get(0).getNumberOfSteal();
 		}
-		//Find Players
-		ArrayList<StandingDataPO> standingDatas=new ArrayList<StandingDataPO>();
-		for(int i=0;i<5;i++){      //select top 5
-			PlayerDataOfOneMatchPO oneMatchData=datas.get(i);
-			PlayerPO thePlayer=PlayerListPO.findPlayerAccurately(oneMatchData.getName());
-			standingDatas.add(new StandingDataPO(thePlayer.getName(), thePlayer.getPosition(), 
-					thePlayer.getTeam(season),standingDataArray[i]));
-		}
-		return standingDatas;
+		PlayerDataOfOneMatchPO oneMatchData=datas.get(0);
+		PlayerPO thePlayer=PlayerListPO.findPlayerAccurately(oneMatchData.getName());
+		StandingDataPO standingDataPO = new StandingDataPO(thePlayer.getName(), thePlayer.getPosition(), 
+					thePlayer.getTeam(season),standingData);
+		
+		return standingDataPO;
 	}
 	@Override
 	public ArrayList<PlayerPO> getSeasonStandingPlayer(Season season,

@@ -64,9 +64,9 @@ public interface BLService {
 	/**
 	 * 
 	 *  @param dataType 筛选条件
-	 * @return 前五名球员列表,如果不存在即null.
+	 * @return 一个球员信息.
 	 */
-	public ArrayList<StandingDataPO> getDatasOfDailyStandingPlayers(PlayerData dataType) ;
+	public StandingDataPO getDatasOfDailyStandingPlayers(PlayerData dataType) ;
 	/**
 	 * 
 	 * @param season 赛季
