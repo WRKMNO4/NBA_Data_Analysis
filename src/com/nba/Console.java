@@ -86,7 +86,8 @@ public class Console {
 			playerNormalInfo.setShot(avgInfo.getPercentageOfShooting());
 			playerNormalInfo.setStart(totalInfo.getNumberOfStarting());
 			playerNormalInfo.setSteal(totalInfo.getNumberOfSteal());
-			playerNormalInfo.setTeamName(infoOfSeason.getTeam());
+			if(!infoOfSeason.getTeam().equals("Unknown"))
+				playerNormalInfo.setTeamName(infoOfSeason.getTeam());
 			playerNormalInfo.setThree(avgInfo.getPercentageOf3_Point());
 		}
 		
@@ -104,7 +105,12 @@ public class Console {
 			teamNormalInfo.setNumOfGame(seasonInfo.getNumberOfMatches());
 			teamNormalInfo.setOffendRebound(totalInfo.getNumberOfAttackRebound());
 			teamNormalInfo.setPenalty(avgInfo.getPercentageOfFreeThrow());
-			
-		}
+			teamNormalInfo.setPoint(totalInfo.getScore());
+			teamNormalInfo.setRebound(totalInfo.getNumberOfRebound());
+			teamNormalInfo.setShot(avgInfo.getPercentageOfShooting());
+			teamNormalInfo.setSteal(totalInfo.getNumberOfSteal());
+			teamNormalInfo.setTeamName(oneTeam.getShortName());
+			teamNormalInfo.setThree(avgInfo.getPercentageOf3_point());
+			}
 	}
 }
