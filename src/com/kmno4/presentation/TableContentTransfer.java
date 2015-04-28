@@ -4,19 +4,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 import com.kmno4.common.Config;
 
 import Enum.PlayerData;
@@ -50,11 +37,6 @@ public class TableContentTransfer {
 		}
 		return body;
 	}
-	public static final String[] PLAYER_SORT_AVERAGE={"球员","篮板数","助攻数","在场时间","投篮命中率","三分命中率","罚球命中率",
-		"进攻数","防守数","抢断数","盖帽数","失误数","犯规数","得分","效率",
-		"GmSc效率值","真实命中率","投篮效率","篮板率","进攻篮板率",
-		"防守篮板率","助攻率","抢断率",
-		"盖帽率","失误率","使用率"} ;
 	
 	public static String[][] transferPlayerSortTotalInfo(int columns,ArrayList<PlayerPO> players ,Season season){
 		String[][] body = new String[players.size()][columns] ;
@@ -179,8 +161,9 @@ public class TableContentTransfer {
 	
 	public static String[][] transferTeamSortAvgInfo(int columns, ArrayList<TeamPO> teams,Season season){
 		String[][] body = new String[teams.size()][columns];
-		
-		for(int i=0;i<teams.size();i++){
+		body[0]=Config.TEAM_SORT_AVERAGE;
+
+		for(int i=1;i<teams.size();i++){
 			TeamPO theTeam=teams.get(i);
 			TeamDataPO avgData = theTeam.getSeasonInfo(season).getAverageTeamData();
 			body[i][0]=theTeam.getFullName();
@@ -218,7 +201,9 @@ public class TableContentTransfer {
 	
 	public static String[][] transferTeamSortTotalInfo(int columns,ArrayList<TeamPO> teams,Season season){
 		String[][] body = new String[teams.size()][columns];
-		for(int i=0;i<teams.size();i++){
+		body[0] = Config.TEAM_SORT_TOTAL;
+		
+		for(int i=1;i<teams.size();i++){
 			TeamPO theTeam = teams.get(i);
 			TeamDataPO totalData = theTeam.getTotalTeamData(season) ;
 			body[i][0] = theTeam.getFullName();
