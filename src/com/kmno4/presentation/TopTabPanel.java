@@ -11,8 +11,6 @@ import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 
@@ -23,7 +21,6 @@ import PO.MatchPO;
 import PO.PlayerListPO;
 import PO.PlayerPO;
 import PO.StandingDataPO;
-import PO.TeamListPO;
 import PO.TeamPO;
 
 import com.kmno4.common.Config;
@@ -247,12 +244,13 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	}
 	
 	public void refreshDailyPlayerTable(Season season, String date, PlayerData dataType) {
-//		if(dataTable != null) dataTable.setVisible(false);
-//		if(dataTableSP != null) {
-//			dataTableSP.setVisible(false);
-//			MainFrame.mainFrame.remove(dataTableSP);
-//		}
-//		if(season == null || date == null || dataType == null) return;
+		System.out.println("TopTabPanel.refreshDailyPlayerTable()");
+		if(tg.table != null) tg.table.setVisible(false);
+		if(tg.jsp != null) {
+			tg.jsp.setVisible(false);
+			MainFrame.mainFrame.remove(tg.jsp);
+		}
+		if(season == null || date == null || dataType == null) return;
 //		ArrayList<StandingDataPO> sps = MainFrame.mainFrame.bl.getDatasOfDailyStandingPlayers(dataType);
 //		if(sps == null || sps.size() == 0) return;
 //		setTable(TableContentTransfer.transferStandingDailyPlayerInfo(
@@ -262,6 +260,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 //		MainFrame.mainFrame.repaint();
 	}
 	public void refreshSeasonPlayerTable(Season season, PlayerData dataType) {
+		System.out.println("TopTabPanel.refreshSeasonPlayerTable()");
 		if(tg.table != null) tg.table.setVisible(false);
 		if(tg.jsp != null) {
 			tg.jsp.setVisible(false);
@@ -275,6 +274,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.repaint();
 	}
 	public void refreshImprovePlayerTable(Season season, PlayerData dataType) {
+		System.out.println("TopTabPanel.refreshImprovePlayerTable()");
 		if(tg.table != null) tg.table.setVisible(false);
 		if(tg.jsp != null) {
 			tg.jsp.setVisible(false);
@@ -288,6 +288,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.repaint();
 	}
 	public void refreshSeasonTeamTable(Season season, TeamData dataType) {
+		System.out.println("TopTabPanel.refreshSeasonTeamTable()");
 		if(tg.table != null) tg.table.setVisible(false);
 		if(tg.jsp != null) {
 			tg.jsp.setVisible(false);
@@ -302,17 +303,16 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	}
 	
 	private void addPlayerLink() {
-		for(int i = 1; i < tg.table.getRowCount(); i ++) {
-			tg.table.addMouseListener(new MouseAdapter() {
-				public void mouseClicked(MouseEvent e) {
-					int 
-					    row = tg.table.rowAtPoint(e.getPoint()),
-						col = tg.table.columnAtPoint(e.getPoint());
-					if(col != 0 || row == 0) return;
-					System.out.println(col + "," + row);
-				}
-			});
-		}
+		tg.table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				int 
+				    row = tg.table.rowAtPoint(e.getPoint()),
+					col = tg.table.columnAtPoint(e.getPoint());
+				if(row == 0 || col != 0) return;
+				PlayerPO p = PlayerListPO.findPlayerAccurately(tg.table.getValueAt(row, col).toString());
+				new PlayerDetailFrame(p);
+			}
+		});
 	}
 	private static final int TEAM_LINK = 0;
 	private static final int SHORT_NAME_LABEL = 1;
@@ -475,5 +475,9 @@ public class TopTabPanel extends JPanel implements MouseListener{
 				body,
 				Config.UI_WIDTH, Config.UI_HEIGHT - y,
 				0, y);
+//		tg.table.setOpaque(false);
+//		tg.jsp.setOpaque(false);
+//		JLabel l = new JLabel(Config.SPLASH_BACKGROUND);
+//		tg.jsp.getViewport().add(l, -1);
 	}
 }
