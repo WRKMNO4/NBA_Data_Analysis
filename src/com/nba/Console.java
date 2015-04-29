@@ -20,62 +20,47 @@ import PO.TeamDataPO;
 import PO.TeamListPO;
 import PO.TeamPO;
 import test.data.PlayerHighInfo;
+import test.data.PlayerHotInfo;
 import test.data.PlayerNormalInfo;
 import test.data.TeamHighInfo;
 import test.data.TeamNormalInfo;
 
 public class Console {
-	public void execute(PrintStream out,String[] args){
-		BLService bl = new BLServiceController("Data");
+	BLService bl ;
+	PrintStream out ;
+	ArrayList<PlayerPO> allPlayers ;
+	ArrayList<TeamPO> allTeams ;
+	public Console(){
+		bl = new BLServiceController("Data");
 		bl.init();
-		ArrayList<PlayerPO> allPlayers=bl.getAllPlayers();
-		ArrayList<TeamPO> allTeams = bl.getAllTeams();
+	}
+	public static void main(String[] args){
+		Console c = new Console() ;
+		c.execute(null, null);
+		}
+	public void execute(PrintStream out,String[] args){
+		this.out =out ;
 		
-		Config config = new Config();
+		TestConfig config = new TestConfig();
 		Player player = new Player();
 		CmdlineParser cp = new CmdlineParser(new Object[] { config, player });
-		String cmdStr = "--help -total -n 5";
-		String[] cmdArr = cmdStr.split("\\s"); //
+		String comd = "-player -filter position.F,age.<=22" ;
+		String[] comds = comd.split("\\s") ;
 		try {
-			cp.parse(cmdArr[0]);
-			cp.parse(cmdArr[1]);
-			cp.parse(new String[] { cmdArr[2], cmdArr[3] });
+			cp.parse(comds);
 		} catch (CmdlineParserException e) {
 			e.printStackTrace();
 		}
-		if (config.help) {
-			System.out.println("-------help---------");
+		if (player.isHot) {
+			getPlayerHotInfo(player.hotField,player.num) ;
 		}
-		if (player.isShowTotal()) {
-			System.out.println("------total---------");
+		if(player.isHigh) {
+			getPlayerHighInfo(player.num) ;
 		}
-		System.out.println("the number of player is " + player.getNum());
-	
+//		if()
+/*	
 //-----------------------------------------------------------------------------		
-		for(PlayerPO onePlayer : allPlayers){
-			TeamPO team = TeamListPO.findTeamByShortName(onePlayer.getTeam(Config.LASTEST_SEASON));
-			SeasonInfoForPlayer info = onePlayer.getSeasonInfo(Config.LASTEST_SEASON);
-			PlayerDataPO avgInfo=info.getAveragePlayerData();
-			PlayerDataPO totalInfo = info.getTotalPlayerData() ;
-			PlayerHighInfo playerHighInfo = new PlayerHighInfo() ;
-			playerHighInfo.setAssistEfficient(avgInfo.getPercentageOfAssist());
-			playerHighInfo.setBlockShotEfficient(avgInfo.getPercentageOfBlock());
-			playerHighInfo.setDefendReboundEfficient(avgInfo.getPercentageOfDefenseRebound());
-			playerHighInfo.setFaultEfficient(avgInfo.getPercentageOfFault());
-			playerHighInfo.setFrequency(avgInfo.getPercentageOfUse());
-			playerHighInfo.setGmSc(avgInfo.getEfficiencyOfGmSc());
-			if(team!=null)
-			playerHighInfo.setLeague(team.getZone().toString());
-			playerHighInfo.setName(onePlayer.getName());
-			playerHighInfo.setOffendReboundEfficient(avgInfo.getPercentageOfAttackingRebound());
-			playerHighInfo.setPosition(onePlayer.getPosition());
-			playerHighInfo.setRealShot(avgInfo.getPercentageOfTrueShooting());
-			playerHighInfo.setReboundEfficient(avgInfo.getPercentageOfRebound());
-			playerHighInfo.setShotEfficient(avgInfo.getEfficiencyOfShooting());
-			playerHighInfo.setStealEfficient(avgInfo.getPercentageOfSteal());
-			if(team!=null)
-			playerHighInfo.setTeamName(team.getShortName());
-			out.print(playerHighInfo);
+		
 		}
 //--------------------------------------------------------------------------------
 		for(PlayerPO onePlayer : allPlayers){
@@ -144,10 +129,44 @@ public class Console {
 			teamHighInfo.setWinRate(seasonInfo.getPercentageOfWinning());
 			
 		}
+		*/
 		
 	}
 	
-	class Config {
+	private ArrayList<PlayerHotInfo> getPlayerHotInfo(String field,int number){
+		return null ;
+	}
+	private void getPlayerHighInfo(int number){
+		allPlayers = bl.getAllPlayers() ;
+		for(PlayerPO onePlayer : allPlayers){
+			TeamPO team = TeamListPO.findTeamByShortName(onePlayer.getTeam(Config.LASTEST_SEASON));
+			SeasonInfoForPlayer info = onePlayer.getSeasonInfo(Config.LASTEST_SEASON);
+			PlayerDataPO avgInfo=info.getAveragePlayerData();
+			PlayerDataPO totalInfo = info.getTotalPlayerData() ;
+			PlayerHighInfo playerHighInfo = new PlayerHighInfo() ;
+			playerHighInfo.setAssistEfficient(avgInfo.getPercentageOfAssist());
+			playerHighInfo.setBlockShotEfficient(avgInfo.getPercentageOfBlock());
+			playerHighInfo.setDefendReboundEfficient(avgInfo.getPercentageOfDefenseRebound());
+			playerHighInfo.setFaultEfficient(avgInfo.getPercentageOfFault());
+			playerHighInfo.setFrequency(avgInfo.getPercentageOfUse());
+			playerHighInfo.setGmSc(avgInfo.getEfficiencyOfGmSc());
+			if(team!=null)
+			playerHighInfo.setLeague(team.getZone().toString());
+			playerHighInfo.setName(onePlayer.getName());
+			playerHighInfo.setOffendReboundEfficient(avgInfo.getPercentageOfAttackingRebound());
+			playerHighInfo.setPosition(onePlayer.getPosition());
+			playerHighInfo.setRealShot(avgInfo.getPercentageOfTrueShooting());
+			playerHighInfo.setReboundEfficient(avgInfo.getPercentageOfRebound());
+			playerHighInfo.setShotEfficient(avgInfo.getEfficiencyOfShooting());
+			playerHighInfo.setStealEfficient(avgInfo.getPercentageOfSteal());
+			if(team!=null)
+			playerHighInfo.setTeamName(team.getShortName());
+			out.print(playerHighInfo);
+    	}
+	}
+	
+	
+	class TestConfig {
 		@CmdOption(names = { "--help", "-h", "-?" }, description = "show help", isHelp = true)
 		public boolean help;
 	}
@@ -155,12 +174,63 @@ public class Console {
 	@CmdCommand(names = { "-player","-p" },description = "Show Player information")
 	class Player {
 		private boolean showTotal = false;
-		private int num = 0;
+		private int num = 50;
 		private boolean isHigh = false ;
 		private boolean isAll = true ;
+		private boolean isHot = false ;
+		private String hotField ;
+		private boolean isKing = false ;
+		private String kingField ;
+		private boolean isSeason ;
+		private boolean isDaily ;
+		
+		@CmdOption(names = {"-high"},description = "show high info")
+		public void isHigh(){
+			this.isHigh = true ;
+		}
+				
+		
+		@CmdOption(names = { "-avg" }, description = "show avg",maxCount = 1, minCount = 0,conflictsWith={"-total"} )
+		public void isAvg(){
+			
+		}
+		
+		@CmdOption(names ={"-hot"},args = {"field"},description = "show hot",maxCount = 1, minCount = 0,conflictsWith = {"-all","-king","-total","-avg","-filter","-sort"})
+		public void setIsHot(String field){
+			isHot = true ;
+			isAll = false ;
+			this.hotField = field ;
+		}
+		public String getHotField(){
+			return hotField ;
+		}
+		
+		
+		@CmdOption(names ={"-king"},args = {"field"},description = "show king",maxCount = 1 ,minCount = 0,conflictsWith = {"-avg","-total","-all","-hot","-filter","-sort"})
+		public void setIsKing(String field){
+			isKing = true ;
+			isHot = false ;
+			isAll = false ;
+			kingField = field ;
+			System.out.println("test king-------------");
+		}
+		
+		@CmdOption(names ={"-season"},description = "show season info",conflictsWith = {"-daily"},requires = {"-king"})
+		public void setIsSeason(){
+			isSeason = true ;
+			isDaily = false ;
+		}
 
-		@CmdOption(names = {"-all"},description = "show all information",maxCount = 1, minCount = 0,conflictsWith = {"-hot field","-king field -season/daily"})
+		@CmdOption(names ={"-daily"},description = "show daily info",conflictsWith = {"-season"},requires = {"-king"})
+		public void setIsDaily(){
+			isSeason = false ;
+			isDaily = true ;
+			System.out.println("test daily____________");
+		}
+		
+		@CmdOption(names = {"-all"},description = "show all information",maxCount = 1, minCount = 0,conflictsWith = {"-hot","-king"})
 		public void setIsAll(){
+			this.isHot = false ;
 			this.isAll = true ;
 		}
 
@@ -179,9 +249,17 @@ public class Console {
 		public int getNum() {
 			return num;
 		}
+		
+		@CmdOption(names = {"-filter"},args = {"field.value"},description = "show filter info",conflictsWith = {"-sort","-king","-hot"})
+		public void isFilter(String field){
+			//调用bl方法
+		}
 
-		
-		
+		@CmdOption(names = {"-sort"},args = {"filed.sortOrder"},description = "show sort info",conflictsWith = {"-filter","-king","-hot"})
+		public void isSort(String field){
+			//调用bl方法
+		}
+				
 	}
 	
 	class Team {
