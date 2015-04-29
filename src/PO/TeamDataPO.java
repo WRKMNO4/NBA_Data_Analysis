@@ -31,6 +31,9 @@ public class TeamDataPO {
 	double efficiencyOfSteal ;//����Ч��
 	double efficiencyOfAssist ;//�����ʡ�
 	
+	double efficiencyOfAttackRebound;
+	double efficiencyOfDefenseRebound;
+	
 	public void calculateTeamDataOfOneMatch(ArrayList<PlayerDataOfOneMatchPO> playerDatas){
 		for(int i=0;i<playerDatas.size();i++){
 			PlayerDataOfOneMatchPO tempData=playerDatas.get(i);
@@ -77,6 +80,7 @@ public class TeamDataPO {
 		dataOfTheOther.setEfficiencyOfSteal(dataOfTheOther.getNumberOfSteal()/(double)roundOfAttack*100);//���öԷ�������Ч��
 		
 		efficiencyOfAssist = numberOfAssist/(double)roundOfAttack*100 ;
+		
 		
 	}
 
@@ -143,6 +147,11 @@ public class TeamDataPO {
 				(totalTeamData.getNumberOfRebound()+dataOfOtherTeams.getNumberOfReboundOfOtherTeam());
 		efficiencyOfSteal = totalTeamData.getNumberOfSteal()/totalTeamData.getRoundOfDefense()*100;
 		efficiencyOfAssist = totalTeamData.getNumberOfAssist() / totalTeamData.getRoundOfAttack()*100;
+		
+		efficiencyOfAttackRebound = totalTeamData.getNumberOfAttackRebound()/(totalTeamData.getNumberOfAttackRebound()
+				+ dataOfOtherTeams.getNumberOfDefenseReboundOfOtherTeam()) ;
+		efficiencyOfDefenseRebound = totalTeamData.getNumberOfDefenseRebound()/(totalTeamData.getNumberOfDefenseRebound()
+				+ dataOfOtherTeams.getNumberOfAttackReboundOfOtherTeam());
 	}
 
 	public double getNumberOfShooting() {
@@ -343,6 +352,14 @@ public class TeamDataPO {
 
 	public double getEfficiencyOfAssist() {
 		return efficiencyOfAssist;
+	}
+
+	public double getEfficiencyOfAttackRebound() {
+		return efficiencyOfAttackRebound;
+	}
+
+	public double getEfficiencyOfDefenseRebound() {
+		return efficiencyOfDefenseRebound;
 	}
 	
 	

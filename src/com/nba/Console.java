@@ -1,7 +1,6 @@
 package com.nba;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+
 import java.io.PrintStream;
 import java.util.ArrayList;
 
@@ -9,7 +8,6 @@ import com.kmno4.common.Config;
 
 import BusinessLogic.BLService.BLService;
 import BusinessLogic.BLService.BLServiceController;
-import Enum.PlayerData;
 import PO.PlayerDataPO;
 import PO.PlayerPO;
 import PO.SeasonInfoForPlayer;
@@ -18,8 +16,8 @@ import PO.TeamDataPO;
 import PO.TeamListPO;
 import PO.TeamPO;
 import test.data.PlayerHighInfo;
-import test.data.PlayerHotInfo;
 import test.data.PlayerNormalInfo;
+import test.data.TeamHighInfo;
 import test.data.TeamNormalInfo;
 
 public class Console {
@@ -112,5 +110,26 @@ public class Console {
 			teamNormalInfo.setTeamName(oneTeam.getShortName());
 			teamNormalInfo.setThree(avgInfo.getPercentageOf3_point());
 			}
+		
+//--------------------------------------------------------------------------------
+		for(TeamPO oneTeam: allTeams){
+			TeamHighInfo teamHighInfo = new TeamHighInfo();
+			SeasonInfoForTeam seasonInfo = oneTeam.getSeasonInfo(Config.LASTEST_SEASON);
+			TeamDataPO totalInfo=seasonInfo.getTotalTeamData();
+			TeamDataPO avgInfo=seasonInfo.getAverageTeamData();
+			teamHighInfo.setAssistEfficient(avgInfo.getEfficiencyOfAssist());
+			teamHighInfo.setDefendEfficient(avgInfo.getEfficiencyOfDefense());
+			teamHighInfo.setDefendReboundEfficient(avgInfo.getEfficiencyOfDefenseRebound());
+			teamHighInfo.setOffendEfficient(avgInfo.getEfficiencyOfAttack());
+			teamHighInfo.setOffendReboundEfficient(avgInfo.getEfficiencyOfAttackRebound());
+			teamHighInfo.setOffendRound(avgInfo.getRoundOfAttack());
+			teamHighInfo.setStealEfficient(avgInfo.getEfficiencyOfSteal());
+			teamHighInfo.setTeamName(oneTeam.getShortName());
+			teamHighInfo.setWinRate(seasonInfo.getPercentageOfWinning());
+			
+		}
+		
 	}
+	
 }
+
