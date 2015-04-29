@@ -226,7 +226,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			MainFrame.mainFrame.remove(dataTableSP);
 		}
 		if(teams == null || teams.size() == 0) return;
-		setTable(TableContentTransfer.transferTeamBasicInfo(Config.TEAM_BASIC_INFO.length, teams));
+//		setTable(TableContentTransfer.transferTeamBasicInfo(Config.TEAM_BASIC_INFO.length, teams));
 		addTeamLink();
 		MainFrame.mainFrame.repaint();
 	}
@@ -241,25 +241,25 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			MainFrame.mainFrame.remove(dataTableSP);
 		}
 		if(matches == null || matches.size() == 0) return;
-		setTable(TableContentTransfer.transferMatchBasicInfo(Config.MATCH_BASIC_INFO.length, matches));
+//		setTable(TableContentTransfer.transferMatchBasicInfo(Config.MATCH_BASIC_INFO.length, matches));
 		addMatchLink();
 		MainFrame.mainFrame.repaint();
 	}
 	
 	public void refreshDailyPlayerTable(Season season, String date, PlayerData dataType) {
-		if(dataTable != null) dataTable.setVisible(false);
-		if(dataTableSP != null) {
-			dataTableSP.setVisible(false);
-			MainFrame.mainFrame.remove(dataTableSP);
-		}
-		if(season == null || date == null || dataType == null) return;
-		ArrayList<StandingDataPO> sps = MainFrame.mainFrame.bl.getDatasOfDailyStandingPlayers(dataType);
-		if(sps == null || sps.size() == 0) return;
-		setTable(TableContentTransfer.transferStandingDailyPlayerInfo(
-						Config.STANDING_DAILYPLAYER_TABLEHEAD.length,
-						sps));
-		addDailyPlayerLink();
-		MainFrame.mainFrame.repaint();
+//		if(dataTable != null) dataTable.setVisible(false);
+//		if(dataTableSP != null) {
+//			dataTableSP.setVisible(false);
+//			MainFrame.mainFrame.remove(dataTableSP);
+//		}
+//		if(season == null || date == null || dataType == null) return;
+//		ArrayList<StandingDataPO> sps = MainFrame.mainFrame.bl.getDatasOfDailyStandingPlayers(dataType);
+//		if(sps == null || sps.size() == 0) return;
+//		setTable(TableContentTransfer.transferStandingDailyPlayerInfo(
+//						Config.STANDING_DAILYPLAYER_TABLEHEAD.length,
+//						sps));
+//		addDailyPlayerLink();
+//		MainFrame.mainFrame.repaint();
 	}
 	public void refreshSeasonPlayerTable(Season season, PlayerData dataType) {
 		if(dataTable != null) dataTable.setVisible(false);
