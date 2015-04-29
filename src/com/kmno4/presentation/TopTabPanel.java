@@ -29,6 +29,7 @@ import PO.TeamPO;
 import com.kmno4.common.Config;
 import com.kmno4.presentation.button.ExitLabel;
 import com.kmno4.presentation.table.TableFactory;
+import com.kmno4.presentation.table.TableGroup;
 
 @SuppressWarnings("serial")
 public class TopTabPanel extends JPanel implements MouseListener{
@@ -42,8 +43,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	private JLabel aboutus;
 	private JLabel close;
 	
-	private JScrollPane dataTableSP;
-	private JTable dataTable;
+	private TableGroup tg;
 	private TableModel dataTableModel;
 	private TableCellRenderer tcr;
 
@@ -55,7 +55,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		this.setBounds(0, 0, Config.UI_WIDTH, Config.TOP_TAB_HEIGHT);
 		this.setBackground(Color.GRAY);
 		setLayout(null);
-		
+		tg = new TableGroup();
 		
 		close = new ExitLabel(MainFrame.mainFrame);
 		add(close);
@@ -204,10 +204,10 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	 */
 	public void refreshPlayerTable(List<PlayerPO> players){
 		System.out.println("TopTabPanel.refreshPlayerTable()");
-		if(dataTable != null) dataTable.setVisible(false);
-		if(dataTableSP != null) {
-			dataTableSP.setVisible(false);
-			MainFrame.mainFrame.remove(dataTableSP);
+		if(tg.table != null) tg.table.setVisible(false);
+		if(tg.jsp != null) {
+			tg.jsp.setVisible(false);
+			MainFrame.mainFrame.remove(tg.jsp);
 		}
 		if(players == null || players.size() == 0) return;
 		setTable(TableContentTransfer.transferPlayerBasicInfo(Config.PLAYER_BASIC_INFO.length, players));
@@ -220,13 +220,13 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	 */
 	public void refreshTeamTable(ArrayList<TeamPO> teams) {
 		System.out.println("TopTabPanel.refreshTeamTable()");
-		if(dataTable != null) dataTable.setVisible(false);
-		if(dataTableSP != null) {
-			dataTableSP.setVisible(false);
-			MainFrame.mainFrame.remove(dataTableSP);
+		if(tg.table != null) tg.table.setVisible(false);
+		if(tg.jsp != null) {
+			tg.jsp.setVisible(false);
+			MainFrame.mainFrame.remove(tg.jsp);
 		}
 		if(teams == null || teams.size() == 0) return;
-//		setTable(TableContentTransfer.transferTeamBasicInfo(Config.TEAM_BASIC_INFO.length, teams));
+		setTable(TableContentTransfer.transferTeamBasicInfo(Config.TEAM_BASIC_INFO.length, teams));
 		addTeamLink();
 		MainFrame.mainFrame.repaint();
 	}
@@ -235,13 +235,13 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	 */
 	public void refreshMatchTable(ArrayList<MatchPO> matches) {
 		System.out.println("TopTabPanel.refreshMatchTable()");
-		if(dataTable != null) dataTable.setVisible(false);
-		if(dataTableSP != null) {
-			dataTableSP.setVisible(false);
-			MainFrame.mainFrame.remove(dataTableSP);
+		if(tg.table != null) tg.table.setVisible(false);
+		if(tg.jsp != null) {
+			tg.jsp.setVisible(false);
+			MainFrame.mainFrame.remove(tg.jsp);
 		}
 		if(matches == null || matches.size() == 0) return;
-//		setTable(TableContentTransfer.transferMatchBasicInfo(Config.MATCH_BASIC_INFO.length, matches));
+		setTable(TableContentTransfer.transferMatchBasicInfo(Config.MATCH_BASIC_INFO.length, matches));
 		addMatchLink();
 		MainFrame.mainFrame.repaint();
 	}
@@ -262,10 +262,10 @@ public class TopTabPanel extends JPanel implements MouseListener{
 //		MainFrame.mainFrame.repaint();
 	}
 	public void refreshSeasonPlayerTable(Season season, PlayerData dataType) {
-		if(dataTable != null) dataTable.setVisible(false);
-		if(dataTableSP != null) {
-			dataTableSP.setVisible(false);
-			MainFrame.mainFrame.remove(dataTableSP);
+		if(tg.table != null) tg.table.setVisible(false);
+		if(tg.jsp != null) {
+			tg.jsp.setVisible(false);
+			MainFrame.mainFrame.remove(tg.jsp);
 		}
 		if(season == null || dataType == null) return;
 		setTable(TableContentTransfer.transferStandingSeasonPlayerInfo(
@@ -275,10 +275,10 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.repaint();
 	}
 	public void refreshImprovePlayerTable(Season season, PlayerData dataType) {
-		if(dataTable != null) dataTable.setVisible(false);
-		if(dataTableSP != null) {
-			dataTableSP.setVisible(false);
-			MainFrame.mainFrame.remove(dataTableSP);
+		if(tg.table != null) tg.table.setVisible(false);
+		if(tg.jsp != null) {
+			tg.jsp.setVisible(false);
+			MainFrame.mainFrame.remove(tg.jsp);
 		}
 		if(season == null || dataType == null) return;
 		setTable(TableContentTransfer.transferStandingImprovedInfo(
@@ -288,10 +288,10 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.repaint();
 	}
 	public void refreshSeasonTeamTable(Season season, TeamData dataType) {
-		if(dataTable != null) dataTable.setVisible(false);
-		if(dataTableSP != null) {
-			dataTableSP.setVisible(false);
-			MainFrame.mainFrame.remove(dataTableSP);
+		if(tg.table != null) tg.table.setVisible(false);
+		if(tg.jsp != null) {
+			tg.jsp.setVisible(false);
+			MainFrame.mainFrame.remove(tg.jsp);
 		}
 		if(season == null || dataType == null) return;
 		setTable(TableContentTransfer.transferStandingSeasonTeamInfo(
@@ -301,55 +301,18 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.repaint();
 	}
 	
-	
-	private HeadIconFrame headIconFrame;
-	private int columNum;
-	private static final int PLAYER_LINK = 0;
 	private void addPlayerLink() {
-//		TableList[][] t = tableBeShowing.body;
-//		for(int i = 0; i < t.length; i ++) {
-//			for(int j = 0; j < t[0].length; j ++) {
-//				if(t[i][j].elements.length == 0) return;
-//			    final JLabel label = t[i][j].elements[PLAYER_LINK];
-//			    final int fj = j;
-//				label.addMouseListener(new MouseAdapter() {
-//					@Override
-//					public void mouseClicked(MouseEvent e) {
-//						PlayerPO p = PlayerListPO.findPlayerAccurately(label.getText());
-//						if(p == null) return;
-//						new PlayerDetailFrame(p).setVisible(true);
-//					}
-//					@Override
-//					public void mouseEntered(MouseEvent e) {
-//						columNum = fj + 1;
-//						double labelHeight = (double)tableBeShowing.getHeight() / (double)(tableBeShowing.getRowNum() + 2);
-//						double x = (double)MainFrame.mainFrame.getX() +
-//								   (double)tableBeShowing.getX() + 
-//								   (double)tableBeShowing.getWidth() / tableBeShowing.head.elements.length;
-//						double y = (double)MainFrame.mainFrame.getY() +
-//								   (double)tableBeShowing.getY() + 
-//								   (double)(columNum + 1) * labelHeight;
-//						HeadIconFrame f = new HeadIconFrame(
-//								PlayerListPO.findPlayerAccurately(label.getText()),
-//								(int)x,
-//								(int)y);
-//						if(headIconFrame != null && headIconFrame.isVisible()) {
-//							headIconFrame.setVisible(false);
-//							headIconFrame.dispose();
-//						}
-//						headIconFrame = f;
-//					}
-//					@Override
-//					public void mouseExited(MouseEvent e) {
-//						if(headIconFrame != null && headIconFrame.isVisible()) {
-//							headIconFrame.setVisible(false);
-//							headIconFrame.dispose();
-//						}
-//					}
-//				});
-//			}
-//		}
-		
+		for(int i = 1; i < tg.table.getRowCount(); i ++) {
+			tg.table.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					int 
+					    row = tg.table.rowAtPoint(e.getPoint()),
+						col = tg.table.columnAtPoint(e.getPoint());
+					if(col != 0 || row == 0) return;
+					System.out.println(col + "," + row);
+				}
+			});
+		}
 	}
 	private static final int TEAM_LINK = 0;
 	private static final int SHORT_NAME_LABEL = 1;
@@ -507,7 +470,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	
 	public void setTable(Object[][] body) {
 		int y = Config.TOP_TAB_HEIGHT + Config.INTRODUCTION_WHITE + Config.SELECTION_HEIGHT;
-		TableFactory.createTable(dataTable, dataTableSP,
+		TableFactory.createTable(tg,
 				MainFrame.mainFrame,
 				body,
 				Config.UI_WIDTH, Config.UI_HEIGHT - y,
