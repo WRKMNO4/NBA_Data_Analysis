@@ -2,6 +2,7 @@ package com.kmno4.presentation;
 
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -20,11 +21,11 @@ import Enum.TeamData;
 import PO.MatchPO;
 import PO.PlayerListPO;
 import PO.PlayerPO;
-import PO.StandingDataPO;
 import PO.TeamPO;
 
 import com.kmno4.common.Config;
 import com.kmno4.presentation.button.ExitLabel;
+import com.kmno4.presentation.button.LMouseAdapter;
 import com.kmno4.presentation.table.TableFactory;
 import com.kmno4.presentation.table.TableGroup;
 
@@ -39,6 +40,12 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	private JLabel hot;
 	private JLabel aboutus;
 	private JLabel close;
+	private JLabel foreGround;
+	private JLabel line;
+	boolean isPlayer,isMatch,isHot,isTeam,isAboutus;
+	
+	private final int line_speed=200;
+	private int line_x,line_y;
 	
 	private TableGroup tg;
 	private TableModel dataTableModel;
@@ -54,25 +61,39 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		setLayout(null);
 		tg = new TableGroup();
 		
+		isPlayer=true;
+		isMatch=isHot=isTeam=isAboutus=false;
+		
 		close = new ExitLabel(MainFrame.mainFrame);
 		add(close);
 		
+		line=new JLabel();
+		line.setIcon(Config.TOP_LINE);
+		line.setSize(Config.TOP_TAB_LABLE_WIDTH, 2);
+		add(line);
 		
-		player = new JLabel("球员");
-		player.addMouseListener(this);
-		player.setIcon(Config.TAB_PLAYER_UNPRESSED);
-		team = new JLabel("球队");
+		
+		foreGround=new JLabel();
+		foreGround.setIcon(Config.LABEL_FOREGROUND);
+		foreGround.setForeground(Color.white);
+		foreGround.setSize(Config.TOP_TAB_LABLE_WIDTH, Config.TOP_TAB_LABLE_HEIGHT);
+		add(foreGround);
+		
+		player = new JLabel("球员",JLabel.CENTER);
+		player.addMouseListener(this);	
+//		player.setIcon(Config.TAB_PLAYER_UNPRESSED);
+		team = new JLabel("球队",JLabel.CENTER);
 		team.addMouseListener(this);
-		team.setIcon(Config.TAB_TEAM_UNPRESSED);
-		match = new JLabel("比赛");
+//		team.setIcon(Config.TAB_TEAM_UNPRESSED);
+		match = new JLabel("比赛",JLabel.CENTER);
 		match.addMouseListener(this);
-		match.setIcon(Config.TAB_MATCH_UNPRESSED);
-		hot = new JLabel("帮助");
+//		match.setIcon(Config.TAB_MATCH_UNPRESSED);
+		hot = new JLabel("帮助",JLabel.CENTER);
 		hot.addMouseListener(this);
-		hot.setIcon(Config.TAB_HOT_UNPRESSED);
-		aboutus = new JLabel("关于");
+//		hot.setIcon(Config.TAB_HOT_UNPRESSED);
+		aboutus = new JLabel("关于",JLabel.CENTER);
 		aboutus.addMouseListener(this);
-		aboutus.setIcon(Config.TAB_ABOUT_UNPRESSED);
+//		aboutus.setIcon(Config.TAB_ABOUT_UNPRESSED);
 
 		tabs=new ArrayList<JLabel>();
 		
@@ -83,54 +104,69 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		tabs.add(aboutus);
 		
 		for(int i=0;i<tabs.size();i++){
-			tabs.get(i).setBounds(Config.UI_WIDTH-(tabs.size()-i)*Config.TOP_TAB_LABLE_WIDTH-100, 
-					Config.TOP_TAB_HEIGHT-Config.TOP_TAB_LABLE_HEIGHT-20, 
+			tabs.get(i).setBounds(Config.UI_WIDTH-(tabs.size()-i)*Config.TOP_TAB_LABLE_WIDTH-50, 
+					Config.TOP_TAB_HEIGHT-Config.TOP_TAB_LABLE_HEIGHT-5, 
 					Config.TOP_TAB_LABLE_WIDTH,
 					Config.TOP_TAB_LABLE_HEIGHT);
-			tabs.get(i).setBackground(Color.WHITE);
+			tabs.get(i).setForeground(Color.WHITE);
+			tabs.get(i).setFont(new Font("default", Font.PLAIN, 25));
 			this.add(tabs.get(i));
 		}
+
 		
-		player.addMouseListener(new MouseAdapter() {
+//		line.setLocation(tabs.get(0).getX(), Config.TOP_TAB_HEIGHT-6);
+		
+		player.addMouseListener(new LMouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				showPlayerInfo();
 			}
 
 		});
-		team.addMouseListener(new MouseAdapter() {
+		team.addMouseListener(new LMouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				showTeamInfo();
 			}
 		});
-		match.addMouseListener(new MouseAdapter() {
+		match.addMouseListener(new LMouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				showMatchInfo();
 			}
 		});
 		
-		hot.addMouseListener(new MouseAdapter() {
+		hot.addMouseListener(new LMouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				showHotInfo();
 			}
 		});
 		
-		aboutus.addMouseListener(new MouseAdapter() {
+		aboutus.addMouseListener(new LMouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				showAboutUsInfo();
 			}
 		});
+		
+		LineThread lineThread=new LineThread();
+		lineThread.start();
 	}
+	
+	public void labelClicked(JLabel l){
+
+		foreGround.setLocation(l.getX(), l.getY());
+	}
+	
+	
 	/**
 	 * 在所有panel初始化之后的初始化
 	 */
 	public void ini() { showPlayerInfo(); }
 	
 	public void showPlayerInfo(){
+		labelClicked(player);
 		//显示playerPanel，移开其他panel,所有PANEL统一隐藏在Frame左边
 		MainFrame.mainFrame.playerSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
 				Config.UI_WIDTH, Config.SELECTION_HEIGHT);
@@ -145,6 +181,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	}
 	
 	public void showTeamInfo(){
+		labelClicked(team);
 		//显示teamPanel，移开其他panel,所有PANEL统一隐藏在Frame左边		
 		MainFrame.mainFrame.teamSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		MainFrame.mainFrame.hotSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
@@ -158,6 +195,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	}
 	
 	public void showMatchInfo(){
+		labelClicked(match);
 		//显示matchPanel，移开其他panel,所有PANEL统一隐藏在Frame左边
 		MainFrame.mainFrame.playerSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
 				Config.UI_WIDTH, Config.SELECTION_HEIGHT);
@@ -172,6 +210,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	}
 	
 	public void showHotInfo(){
+		labelClicked(hot);
 		MainFrame.mainFrame.playerSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
 				Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		MainFrame.mainFrame.matchSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
@@ -401,34 +440,34 @@ public class TopTabPanel extends JPanel implements MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		if(e.getSource()==player){
-			player.setIcon(Config.TAB_PLAYER_CLICKED);
-		}if(e.getSource()==team){
-			team.setIcon(Config.TAB_TEAM_CLICKED);
-		}if(e.getSource()==match){
-			match.setIcon(Config.TAB_MATCH_CLICKED);
-		}if(e.getSource()==hot){
-			hot.setIcon(Config.TAB_HOT_CLICKED);
-		}if(e.getSource()==aboutus){
-			aboutus.setIcon(Config.TAB_ABOUT_CLICKED);
-		}
+//		if(e.getSource()==player){
+//			player.setIcon(Config.TAB_PLAYER_CLICKED);
+//		}if(e.getSource()==team){
+//			team.setIcon(Config.TAB_TEAM_CLICKED);
+//		}if(e.getSource()==match){
+//			match.setIcon(Config.TAB_MATCH_CLICKED);
+//		}if(e.getSource()==hot){
+//			hot.setIcon(Config.TAB_HOT_CLICKED);
+//		}if(e.getSource()==aboutus){
+//			aboutus.setIcon(Config.TAB_ABOUT_CLICKED);
+//		}
 	}
 
 
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if(e.getSource()==player){
-			player.setIcon(Config.TAB_PLAYER_UNPRESSED);
-		}if(e.getSource()==team){
-			team.setIcon(Config.TAB_TEAM_UNPRESSED);
-		}if(e.getSource()==match){
-			match.setIcon(Config.TAB_MATCH_UNPRESSED);
-		}if(e.getSource()==hot){
-			hot.setIcon(Config.TAB_HOT_UNPRESSED);
-		}if(e.getSource()==aboutus){
-			aboutus.setIcon(Config.TAB_ABOUT_UNPRESSED);
-		}
+//		if(e.getSource()==player){
+//			player.setIcon(Config.TAB_PLAYER_UNPRESSED);
+//		}if(e.getSource()==team){
+//			team.setIcon(Config.TAB_TEAM_UNPRESSED);
+//		}if(e.getSource()==match){
+//			match.setIcon(Config.TAB_MATCH_UNPRESSED);
+//		}if(e.getSource()==hot){
+//			hot.setIcon(Config.TAB_HOT_UNPRESSED);
+//		}if(e.getSource()==aboutus){
+//			aboutus.setIcon(Config.TAB_ABOUT_UNPRESSED);
+//		}
 		
 	}
 
@@ -437,15 +476,35 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		if(e.getSource()==player){
-			player.setIcon(Config.TAB_PLAYER_ENTERED);
+			isPlayer=true;
+			isTeam=false;
+			isMatch=false;
+			isHot=false;
+			isAboutus=false;
 		}if(e.getSource()==team){
-			team.setIcon(Config.TAB_TEAM_ENTERED);
+			isPlayer=false;
+			isTeam=true;
+			isMatch=false;
+			isHot=false;
+			isAboutus=false;
 		}if(e.getSource()==match){
-			match.setIcon(Config.TAB_MATCH_ENTERED);
+			isPlayer=false;
+			isTeam=false;
+			isMatch=true;
+			isHot=false;
+			isAboutus=false;
 		}if(e.getSource()==hot){
-			hot.setIcon(Config.TAB_HOT_ENTERED);
+			isPlayer=false;
+			isTeam=false;
+			isMatch=false;
+			isHot=true;
+			isAboutus=false;
 		}if(e.getSource()==aboutus){
-			aboutus.setIcon(Config.TAB_ABOUT_ENTERED);
+			isPlayer=false;
+			isTeam=false;
+			isMatch=false;
+			isHot=false;
+			isAboutus=true;
 		}
 		
 	}
@@ -454,17 +513,17 @@ public class TopTabPanel extends JPanel implements MouseListener{
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		if(e.getSource()==player){
-			player.setIcon(Config.TAB_PLAYER_UNPRESSED);
-		}if(e.getSource()==team){
-			team.setIcon(Config.TAB_TEAM_UNPRESSED);
-		}if(e.getSource()==match){
-			match.setIcon(Config.TAB_MATCH_UNPRESSED);
-		}if(e.getSource()==hot){
-			hot.setIcon(Config.TAB_HOT_UNPRESSED);
-		}if(e.getSource()==aboutus){
-			aboutus.setIcon(Config.TAB_ABOUT_UNPRESSED);
-		}
+//		if(e.getSource()==player){
+//			player.setIcon(Config.TAB_PLAYER_UNPRESSED);
+//		}if(e.getSource()==team){
+//			team.setIcon(Config.TAB_TEAM_UNPRESSED);
+//		}if(e.getSource()==match){
+//			match.setIcon(Config.TAB_MATCH_UNPRESSED);
+//		}if(e.getSource()==hot){
+//			hot.setIcon(Config.TAB_HOT_UNPRESSED);
+//		}if(e.getSource()==aboutus){
+//			aboutus.setIcon(Config.TAB_ABOUT_UNPRESSED);
+//		}
 		
 	}
 	
@@ -481,4 +540,57 @@ public class TopTabPanel extends JPanel implements MouseListener{
 //		JLabel l = new JLabel(Config.SPLASH_BACKGROUND);
 //		tg.jsp.getViewport().add(l, -1);
 	}
+	
+	class LineThread extends Thread{
+		@Override
+		public void run() {
+			while(true){
+				if(isPlayer){
+					moveLine(player.getX());
+				}if(isTeam){
+					moveLine(team.getX());
+				}if(isMatch){
+					moveLine(match.getX());
+				}if(isHot){
+					moveLine(hot.getX());
+				}if(isAboutus){
+					moveLine(aboutus.getX());
+				}
+			}
+		}
+		
+		public void moveLine(int target_x){
+			int a=400;//加速度
+			int v=200;//速度，单位px/s			
+			if(line_x>target_x){
+				while(true){
+					line_x-=10;
+					line.setLocation(line_x, Config.TOP_TAB_HEIGHT-47);
+					repaint();
+					try {
+						this.sleep(5);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					if(line_x<=target_x){
+						break;
+					}
+				}
+			}if(line_x<target_x){
+				while(true){
+					line_x+=10;
+					line.setLocation(line_x, Config.TOP_TAB_HEIGHT-47);
+					repaint();
+					try {
+						this.sleep(5);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					if(line_x>=target_x){
+						break;
+					}
+				}
+			}
+		}
+	} 
 }

@@ -85,8 +85,8 @@ public class Config {
 	public static final	int SPLASH_MOTION_Y=210;
 	
 	public static final int TOP_TAB_HEIGHT=100;
-	public static final int TOP_TAB_LABLE_WIDTH=60;
-	public static final int TOP_TAB_LABLE_HEIGHT=40;
+	public static final int TOP_TAB_LABLE_WIDTH=100;
+	public static final int TOP_TAB_LABLE_HEIGHT=35;
 	
 	public static final int PAGE_INTRO_HEIGHT=50;
 	public static final int PAGE_INTRO_LABEL_HEIGHT=30;
@@ -167,10 +167,12 @@ public class Config {
 	
 	public static final ImageIcon PLAYER_SELECTION_SORT_BACKGROUND=new ImageIcon("images/player_selection_sort_bg.png");
 	public static final ImageIcon PLAYER_SELECTION_BACKGROUND=new ImageIcon("images/selection_bg3.png");
-	public static final ImageIcon TOP_TAB_BACKGROUND=new ImageIcon("images/top_tab_background_4.png");
+	public static final ImageIcon TOP_TAB_BACKGROUND=new ImageIcon("images/top_tab_background_1.png");
 	public static final ImageIcon WELCOME=new ImageIcon("images/welcome.png");
 	public static final ImageIcon TEAM_SELECTION_BACKGROUND=new ImageIcon("images/team_selection_bg4.png");
 	public static final ImageIcon CLOSE_ICON=new ImageIcon("images/close.png");
+	public static final ImageIcon TOP_LINE=new ImageIcon("images/top_line.png");
+	public static final ImageIcon LABEL_FOREGROUND=new ImageIcon("images/label_foreground.png");
 	
 	//match界面所有的icon
 	public static final ImageIcon MATCH_SELECTION_BACKGROUND=new ImageIcon("images/match_selection_bg_2.png");

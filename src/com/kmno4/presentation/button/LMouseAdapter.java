@@ -21,16 +21,22 @@ public class LMouseAdapter extends MouseAdapter {
 	
 	public static void enter(MouseEvent event) {
 		if(event.getSource() instanceof JComboBox) return;
-		((JComponent)event.getSource()).setOpaque(true);
-		((JComponent)event.getSource()).setBackground(LMouseAdapter.L);
-		MainFrame.mainFrame.repaint();
+//		if(((JComponent)event.getSource()).isOpaque()){
+			((JComponent)event.getSource()).setOpaque(true);
+			((JComponent)event.getSource()).setBackground(LMouseAdapter.L);
+			MainFrame.mainFrame.repaint();
+//		}
+
 	}
 	public static void exit(MouseEvent event) {
 		if(event.getSource() instanceof JComboBox) return;
-		((JComponent)event.getSource()).setOpaque(false);
-		((JComponent)event.getSource()).setBackground(new Color(0, 0, 0, 0));
-//		((JComponent)event.getSource()).getParent().repaint();
-		MainFrame.mainFrame.repaint();
+//		if(!((JComponent)event.getSource()).isOpaque()){
+			((JComponent)event.getSource()).setOpaque(false);
+			((JComponent)event.getSource()).setBackground(new Color(0, 0, 0, 0));
+//			((JComponent)event.getSource()).getParent().repaint();
+			MainFrame.mainFrame.repaint();
+//		}
+
 	}
 	
 	public static final Color L = new Color(255, 255, 255, 100);
