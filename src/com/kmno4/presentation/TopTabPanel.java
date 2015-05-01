@@ -475,6 +475,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 				body,
 				Config.UI_WIDTH, Config.UI_HEIGHT - y,
 				0, y);
+		tg.table.setShowVerticalLines(false);
 //		tg.table.setOpaque(false);
 //		tg.jsp.setOpaque(false);
 //		JLabel l = new JLabel(Config.SPLASH_BACKGROUND);
