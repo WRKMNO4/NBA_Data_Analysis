@@ -207,7 +207,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			MainFrame.mainFrame.remove(tg.jsp);
 		}
 		if(players == null || players.size() == 0) return;
-		setTable(TableContentTransfer.transferPlayerBasicInfo(Config.PLAYER_BASIC_INFO.length, players));
+		setTable(TableContentTransfer.transferPlayerSortAvgInfo(Config.PLAYER_SORT_AVERAGE.length, (ArrayList<PlayerPO>)players, Config.LASTEST_SEASON));
 		addPlayerLink();
 		MainFrame.mainFrame.repaint();
 	}
