@@ -35,9 +35,9 @@ public class Console {
 	void getMostImprovedPlayer(String hotField,int topNumber){
 		//  
 	}
-	void getDailyStandingPlayer(String kingField){
+	void getDailyStandingPlayer(String kingField, int topNumber){
 	}
-	void getSeasonStandingPlayer(String kingField){
+	void getSeasonStandingPlayer(String kingField, int topNumber){
 	}
 	ArrayList<PlayerPO> getfilterPlayersByField(String field, boolean isAll2,
 			boolean isAsc2, int num2, boolean showTotal2) {
@@ -47,10 +47,19 @@ public class Console {
 			int num2, String field) {
     	
 	}
-    void getSortAndFilter(boolean showTotal, boolean isHigh, int num,
+    void getSortAndFilterForPlayer(boolean showTotal, boolean isHigh, int num,
 			String sortField) {
 	}
-	
+    //----------------------------Team-----------------------------
+    
+    void getHotTeam(String hotField, int num) {
+    	
+	}
+    void getSortTeamByField(boolean isTotal, boolean isHigh, int num, String sortField) {
+    	
+	}
+    
+    
     
     
     
@@ -66,30 +75,46 @@ public class Console {
 		
 		TestConfig config = new TestConfig();
 		Player player = new Player();
+		Team team = new Team();
 		
-		CmdlineParser cp = new CmdlineParser(new Object[] { config, player }) ;
+		CmdlineParser cp = new CmdlineParser(new Object[] { config, player , team }) ;
 		try {
 			cp.parse(args);
 		} catch (CmdlineParserException e) {
 			e.printStackTrace();
 		}
+		if(args[0].equals("-player")) {
 		if(player.isHot)
 			getMostImprovedPlayer(player.hotField,player.getTopnumber()) ;
 		else if(player.isKing){
 			    if(player.isDaily)
-					getDailyStandingPlayer(player.kingField) ;
+					getDailyStandingPlayer(player.kingField , player.topNumber) ;
 				else
-					getSeasonStandingPlayer(player.kingField) ;
+					getSeasonStandingPlayer(player.kingField, player.topNumber) ;
 	     	}else{
 	     		if(player.isFilter&&!player.isSort)
-	     			getSortAndFilter(player.showTotal, player.isHigh, player.num, player.sortField) ;
+	     			getSortAndFilterForPlayer(player.showTotal, player.isHigh, player.num, player.sortField) ;
 	     		else if(player.isSort&&!player.isFilter)
 	     			getSortPlayerByField(player.showTotal, player.isHigh, player.num, player.sortField);
 	     		else if(player.isFilter&&player.isSort)
-	     			getSortAndFilter(player.showTotal, player.isHigh, player.num, player.sortField) ;
-	     			
+	     			getSortAndFilterForPlayer(player.showTotal, player.isHigh, player.num, player.sortField) ;
+	     		else if(!player.isFilter && !player.isSort)
+	     			;//相当于"-player"
 	     	 }
+		}    //player part
+		
+		else{
+			if(team.isHot)
+				getHotTeam(team.hotField , team.num);
+			else{
+				if(team.isSort)
+					getSortTeamByField(team.isTotal,team.isHigh,team.num,team.sortField);
+				else if(!team.isSort)
+					getSortTeamByField(false,false,30,"score");  //相当于"-team"
+			}
+		}
 	     	
+		
 	     	
 		  
 /*	
@@ -166,6 +191,8 @@ public class Console {
 		*/
 		
 	}
+	
+	
 	private void getPlayerHighInfo(int number){
 		allPlayers = bl.getAllPlayers() ;
 		for(PlayerPO onePlayer : allPlayers){
@@ -301,11 +328,54 @@ public class Console {
 		}
 	}
 	
+	@CmdCommand(names = { "-team","-t" },description = "Show Team information")
 	class Team {
+		private boolean isTotal;
+		private boolean isAll = true;
+		private boolean isHot;
+		private String hotField;
+		private boolean isHigh;
+		private int num = 30 ;
+		private boolean isSort;
+		private String sortField;
+		private boolean ifAscSort;
 		
+		@CmdOption(names={"-avg"},maxCount=1,minCount=0,conflictsWith={"-total","-hot"})
+		private void setAvg(){
+			isTotal=false;
+		}
+		
+		@CmdOption(names={"-total"},maxCount=1,minCount=0,conflictsWith={"-avg","-hot"})
+		private void setTotal(){
+			isTotal=true;
+		}
+		
+		@CmdOption(names = { "-n" }, args = { "number" }, maxCount = 1, minCount = 0)
+		public void setNum(String number) {
+			num = Integer.parseInt(number);
+		}
+		
+		@CmdOption(names={"-all"},maxCount=1,minCount=0,conflictsWith={"-hot"})
+		private void setAll(){
+			isAll=true;
+		}
+		
+		@CmdOption(names={"-hot"},args={"field"},maxCount=1,minCount=0,conflictsWith={"-all","-avg","-total","-sort"})
+		private void setHot(String field){
+			isHot=true;
+			hotField=field;
+			isAll=false;
+		}
+		
+		@CmdOption(names={"-sort"},args={"field"},maxCount=1,minCount=0)
+		private void setSort(String field){
+			isSort=true;
+			String[] tmpStr=field.split("\\.");
+			sortField=tmpStr[0];
+			if(tmpStr[1].equals("asc"))
+				ifAscSort=true;
+		}
 	}
 	
-	
-
 }
 
