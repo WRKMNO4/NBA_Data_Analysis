@@ -83,8 +83,8 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		tabs.add(aboutus);
 		
 		for(int i=0;i<tabs.size();i++){
-			tabs.get(i).setBounds(Config.UI_WIDTH-(tabs.size()-i)*Config.TOP_TAB_LABLE_WIDTH, 
-					Config.TOP_TAB_HEIGHT-Config.TOP_TAB_LABLE_HEIGHT, 
+			tabs.get(i).setBounds(Config.UI_WIDTH-(tabs.size()-i)*Config.TOP_TAB_LABLE_WIDTH-100, 
+					Config.TOP_TAB_HEIGHT-Config.TOP_TAB_LABLE_HEIGHT-20, 
 					Config.TOP_TAB_LABLE_WIDTH,
 					Config.TOP_TAB_LABLE_HEIGHT);
 			tabs.get(i).setBackground(Color.WHITE);
