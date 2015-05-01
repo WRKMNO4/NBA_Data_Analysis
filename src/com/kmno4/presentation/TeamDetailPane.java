@@ -6,17 +6,16 @@ import javax.swing.JPanel;
 import com.kmno4.common.Config;
 import com.kmno4.presentation.table.TableGroup;
 
-import PO.PlayerPO;
+import PO.TeamPO;
 
 @SuppressWarnings("serial")
-public class PlayerDetailPane extends JPanel {
-	private PlayerDetailPane playerDetailPanel;
-	private PlayerDetailFrame playerDetailFrame;
-	private DataPanel dataPanel;
+public class TeamDetailPane extends JPanel {
+	private TeamDetailPane teamDetailPane;
+	private TeamDetailFrame teamDetailFrame;
+	private MainDataPanel mainDataPanel;
 	private TableGroup seasonAvgData, seasonSumData, recentData;
 	private JLabel seasonLabel, avgLabel, sumLabel, recentLabel;
-	private PlayerPO playerPO;
-	//TODO 场均总计的表格要分开
+	private TeamPO teamPO;
 	
 	private static final int PADDING = 5;
 	private static final int 
@@ -28,18 +27,19 @@ public class PlayerDetailPane extends JPanel {
 	    AVG_LABEL_HEIGHT = 0,
 	    SUM_LABEL_HEIGHT = 0,
 	    RECENT_LABEL_HEIGHT = 0;
+
 	
-	public PlayerDetailPane(PlayerPO p, PlayerDetailFrame f) {
-		playerPO = p;
-		playerDetailFrame = f;
-		playerDetailPanel = this;
+	public TeamDetailPane(TeamPO t, TeamDetailFrame f) {
+		teamPO = t;
+		teamDetailFrame = f;
+		teamDetailPane = this;
 		
-		dataPanel = new DataPanel(playerPO);
-		dataPanel.setBounds(PADDING, PADDING, Config.UI_WIDTH - PADDING * 2, DATA_PANEL_HEIGHT);
+		mainDataPanel = new MainDataPanel(teamPO);
+		mainDataPanel.setBounds(PADDING, PADDING, Config.UI_WIDTH - PADDING * 2, DATA_PANEL_HEIGHT);
 		
 		seasonLabel = new JLabel();
 		seasonLabel.setBounds(
-				PADDING, dataPanel.getY() + dataPanel.getHeight() + PADDING,
+				PADDING, mainDataPanel.getY() + mainDataPanel.getHeight() + PADDING,
 				Config.UI_WIDTH - PADDING * 2, SEASON_LABEL_HEIGHT);
 		
 		avgLabel = new JLabel();
@@ -63,10 +63,12 @@ public class PlayerDetailPane extends JPanel {
 		
 		recentData = new TableGroup();
 		
+		
+		
 	}
-
-	class DataPanel extends JPanel {
-		public DataPanel(PlayerPO p) {
+	
+	class MainDataPanel extends JPanel {
+		public MainDataPanel(TeamPO teamPO) {
 			
 		}
 	}
