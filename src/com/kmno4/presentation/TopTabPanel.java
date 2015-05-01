@@ -2,6 +2,7 @@ package com.kmno4.presentation;
 
 
 import java.awt.Color;
+import java.awt.Event;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
@@ -42,7 +43,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	private JLabel close;
 	private JLabel foreGround;
 	private JLabel line;
-	boolean isPlayer,isMatch,isHot,isTeam,isAboutus;
+	boolean isPlayer,isMatch,isHot,isTeam,isAboutus,isPlayerClicked,isMatchClicked,isHotClicked,isTeamClicked;
 	
 	private final int line_speed=200;
 	private int line_x,line_y;
@@ -63,13 +64,14 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		
 		isPlayer=true;
 		isMatch=isHot=isTeam=isAboutus=false;
+		isPlayerClicked=isMatchClicked=isHotClicked=isTeamClicked=false;
 		
 		close = new ExitLabel(MainFrame.mainFrame);
 		add(close);
 		
 		line=new JLabel();
 		line.setIcon(Config.TOP_LINE);
-		line.setSize(Config.TOP_TAB_LABLE_WIDTH, 2);
+		line.setSize(Config.TOP_TAB_LABLE_WIDTH, 1);
 		add(line);
 		
 		
@@ -166,6 +168,9 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	public void ini() { showPlayerInfo(); }
 	
 	public void showPlayerInfo(){
+		isPlayerClicked=true;
+		isMatchClicked=isHotClicked=isTeamClicked=false;
+		
 		labelClicked(player);
 		//显示playerPanel，移开其他panel,所有PANEL统一隐藏在Frame左边
 		MainFrame.mainFrame.playerSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
@@ -181,6 +186,9 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	}
 	
 	public void showTeamInfo(){
+		isTeamClicked=true;
+		isPlayerClicked=isMatchClicked=isHotClicked=false;
+		
 		labelClicked(team);
 		//显示teamPanel，移开其他panel,所有PANEL统一隐藏在Frame左边		
 		MainFrame.mainFrame.teamSelectionPanel.setBounds(0, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
@@ -195,6 +203,9 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	}
 	
 	public void showMatchInfo(){
+		isMatchClicked=true;
+		isPlayerClicked=isHotClicked=isTeamClicked=false;
+		
 		labelClicked(match);
 		//显示matchPanel，移开其他panel,所有PANEL统一隐藏在Frame左边
 		MainFrame.mainFrame.playerSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
@@ -210,6 +221,9 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	}
 	
 	public void showHotInfo(){
+		isHotClicked=true;
+		isPlayerClicked=isMatchClicked=isTeamClicked=false;
+		
 		labelClicked(hot);
 		MainFrame.mainFrame.playerSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.INTRODUCTION_WHITE, 
 				Config.UI_WIDTH, Config.SELECTION_HEIGHT);
@@ -430,8 +444,8 @@ public class TopTabPanel extends JPanel implements MouseListener{
 //			});
 //		}
 	}
-	
 
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 	}
@@ -440,34 +454,14 @@ public class TopTabPanel extends JPanel implements MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-//		if(e.getSource()==player){
-//			player.setIcon(Config.TAB_PLAYER_CLICKED);
-//		}if(e.getSource()==team){
-//			team.setIcon(Config.TAB_TEAM_CLICKED);
-//		}if(e.getSource()==match){
-//			match.setIcon(Config.TAB_MATCH_CLICKED);
-//		}if(e.getSource()==hot){
-//			hot.setIcon(Config.TAB_HOT_CLICKED);
-//		}if(e.getSource()==aboutus){
-//			aboutus.setIcon(Config.TAB_ABOUT_CLICKED);
-//		}
+
 	}
 
 
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-//		if(e.getSource()==player){
-//			player.setIcon(Config.TAB_PLAYER_UNPRESSED);
-//		}if(e.getSource()==team){
-//			team.setIcon(Config.TAB_TEAM_UNPRESSED);
-//		}if(e.getSource()==match){
-//			match.setIcon(Config.TAB_MATCH_UNPRESSED);
-//		}if(e.getSource()==hot){
-//			hot.setIcon(Config.TAB_HOT_UNPRESSED);
-//		}if(e.getSource()==aboutus){
-//			aboutus.setIcon(Config.TAB_ABOUT_UNPRESSED);
-//		}
+
 		
 	}
 
@@ -481,49 +475,50 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			isMatch=false;
 			isHot=false;
 			isAboutus=false;
-		}if(e.getSource()==team){
+		}else if(e.getSource()==team){
 			isPlayer=false;
 			isTeam=true;
 			isMatch=false;
 			isHot=false;
 			isAboutus=false;
-		}if(e.getSource()==match){
+		}else if(e.getSource()==match){
 			isPlayer=false;
 			isTeam=false;
 			isMatch=true;
 			isHot=false;
 			isAboutus=false;
-		}if(e.getSource()==hot){
+		}else if(e.getSource()==hot){
 			isPlayer=false;
 			isTeam=false;
 			isMatch=false;
 			isHot=true;
 			isAboutus=false;
-		}if(e.getSource()==aboutus){
+		}else if(e.getSource()==aboutus){
 			isPlayer=false;
 			isTeam=false;
 			isMatch=false;
 			isHot=false;
 			isAboutus=true;
 		}
-		
 	}
 
 
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-//		if(e.getSource()==player){
-//			player.setIcon(Config.TAB_PLAYER_UNPRESSED);
-//		}if(e.getSource()==team){
-//			team.setIcon(Config.TAB_TEAM_UNPRESSED);
-//		}if(e.getSource()==match){
-//			match.setIcon(Config.TAB_MATCH_UNPRESSED);
-//		}if(e.getSource()==hot){
-//			hot.setIcon(Config.TAB_HOT_UNPRESSED);
-//		}if(e.getSource()==aboutus){
-//			aboutus.setIcon(Config.TAB_ABOUT_UNPRESSED);
-//		}
+		if(e.getY()>30||e.getY()<0){
+			if(e.getSource()==player){
+				isPlayer=false;
+			}else if(e.getSource()==team){
+				isTeam=false;
+			}else if(e.getSource()==match){
+				isMatch=false;
+			}else if(e.getSource()==hot){
+				isHot=false;
+			}else if(e.getSource()==aboutus){
+				isAboutus=false;
+			}
+		}
 		
 	}
 	
@@ -547,14 +542,24 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			while(true){
 				if(isPlayer){
 					moveLine(player.getX());
-				}if(isTeam){
+				}else if(isTeam){
 					moveLine(team.getX());
-				}if(isMatch){
+				}else if(isMatch){
 					moveLine(match.getX());
-				}if(isHot){
+				}else if(isHot){
 					moveLine(hot.getX());
-				}if(isAboutus){
+				}else if(isAboutus){
 					moveLine(aboutus.getX());
+				}if(!isPlayer&&!isTeam&&!isMatch&&!isHot&&!isAboutus){
+					if(isPlayerClicked){
+						moveLine(player.getX());
+					}else if(isTeamClicked){
+						moveLine(team.getX());
+					}else if(isHotClicked){
+						moveLine(hot.getX());
+					}else if(isMatchClicked){
+						moveLine(match.getX());
+					}
 				}
 			}
 		}
