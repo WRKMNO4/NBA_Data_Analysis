@@ -30,34 +30,68 @@ public class Console {
 	PrintStream out ;
 	ArrayList<PlayerPO> allPlayers ;
 	ArrayList<TeamPO> allTeams ;
-	public Console(){
-		bl = new BLServiceController("Data");
-		bl.init();
+	
+	
+	void getMostImprovedPlayer(String hotField,int topNumber){
+		//  
 	}
-	public static void main(String[] args){
-		Console c = new Console() ;
-		c.execute(null, null);
-		}
+	void getDailyStandingPlayer(String kingField){
+	}
+	void getSeasonStandingPlayer(String kingField){
+	}
+	ArrayList<PlayerPO> getfilterPlayersByField(String field, boolean isAll2,
+			boolean isAsc2, int num2, boolean showTotal2) {
+		return null ;
+	}
+    void getSortPlayerByField(boolean showTotal2, boolean isHigh2,
+			int num2, String field) {
+    	
+	}
+    void getSortAndFilter(boolean showTotal, boolean isHigh, int num,
+			String sortField) {
+	}
+	
+    
+    
+    
+    
 	public void execute(PrintStream out,String[] args){
 		this.out =out ;
+		System.setOut(out);
+		if(args[0].contains("datasource")){
+			bl = new BLServiceController(args[1]) ;
+			bl.init();
+			return ;
+		}
 		
 		TestConfig config = new TestConfig();
 		Player player = new Player();
-		CmdlineParser cp = new CmdlineParser(new Object[] { config, player });
-		String comd = "-player -filter position.F,age.<=22" ;
-		String[] comds = comd.split("\\s") ;
+		
+		CmdlineParser cp = new CmdlineParser(new Object[] { config, player }) ;
 		try {
-			cp.parse(comds);
+			cp.parse(args);
 		} catch (CmdlineParserException e) {
 			e.printStackTrace();
 		}
-		if (player.isHot) {
-			getPlayerHotInfo(player.hotField,player.num) ;
-		}
-		if(player.isHigh) {
-			getPlayerHighInfo(player.num) ;
-		}
-//		if()
+		if(player.isHot)
+			getMostImprovedPlayer(player.hotField,player.getTopnumber()) ;
+		else if(player.isKing){
+			    if(player.isDaily)
+					getDailyStandingPlayer(player.kingField) ;
+				else
+					getSeasonStandingPlayer(player.kingField) ;
+	     	}else{
+	     		if(player.isFilter&&!player.isSort)
+	     			getSortAndFilter(player.showTotal, player.isHigh, player.num, player.sortField) ;
+	     		else if(player.isSort&&!player.isFilter)
+	     			getSortPlayerByField(player.showTotal, player.isHigh, player.num, player.sortField);
+	     		else if(player.isFilter&&player.isSort)
+	     			getSortAndFilter(player.showTotal, player.isHigh, player.num, player.sortField) ;
+	     			
+	     	 }
+	     	
+	     	
+		  
 /*	
 //-----------------------------------------------------------------------------		
 		
@@ -132,10 +166,6 @@ public class Console {
 		*/
 		
 	}
-	
-	private ArrayList<PlayerHotInfo> getPlayerHotInfo(String field,int number){
-		return null ;
-	}
 	private void getPlayerHighInfo(int number){
 		allPlayers = bl.getAllPlayers() ;
 		for(PlayerPO onePlayer : allPlayers){
@@ -175,6 +205,7 @@ public class Console {
 	class Player {
 		private boolean showTotal = false;
 		private int num = 50;
+		private int topNumber = 5 ;
 		private boolean isHigh = false ;
 		private boolean isAll = true ;
 		private boolean isHot = false ;
@@ -183,6 +214,11 @@ public class Console {
 		private String kingField ;
 		private boolean isSeason ;
 		private boolean isDaily ;
+		private boolean isAsc = false ;
+		private boolean isFilter = false  ;
+		private String filterField ;
+		private boolean isSort = false  ;
+		private String sortField ;
 		
 		@CmdOption(names = {"-high"},description = "show high info")
 		public void isHigh(){
@@ -192,13 +228,14 @@ public class Console {
 		
 		@CmdOption(names = { "-avg" }, description = "show avg",maxCount = 1, minCount = 0,conflictsWith={"-total"} )
 		public void isAvg(){
-			
+			showTotal =false ;
 		}
 		
 		@CmdOption(names ={"-hot"},args = {"field"},description = "show hot",maxCount = 1, minCount = 0,conflictsWith = {"-all","-king","-total","-avg","-filter","-sort"})
 		public void setIsHot(String field){
 			isHot = true ;
 			isAll = false ;
+			isKing = false ;
 			this.hotField = field ;
 		}
 		public String getHotField(){
@@ -212,7 +249,6 @@ public class Console {
 			isHot = false ;
 			isAll = false ;
 			kingField = field ;
-			System.out.println("test king-------------");
 		}
 		
 		@CmdOption(names ={"-season"},description = "show season info",conflictsWith = {"-daily"},requires = {"-king"})
@@ -225,19 +261,20 @@ public class Console {
 		public void setIsDaily(){
 			isSeason = false ;
 			isDaily = true ;
-			System.out.println("test daily____________");
 		}
 		
 		@CmdOption(names = {"-all"},description = "show all information",maxCount = 1, minCount = 0,conflictsWith = {"-hot","-king"})
 		public void setIsAll(){
 			this.isHot = false ;
 			this.isAll = true ;
+			this.isKing = false ;
 		}
 
 		@CmdOption(names = { "-total" }, description = "show total",maxCount = 1, minCount = 0,conflictsWith={"-avg"} )
 		public void setShowTotal() {
 			this.showTotal = true;
 		}
+		
 		public boolean isShowTotal() {
 			return showTotal;
 		}
@@ -246,25 +283,28 @@ public class Console {
 		public void setNum(String number) {
 			this.num = Integer.parseInt(number);
 		}
+		
 		public int getNum() {
 			return num;
+		}
+		public int getTopnumber(){
+			return topNumber ;
 		}
 		
 		@CmdOption(names = {"-filter"},args = {"field.value"},description = "show filter info",conflictsWith = {"-sort","-king","-hot"})
 		public void isFilter(String field){
-			//调用bl方法
 		}
 
 		@CmdOption(names = {"-sort"},args = {"filed.sortOrder"},description = "show sort info",conflictsWith = {"-filter","-king","-hot"})
 		public void isSort(String field){
-			//调用bl方法
+			
 		}
-				
 	}
 	
 	class Team {
 		
 	}
+	
 	
 
 }

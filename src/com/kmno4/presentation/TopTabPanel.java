@@ -83,8 +83,8 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		tabs.add(aboutus);
 		
 		for(int i=0;i<tabs.size();i++){
-			tabs.get(i).setBounds(Config.UI_WIDTH-(tabs.size()-i)*Config.TOP_TAB_LABLE_WIDTH, 
-					Config.TOP_TAB_HEIGHT-Config.TOP_TAB_LABLE_HEIGHT, 
+			tabs.get(i).setBounds(Config.UI_WIDTH-(tabs.size()-i)*Config.TOP_TAB_LABLE_WIDTH-100, 
+					Config.TOP_TAB_HEIGHT-Config.TOP_TAB_LABLE_HEIGHT-20, 
 					Config.TOP_TAB_LABLE_WIDTH,
 					Config.TOP_TAB_LABLE_HEIGHT);
 			tabs.get(i).setBackground(Color.WHITE);
@@ -207,7 +207,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			MainFrame.mainFrame.remove(tg.jsp);
 		}
 		if(players == null || players.size() == 0) return;
-		setTable(TableContentTransfer.transferPlayerBasicInfo(Config.PLAYER_BASIC_INFO.length, players));
+		setTable(TableContentTransfer.transferPlayerSortAvgInfo(Config.PLAYER_SORT_AVERAGE.length, (ArrayList<PlayerPO>)players, Config.LASTEST_SEASON));
 		addPlayerLink();
 		MainFrame.mainFrame.repaint();
 	}
@@ -475,6 +475,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 				body,
 				Config.UI_WIDTH, Config.UI_HEIGHT - y,
 				0, y);
+		tg.table.setShowVerticalLines(false);
 //		tg.table.setOpaque(false);
 //		tg.jsp.setOpaque(false);
 //		JLabel l = new JLabel(Config.SPLASH_BACKGROUND);
