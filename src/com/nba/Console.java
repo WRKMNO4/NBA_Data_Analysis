@@ -128,8 +128,9 @@ public class Console {
 				break ;
 			}
 		}
-		
-		ArrayList<PlayerPO> players = bl.pickUpPlayersByCondition(position, league, age,Config.LASTEST_SEASON) ;
+		int lowAge = 0 ;
+		int highAge = 100 ;
+		ArrayList<PlayerPO> players = bl.pickUpPlayersByCondition(position, league,lowAge,highAge) ;
 		return null ;
 	}
     void getSortPlayerByField(boolean showTotal2, boolean isHigh2,
