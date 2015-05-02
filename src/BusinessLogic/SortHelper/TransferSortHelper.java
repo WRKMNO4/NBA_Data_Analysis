@@ -3,6 +3,9 @@ package BusinessLogic.SortHelper;
 import Enum.PlayerData;
 import Enum.Season;
 import Enum.TeamData;
+import PO.SeasonInfoForTeam;
+import PO.TeamDataPO;
+import PO.TeamPO;
 
 public class TransferSortHelper {
 	public static PlayerData StringToDataTypeForPlayer(String key){
@@ -355,5 +358,36 @@ public class TransferSortHelper {
 		}
 		return null;
 	}
-	
+	public static double TeamDataTypeToAvgData(TeamData dataType,TeamPO oneTeam,Season season){
+		SeasonInfoForTeam seasonInfo = oneTeam.getSeasonInfo(season);
+		TeamDataPO avgData = seasonInfo.getAverageTeamData();
+		
+		switch(dataType){
+		case score:
+			return avgData.getScore();
+		case numberOfRebound:
+			return avgData.getNumberOfRebound();
+		case numberOfAssist:
+			return avgData.getNumberOfAssist();
+		case numberOfBlock:
+			return avgData.getNumberOfBlock();
+		case numberOfSteal:
+			return avgData.getNumberOfSteal();
+		case numberOfFoul:
+			return avgData.getNumberOfFoul();
+		case numberOfFault:
+			return avgData.getNumberOfFault();
+		case percentageOfShooting:
+			return avgData.getPercentageOfShooting();
+		case percentageOf3_point:
+			return avgData.getPercentageOf3_point();
+		case percentageOfFreeThrow:
+			return avgData.getPercentageOfFreeThrow();
+		case numberOfDefenseRebound:
+			return avgData.getNumberOfDefenseRebound();
+		case numberOfAttackRebound:
+			return avgData.getNumberOfAttackRebound();
+		}
+		return 0;
+	}
 }
