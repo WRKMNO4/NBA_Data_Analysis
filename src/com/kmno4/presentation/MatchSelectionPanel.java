@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
@@ -13,6 +12,7 @@ import javax.swing.JPanel;
 import Enum.Season;
 
 import com.kmno4.common.Config;
+import com.kmno4.presentation.button.LMouseAdapter;
 
 @SuppressWarnings("serial")
 public class MatchSelectionPanel extends JPanel {
@@ -23,10 +23,8 @@ public class MatchSelectionPanel extends JPanel {
 		lb_thirdSeason,
 		lb_forthSeason,
 		lblNewLabel_1,
-		lb_vs;
-//	JComboBox<String> 
-//	    cb_team1,
-//	    cb_team2;
+		lb_vs,
+		foreground;
 	
 	public MatchSelectionPanel() {
 		setLayout(null);
@@ -34,10 +32,11 @@ public class MatchSelectionPanel extends JPanel {
 		this.setVisible(true);
 		this.setBackground(new Color(0, 0, 0, 0));
 		
-//		cb_team1=new JComboBox();
-//		cb_team1.setBounds(22, 75, 186, 27);
-//		add(cb_team1);
-			
+		foreground=new JLabel();
+		foreground.setIcon(Config.LABEL_FOREGROUND);
+		foreground.setBounds(0, 134/3, Config.UI_WIDTH/3, 134/3+10);
+		add(foreground);
+		
 		seasonPanel = new JPanel();
 		seasonPanel.setBounds(0, 0, Config.UI_WIDTH, 134);
 		seasonPanel.setBackground(new Color(0, 0, 0, 0));
@@ -55,21 +54,24 @@ public class MatchSelectionPanel extends JPanel {
 		lb_thirdSeason.setForeground(Color.white);
 		seasonPanel.add(lb_thirdSeason);
 		add(seasonPanel);
-		lb_firstSeason.addMouseListener(new MouseAdapter() {
+		lb_firstSeason.addMouseListener(new LMouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				foreground.setBounds(lb_firstSeason.getX(), 134/3, Config.UI_WIDTH/3, 134/3+10);
 				changeSeason(Season.season12_13);
 			}
 		});
-		lb_secondSeason.addMouseListener(new MouseAdapter() {
+		lb_secondSeason.addMouseListener(new LMouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				foreground.setBounds(lb_secondSeason.getX(), 134/3, Config.UI_WIDTH/3, 134/3+10);
 				changeSeason(Season.season13_14);
 			}
 		});
-		lb_thirdSeason.addMouseListener(new MouseAdapter() {
+		lb_thirdSeason.addMouseListener(new LMouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				foreground.setBounds(lb_thirdSeason.getX(), 134/3, Config.UI_WIDTH/3, 134/3+10);
 				changeSeason(Season.season14_15);
 			}
 		});

@@ -128,6 +128,8 @@ public class Config {
 	public static final int PLAYER_NUMBER_HEIGHT=70;
 	public static final int PLAYER_LABEL_HEIGHT=15;
 	public static final int PLAYER_LABEL_WIDTH=60;
+	public static final int PLAYER_TOP_LABEL_WIDTH=50;
+	public static final int PLAYER_TOP_LABEL_HEIGHT=20;
 	
 	public static final int HEAD_ICON_FRAME_WIDTH = 368;
 	public static final int HEAD_ICON_FRAME_HEIGHT = 148;
@@ -166,21 +168,21 @@ public class Config {
 	public static final Icon SPLASH_BACKGROUND=new ImageIcon("images/splash_bg.png");
 	
 	public static final ImageIcon PLAYER_SELECTION_SORT_BACKGROUND=new ImageIcon("images/player_selection_sort_bg.png");
-	public static final ImageIcon PLAYER_SELECTION_BACKGROUND=new ImageIcon("images/selection_bg3.png");
+	public static final ImageIcon PLAYER_SELECTION_BACKGROUND=new ImageIcon("images/player_selection_bg_1.png");
 	public static final ImageIcon TOP_TAB_BACKGROUND=new ImageIcon("images/top_tab_background_1.png");
 	public static final ImageIcon WELCOME=new ImageIcon("images/welcome.png");
-	public static final ImageIcon TEAM_SELECTION_BACKGROUND=new ImageIcon("images/team_selection_bg4.png");
+	public static final ImageIcon TEAM_SELECTION_BACKGROUND=new ImageIcon("images/team_selection_bg_1.png");
 	public static final ImageIcon CLOSE_ICON=new ImageIcon("images/close.png");
 	public static final ImageIcon TOP_LINE=new ImageIcon("images/top_line.png");
 	public static final ImageIcon LABEL_FOREGROUND=new ImageIcon("images/label_foreground.png");
 	
 	//match界面所有的icon
-	public static final ImageIcon MATCH_SELECTION_BACKGROUND=new ImageIcon("images/match_selection_bg_2.png");
+	public static final ImageIcon MATCH_SELECTION_BACKGROUND=new ImageIcon("images/match_selection_bg_1.png");
 	public static final ImageIcon SCHEDULE=new ImageIcon("images/schedule.png");
 	public static final ImageIcon TEAM_SELECTION=new ImageIcon("images/select_team.png");
 	
 	
-	public static final ImageIcon HOT_SELECTION_BACKGROUND=new ImageIcon("images/hot_selection_bg2.png");
+	public static final ImageIcon HOT_SELECTION_BACKGROUND=new ImageIcon("images/hot_selection_bg_1.png");
 	public static final ImageIcon LABEL_CALENDAR_BACKGROUND=new ImageIcon("images/label_calendar_bg_1.png");
 	
 	public static ArrayList<ImageIcon> getLoadingMotions(){

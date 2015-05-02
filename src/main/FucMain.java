@@ -83,7 +83,7 @@ public class FucMain {
 				frame.setSize(Config.UI_WIDTH, Config.UI_HEIGHT);
 				//frame.setLocation(screenwidth / 8, screenheight / 8);
 				frame.setLocationRelativeTo(null);
-				MainFrame.mainFrame.playerSelectionPanel.setBounds(0,
+				MainFrame.mainFrame.hotSelectionPanel.setBounds(0,
 						Config.TOP_TAB_HEIGHT + Config.INTRODUCTION_WHITE,
 						Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 				frame.setVisible(true);
