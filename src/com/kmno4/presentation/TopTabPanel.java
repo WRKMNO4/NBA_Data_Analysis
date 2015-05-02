@@ -371,62 +371,12 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	private static final int TEAM_LINK = 0;
 	private static final int SHORT_NAME_LABEL = 1;
 	private void addTeamLink() {
-//		TableList[][] t = tableBeShowing.body;
-//		for(int i = 0; i < t.length; i ++) {
-//			for(int j = 0; j < t[0].length; j ++) {
-//				if(t[i][j].elements.length == 0) return;
-//			    JLabel label = t[i][j].elements[TEAM_LINK];
-//			    final JLabel shortNameLabel = t[i][j].elements[SHORT_NAME_LABEL];
-//				label.addMouseListener(new MouseAdapter() {
-//					@Override
-//					public void mouseClicked(MouseEvent e) {
-//						TeamPO t = TeamListPO.findTeamByShortName(shortNameLabel.getText());
-//						if(t == null) return;
-//						new TeamDetailFrame(t).setVisible(true);
-//					}
-//				});
-//			}
-//		}
+		//TODO
 	}
 	private void addMatchLink() {
-//		TableList[][] t = tableBeShowing.body;
-//		for(int i = 0; i < t.length; i ++) {
-//			for(int j = 0; j < t[0].length; j ++) {
-//				if(t[i][j].elements.length == 0) return;
-//			    TableList panel = t[i][j];
-//			    final Season season;
-//			    final String date, team;
-//			    String s = panel.elements[0].getText();
-//			    switch(s) {
-//			    case "2012-2013赛季" : season = Season.season12_13; break;
-//			    case "2013-2014赛季" : season = Season.season13_14; break;
-//			    case "2014-2015赛季" : season = Season.season14_15; break;
-//			    default: season = Season.season12_13;
-//			    }
-//			    date = panel.elements[1].getText();
-//			    team = panel.elements[2].getText() + "-" + panel.elements[5].getText();
-//			    
-//				panel.addMouseListener(new MouseAdapter() {
-//					@Override
-//					public void mouseClicked(MouseEvent e) {
-//						MatchInfoDetailFrame f = new MatchInfoDetailFrame(MainFrame.mainFrame.bl.findMatch(season, date, team));
-//					    f.setVisible(true);
-//					}
-//				});
-//			}
-//		}
 	}
 
 	private void addDailyPlayerLink() {
-//		TableList[] t = tableBeShowing.body[0];
-//		for(int i = 0; i < t.length; i ++) {
-//			final int j = i;
-//			t[j].addMouseListener(new MouseAdapter() {
-//				public void mouseClicked(MouseEvent e) {
-//					new PlayerDetailFrame(PlayerListPO.findPlayerAccurately(tableBeShowing.body[0][j].elements[0].getText()));
-//				}
-//			});
-//		}
 	}
 	private void addSeasonPlayerLink() {
 		addDailyPlayerLink();
@@ -435,15 +385,6 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		addDailyPlayerLink();
 	}
 	private void addSeasonTeamLink() {
-//		TableList[] t = tableBeShowing.body[0];
-//		for(int i = 0; i < t.length; i ++) {
-//			final int j = i;
-//			t[j].addMouseListener(new MouseAdapter() {
-//				public void mouseClicked(MouseEvent e) {
-//					new TeamDetailFrame(TeamListPO.findTeamByFullName(tableBeShowing.body[0][j].elements[0].getText()));
-//				}
-//			});
-//		}
 	}
 
 	
