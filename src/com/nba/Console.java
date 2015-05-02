@@ -109,9 +109,27 @@ public class Console {
 			out.print(thePlayer);
 		}
 	}
-	ArrayList<PlayerPO> getfilterPlayersByField(String field, boolean isAll2,
-			boolean isAsc2, int num2, boolean showTotal2) {
+	ArrayList<PlayerPO> getfilterPlayersByField(String field) {
+		String position = "" ;
+		String league = "" ;
+		String age = "" ;
+		String[] strs = field.split(",") ;
+		for(int i = 0;i<strs.length;i++){
+			String[] cmds = strs[i].split("\\.") ;
+			switch(cmds[0]){
+			case "position":
+				position = cmds[1] ;
+				break ;
+			case "league":
+				league = cmds[1] ;
+				break ;
+			case "age":
+				age = cmds[1] ;
+				break ;
+			}
+		}
 		
+		ArrayList<PlayerPO> players = bl.pickUpPlayersByCondition(position, league, age,Config.LASTEST_SEASON) ;
 		return null ;
 	}
     void getSortPlayerByField(boolean showTotal2, boolean isHigh2,
