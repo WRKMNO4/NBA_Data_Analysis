@@ -62,6 +62,15 @@ public class TeamController implements TeamBusinessLogic{
 		ArrayList<TeamPO> result = new ArrayList<>(allTeams.subList(0, 5)) ;
 		return result ;
 	}
+	
+	@Override
+	public ArrayList<TeamPO> getSeasonStandingTeam(Season season,
+			TeamData dataType, int number) {
+		ArrayList<TeamPO> allTeams = teamController.getAllTeams() ;
+		Collections.sort(allTeams,new TeamSortHelper("avg", dataType, season));
+		ArrayList<TeamPO> result = new ArrayList<>(allTeams.subList(0, number)) ;
+		return result ;
+	}
 	@Override
 	public ArrayList<MatchPO> getLatest5Matches(TeamPO team) {
 		// TODO Auto-generated method stub
@@ -72,5 +81,6 @@ public class TeamController implements TeamBusinessLogic{
 		ArrayList<MatchPO> latest5Matches = new ArrayList<>(allMatches.subList(allMatches.size()-5, allMatches.size())) ;
 		return latest5Matches ;
 	}
+
 	
 }

@@ -119,6 +119,13 @@ public class BLServiceController implements  BLService{
 		return playerController.getDatasOfDailyStandingPlayers(Config.LASTEST_SEASON,
 				Config.LASTEST_DATE , dataType);
 	}
+	
+	@Override
+	public ArrayList<StandingDataPO> getDatasOfDailyStandingPlayer(
+			PlayerData dataType, int number) {
+		return playerController.getDatasOfDailyStandingPlayers(Config.LASTEST_SEASON,
+				Config.LASTEST_DATE , dataType, number);
+	}
 
 	@Override
 	public ArrayList<PlayerPO> getSeasonStandingPlayer(Season season,
@@ -127,6 +134,14 @@ public class BLServiceController implements  BLService{
 		return playerController.getSeasonStandingPlayer(season,dataType);
 	}
 
+
+	@Override
+	public ArrayList<PlayerPO> getSeasonStandingPlayer(Season season,
+			PlayerData dataType, int number) {
+		
+		return playerController.getSeasonStandingPlayer(season,dataType,number);
+	}
+	
 	@Override
 	public ArrayList<TeamPO> getSeasonStandingTeam(Season season,
 			TeamData dataType) {
@@ -135,10 +150,22 @@ public class BLServiceController implements  BLService{
 	}
 
 	@Override
+	public ArrayList<TeamPO> getSeasonStandingTeam(Season season,
+			TeamData dataType, int number) {
+		return teamController.getSeasonStandingTeam(season,dataType,number) ;
+	}
+	
+	@Override
 	public ArrayList<PlayerPO> getMostImprovePlayer(Season season,
 			PlayerData dataType) {
 		// TODO Auto-generated method stub
 		return playerController.getMostImprovePlayer(season,dataType);
+	}
+
+	@Override
+	public ArrayList<PlayerPO> getMostImprovePlayer(Season season,
+			PlayerData dataType, int number) {
+		return playerController.getMostImprovePlayer(season,dataType,number);
 	}
 	
 	public ArrayList<MatchPO> getAllMatches(Season season) {
@@ -180,4 +207,5 @@ public class BLServiceController implements  BLService{
 		// TODO Auto-generated method stub
 		return teamController.getLatest5Matches(team);
 		}
+
 	}

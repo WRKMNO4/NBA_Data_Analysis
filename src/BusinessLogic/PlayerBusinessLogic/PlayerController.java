@@ -35,8 +35,6 @@ public class PlayerController implements PlayerBusinessLogic{
 		playerController.calculateFinalData() ;
 	}
 	
-	
-	
 	@Override
 	public ArrayList<PlayerPO> pickUpPlayersByCondition(String position,
 			Zone zone, String district, String standard,PlayerData dataType,Season season) {
@@ -74,7 +72,6 @@ public class PlayerController implements PlayerBusinessLogic{
 	public StandingDataPO getDatasOfDailyStandingPlayers(Season season, String date, PlayerData dataType) {
 		// TODO Auto-generated method stub
 		//transfer the date format
-		date = date.substring(5,7) + "-" + date.substring(8,10);
 		
 		ArrayList<MatchPO> matches = SeasonListPO.getMatchesOfOneDay(season,date);
 		if(matches.size()==0)
@@ -111,6 +108,49 @@ public class PlayerController implements PlayerBusinessLogic{
 		return standingDataPO;
 	}
 	@Override
+	public ArrayList<StandingDataPO> getDatasOfDailyStandingPlayers(
+			Season season, String date, PlayerData dataType,
+			int number) {
+		ArrayList<MatchPO> matches = SeasonListPO.getMatchesOfOneDay(season,date);
+		if(matches.size()==0)
+			return null;
+		ArrayList<PlayerDataOfOneMatchPO> datas=new ArrayList<>();
+		for(MatchPO oneMatch : matches){
+			datas.addAll(oneMatch.getFirstTeam_PlayerData());
+			datas.addAll(oneMatch.getSecondTeam_PlayerData());
+		}
+		Collections.sort(datas,new PlayerDataComparator(dataType));
+		
+		ArrayList<StandingDataPO> results = new ArrayList<>();
+		for(int i=0;i<number;i++){
+		double standingData = 0 ;
+		switch(dataType){
+		case score:
+			standingData=datas.get(i).getScoreOfOneMatch();
+			break;
+		case numberOfRebound:
+			standingData=datas.get(i).getNumberOfReboundOfOneMatch();
+			break;
+		case numberOfAssist:
+			standingData=datas.get(i).getNumberOfAssistOfOneMatch();
+			break;
+		case numberOfBlock:
+			standingData=datas.get(i).getNumberOfBlockOfOneMatch();
+			break;
+		case numberOfSteal:
+			standingData=datas.get(i).getNumberOfSteal();
+			break;
+		}
+		PlayerDataOfOneMatchPO oneMatchData=datas.get(i);
+		PlayerPO thePlayer=PlayerListPO.findPlayerAccurately(oneMatchData.getName());
+		StandingDataPO standingDataPO = new StandingDataPO(thePlayer.getName(), thePlayer.getPosition(), 
+				thePlayer.getTeam(season),standingData);
+		results.add(standingDataPO);
+		}
+		return results;
+	}
+	
+	@Override
 	public ArrayList<PlayerPO> getSeasonStandingPlayer(Season season,
 			PlayerData dataType) {
 		// TODO Auto-generated method stub
@@ -119,6 +159,16 @@ public class PlayerController implements PlayerBusinessLogic{
 		ArrayList<PlayerPO> result =new ArrayList<>(allPlayers.subList(0,5));
 		return result ;
 	}
+	
+	@Override
+	public ArrayList<PlayerPO> getSeasonStandingPlayer(Season season,
+			PlayerData dataType, int number) {
+		ArrayList<PlayerPO> allPlayers = playerController.getAllPlayers() ;
+		Collections.sort(allPlayers,new PlayerSortHelper("avg", dataType, season));
+		ArrayList<PlayerPO> result =new ArrayList<>(allPlayers.subList(0,number));
+		return result ;
+	}
+
 	class PlayerDataComparator implements Comparator {
 		PlayerData dataType;
 		public PlayerDataComparator(PlayerData dataType){
@@ -170,6 +220,16 @@ public class PlayerController implements PlayerBusinessLogic{
 		ArrayList<PlayerPO> result = new ArrayList<>(allPlayers.subList(0, 5));
 		return result ;
 	}
+	
+	@Override
+	public ArrayList<PlayerPO> getMostImprovePlayer(Season season,
+			PlayerData dataType, int number) {
+		ArrayList<PlayerPO> allPlayers = playerController.getAllPlayers() ;
+		Collections.sort(allPlayers,new PlayerSortHelper("avg", dataType, season));
+		ArrayList<PlayerPO> result = new ArrayList<>(allPlayers.subList(0, number));
+		return result ;
+	}
+	
 	@Override
 	public ArrayList<MatchPO> getLatest5Matches(PlayerPO player) {
 		// TODO Auto-generated method stub
@@ -180,6 +240,8 @@ public class PlayerController implements PlayerBusinessLogic{
 		ArrayList<MatchPO> latest5Matches = new ArrayList<>(allMatches.subList(allMatches.size()-5, allMatches.size())) ;
 		return latest5Matches ;
 	}
+
+	
 	
 
 }

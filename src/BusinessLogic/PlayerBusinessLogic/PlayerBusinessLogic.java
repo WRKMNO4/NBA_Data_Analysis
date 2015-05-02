@@ -24,4 +24,11 @@ public interface PlayerBusinessLogic {
 	public ArrayList<PlayerPO> getMostImprovePlayer(Season season,
 			PlayerData dataType);
 	public ArrayList<MatchPO> getLatest5Matches(PlayerPO player);
+	public ArrayList<StandingDataPO> getDatasOfDailyStandingPlayers(
+			Season season, String date, PlayerData dataType,
+			int number);
+	public ArrayList<PlayerPO> getSeasonStandingPlayer(Season season,
+			PlayerData dataType, int number);
+	public ArrayList<PlayerPO> getMostImprovePlayer(Season season,
+			PlayerData dataType, int number);
 }
