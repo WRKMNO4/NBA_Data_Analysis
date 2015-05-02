@@ -14,6 +14,7 @@ import de.tototec.cmdoption.CmdlineParserException;
 import BusinessLogic.BLService.BLService;
 import BusinessLogic.BLService.BLServiceController;
 import BusinessLogic.SortHelper.TransferSortHelper;
+import Enum.PlayerData;
 import Enum.TeamData;
 import PO.PlayerDataPO;
 import PO.PlayerPO;
@@ -37,7 +38,8 @@ public class Console {
 	
 	
 	void getMostImprovedPlayer(String hotField,int topNumber){
-		//  
+		PlayerData dataType = TransferSortHelper.ConsoleStringToDataTypeForPlayer(hotField) ;
+		ArrayList<PlayerPO> players = bl.getMostImprovePlayer(Config.LASTEST_SEASON, dataType, topNumber) ;
 	}
 	void getDailyStandingPlayer(String kingField, int topNumber){
 	}

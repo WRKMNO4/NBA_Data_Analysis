@@ -67,6 +67,7 @@ public interface BLService {
 	 * @return 一个球员信息.
 	 */
 	public StandingDataPO getDatasOfDailyStandingPlayers(PlayerData dataType) ;
+	public ArrayList<StandingDataPO> getDatasOfDailyStandingPlayer(PlayerData dataType,int number) ; 
 	/**
 	 * 
 	 * @param season 赛季
@@ -74,6 +75,7 @@ public interface BLService {
 	 * @return 前五名球员列表，如果不存在返回null
 	 */
 	public ArrayList<PlayerPO> getSeasonStandingPlayer(Season season , PlayerData dataType) ;
+	public ArrayList<PlayerPO> getSeasonStandingPlayer(Season season,PlayerData dataType,int number) ;
 	/**
 	 * 
 	 * @param season 赛季
@@ -81,6 +83,7 @@ public interface BLService {
 	 * @return 返回前五只球队，如果不存在返回null
 	 */
 	public ArrayList<TeamPO> getSeasonStandingTeam(Season season , TeamData dataType) ;
+	public ArrayList<TeamPO> getSeasonStandingTeam(Season season,TeamData dataType,int number) ;
 	/**
 	 * 
 	 * @param season 赛季
@@ -88,6 +91,7 @@ public interface BLService {
 	 * @return 返回前五名球员，如果不存在返回null
 	 */
 	public ArrayList<PlayerPO> getMostImprovePlayer(Season season ,PlayerData dataType) ;
+	public ArrayList<PlayerPO> getMostImprovePlayer(Season season,PlayerData dataType,int number) ;
 	/**
 	 * 
 	 * @param season 赛季
