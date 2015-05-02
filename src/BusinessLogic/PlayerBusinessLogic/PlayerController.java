@@ -68,7 +68,7 @@ public class PlayerController implements PlayerBusinessLogic{
 		for(PlayerPO onePlayer: playerController.getAllPlayers()){
 			TeamPO ofTeam = TeamListPO.findTeamByShortName(onePlayer.getTeam(season));
 			if(ofTeam!=null && onePlayer.getPosition().contains(position) 
-					&& ofTeam.getZone().toString().contains(league) && Integer.parseInt(onePlayer.getAge()) > lowAge)
+					&& ofTeam.getZone().toString().contains(league) && Integer.parseInt(onePlayer.getAge()) > lowAge
 					&& Integer.parseInt(onePlayer.getAge()) <= highAge)
 					results.add(onePlayer);
 		}
