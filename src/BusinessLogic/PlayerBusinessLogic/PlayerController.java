@@ -51,6 +51,29 @@ public class PlayerController implements PlayerBusinessLogic{
 			results = new ArrayList<>(results.subList(0, 50)) ;
 		return results;
 	}
+	
+	/**
+	 * 
+	 * @param position
+	 * @param league
+	 * @param lowAge
+	 * @param highAge
+	 * @param season
+	 * @return 为了测试接口而设计的方法。
+	 */
+	@Override
+	public ArrayList<PlayerPO> pickUpPlayersByCondition(String position,
+			String league, int lowAge, int highAge,Season season) {
+		ArrayList<PlayerPO> results = new ArrayList<PlayerPO>();
+		for(PlayerPO onePlayer: playerController.getAllPlayers()){
+			TeamPO ofTeam = TeamListPO.findTeamByShortName(onePlayer.getTeam(season));
+			if(ofTeam!=null && onePlayer.getPosition().contains(position) 
+					&& ofTeam.getZone().toString().contains(league) && Integer.parseInt(onePlayer.getAge()) > lowAge)
+					&& Integer.parseInt(onePlayer.getAge()) <= highAge)
+					results.add(onePlayer);
+		}
+		return results;
+	}
 
 	@Override
 	public ArrayList<PlayerPO> sortPlayersByComprehension(String standard,PlayerData dataType,Season season) {
@@ -240,6 +263,7 @@ public class PlayerController implements PlayerBusinessLogic{
 		ArrayList<MatchPO> latest5Matches = new ArrayList<>(allMatches.subList(allMatches.size()-5, allMatches.size())) ;
 		return latest5Matches ;
 	}
+	
 
 	
 	

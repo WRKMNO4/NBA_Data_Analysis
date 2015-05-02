@@ -41,7 +41,7 @@ public interface BLService {
 	 */
 	public ArrayList<PlayerPO> pickUpPlayersByCondition(String position,
 			Zone zone, String district, String standard,PlayerData dataType,Season season);
-	public ArrayList<PlayerPO> pickUpPlayerByCondition(String position,String league,int lowAge,int highAge) ;
+	public ArrayList<PlayerPO> pickUpPlayerByCondition(String position,String league,int lowAge,int highAge,Season season) ;
 	/**
 	 *  仅限精确查找
 	 * @param season 赛季（枚举类型）

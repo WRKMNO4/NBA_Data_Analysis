@@ -94,6 +94,16 @@ public class BLServiceController implements  BLService{
 		// TODO Auto-generated method stub
 		return playerController.pickUpPlayersByCondition(position, zone, district,standard, dataType,season);
 	}
+	
+	@Override
+	public ArrayList<PlayerPO> pickUpPlayerByCondition(String position,
+			String league, int lowAge, int highAge,Season season) {
+		if(position.equals("All"))
+			position="";
+		if(league.equals("All"))
+			league="";
+		return playerController.pickUpPlayersByCondition(position,league,lowAge,highAge,season);
+	}
 
 	@Override
 	public MatchPO findMatch(Season season, String date, String nameOfTeams) {
@@ -207,5 +217,7 @@ public class BLServiceController implements  BLService{
 		// TODO Auto-generated method stub
 		return teamController.getLatest5Matches(team);
 		}
+
+	
 
 	}

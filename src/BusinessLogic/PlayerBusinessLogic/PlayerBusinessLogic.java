@@ -31,4 +31,6 @@ public interface PlayerBusinessLogic {
 			PlayerData dataType, int number);
 	public ArrayList<PlayerPO> getMostImprovePlayer(Season season,
 			PlayerData dataType, int number);
+	public ArrayList<PlayerPO> pickUpPlayersByCondition(String position,
+			String league, int lowAge, int highAge,Season season);
 }
