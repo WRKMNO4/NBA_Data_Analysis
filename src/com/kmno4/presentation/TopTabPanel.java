@@ -62,7 +62,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		setLayout(null);
 		tg = new TableGroup();
 		
-		isPlayer=true;
+		isPlayer=false;
 		isMatch=isHot=isTeam=isAboutus=false;
 		isPlayerClicked=isMatchClicked=isHotClicked=isTeamClicked=false;
 		
@@ -90,7 +90,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		match = new JLabel("比赛",JLabel.CENTER);
 		match.addMouseListener(this);
 //		match.setIcon(Config.TAB_MATCH_UNPRESSED);
-		hot = new JLabel("帮助",JLabel.CENTER);
+		hot = new JLabel("热点",JLabel.CENTER);
 		hot.addMouseListener(this);
 //		hot.setIcon(Config.TAB_HOT_UNPRESSED);
 		aboutus = new JLabel("关于",JLabel.CENTER);
@@ -99,10 +99,10 @@ public class TopTabPanel extends JPanel implements MouseListener{
 
 		tabs=new ArrayList<JLabel>();
 		
+		tabs.add(hot);
 		tabs.add(player);
 		tabs.add(team);
 		tabs.add(match);
-		tabs.add(hot);
 		tabs.add(aboutus);
 		
 		for(int i=0;i<tabs.size();i++){
@@ -165,7 +165,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	/**
 	 * 在所有panel初始化之后的初始化
 	 */
-	public void ini() { showPlayerInfo(); }
+	public void ini() { showHotInfo(); }
 	
 	public void showPlayerInfo(){
 		isPlayerClicked=true;

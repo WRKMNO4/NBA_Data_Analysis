@@ -81,11 +81,6 @@ public class MainFrame extends JFrame implements MouseListener{
 		mainFrame.getLayeredPane().setLayout(null);
 		mainFrame.getLayeredPane().add(l, new Integer(Integer.MIN_VALUE));
 		
-		//contentPane = new ContentPanel();
-		//contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
-		//contentPane.setLayout(null);
-		//setContentPane(contentPane);
-		
 		this.initBL();
 		this.initPanel();
 		
