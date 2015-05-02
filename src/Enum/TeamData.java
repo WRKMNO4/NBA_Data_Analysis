@@ -31,6 +31,7 @@ public enum TeamData {
 	 
 	 percentageOfWinning,
 	 
-	 
+	 efficiencyOfAttackRebound,
+	 efficiencyOfDefenseRebound,
 	 
 }

@@ -192,6 +192,16 @@ public class TeamSortHelper implements Comparator<TeamPO>{
 			data2=o2.getEfficiencyOfAssist();
 			break;
 			
+		case efficiencyOfAttackRebound:
+			data1=o1.getEfficiencyOfAttackRebound();
+			data2=o2.getEfficiencyOfAttackRebound();
+			break;
+			
+		case efficiencyOfDefenseRebound:
+			data1=o1.getEfficiencyOfDefenseRebound();
+			data2=o2.getEfficiencyOfDefenseRebound();
+			break;
+			
 		default:
 			break;
 		}

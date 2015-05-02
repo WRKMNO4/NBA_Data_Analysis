@@ -252,4 +252,108 @@ public class TransferSortHelper {
 		}
 		return season;
 	}
+	
+	public static PlayerData ConsoleStringToDataTypeForPlayer(String key){
+		switch(key){
+		case "score":
+			return PlayerData.score;
+		case "rebound":
+			return PlayerData.numberOfRebound;
+		case "assist":
+			return PlayerData.numberOfAssist;
+		case "point":
+			return PlayerData.score;
+		case "blockShot":
+			return PlayerData.numberOfBlock;
+		case "steal":
+			return PlayerData.numberOfSteal;
+		case "foul":
+			return PlayerData.numberOfFoul;
+		case "fault":
+			return PlayerData.numberOfFault;
+		case "minute":
+			return PlayerData.presentTime;
+		case "efficient":
+			return PlayerData.efficiency;
+		case "shot":
+			return PlayerData.percentageOfShooting;
+		case "three":
+			return PlayerData.percentageOf3_Point;
+		case "penalty":
+			return PlayerData.percentageOfFreeThrow;
+		case "doubleTwo":
+			return PlayerData.double_double;
+			
+		case "realShot":
+			return PlayerData.percentageOfTrueShooting;
+		case "GmSc":
+			return PlayerData.efficiencyOfGmSc;
+		case "shotEfficient":
+			return PlayerData.efficiencyOfShooting;
+		case "reboundEfficient":
+			return PlayerData.percentageOfRebound;
+		case "offendReboundEfficient":
+			return PlayerData.percentageOfAttackingRebound;
+		case "defendReboundEfficient":
+			return PlayerData.percentageOfDefenseRebound;
+		case "assistEfficient":
+			return PlayerData.percentageOfAssist;
+		case "stealEfficient":
+			return PlayerData.percentageOfSteal;
+		case "blockShotEfficient":
+			return PlayerData.percentageOfBlock;
+		case "faultEfficient":
+			return PlayerData.percentageOfFault;
+		case "frequency":
+			return PlayerData.percentageOfUse;
+		}
+		return null;
+	}
+	public static TeamData ConsoleStringToDataTypeForTeam(String key){
+		switch(key){
+		case "score":
+			return TeamData.score;
+		case "rebound":
+			return TeamData.numberOfRebound;
+		case "assist":
+			return TeamData.numberOfAssist;
+		case "blockShot":
+			return TeamData.numberOfBlock;
+		case "steal":
+			return TeamData.numberOfSteal;
+		case "foul":
+			return TeamData.numberOfFoul;
+		case "fault":
+			return TeamData.numberOfFault;
+		case "shot":
+			return TeamData.percentageOfShooting;
+		case "three":
+			return TeamData.percentageOf3_point;
+		case "penalty":
+			return TeamData.percentageOfFreeThrow;
+		case "defendRebound":
+			return TeamData.numberOfDefenseRebound;
+		case "offendRebound":
+			return TeamData.numberOfAttackRebound;
+			
+		case "winRate":
+			return TeamData.percentageOfWinning;
+		case "offendRound":
+			return TeamData.roundOfAttack;
+		case "offendEfficient":
+			return TeamData.efficiencyOfAttack;
+		case "defendEfficient":
+			return TeamData.efficiencyOfDefense;
+		case "offendReboundEfficient":
+			return TeamData.efficiencyOfAttackRebound;
+		case "defendReboundEfficient":
+			return TeamData.efficiencyOfDefenseRebound;
+		case "stealEfficient":
+			return TeamData.efficiencyOfSteal;
+		case "assistEfficient":
+			return TeamData.efficiencyOfAssist;
+		}
+		return null;
+	}
+	
 }
