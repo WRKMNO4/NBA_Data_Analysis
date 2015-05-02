@@ -23,10 +23,10 @@ public class ExitLabel extends JLabel {
 		});
 		setIcon(Config.CLOSE_ICON);
 		setSize(LABEL_X, LABEL_Y);
-		setLocation(f.getWidth() - 100, 5);
+		setLocation(f.getWidth() - LABEL_X, 5);
 	}
 	
 	private static final int 
-	    LABEL_X = 100,
+	    LABEL_X = 70,
 	    LABEL_Y = 10;
 }

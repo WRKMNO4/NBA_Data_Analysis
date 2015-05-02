@@ -114,9 +114,10 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			tabs.get(i).setFont(new Font("default", Font.PLAIN, 25));
 			this.add(tabs.get(i));
 		}
-
-		
-//		line.setLocation(tabs.get(0).getX(), Config.TOP_TAB_HEIGHT-6);
+		//初始化线条位置
+		line_x=tabs.get(0).getX();
+		line_y=Config.TOP_TAB_HEIGHT-47;
+		line.setLocation(line_x,line_y);
 		
 		player.addMouseListener(new LMouseAdapter() {
 			@Override
@@ -573,7 +574,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 					line.setLocation(line_x, Config.TOP_TAB_HEIGHT-47);
 					repaint();
 					try {
-						this.sleep(5);
+						this.sleep(10);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -587,7 +588,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 					line.setLocation(line_x, Config.TOP_TAB_HEIGHT-47);
 					repaint();
 					try {
-						this.sleep(5);
+						this.sleep(10);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
