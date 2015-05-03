@@ -100,7 +100,9 @@ public class TableContentTransfer {
 		String[][] body = new String[Config.Seasons.length + 1][Config.PLAYER_AVERAGE_INFO.length] ;
 		body[0] = Config.PLAYER_AVERAGE_INFO;
 		for (int i = 1; i < body.length; i ++) {
-			PlayerDataPO avgData = player.getSeasonInfo(Season.values()[i]).getAveragePlayerData() ;
+			SeasonInfoForPlayer seasonInfo = player.getSeasonInfo(getSeason(i - 1));
+			
+			PlayerDataPO avgData = seasonInfo.getAveragePlayerData() ;
 			body[i][0] = Config.Seasons[i - 1];
 			body[i][1] = cutTailOfAvgData(avgData.getNumberOfRebound()) ;
 			body[i][2] = cutTailOfAvgData(avgData.getNumberOfAssist()) ;
@@ -134,7 +136,7 @@ public class TableContentTransfer {
 		String[][] body = new String[Config.Seasons.length + 1][Config.PLAYER_TOTAL_INFO.length];
 		body[0] = Config.PLAYER_TOTAL_INFO;
 		for(int i = 1; i < body.length; i ++) {
-			PlayerDataPO totalData = player.getSeasonInfo(Season.values()[i]).getTotalPlayerData() ;
+			PlayerDataPO totalData = player.getSeasonInfo(getSeason(i - 1)).getTotalPlayerData() ;
 			body[i][0] = Config.Seasons[i - 1];
 			body[i][1] = cutTailOfTotalData(totalData.getNumberOfMatch()) ;
 			body[i][2] = cutTailOfTotalData(totalData.getNumberOfStarting()) ;
@@ -159,25 +161,25 @@ public class TableContentTransfer {
 		for(int i = 1; i < body.length; i ++) {
 			MatchPO match = matches.get(i - 1);
 			PlayerDataOfOneMatchPO playerData = match.getPlayerDataOfOneMatchByName(player.getName());
-			body[i][0] = match.getDate();
-			body[i][1] = match.getFirstTeam() + "@" + match.getSecondTeam();
-			body[i][2] = playerData.getPosition() ;
-			body[i][3] = playerData.getPresentTimeOfOneMatch() ;
-			body[i][4] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfShooting())) ;
-			body[i][5] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfShotAttempt())) ;
-			body[i][6] = String.valueOf(cutTailOfTotalData(playerData.getNumberOf3_point())) ;
-			body[i][7] = String.valueOf(cutTailOfTotalData(playerData.getNumberOf3_pointAttempt())) ;
-			body[i][8] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfFreeThrow())) ;
-			body[i][9] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfFreeThrowAttempt())) ;
-			body[i][10] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfAttackRebound())) ;
-			body[i][11] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfDefenseRebound())) ;
-			body[i][12] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfReboundOfOneMatch())) ;
-			body[i][13] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfAssistOfOneMatch())) ;
-			body[i][14] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfSteal())) ;
-			body[i][15] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfBlockOfOneMatch() )) ;
-			body[i][16] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfFaultOfOneMatch())) ;
-			body[i][17] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfFoulOfOneMatch() )) ;
-			body[i][18] = String.valueOf(cutTailOfTotalData(playerData.getScoreOfOneMatch())) ;
+			body[body.length - i][0] = match.getDate();
+			body[body.length - i][1] = match.getFirstTeam() + "@" + match.getSecondTeam();
+			body[body.length - i][2] = playerData.getPosition() ;
+			body[body.length - i][3] = playerData.getPresentTimeOfOneMatch() ;
+			body[body.length - i][4] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfShooting())) ;
+			body[body.length - i][5] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfShotAttempt())) ;
+			body[body.length - i][6] = String.valueOf(cutTailOfTotalData(playerData.getNumberOf3_point())) ;
+			body[body.length - i][7] = String.valueOf(cutTailOfTotalData(playerData.getNumberOf3_pointAttempt())) ;
+			body[body.length - i][8] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfFreeThrow())) ;
+			body[body.length - i][9] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfFreeThrowAttempt())) ;
+			body[body.length - i][10] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfAttackRebound())) ;
+			body[body.length - i][11] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfDefenseRebound())) ;
+			body[body.length - i][12] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfReboundOfOneMatch())) ;
+			body[body.length - i][13] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfAssistOfOneMatch())) ;
+			body[body.length - i][14] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfSteal())) ;
+			body[body.length - i][15] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfBlockOfOneMatch() )) ;
+			body[body.length - i][16] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfFaultOfOneMatch())) ;
+			body[body.length - i][17] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfFoulOfOneMatch() )) ;
+			body[body.length - i][18] = String.valueOf(cutTailOfTotalData(playerData.getScoreOfOneMatch())) ;
 		}
 		
 		return body;

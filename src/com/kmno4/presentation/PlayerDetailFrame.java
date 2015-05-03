@@ -35,10 +35,10 @@ public class PlayerDetailFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public PlayerDetailFrame(PlayerPO playerPO) {
-		setBounds(MainFrame.mainFrame.getX() + 50,
-				MainFrame.mainFrame.getY() + 100,
-				Config.PLAYER_DETAIL_UI_WIDTH,
-				Config.PLAYER_DETATI_UI_TOP_HEIGHT);
+		setBounds(MainFrame.mainFrame.getX(),
+				MainFrame.mainFrame.getY(),
+				MainFrame.mainFrame.getWidth(),
+				MainFrame.mainFrame.getHeight());
 		setLayout(null);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

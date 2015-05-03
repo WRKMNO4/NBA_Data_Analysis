@@ -37,28 +37,34 @@ public class MatchInfoDetailPanel extends JPanel {
 		matchPO = m;
 		matchInfoDetailPanel = this;
 		matchInfoDetailFrame = f;
+		setBounds(0, 0, matchInfoDetailFrame.getWidth(), matchInfoDetailFrame.getHeight());
+		setLayout(null);
 		
 		mainDataLabel = new JLabel(matchPO.getFirstTeam() + "@" + matchPO.getSecondTeam(), JLabel.LEFT);
 		mainDataLabel.setBounds(PADDING, PADDING, Config.UI_WIDTH - PADDING * 2, MAIN_DATA_LABEL_HEIGHT);
+		add(mainDataLabel);
 		
 		mainDataPanel = new MainDataPanel(matchPO);
 		mainDataPanel.setBounds(
 				PADDING, mainDataLabel.getY() + mainDataLabel.getHeight(),
 				Config.UI_WIDTH - PADDING * 2, MAIN_DATA_PANEL_HEIGHT);
+		add(mainDataPanel);
 		
 		detailDataLabel = new JLabel("技术统计", JLabel.LEFT);
 		detailDataLabel.setBounds(
 				PADDING, mainDataPanel.getY() + mainDataPanel.getHeight() + PADDING,
 				Config.UI_WIDTH - PADDING * 2, DETAIL_DATA_LABEL_HEIGHT);
+		add(detailDataLabel);
 		
 		team1Label = new JLabel();
 		team1Label.setBounds(
 				PADDING, detailDataLabel.getY() + detailDataLabel.getHeight(),
 				Config.UI_WIDTH - PADDING * 2, TEAM_1_LABEL_HEIGHT);
+		add(team1Label);
 		
 		team1 = new TableGroup();
 		TableFactory.createTable(
-				team1, MainFrame.mainFrame,
+				team1, matchInfoDetailFrame,
 				body,
 				Config.UI_WIDTH - PADDING * 2, TEAM_1_TABLE_HEIGHT,
 				PADDING, team1Label.getY() + team1Label.getHeight());
@@ -67,10 +73,11 @@ public class MatchInfoDetailPanel extends JPanel {
 		team2Label.setBounds(
 				PADDING, team1.jsp.getY() + team1.jsp.getHeight() + PADDING,
 				Config.UI_WIDTH - PADDING * 2, TEAM_2_LABEL_HEIGHT);
+		add(team2Label);
 		
 		team2 = new TableGroup();
 		TableFactory.createTable(
-				team2, MainFrame.mainFrame,
+				team2, matchInfoDetailFrame,
 				body,
 				Config.UI_WIDTH - PADDING * 2, TEAM_2_TABLE_HEIGHT,
 				PADDING, team2Label.getY() + team2Label.getHeight());

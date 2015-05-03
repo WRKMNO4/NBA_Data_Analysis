@@ -34,23 +34,28 @@ public class TeamDetailPanel extends JPanel {
 		teamPO = t;
 		teamDetailFrame = f;
 		teamDetailPane = this;
+		setBounds(0, 0, teamDetailFrame.getWidth(), teamDetailFrame.getHeight());
+		setLayout(null);
 		
 		mainDataPanel = new MainDataPanel(teamPO);
 		mainDataPanel.setBounds(PADDING, PADDING, Config.UI_WIDTH - PADDING * 2, DATA_PANEL_HEIGHT);
+		add(mainDataPanel);
 		
 		seasonLabel = new JLabel("赛季数据", JLabel.LEFT);
 		seasonLabel.setBounds(
 				PADDING, mainDataPanel.getY() + mainDataPanel.getHeight() + PADDING,
 				Config.UI_WIDTH - PADDING * 2, SEASON_LABEL_HEIGHT);
+		add(seasonLabel);
 		
 		avgLabel = new JLabel("赛季场均", JLabel.LEFT);
 		avgLabel.setBounds(
 				PADDING, seasonLabel.getY() + seasonLabel.getHeight(), 
 				Config.UI_WIDTH - PADDING * 2, AVG_LABEL_HEIGHT);
+		add(avgLabel);
 		
 		seasonAvgData = new TableGroup();
 		TableFactory.createTable(
-				seasonAvgData, MainFrame.mainFrame, 
+				seasonAvgData, teamDetailFrame, 
 				body,
 				Config.UI_WIDTH - PADDING * 2, SEASON_AVG_DATA_TABLE_HEIGHT,
 				PADDING, avgLabel.getY() + avgLabel.getHeight());
@@ -59,10 +64,11 @@ public class TeamDetailPanel extends JPanel {
 		sumLabel.setBounds(
 				PADDING, seasonAvgData.jsp.getY() + seasonAvgData.jsp.getHeight(), 
 				Config.UI_WIDTH - PADDING * 2, SUM_LABEL_HEIGHT);
+		add(sumLabel);
 		
 		seasonSumData = new TableGroup();
 		TableFactory.createTable(
-				seasonSumData, MainFrame.mainFrame, 
+				seasonSumData, teamDetailFrame, 
 				body,
 				Config.UI_WIDTH - PADDING * 2, SEASON_SUM_DATA_TABLE_HEIGHT,
 				PADDING, sumLabel.getY() + sumLabel.getHeight());
@@ -71,10 +77,11 @@ public class TeamDetailPanel extends JPanel {
 		recentLabel.setBounds(
 				PADDING, seasonSumData.jsp.getY() + seasonSumData.jsp.getHeight() + PADDING,
 				Config.UI_WIDTH - PADDING * 2, RECENT_LABEL_HEIGHT);
+		add(recentLabel);
 		
 		recentData = new TableGroup();
 		TableFactory.createTable(
-				recentData, MainFrame.mainFrame, 
+				recentData, teamDetailFrame, 
 				body,
 				Config.UI_WIDTH - PADDING * 2, RECENT_DATA_TABLE_HEIGHT,
 				PADDING, recentLabel.getY() + recentLabel.getHeight());
