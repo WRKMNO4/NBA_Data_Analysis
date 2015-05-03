@@ -163,7 +163,7 @@ public class Config {
 	public static final ImageIcon TAB_ABOUT_UNPRESSED=new ImageIcon("images/tab_about_unpressed.png");
 	public static final ImageIcon TAB_PLAYER_PRESSED=new ImageIcon("images/tab_player_pressed.png");
 	
-	public static final ImageIcon INTRO_PAGE_BG=new ImageIcon("images/intro_bg5.png");
+	public static final ImageIcon INTRO_PAGE_BG=new ImageIcon("images/intro_page_bg.png");
 	public static final ImageIcon PLYAER=new ImageIcon("images/player.jpg");
 	
 	public static ArrayList<ImageIcon> motions=new ArrayList<ImageIcon>();
@@ -193,6 +193,15 @@ public class Config {
 			motions.add(new ImageIcon("images/loading_motions/"+i+".png"));	
 		}			
 		return motions;
+	}
+	
+	public static ArrayList<ImageIcon> getPlayers(){
+		ArrayList<ImageIcon> icons=new ArrayList<>();
+		for(int i=0;i<10;i++){
+			icons.add(new ImageIcon("images/players/"+i+".jpg"));
+		}
+		
+		return icons;
 	}
 	
 	public static final ImageIcon CALENDAR_BACKGROUND=new ImageIcon("images/calendar_bg.png");
