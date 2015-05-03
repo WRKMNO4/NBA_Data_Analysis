@@ -50,7 +50,7 @@ public class PlayerDetailPanel extends JPanel {
 		seasonAvgData = new TableGroup();
 		TableFactory.createTable(
 				seasonAvgData, MainFrame.mainFrame,
-				body,
+				TableContentTransfer.transferPlayerAvgInfo(playerPO),
 				Config.UI_WIDTH - PADDING * 2, SEASON_AVG_DATA_TABLE_HEIGHT,
 				PADDING, avgLabel.getY() + avgLabel.getHeight());
 		
@@ -62,7 +62,7 @@ public class PlayerDetailPanel extends JPanel {
 		seasonSumData = new TableGroup();
 		TableFactory.createTable(
 				seasonSumData, MainFrame.mainFrame,
-				body,
+				TableContentTransfer.transferPlayerTotalInfo(playerPO),
 				Config.UI_WIDTH - PADDING * 2, SEASON_SUM_DATA_TABLE_HEIGHT,
 				PADDING, sumLabel.getY() + sumLabel.getHeight());
 		
@@ -74,15 +74,27 @@ public class PlayerDetailPanel extends JPanel {
 		recentData = new TableGroup();
 		TableFactory.createTable(
 				recentData, MainFrame.mainFrame,
-				body,
+				TableContentTransfer.transferPlayerRecentGameInfo(playerPO),
 				Config.UI_WIDTH - PADDING * 2, RECENT_DATA_TABLE_HEIGHT,
 				PADDING, recentLabel.getY() + recentLabel.getHeight());
 		
 	}
 
 	class DataPanel extends JPanel {
+		public JLabel headLabel, teamLabel;
+		public JLabel 
+		    ballNum,
+		    name;
+		public JLabel
+		    info1, info2, info3, info4, info5, info6;
+		    
 		
 		public DataPanel(PlayerPO p) {
+			headLabel = new JLabel();
+			
+			
+			
+			
 			
 		}
 	}

@@ -84,6 +84,10 @@ public class TeamDetailPanel extends JPanel {
 	}
 	
 	class MainDataPanel extends JPanel {
+		JLabel logoLabel;
+		JLabel info1, info2, info3, info4, info5, info6;
+		
+		
 		public MainDataPanel(TeamPO teamPO) {
 			
 		}

@@ -6,6 +6,7 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -37,6 +38,11 @@ public class TableFactory {
 		for(int i = body[0].length - 1; i >= 0; i --) head[i] = "";
 		TableModel tableModel = new DefaultTableModel(body, head);
 		tg.table = new JTable(tableModel);
+		//TODO
+//		DefaultTableCellRenderer tc = new DefaultTableCellRenderer();
+//		tc.setOpaque(false);
+//		tg.table.setOpaque(false);
+//		tg.table.setDefaultRenderer(Object.class, tc);
 		tg.table.setPreferredSize(
 				new Dimension(
 						unitWidth * body[0].length,
@@ -55,6 +61,9 @@ public class TableFactory {
 		tg.table.setVisible(true);
 		tg.jsp.setVisible(true);
 		parentFrame.add(tg.jsp);
+		
+//		tg.jsp.getViewport().setOpaque(false);
+//		tg.jsp.setOpaque(false);
 	}
 
 }

@@ -2,6 +2,7 @@ package com.kmno4.presentation;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 
 import com.kmno4.common.Config;
 import com.kmno4.presentation.table.TableFactory;
@@ -24,13 +25,13 @@ public class MatchInfoDetailPanel extends JPanel {
 	
 	private static final int PADDING = 5;
 	private static final int 
-	    MAIN_DATA_LABEL_HEIGHT = 0,
-	    MAIN_DATA_PANEL_HEIGHT = 0,
-	    DETAIL_DATA_LABEL_HEIGHT = 0,
-	    TEAM_1_LABEL_HEIGHT = 0,
-	    TEAM_1_TABLE_HEIGHT = 0,
-	    TEAM_2_LABEL_HEIGHT = 0,
-	    TEAM_2_TABLE_HEIGHT = 0;
+	    MAIN_DATA_LABEL_HEIGHT = 30,
+	    MAIN_DATA_PANEL_HEIGHT = 200,
+	    DETAIL_DATA_LABEL_HEIGHT = 30,
+	    TEAM_1_LABEL_HEIGHT = 30,
+	    TEAM_1_TABLE_HEIGHT = 155,
+	    TEAM_2_LABEL_HEIGHT = 30,
+	    TEAM_2_TABLE_HEIGHT = 155;
 	
 	public MatchInfoDetailPanel(MatchPO m, MatchInfoDetailFrame f) {
 		matchPO = m;
@@ -77,6 +78,12 @@ public class MatchInfoDetailPanel extends JPanel {
 	}
 	
 	class MainDataPanel extends JPanel {
+		JLabel team1Logo, team2Logo;
+		JLabel 
+		    t1Info1, t1Info2, t1Info3,
+		    t2Info1, t2Info2, t2Info3;
+		JTable mainScore;
+		
 		public MainDataPanel(MatchPO matchPO) {
 			
 		}

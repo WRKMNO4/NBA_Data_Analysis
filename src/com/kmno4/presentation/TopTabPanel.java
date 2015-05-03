@@ -11,8 +11,10 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 
@@ -262,6 +264,13 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		}
 		if(players == null || players.size() == 0) return;
 		setTable(TableContentTransfer.transferPlayerSortAvgInfo(Config.PLAYER_SORT_AVERAGE.length, (ArrayList<PlayerPO>)players, Config.LASTEST_SEASON));
+//		for(int i = 0; i < players.size(); i ++) {
+//			
+//		}
+//		JLabel l = (JLabel)tg.table.getColumnModel().getColumn(1).getCellRenderer();
+//		System.out.println(l.getText());
+//		l.setIcon(new ImageIcon(players.get(1).getPortraitURL()));
+		
 		addPlayerLink();
 		MainFrame.mainFrame.repaint();
 	}
