@@ -47,6 +47,8 @@ public class PlayerDetailPanel extends JPanel {
 		playerDetailPanel = this;
 		setBounds(0, 0, playerDetailFrame.getWidth(), playerDetailFrame.getHeight());
 		setLayout(null);
+		setOpaque(true);
+		setBackground(Color.white);
 		
 		dataPanel = new DataPanel(playerPO);
 		dataPanel.setBounds(PADDING, PADDING, Config.UI_WIDTH - PADDING * 2, DATA_PANEL_HEIGHT);
@@ -154,13 +156,9 @@ public class PlayerDetailPanel extends JPanel {
 		
 		public DataPanel(PlayerPO p) {
 			setLayout(null);
-			bgLabel = new JLabel();
-			PlayerDetailPanel.fillLabel(PLAYER_DETAIL_TOP_BG, bgLabel, Config.UI_WIDTH - PADDING * 2, DATA_PANEL_HEIGHT, playerDetailPanel.getBackground());
-			bgLabel.setBounds(0, 0, Config.UI_WIDTH - PADDING * 2, DATA_PANEL_HEIGHT);
-			add(bgLabel);
 			
 			headLabel = new JLabel();
-			PlayerDetailPanel.fillLabel(p.getActionURL(), headLabel, HEAD_LABEL_WIDTH, DATA_PANEL_HEIGHT, playerDetailPanel.getBackground());
+			PlayerDetailPanel.fillLabel(p.getPortraitURL(), headLabel, HEAD_LABEL_WIDTH, DATA_PANEL_HEIGHT);
 			headLabel.setBounds(HEAD_LABEL_X, 0, HEAD_LABEL_WIDTH, DATA_PANEL_HEIGHT);
 			add(headLabel);
 			
@@ -179,10 +177,16 @@ public class PlayerDetailPanel extends JPanel {
 
 			teamLabel = new JLabel();
 			
+			
+
+			bgLabel = new JLabel();
+			PlayerDetailPanel.fillLabel(PLAYER_DETAIL_TOP_BG, bgLabel, Config.UI_WIDTH - PADDING * 2, DATA_PANEL_HEIGHT);
+			bgLabel.setBounds(0, 0, Config.UI_WIDTH - PADDING * 2, DATA_PANEL_HEIGHT);
+			add(bgLabel);
 		}
 	}
 	
-	public static void fillLabel(String url, JLabel label, int width, int height, Color bg) {
+	public static void fillLabel(String url, JLabel label, int width, int height) {
 		Image i = null;
 		BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
 		try {
@@ -190,7 +194,7 @@ public class PlayerDetailPanel extends JPanel {
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
-		bi.getGraphics().drawImage(i, 0, 0, width, height, bg, null);
+		bi.getGraphics().drawImage(i, 0, 0, width, height, null, null);
 		label.setIcon(new ImageIcon((Image)bi));
 	}
 }

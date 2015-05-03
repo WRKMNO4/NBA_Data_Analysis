@@ -1,5 +1,6 @@
 package com.kmno4.presentation;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -42,6 +43,7 @@ public class PlayerDetailFrame extends JFrame {
 		setLayout(null);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBackground(Color.white);
 		
 		playerDetailPanel = new PlayerDetailPanel(playerPO, this);
 		add(playerDetailPanel);
