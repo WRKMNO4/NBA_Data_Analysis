@@ -18,6 +18,7 @@ public class PageInfoPanel extends JPanel {
 	private int i;//球员代号
 	private int count=51;//动图位置
 	private int x,y;//球员图片位置
+	private boolean isup;
 	/**
 	 * Create the panel.
 	 */
@@ -51,10 +52,10 @@ public class PageInfoPanel extends JPanel {
     {
 		super.paintComponent(g);
 		g.drawImage(Config.INTRO_PAGE_BG.getImage(),0, 0, Config.UI_WIDTH, Config.INTRODUCTION_WHITE, null);
-//		g.drawImage(players.get(i).getImage(),0-x,-300-y, null);
-		g.drawImage(Config.getLoadingMotions().get(count).getImage(), 800,13,20, 20, this);
-//		g.setColor(Color.WHITE);
-//		g.drawLine(0, 40, 1000, 40);
+		g.drawImage(players.get(i).getImage(),x,y, null);
+//		g.drawImage(Config.getLoadingMotions().get(count).getImage(), 800,13,20, 20, this);
+		g.setColor(Color.WHITE);
+		g.drawLine(0, 40, 1000, 40);
     }
 	
 	class PlayerThread extends Thread{
@@ -64,6 +65,13 @@ public class PageInfoPanel extends JPanel {
 				i++;
 				if(i>9){
 					i=0;
+				}
+				
+				double k=Math.random();
+				if(k>0.5){
+					isup=true;
+				}else{
+					isup=false;
 				}
 				try {
 					Thread.sleep(5000);
@@ -80,21 +88,22 @@ public class PageInfoPanel extends JPanel {
 		@Override
 		public void run() {
 			while(true){
-				x--;
-				y--;
-				if(x<-500){
-					x=y=0;
-					if(i>8){
-						i=0;
-					}
-					i++;
+				
+				if(isup){
+					y++;
+				}else{
+					y--;
 				}
-				count++;
-				if(count>=99){
-					count=51;
+				
+				if(y<-500||y>0){
+					y=-200;
 				}
+//				count++;
+//				if(count>=99){
+//					count=51;
+//				}
 				try {
-					Thread.sleep(50);
+					Thread.sleep(70);
 					repaint();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
