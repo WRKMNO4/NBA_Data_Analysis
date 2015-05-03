@@ -29,6 +29,18 @@ public class MatchPO {
 		secondTeamData = new TeamDataPO() ;
 	}
 	
+	public PlayerDataOfOneMatchPO getPlayerDataOfOneMatchByName(String name){
+		for(PlayerDataOfOneMatchPO oneData : firstTeam_PlayerData)
+			if(oneData.getName().equals(name))
+				return oneData;
+		
+		for(PlayerDataOfOneMatchPO oneData : secondTeam_PlayerData)
+			if(oneData.getName().equals(name))
+				return oneData;
+		
+		return null;
+	}
+	
 	public void addDataOfOnePlayerOfFirstTeam(PlayerDataOfOneMatchPO onePlayer){  
 		firstTeam_PlayerData.add(onePlayer) ;
 	}
