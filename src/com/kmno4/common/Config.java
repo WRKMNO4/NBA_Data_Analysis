@@ -164,6 +164,7 @@ public class Config {
 	public static final ImageIcon TAB_PLAYER_PRESSED=new ImageIcon("images/tab_player_pressed.png");
 	
 	public static final ImageIcon INTRO_PAGE_BG=new ImageIcon("images/intro_bg5.png");
+	public static final ImageIcon PLYAER=new ImageIcon("images/player.jpg");
 	
 	public static ArrayList<ImageIcon> motions=new ArrayList<ImageIcon>();
 	public static final Icon SPLASH_TITLE=new ImageIcon("images/splash_title.png");

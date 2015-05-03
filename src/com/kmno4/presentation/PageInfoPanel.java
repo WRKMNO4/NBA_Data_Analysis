@@ -10,6 +10,7 @@ import com.kmno4.common.Config;
 //用来显示页面信息的panel
 public class PageInfoPanel extends JPanel {
 	public JLabel page_name;
+	private JLabel player;
 	/**
 	 * Create the panel.
 	 */
@@ -21,6 +22,11 @@ public class PageInfoPanel extends JPanel {
 		page_name.setFont(new Font("default", Font.ITALIC, 20));
 		page_name.setBounds(6, 6, Config.PAGE_INTRO_LABEL_WIDTH*4, Config.PAGE_INTRO_LABEL_HEIGHT);
 		add(page_name);
+//		
+//		player=new JLabel();
+//		player.setIcon(Config.PLYAER);
+//		player.setBounds(800, 5, 30, 36);
+//		add(player);
 	}
 	
 	public void refreshInfo(String pageInfo){
