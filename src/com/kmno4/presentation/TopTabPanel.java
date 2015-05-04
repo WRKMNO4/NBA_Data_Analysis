@@ -24,6 +24,7 @@ import Enum.TeamData;
 import PO.MatchPO;
 import PO.PlayerListPO;
 import PO.PlayerPO;
+import PO.TeamListPO;
 import PO.TeamPO;
 
 import com.kmno4.common.Config;
@@ -377,10 +378,19 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			}
 		});
 	}
-	private static final int TEAM_LINK = 0;
-	private static final int SHORT_NAME_LABEL = 1;
+	
 	private void addTeamLink() {
-		//TODO
+		tg.table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				int 
+				    row = tg.table.rowAtPoint(e.getPoint()),
+					col = tg.table.columnAtPoint(e.getPoint());
+				if(row == 0 || ( col != 0 && col != 1)) return;
+				String name = tg.table.getValueAt(row, col).toString();
+				TeamPO p = col == 0 ? TeamListPO.findTeamByFullName(name) : TeamListPO.findTeamByShortName(name);
+				new TeamDetailFrame(p);
+			}
+		});
 	}
 	private void addMatchLink() {
 	}

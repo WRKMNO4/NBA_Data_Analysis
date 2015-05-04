@@ -122,7 +122,7 @@ public class PlayerDetailPanel extends JPanel {
 		
 	}
 	
-	private void paintTable(JTable table) {
+	public static void paintTable(JTable table) {
 		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer() {
 			@Override
 			public Component getTableCellRendererComponent(JTable table,
@@ -153,6 +153,7 @@ public class PlayerDetailPanel extends JPanel {
 		
 		public DataPanel(PlayerPO p) {
 			setLayout(null);
+			setBackground(Color.white);
 			
 			headLabel = new JLabel(new ImageIcon(p.getPortraitURL()));
 			headLabel.setBounds(20, 45, 230, 185);

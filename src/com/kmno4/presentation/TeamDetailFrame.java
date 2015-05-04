@@ -1,5 +1,6 @@
 package com.kmno4.presentation;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -37,13 +38,13 @@ public class TeamDetailFrame extends JFrame {
 	public TeamDetailFrame(TeamPO teamPO) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(
-				MainFrame.mainFrame.getX() + 50,
-				MainFrame.mainFrame.getY() + 100,
-				Config.PLAYER_DETAIL_UI_WIDTH,
-				Config.PLAYER_DETATI_UI_TOP_HEIGHT);
+				MainFrame.mainFrame.getX(),
+				MainFrame.mainFrame.getY(),
+				MainFrame.mainFrame.getWidth(),
+				MainFrame.mainFrame.getHeight());
 		setLayout(null);
 		setUndecorated(true);
-		
+		setBackground(Color.white);
 		
 		teamDetailPanel = new TeamDetailPanel(teamPO, this);
 		this.add(teamDetailPanel);
