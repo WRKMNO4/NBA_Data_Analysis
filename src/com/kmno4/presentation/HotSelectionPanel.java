@@ -50,8 +50,8 @@ public class HotSelectionPanel extends JPanel implements ActionListener,MouseMot
 	JLabel	
 		lb_date,lb_protection;
 //		JTextField tf_date;
-	JLabel
-		btn_submit;
+//	JLabel
+//		btn_submit;
 	boolean isDailyPlayer=false,isSeasonPlayer=false,isImprovePlayer=false,isSeasonTeam=false;
 	
 
@@ -201,7 +201,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener,MouseMot
 //				add(daily_player_season);
 				
 				daily_player_datatype = new JComboBox<String>(Config.STANDING_DAILYPLAYER_TYPE);
-				daily_player_datatype.setBounds(250, 73, 168, 27);
+				daily_player_datatype.setBounds(45, 73, 168, 27);
 				daily_player_datatype.setFont(new Font("default", Font.PLAIN, 14));
 				add(daily_player_datatype);
 				
@@ -216,11 +216,11 @@ public class HotSelectionPanel extends JPanel implements ActionListener,MouseMot
 				lb_date.setBounds(500, 73, 168, 27);
 				add(lb_date);
 				
-				btn_submit=new JLabel("提交");
-				btn_submit.setForeground(Color.WHITE);
-				btn_submit.setFont(new Font("default", Font.ITALIC, 20));
-				btn_submit.setBounds(700, 73, 50, 27);
-				add(btn_submit);
+//				btn_submit=new JLabel("提交");
+//				btn_submit.setForeground(Color.WHITE);
+//				btn_submit.setFont(new Font("default", Font.ITALIC, 20));
+//				btn_submit.setBounds(700, 73, 50, 27);
+//				add(btn_submit);
 				
 	}
 	
