@@ -222,7 +222,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		
 		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.比赛信息.toString());
 		
-		refreshMatchTable(MainFrame.mainFrame.bl.getAllMatches(Config.LASTEST_SEASON));
+		refreshMatchTable(MainFrame.mainFrame.bl.getAllMatches(MainFrame.mainFrame.matchSelectionPanel.current_season));
 		MainFrame.mainFrame.repaint();
 	}
 	

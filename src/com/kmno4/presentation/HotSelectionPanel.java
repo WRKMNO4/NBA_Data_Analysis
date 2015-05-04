@@ -361,6 +361,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener,MouseMot
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
+		
 		// TODO Auto-generated method stub
 //		if(e.getX()>lb_protection.getX()&&e.getY()>lb_protection.getY())
 //			lb_protection.setVisible(false);
@@ -369,7 +370,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener,MouseMot
 //		}else{
 //			lb_protection.setVisible(true);
 //		}
-//		System.out.print(this.getY());
+		System.out.println(e.getY());
 		
 	}
 
