@@ -77,19 +77,6 @@ public class MatchSelectionPanel extends JPanel {
 		});
 		current_season = Season.season12_13;
 		
-//		lblNewLabel_1 = new JLabel("日历");
-//		lblNewLabel_1.setIcon(Config.SCHEDULE);
-//		lblNewLabel_1.setBounds(660, 66, 98, 43);
-//		add(lblNewLabel_1);
-		
-
-//		cb_team2 = new JComboBox<String>();
-//		cb_team2.setBounds(275, 75, 164, 27);
-//		add(cb_team2);
-//		
-//		lb_vs = new JLabel("VS");
-//		lb_vs.setBounds(213, 79, 61, 16);
-//		add(lb_vs);
 		new refThread().start();
 	}
 	
@@ -102,12 +89,12 @@ public class MatchSelectionPanel extends JPanel {
 	public Season current_season;
 	private void changeSeason(Season season) {
 		current_season = season;
-		int 
-		    v_barValue = MainFrame.mainFrame.topTabPanel.tg.jsp.getVerticalScrollBar().getValue(),
-		    h_barValue = MainFrame.mainFrame.topTabPanel.tg.jsp.getHorizontalScrollBar().getValue();
+//		int 
+//		    v_barValue = MainFrame.mainFrame.topTabPanel.tg.jsp.getVerticalScrollBar().getValue(),
+//		    h_barValue = MainFrame.mainFrame.topTabPanel.tg.jsp.getHorizontalScrollBar().getValue();
 		MainFrame.mainFrame.topTabPanel.refreshMatchTable(MainFrame.mainFrame.bl.getAllMatches(season));
-		MainFrame.mainFrame.topTabPanel.tg.jsp.getVerticalScrollBar().setValue(v_barValue);
-		MainFrame.mainFrame.topTabPanel.tg.jsp.getHorizontalScrollBar().setValue(h_barValue);
+//		MainFrame.mainFrame.topTabPanel.tg.jsp.getVerticalScrollBar().setValue(v_barValue);
+//		MainFrame.mainFrame.topTabPanel.tg.jsp.getHorizontalScrollBar().setValue(h_barValue);
 	}
 	
 	
