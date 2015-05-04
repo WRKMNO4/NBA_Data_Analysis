@@ -90,14 +90,14 @@ public class HotSelectionPanel extends JPanel implements ActionListener,MouseMot
 		lb_season_team.setForeground(Color.white);
 		add(lb_season_team);
 //		add(playerPanel);	
-		
+		//遮罩
 		lb_protection=new JLabel();
 		lb_protection.setBounds(0, 0, Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		ImageIcon bg=Config.HOT_SELECTION_PROTECTION;
 		bg.setImage(Config.HOT_SELECTION_PROTECTION.getImage().getScaledInstance(Config.UI_WIDTH,Config.SELECTION_HEIGHT,Image.SCALE_DEFAULT));
 		lb_protection.setIcon(bg);
 		lb_protection.addMouseMotionListener(this);
-		add(lb_protection);
+//		add(lb_protection);
 		
 		initDailyPlayer();
 		initMostProvementPlayer();
@@ -188,6 +188,8 @@ public class HotSelectionPanel extends JPanel implements ActionListener,MouseMot
 	    season_hot_team_datatype.addActionListener(this);
 	    most_improve_season.addActionListener(this);
 	    most_improve_datatype.addActionListener(this);
+	    
+		new refThread().start();
 	}
 	
 	public void initDailyPlayer(){
@@ -219,7 +221,6 @@ public class HotSelectionPanel extends JPanel implements ActionListener,MouseMot
 				btn_submit.setBounds(700, 73, 50, 27);
 				add(btn_submit);
 				
-
 	}
 	
 	public void initSeasonMostPlayer(){
@@ -340,37 +341,50 @@ public class HotSelectionPanel extends JPanel implements ActionListener,MouseMot
 	public void actionPerformed(ActionEvent e) {
 		//TODO 未刷新表格
 		if(e.getSource()==daily_player_season||e.getSource()==daily_player_datatype){
-			Season season=TransferSortHelper.StringToSeason(daily_player_season.getSelectedItem().toString());
-			PlayerData type=TransferSortHelper.StringToDataTypeForPlayer(daily_player_datatype.getSelectedItem().toString());
-//			String date=lb_date.getText();	
-			String date=lb_date.getText();
-			MainFrame.mainFrame.topTabPanel.refreshDailyPlayerTable(season, date, type);
-			MainFrame.mainFrame.topTabPanel.refreshDailyPlayerTable(season, date, type);
+			refreshDailyPlayer();
 		}
 		if(e.getSource()==season_hot_player_season||e.getSource()==season_hot_player_datetype){
-			Season season=TransferSortHelper.StringToSeason(season_hot_player_season.getSelectedItem().toString());
-			PlayerData type=TransferSortHelper.StringToDataTypeForPlayer(season_hot_player_datetype.getSelectedItem().toString());
-			MainFrame.mainFrame.topTabPanel.refreshSeasonPlayerTable(season,type);
-			MainFrame.mainFrame.topTabPanel.refreshSeasonPlayerTable(season,type);
-
+			refreshSeasonPlayer();
 		}
 		if(e.getSource()==season_hot_team_season||e.getSource()==season_hot_team_datatype){
-			Season season=TransferSortHelper.StringToSeason(season_hot_team_season.getSelectedItem().toString());
-			TeamData type=TransferSortHelper.StringToDataTypeForTeam(season_hot_team_datatype.getSelectedItem().toString());
-			MainFrame.mainFrame.topTabPanel.refreshSeasonTeamTable(season, type);
-			MainFrame.mainFrame.topTabPanel.refreshSeasonTeamTable(season, type);
-
+			refreshSeasonTeam();
 		}
 		if(e.getSource()==most_improve_season||e.getSource()==most_improve_datatype){
-			Season season=TransferSortHelper.StringToSeason(most_improve_season.getSelectedItem().toString());
-			PlayerData type=TransferSortHelper.StringToDataTypeForPlayer(most_improve_datatype.getSelectedItem().toString());
-			MainFrame.mainFrame.topTabPanel.refreshImprovePlayerTable(season,type);
-			MainFrame.mainFrame.topTabPanel.refreshImprovePlayerTable(season,type);
-
+			refreshImprovePlayer();
 		}		
 ////		if(e.getSource()==this){
 ////			calendarPanel.setVisible(false);
 ////		}	
+	}
+	
+	public void refreshDailyPlayer(){
+		Season season=TransferSortHelper.StringToSeason(daily_player_season.getSelectedItem().toString());
+		PlayerData type=TransferSortHelper.StringToDataTypeForPlayer(daily_player_datatype.getSelectedItem().toString());
+//		String date=lb_date.getText();	
+		String date=lb_date.getText();
+		MainFrame.mainFrame.topTabPanel.refreshDailyPlayerTable(season, date, type);
+		MainFrame.mainFrame.topTabPanel.refreshDailyPlayerTable(season, date, type);
+	}
+	
+	public void refreshSeasonPlayer(){
+		Season season=TransferSortHelper.StringToSeason(season_hot_player_season.getSelectedItem().toString());
+		PlayerData type=TransferSortHelper.StringToDataTypeForPlayer(season_hot_player_datetype.getSelectedItem().toString());
+		MainFrame.mainFrame.topTabPanel.refreshSeasonPlayerTable(season,type);
+		MainFrame.mainFrame.topTabPanel.refreshSeasonPlayerTable(season,type);
+	}
+	
+	public void refreshSeasonTeam(){
+		Season season=TransferSortHelper.StringToSeason(season_hot_team_season.getSelectedItem().toString());
+		TeamData type=TransferSortHelper.StringToDataTypeForTeam(season_hot_team_datatype.getSelectedItem().toString());
+		MainFrame.mainFrame.topTabPanel.refreshSeasonTeamTable(season, type);
+		MainFrame.mainFrame.topTabPanel.refreshSeasonTeamTable(season, type);
+	}
+	
+	public void refreshImprovePlayer(){
+		Season season=TransferSortHelper.StringToSeason(most_improve_season.getSelectedItem().toString());
+		PlayerData type=TransferSortHelper.StringToDataTypeForPlayer(most_improve_datatype.getSelectedItem().toString());
+		MainFrame.mainFrame.topTabPanel.refreshImprovePlayerTable(season,type);
+		MainFrame.mainFrame.topTabPanel.refreshImprovePlayerTable(season,type);
 	}
 
 	@Override
@@ -425,6 +439,31 @@ public class HotSelectionPanel extends JPanel implements ActionListener,MouseMot
 //		if(e.getSource()==MainFrame.mainFrame.hotSelectionPanel){
 //			lb_protection.setVisible(true);
 //		}
+	}
+	
+	class refThread extends Thread{
+		@Override
+		public void run() {
+			while(true){
+				try {
+					if(MainFrame.mainFrame.topTabPanel.isHotClicked){
+						if(isDailyPlayer){
+							refreshDailyPlayer();
+						}if(isImprovePlayer){
+							refreshImprovePlayer();
+						}if(isSeasonPlayer){
+							refreshSeasonPlayer();
+						}if(isSeasonTeam){
+							refreshSeasonTeam();
+						}						
+					}
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 	
