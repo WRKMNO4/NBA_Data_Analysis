@@ -124,10 +124,7 @@ public class PlayerDetailPanel extends JPanel {
 				Config.UI_WIDTH - PADDING * 2, RECENT_DATA_TABLE_HEIGHT,
 				PADDING, recentLabel.getY() + recentLabel.getHeight());
 		paintTable(recentData.table);
-<<<<<<< HEAD
 		recentData.table.setForeground(Color.white);
-=======
->>>>>>> origin/master
 		addLinks();
 		
 	}
