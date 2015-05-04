@@ -35,6 +35,8 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 	public JLabel avg_sort;
 	public JLabel lb_season;
 	
+	private JLabel foreGround;
+	
 	
 	public TeamSelectionPanel() {
 		setLayout(null);
@@ -66,16 +68,21 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 		add(lb_season);
 		
 		
-		total_sort=new JLabel("总计");
+		total_sort=new JLabel("总计",JLabel.CENTER);
 		total_sort.setBounds(85+20, 5, 40, 15);
 		total_sort.setForeground(Color.white);
 		total_sort.addMouseListener(this);
-		avg_sort=new JLabel("场均");
-		avg_sort.setBounds(85+20, 25, 40, 15);
+		avg_sort=new JLabel("场均",JLabel.CENTER);
+		avg_sort.setBounds(85+20, 23, 40, 15);
 		avg_sort.addMouseListener(this);
 		avg_sort.setForeground(Color.WHITE);
 		add(avg_sort);
 		add(total_sort);
+		
+		foreGround=new JLabel();
+		foreGround.setIcon(Config.LABEL_FOREGROUND);
+		foreGround.setBounds(total_sort.getX(), total_sort.getY(),40, 15);
+		add(foreGround);
 
 	}
 	
@@ -90,12 +97,14 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 		isAvg=true;
 		cb_avg_data.setVisible(true);
 		cb_total_data.setVisible(false);
+		foreGround.setBounds(avg_sort.getX(), avg_sort.getY(),40, 15);
 	}
 	
 	public void showTotal(){
 		isAvg=false;
 		cb_avg_data.setVisible(false);
 		cb_total_data.setVisible(true);
+		foreGround.setBounds(total_sort.getX(), total_sort.getY(),40, 15);
 	}
 	
 	@Override
