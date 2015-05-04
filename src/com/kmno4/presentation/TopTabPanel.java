@@ -24,6 +24,7 @@ import Enum.TeamData;
 import PO.MatchPO;
 import PO.PlayerListPO;
 import PO.PlayerPO;
+import PO.StandingDataPO;
 import PO.TeamListPO;
 import PO.TeamPO;
 
@@ -32,6 +33,7 @@ import com.kmno4.presentation.button.ExitLabel;
 import com.kmno4.presentation.button.LMouseAdapter;
 import com.kmno4.presentation.table.TableFactory;
 import com.kmno4.presentation.table.TableGroup;
+import com.oracle.jrockit.jfr.DataType;
 
 @SuppressWarnings("serial")
 public class TopTabPanel extends JPanel implements MouseListener{
@@ -51,7 +53,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	private final int line_speed=200;
 	private int line_x,line_y;
 	
-	private TableGroup tg;
+	public TableGroup tg;
 	private TableModel dataTableModel;
 	private TableCellRenderer tcr;
 
@@ -224,6 +226,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.repaint();
 	}
 	
+	
 	public void showHotInfo(){
 		isHotClicked=true;
 		isPlayerClicked=isMatchClicked=isTeamClicked=false;
@@ -237,7 +240,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		
 		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.热点信息.toString());
 		
-		refreshDailyPlayerTable(null, null, null);
+		refreshDailyPlayerTable(PlayerData.numberOfMatchs);
 		MainFrame.mainFrame.repaint();
 		
 	}
@@ -307,21 +310,21 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.repaint();
 	}
 	
-	public void refreshDailyPlayerTable(Season season, String date, PlayerData dataType) {
+	public void refreshDailyPlayerTable(PlayerData dataType) {
 //		System.out.println("TopTabPanel.refreshDailyPlayerTable()");
 		if(tg.table != null) tg.table.setVisible(false);
 		if(tg.jsp != null) {
 			tg.jsp.setVisible(false);
 			MainFrame.mainFrame.remove(tg.jsp);
 		}
-		if(season == null || date == null || dataType == null) return;
-//		ArrayList<StandingDataPO> sps = MainFrame.mainFrame.bl.getDatasOfDailyStandingPlayers(dataType);
-//		if(sps == null || sps.size() == 0) return;
-//		setTable(TableContentTransfer.transferStandingDailyPlayerInfo(
-//						Config.STANDING_DAILYPLAYER_TABLEHEAD.length,
-//						sps));
-//		addDailyPlayerLink();
-//		MainFrame.mainFrame.repaint();
+		if(dataType == null) return;
+		ArrayList<StandingDataPO> sps = MainFrame.mainFrame.bl.getDatasOfDailyStandingPlayer(dataType,5);
+		if(sps == null || sps.size() == 0) return;
+		setTable(TableContentTransfer.transferStandingDailyPlayerInfo(
+						Config.STANDING_DAILYPLAYER_TABLEHEAD.length,
+						sps));
+		addDailyPlayerLink();
+		MainFrame.mainFrame.repaint();
 	}
 	public void refreshSeasonPlayerTable(Season season, PlayerData dataType) {
 //		System.out.println("TopTabPanel.refreshSeasonPlayerTable()");
@@ -484,6 +487,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	}
 	
 	public void setTable(Object[][] body) {
+		System.out.println(body.length);
 		int y = Config.TOP_TAB_HEIGHT + Config.INTRODUCTION_WHITE + Config.SELECTION_HEIGHT;
 		TableFactory.createTable(tg,
 				MainFrame.mainFrame,
