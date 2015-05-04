@@ -57,10 +57,11 @@ public class PlayerController implements PlayerDataService{
 					newPlayer.setPortraitURL("images/nba_logo.png");
 				if(!new File(newPlayer.getActionURL()).exists())   //action image not exists
 					newPlayer.setActionURL("images/nba_logo.png");
-			
+	
 				players.addPlayer(newPlayer) ;
 			}
 		}
+		players.sortPlayerByName();
 	}
 	
 	
@@ -87,5 +88,6 @@ public class PlayerController implements PlayerDataService{
 			onePlayer.calculateFinalData();
 		}
 	}
+
 
 }
