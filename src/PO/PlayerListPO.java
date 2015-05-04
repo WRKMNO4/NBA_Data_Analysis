@@ -46,8 +46,6 @@ public class PlayerListPO {
 
 	public void sortPlayerByName() {
 		Collections.sort(allPlayers, new CompareByPlayerName());
-		for(int i=0;i<allPlayers.size();i++)
-			System.out.println(allPlayers.get(i).getName());
 	}
 	
 	

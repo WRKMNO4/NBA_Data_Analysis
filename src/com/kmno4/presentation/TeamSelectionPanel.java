@@ -44,8 +44,8 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 		this.setVisible(true);
 		this.setBackground(Color.gray);
 		
-		cb_avg_data=new JComboBox<String>(Config.TEAM_AVERAGE_INFO);
-		cb_total_data=new JComboBox<String>(Config.TEAM_TOTAL_INFO);
+		cb_avg_data=new JComboBox<String>(Config.TEAM_AVERAGE_INFO_OVERALL);
+		cb_total_data=new JComboBox<String>(Config.TEAM_TOTAL_INFO_OVERALL);
 		cb_season=new JComboBox<String>(Config.Seasons);
 		cb_avg_data.setBounds(127+20, 11, Config.COMBOBOX_WIDTH, Config.COMBOBOX_HEIGHT);
 		cb_total_data.setBounds(127+20, 11, Config.COMBOBOX_WIDTH, Config.COMBOBOX_HEIGHT);

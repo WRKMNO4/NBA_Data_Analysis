@@ -88,9 +88,9 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 		cb_season = new JComboBox<String>(Config.Seasons);
 		cb_sort_season = new JComboBox<String>(Config.Seasons);
 		cb_avg_sort_data = new JComboBox<String>(
-				Config.PLAYER_AVERAGE_INFO);
+				Config.PLAYER_AVERAGE_INFO_OVERALL);
 		cb_total_sort_data = new JComboBox<String>(
-				Config.PLAYER_TOTAL_INFO);
+				Config.PLAYER_TOTAL_INFO_OVERALL);
 
 		cb_position.setFont(new Font("default", Font.PLAIN, 13));
 		cb_district.setFont(new Font("default", Font.PLAIN, 13));
