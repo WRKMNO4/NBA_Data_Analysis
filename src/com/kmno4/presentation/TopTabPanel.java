@@ -48,7 +48,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	private JLabel close;
 	private JLabel foreGround;
 	private JLabel line;
-	boolean isPlayer,isMatch,isHot,isTeam,isAboutus,isPlayerClicked,isMatchClicked,isHotClicked,isTeamClicked;
+	public boolean isPlayer,isMatch,isHot,isTeam,isAboutus,isPlayerClicked,isMatchClicked,isHotClicked,isTeamClicked;
 	
 	private final int line_speed=200;
 	private int line_x,line_y;

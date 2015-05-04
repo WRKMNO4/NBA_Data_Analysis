@@ -120,11 +120,11 @@ public class MatchSelectionPanel extends JPanel {
 		}
 		public void run() {
 			while(true){
-				try {
-					if(MainFrame.mainFrame.bl.getAllMatches(current_season).size()>matchesNum){
-						changeSeason(current_season);
+				try {		
+					if(MainFrame.mainFrame.topTabPanel.isMatchClicked){
+						changeSeason(current_season);					
 					}
-					Thread.sleep(10*1000);
+					Thread.sleep(2*1000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
