@@ -551,7 +551,7 @@ public class Console {
 			return topNumber ;
 		}
 		
-		@CmdOption(names = {"-filter"},args = {"field.value"},description = "show filter info",conflictsWith = {"-sort","-king","-hot","high"})
+		@CmdOption(names = {"-filter"},args = {"field.value"},description = "show filter info",conflictsWith = {"-sort","-king","-hot","-high"})
 		public void isFilter(String field){
 			isFilter = true ;
 			filterField = field ;
