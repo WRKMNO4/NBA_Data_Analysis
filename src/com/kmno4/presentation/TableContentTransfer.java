@@ -161,25 +161,26 @@ public class TableContentTransfer {
 		for(int i = 1; i < body.length; i ++) {
 			MatchPO match = matches.get(i - 1);
 			PlayerDataOfOneMatchPO playerData = match.getPlayerDataOfOneMatchByName(player.getName());
-			body[body.length - i][0] = match.getDate();
-			body[body.length - i][1] = match.getFirstTeam() + "@" + match.getSecondTeam();
-			body[body.length - i][2] = playerData.getPosition() ;
-			body[body.length - i][3] = playerData.getPresentTimeOfOneMatch() ;
-			body[body.length - i][4] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfShooting())) ;
-			body[body.length - i][5] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfShotAttempt())) ;
-			body[body.length - i][6] = String.valueOf(cutTailOfTotalData(playerData.getNumberOf3_point())) ;
-			body[body.length - i][7] = String.valueOf(cutTailOfTotalData(playerData.getNumberOf3_pointAttempt())) ;
-			body[body.length - i][8] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfFreeThrow())) ;
-			body[body.length - i][9] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfFreeThrowAttempt())) ;
-			body[body.length - i][10] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfAttackRebound())) ;
-			body[body.length - i][11] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfDefenseRebound())) ;
-			body[body.length - i][12] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfReboundOfOneMatch())) ;
-			body[body.length - i][13] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfAssistOfOneMatch())) ;
-			body[body.length - i][14] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfSteal())) ;
-			body[body.length - i][15] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfBlockOfOneMatch() )) ;
-			body[body.length - i][16] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfFaultOfOneMatch())) ;
-			body[body.length - i][17] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfFoulOfOneMatch() )) ;
-			body[body.length - i][18] = String.valueOf(cutTailOfTotalData(playerData.getScoreOfOneMatch())) ;
+			body[body.length - i][0] = Config.Seasons[getSeasonNum(match.getSeason())];
+			body[body.length - i][1] = match.getDate();
+			body[body.length - i][2] = match.getFirstTeam() + "@" + match.getSecondTeam();
+			body[body.length - i][3] = playerData.getPosition() ;
+			body[body.length - i][4] = playerData.getPresentTimeOfOneMatch() ;
+			body[body.length - i][5] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfShooting())) ;
+			body[body.length - i][6] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfShotAttempt())) ;
+			body[body.length - i][7] = String.valueOf(cutTailOfTotalData(playerData.getNumberOf3_point())) ;
+			body[body.length - i][8] = String.valueOf(cutTailOfTotalData(playerData.getNumberOf3_pointAttempt())) ;
+			body[body.length - i][9] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfFreeThrow())) ;
+			body[body.length - i][10] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfFreeThrowAttempt())) ;
+			body[body.length - i][11] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfAttackRebound())) ;
+			body[body.length - i][12] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfDefenseRebound())) ;
+			body[body.length - i][13] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfReboundOfOneMatch())) ;
+			body[body.length - i][14] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfAssistOfOneMatch())) ;
+			body[body.length - i][15] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfSteal())) ;
+			body[body.length - i][16] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfBlockOfOneMatch() )) ;
+			body[body.length - i][17] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfFaultOfOneMatch())) ;
+			body[body.length - i][18] = String.valueOf(cutTailOfTotalData(playerData.getNumberOfFoulOfOneMatch() )) ;
+			body[body.length - i][19] = String.valueOf(cutTailOfTotalData(playerData.getScoreOfOneMatch())) ;
 		}
 		
 		return body;
@@ -589,5 +590,14 @@ public class TableContentTransfer {
 				break ;
 			}
 			return season ;
+	}
+	public static int getSeasonNum(Season s) {
+		switch(s) {
+		case season12_13 : return 0;
+		case season13_14 : return 1;
+		case season14_15 : return 2;
+		default : return -1;
+		}
+		
 	}
 }

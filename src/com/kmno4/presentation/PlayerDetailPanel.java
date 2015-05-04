@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -119,7 +121,6 @@ public class PlayerDetailPanel extends JPanel {
 				Config.UI_WIDTH - PADDING * 2, RECENT_DATA_TABLE_HEIGHT,
 				PADDING, recentLabel.getY() + recentLabel.getHeight());
 		paintTable(recentData.table);
-		
 		addLinks();
 		
 	}
@@ -128,7 +129,19 @@ public class PlayerDetailPanel extends JPanel {
 	 * 添加链接
 	 */
 	private void addLinks() {
+		dataPanel.teamLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new TeamDetailFrame(TeamListPO.findTeamByShortName(playerPO.getTeam(Config.LASTEST_SEASON)));
+			}
+		});
 		
+		recentData.table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				int col = recentData.table.columnAtPoint(e.getPoint());
+//				MainFrame.mainFrame.bl.f
+			}
+		});
 		
 	}
 	
