@@ -4,13 +4,17 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,9 +29,9 @@ import com.kmno4.presentation.button.LMouseAdapter;
 import com.kmno4.presentation.calendarPanel.CalendarPanel;
 
 @SuppressWarnings("serial")
-public class HotSelectionPanel extends JPanel implements ActionListener{
-	JPanel playerPanel;
-	public CalendarPanel calendarPanel;
+public class HotSelectionPanel extends JPanel implements ActionListener,MouseMotionListener,MouseListener{
+//	JPanel playerPanel;
+//	public CalendarPanel calendarPanel;
 	JLabel
 	    lb_daily_player,
 	    lb_season_player,
@@ -43,8 +47,8 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 	    season_hot_team_datatype,
 	    most_improve_season,
 	    most_improve_datatype;
-	JLabel
-		lb_date;
+	JLabel	lb_date;
+	public JLabel lb_protection;
 //		JTextField tf_date;
 	JLabel
 		btn_submit;
@@ -62,32 +66,47 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 		this.setVisible(true);
 		this.setBackground(new Color(0, 0, 0, 0));
 		
-		playerPanel = new JPanel();
-		playerPanel.setBounds(0, 0, Config.UI_WIDTH, 45);
-		playerPanel.setBackground(new Color(0, 0, 0, 0));
-		playerPanel.setLayout(new GridLayout(1, 0));
+		this.addMouseMotionListener(this);
+		this.addMouseListener(this);
+		
+//		playerPanel = new JPanel();
+//		playerPanel.setBounds(0, 0, Config.UI_WIDTH, 45);
+//		playerPanel.setBackground(new Color(0, 0, 0, 0));
+//		playerPanel.setLayout(new GridLayout(1, 0));
 		lb_daily_player = new JLabel("当日热点球员",JLabel.CENTER);
+		lb_daily_player.setBounds(0, 0, Config.UI_WIDTH/4, 45);
 		lb_daily_player.setForeground(Color.white);
-		playerPanel.add(lb_daily_player);
+		add(lb_daily_player);
 		lb_season_player = new JLabel("赛季热点球员",JLabel.CENTER);
+		lb_season_player.setBounds(Config.UI_WIDTH/4, 0, Config.UI_WIDTH/4, 45);
 		lb_season_player.setForeground(Color.white);
-		playerPanel.add(lb_season_player);
+		add(lb_season_player);
 		lb_improve_player = new JLabel("进步最快球员",JLabel.CENTER);
+		lb_improve_player.setBounds(2*Config.UI_WIDTH/4, 0, Config.UI_WIDTH/4, 45);
 		lb_improve_player.setForeground(Color.white);
-		playerPanel.add(lb_improve_player);
+		add(lb_improve_player);
 		lb_season_team = new JLabel("赛季热点球队",JLabel.CENTER);
+		lb_season_team.setBounds(3*Config.UI_WIDTH/4, 0, Config.UI_WIDTH/4, 45);
 		lb_season_team.setForeground(Color.white);
-		playerPanel.add(lb_season_team);
-		add(playerPanel);	
+		add(lb_season_team);
+//		add(playerPanel);	
+		
+		lb_protection=new JLabel();
+		lb_protection.setBounds(0, 0, Config.UI_WIDTH, Config.SELECTION_HEIGHT);
+		ImageIcon bg=Config.HOT_SELECTION_PROTECTION;
+		bg.setImage(Config.HOT_SELECTION_PROTECTION.getImage().getScaledInstance(Config.UI_WIDTH,Config.SELECTION_HEIGHT,Image.SCALE_DEFAULT));
+		lb_protection.setIcon(bg);
+		lb_protection.addMouseMotionListener(this);
+		add(lb_protection);
 		
 		initDailyPlayer();
 		initMostProvementPlayer();
 		initSeasonHotTeam();
 		initSeasonMostPlayer();
 		//
-		calendarPanel=new CalendarPanel(lb_date,"yyyy-MM-dd");
-		calendarPanel.initCalendarPanel();
-		MainFrame.mainFrame.add(calendarPanel);
+//		calendarPanel=new CalendarPanel(lb_date,"yyyy-MM-dd");
+//		calendarPanel.initCalendarPanel();
+//		MainFrame.mainFrame.add(calendarPanel);
 		showDailyPlayer();
 		
 		lb_daily_player.addMouseListener(new LMouseAdapter() {
@@ -113,6 +132,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 			public void mouseClicked(MouseEvent e) {
 				showSeasonTeam();
 			}
+			
 		});
 
 //		tf_date.addActionListener(this);
@@ -189,7 +209,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 				lb_date = new JLabel(content+"  ▼");
 //				lb_date.setIcon(Config.LABEL_CALENDAR_BACKGROUND);
 				lb_date.setForeground(Color.white);
-				lb_date.setFont(new Font("default", Font.ITALIC, 20));
+				lb_date.setFont(new Font("default", Font.PLAIN, 20));
 				lb_date.setBounds(500, 73, 168, 27);
 				add(lb_date);
 				
@@ -199,11 +219,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 				btn_submit.setBounds(700, 73, 50, 27);
 				add(btn_submit);
 				
-				
-//				tf_date = new JTextField();
-//				tf_date.setText(df.format(dt));
-//				tf_date.setBounds(658, 71, 134, 28);
-//				add(tf_date);
+
 	}
 	
 	public void initSeasonMostPlayer(){
@@ -257,7 +273,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 	    most_improve_datatype.setVisible(false);	
 //	    tf_date.setVisible(false);
 	    
-	    calendarPanel.setVisible(false);
+//	    calendarPanel.setVisible(false);
 //	    btn_submit.setVisible(false);
 	}
 	
@@ -274,7 +290,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 		    most_improve_datatype.setVisible(false);	
 //		    tf_date.setVisible(false);
 		    
-		    calendarPanel.setVisible(false);
+//		    calendarPanel.setVisible(false);
 //		    btn_submit.setVisible(false);
 
 	}
@@ -292,7 +308,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 		    most_improve_datatype.setVisible(false);	
 //		    tf_date.setVisible(true);
 		    
-		    calendarPanel.setVisible(false);
+//		    calendarPanel.setVisible(false);
 //		    btn_submit.setVisible(true);
 	}
 	
@@ -309,7 +325,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 		    most_improve_datatype.setVisible(true);	
 //		    tf_date.setVisible(false);
 		    
-		    calendarPanel.setVisible(false);
+//		    calendarPanel.setVisible(false);
 //		    btn_submit.setVisible(false);
 	}
 
@@ -356,5 +372,55 @@ public class HotSelectionPanel extends JPanel implements ActionListener{
 ////			calendarPanel.setVisible(false);
 ////		}	
 	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getX()>lb_protection.getX()&&e.getY()>lb_protection.getY())
+			lb_protection.setVisible(false);
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource()==MainFrame.mainFrame.hotSelectionPanel){
+			lb_protection.setVisible(false);
+		}
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		if(e.getSource()==MainFrame.mainFrame.hotSelectionPanel){
+			lb_protection.setVisible(true);
+		}
+	}
+
+	
 
 }

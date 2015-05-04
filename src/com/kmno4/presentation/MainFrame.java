@@ -1,21 +1,10 @@
 package com.kmno4.presentation;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
-
-import org.jvnet.substance.SubstanceLookAndFeel;
-import org.jvnet.substance.border.StandardBorderPainter;
-import org.jvnet.substance.button.ClassicButtonShaper;
-import org.jvnet.substance.painter.StandardGradientPainter;
-import org.jvnet.substance.skin.SubstanceMagmaLookAndFeel;
-import org.jvnet.substance.title.FlatTitlePainter;
-import org.jvnet.substance.watermark.SubstancePlanktonWatermark;
 
 import BusinessLogic.BLService.BLService;
 import BusinessLogic.BLService.BLServiceController;
@@ -27,7 +16,7 @@ import com.alee.laf.WebLookAndFeel;
 import com.kmno4.common.Config;
 
 @SuppressWarnings("serial")
-public class MainFrame extends JFrame implements MouseListener{
+public class MainFrame extends JFrame{
 
 	//panel统一从右边进入
 	private ContentPanel contentPane;
@@ -116,30 +105,8 @@ public class MainFrame extends JFrame implements MouseListener{
 		
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		//如果点击球员tab
-//		if(e.getSource()==topTabPanel.player){
-//			
-//		}
-		// TODO Auto-generated method stub
-		
-	}
+	
 
-	@Override
-	public void mousePressed(MouseEvent e) {
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-	}
+	
 
 }

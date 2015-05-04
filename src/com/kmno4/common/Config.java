@@ -1,5 +1,6 @@
 package com.kmno4.common;
 
+import java.awt.Image;
 import java.util.ArrayList;
 
 import javax.swing.Icon;
@@ -190,6 +191,8 @@ public class Config {
 	
 	public static final ImageIcon CIRCLE_EMPTY=new ImageIcon("images/circle_empty.png");
 	public static final ImageIcon CIRCLE_FULL=new ImageIcon("images/circle_full.png");
+	
+	public static final ImageIcon HOT_SELECTION_PROTECTION=new ImageIcon("images/hot_selection_protection.png");
 	
 	public static ArrayList<ImageIcon> getLoadingMotions(){
 		for(int i=1;i<100;i++){

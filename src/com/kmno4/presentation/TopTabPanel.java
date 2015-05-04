@@ -256,7 +256,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	 * @param players
 	 */
 	public void refreshPlayerTable(List<PlayerPO> players){
-		System.out.println("TopTabPanel.refreshPlayerTable()");
+//		System.out.println("TopTabPanel.refreshPlayerTable()");
 		if(tg.table != null) tg.table.setVisible(false);
 		if(tg.jsp != null) {
 			tg.jsp.setVisible(false);
@@ -279,7 +279,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	 * @param teams
 	 */
 	public void refreshTeamTable(ArrayList<TeamPO> teams) {
-		System.out.println("TopTabPanel.refreshTeamTable()");
+//		System.out.println("TopTabPanel.refreshTeamTable()");
 		if(tg.table != null) tg.table.setVisible(false);
 		if(tg.jsp != null) {
 			tg.jsp.setVisible(false);
@@ -294,7 +294,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	 * 刷新match列表
 	 */
 	public void refreshMatchTable(ArrayList<MatchPO> matches) {
-		System.out.println("TopTabPanel.refreshMatchTable()");
+//		System.out.println("TopTabPanel.refreshMatchTable()");
 		if(tg.table != null) tg.table.setVisible(false);
 		if(tg.jsp != null) {
 			tg.jsp.setVisible(false);
@@ -307,7 +307,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	}
 	
 	public void refreshDailyPlayerTable(Season season, String date, PlayerData dataType) {
-		System.out.println("TopTabPanel.refreshDailyPlayerTable()");
+//		System.out.println("TopTabPanel.refreshDailyPlayerTable()");
 		if(tg.table != null) tg.table.setVisible(false);
 		if(tg.jsp != null) {
 			tg.jsp.setVisible(false);
@@ -323,7 +323,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 //		MainFrame.mainFrame.repaint();
 	}
 	public void refreshSeasonPlayerTable(Season season, PlayerData dataType) {
-		System.out.println("TopTabPanel.refreshSeasonPlayerTable()");
+//		System.out.println("TopTabPanel.refreshSeasonPlayerTable()");
 		if(tg.table != null) tg.table.setVisible(false);
 		if(tg.jsp != null) {
 			tg.jsp.setVisible(false);
@@ -337,7 +337,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.repaint();
 	}
 	public void refreshImprovePlayerTable(Season season, PlayerData dataType) {
-		System.out.println("TopTabPanel.refreshImprovePlayerTable()");
+//		System.out.println("TopTabPanel.refreshImprovePlayerTable()");
 		if(tg.table != null) tg.table.setVisible(false);
 		if(tg.jsp != null) {
 			tg.jsp.setVisible(false);
@@ -351,7 +351,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.repaint();
 	}
 	public void refreshSeasonTeamTable(Season season, TeamData dataType) {
-		System.out.println("TopTabPanel.refreshSeasonTeamTable()");
+//		System.out.println("TopTabPanel.refreshSeasonTeamTable()");
 		if(tg.table != null) tg.table.setVisible(false);
 		if(tg.jsp != null) {
 			tg.jsp.setVisible(false);
