@@ -143,7 +143,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener,MouseMot
 				PlayerData type=TransferSortHelper.StringToDataTypeForPlayer(daily_player_datatype.getSelectedItem().toString());
 //				String date=lb_date.getText();	
 				String date=lb_date.getText();
-				MainFrame.mainFrame.topTabPanel.refreshDailyPlayerTable(season, date, type);
+				MainFrame.mainFrame.topTabPanel.refreshDailyPlayerTable(type);
 			}
 		});
 		
@@ -155,8 +155,8 @@ public class HotSelectionPanel extends JPanel implements ActionListener,MouseMot
 					PlayerData type=TransferSortHelper.StringToDataTypeForPlayer(daily_player_datatype.getSelectedItem().toString());
 //					String date=lb_date.getText();	
 					String date=lb_date.getText();
-					MainFrame.mainFrame.topTabPanel.refreshDailyPlayerTable(season, date, type);
-					MainFrame.mainFrame.topTabPanel.refreshDailyPlayerTable(season, date, type);
+					MainFrame.mainFrame.topTabPanel.refreshDailyPlayerTable(type);
+					MainFrame.mainFrame.topTabPanel.refreshDailyPlayerTable(type);
 				}
 				if(isSeasonPlayer){
 					Season season=TransferSortHelper.StringToSeason(season_hot_player_season.getSelectedItem().toString());
@@ -344,8 +344,8 @@ public class HotSelectionPanel extends JPanel implements ActionListener,MouseMot
 			PlayerData type=TransferSortHelper.StringToDataTypeForPlayer(daily_player_datatype.getSelectedItem().toString());
 //			String date=lb_date.getText();	
 			String date=lb_date.getText();
-			MainFrame.mainFrame.topTabPanel.refreshDailyPlayerTable(season, date, type);
-			MainFrame.mainFrame.topTabPanel.refreshDailyPlayerTable(season, date, type);
+			MainFrame.mainFrame.topTabPanel.refreshDailyPlayerTable(type);
+			MainFrame.mainFrame.topTabPanel.refreshDailyPlayerTable(type);
 		}
 		if(e.getSource()==season_hot_player_season||e.getSource()==season_hot_player_datetype){
 			Season season=TransferSortHelper.StringToSeason(season_hot_player_season.getSelectedItem().toString());
@@ -426,7 +426,5 @@ public class HotSelectionPanel extends JPanel implements ActionListener,MouseMot
 //			lb_protection.setVisible(true);
 //		}
 	}
-
-	
 
 }

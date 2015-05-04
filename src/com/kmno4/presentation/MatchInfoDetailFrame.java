@@ -16,12 +16,14 @@ public class MatchInfoDetailFrame extends JFrame {
 	public MatchInfoDetailPanel matchInfoDetailPanel;
 	
 	public MatchInfoDetailFrame(MatchPO matchPO) {
-		setSize(Config.MATCH_DETAIL_WIDTH, Config.MATCH_DETAIL_HEIGHT);
+		setBounds(MainFrame.mainFrame.getX(),
+				MainFrame.mainFrame.getY(),
+				MainFrame.mainFrame.getWidth(),
+				MainFrame.mainFrame.getHeight());
 		setLayout(null);
 		setUndecorated(true);
 		setBackground(Color.white);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setLocationRelativeTo(null);
 		
 		matchInfoDetailPanel = new MatchInfoDetailPanel(matchPO, this);
 		add(matchInfoDetailPanel);
