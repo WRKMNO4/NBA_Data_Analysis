@@ -120,17 +120,31 @@ public class PlayerDetailPanel extends JPanel {
 				PADDING, recentLabel.getY() + recentLabel.getHeight());
 		paintTable(recentData.table);
 		
+		addLinks();
+		
 	}
 	
+	/**
+	 * 添加链接
+	 */
+	private void addLinks() {
+		
+		
+	}
+	
+	/**
+	 * 画table格样式
+	 * @param table
+	 */
 	public static void paintTable(JTable table) {
 		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer() {
 			@Override
 			public Component getTableCellRendererComponent(JTable table,
 					Object value, boolean isSelected, boolean hasFocus,
 					int row, int column) {
-				if(row == 0) setBackground(new Color(0, 0, 0, 90));
-				else if(row % 2 != 0) setBackground(new Color(0, 0, 0, 40));
-				else setBackground(new Color(0, 0, 0, 0));
+				if(row == 0) setBackground(new Color(0, 0, 0, 90)); //第一行画灰色
+				else if(row % 2 != 0) setBackground(new Color(0, 0, 0, 40)); //偶数行浅一些
+				else setBackground(new Color(0, 0, 0, 0)); //奇数行白色
 				
 				return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 			}
@@ -141,6 +155,11 @@ public class PlayerDetailPanel extends JPanel {
 	}
 	
 	private static final String PLAYER_DETAIL_TOP_BG = "images/player_detail_bg.png";
+	/**
+	 * 包括头像以及一些基础信息的一个panel,位于布局最上方
+	 * @author hutao
+	 *
+	 */
 	class DataPanel extends JPanel {
 		public JLabel bgLabel;
 		public JLabel headLabel, teamLabel;
@@ -201,8 +220,16 @@ public class PlayerDetailPanel extends JPanel {
 			bgLabel.setBounds(0, 0, Config.UI_WIDTH - PADDING * 2, DATA_PANEL_HEIGHT);
 			add(bgLabel);
 		}
+		
 	}
 	
+	/**
+	 * 将图片改变大小后填充进jlabel
+	 * @param url
+	 * @param label
+	 * @param width
+	 * @param height
+	 */
 	public static void fillLabel(String url, JLabel label, int width, int height) {
 		Image i = null;
 		BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -214,4 +241,6 @@ public class PlayerDetailPanel extends JPanel {
 		bi.getGraphics().drawImage(i, 0, 0, width, height, null);
 		label.setIcon(new ImageIcon((Image)bi));
 	}
+	
+	
 }
