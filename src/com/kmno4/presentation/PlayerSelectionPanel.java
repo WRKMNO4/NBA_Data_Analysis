@@ -139,7 +139,7 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 		cb_total_sort_data.addMouseListener(this);
 		cb_avg_sort_data.addActionListener(this);
 		cb_total_sort_data.addActionListener(this);
-		cb_sort_season.addMouseListener(this);
+		cb_sort_season.addActionListener(this);
 		add(avg_sort);
 		add(total_sort);
 		add(cb_avg_sort_data);
