@@ -102,7 +102,12 @@ public class MatchSelectionPanel extends JPanel {
 	private Season current_season;
 	private void changeSeason(Season season) {
 		current_season = season;
+		int 
+		    v_barValue = MainFrame.mainFrame.topTabPanel.tg.jsp.getVerticalScrollBar().getValue(),
+		    h_barValue = MainFrame.mainFrame.topTabPanel.tg.jsp.getHorizontalScrollBar().getValue();
 		MainFrame.mainFrame.topTabPanel.refreshMatchTable(MainFrame.mainFrame.bl.getAllMatches(season));
+		MainFrame.mainFrame.topTabPanel.tg.jsp.getVerticalScrollBar().setValue(v_barValue);
+		MainFrame.mainFrame.topTabPanel.tg.jsp.getHorizontalScrollBar().setValue(h_barValue);
 	}
 	
 	
