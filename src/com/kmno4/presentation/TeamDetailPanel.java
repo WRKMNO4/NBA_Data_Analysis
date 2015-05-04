@@ -2,6 +2,8 @@ package com.kmno4.presentation;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -10,6 +12,7 @@ import com.kmno4.common.Config;
 import com.kmno4.presentation.table.TableFactory;
 import com.kmno4.presentation.table.TableGroup;
 
+import PO.MatchPO;
 import PO.TeamPO;
 
 @SuppressWarnings("serial")
@@ -109,8 +112,22 @@ public class TeamDetailPanel extends JPanel {
 				Config.UI_WIDTH - PADDING * 2, RECENT_DATA_TABLE_HEIGHT,
 				PADDING, recentLabel.getY() + recentLabel.getHeight());
 		PlayerDetailPanel.paintTable(recentData.table);
+		addLinks();
 		
-		
+	}
+	
+	private void addLinks() {
+		recentData.table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				int row = recentData.table.rowAtPoint(e.getPoint());
+				if(row == 0) return;
+				MatchPO m = MainFrame.mainFrame.bl.findMatch(
+						TableContentTransfer.getSeasonByString(recentData.table.getValueAt(row, 0).toString()),
+						recentData.table.getValueAt(row, 1).toString(),
+						recentData.table.getValueAt(row, 2).toString().replace('@', '-'));
+				new MatchInfoDetailFrame(m);
+			}
+		});
 	}
 	
 	private static final String TEAM_DETAIL_TOP_BG = "images/player_detail_bg.png";
@@ -128,20 +145,31 @@ public class TeamDetailPanel extends JPanel {
 			PlayerDetailPanel.fillLabel(teamPO.getTeamLogoURL(), logoLabel, logoLabel.getWidth(), logoLabel.getHeight());
 			add(logoLabel);
 			
+			int delta = 50;
 			info1 = new JLabel("名称/缩写 : " + teamPO.getFullName() + "/" + teamPO.getShortName());
-//			info1.setBounds(x, y, width, height);
-			info1.setFont(new Font("default", 0, 30));
+			info1.setBounds(300, 20, 300, 50);
+			info1.setFont(new Font("default", 2, 20));
 			add(info1);
 			info2 = new JLabel("所在地 : " + teamPO.getCity());
-			add(info1);
+			info2.setBounds(300, info1.getY() + delta, 300, 50);
+			info2.setFont(new Font("default", 2, 20));
+			add(info2);
 			info3 = new JLabel("赛区 : " + teamPO.getZone().toString());
-			add(info1);
+			info3.setBounds(300, info2.getY() + delta, 300, 50);
+			info3.setFont(new Font("default", 2, 20));
+			add(info3);
 			info4 = new JLabel("分区 : " + teamPO.getDistrict());
-			add(info1);
+			info4.setBounds(600, 20, 300, 50);
+			info4.setFont(new Font("default", 2, 20));
+			add(info4);
 			info5 = new JLabel("主场 : " + teamPO.getHomeCourt());
-			add(info1);
+			info5.setBounds(600, info4.getY() + delta, 300, 50);
+			info5.setFont(new Font("default", 2, 20));
+			add(info5);
 			info6 = new JLabel("建立时间 : " + teamPO.getTimeOfEstablishment());
-			add(info1);
+			info6.setBounds(600, info5.getY() + delta, 300, 50);
+			info6.setFont(new Font("default", 2, 20));
+			add(info6);
 			
 			
 			

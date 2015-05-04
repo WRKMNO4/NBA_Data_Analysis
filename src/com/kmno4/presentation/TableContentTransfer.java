@@ -347,33 +347,33 @@ public class TableContentTransfer {
 		for(int i = 1; i < body.length; i ++) {
 			MatchPO m = matches.get(i - 1);
 			TeamDataPO teamData = team.getShortName().equals(m.getFirstTeam()) ? m.getFirstTeamData() : m.getSecondTeamData();
-			
-			body[i][0] = m.getDate();
-			body[i][1] = m.getFirstTeam() + "@" + m.getSecondTeam();
-			body[i][2]= cutTailOfAvgData(teamData.getNumberOfShooting());
-			body[i][3]= cutTailOfAvgData(teamData.getNumberOfShotAttempt());
-			body[i][4]= cutTailOfAvgData(teamData.getNumberOf3_point());
-			body[i][5]= cutTailOfAvgData(teamData.getNumberOf3_pointAttempt());
-			body[i][6]= cutTailOfAvgData(teamData.getNumberOfFreeThrow());
-			body[i][7]= cutTailOfAvgData(teamData.getNumberOfFreeThrowAttempt());
-			body[i][8]= cutTailOfAvgData(teamData.getNumberOfAttackRebound());
-			body[i][9]= cutTailOfAvgData(teamData.getNumberOfDefenseRebound());
-			body[i][10]= cutTailOfAvgData(teamData.getNumberOfRebound());
-			body[i][11]= cutTailOfAvgData(teamData.getNumberOfAssist());
-			body[i][12]= cutTailOfAvgData(teamData.getNumberOfSteal());
-			body[i][13]= cutTailOfAvgData(teamData.getNumberOfBlock());
-			body[i][14]= cutTailOfAvgData(teamData.getNumberOfFault());
-			body[i][15]= cutTailOfAvgData(teamData.getNumberOfFoul());
-			body[i][16]= cutTailOfAvgData(teamData.getScore());
-			body[i][17]= cutTailOfAvgData(teamData.getPercentageOfShooting());
-			body[i][18]= cutTailOfAvgData(teamData.getPercentageOf3_point());
-			body[i][19]= cutTailOfAvgData(teamData.getPercentageOfFreeThrow());
-			body[i][20]= cutTailOfAvgData(teamData.getRoundOfAttack());
-			body[i][21]= cutTailOfAvgData(teamData.getEfficiencyOfAttack());
-			body[i][22]= cutTailOfAvgData(teamData.getEfficiencyOfDefense());
-			body[i][23]= cutTailOfAvgData(teamData.getEfficiencyOfRebound());
-			body[i][24]= cutTailOfAvgData(teamData.getEfficiencyOfSteal());
-			body[i][25]= cutTailOfAvgData(teamData.getEfficiencyOfAssist());
+			body[i][0] = Config.Seasons[getSeasonNum(m.getSeason())];
+			body[i][1] = m.getDate();
+			body[i][2] = m.getFirstTeam() + "@" + m.getSecondTeam();
+			body[i][3]= cutTailOfAvgData(teamData.getNumberOfShooting());
+			body[i][4]= cutTailOfAvgData(teamData.getNumberOfShotAttempt());
+			body[i][5]= cutTailOfAvgData(teamData.getNumberOf3_point());
+			body[i][6]= cutTailOfAvgData(teamData.getNumberOf3_pointAttempt());
+			body[i][7]= cutTailOfAvgData(teamData.getNumberOfFreeThrow());
+			body[i][8]= cutTailOfAvgData(teamData.getNumberOfFreeThrowAttempt());
+			body[i][9]= cutTailOfAvgData(teamData.getNumberOfAttackRebound());
+			body[i][10]= cutTailOfAvgData(teamData.getNumberOfDefenseRebound());
+			body[i][11]= cutTailOfAvgData(teamData.getNumberOfRebound());
+			body[i][12]= cutTailOfAvgData(teamData.getNumberOfAssist());
+			body[i][13]= cutTailOfAvgData(teamData.getNumberOfSteal());
+			body[i][14]= cutTailOfAvgData(teamData.getNumberOfBlock());
+			body[i][15]= cutTailOfAvgData(teamData.getNumberOfFault());
+			body[i][16]= cutTailOfAvgData(teamData.getNumberOfFoul());
+			body[i][17]= cutTailOfAvgData(teamData.getScore());
+			body[i][18]= cutTailOfAvgData(teamData.getPercentageOfShooting());
+			body[i][19]= cutTailOfAvgData(teamData.getPercentageOf3_point());
+			body[i][20]= cutTailOfAvgData(teamData.getPercentageOfFreeThrow());
+			body[i][21]= cutTailOfAvgData(teamData.getRoundOfAttack());
+			body[i][22]= cutTailOfAvgData(teamData.getEfficiencyOfAttack());
+			body[i][23]= cutTailOfAvgData(teamData.getEfficiencyOfDefense());
+			body[i][24]= cutTailOfAvgData(teamData.getEfficiencyOfRebound());
+			body[i][25]= cutTailOfAvgData(teamData.getEfficiencyOfSteal());
+			body[i][26]= cutTailOfAvgData(teamData.getEfficiencyOfAssist());
 			
 			
 		}
@@ -543,26 +543,31 @@ public class TableContentTransfer {
 		}
 		return body ;
 	}
-	/**
-	 * 
-	 * @param datas 传入比赛比分列表
-	 * @param columns 比赛节数
-	 * @param mark 标记是这场比赛中的第一支球队或第二支，1代表第一支，2代表第二支
-	 * @return
-	 */
-	public static String[][] transferMatchScores(ArrayList<ScoreOfMatchPO> datas,int columns,int mark){
-		String[][] body = new String[1][columns] ;
-		if(mark==1){
-			for(int i = 0 ;i<columns;i++){
-				ScoreOfMatchPO theScores = datas.get(i) ;
-				body[0][i] = String.valueOf(theScores.getFirstScore()) ;
-			}
-		}else{
-			for(int i = 0 ;i<columns;i++){
-				ScoreOfMatchPO theScores = datas.get(i) ;
-				body[0][i] = String.valueOf(theScores.getSecondScore()) ;
-			}
+	
+	
+	public static String[][] transferMatchScores(MatchPO match){
+		ArrayList<ScoreOfMatchPO> scores = match.getAllScore();
+		
+		
+		String[][] body = new String[3][scores.size() + 1] ;
+		body[0][0] = "队伍";
+		body[0][1] = "第1节";
+		body[0][2] = "第2节";
+		body[0][3] = "第3节";
+		body[0][4] = "第4节";
+		int k = 5;
+		while(k < body[0].length) {
+			body[0][k] = "加时" + (k - 4);
+			k ++;
 		}
+		body[1][0] = match.getFirstTeam();
+		body[2][0] = match.getSecondTeam();
+		for(int i = 1; i < body[0].length; i ++) {
+			ScoreOfMatchPO s = scores.get(i - 1);
+			body[1][i] = s.getFirstScore() + "";
+			body[2][i] = s.getSecondScore() + "";
+		}
+		
 		return body ;
 	}
 	
@@ -599,5 +604,13 @@ public class TableContentTransfer {
 		default : return -1;
 		}
 		
+	}
+	public static Season getSeasonByString(String s) {
+		switch(s) {
+		case "2012-2013赛季" : return Season.season12_13;
+		case "2013-2014赛季" : return Season.season13_14;
+		case "2014-2015赛季" : return Season.season14_15;
+		default : return Season.season13_14;
+		}
 	}
 }

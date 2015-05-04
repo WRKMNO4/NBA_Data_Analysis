@@ -22,6 +22,7 @@ import com.kmno4.common.Config;
 import com.kmno4.presentation.table.TableFactory;
 import com.kmno4.presentation.table.TableGroup;
 
+import PO.MatchPO;
 import PO.PlayerPO;
 import PO.TeamListPO;
 import PO.TeamPO;
@@ -147,8 +148,13 @@ public class PlayerDetailPanel extends JPanel {
 		
 		recentData.table.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				int col = recentData.table.columnAtPoint(e.getPoint());
-//				MainFrame.mainFrame.bl.f
+				int row = recentData.table.rowAtPoint(e.getPoint());
+				if(row == 0) return;
+				MatchPO m = MainFrame.mainFrame.bl.findMatch(
+						TableContentTransfer.getSeasonByString(recentData.table.getValueAt(row, 0).toString()),
+						recentData.table.getValueAt(row, 1).toString(),
+						recentData.table.getValueAt(row, 2).toString().replace('@', '-'));
+				new MatchInfoDetailFrame(m);
 			}
 		});
 		
@@ -164,9 +170,9 @@ public class PlayerDetailPanel extends JPanel {
 			public Component getTableCellRendererComponent(JTable table,
 					Object value, boolean isSelected, boolean hasFocus,
 					int row, int column) {
-				if(row == 0) setBackground(new Color(0, 0, 0, 90)); //第一行画灰色
-				else if(row % 2 != 0) setBackground(new Color(0, 0, 0, 40)); //偶数行浅一些
-				else setBackground(new Color(0, 0, 0, 0)); //奇数行白色
+				if(row == 0) setBackground(new Color(255, 255, 255, 90)); 
+				else if(row % 2 != 0) setBackground(new Color(255, 255, 255, 40)); 
+				else setBackground(new Color(255, 255, 255, 0)); 
 				
 				return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 			}

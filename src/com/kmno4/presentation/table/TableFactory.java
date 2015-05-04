@@ -1,14 +1,12 @@
 package com.kmno4.presentation.table;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -46,10 +44,9 @@ public class TableFactory {
 		TableModel tableModel = new DefaultTableModel(body, head);
 		tg.table = new JTable(tableModel);
 		tg.table.setOpaque(false);
-		//TODO
-//		DefaultTableCellRenderer tc = new DefaultTableCellRenderer();
-//		tc.setOpaque(false);
-//		tg.table.setDefaultRenderer(Object.class, tc);
+		DefaultTableCellRenderer tc = new DefaultTableCellRenderer();
+		tc.setOpaque(false);
+		tg.table.setDefaultRenderer(Object.class, tc);
 		tg.table.setPreferredSize(
 				new Dimension(
 						uw * body[0].length,
