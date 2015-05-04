@@ -155,8 +155,11 @@ public class PlayerDetailPanel extends JPanel {
 			setLayout(null);
 			setBackground(Color.white);
 			
-			headLabel = new JLabel(new ImageIcon(p.getPortraitURL()));
+			headLabel = new JLabel();
 			headLabel.setBounds(20, 45, 230, 185);
+			fillLabel(p.getPortraitURL(), headLabel, headLabel.getWidth(), headLabel.getHeight());
+			
+			
 			add(headLabel);
 			
 
@@ -202,13 +205,13 @@ public class PlayerDetailPanel extends JPanel {
 	
 	public static void fillLabel(String url, JLabel label, int width, int height) {
 		Image i = null;
-		BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
+		BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		try {
 			i = ImageIO.read(new File(url));
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
-		bi.getGraphics().drawImage(i, 0, 0, width, height, Color.white, null);
+		bi.getGraphics().drawImage(i, 0, 0, width, height, null);
 		label.setIcon(new ImageIcon((Image)bi));
 	}
 }
