@@ -20,6 +20,8 @@ import com.kmno4.presentation.table.TableFactory;
 import com.kmno4.presentation.table.TableGroup;
 
 import PO.PlayerPO;
+import PO.TeamListPO;
+import PO.TeamPO;
 
 @SuppressWarnings("serial")
 public class PlayerDetailPanel extends JPanel {
@@ -156,6 +158,12 @@ public class PlayerDetailPanel extends JPanel {
 			headLabel.setBounds(20, 45, 230, 185);
 			add(headLabel);
 			
+
+			teamLabel = new JLabel();
+			TeamPO tp = TeamListPO.findTeamByShortName(playerPO.getTeam(Config.LASTEST_SEASON));
+			teamLabel.setBounds(450, 80, 80, 80);
+			fillLabel(tp.getTeamLogoURL(), teamLabel, teamLabel.getWidth(), teamLabel.getHeight());
+			add(teamLabel);
 			
 			ballNum = new JLabel(p.getNumber(), JLabel.RIGHT);
 			ballNum.setBounds(350, 15, 80, 80);
@@ -184,10 +192,6 @@ public class PlayerDetailPanel extends JPanel {
 			info4.setBounds(650, info3.getY() + delta, 400, delta);
 			add(info4);
 
-			teamLabel = new JLabel();
-			
-			
-
 			bgLabel = new JLabel();
 			PlayerDetailPanel.fillLabel(PLAYER_DETAIL_TOP_BG, bgLabel, Config.UI_WIDTH - PADDING * 2, DATA_PANEL_HEIGHT);
 			bgLabel.setBounds(0, 0, Config.UI_WIDTH - PADDING * 2, DATA_PANEL_HEIGHT);
@@ -203,7 +207,7 @@ public class PlayerDetailPanel extends JPanel {
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
-		bi.getGraphics().drawImage(i, 0, 0, width, height, null, null);
+		bi.getGraphics().drawImage(i, 0, 0, width, height, Color.white, null);
 		label.setIcon(new ImageIcon((Image)bi));
 	}
 }
