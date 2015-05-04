@@ -396,9 +396,29 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		});
 	}
 	private void addMatchLink() {
+		tg.table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				int 
+				    row = tg.table.rowAtPoint(e.getPoint());
+				if(row == 0) return;
+				MatchPO m = MainFrame.mainFrame.bl.findMatch(
+						TableContentTransfer.getSeasonByString(tg.table.getValueAt(row, 0).toString()),
+						tg.table.getValueAt(row, 1).toString(),
+						tg.table.getValueAt(row, 2) + "-" + tg.table.getValueAt(row, 5));
+				new MatchInfoDetailFrame(m);
+			}
+		});
 	}
 
 	private void addDailyPlayerLink() {
+		tg.table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				int row = tg.table.rowAtPoint(e.getPoint());
+				if(row == 0) return;
+				PlayerPO p = PlayerListPO.findPlayerAccurately(tg.table.getValueAt(row, 0).toString());	
+				new PlayerDetailFrame(p);
+			}
+		});
 	}
 	private void addSeasonPlayerLink() {
 		addDailyPlayerLink();
@@ -407,6 +427,14 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		addDailyPlayerLink();
 	}
 	private void addSeasonTeamLink() {
+		tg.table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				int row = tg.table.rowAtPoint(e.getPoint());
+				if(row == 0) return;
+				TeamPO t = TeamListPO.findTeamByFullName(tg.table.getValueAt(row, 0).toString());
+				new TeamDetailFrame(t);
+			}
+		});
 	}
 
 	
