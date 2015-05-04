@@ -104,7 +104,7 @@ public class PlayerDetailPanel extends JPanel {
 		
 		recentLabel= new JLabel("最近五场比赛", JLabel.LEFT);
 		recentLabel.setFont(new Font("default", 0, 13));
-		recentLabel.setBackground(Color.black);
+		recentLabel.setBackground(Color.BLACK);
 		recentLabel.setForeground(Color.white);
 		recentLabel.setOpaque(true);
 		recentLabel.setBounds(

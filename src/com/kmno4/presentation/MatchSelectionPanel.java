@@ -24,6 +24,7 @@ public class MatchSelectionPanel extends JPanel {
 		lblNewLabel_1,
 		lb_vs,
 		foreground;
+	private final int LABEL_Y=134/3+2;
 	
 	public MatchSelectionPanel() {
 		setLayout(null);
@@ -33,43 +34,43 @@ public class MatchSelectionPanel extends JPanel {
 		
 		foreground=new JLabel();
 		foreground.setIcon(Config.LABEL_FOREGROUND);
-		foreground.setBounds(0, 134/3, Config.UI_WIDTH/3, 134/3+10);
+		foreground.setBounds(0, LABEL_Y, Config.UI_WIDTH/3, 134/3+10);
 		add(foreground);
 		
 
 		lb_firstSeason = new JLabel("2012-2013赛季", JLabel.CENTER);
-		lb_firstSeason.setBounds(0, 134/3, Config.UI_WIDTH/3, 134/3+10);
+		lb_firstSeason.setBounds(0, LABEL_Y, Config.UI_WIDTH/3, 134/3+10);
 		lb_firstSeason.setFont(new Font("default", Font.ITALIC, 20));
 		lb_firstSeason.setForeground(Color.white);
 		add(lb_firstSeason);
 		lb_secondSeason = new JLabel("2013-2014赛季", JLabel.CENTER);
-		lb_secondSeason.setBounds(Config.UI_WIDTH/3, 134/3, Config.UI_WIDTH/3, 134/3+10);
+		lb_secondSeason.setBounds(Config.UI_WIDTH/3, LABEL_Y, Config.UI_WIDTH/3, 134/3+10);
 		lb_secondSeason.setFont(new Font("default", Font.ITALIC, 20));
 		lb_secondSeason.setForeground(Color.white);
 		add(lb_secondSeason);
 		lb_thirdSeason = new JLabel("2014-2015赛季", JLabel.CENTER);
-		lb_thirdSeason.setBounds(2*Config.UI_WIDTH/3, 134/3, Config.UI_WIDTH/3, 134/3+10);
+		lb_thirdSeason.setBounds(2*Config.UI_WIDTH/3, LABEL_Y, Config.UI_WIDTH/3, 134/3+10);
 		lb_thirdSeason.setFont(new Font("default", Font.ITALIC, 20));
 		lb_thirdSeason.setForeground(Color.white);
 		add(lb_thirdSeason);
 		lb_firstSeason.addMouseListener(new LMouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				foreground.setBounds(lb_firstSeason.getX(), 134/3, Config.UI_WIDTH/3, 134/3+10);
+				foreground.setBounds(lb_firstSeason.getX(),LABEL_Y, Config.UI_WIDTH/3, 134/3+10);
 				changeSeason(Season.season12_13);
 			}
 		});
 		lb_secondSeason.addMouseListener(new LMouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				foreground.setBounds(lb_secondSeason.getX(), 134/3, Config.UI_WIDTH/3, 134/3+10);
+				foreground.setBounds(lb_secondSeason.getX(), LABEL_Y, Config.UI_WIDTH/3, 134/3+10);
 				changeSeason(Season.season13_14);
 			}
 		});
 		lb_thirdSeason.addMouseListener(new LMouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				foreground.setBounds(lb_thirdSeason.getX(), 134/3, Config.UI_WIDTH/3, 134/3+10);
+				foreground.setBounds(lb_thirdSeason.getX(), LABEL_Y, Config.UI_WIDTH/3, 134/3+10);
 				changeSeason(Season.season14_15);
 			}
 		});
