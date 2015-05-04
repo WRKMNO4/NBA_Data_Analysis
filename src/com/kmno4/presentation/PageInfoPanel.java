@@ -12,6 +12,12 @@ import javax.swing.JPanel;
 import com.kmno4.common.Config;
 //用来显示页面信息的panel
 public class PageInfoPanel extends JPanel {
+	
+	private static final int CIRCLE_WIDTH=10;
+	private static final int CIRCLE_Y=20;
+	private static final int CIRCLE_X_GAP=20;
+	private static final int FIRST_CIRCLE_X=830;	
+	
 	public JLabel page_name;
 	private JLabel player;
 	private ArrayList<ImageIcon> players;
@@ -19,6 +25,11 @@ public class PageInfoPanel extends JPanel {
 	private int count=51;//动图位置
 	private int x,y;//球员图片位置
 	private boolean isup;
+	private int v;//图片切换移动的速度
+//	private JLabel circle1,circle2,circle3,circle4;
+	private int circle_num;
+	private int full_circle_x;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -27,6 +38,7 @@ public class PageInfoPanel extends JPanel {
 		this.setLayout(null);		
 		
 		i=x=y=0;
+		circle_num=0;
 		
 		page_name = new JLabel(pageInfo);
 		page_name.setForeground(Color.WHITE);
@@ -37,13 +49,9 @@ public class PageInfoPanel extends JPanel {
 		players=Config.getPlayers();
 		new MotionThread().start();
 		new PlayerThread().start();
-//		
-//		player=new JLabel();
-//		player.setIcon(Config.PLYAER);
-//		player.setBounds(800, 5, 30, 36);
-//		add(player);
+
 	}
-	
+		
 	public void refreshInfo(String pageInfo){
 		this.page_name.setText(pageInfo);
 	}
@@ -56,25 +64,41 @@ public class PageInfoPanel extends JPanel {
 //		g.drawImage(Config.getLoadingMotions().get(count).getImage(), 800,13,20, 20, this);
 		g.setColor(Color.WHITE);
 		g.drawLine(0, 40, 1000, 40);
+		drawCircle(g);
     }
+	
+	public void drawCircle(Graphics g){
+		g.drawImage(Config.CIRCLE_FULL.getImage(), FIRST_CIRCLE_X+CIRCLE_X_GAP*circle_num, CIRCLE_Y, CIRCLE_WIDTH, CIRCLE_WIDTH, null);
+
+		g.drawImage(Config.CIRCLE_EMPTY.getImage(), FIRST_CIRCLE_X, CIRCLE_Y, CIRCLE_WIDTH, CIRCLE_WIDTH, null);
+		g.drawImage(Config.CIRCLE_EMPTY.getImage(), FIRST_CIRCLE_X+CIRCLE_X_GAP, CIRCLE_Y, CIRCLE_WIDTH, CIRCLE_WIDTH, null);
+		g.drawImage(Config.CIRCLE_EMPTY.getImage(), FIRST_CIRCLE_X+CIRCLE_X_GAP*2, CIRCLE_Y, CIRCLE_WIDTH, CIRCLE_WIDTH, null);
+		g.drawImage(Config.CIRCLE_EMPTY.getImage(), FIRST_CIRCLE_X+CIRCLE_X_GAP*3, CIRCLE_Y, CIRCLE_WIDTH, CIRCLE_WIDTH, null);
+	}
 	
 	class PlayerThread extends Thread{
 		@Override
 		public void run() {
 			while(true){
+				//pic num
 				i++;
 				if(i>9){
 					i=0;
 				}
-				
+				//pic direction
 				double k=Math.random();
 				if(k>0.5){
 					isup=true;
 				}else{
 					isup=false;
-				}
+				}				
 				try {
 					Thread.sleep(5000);
+					//cicle
+					circle_num++;
+					if(circle_num>3){
+						circle_num=0;
+					}
 					repaint();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
@@ -111,6 +135,21 @@ public class PageInfoPanel extends JPanel {
 				}
 			}
 			
+		}
+	}
+	
+	class PictureThread extends Thread{
+		@Override
+		public void run() {
+			while(true){
+				
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 }

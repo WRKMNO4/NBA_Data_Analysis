@@ -248,7 +248,7 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 
 		submit.setBounds(21 * Config.SORT_WIDTH
 				- Config.SELECTION_COMB_TEAM_WIDTH, Config.COBM_LOCATION_Y,
-				Config.SELECTION_SEARCH_WIDTH, Config.SELECTION_COMB_TEAM_WIDTH);
+				Config.SELECTION_SEARCH_WIDTH, Config.COMBOBOX_HEIGHT);
 		add(submit);
 
 	}

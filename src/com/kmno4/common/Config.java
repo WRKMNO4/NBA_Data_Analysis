@@ -188,6 +188,9 @@ public class Config {
 	public static final ImageIcon HOT_SELECTION_BACKGROUND=new ImageIcon("images/hot_selection_bg_1.png");
 	public static final ImageIcon LABEL_CALENDAR_BACKGROUND=new ImageIcon("images/label_calendar_bg_1.png");
 	
+	public static final ImageIcon CIRCLE_EMPTY=new ImageIcon("images/circle_empty.png");
+	public static final ImageIcon CIRCLE_FULL=new ImageIcon("images/circle_full.png");
+	
 	public static ArrayList<ImageIcon> getLoadingMotions(){
 		for(int i=1;i<100;i++){
 			motions.add(new ImageIcon("images/loading_motions/"+i+".png"));	
