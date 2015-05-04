@@ -124,9 +124,13 @@ public class TeamDetailPanel extends JPanel {
 			setLayout(null);
 			
 			logoLabel = new JLabel();
+			logoLabel.setBounds(20, 0, 230, 230);
+			PlayerDetailPanel.fillLabel(teamPO.getTeamLogoURL(), logoLabel, logoLabel.getWidth(), logoLabel.getHeight());
 			add(logoLabel);
 			
 			info1 = new JLabel("名称/缩写 : " + teamPO.getFullName() + "/" + teamPO.getShortName());
+//			info1.setBounds(x, y, width, height);
+			info1.setFont(new Font("default", 0, 30));
 			add(info1);
 			info2 = new JLabel("所在地 : " + teamPO.getCity());
 			add(info1);

@@ -487,7 +487,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	}
 	
 	public void setTable(Object[][] body) {
-		System.out.println(body.length);
+//		System.out.println(body.length);
 		int y = Config.TOP_TAB_HEIGHT + Config.INTRODUCTION_WHITE + Config.SELECTION_HEIGHT;
 		TableFactory.createTable(tg,
 				MainFrame.mainFrame,

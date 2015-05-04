@@ -65,7 +65,7 @@ public class MatchInfoDetailPanel extends JPanel {
 		team1 = new TableGroup();
 		TableFactory.createTable(
 				team1, matchInfoDetailFrame,
-				body,
+				TableContentTransfer.transferMatchDetailInfo(matchPO.getFirstTeam_PlayerData()),
 				Config.UI_WIDTH - PADDING * 2, TEAM_1_TABLE_HEIGHT,
 				PADDING, team1Label.getY() + team1Label.getHeight());
 		
@@ -78,7 +78,7 @@ public class MatchInfoDetailPanel extends JPanel {
 		team2 = new TableGroup();
 		TableFactory.createTable(
 				team2, matchInfoDetailFrame,
-				body,
+				TableContentTransfer.transferMatchDetailInfo(matchPO.getSecondTeam_PlayerData()),
 				Config.UI_WIDTH - PADDING * 2, TEAM_2_TABLE_HEIGHT,
 				PADDING, team2Label.getY() + team2Label.getHeight());
 		

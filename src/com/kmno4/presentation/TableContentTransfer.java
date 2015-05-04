@@ -516,10 +516,11 @@ public class TableContentTransfer {
 		return body ;
 	}
 	
-	public static String[][] transferMatchDetailInfo(ArrayList<PlayerDataOfOneMatchPO> datas,int columns){
-		String[][] body = new String[datas.size()][columns] ;
-		for(int i=0;i<datas.size();i++){
-			PlayerDataOfOneMatchPO playerData = datas.get(i) ;
+	public static String[][] transferMatchDetailInfo(ArrayList<PlayerDataOfOneMatchPO> datas){
+		String[][] body = new String[datas.size() + 1][Config.MATCH_DETAIL_INFO.length] ;
+		body[0] = Config.MATCH_DETAIL_INFO;
+		for(int i= 1 ; i < body.length ; i++){
+			PlayerDataOfOneMatchPO playerData = datas.get(i - 1) ;
 			body[i][0] = playerData.getName() ;
 			body[i][1] = playerData.getPosition() ;
 			body[i][2] = playerData.getPresentTimeOfOneMatch() ;
