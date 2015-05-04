@@ -173,17 +173,11 @@ public class HotSelectionPanel extends JPanel implements ActionListener,MouseMot
 				DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 				String content=df.format(dt);
 				lb_date = new JLabel(content);
-//				lb_date.setIcon(Config.LABEL_CALENDAR_BACKGROUND);
 				lb_date.setForeground(Color.white);
 				lb_date.setFont(new Font("default", Font.PLAIN, 20));
 				lb_date.setBounds(500, 73, 168, 27);
 				add(lb_date);
 				
-//				btn_submit=new JLabel("提交");
-//				btn_submit.setForeground(Color.WHITE);
-//				btn_submit.setFont(new Font("default", Font.ITALIC, 20));
-//				btn_submit.setBounds(700, 73, 50, 27);
-//				add(btn_submit);
 				
 	}
 	
