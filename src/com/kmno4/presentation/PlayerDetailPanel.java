@@ -138,11 +138,6 @@ public class PlayerDetailPanel extends JPanel {
 		table.setDefaultRenderer(Object.class, dtcr);
 	}
 	
-	private static final int
-	    HEAD_LABEL_WIDTH = 140,
-	    HEAD_LABEL_X = 20,
-	    INFO_WIDTH = 500
-	    ;
 	private static final String PLAYER_DETAIL_TOP_BG = "images/player_detail_bg.png";
 	class DataPanel extends JPanel {
 		public JLabel bgLabel;
@@ -157,22 +152,36 @@ public class PlayerDetailPanel extends JPanel {
 		public DataPanel(PlayerPO p) {
 			setLayout(null);
 			
-			headLabel = new JLabel();
-			PlayerDetailPanel.fillLabel(p.getPortraitURL(), headLabel, HEAD_LABEL_WIDTH, DATA_PANEL_HEIGHT);
-			headLabel.setBounds(HEAD_LABEL_X, 0, HEAD_LABEL_WIDTH, DATA_PANEL_HEIGHT);
+			headLabel = new JLabel(new ImageIcon(p.getPortraitURL()));
+			headLabel.setBounds(20, 45, 230, 185);
 			add(headLabel);
 			
 			
-			ballNum = new JLabel(p.getNumber());
-			name = new JLabel(p.getName());
+			ballNum = new JLabel(p.getNumber(), JLabel.RIGHT);
+			ballNum.setBounds(350, 15, 80, 80);
+			ballNum.setFont(new Font("default", 0, 50));
+			add(ballNum);
+			name = new JLabel(p.getName()); 
+			name.setFont(new Font("default", 0, 25));
+			name.setBounds(450, 40, 200, 50);
+			add(name);
 			
-			info1 = new JLabel(p.getHeight() + "/" + p.getWeight());
+			int delta = 30;
+			info1 = new JLabel("身高/体重 : " + p.getHeight() + "(英尺-英寸)/" + p.getWeight() + "(磅)");
+			info1.setFont(new Font("default", 2, 20));
+			info1.setBounds(650, 50, 400, delta);
 			add(info1);
-			info2 = new JLabel(p.getBirth());
+			info2 = new JLabel("生日 : " + p.getBirth());
+			info2.setFont(new Font("default", 2, 20));
+			info2.setBounds(650, info1.getY() + delta, 400, delta);
 			add(info2);
-			info3 = new JLabel(p.getPosition());
+			info3 = new JLabel("所在地 : " + p.getPosition());
+			info3.setFont(new Font("default", 2, 20));
+			info3.setBounds(650, info2.getY() + delta, 400, delta);
 			add(info3);
-			info4 = new JLabel(p.getExp());
+			info4 = new JLabel("球龄 : " + p.getExp() + "年");
+			info4.setFont(new Font("default", 2, 20));
+			info4.setBounds(650, info3.getY() + delta, 400, delta);
 			add(info4);
 
 			teamLabel = new JLabel();
