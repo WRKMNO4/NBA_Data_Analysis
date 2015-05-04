@@ -47,8 +47,8 @@ public class HotSelectionPanel extends JPanel implements ActionListener,MouseMot
 	    season_hot_team_datatype,
 	    most_improve_season,
 	    most_improve_datatype;
-	JLabel	lb_date;
-	public JLabel lb_protection;
+	JLabel	
+		lb_date,lb_protection;
 //		JTextField tf_date;
 	JLabel
 		btn_submit;
@@ -382,8 +382,14 @@ public class HotSelectionPanel extends JPanel implements ActionListener,MouseMot
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getX()>lb_protection.getX()&&e.getY()>lb_protection.getY())
-			lb_protection.setVisible(false);
+//		if(e.getX()>lb_protection.getX()&&e.getY()>lb_protection.getY())
+//			lb_protection.setVisible(false);
+//		if(e.getYOnScreen()>this.getTopLevelAncestor().getY()&&e.getXOnScreen()>this.getX()&&e.getXOnScreen()<(this.getX()+Config.UI_WIDTH)){
+//			lb_protection.setVisible(false);
+//		}else{
+//			lb_protection.setVisible(true);
+//		}
+//		System.out.print(this.getY());
 		
 	}
 
@@ -408,17 +414,17 @@ public class HotSelectionPanel extends JPanel implements ActionListener,MouseMot
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource()==MainFrame.mainFrame.hotSelectionPanel){
-			lb_protection.setVisible(false);
-		}
+//		if(e.getSource()==MainFrame.mainFrame.hotSelectionPanel){
+//			lb_protection.setVisible(false);
+//		}
 		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		if(e.getSource()==MainFrame.mainFrame.hotSelectionPanel){
-			lb_protection.setVisible(true);
-		}
+//		if(e.getSource()==MainFrame.mainFrame.hotSelectionPanel){
+//			lb_protection.setVisible(true);
+//		}
 	}
 
 	

@@ -29,6 +29,8 @@ import com.kmno4.presentation.button.LMouseAdapter;
 public class PlayerSelectionPanel extends JPanel implements MouseListener,
 		ActionListener {
 	public List<JLabel> avg_sort_list;
+	
+	private final int sort_selection_x=127;
 //	private TextField tf_search;
 	boolean isPickup = true;
 	boolean isAvg = true;
@@ -236,7 +238,7 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 		add(cb_position);
 
 		lb_season.setBounds(21 * Config.SORT_WIDTH
-				- Config.SELECTION_COMB_TEAM_WIDTH - Config.COMB_TEXT_GAP, 50,
+				- Config.SELECTION_COMB_TEAM_WIDTH - Config.COMB_TEXT_GAP, 53,
 				Config.TEXT_WIDTH, Config.TEXT_height);
 		add(lb_season);
 		cb_season
@@ -254,10 +256,10 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 	}
 
 	public void initSortBounds() {
-		foreground.setBounds(100+30-6, 45, Config.SORT_WIDTH * 3, Config.SORT_HEIGHT+14);
-		avg_sort.setBounds(100+30-6, 45, Config.SORT_WIDTH * 3, Config.SORT_HEIGHT+14);
+		foreground.setBounds(sort_selection_x, 45, Config.SORT_WIDTH * 3, Config.SORT_HEIGHT+14);
+		avg_sort.setBounds(sort_selection_x, 45, Config.SORT_WIDTH * 3, Config.SORT_HEIGHT+14);
 		total_sort
-				.setBounds(100+30-6, 89, Config.SORT_WIDTH * 3, Config.SORT_HEIGHT+15);
+				.setBounds(sort_selection_x, 89, Config.SORT_WIDTH * 3, Config.SORT_HEIGHT+15);
 		cb_avg_sort_data.setBounds(160+55, 77, Config.SELECTION_SEARCH_WIDTH,
 				Config.COMBOBOX_HEIGHT);
 		cb_total_sort_data.setBounds(160+55, 77, Config.SELECTION_SEARCH_WIDTH,
@@ -298,7 +300,7 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 
 	public void showSortAvg() {
 		forGround.setBounds(sort.getX(), sort.getY(), Config.PLAYER_TOP_LABEL_WIDTH,Config.PLAYER_TOP_LABEL_HEIGHT);
-		foreground.setBounds(100+30-6, 45, Config.SORT_WIDTH * 3, Config.SORT_HEIGHT+14);
+		foreground.setBounds(sort_selection_x, 45, Config.SORT_WIDTH * 3, Config.SORT_HEIGHT+14);
 		
 		lb_percent.setVisible(false);
 		lb_efficiency.setVisible(false);
@@ -322,7 +324,7 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 	}
 
 	public void showSortTotal() {
-		foreground.setBounds(100+30-6, 89, Config.SORT_WIDTH * 3, Config.SORT_HEIGHT+14);
+		foreground.setBounds(sort_selection_x, 89, Config.SORT_WIDTH * 3, Config.SORT_HEIGHT+14);
 		cb_avg_sort_data.setVisible(false);
 		cb_total_sort_data.setVisible(true);
 	}

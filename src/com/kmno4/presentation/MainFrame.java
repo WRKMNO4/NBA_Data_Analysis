@@ -33,25 +33,25 @@ public class MainFrame extends JFrame{
 	public ArrayList<TeamPO> teams;
 	public ArrayList<MatchPO> matches;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		 // 装载可选择的主题  
-        WebLookAndFeel.install();
-		MainFrame frame = new MainFrame();
-		frame.setLayout(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
-
-		frame.setSize(Config.UI_WIDTH+frame.getInsets().left*2, Config.UI_HEIGHT+frame.getInsets().top+frame.getInsets().bottom);
-		frame.setLocationRelativeTo(null);
-		MainFrame.mainFrame.playerSelectionPanel.setBounds(0,
-				Config.TOP_TAB_HEIGHT + Config.INTRODUCTION_WHITE,
-				Config.UI_WIDTH, Config.SELECTION_HEIGHT);
-		frame.setVisible(true);
-		
-	}
+//	/**
+//	 * Launch the application.
+//	 */
+//	public static void main(String[] args) {
+//		 // 装载可选择的主题  
+//        WebLookAndFeel.install();
+//		MainFrame frame = new MainFrame();
+//		frame.setLayout(null);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setResizable(false);
+//
+//		frame.setSize(Config.UI_WIDTH+frame.getInsets().left*2, Config.UI_HEIGHT+frame.getInsets().top+frame.getInsets().bottom);
+//		frame.setLocationRelativeTo(null);
+//		MainFrame.mainFrame.playerSelectionPanel.setBounds(0,
+//				Config.TOP_TAB_HEIGHT + Config.INTRODUCTION_WHITE,
+//				Config.UI_WIDTH, Config.SELECTION_HEIGHT);
+//		frame.setVisible(true);
+//		
+//	}
 		
 
 	/**
