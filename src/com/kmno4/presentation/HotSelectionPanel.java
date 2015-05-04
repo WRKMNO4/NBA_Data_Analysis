@@ -136,16 +136,16 @@ public class HotSelectionPanel extends JPanel implements ActionListener,MouseMot
 		});
 
 //		tf_date.addActionListener(this);
-		lb_date.addMouseListener(new LMouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Season season=TransferSortHelper.StringToSeason(daily_player_season.getSelectedItem().toString());
-				PlayerData type=TransferSortHelper.StringToDataTypeForPlayer(daily_player_datatype.getSelectedItem().toString());
-//				String date=lb_date.getText();	
-				String date=lb_date.getText();
-				MainFrame.mainFrame.topTabPanel.refreshDailyPlayerTable(season, date, type);
-			}
-		});
+//		lb_date.addMouseListener(new LMouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				Season season=TransferSortHelper.StringToSeason(daily_player_season.getSelectedItem().toString());
+//				PlayerData type=TransferSortHelper.StringToDataTypeForPlayer(daily_player_datatype.getSelectedItem().toString());
+////				String date=lb_date.getText();	
+//				String date=lb_date.getText();
+//				MainFrame.mainFrame.topTabPanel.refreshDailyPlayerTable(season, date, type);
+//			}
+//		});
 		
 		btn_submit.addMouseListener(new LMouseAdapter() {
 			@Override
@@ -208,7 +208,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener,MouseMot
 				Date dt=new Date();//
 				DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 				String content=df.format(dt);
-				lb_date = new JLabel(content+"  ▼");
+				lb_date = new JLabel(content);
 //				lb_date.setIcon(Config.LABEL_CALENDAR_BACKGROUND);
 				lb_date.setForeground(Color.white);
 				lb_date.setFont(new Font("default", Font.PLAIN, 20));
