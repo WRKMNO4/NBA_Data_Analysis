@@ -61,7 +61,7 @@ public class PageInfoPanel extends JPanel {
 		super.paintComponent(g);
 		g.drawImage(Config.INTRO_PAGE_BG.getImage(),0, 0, Config.UI_WIDTH, Config.INTRODUCTION_WHITE, null);
 		g.drawImage(players.get(i).getImage(),x,y, null);
-//		g.drawImage(Config.getLoadingMotions().get(count).getImage(), 800,13,20, 20, this);
+		g.drawImage(Config.getLoadingMotions().get(count).getImage(), FIRST_CIRCLE_X+CIRCLE_X_GAP*circle_num-5,14,20, 20, this);
 		g.setColor(Color.WHITE);
 		g.drawLine(0, 40, 1000, 40);
 		drawCircle(g);
@@ -122,10 +122,10 @@ public class PageInfoPanel extends JPanel {
 				if(y<-500||y>0){
 					y=-200;
 				}
-//				count++;
-//				if(count>=99){
-//					count=51;
-//				}
+				count++;
+				if(count>=99){
+					count=51;
+				}
 				try {
 					Thread.sleep(70);
 					repaint();
