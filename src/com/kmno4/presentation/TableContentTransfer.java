@@ -189,10 +189,11 @@ public class TableContentTransfer {
 	}
 	
 	
-	public static String[][] transferTeamBasicInfo(int colums,List<TeamPO> teams){
-		String[][] body = new String[teams.size()][colums] ;
-		for(int i = 0 ; i<teams.size();i++){
-			TeamPO team = teams.get(i);
+	public static String[][] transferTeamBasicInfo(List<TeamPO> teams){
+		String[][] body = new String[teams.size() + 1][Config.TEAM_BASIC_INFO.length] ;
+		body[0] = Config.TEAM_BASIC_INFO;
+		for(int i = 1 ; i<body.length;i++){
+			TeamPO team = teams.get(i - 1);
 			body[i][0]=team.getFullName();
 			body[i][1]=team.getShortName();
 			body[i][2]=team.getCity();

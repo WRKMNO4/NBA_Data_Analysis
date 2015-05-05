@@ -303,14 +303,35 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	 * @param teams
 	 */
 	public void refreshTeamTable(ArrayList<TeamPO> teams) {
-//		System.out.println("TopTabPanel.refreshTeamTable()");
+//		TODO
 		if(tg.table != null) tg.table.setVisible(false);
 		if(tg.jsp != null) {
 			tg.jsp.setVisible(false);
 			MainFrame.mainFrame.remove(tg.jsp);
 		}
 		if(teams == null || teams.size() == 0) return;
-		setTable(TableContentTransfer.transferTeamBasicInfo(Config.TEAM_BASIC_INFO.length, teams));
+		setTable(TableContentTransfer.transferTeamBasicInfo(teams));
+		
+//		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer() {
+//			@Override
+//			public Component getTableCellRendererComponent(JTable table,
+//					Object value, boolean isSelected, boolean hasFocus,
+//					int row, int column) {
+//				
+//				setOpaque(true);
+//				if(row == 0) setBackground(new Color(0, 0, 0, 170)); 
+//				else if(row % 2 != 0) setBackground(new Color(0, 0, 0, 110)); 
+//				else setBackground(new Color(0, 0, 0, 0)); 
+//				
+//				
+//				return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+//			}
+//			
+//		};
+//		dtcr.setOpaque(false);
+//		tg.table.setDefaultRenderer(Object.class, dtcr);
+//		tg.table.getColumnModel().getColumn(0).setPreferredWidth(200);
+		
 		addTeamLink();
 		MainFrame.mainFrame.repaint();
 	}
@@ -543,6 +564,17 @@ public class TopTabPanel extends JPanel implements MouseListener{
 				Config.UI_WIDTH, Config.UI_HEIGHT - y,
 				0, y,
 				TABLE_UNIT_HEIGHT, TABLE_UNIT_HEIGHT, 0);
+		tg.table.setForeground(Color.white);
+	}
+	public void setTable(Object[][] body,
+			int rowHeight, int headRowHeight, int UnitWidth) {
+		int y = Config.TOP_TAB_HEIGHT + Config.INTRODUCTION_WHITE + Config.SELECTION_HEIGHT;
+		TableFactory.createTable(tg,
+				MainFrame.mainFrame,
+				body,
+				Config.UI_WIDTH, Config.UI_HEIGHT - y,
+				0, y,
+				rowHeight, headRowHeight, UnitWidth);
 		tg.table.setForeground(Color.white);
 	}
 	
