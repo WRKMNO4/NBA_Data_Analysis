@@ -65,8 +65,9 @@ public class MainFrame extends JFrame{
 				Config.UI_WIDTH, Config.UI_HEIGHT);
 		
 		((JPanel)mainFrame.getContentPane()).setOpaque(false);
-		JLabel l = new JLabel(Config.FRAME_BACKGROUND);
-		l.setBounds(0, 0, Config.FRAME_BACKGROUND.getIconWidth(), Config.FRAME_BACKGROUND.getIconHeight());
+		JLabel l = new JLabel(Config.PLAYERGROUND);
+		l.setBounds(0, 0, Config.UI_WIDTH, Config.UI_HEIGHT);
+//		l.setBounds(0, 0, Config.FRAME_BACKGROUND.getIconWidth(), Config.FRAME_BACKGROUND.getIconHeight());
 		mainFrame.getLayeredPane().setLayout(null);
 		mainFrame.getLayeredPane().add(l, new Integer(Integer.MIN_VALUE));
 		
