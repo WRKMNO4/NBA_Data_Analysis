@@ -276,12 +276,16 @@ public class TopTabPanel extends JPanel implements MouseListener{
 					Object value, boolean isSelected, boolean hasFocus,
 					int row, int column) {
 				PlayerPO p;
-				String text = table.getValueAt(row, column).toString();
-				if((p = PlayerListPO.findPlayerAccurately(text)) != null) {
+				Object o = table.getValueAt(row, column);
+				if(o != null && (p = PlayerListPO.findPlayerAccurately(o.toString())) != null) {
 					PlayerDetailPanel.fillLabel(p.getPortraitURL(), this, TABLE_UNIT_HEIGHT, TABLE_UNIT_HEIGHT * 185 / 230);
-				System.out.println(row + "," + column);
 				}
 				else setIcon(null);
+				setOpaque(true);
+				if(row == 0) setBackground(new Color(0, 0, 0, 170)); 
+				else if(row % 2 != 0) setBackground(new Color(0, 0, 0, 110)); 
+				else setBackground(new Color(0, 0, 0, 0)); 
+				
 				
 				return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 			}
