@@ -2,6 +2,7 @@ package com.kmno4.presentation;
 
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Event;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -14,6 +15,7 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
@@ -267,13 +269,27 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			MainFrame.mainFrame.remove(tg.jsp);
 		}
 		if(players == null || players.size() == 0) return;
-		setTable(TableContentTransfer.transferPlayerSortAvgInfo(Config.PLAYER_SORT_AVERAGE.length, (ArrayList<PlayerPO>)players, Config.LASTEST_SEASON));
-//		for(int i = 0; i < players.size(); i ++) {
-//			
-//		}
-//		JLabel l = (JLabel)tg.table.getColumnModel().getColumn(1).getCellRenderer();
-//		System.out.println(l.getText());
-//		l.setIcon(new ImageIcon(players.get(1).getPortraitURL()));
+		setTable(TableContentTransfer.transferPlayerSortAvgInfo((ArrayList<PlayerPO>)players));
+		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer() {
+			@Override
+			public Component getTableCellRendererComponent(JTable table,
+					Object value, boolean isSelected, boolean hasFocus,
+					int row, int column) {
+				PlayerPO p;
+				String text = table.getValueAt(row, column).toString();
+				if((p = PlayerListPO.findPlayerAccurately(text)) != null) {
+					PlayerDetailPanel.fillLabel(p.getPortraitURL(), this, TABLE_UNIT_HEIGHT, TABLE_UNIT_HEIGHT * 185 / 230);
+				System.out.println(row + "," + column);
+				}
+				else setIcon(null);
+				
+				return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+			}
+			
+		};
+		dtcr.setOpaque(false);
+		tg.table.setDefaultRenderer(Object.class, dtcr);
+		tg.table.getColumnModel().getColumn(0).setPreferredWidth(200);
 		
 		addPlayerLink();
 		MainFrame.mainFrame.repaint();
@@ -514,19 +530,16 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		
 	}
 	
+	private static final int TABLE_UNIT_HEIGHT = 60;
 	public void setTable(Object[][] body) {
-//		System.out.println(body.length);
 		int y = Config.TOP_TAB_HEIGHT + Config.INTRODUCTION_WHITE + Config.SELECTION_HEIGHT;
 		TableFactory.createTable(tg,
 				MainFrame.mainFrame,
 				body,
 				Config.UI_WIDTH, Config.UI_HEIGHT - y,
-				0, y);
-		tg.table.setShowVerticalLines(false);
-//		tg.table.setOpaque(false);
-//		tg.jsp.setOpaque(false);
-//		JLabel l = new JLabel(Config.SPLASH_BACKGROUND);
-//		tg.jsp.getViewport().add(l, -1);
+				0, y,
+				TABLE_UNIT_HEIGHT, TABLE_UNIT_HEIGHT, 0);
+		tg.table.setForeground(Color.white);
 	}
 	
 	class LineThread extends Thread{
