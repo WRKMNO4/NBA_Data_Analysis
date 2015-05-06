@@ -79,6 +79,7 @@ public class TeamDetailPanel extends JPanel {
 				Config.UI_WIDTH - PADDING * 2, SEASON_AVG_DATA_TABLE_HEIGHT,
 				PADDING, avgLabel.getY() + avgLabel.getHeight());
 		PlayerDetailPanel.paintTable(seasonAvgData.table);
+		seasonAvgData.table.getColumnModel().getColumn(0).setPreferredWidth(200);
 		
 		sumLabel = new JLabel("赛季总计", JLabel.LEFT);
 		sumLabel.setOpaque(true);
@@ -97,6 +98,7 @@ public class TeamDetailPanel extends JPanel {
 				Config.UI_WIDTH - PADDING * 2, SEASON_SUM_DATA_TABLE_HEIGHT,
 				PADDING, sumLabel.getY() + sumLabel.getHeight());
 		PlayerDetailPanel.paintTable(seasonSumData.table);
+		seasonSumData.table.getColumnModel().getColumn(0).setPreferredWidth(200);
 		
 		recentLabel= new JLabel("最近五场比赛", JLabel.LEFT);
 		recentLabel.setFont(new Font("default", 0, 13));
@@ -115,6 +117,7 @@ public class TeamDetailPanel extends JPanel {
 				Config.UI_WIDTH - PADDING * 2, RECENT_DATA_TABLE_HEIGHT,
 				PADDING, recentLabel.getY() + recentLabel.getHeight());
 		PlayerDetailPanel.paintTable(recentData.table);
+		recentData.table.getColumnModel().getColumn(0).setPreferredWidth(200);
 		addLinks();
 		
 	}
@@ -157,26 +160,32 @@ public class TeamDetailPanel extends JPanel {
 			info1 = new JLabel("名称/缩写 : " + teamPO.getFullName() + "/" + teamPO.getShortName());
 			info1.setBounds(300, 20, 300, 50);
 			info1.setFont(new Font("default", 2, 20));
+			info1.setForeground(Color.white);
 			add(info1);
 			info2 = new JLabel("所在地 : " + teamPO.getCity());
 			info2.setBounds(300, info1.getY() + delta, 300, 50);
 			info2.setFont(new Font("default", 2, 20));
+			info2.setForeground(Color.white);
 			add(info2);
 			info3 = new JLabel("赛区 : " + teamPO.getZone().toString());
 			info3.setBounds(300, info2.getY() + delta, 300, 50);
 			info3.setFont(new Font("default", 2, 20));
+			info3.setForeground(Color.white);
 			add(info3);
 			info4 = new JLabel("分区 : " + teamPO.getDistrict());
 			info4.setBounds(600, 20, 300, 50);
 			info4.setFont(new Font("default", 2, 20));
+			info4.setForeground(Color.white);
 			add(info4);
 			info5 = new JLabel("主场 : " + teamPO.getHomeCourt());
 			info5.setBounds(600, info4.getY() + delta, 300, 50);
 			info5.setFont(new Font("default", 2, 20));
+			info5.setForeground(Color.white);
 			add(info5);
 			info6 = new JLabel("建立时间 : " + teamPO.getTimeOfEstablishment());
 			info6.setBounds(600, info5.getY() + delta, 300, 50);
 			info6.setFont(new Font("default", 2, 20));
+			info6.setForeground(Color.white);
 			add(info6);
 			
 

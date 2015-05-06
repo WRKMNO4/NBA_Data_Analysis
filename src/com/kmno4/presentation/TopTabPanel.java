@@ -334,13 +334,8 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	 * 刷新match列表
 	 */
 	public void refreshMatchTable(ArrayList<MatchPO> matches) {
-//System.out.println("TopTabPanel.refreshMatchTable()"); TODO
-		if(matches == null || matches.size() == 0) {
-			hidTable();
-			return;
-		}
-		TableGroup buffer = new TableGroup(tg);
-		tg = new TableGroup();
+		hidTable();
+		if(matches == null || matches.size() == 0) return;
 		setTable(TableContentTransfer.transferMatchBasicInfo(matches),
 				(int)(TABLE_UNIT_HEIGHT * 1.5), TABLE_UNIT_HEIGHT, 200);
 		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer() {
@@ -368,7 +363,6 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		tg.table.setDefaultRenderer(Object.class, dtcr);
 		MainFrame.mainFrame.remove(tg.jsp);
 		MainFrame.mainFrame.add(tg.jsp, MainFrame.mainFrame.getComponentCount());
-		hidTable(buffer);
 		addMatchLink();
 		MainFrame.mainFrame.repaint();
 	}
@@ -415,17 +409,10 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	private static final int HOT_UNIT_WIDTH = Config.UI_WIDTH / 4;
 	
 	public void refreshDailyPlayerTable(PlayerData dataType) {
-		if(dataType == null){
-			hidTable();
-			return;
-		}
+		hidTable();
+		if(dataType == null) return; 
 		ArrayList<StandingDataPO> sps = MainFrame.mainFrame.bl.getDatasOfDailyStandingPlayer(dataType,5);
-		if(sps == null || sps.size() == 0) {
-			hidTable();
-			return;
-		}
-		TableGroup buffer = new TableGroup(tg);
-		tg = new TableGroup();
+		if(sps == null || sps.size() == 0) return;
 		setTable(TableContentTransfer.transferStandingDailyPlayerInfo(sps),
 				HOT_UNIT_HEIGHT, HOT_UNIT_HEIGHT, HOT_UNIT_WIDTH);
 		tg.table.setDefaultRenderer(Object.class, new HotTableCellRender(true));
@@ -473,13 +460,6 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		if(tg.jsp != null) {
 			tg.jsp.setVisible(false);
 			MainFrame.mainFrame.remove(tg.jsp);
-		}
-	}
-	private void hidTable(TableGroup tablegroup) {
-		if(tablegroup.table != null) tablegroup.table.setVisible(false);
-		if(tablegroup.jsp != null) {
-			tablegroup.jsp.setVisible(false);
-			MainFrame.mainFrame.remove(tablegroup.jsp);
 		}
 	}
 	
