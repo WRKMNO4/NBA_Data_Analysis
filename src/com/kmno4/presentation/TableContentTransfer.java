@@ -385,10 +385,11 @@ public class TableContentTransfer {
 		return body;
 	}
 	
-	public static String[][] transferStandingDailyPlayerInfo(int columns,ArrayList<StandingDataPO> datas){
-		String[][] body = new String[datas.size()][columns] ;
-		for(int i = 0;i<datas.size();i++){
-			StandingDataPO thePlayer = datas.get(i) ;
+	public static String[][] transferStandingDailyPlayerInfo(ArrayList<StandingDataPO> datas){
+		String[][] body = new String[datas.size() + 1][Config.STANDING_DAILYPLAYER_TABLEHEAD.length] ;
+		body[0] = Config.STANDING_DAILYPLAYER_TABLEHEAD;
+		for(int i = 1;i<body.length;i++){
+			StandingDataPO thePlayer = datas.get(i - 1) ;
 			body[i][0] = thePlayer.getPlayerName() ;
 			body[i][1] = thePlayer.getTeam() ;
 			body[i][2] = thePlayer.getPosition() ;
@@ -397,10 +398,11 @@ public class TableContentTransfer {
 		return body ;
 	}
 	
-	public static String[][] transferStandingSeasonPlayerInfo(int columns,ArrayList<PlayerPO> datas,Season season,PlayerData dataType){
-		String [][] body = new String[datas.size()][columns] ;
-		for(int i=0;i<datas.size();i++){
-			PlayerPO thePlayer = datas.get(i) ;
+	public static String[][] transferStandingSeasonPlayerInfo(ArrayList<PlayerPO> datas,Season season,PlayerData dataType){
+		String [][] body = new String[datas.size() + 1][Config.STANDING_SEASONPLAYER_TABLEHEAD.length] ;
+		body[0] = Config.STANDING_SEASONPLAYER_TABLEHEAD;
+		for(int i=1;i<body.length;i++){
+			PlayerPO thePlayer = datas.get(i - 1) ;
 			PlayerDataPO playerData = thePlayer.getSeasonInfo(season).getAveragePlayerData() ;
 			body[i][0] = thePlayer.getName() ;
 			body[i][1] = thePlayer.getTeam(season) ;
@@ -435,10 +437,11 @@ public class TableContentTransfer {
 		return body ;
 	}
 
-	public static String[][] transferStandingSeasonTeamInfo(int columns,ArrayList<TeamPO> datas,Season season,TeamData dataType){
-		String[][] body = new String[datas.size()][columns] ;
-		for(int i = 0 ;i<datas.size();i++){
-			TeamPO theTeam = datas.get(i) ;
+	public static String[][] transferStandingSeasonTeamInfo(ArrayList<TeamPO> datas,Season season,TeamData dataType){
+		String[][] body = new String[datas.size() + 1][Config.STANDING_SEASONTEAM_TABLEHEAD.length] ;
+		body[0] = Config.STANDING_SEASONTEAM_TABLEHEAD;
+		for(int i = 1 ;i<body.length;i++){
+			TeamPO theTeam = datas.get(i - 1) ;
 			TeamDataPO teamData = theTeam.getAverageTeamData(season);
 			body[i][0] = theTeam.getFullName() ;
 			body[i][1] = theTeam.getZone().toString() ;
@@ -473,10 +476,11 @@ public class TableContentTransfer {
 	}
 
 	
-	public static String[][] transferStandingImprovedInfo(int columns,ArrayList<PlayerPO> datas, Season season ,PlayerData dataType){
-		String[][] body = new String[datas.size()][columns] ;
-		for(int i = 0 ; i<datas.size() ;i++){
-			PlayerPO thePlayer = datas.get(i) ;
+	public static String[][] transferStandingImprovedInfo(ArrayList<PlayerPO> datas, Season season ,PlayerData dataType){
+		String[][] body = new String[datas.size() + 1][Config.STANDING_IMPROVE_TABLEHEAD.length] ;
+		body[0] = Config.STANDING_IMPROVE_TABLEHEAD;
+		for(int i = 1 ; i<body.length ;i++){
+			PlayerPO thePlayer = datas.get(i - 1) ;
 			SeasonInfoForPlayer playerData = thePlayer.getSeasonInfo(season) ;
 			body[i][0] = thePlayer.getName() ;
 			body[i][1] = thePlayer.getTeam(season) ;
@@ -495,27 +499,17 @@ public class TableContentTransfer {
 		return body ;
 	}
 
-	public static String[][] transferMatchBasicInfo(int columns,ArrayList<MatchPO> datas){
-		String[][] body = new String[datas.size()][columns] ;
-		for(int i = 0 ;i<datas.size();i++){
-			MatchPO theMatch = datas.get(i) ;
-			switch(theMatch.getSeason()){
-			case season12_13 :
-				body[i][0] = "2012-2013赛季" ;
-				break ;
-			case season13_14 :
-				body[i][0] = "2013-2014赛季" ;
-				break ;
-			case season14_15:
-				body[i][0] = "2014-2015赛季" ;
-				break ;
-			}
+	public static String[][] transferMatchBasicInfo(ArrayList<MatchPO> datas){
+		String[][] body = new String[datas.size() + 1][Config.MATCH_BASIC_INFO.length] ;
+		body[0] = Config.MATCH_BASIC_INFO;
+		for(int i = 1 ;i<body.length;i++){
+			MatchPO theMatch = datas.get(i - 1);
 			
-			body[i][1] = theMatch.getDate() ;
-			body[i][2] = theMatch.getFirstTeam() ;
-			body[i][3] = String.valueOf(theMatch.getFinalScore().getFirstScore()) ;
-			body[i][4] = String.valueOf(theMatch.getFinalScore().getSecondScore()) ;
-			body[i][5] = theMatch.getSecondTeam() ;
+			body[body.length - i][0] = theMatch.getDate() ;
+			body[body.length - i][1] = theMatch.getFirstTeam() ;
+			body[body.length - i][2] = String.valueOf(theMatch.getFinalScore().getFirstScore()) ;
+			body[body.length - i][3] = String.valueOf(theMatch.getFinalScore().getSecondScore()) ;
+			body[body.length - i][4] = theMatch.getSecondTeam() ;
 		}
 		return body ;
 	}
