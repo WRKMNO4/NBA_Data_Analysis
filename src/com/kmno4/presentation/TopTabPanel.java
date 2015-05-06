@@ -263,11 +263,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	 */
 	public void refreshPlayerTable(List<PlayerPO> players){
 //		System.out.println("TopTabPanel.refreshPlayerTable()");
-		if(tg.table != null) tg.table.setVisible(false);
-		if(tg.jsp != null) {
-			tg.jsp.setVisible(false);
-			MainFrame.mainFrame.remove(tg.jsp);
-		}
+		hidTable();
 		if(players == null || players.size() == 0) return;
 		setTable(TableContentTransfer.transferPlayerSortAvgInfo((ArrayList<PlayerPO>)players));
 		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer() {
@@ -303,11 +299,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	 * @param teams
 	 */
 	public void refreshTeamTable(ArrayList<TeamPO> teams) {
-		if(tg.table != null) tg.table.setVisible(false);
-		if(tg.jsp != null) {
-			tg.jsp.setVisible(false);
-			MainFrame.mainFrame.remove(tg.jsp);
-		}
+		hidTable();
 		if(teams == null || teams.size() == 0) return;
 		setTable(TableContentTransfer.transferTeamBasicInfo(teams),
 				TABLE_UNIT_HEIGHT, TABLE_UNIT_HEIGHT, 140);
@@ -342,16 +334,15 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	 * 刷新match列表
 	 */
 	public void refreshMatchTable(ArrayList<MatchPO> matches) {
-//		System.out.println("TopTabPanel.refreshMatchTable()");
-		if(tg.table != null) tg.table.setVisible(false);
-		if(tg.jsp != null) {
-			tg.jsp.setVisible(false);
-			MainFrame.mainFrame.remove(tg.jsp);
+//System.out.println("TopTabPanel.refreshMatchTable()"); TODO
+		if(matches == null || matches.size() == 0) {
+			hidTable();
+			return;
 		}
-		if(matches == null || matches.size() == 0) return;
-		setTable(TableContentTransfer.transferMatchBasicInfo( matches),
+		TableGroup buffer = new TableGroup(tg);
+		tg = new TableGroup();
+		setTable(TableContentTransfer.transferMatchBasicInfo(matches),
 				(int)(TABLE_UNIT_HEIGHT * 1.5), TABLE_UNIT_HEIGHT, 200);
-		
 		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer() {
 			@Override
 			public Component getTableCellRendererComponent(JTable table,
@@ -375,9 +366,9 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		};
 		dtcr.setOpaque(false);
 		tg.table.setDefaultRenderer(Object.class, dtcr);
-//		tg.table.getColumnModel().getColumn(0).setPreferredWidth(200);
-		
-		
+		MainFrame.mainFrame.remove(tg.jsp);
+		MainFrame.mainFrame.add(tg.jsp, MainFrame.mainFrame.getComponentCount());
+		hidTable(buffer);
 		addMatchLink();
 		MainFrame.mainFrame.repaint();
 	}
@@ -424,30 +415,28 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	private static final int HOT_UNIT_WIDTH = Config.UI_WIDTH / 4;
 	
 	public void refreshDailyPlayerTable(PlayerData dataType) {
-//		TODO
-//		System.out.println("TopTabPanel.refreshDailyPlayerTable()");
-		if(tg.table != null) tg.table.setVisible(false);
-		if(tg.jsp != null) {
-			tg.jsp.setVisible(false);
-			MainFrame.mainFrame.remove(tg.jsp);
+		if(dataType == null){
+			hidTable();
+			return;
 		}
-		if(dataType == null) return;
 		ArrayList<StandingDataPO> sps = MainFrame.mainFrame.bl.getDatasOfDailyStandingPlayer(dataType,5);
-		if(sps == null || sps.size() == 0) return;
+		if(sps == null || sps.size() == 0) {
+			hidTable();
+			return;
+		}
+		TableGroup buffer = new TableGroup(tg);
+		tg = new TableGroup();
 		setTable(TableContentTransfer.transferStandingDailyPlayerInfo(sps),
 				HOT_UNIT_HEIGHT, HOT_UNIT_HEIGHT, HOT_UNIT_WIDTH);
 		tg.table.setDefaultRenderer(Object.class, new HotTableCellRender(true));
-		
+		MainFrame.mainFrame.remove(tg.jsp);
+		MainFrame.mainFrame.add(tg.jsp, MainFrame.mainFrame.getComponentCount());
 		addDailyPlayerLink();
 		MainFrame.mainFrame.repaint();
 	}
 	public void refreshSeasonPlayerTable(Season season, PlayerData dataType) {
 //		System.out.println("TopTabPanel.refreshSeasonPlayerTable()");
-		if(tg.table != null) tg.table.setVisible(false);
-		if(tg.jsp != null) {
-			tg.jsp.setVisible(false);
-			MainFrame.mainFrame.remove(tg.jsp);
-		}
+		hidTable();
 		if(season == null || dataType == null) return;
 		setTable(TableContentTransfer.transferStandingSeasonPlayerInfo(MainFrame.mainFrame.bl.getSeasonStandingPlayer(season, dataType), season, dataType),
 				HOT_UNIT_HEIGHT, HOT_UNIT_HEIGHT, HOT_UNIT_WIDTH);
@@ -458,11 +447,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	}
 	public void refreshImprovePlayerTable(Season season, PlayerData dataType) {
 //		System.out.println("TopTabPanel.refreshImprovePlayerTable()");
-		if(tg.table != null) tg.table.setVisible(false);
-		if(tg.jsp != null) {
-			tg.jsp.setVisible(false);
-			MainFrame.mainFrame.remove(tg.jsp);
-		}
+		hidTable();
 		if(season == null || dataType == null) return;
 		setTable(TableContentTransfer.transferStandingImprovedInfo(MainFrame.mainFrame.bl.getMostImprovePlayer(season, dataType), season, dataType),
 				HOT_UNIT_HEIGHT, HOT_UNIT_HEIGHT, HOT_UNIT_WIDTH);
@@ -473,11 +458,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	}
 	public void refreshSeasonTeamTable(Season season, TeamData dataType) {
 //		System.out.println("TopTabPanel.refreshSeasonTeamTable()");
-		if(tg.table != null) tg.table.setVisible(false);
-		if(tg.jsp != null) {
-			tg.jsp.setVisible(false);
-			MainFrame.mainFrame.remove(tg.jsp);
-		}
+		hidTable();
 		if(season == null || dataType == null) return;
 		setTable(TableContentTransfer.transferStandingSeasonTeamInfo(MainFrame.mainFrame.bl.getSeasonStandingTeam(season, dataType), season, dataType),
 				HOT_UNIT_HEIGHT, HOT_UNIT_HEIGHT, HOT_UNIT_WIDTH);
@@ -485,6 +466,21 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		
 		addSeasonTeamLink();
 		MainFrame.mainFrame.repaint();
+	}
+	
+	private void hidTable() {
+		if(tg.table != null) tg.table.setVisible(false);
+		if(tg.jsp != null) {
+			tg.jsp.setVisible(false);
+			MainFrame.mainFrame.remove(tg.jsp);
+		}
+	}
+	private void hidTable(TableGroup tablegroup) {
+		if(tablegroup.table != null) tablegroup.table.setVisible(false);
+		if(tablegroup.jsp != null) {
+			tablegroup.jsp.setVisible(false);
+			MainFrame.mainFrame.remove(tablegroup.jsp);
+		}
 	}
 	
 	private void addPlayerLink() {

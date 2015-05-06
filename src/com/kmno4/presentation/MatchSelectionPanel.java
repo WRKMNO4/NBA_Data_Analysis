@@ -3,7 +3,6 @@ package com.kmno4.presentation;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
@@ -103,9 +102,14 @@ public class MatchSelectionPanel extends JPanel {
 			while(true){
 				try {		
 					if(MainFrame.mainFrame.topTabPanel.isMatchClicked){
-						int v = MainFrame.mainFrame.topTabPanel.tg.jsp.getVerticalScrollBar().getValue();
+						int v;
+						try {
+						    v = MainFrame.mainFrame.topTabPanel.tg.jsp.getVerticalScrollBar().getValue();
+						}catch(Exception e) { v = 0; }
 						changeSeason(current_season);		
-						MainFrame.mainFrame.topTabPanel.tg.jsp.getVerticalScrollBar().setValue(v);
+						try {
+							MainFrame.mainFrame.topTabPanel.tg.jsp.getVerticalScrollBar().setValue(v);
+						} catch(Exception e) {}
 					}
 					Thread.sleep(2*1000);
 				} catch (InterruptedException e) {

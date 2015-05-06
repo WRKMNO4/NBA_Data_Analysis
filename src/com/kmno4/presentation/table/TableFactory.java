@@ -6,9 +6,12 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+
+import com.sun.prism.paint.Color;
 
 public class TableFactory {
 	private static final int
@@ -72,7 +75,11 @@ public class TableFactory {
 		
 		tg.jsp.getViewport().setOpaque(false);
 		tg.jsp.setOpaque(false);
-		//tg.jsp.setBorder(BorderFactory.createLineBorder(parent.getBackground()));
+		
+//		if(tg.jsp.getVerticalScrollBar() != null){
+//			UIManager.put("ScrollBar.thumb", Color.BLACK);
+//			tg.jsp.getVerticalScrollBar().updateUI();
+//		}
 	}
 
 }
