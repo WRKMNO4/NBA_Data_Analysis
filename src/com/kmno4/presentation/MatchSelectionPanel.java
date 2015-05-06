@@ -88,12 +88,7 @@ public class MatchSelectionPanel extends JPanel {
 	public Season current_season;
 	private void changeSeason(Season season) {
 		current_season = season;
-//		int v_barValue;
-//		try {
-//			v_barValue = MainFrame.mainFrame.topTabPanel.tg.jsp.getVerticalScrollBar().getValue();
-//		}catch(Exception e) { v_barValue = 30; }
 		MainFrame.mainFrame.topTabPanel.refreshMatchTable(MainFrame.mainFrame.bl.getAllMatches(season));
-//		MainFrame.mainFrame.topTabPanel.tg.jsp.getVerticalScrollBar().setValue(v_barValue);
 	}
 	
 	
@@ -108,7 +103,9 @@ public class MatchSelectionPanel extends JPanel {
 			while(true){
 				try {		
 					if(MainFrame.mainFrame.topTabPanel.isMatchClicked){
-						changeSeason(current_season);					
+						int v = MainFrame.mainFrame.topTabPanel.tg.jsp.getVerticalScrollBar().getValue();
+						changeSeason(current_season);		
+						MainFrame.mainFrame.topTabPanel.tg.jsp.getVerticalScrollBar().setValue(v);
 					}
 					Thread.sleep(2*1000);
 				} catch (InterruptedException e) {
