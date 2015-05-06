@@ -303,7 +303,6 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	 * @param teams
 	 */
 	public void refreshTeamTable(ArrayList<TeamPO> teams) {
-//		TODO
 		if(tg.table != null) tg.table.setVisible(false);
 		if(tg.jsp != null) {
 			tg.jsp.setVisible(false);
@@ -311,7 +310,8 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		}
 		if(teams == null || teams.size() == 0) return;
 		setTable(TableContentTransfer.transferTeamBasicInfo(teams),
-				TABLE_UNIT_HEIGHT, TABLE_UNIT_HEIGHT, 135);
+				TABLE_UNIT_HEIGHT, TABLE_UNIT_HEIGHT, 140);
+		tg.jsp.setHorizontalScrollBar(null);
 		
 		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer() {
 			@Override
@@ -361,7 +361,10 @@ public class TopTabPanel extends JPanel implements MouseListener{
 				Object o = table.getValueAt(row, column);
 				if(o != null && (t = TeamListPO.findTeamByShortName(o.toString())) != null)
 					PlayerDetailPanel.fillLabel(t.getTeamLogoURL(), this, (int)(TABLE_UNIT_HEIGHT * 1.5), (int)(TABLE_UNIT_HEIGHT * 1.5));
-				else setIcon(null);
+				else {
+					setIcon(null);
+					setHorizontalAlignment(JLabel.CENTER);
+				}
 				setOpaque(true);
 				if(row == 0) setBackground(new Color(0, 0, 0, 170)); 
 				else if(row % 2 != 0) setBackground(new Color(0, 0, 0, 110)); 
@@ -379,7 +382,49 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.repaint();
 	}
 	
+	/**
+	 * 热点的几个表格都应用的样式
+	 * @author hutao
+	 *
+	 */
+	class HotTableCellRender extends DefaultTableCellRenderer {
+		boolean isPlayer;
+		public HotTableCellRender(boolean isPlayer) { 
+			this.isPlayer = isPlayer;
+			setOpaque(false);
+		}
+		@Override
+		public Component getTableCellRendererComponent(JTable table,
+				Object value, boolean isSelected, boolean hasFocus,
+				int row, int column) {
+			Object o;
+			if(isPlayer) {
+				PlayerPO p;
+				o = table.getValueAt(row, column);
+				if(o != null && (p = PlayerListPO.findPlayerAccurately(o.toString())) != null)
+					PlayerDetailPanel.fillLabel(p.getPortraitURL(), this, HOT_UNIT_HEIGHT * 230 / 185, HOT_UNIT_HEIGHT);
+				else setIcon(null);
+			}
+			else {
+				TeamPO t;
+				o = table.getValueAt(row, column);
+				if(o != null && (t = TeamListPO.findTeamByFullName(o.toString())) != null)
+					PlayerDetailPanel.fillLabel(t.getTeamLogoURL(), this, (int)(TABLE_UNIT_HEIGHT * 1.5), (int)(TABLE_UNIT_HEIGHT * 1.5));
+				else setIcon(null);
+			}
+			
+			setOpaque(true);
+			if(row == 0) setBackground(new Color(0, 0, 0, 170)); 
+			else if(row % 2 != 0) setBackground(new Color(0, 0, 0, 110)); 
+			else setBackground(new Color(0, 0, 0, 0)); 
+			return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+		}
+	}
+	private static final int HOT_UNIT_HEIGHT = (Config.UI_HEIGHT - Config.TOP_TAB_HEIGHT - Config.INTRODUCTION_WHITE - Config.SELECTION_HEIGHT) / 6 - 1;
+	private static final int HOT_UNIT_WIDTH = Config.UI_WIDTH / 4;
+	
 	public void refreshDailyPlayerTable(PlayerData dataType) {
+//		TODO
 //		System.out.println("TopTabPanel.refreshDailyPlayerTable()");
 		if(tg.table != null) tg.table.setVisible(false);
 		if(tg.jsp != null) {
@@ -389,7 +434,10 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		if(dataType == null) return;
 		ArrayList<StandingDataPO> sps = MainFrame.mainFrame.bl.getDatasOfDailyStandingPlayer(dataType,5);
 		if(sps == null || sps.size() == 0) return;
-		setTable(TableContentTransfer.transferStandingDailyPlayerInfo(sps));
+		setTable(TableContentTransfer.transferStandingDailyPlayerInfo(sps),
+				HOT_UNIT_HEIGHT, HOT_UNIT_HEIGHT, HOT_UNIT_WIDTH);
+		tg.table.setDefaultRenderer(Object.class, new HotTableCellRender(true));
+		
 		addDailyPlayerLink();
 		MainFrame.mainFrame.repaint();
 	}
@@ -401,7 +449,10 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			MainFrame.mainFrame.remove(tg.jsp);
 		}
 		if(season == null || dataType == null) return;
-		setTable(TableContentTransfer.transferStandingSeasonPlayerInfo(MainFrame.mainFrame.bl.getSeasonStandingPlayer(season, dataType), season, dataType));
+		setTable(TableContentTransfer.transferStandingSeasonPlayerInfo(MainFrame.mainFrame.bl.getSeasonStandingPlayer(season, dataType), season, dataType),
+				HOT_UNIT_HEIGHT, HOT_UNIT_HEIGHT, HOT_UNIT_WIDTH);
+		tg.table.setDefaultRenderer(Object.class, new HotTableCellRender(true));
+		
 		addSeasonPlayerLink();
 		MainFrame.mainFrame.repaint();
 	}
@@ -413,7 +464,10 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			MainFrame.mainFrame.remove(tg.jsp);
 		}
 		if(season == null || dataType == null) return;
-		setTable(TableContentTransfer.transferStandingImprovedInfo(MainFrame.mainFrame.bl.getMostImprovePlayer(season, dataType), season, dataType));
+		setTable(TableContentTransfer.transferStandingImprovedInfo(MainFrame.mainFrame.bl.getMostImprovePlayer(season, dataType), season, dataType),
+				HOT_UNIT_HEIGHT, HOT_UNIT_HEIGHT, HOT_UNIT_WIDTH);
+		tg.table.setDefaultRenderer(Object.class, new HotTableCellRender(true));
+		
 		addImprovePlayerLink();
 		MainFrame.mainFrame.repaint();
 	}
@@ -425,7 +479,10 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			MainFrame.mainFrame.remove(tg.jsp);
 		}
 		if(season == null || dataType == null) return;
-		setTable(TableContentTransfer.transferStandingSeasonTeamInfo(MainFrame.mainFrame.bl.getSeasonStandingTeam(season, dataType), season, dataType));
+		setTable(TableContentTransfer.transferStandingSeasonTeamInfo(MainFrame.mainFrame.bl.getSeasonStandingTeam(season, dataType), season, dataType),
+				HOT_UNIT_HEIGHT, HOT_UNIT_HEIGHT, HOT_UNIT_WIDTH);
+		tg.table.setDefaultRenderer(Object.class, new HotTableCellRender(false));
+		
 		addSeasonTeamLink();
 		MainFrame.mainFrame.repaint();
 	}

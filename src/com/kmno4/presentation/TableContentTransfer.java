@@ -445,30 +445,31 @@ public class TableContentTransfer {
 			TeamDataPO teamData = theTeam.getAverageTeamData(season);
 			body[i][0] = theTeam.getFullName() ;
 			body[i][1] = theTeam.getZone().toString() ;
+			body[i][2] = theTeam.getDistrict();
 			switch(dataType){
 			case score: 
-				body[i][2] = String.valueOf(cutTailOfAvgData(teamData.getScore())) ;
+				body[i][3] = String.valueOf(cutTailOfAvgData(teamData.getScore())) ;
 				break ;
 			case numberOfRebound:
-				body[i][2] = String.valueOf(cutTailOfAvgData(teamData.getNumberOfRebound())) ;
+				body[i][3] = String.valueOf(cutTailOfAvgData(teamData.getNumberOfRebound())) ;
 				break ;
 			case numberOfAssist :
-				body[i][2] = String.valueOf(cutTailOfAvgData(teamData.getNumberOfAssist())) ;
+				body[i][3] = String.valueOf(cutTailOfAvgData(teamData.getNumberOfAssist())) ;
 				break ;
 			case numberOfBlock :
-				body[i][2] = String.valueOf(cutTailOfAvgData(teamData.getNumberOfBlock())) ;
+				body[i][3] = String.valueOf(cutTailOfAvgData(teamData.getNumberOfBlock())) ;
 				break ;
 			case numberOfSteal :
-				body[i][2] = String.valueOf(cutTailOfAvgData(teamData.getNumberOfSteal())) ;
+				body[i][3] = String.valueOf(cutTailOfAvgData(teamData.getNumberOfSteal())) ;
 				break ;
 			case percentageOf3_point :
-				body[i][2] = String.valueOf(cutTailOfAvgData(teamData.getPercentageOf3_point()));
+				body[i][3] = String.valueOf(cutTailOfAvgData(teamData.getPercentageOf3_point()));
 				break ;
 			case percentageOfShooting :
-				body[i][2] = String.valueOf(cutTailOfAvgData(teamData.getPercentageOfShooting())) ;
+				body[i][3] = String.valueOf(cutTailOfAvgData(teamData.getPercentageOfShooting())) ;
 				break ;
 			case percentageOfFreeThrow :
-				body[i][2] = String.valueOf(cutTailOfAvgData(teamData.getPercentageOfFreeThrow())) ;
+				body[i][3] = String.valueOf(cutTailOfAvgData(teamData.getPercentageOfFreeThrow())) ;
 				break ;
 			}
 		}
@@ -484,15 +485,16 @@ public class TableContentTransfer {
 			SeasonInfoForPlayer playerData = thePlayer.getSeasonInfo(season) ;
 			body[i][0] = thePlayer.getName() ;
 			body[i][1] = thePlayer.getTeam(season) ;
+			body[i][2] = thePlayer.getPosition();
 			switch(dataType){
 			case improveRateOfScore :
-				body[i][2] = cutTailOfAvgData(playerData.getImprovedRateOfScore()) ;
+				body[i][3] = cutTailOfAvgData(playerData.getImprovedRateOfScore()) ;
 				break ;
 			case improveRateOfRebound :
-				body[i][2] = cutTailOfAvgData(playerData.getImprovedRateOfRebound()) ;
+				body[i][3] = cutTailOfAvgData(playerData.getImprovedRateOfRebound()) ;
 				break ;
 			case improveRateOfAssist :
-				body[i][2] = cutTailOfAvgData(playerData.getImprovedRateOfAssist()) ;
+				body[i][3] = cutTailOfAvgData(playerData.getImprovedRateOfAssist()) ;
 				break ;
 			}
 		}

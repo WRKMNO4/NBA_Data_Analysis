@@ -77,10 +77,10 @@ public class Config {
 	public static final String[] STANDING_SEASONPLAYER_TABLEHEAD = {"球员名称" ,"所属球队","球员位置","比赛数据"} ;
 	
 	public static final String[] STANDING_SEASONTEAM_TYPE={"得分","篮板","助攻","盖帽","抢断","三分命中率","投篮命中率","罚球命中率"} ;
-    public static final String[] STANDING_SEASONTEAM_TABLEHEAD = {"球队名称","所属联盟","比赛数据"} ;
+    public static final String[] STANDING_SEASONTEAM_TABLEHEAD = {"球队名称","所属联盟","分区","比赛数据"} ;
     
 	public static final String[] STANDING_IMPROVED_TYPE = {"场均得分提升率","场均篮板提升率","场均助攻提升率"} ;
-	public static final String[] STANDING_IMPROVE_TABLEHEAD = {"球员名称","所属球队","近五场提升率"} ;
+	public static final String[] STANDING_IMPROVE_TABLEHEAD = {"球员名称","所属球队","球员位置","近五场提升率"} ;
 	
 	public static final int 
 	    MATCH_DETAIL_WIDTH = 800,
