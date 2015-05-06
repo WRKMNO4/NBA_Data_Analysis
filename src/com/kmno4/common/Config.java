@@ -188,7 +188,7 @@ public class Config {
 	public static final Icon SPLASH_TITLE=new ImageIcon("images/splash_title.png");
 	public static final Icon SPLASH_BACKGROUND=new ImageIcon("images/splash_bg.png");
 	
-	public static final ImageIcon PLAYERGROUND=new ImageIcon("images/playerground.jpeg");
+	public static final ImageIcon PLAYERGROUND=new ImageIcon("images/playerground.png");
 	public static final ImageIcon SMOKE=new ImageIcon("images/smoke.gif");
 	public static final ImageIcon RAIN=new ImageIcon("images/rain.gif");
 	
