@@ -163,6 +163,7 @@ public class MatchInfoDetailPanel extends JPanel {
 			vsLabel = new JLabel("vs", JLabel.CENTER);
 			vsLabel.setFont(new Font("default", 2, 60));
 			vsLabel.setBounds(430, 0, 140, 140);
+			vsLabel.setForeground(Color.white);
 			add(vsLabel);
 			
 			mainScore = new TableGroup();

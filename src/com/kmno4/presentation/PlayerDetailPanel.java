@@ -87,7 +87,6 @@ public class PlayerDetailPanel extends JPanel {
 				Config.UI_WIDTH - PADDING * 2, SEASON_AVG_DATA_TABLE_HEIGHT,
 				PADDING, avgLabel.getY() + avgLabel.getHeight());
 		paintTable(seasonAvgData.table);
-		seasonAvgData.table.setForeground(Color.WHITE);
 		
 		sumLabel = new JLabel("赛季总计", JLabel.LEFT);
 		sumLabel.setOpaque(true);
@@ -106,7 +105,6 @@ public class PlayerDetailPanel extends JPanel {
 				Config.UI_WIDTH - PADDING * 2, SEASON_SUM_DATA_TABLE_HEIGHT,
 				PADDING, sumLabel.getY() + sumLabel.getHeight());
 		paintTable(seasonSumData.table);
-		seasonSumData.table.setForeground(Color.WHITE);
 		
 		recentLabel= new JLabel("最近五场比赛", JLabel.LEFT);
 		recentLabel.setFont(new Font("default", 0, 13));
@@ -125,7 +123,6 @@ public class PlayerDetailPanel extends JPanel {
 				Config.UI_WIDTH - PADDING * 2, RECENT_DATA_TABLE_HEIGHT,
 				PADDING, recentLabel.getY() + recentLabel.getHeight());
 		paintTable(recentData.table);
-		recentData.table.setForeground(Color.white);
 		addLinks();
 		
 	}
@@ -178,8 +175,9 @@ public class PlayerDetailPanel extends JPanel {
 			}
 			
 		};
-		
+		dtcr.setOpaque(false);
 		table.setDefaultRenderer(Object.class, dtcr);
+		table.setForeground(Color.white);
 	}
 	
 	/**
