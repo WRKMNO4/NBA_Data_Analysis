@@ -2,23 +2,27 @@ package com.kmno4.presentation;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import com.kmno4.common.Config;
-import com.kmno4.presentation.table.TableFactory;
-import com.kmno4.presentation.table.TableGroup;
 
 import PO.MatchPO;
 import PO.PlayerListPO;
 import PO.TeamListPO;
 import PO.TeamPO;
 
+import com.kmno4.common.Config;
+import com.kmno4.presentation.table.TableFactory;
+import com.kmno4.presentation.table.TableGroup;
+
 @SuppressWarnings("serial")
 public class MatchInfoDetailPanel extends JPanel {
+	public static final ImageIcon MATCH_DETAIL_BACKGROUND=new ImageIcon("images/match_detail_bg.png");
+	
 	private MatchInfoDetailFrame matchInfoDetailFrame;
 	private MatchInfoDetailPanel matchInfoDetailPanel;
 	private MainDataPanel mainDataPanel;
@@ -42,6 +46,7 @@ public class MatchInfoDetailPanel extends JPanel {
 	    TEAM_2_TABLE_HEIGHT = 180;
 	
 	public MatchInfoDetailPanel(MatchPO m, MatchInfoDetailFrame f) {
+
 		matchPO = m;
 		matchInfoDetailPanel = this;
 		matchInfoDetailFrame = f;
@@ -123,6 +128,11 @@ public class MatchInfoDetailPanel extends JPanel {
 						team2.table.getValueAt(row, 0).toString()));
 			}
 		});
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(this.MATCH_DETAIL_BACKGROUND.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
 	}
 	
 	class MainDataPanel extends JPanel {

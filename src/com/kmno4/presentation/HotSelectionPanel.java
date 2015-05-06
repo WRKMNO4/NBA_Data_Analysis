@@ -370,7 +370,6 @@ public class HotSelectionPanel extends JPanel implements ActionListener,MouseMot
 //		}else{
 //			lb_protection.setVisible(true);
 //		}
-		System.out.println(e.getY());
 		
 	}
 

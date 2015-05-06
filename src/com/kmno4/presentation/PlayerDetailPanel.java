@@ -36,6 +36,8 @@ public class PlayerDetailPanel extends JPanel {
 	private JLabel seasonLabel, avgLabel, sumLabel, recentLabel;
 	private PlayerPO playerPO;
 	
+	public static final ImageIcon PLYAER_DETAIL_BACKGROUND=new ImageIcon("images/player_detail_background.png");
+	
 	private static final int PADDING = 5;
 	private static final int 
 	    DATA_PANEL_HEIGHT = 240,
@@ -132,7 +134,7 @@ public class PlayerDetailPanel extends JPanel {
 	
 	@Override
 	protected void paintComponent(Graphics g) {
-		g.drawImage(Config.getPlayers().get(8).getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
+		g.drawImage(this.PLYAER_DETAIL_BACKGROUND.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
 	}
 	
 	/**
@@ -183,6 +185,7 @@ public class PlayerDetailPanel extends JPanel {
 	}
 	
 	private static final String PLAYER_DETAIL_TOP_BG = "images/player_detail_bg.png";
+	public static final ImageIcon HEAD_DETAIL=new ImageIcon("images/head_detail.png");
 	/**
 	 * 包括头像以及一些基础信息的一个panel,位于布局最上方
 	 * @author hutao
@@ -197,10 +200,21 @@ public class PlayerDetailPanel extends JPanel {
 		public JLabel
 		    info1, info2, info3, info4, info5, info6;
 		
+		public void setForeGround(){
+			ballNum.setForeground(Color.WHITE);
+			name.setForeground(Color.WHITE);
+			info1.setForeground(Color.WHITE);
+			info2.setForeground(Color.WHITE);
+			info3.setForeground(Color.WHITE);
+			info4.setForeground(Color.WHITE);
+//			info5.setForeground(Color.WHITE);
+//			info6.setForeground(Color.WHITE);
+		}
+		
 		
 		public DataPanel(PlayerPO p) {
 			setLayout(null);
-			setBackground(Color.white);
+//			setBackground(Color.white);
 			
 			headLabel = new JLabel();
 			headLabel.setBounds(20, 45, 230, 185);
@@ -244,9 +258,19 @@ public class PlayerDetailPanel extends JPanel {
 			add(info4);
 
 			bgLabel = new JLabel();
-			PlayerDetailPanel.fillLabel(PLAYER_DETAIL_TOP_BG, bgLabel, Config.UI_WIDTH - PADDING * 2, DATA_PANEL_HEIGHT);
+//			bgLabel.setBackground(Color.BLACK);
+//			PlayerDetailPanel.fillLabel(PLAYER_DETAIL_TOP_BG, bgLabel, Config.UI_WIDTH - PADDING * 2, DATA_PANEL_HEIGHT);
 			bgLabel.setBounds(0, 0, Config.UI_WIDTH - PADDING * 2, DATA_PANEL_HEIGHT);
+			bgLabel.setIcon(HEAD_DETAIL);
 			add(bgLabel);
+			
+			setForeGround();
+		}
+		
+		private final ImageIcon BACKGROUND=new ImageIcon("images/null.png");
+		@Override
+		protected void paintComponent(Graphics g) {
+			g.drawImage(BACKGROUND.getImage(), 0, 0,this.getWidth(), this.getHeight(), null);
 		}
 		
 	}

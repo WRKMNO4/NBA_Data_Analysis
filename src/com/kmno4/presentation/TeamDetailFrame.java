@@ -14,6 +14,7 @@ import com.kmno4.presentation.button.ExitLabel;
 
 @SuppressWarnings("serial")
 public class TeamDetailFrame extends JFrame {
+	
 	public JPanel teamDetailPanel;
 
 	/**

@@ -2,21 +2,25 @@ package com.kmno4.presentation;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import PO.MatchPO;
+import PO.TeamPO;
 
 import com.kmno4.common.Config;
 import com.kmno4.presentation.table.TableFactory;
 import com.kmno4.presentation.table.TableGroup;
 
-import PO.MatchPO;
-import PO.TeamPO;
-
 @SuppressWarnings("serial")
 public class TeamDetailPanel extends JPanel {
+	public static final ImageIcon TEAM_DETAIL_BACKGOURND=new ImageIcon("images/team_detail_bg.png");
+	
 	private TeamDetailPanel teamDetailPane;
 	private TeamDetailFrame teamDetailFrame;
 	private MainDataPanel mainDataPanel;
@@ -114,6 +118,12 @@ public class TeamDetailPanel extends JPanel {
 		PlayerDetailPanel.paintTable(recentData.table);
 		addLinks();
 		
+	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		System.out.println(this.TEAM_DETAIL_BACKGOURND);
+		g.drawImage(this.TEAM_DETAIL_BACKGOURND.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
 	}
 	
 	private void addLinks() {
