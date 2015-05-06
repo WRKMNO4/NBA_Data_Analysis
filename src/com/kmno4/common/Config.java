@@ -189,6 +189,8 @@ public class Config {
 	public static final Icon SPLASH_BACKGROUND=new ImageIcon("images/splash_bg.png");
 	
 	public static final ImageIcon PLAYERGROUND=new ImageIcon("images/playerground.jpeg");
+	public static final ImageIcon SMOKE=new ImageIcon("images/smoke.gif");
+	public static final ImageIcon RAIN=new ImageIcon("images/rain.gif");
 	
 	public static final ImageIcon PLAYER_SELECTION_SORT_BACKGROUND=new ImageIcon("images/player_selection_sort_bg.png");
 	public static final ImageIcon PLAYER_SELECTION_BACKGROUND=new ImageIcon("images/player_selection_bg_1.png");
@@ -224,6 +226,15 @@ public class Config {
 		ArrayList<ImageIcon> icons=new ArrayList<>();
 		for(int i=0;i<10;i++){
 			icons.add(new ImageIcon("images/players/"+i+".jpg"));
+		}
+		
+		return icons;
+	}
+	
+	public static ArrayList<ImageIcon> getRains(){
+		ArrayList<ImageIcon> icons=new ArrayList<>();
+		for(int i=0;i<10;i++){
+			icons.add(new ImageIcon("images/rains/"+i+".png"));
 		}
 		
 		return icons;
