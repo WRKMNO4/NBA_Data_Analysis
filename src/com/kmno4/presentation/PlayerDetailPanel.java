@@ -35,9 +35,7 @@ public class PlayerDetailPanel extends JPanel {
 	private TableGroup seasonAvgData, seasonSumData, recentData;
 	private JLabel seasonLabel, avgLabel, sumLabel, recentLabel;
 	private PlayerPO playerPO;
-	
-	public static final ImageIcon PLYAER_DETAIL_BACKGROUND=new ImageIcon("images/player_detail_background.png");
-	
+		
 	private static final int PADDING = 5;
 	private static final int 
 	    DATA_PANEL_HEIGHT = 240,
@@ -134,7 +132,7 @@ public class PlayerDetailPanel extends JPanel {
 	
 	@Override
 	protected void paintComponent(Graphics g) {
-		g.drawImage(this.PLYAER_DETAIL_BACKGROUND.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
+		g.drawImage(Config.DETAIL_BG.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
 	}
 	
 	/**
@@ -184,8 +182,6 @@ public class PlayerDetailPanel extends JPanel {
 		table.setDefaultRenderer(Object.class, dtcr);
 	}
 	
-	private static final String PLAYER_DETAIL_TOP_BG = "images/player_detail_bg.png";
-	public static final ImageIcon HEAD_DETAIL=new ImageIcon("images/head_detail.png");
 	/**
 	 * 包括头像以及一些基础信息的一个panel,位于布局最上方
 	 * @author hutao
@@ -257,20 +253,19 @@ public class PlayerDetailPanel extends JPanel {
 			info4.setBounds(650, info3.getY() + delta, 400, delta);
 			add(info4);
 
-			bgLabel = new JLabel();
-//			bgLabel.setBackground(Color.BLACK);
-//			PlayerDetailPanel.fillLabel(PLAYER_DETAIL_TOP_BG, bgLabel, Config.UI_WIDTH - PADDING * 2, DATA_PANEL_HEIGHT);
-			bgLabel.setBounds(0, 0, Config.UI_WIDTH - PADDING * 2, DATA_PANEL_HEIGHT);
-			bgLabel.setIcon(HEAD_DETAIL);
-			add(bgLabel);
+//			bgLabel = new JLabel();
+////			bgLabel.setBackground(Color.BLACK);
+////			PlayerDetailPanel.fillLabel(PLAYER_DETAIL_TOP_BG, bgLabel, Config.UI_WIDTH - PADDING * 2, DATA_PANEL_HEIGHT);
+//			bgLabel.setBounds(0, 0, Config.UI_WIDTH - PADDING * 2, DATA_PANEL_HEIGHT);
+//			bgLabel.setIcon(HEAD_DETAIL);
+//			add(bgLabel);
 			
 			setForeGround();
 		}
 		
-		private final ImageIcon BACKGROUND=new ImageIcon("images/null.png");
 		@Override
 		protected void paintComponent(Graphics g) {
-			g.drawImage(BACKGROUND.getImage(), 0, 0,this.getWidth(), this.getHeight(), null);
+			g.drawImage(Config.NULL.getImage(), 0, 0,this.getWidth(), this.getHeight(), null);
 		}
 		
 	}

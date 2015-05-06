@@ -215,7 +215,9 @@ public class Config {
 	
 	public static final ImageIcon HOT_SELECTION_PROTECTION=new ImageIcon("images/hot_selection_protection.png");
 	public static final ImageIcon TEAM_DETAIL_BACKGOURND=new ImageIcon("images/team.png");
-
+	public static final ImageIcon DETAIL_BG=new ImageIcon("images/detail_bg.png");
+	public static final ImageIcon NULL=new ImageIcon("images/null.png");
+	public static final ImageIcon HEAD_DETAIL_BG=new ImageIcon("images/detail_head_bg.png");
 	
 	public static ArrayList<ImageIcon> getLoadingMotions(){
 		for(int i=1;i<100;i++){

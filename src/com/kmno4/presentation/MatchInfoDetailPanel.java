@@ -132,7 +132,7 @@ public class MatchInfoDetailPanel extends JPanel {
 	
 	@Override
 	protected void paintComponent(Graphics g) {
-		g.drawImage(this.MATCH_DETAIL_BACKGROUND.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
+		g.drawImage(Config.DETAIL_BG.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
 	}
 	
 	class MainDataPanel extends JPanel {
@@ -142,7 +142,7 @@ public class MatchInfoDetailPanel extends JPanel {
 		
 		public MainDataPanel(MatchPO matchPO) {
 			setLayout(null);
-			setBackground(Color.white);
+//			setBackground(Color.white);
 			
 			team1Logo = new JLabel();
 			team1Logo.setBounds(0, 0, MAIN_DATA_PANEL_HEIGHT, MAIN_DATA_PANEL_HEIGHT);
@@ -175,6 +175,15 @@ public class MatchInfoDetailPanel extends JPanel {
 					90);
 			PlayerDetailPanel.paintTable(mainScore.table);
 			
+//			bg=new JLabel(Config.DETAIL_BG);
+//			bg.setBounds(0, 0, this.getWidth(), this.getHeight());
+//			add(bg);
+			
+		}
+		
+		@Override
+		protected void paintComponent(Graphics g) {
+			g.drawImage(Config.NULL.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
 		}
 	}
 }

@@ -19,7 +19,6 @@ import com.kmno4.presentation.table.TableGroup;
 
 @SuppressWarnings("serial")
 public class TeamDetailPanel extends JPanel {
-	public static final ImageIcon TEAM_DETAIL_BACKGOURND=new ImageIcon("images/team_detail_bg.png");
 	
 	private TeamDetailPanel teamDetailPane;
 	private TeamDetailFrame teamDetailFrame;
@@ -122,8 +121,7 @@ public class TeamDetailPanel extends JPanel {
 	
 	@Override
 	protected void paintComponent(Graphics g) {
-		System.out.println(this.TEAM_DETAIL_BACKGOURND);
-		g.drawImage(this.TEAM_DETAIL_BACKGOURND.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
+		g.drawImage(Config.DETAIL_BG.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
 	}
 	
 	private void addLinks() {
@@ -181,17 +179,16 @@ public class TeamDetailPanel extends JPanel {
 			info6.setFont(new Font("default", 2, 20));
 			add(info6);
 			
-			
-			
-			
-			
-			
-			
-			
-			bgLabel = new JLabel();
-			PlayerDetailPanel.fillLabel(TEAM_DETAIL_TOP_BG, bgLabel, Config.UI_WIDTH - PADDING * 2, DATA_PANEL_HEIGHT);
-			bgLabel.setBounds(0, 0, Config.UI_WIDTH - PADDING * 2, DATA_PANEL_HEIGHT);
-			add(bgLabel);
+
+//			bgLabel = new JLabel();
+//			PlayerDetailPanel.fillLabel(TEAM_DETAIL_TOP_BG, bgLabel, Config.UI_WIDTH - PADDING * 2, DATA_PANEL_HEIGHT);
+//			bgLabel.setBounds(0, 0, Config.UI_WIDTH - PADDING * 2, DATA_PANEL_HEIGHT);
+//			add(bgLabel);
+		}
+		
+		@Override
+		protected void paintComponent(Graphics g) {
+			g.drawImage(Config.NULL.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
 		}
 	}
 }
