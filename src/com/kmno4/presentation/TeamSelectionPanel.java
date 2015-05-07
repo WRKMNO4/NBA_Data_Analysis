@@ -111,7 +111,7 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 	public void mouseClicked(MouseEvent e) {
 		if(e.getSource()==total_sort){
 			showTotal();
-		}if(e.getSource()==avg_sort){
+		}else if(e.getSource()==avg_sort){
 			showAvg();
 		}
 	}
@@ -137,18 +137,18 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Season season=TransferSortHelper.StringToSeason(cb_season.getSelectedItem().toString());
-		if(e.getSource()==cb_total_data||e.getSource()==cb_season){
+		if(e.getSource()==cb_total_data||(e.getSource()==cb_season && isAvg)){
 			//总数据
 			String data=cb_total_data.getSelectedItem().toString();
 			TeamData dataType=TransferSortHelper.StringToDataTypeForTeam(data);
 			ArrayList<TeamPO> teams=MainFrame.mainFrame.bl.sortTeamsByComprehension("total", dataType,season);
-			MainFrame.mainFrame.topTabPanel.refreshTeamTable(teams);
-		}else if(e.getSource()==cb_avg_data||e.getSource()==cb_season){
+			MainFrame.mainFrame.topTabPanel.refreshTeamTable(teams, season, false);
+		}else if(e.getSource()==cb_avg_data||(e.getSource()==cb_season && isAvg)){
 			//场均数据
 			String data=cb_avg_data.getSelectedItem().toString();
 			TeamData dataType=TransferSortHelper.StringToDataTypeForTeam(data);
 			ArrayList<TeamPO> teams=MainFrame.mainFrame.bl.sortTeamsByComprehension("avg", dataType,season);
-			MainFrame.mainFrame.topTabPanel.refreshTeamTable(teams);
+			MainFrame.mainFrame.topTabPanel.refreshTeamTable(teams, season, true);
 		}
 	}
 }

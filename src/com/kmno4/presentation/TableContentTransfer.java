@@ -205,12 +205,12 @@ public class TableContentTransfer {
 		return body;
 	}
 	
-	public static String[][] transferTeamSortAvgInfo(int columns, ArrayList<TeamPO> teams,Season season){
-		String[][] body = new String[teams.size()][columns];
+	public static String[][] transferTeamSortAvgInfo(ArrayList<TeamPO> teams,Season season){
+		String[][] body = new String[teams.size() + 1][Config.TEAM_SORT_AVERAGE.length];
 		body[0]=Config.TEAM_SORT_AVERAGE;
 
-		for(int i=1;i<teams.size();i++){
-			TeamPO theTeam=teams.get(i);
+		for(int i=1;i<body.length;i++){
+			TeamPO theTeam=teams.get(i - 1);
 			TeamDataPO avgData = theTeam.getSeasonInfo(season).getAverageTeamData();
 			body[i][0]=theTeam.getFullName();
 			body[i][1]= cutTailOfAvgData(avgData.getNumberOfShooting());
@@ -245,12 +245,12 @@ public class TableContentTransfer {
 		return body;
 	}
 	
-	public static String[][] transferTeamSortTotalInfo(int columns,ArrayList<TeamPO> teams,Season season){
-		String[][] body = new String[teams.size()][columns];
+	public static String[][] transferTeamSortTotalInfo(ArrayList<TeamPO> teams,Season season){
+		String[][] body = new String[teams.size() + 1][Config.TEAM_SORT_TOTAL.length];
 		body[0] = Config.TEAM_SORT_TOTAL;
 		
-		for(int i=1;i<teams.size();i++){
-			TeamPO theTeam = teams.get(i);
+		for(int i=1;i<body.length;i++){
+			TeamPO theTeam = teams.get(i - 1);
 			TeamDataPO totalData = theTeam.getTotalTeamData(season) ;
 			body[i][0] = theTeam.getFullName();
 			body[i][1]=cutTailOfTotalData(theTeam.getSeasonInfo(season).getNumberOfMatches());

@@ -136,7 +136,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		team.addMouseListener(new LMouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				showTeamInfo();
+				showTeamInfo(TableContentTransfer.getSeason(0));
 			}
 		});
 		match.addMouseListener(new LMouseAdapter() {
@@ -189,11 +189,11 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		
 		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.球员信息.toString());
 		
-		refreshPlayerTable(MainFrame.mainFrame.players, true);
+		refreshPlayerTable(MainFrame.mainFrame.players, false);
 		MainFrame.mainFrame.repaint();
 	}
 	
-	public void showTeamInfo(){
+	public void showTeamInfo(Season season){
 		isTeamClicked=true;
 		isPlayerClicked=isMatchClicked=isHotClicked=false;
 		
@@ -206,7 +206,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		MainFrame.mainFrame.matchSelectionPanel.setBounds(0-Config.UI_WIDTH, Config.TOP_TAB_HEIGHT+Config.PAGE_INTRO_HEIGHT,Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.球队信息.toString());
 		
-		refreshTeamTable(MainFrame.mainFrame.teams);
+		refreshTeamTable(MainFrame.mainFrame.teams, season, true);
 		MainFrame.mainFrame.repaint();
 	}
 	
@@ -299,12 +299,14 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	 * 刷新team列表
 	 * @param teams
 	 */
-	public void refreshTeamTable(ArrayList<TeamPO> teams) {
+	public void refreshTeamTable(ArrayList<TeamPO> teams, Season season, boolean isAvg) {
 		hidTable();
 		if(teams == null || teams.size() == 0) return;
-		setTable(TableContentTransfer.transferTeamBasicInfo(teams),
+		if (isAvg) setTable(TableContentTransfer.transferTeamSortAvgInfo(teams, season),
 				TABLE_UNIT_HEIGHT, TABLE_UNIT_HEIGHT, 140);
-		tg.jsp.setHorizontalScrollBar(null);
+		else setTable(TableContentTransfer.transferTeamSortTotalInfo(teams, season),
+				TABLE_UNIT_HEIGHT, TABLE_UNIT_HEIGHT, 140);
+//		tg.jsp.setHorizontalScrollBar(null);
 		
 		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer() {
 			@Override

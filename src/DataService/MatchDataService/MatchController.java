@@ -54,11 +54,6 @@ public class MatchController implements MatchDataService{
 				if(ifMatchExist(newMatch.getSeason(), newMatch.getName()))
 					continue;
 				
-				if(newMatch.getSeason().compareTo(Config.LASTEST_SEASON)>0)
-					Config.setLatestSeason(newMatch.getSeason());
-				if(newMatch.getSeason().equals(Config.LASTEST_SEASON))
-					Config.LASTEST_DATE=newMatch.getDate();
-				
 				boolean isFirstTeam = false ; 
 				for(int j = 0;j<tempString.size() ;j++){ 
 					String[] splitString=tempString.get(j).split(";");
@@ -111,6 +106,12 @@ public class MatchController implements MatchDataService{
 						 theTeam.addPlayer(thePlayer,newMatch.getSeason());
 					}	
 				}
+				
+				if(newMatch.getSeason().compareTo(Config.LASTEST_SEASON)>0)
+					Config.setLatestSeason(newMatch.getSeason());
+				if(newMatch.getSeason().equals(Config.LASTEST_SEASON))
+					Config.LASTEST_DATE=new String(newMatch.getDate());
+				
 				newMatch.calculateTeamData();
 				newMatch.calculateTotalTime();
 				newMatch.calculatePlayersData();
