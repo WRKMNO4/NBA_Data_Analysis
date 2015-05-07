@@ -421,7 +421,8 @@ public class HotSelectionPanel extends JPanel implements ActionListener,MouseMot
 							refreshSeasonPlayer();
 						}if(isSeasonTeam){
 							refreshSeasonTeam();
-						}						
+						}			
+						lb_date.setText(Config.LASTEST_DATE);
 					}
 					Thread.sleep(10 * 1000);
 				} catch (InterruptedException e) {

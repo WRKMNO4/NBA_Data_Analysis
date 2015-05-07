@@ -58,6 +58,8 @@ public class MatchInfoDetailPanel extends JPanel {
 		
 		mainDataLabel = new JLabel(matchPO.getFirstTeam() + "@" + matchPO.getSecondTeam(), JLabel.LEFT);
 		mainDataLabel.setBounds(PADDING, PADDING, Config.UI_WIDTH - PADDING * 2, MAIN_DATA_LABEL_HEIGHT);
+		mainDataLabel.setForeground(Color.white);
+		mainDataLabel.setFont(new Font("default", 2, 16));
 		add(mainDataLabel);
 		
 		mainDataPanel = new MainDataPanel(matchPO);
@@ -70,12 +72,14 @@ public class MatchInfoDetailPanel extends JPanel {
 		detailDataLabel.setBounds(
 				PADDING, mainDataPanel.getY() + mainDataPanel.getHeight() + PADDING,
 				Config.UI_WIDTH - PADDING * 2, DETAIL_DATA_LABEL_HEIGHT);
+		detailDataLabel.setForeground(Color.white);
 		add(detailDataLabel);
 		
 		team1Label = new JLabel(matchPO.getFirstTeam(), JLabel.LEFT);
 		team1Label.setBounds(
 				PADDING, detailDataLabel.getY() + detailDataLabel.getHeight(),
 				Config.UI_WIDTH - PADDING * 2, TEAM_1_LABEL_HEIGHT);
+		team1Label.setForeground(Color.white);
 		add(team1Label);
 		
 		team1 = new TableGroup();
@@ -85,11 +89,13 @@ public class MatchInfoDetailPanel extends JPanel {
 				Config.UI_WIDTH - PADDING * 2, TEAM_1_TABLE_HEIGHT,
 				PADDING, team1Label.getY() + team1Label.getHeight());
 		PlayerDetailPanel.paintTable(team1.table);
+		team1.table.getColumnModel().getColumn(0).setPreferredWidth(150);
 		
 		team2Label = new JLabel(matchPO.getSecondTeam(), JLabel.LEFT);
 		team2Label.setBounds(
 				PADDING, team1.jsp.getY() + team1.jsp.getHeight() + PADDING,
 				Config.UI_WIDTH - PADDING * 2, TEAM_2_LABEL_HEIGHT);
+		team2Label.setForeground(Color.white);
 		add(team2Label);
 		
 		team2 = new TableGroup();
@@ -99,6 +105,7 @@ public class MatchInfoDetailPanel extends JPanel {
 				Config.UI_WIDTH - PADDING * 2, TEAM_2_TABLE_HEIGHT,
 				PADDING, team2Label.getY() + team2Label.getHeight());
 		PlayerDetailPanel.paintTable(team2.table);
+		team2.table.getColumnModel().getColumn(0).setPreferredWidth(150);
 		addLinks();
 	}
 	private void addLinks() {

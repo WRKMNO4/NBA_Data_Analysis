@@ -25,7 +25,7 @@ import com.kmno4.presentation.button.LMouseAdapter;
 @SuppressWarnings("serial")
 public class TeamSelectionPanel extends JPanel implements MouseListener,ActionListener{
 
-	private boolean isAvg=true;
+	private boolean isAvg;
 
 	private JComboBox<String> cb_avg_data;
 	private JComboBox<String> cb_total_data;
@@ -43,6 +43,7 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 		this.setBounds(0, 0, Config.UI_WIDTH, Config.MATCH_SELECTION_PANEL_HEIGHT);
 		this.setVisible(true);
 		this.setBackground(Color.gray);
+		isAvg = false;
 		
 		cb_avg_data=new JComboBox<String>(Config.TEAM_AVERAGE_INFO_OVERALL);
 		cb_total_data=new JComboBox<String>(Config.TEAM_TOTAL_INFO_OVERALL);
@@ -57,8 +58,8 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 		this.add(cb_avg_data);
 		this.add(cb_total_data);
 		this.add(cb_season);
-		cb_avg_data.setVisible(true);
-		cb_total_data.setVisible(false);
+		cb_avg_data.setVisible(false);
+		cb_total_data.setVisible(true);
 		cb_total_data.addActionListener(this);
 		cb_avg_data.addActionListener(this);
 		
@@ -137,7 +138,8 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Season season=TransferSortHelper.StringToSeason(cb_season.getSelectedItem().toString());
-		if(e.getSource()==cb_total_data||(e.getSource()==cb_season && isAvg)){
+		if(e.getSource() == cb_season) System.out.println("aaaaaa");
+		if(e.getSource()==cb_total_data||(e.getSource()==cb_season && !isAvg)){
 			//总数据
 			String data=cb_total_data.getSelectedItem().toString();
 			TeamData dataType=TransferSortHelper.StringToDataTypeForTeam(data);
