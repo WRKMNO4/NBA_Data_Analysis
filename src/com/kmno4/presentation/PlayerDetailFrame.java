@@ -44,12 +44,13 @@ public class PlayerDetailFrame extends JFrame {
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBackground(Color.white);
+
+		JLabel close = new ExitLabel(this);
+		add(close);
 		
 		playerDetailPanel = new PlayerDetailPanel(playerPO, this);
 		add(playerDetailPanel);
 		
-		JLabel close = new ExitLabel(this);
-		add(close);
 		
 		setVisible(true);
 		

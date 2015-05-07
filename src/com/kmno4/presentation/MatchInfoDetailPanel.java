@@ -37,12 +37,12 @@ public class MatchInfoDetailPanel extends JPanel {
 	
 	private static final int PADDING = 5;
 	private static final int 
-	    MAIN_DATA_LABEL_HEIGHT = 30,
+	    MAIN_DATA_LABEL_HEIGHT = 40,
 	    MAIN_DATA_PANEL_HEIGHT = 250,
-	    DETAIL_DATA_LABEL_HEIGHT = 30,
-	    TEAM_1_LABEL_HEIGHT = 30,
+	    DETAIL_DATA_LABEL_HEIGHT = 40,
+	    TEAM_1_LABEL_HEIGHT = 20,
 	    TEAM_1_TABLE_HEIGHT = 180,
-	    TEAM_2_LABEL_HEIGHT = 30,
+	    TEAM_2_LABEL_HEIGHT = 20,
 	    TEAM_2_TABLE_HEIGHT = 180;
 	
 	public MatchInfoDetailPanel(MatchPO m, MatchInfoDetailFrame f) {
@@ -59,6 +59,8 @@ public class MatchInfoDetailPanel extends JPanel {
 		mainDataLabel = new JLabel(matchPO.getFirstTeam() + "@" + matchPO.getSecondTeam(), JLabel.LEFT);
 		mainDataLabel.setBounds(PADDING, PADDING, Config.UI_WIDTH - PADDING * 2, MAIN_DATA_LABEL_HEIGHT);
 		mainDataLabel.setForeground(Color.white);
+		mainDataLabel.setBackground(new Color(20, 79, 139, 150));
+		mainDataLabel.setOpaque(true);
 		mainDataLabel.setFont(new Font("default", 2, 16));
 		add(mainDataLabel);
 		
@@ -72,7 +74,10 @@ public class MatchInfoDetailPanel extends JPanel {
 		detailDataLabel.setBounds(
 				PADDING, mainDataPanel.getY() + mainDataPanel.getHeight() + PADDING,
 				Config.UI_WIDTH - PADDING * 2, DETAIL_DATA_LABEL_HEIGHT);
+		detailDataLabel.setFont(new Font("default", 2, 16));
 		detailDataLabel.setForeground(Color.white);
+		detailDataLabel.setBackground(new Color(20, 79, 139, 150));
+		detailDataLabel.setOpaque(true);
 		add(detailDataLabel);
 		
 		team1Label = new JLabel(matchPO.getFirstTeam(), JLabel.LEFT);
@@ -80,6 +85,9 @@ public class MatchInfoDetailPanel extends JPanel {
 				PADDING, detailDataLabel.getY() + detailDataLabel.getHeight(),
 				Config.UI_WIDTH - PADDING * 2, TEAM_1_LABEL_HEIGHT);
 		team1Label.setForeground(Color.white);
+		team1Label.setFont(new Font("default", 2, 14));
+		team1Label.setBackground(new Color(128, 128, 128, 150));
+		team1Label.setOpaque(true);
 		add(team1Label);
 		
 		team1 = new TableGroup();
@@ -96,6 +104,9 @@ public class MatchInfoDetailPanel extends JPanel {
 				PADDING, team1.jsp.getY() + team1.jsp.getHeight() + PADDING,
 				Config.UI_WIDTH - PADDING * 2, TEAM_2_LABEL_HEIGHT);
 		team2Label.setForeground(Color.white);
+		team2Label.setFont(new Font("default", 2, 14));
+		team2Label.setBackground(new Color(128, 128, 128, 150));
+		team2Label.setOpaque(true);
 		add(team2Label);
 		
 		team2 = new TableGroup();

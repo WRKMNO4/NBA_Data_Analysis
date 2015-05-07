@@ -25,9 +25,10 @@ public class MatchInfoDetailFrame extends JFrame {
 		setBackground(Color.white);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
+		add(new ExitLabel(this));
 		matchInfoDetailPanel = new MatchInfoDetailPanel(matchPO, this);
 		add(matchInfoDetailPanel);
-		add(new ExitLabel(this));
+		
 		setVisible(true);
 		
 		@SuppressWarnings("unused")

@@ -46,12 +46,10 @@ public class TeamDetailFrame extends JFrame {
 		setLayout(null);
 		setUndecorated(true);
 		setBackground(Color.white);
-		
-		teamDetailPanel = new TeamDetailPanel(teamPO, this);
-		this.add(teamDetailPanel);
-		
 		JLabel close = new ExitLabel(this);
 		add(close);
+		teamDetailPanel = new TeamDetailPanel(teamPO, this);
+		this.add(teamDetailPanel);
 		
 		setVisible(true);
 		

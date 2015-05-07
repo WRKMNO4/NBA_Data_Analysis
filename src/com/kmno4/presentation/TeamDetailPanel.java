@@ -54,8 +54,8 @@ public class TeamDetailPanel extends JPanel {
 		
 		seasonLabel = new JLabel("赛季数据", JLabel.LEFT);
 		seasonLabel.setOpaque(true);
-		seasonLabel.setFont(new Font("default", 0, 13));
-		seasonLabel.setBackground(Color.black);
+		seasonLabel.setFont(new Font("default", 2, 16));
+		seasonLabel.setBackground(new Color(20, 79, 139, 150));
 		seasonLabel.setForeground(Color.white);
 		seasonLabel.setBounds(
 				PADDING, mainDataPanel.getY() + mainDataPanel.getHeight() + PADDING,
@@ -64,8 +64,8 @@ public class TeamDetailPanel extends JPanel {
 		
 		avgLabel = new JLabel("赛季场均", JLabel.LEFT);
 		avgLabel.setOpaque(true);
-		avgLabel.setFont(new Font("default", 0, 11));
-		avgLabel.setBackground(Color.gray);
+		avgLabel.setFont(new Font("default", 2, 12));
+		avgLabel.setBackground(new Color(128, 128, 128, 150));
 		avgLabel.setForeground(Color.white);
 		avgLabel.setBounds(
 				PADDING, seasonLabel.getY() + seasonLabel.getHeight(), 
@@ -83,8 +83,8 @@ public class TeamDetailPanel extends JPanel {
 		
 		sumLabel = new JLabel("赛季总计", JLabel.LEFT);
 		sumLabel.setOpaque(true);
-		sumLabel.setFont(new Font("default", 0, 11));
-		sumLabel.setBackground(Color.gray);
+		sumLabel.setFont(new Font("default", 2, 12));
+		sumLabel.setBackground(new Color(128, 128, 128, 150));
 		sumLabel.setForeground(Color.white);
 		sumLabel.setBounds(
 				PADDING, seasonAvgData.jsp.getY() + seasonAvgData.jsp.getHeight(), 
@@ -101,8 +101,8 @@ public class TeamDetailPanel extends JPanel {
 		seasonSumData.table.getColumnModel().getColumn(0).setPreferredWidth(200);
 		
 		recentLabel= new JLabel("最近五场比赛", JLabel.LEFT);
-		recentLabel.setFont(new Font("default", 0, 13));
-		recentLabel.setBackground(Color.black);
+		recentLabel.setFont(new Font("default", 2, 16));
+		recentLabel.setBackground(new Color(20, 79, 139, 150));
 		recentLabel.setForeground(Color.white);
 		recentLabel.setOpaque(true);
 		recentLabel.setBounds(
