@@ -54,6 +54,8 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	
 	private final int line_speed=200;
 	private int line_x,line_y;
+	private int flash_x,flash_y;
+	private JLabel flash;
 	
 	public TableGroup tg;
 	private TableModel dataTableModel;
@@ -81,6 +83,12 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		line.setSize(Config.TOP_TAB_LABLE_WIDTH, 1);
 		add(line);
 		
+		flash_x=1000;
+		flash_y=-500;
+		flash=new JLabel();
+		flash.setIcon(Config.FLASH);
+		flash.setBounds(flash_x,flash_y,Config.FLASH.getIconWidth(),Config.FLASH.getIconHeight());
+		add(flash);
 		
 		foreGround=new JLabel();
 		foreGround.setIcon(Config.LABEL_FOREGROUND);
@@ -162,6 +170,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		
 		LineThread lineThread=new LineThread();
 		lineThread.start();
+//		new falshThread().start();
 	}
 	
 	public void labelClicked(JLabel l){
@@ -696,4 +705,25 @@ public class TopTabPanel extends JPanel implements MouseListener{
 			}
 		}
 	} 
+	
+	class falshThread extends Thread{
+		@Override
+		public void run(){
+			while(true){
+				flash_x-=1;
+				flash_y++;
+				flash.setLocation(flash_x, flash_y);
+				if(flash_y>200){
+					flash_y=-500;
+					flash_x=500;
+				}
+				try {
+					Thread.sleep(10);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 }

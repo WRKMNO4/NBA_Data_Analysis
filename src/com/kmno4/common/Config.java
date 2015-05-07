@@ -159,6 +159,9 @@ public class Config {
 	public static final int TEAM_ICON_WIDTH = 315;
 	public static final int TEAM_ICON_HEIGHT = 315;
 	
+	
+	public static final ImageIcon FLASH=new ImageIcon("images/flash.png");
+	public static final ImageIcon FLASH2=new ImageIcon("images/flash2.png");
 	//所有图片
 	public static final ImageIcon FRAME_BACKGROUND=new ImageIcon("images/frame_bg_black.png");
 		//tabPanel Label切换图片
