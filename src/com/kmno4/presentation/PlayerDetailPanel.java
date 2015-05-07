@@ -279,15 +279,21 @@ public class PlayerDetailPanel extends JPanel {
 	 * @param height
 	 */
 	public static void fillLabel(String url, JLabel label, int width, int height) {
-		Image i = null;
-		BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+		
 		try {
-			i = ImageIO.read(new File(url));
-		} catch(IOException e) {
-			e.printStackTrace();
+			Image i = null;
+			BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+			try {
+				i = ImageIO.read(new File(url));
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+			bi.getGraphics().drawImage(i, 0, 0, width, height, null);
+			label.setIcon(new ImageIcon((Image)bi));
 		}
-		bi.getGraphics().drawImage(i, 0, 0, width, height, null);
-		label.setIcon(new ImageIcon((Image)bi));
+		catch(Exception e) {
+			System.out.println("pic not found");
+		} 
 	}
 	
 	

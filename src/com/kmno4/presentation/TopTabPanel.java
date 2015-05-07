@@ -189,7 +189,7 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		
 		MainFrame.mainFrame.pageInfoPanel.refreshInfo(Pages.球员信息.toString());
 		
-		refreshPlayerTable(MainFrame.mainFrame.players);
+		refreshPlayerTable(MainFrame.mainFrame.players, true);
 		MainFrame.mainFrame.repaint();
 	}
 	
@@ -261,11 +261,12 @@ public class TopTabPanel extends JPanel implements MouseListener{
 	 * 每次调用即刷新player列表
 	 * @param players
 	 */
-	public void refreshPlayerTable(List<PlayerPO> players){
+	public void refreshPlayerTable(List<PlayerPO> players, boolean isAvg){
 //		System.out.println("TopTabPanel.refreshPlayerTable()");
 		hidTable();
 		if(players == null || players.size() == 0) return;
-		setTable(TableContentTransfer.transferPlayerSortAvgInfo((ArrayList<PlayerPO>)players));
+		if (isAvg) setTable(TableContentTransfer.transferPlayerSortAvgInfo((ArrayList<PlayerPO>)players));
+		else setTable(TableContentTransfer.transferPlayerSortTotalInfo((ArrayList<PlayerPO>)players));
 		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer() {
 			@Override
 			public Component getTableCellRendererComponent(JTable table,

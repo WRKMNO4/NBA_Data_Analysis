@@ -191,7 +191,7 @@ public class BLServiceController implements  BLService{
 			while(true){
 				refresh();
 		    	try {
-					Thread.sleep(1000);
+					Thread.sleep(10 * 1000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

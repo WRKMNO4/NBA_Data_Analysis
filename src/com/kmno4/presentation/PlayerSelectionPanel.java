@@ -388,7 +388,7 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 						.pickUpPlayersByCondition(position, zone, district,
 								standard, dataType, season);
 				if (players != null) {
-					MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
+					MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players, isAvg);
 				}
 			}
 		}
@@ -417,7 +417,7 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 	public void actionPerformed(ActionEvent e) {
 		// 场均排序
 		if (e.getSource() == cb_avg_sort_data
-				|| e.getSource() == cb_sort_season) {
+				|| (e.getSource() == cb_sort_season && isAvg)) {
 			String data = cb_avg_sort_data.getSelectedItem().toString();
 			Season season = TransferSortHelper.StringToSeason(cb_sort_season
 					.getSelectedItem().toString());
@@ -425,12 +425,12 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 					.StringToDataTypeForPlayer(data);
 			ArrayList<PlayerPO> players = MainFrame.mainFrame.bl
 					.sortPlayersByComprehension("avg", dataType, season);
-			MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
+			MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players, true);
 		}
 
 		// 总排序
-		if (e.getSource() == cb_total_sort_data
-				|| e.getSource() == cb_sort_season) {
+		else if (e.getSource() == cb_total_sort_data
+				|| (e.getSource() == cb_sort_season && !isAvg)) {
 			String data = cb_total_sort_data.getSelectedItem().toString();
 			Season season = TransferSortHelper.StringToSeason(cb_sort_season
 					.getSelectedItem().toString());
@@ -438,7 +438,7 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 					.StringToDataTypeForPlayer(data);
 			ArrayList<PlayerPO> players = MainFrame.mainFrame.bl
 					.sortPlayersByComprehension("total", dataType, season);
-			MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players);
+			MainFrame.mainFrame.topTabPanel.refreshPlayerTable(players, false);
 		}
 	}
 }

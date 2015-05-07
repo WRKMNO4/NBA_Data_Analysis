@@ -423,7 +423,7 @@ public class HotSelectionPanel extends JPanel implements ActionListener,MouseMot
 							refreshSeasonTeam();
 						}						
 					}
-					Thread.sleep(3000);
+					Thread.sleep(10 * 1000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
