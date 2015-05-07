@@ -138,7 +138,7 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Season season=TransferSortHelper.StringToSeason(cb_season.getSelectedItem().toString());
-		if(e.getSource() == cb_season) System.out.println("aaaaaa");
+//		if(e.getSource() == cb_season) System.out.println("aaaaaa");
 		if(e.getSource()==cb_total_data||(e.getSource()==cb_season && !isAvg)){
 			//总数据
 			String data=cb_total_data.getSelectedItem().toString();
