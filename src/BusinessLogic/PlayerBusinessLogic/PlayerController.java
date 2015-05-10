@@ -64,9 +64,9 @@ public class PlayerController implements PlayerBusinessLogic{
 	@Override
 	public ArrayList<PlayerPO> pickUpPlayersByCondition(String position,
 			String league, int lowAge, int highAge,Season season) {
-		if(league.equals("west"))
+		if(league.equals("West"))
 			league="W";
-		if(league.equals("east"))
+		if(league.equals("East"))
 			league="E";
 		ArrayList<PlayerPO> results = new ArrayList<PlayerPO>();
 		for(PlayerPO onePlayer: playerController.getAllPlayers()){

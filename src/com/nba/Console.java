@@ -17,6 +17,7 @@ import BusinessLogic.SortHelper.PlayerSortHelper;
 import BusinessLogic.SortHelper.TransferSortHelper;
 import Enum.PlayerData;
 import Enum.TeamData;
+import Enum.Zone;
 import PO.PlayerDataPO;
 import PO.PlayerPO;
 import PO.SeasonInfoForPlayer;
@@ -280,7 +281,7 @@ public class Console {
     			playerHighInfo.setFrequency(avgInfo.getPercentageOfUse());
     			playerHighInfo.setGmSc(avgInfo.getEfficiencyOfGmSc());
     			if(team!=null)
-    			playerHighInfo.setLeague(team.getZone().toString());
+    				playerHighInfo.setLeague(team.getZone()==Zone.W?"West":"East");
     			playerHighInfo.setName(onePlayer.getName());
     			playerHighInfo.setOffendReboundEfficient(avgInfo.getPercentageOfAttackingRebound());
     			playerHighInfo.setPosition(onePlayer.getPosition());
@@ -474,7 +475,7 @@ public class Console {
 			playerHighInfo.setFrequency(avgInfo.getPercentageOfUse());
 			playerHighInfo.setGmSc(avgInfo.getEfficiencyOfGmSc());
 			if(team!=null)
-			playerHighInfo.setLeague(team.getZone().toString());
+				playerHighInfo.setLeague(team.getZone()==Zone.W?"West":"East");
 			playerHighInfo.setName(onePlayer.getName());
 			playerHighInfo.setOffendReboundEfficient(avgInfo.getPercentageOfAttackingRebound());
 			playerHighInfo.setPosition(onePlayer.getPosition());
@@ -744,7 +745,7 @@ public class Console {
 		for(TeamPO oneTeam: teams){
 			TeamHotInfo teamHotInfo = new TeamHotInfo() ;
 			teamHotInfo.setField(field);
-			teamHotInfo.setLeague(oneTeam.getZone().toString());
+			teamHotInfo.setLeague(oneTeam.getZone()==Zone.W?"West":"East");
 			teamHotInfo.setTeamName(oneTeam.getShortName());
 			teamHotInfo.setValue(TransferSortHelper.TeamDataTypeToAvgData(dataType, oneTeam, Config.LASTEST_SEASON));
 			 
