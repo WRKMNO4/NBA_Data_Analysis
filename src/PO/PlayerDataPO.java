@@ -53,11 +53,12 @@ public class PlayerDataPO {
 	
 	public void calculatePlayerTotalDataInOneSeason(ArrayList<PlayerDataOfOneMatchPO> datas){
 		numberOfMatch = datas.size() ;
-		numberOfStarting = datas.size() ;
 		
 		int totalTime = 0 ;
 		
 		for(PlayerDataOfOneMatchPO oneMatch:datas){
+			if(oneMatch.ifStarting==true)
+				numberOfStarting += 1 ;
 			numberOfRebound += oneMatch.getNumberOfReboundOfOneMatch() ;
 			numberOfAssist += oneMatch.getNumberOfAssistOfOneMatch() ;
 			totalTime += transportTime(oneMatch.getPresentTimeOfOneMatch()) ;
@@ -264,6 +265,10 @@ public class PlayerDataPO {
 
 	public double getNumberOfDefenseRebound() {
 		return numberOfDefenseRebound;
+	}
+
+	public void setNumberOfStarting(int numberOfStarting) {
+		this.numberOfStarting = numberOfStarting;
 	}
 	
 

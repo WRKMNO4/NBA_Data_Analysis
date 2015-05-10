@@ -309,6 +309,13 @@ public class TransferSortHelper {
 			return PlayerData.percentageOfFault;
 		case "frequency":
 			return PlayerData.percentageOfUse;
+			
+		case "scoreImprovedRate":
+			return PlayerData.improveRateOfScore;
+		case "assistImprovedRate":
+			return PlayerData.improveRateOfAssist;
+		case "reboundImprovedRate":
+			return PlayerData.improveRateOfRebound;
 		}
 		return null;
 	}

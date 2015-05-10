@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class PlayerDataOfOneMatchPO {
 	String name ;
 	String position ;
+	boolean ifStarting ;
 	String presentTimeOfOneMatch ;
 	double numberOfShooting ;
 	double numberOfShotAttempt ;
@@ -54,6 +55,8 @@ public class PlayerDataOfOneMatchPO {
 	public PlayerDataOfOneMatchPO(String[] splitString){
 	   	this.setName(splitString[0]);
     	this.setPosition(splitString[1]);
+    	if(!splitString[1].equals(""))
+    		this.setIfStarting(true);
 		this.setPresentTimeOfOneMatch(splitString[2]);
 		this.setNumberOfShooting(Integer.parseInt(splitString[3]));
 		this.setNumberOfShotAttempt(Integer.parseInt(splitString[4]));
@@ -353,6 +356,12 @@ public class PlayerDataOfOneMatchPO {
 	}
 	public void setDouble_double(boolean double_double) {
 		this.double_double = double_double;
+	}
+	public boolean isIfStarting() {
+		return ifStarting;
+	}
+	public void setIfStarting(boolean ifStarting) {
+		this.ifStarting = ifStarting;
 	}
 	
 	

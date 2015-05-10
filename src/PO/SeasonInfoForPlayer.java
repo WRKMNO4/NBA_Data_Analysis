@@ -17,7 +17,7 @@ public class SeasonInfoForPlayer {
 	double improvedRateOfRebound;
 	double improvedRateOfAssist;
 	
-	String team="Unknown" ; 
+	String team="Unknown" ;
 	public SeasonInfoForPlayer(Season season){
 		this.season=season;
 	}

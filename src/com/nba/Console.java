@@ -5,10 +5,6 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import javax.print.attribute.standard.DateTimeAtCompleted;
-
-import javafx.scene.input.TransferMode;
-
 import com.kmno4.common.Config;
 
 import de.tototec.cmdoption.CmdCommand;
@@ -17,8 +13,8 @@ import de.tototec.cmdoption.CmdlineParser;
 import de.tototec.cmdoption.CmdlineParserException;
 import BusinessLogic.BLService.BLService;
 import BusinessLogic.BLService.BLServiceController;
+import BusinessLogic.SortHelper.PlayerSortHelper;
 import BusinessLogic.SortHelper.TransferSortHelper;
-import BusinessLogic.TeamBusinessLogic.TeamController;
 import Enum.PlayerData;
 import Enum.TeamData;
 import PO.PlayerDataPO;
@@ -38,36 +34,39 @@ import test.data.TeamHotInfo;
 import test.data.TeamNormalInfo;
 
 public class Console {
-	BLService bl ;
+	public static BLService bl ;
 	PrintStream out ;
 	ArrayList<PlayerPO> allPlayers ;
 	ArrayList<TeamPO> allTeams ;
 	
 	
 	void getMostImprovedPlayer(String hotField,int topNumber){
-		PlayerData dataType = TransferSortHelper.ConsoleStringToDataTypeForPlayer(hotField) ;
+		PlayerData dataType = TransferSortHelper.ConsoleStringToDataTypeForPlayer(hotField+"ImprovedRate") ;
 		ArrayList<PlayerPO> players = bl.getMostImprovePlayer(Config.LASTEST_SEASON, dataType, topNumber) ;
+		int i = 0 ;
 		for(PlayerPO onePlayer:players){
+			i++ ;
 			PlayerHotInfo thePlayer = new PlayerHotInfo() ;
 			SeasonInfoForPlayer thePlayerSeasonInfo = onePlayer.getSeasonInfo(Config.LASTEST_SEASON) ;
 			thePlayer.setField(hotField);
-			thePlayer.setName(thePlayer.getName());
+			thePlayer.setName(onePlayer.getName());
 			thePlayer.setPosition(onePlayer.getPosition());
 			thePlayer.setTeamName(thePlayerSeasonInfo.getTeam());
 			switch(dataType){
-			case score:
+			case improveRateOfScore:
 				thePlayer.setUpgradeRate(thePlayerSeasonInfo.getImprovedRateOfScore());
 				thePlayer.setValue(thePlayerSeasonInfo.getAveragePlayerData().getScore());
 				break;
-			case numberOfAssist:
+			case improveRateOfAssist:
 				thePlayer.setUpgradeRate(thePlayerSeasonInfo.getImprovedRateOfAssist());
 				thePlayer.setValue(thePlayerSeasonInfo.getAveragePlayerData().getNumberOfAssist());
 				break ;
-			case numberOfRebound:
+			case improveRateOfRebound:
 				thePlayer.setUpgradeRate(thePlayerSeasonInfo.getImprovedRateOfRebound());
 				thePlayer.setValue(thePlayerSeasonInfo.getAveragePlayerData().getNumberOfRebound());
 				break ;
 			}
+			out.print(i);
 			out.print(thePlayer);
 		}
 		
@@ -75,20 +74,25 @@ public class Console {
 	void getDailyStandingPlayer(String kingField, int topNumber){
 		PlayerData dataType = TransferSortHelper.ConsoleStringToDataTypeForPlayer(kingField) ;
 		ArrayList<StandingDataPO> players = bl.getDatasOfDailyStandingPlayer(dataType, topNumber) ;
+		int i = 0 ;
 		for(StandingDataPO onePlayer : players){
+			i++ ;
 			PlayerKingInfo thePlayer = new PlayerKingInfo() ;
 			thePlayer.setField(kingField); 
 			thePlayer.setName(onePlayer.getPlayerName());
 			thePlayer.setPosition(onePlayer.getPosition());
 			thePlayer.setTeamName(onePlayer.getTeam());
 			thePlayer.setValue(onePlayer.getData());
+			out.print(i);
 			out.print(thePlayer);
 		}
 	}
 	void getSeasonStandingPlayer(String kingField, int topNumber){
 		PlayerData dataType = TransferSortHelper.ConsoleStringToDataTypeForPlayer(kingField) ;
 		ArrayList<PlayerPO> players = bl.getSeasonStandingPlayer(Config.LASTEST_SEASON, dataType, topNumber) ;
+		int i=0;
 		for(PlayerPO onePlayer:players){
+			i++ ;
 			PlayerKingInfo thePlayer = new PlayerKingInfo() ;
 			SeasonInfoForPlayer thePlayerSeasonInfo = onePlayer.getSeasonInfo(Config.LASTEST_SEASON) ;
 			thePlayer.setField(kingField);
@@ -106,6 +110,7 @@ public class Console {
 				thePlayer.setValue(thePlayerSeasonInfo.getAveragePlayerData().getNumberOfAssist()) ;
 				break ;
 			}
+			out.print(i);
 			out.print(thePlayer);
 		}
 	}
@@ -149,14 +154,18 @@ public class Console {
 				}
 			}
 		}
-	
 		ArrayList<PlayerPO> players = bl.pickUpPlayerByCondition(position, league,lowAge,highAge,Config.LASTEST_SEASON) ;
+		
 		return players ;
 	}
     
 	void getSortPlayerByField(boolean showTotal2, boolean isHigh2,
 			int num2, String field) {
     	String standard = showTotal2? "total":"avg" ;
+    	if(isHigh2&&field.equals(""))
+    		field = "realShot.desc" ;
+    	if(!isHigh2&&field.equals(""))
+    		field = "score.desc" ;
     	String[] strs = field.split(",") ;
     	String[] cmds = strs[0].split("\\.") ;
     	PlayerData dataType = TransferSortHelper.ConsoleStringToDataTypeForPlayer(cmds[0]) ;
@@ -164,10 +173,7 @@ public class Console {
     	if(players.size()>num2)
     		players = new ArrayList<>(players.subList(0,num2)) ;
     	
-    	if(isHigh2&&field.equals(""))
-    		field = "realShot.desc" ;
-    	if(!isHigh2&&field.equals(""))
-    		field = "score.desc" ;
+    	int i = 0 ;
     	
     	if(cmds[1].equals("asc"))
     		Collections.reverse(players);
@@ -199,6 +205,8 @@ public class Console {
        	    		if(!infoOfSeason.getTeam().equals("Unknown"))
        	     			playerNormalInfo.setTeamName(infoOfSeason.getTeam());
        	     		playerNormalInfo.setThree(avgInfo.getPercentageOf3_Point());
+       	     		i++ ;
+       	     		out.print(i);
        	         	out.print(playerNormalInfo) ;
     			}
     		}else{
@@ -206,7 +214,8 @@ public class Console {
         			PlayerNormalInfo playerNormalInfo = new PlayerNormalInfo() ;
         			SeasonInfoForPlayer infoOfSeason = onePlayer.getSeasonInfo(Config.LASTEST_SEASON) ;
         			PlayerDataPO avgInfo = infoOfSeason.getAveragePlayerData() ;
-       
+        			PlayerDataPO totalInfo = infoOfSeason.getTotalPlayerData() ;
+        			
             		playerNormalInfo.setAge(Integer.parseInt(onePlayer.getAge()));
             		playerNormalInfo.setAssist(avgInfo.getNumberOfAssist());
             		playerNormalInfo.setBlockShot(avgInfo.getNumberOfBlock()) ;
@@ -216,18 +225,20 @@ public class Console {
             		playerNormalInfo.setFoul(avgInfo.getNumberOfFoul());
             		playerNormalInfo.setMinute(PlayerDataPO.transportTime(avgInfo.getPresentTime())/60.0);
             		playerNormalInfo.setName(onePlayer.getName() );
-            		playerNormalInfo.setNumOfGame(avgInfo.getNumberOfMatch());
+            		playerNormalInfo.setNumOfGame(totalInfo.getNumberOfMatch());
             		playerNormalInfo.setOffend(avgInfo.getNumberOfAttack());
             		playerNormalInfo.setPenalty(avgInfo.getPercentageOffreeThrow());
             		playerNormalInfo.setPoint(avgInfo.getScore());
             		playerNormalInfo.setRebound(avgInfo.getNumberOfRebound());
             		playerNormalInfo.setShot(avgInfo.getPercentageOfShooting());
-            		playerNormalInfo.setStart(avgInfo.getNumberOfStarting());
+            		playerNormalInfo.setStart(totalInfo.getNumberOfStarting());
             		playerNormalInfo.setSteal(avgInfo.getNumberOfSteal());
             		if(!infoOfSeason.getTeam().equals("Unknown"))
             			playerNormalInfo.setTeamName(infoOfSeason.getTeam());
             		playerNormalInfo.setThree(avgInfo.getPercentageOf3_Point());
             	
+            		i++ ;
+            		out.print(i);
         			out.print(playerNormalInfo) ;
         		}
     		}
@@ -236,19 +247,24 @@ public class Console {
 			String sortField,String filterField) {
     	ArrayList<PlayerPO> players = getfilterPlayersByField(filterField) ;
 
+    	if(isHigh&&sortField.equals(""))
+    		sortField = "realShot.desc" ;
+    	if(!isHigh&&sortField.equals(""))
+    		sortField = "score.desc" ;
     	String standard = showTotal? "total":"avg" ;
     	String[] strs = sortField.split(",") ;
     	String[] cmds = strs[0].split("\\.") ;
     	PlayerData dataType = TransferSortHelper.ConsoleStringToDataTypeForPlayer(cmds[0]) ;
+    	if(dataType==PlayerData.percentageOf3_Point||dataType==PlayerData.percentageOfShooting||dataType==PlayerData.percentageOfFreeThrow)
+    		standard="avg";
+    	Collections.sort(players, new PlayerSortHelper(standard, dataType, Config.LASTEST_SEASON));
     	if(players.size()>num)
     		players = new ArrayList<>(players.subList(0,num)) ;
     	
-    	if(sortField.equals("")){
-    		sortField = "score.desc" ;
-    	}
-    	
     	if(cmds[1].equals("asc"))
     		Collections.reverse(players);
+    	
+    	int i = 0 ;
     	if(isHigh){
     		for(PlayerPO onePlayer:players){
     			TeamPO team = TeamListPO.findTeamByShortName(onePlayer.getTeam(Config.LASTEST_SEASON));
@@ -274,6 +290,8 @@ public class Console {
     			playerHighInfo.setStealEfficient(avgInfo.getPercentageOfSteal());
     			if(team!=null)
     			playerHighInfo.setTeamName(team.getShortName());
+    			i++ ;
+    			out.print(i);
     			out.print(playerHighInfo);
         	}
     	}else{
@@ -304,12 +322,15 @@ public class Console {
        	    		if(!infoOfSeason.getTeam().equals("Unknown"))
        	     			playerNormalInfo.setTeamName(infoOfSeason.getTeam());
        	     		playerNormalInfo.setThree(avgInfo.getPercentageOf3_Point());
+       	     		i++ ;
+       	     		out.print(i);
        	         	out.print(playerNormalInfo) ;
     			}
     		}else{
     			for(PlayerPO onePlayer:players){
         			PlayerNormalInfo playerNormalInfo = new PlayerNormalInfo() ;
         			SeasonInfoForPlayer infoOfSeason = onePlayer.getSeasonInfo(Config.LASTEST_SEASON) ;
+        			PlayerDataPO totalInfo = infoOfSeason.getTotalPlayerData() ;
         			PlayerDataPO avgInfo = infoOfSeason.getAveragePlayerData() ;
        
             		playerNormalInfo.setAge(Integer.parseInt(onePlayer.getAge()));
@@ -321,18 +342,20 @@ public class Console {
             		playerNormalInfo.setFoul(avgInfo.getNumberOfFoul());
             		playerNormalInfo.setMinute(PlayerDataPO.transportTime(avgInfo.getPresentTime())/60.0);
             		playerNormalInfo.setName(onePlayer.getName() );
-            		playerNormalInfo.setNumOfGame(avgInfo.getNumberOfMatch());
+            		playerNormalInfo.setNumOfGame(totalInfo.getNumberOfMatch());
             		playerNormalInfo.setOffend(avgInfo.getNumberOfAttack());
             		playerNormalInfo.setPenalty(avgInfo.getPercentageOffreeThrow());
             		playerNormalInfo.setPoint(avgInfo.getScore());
             		playerNormalInfo.setRebound(avgInfo.getNumberOfRebound());
             		playerNormalInfo.setShot(avgInfo.getPercentageOfShooting());
-            		playerNormalInfo.setStart(avgInfo.getNumberOfStarting());
+            		playerNormalInfo.setStart(totalInfo.getNumberOfStarting());
             		playerNormalInfo.setSteal(avgInfo.getNumberOfSteal());
             		if(!infoOfSeason.getTeam().equals("Unknown"))
             			playerNormalInfo.setTeamName(infoOfSeason.getTeam());
             		playerNormalInfo.setThree(avgInfo.getPercentageOf3_Point());
             	
+            		i++ ;
+            		out.print(i);
         			out.print(playerNormalInfo) ;
         		}
     		}
@@ -371,25 +394,33 @@ public class Console {
     
     
 	public void execute(PrintStream out,String[] args){
-		this.out =out ;
-		System.setOut(out);
 		if(args[0].contains("datasource")){
 			bl = new BLServiceController(args[1]) ;
 			bl.init();
 			return ;
 		}
-		
+		this.out =out ;
+		System.setOut(out);
 		TestConfig config = new TestConfig();
 		Player player = new Player();
 		Team team = new Team();
 		
+//		String[] strs = args[0].split(" ") ;
+		
 		CmdlineParser cp = new CmdlineParser(new Object[] { config, player , team }) ;
 		try {
 			cp.parse(args);
+//			for(int i = 1 ;i<strs.length;i++){
+//				String[] strs1 = strs[i].split(" ") ;
+//				strs1[0] = "-"+strs1[0] ;
+//				cp.parse(new String[]{"-n","50"});
+//				for(int j=0;j<strs1.length;j++)
+//					System.out.println(strs1[j]);
+//			}
 		} catch (CmdlineParserException e) {
 			e.printStackTrace();
 		}
-		if(args[0].equals("-player")) {
+		if(args[0].contains("-player")) {
 		if(player.isHot)
 			getMostImprovedPlayer(player.hotField,player.getTopnumber()) ;
 		else if(player.isKing){
@@ -404,8 +435,9 @@ public class Console {
 	     			getSortPlayerByField(player.showTotal, player.isHigh, player.num, player.sortField);
 	     		else if(player.isFilter&&player.isSort)
 	     			getSortAndFilterForPlayer(player.showTotal, player.num,player.isHigh, player.sortField,player.filterField) ;
-	     		else if(!player.isFilter && !player.isSort)
+	     		else if(!player.isFilter && !player.isSort){
 	     			getSortPlayerByField(player.showTotal, player.isHigh, player.num, player.sortField);
+	     		}
 	     	 }
 		}    
 		
@@ -417,9 +449,9 @@ public class Console {
 					getSortTeamByField(team.isTotal,team.isHigh,team.num,team.sortField,team.ifAscSort);
 				else if(!team.isSort){
 					if(team.isHigh)
-						getSortTeamByField(false, true , team.num , "winRate",team.ifAscSort);
+						getSortTeamByField(team.isTotal, true , team.num , "winRate",team.ifAscSort);
 					else
-						getSortTeamByField(false,false,team.num,"score",team.ifAscSort);  //相当于"-team"
+						getSortTeamByField(team.isTotal,false,team.num,"score",team.ifAscSort);  //相当于"-team"
 					}
 				}
 			}		
@@ -428,6 +460,7 @@ public class Console {
 	
 	private void getPlayerHighInfo(int number){
 		allPlayers = bl.getAllPlayers() ;
+		int i = 0 ;
 		for(PlayerPO onePlayer : allPlayers){
 			TeamPO team = TeamListPO.findTeamByShortName(onePlayer.getTeam(Config.LASTEST_SEASON));
 			SeasonInfoForPlayer info = onePlayer.getSeasonInfo(Config.LASTEST_SEASON);
@@ -451,14 +484,20 @@ public class Console {
 			playerHighInfo.setStealEfficient(avgInfo.getPercentageOfSteal());
 			if(team!=null)
 			playerHighInfo.setTeamName(team.getShortName());
+			i++ ;
+			out.print(i);
 			out.print(playerHighInfo);
     	}
 	}
 	
 	
 	class TestConfig {
-		@CmdOption(names = { "--help", "-h", "-?" }, description = "show help", isHelp = true)
+		@CmdOption(names = { "--help", "-h", "-?" },args={"isHelp"}, description = "show help",maxCount = 1, minCount = 0)
+		public void ishelp(String isHelp){
+			System.out.println(isHelp);
+		}
 		public boolean help;
+		
 	}
 
 	@CmdCommand(names = { "-player","-p" },description = "Show Player information")
@@ -551,14 +590,14 @@ public class Console {
 			return topNumber ;
 		}
 		
-		@CmdOption(names = {"-filter"},args = {"field.value"},description = "show filter info",conflictsWith = {"-sort","-king","-hot","-high"})
+		@CmdOption(names = {"-filter"},args = {"field.value"},description = "show filter info",conflictsWith = {"-king","-hot","-high"})
 		public void isFilter(String field){
 			isFilter = true ;
 			filterField = field ;
 			isHigh = false ;
 		}
 
-		@CmdOption(names = {"-sort"},args = {"filed.sortOrder"},description = "show sort info",conflictsWith = {"-filter","-king","-hot"})
+		@CmdOption(names = {"-sort"},args = {"filed.sortOrder"},description = "show sort info",conflictsWith = {"-king","-hot"})
 		public void isSort(String field){
 			isSort = true ;
 			sortField = field ;
@@ -580,12 +619,12 @@ public class Console {
 		TeamData highDataType=TeamData.percentageOfWinning;
 		
 		@CmdOption(names={"-avg"},maxCount=1,minCount=0,conflictsWith={"-total","-hot"})
-		private void setAvg(){
+		public void setAvg(){
 			isTotal=false;
 		}
 		
 		@CmdOption(names={"-total"},maxCount=1,minCount=0,conflictsWith={"-avg","-hot"})
-		private void setTotal(){
+		public void setTotal(){
 			isTotal=true;
 		}
 		
@@ -595,28 +634,34 @@ public class Console {
 		}
 		
 		@CmdOption(names={"-all"},maxCount=1,minCount=0,conflictsWith={"-hot"})
-		private void setAll(){
+		public void setIsAll(){
 			isAll=true;
 		}
 		
 		@CmdOption(names={"-hot"},args={"field"},maxCount=1,minCount=0,conflictsWith={"-all","-avg","-total","-sort"})
-		private void setHot(String field){
+		public void setHot(String field){
 			isHot=true;
 			hotField=field;
 			isAll=false;
 		}
 		
 		@CmdOption(names={"-sort"},args={"field"},maxCount=1,minCount=0)
-		private void setSort(String field){
+		public void setSort(String field){
 			isSort=true;
 			String[] tmpStr=field.split("\\.");
 			sortField=tmpStr[0];
 			if(tmpStr[1].equals("asc"))
 				ifAscSort=true;
 		}
+		
+		@CmdOption(names={"-high"},maxCount=1,minCount=0)
+		public void setHigh(){
+			isHigh = true;
+		}
 	}
 
 	public void outputTeamNormalTotalInfo(ArrayList<TeamPO> teams){
+		int i = 0 ;
 		for(TeamPO oneTeam: teams){
 			TeamNormalInfo teamNormalInfo = new TeamNormalInfo();
 			SeasonInfoForTeam seasonInfo = oneTeam.getSeasonInfo(Config.LASTEST_SEASON);
@@ -636,11 +681,14 @@ public class Console {
 			teamNormalInfo.setSteal(totalInfo.getNumberOfSteal());
 			teamNormalInfo.setTeamName(oneTeam.getShortName());
 			teamNormalInfo.setThree(avgInfo.getPercentageOf3_point());
+			i++ ;
+			out.print(i);
 			out.print(teamNormalInfo);
 			}
 		}
 	
 	public void outputTeamNormalAvgInfo(ArrayList<TeamPO> teams){
+		int i = 0;
 		for(TeamPO oneTeam: teams){
 			TeamNormalInfo teamNormalInfo = new TeamNormalInfo();
 			SeasonInfoForTeam seasonInfo = oneTeam.getSeasonInfo(Config.LASTEST_SEASON);
@@ -660,11 +708,15 @@ public class Console {
 			teamNormalInfo.setSteal(avgInfo.getNumberOfSteal());
 			teamNormalInfo.setTeamName(oneTeam.getShortName());
 			teamNormalInfo.setThree(avgInfo.getPercentageOf3_point());
+			
+			i++ ;
+			out.print(i);
 			out.print(teamNormalInfo);
 			}
 		}
 	
 	public void outputTeamHighInfo(ArrayList<TeamPO> teams){
+		int i = 0 ;
 		for(TeamPO oneTeam: teams){
 			TeamHighInfo teamHighInfo = new TeamHighInfo();
 			SeasonInfoForTeam seasonInfo = oneTeam.getSeasonInfo(Config.LASTEST_SEASON);
@@ -679,18 +731,25 @@ public class Console {
 			teamHighInfo.setStealEfficient(avgInfo.getEfficiencyOfSteal());
 			teamHighInfo.setTeamName(oneTeam.getShortName());
 			teamHighInfo.setWinRate(seasonInfo.getPercentageOfWinning());
+			
+			i++ ;
+			out.print(i);
 			out.print(teamHighInfo);
 		}
 	}
 	
 	public void outputTeamHotInfo(ArrayList<TeamPO> teams,String field) {
 		TeamData dataType = TransferSortHelper.ConsoleStringToDataTypeForTeam(field);
+		int i = 0 ;
 		for(TeamPO oneTeam: teams){
 			TeamHotInfo teamHotInfo = new TeamHotInfo() ;
 			teamHotInfo.setField(field);
 			teamHotInfo.setLeague(oneTeam.getZone().toString());
 			teamHotInfo.setTeamName(oneTeam.getShortName());
 			teamHotInfo.setValue(TransferSortHelper.TeamDataTypeToAvgData(dataType, oneTeam, Config.LASTEST_SEASON));
+			 
+			i++ ;
+			out.print(i);
 			out.print(teamHotInfo);
 		}
 			

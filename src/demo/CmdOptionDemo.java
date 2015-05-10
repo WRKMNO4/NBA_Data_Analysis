@@ -9,10 +9,13 @@ public class CmdOptionDemo {
 		CmdlineParser cp = new CmdlineParser(new Object[] { config, player });
 		String cmdStr = "--help -total -n 5";
 		String[] cmdArr = cmdStr.split("\\s"); //
+		String str = "-c --help fuckZhouzhou" ;
+		String[] strs = str.split(" ") ;
 		try {
-			cp.parse(cmdArr[0]);
-			cp.parse(cmdArr[1]);
-			cp.parse(new String[] { cmdArr[2], cmdArr[3] });
+			cp.parse(strs);
+//			cp.parse(cmdArr[0]);
+//			cp.parse(cmdArr[1]);
+//			cp.parse(new String[] { cmdArr[2], cmdArr[3] });
 		} catch (CmdlineParserException e) {
 			e.printStackTrace();
 		}
@@ -27,8 +30,12 @@ public class CmdOptionDemo {
 
 }
 
+@CmdCommand(names = {"-c"},description = "inter Config")
 class Config {
-	@CmdOption(names = { "--help", "-h", "-?" }, description = "show help", isHelp = true)
+	@CmdOption(names = { "--help", "-h", "-?" },args={"field"}, description = "show help")
+	public void isHelp(String field){
+		System.out.println(field);
+	}
 	public boolean help;
 }
 
@@ -43,6 +50,7 @@ class Player {
 	@CmdOption(names = { "-total" }, description = "show total", maxCount = 1, minCount = 0)
 	public void setShowTotal() {
 		this.showTotal = true;
+		System.out.println("要孟州傻逼");
 	}
 
 	public int getNum() {
