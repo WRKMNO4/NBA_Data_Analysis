@@ -96,7 +96,7 @@ public class MainFrame extends JFrame{
 	}
 	
 	public void initBL(){
-		bl=new BLServiceController("E:/Data");
+		bl=new BLServiceController("Data");
 		bl.init();
 		players=bl.getAllPlayers();
 		teams=bl.getAllTeams();
