@@ -20,8 +20,8 @@ public class MysqlDemo {
         // 避免中文乱码要指定useUnicode和characterEncoding
         // 执行数据库操作之前要在数据库管理系统上创建一个数据库，名字自己定，
         // 下面语句之前就要先创建javademo数据库
-        String url = "jdbc:mysql://localhost:3306/javademo?"
-                + "user=root&password=nju008&useUnicode=true&characterEncoding=UTF8";
+        String url = "jdbc:mysql://192.168.1.103:3306/javademo?"
+                + "user=admin&password=admin&useUnicode=true&characterEncoding=UTF8";
  
         try {
             // 之所以要使用下面这条语句，是因为要使用MySQL的驱动，所以我们要把它驱动起来，
@@ -37,15 +37,15 @@ public class MysqlDemo {
             conn = DriverManager.getConnection(url);
             // Statement里面带有很多方法，比如executeUpdate可以实现插入，更新和删除等
             Statement stmt = conn.createStatement();
-            sql = "create table student(NO char(20),name varchar(20),primary key(NO))";
+            sql = "create table teacher(NO char(20),name varchar(20),primary key(NO))";
             int result = stmt.executeUpdate(sql);// executeUpdate语句会返回一个受影响的行数，如果返回-1就没有成功
             if (result != -1) {
                 System.out.println("创建数据表成功");
-                sql = "insert into student(NO,name) values('2012001','陶伟基')";
+                sql = "insert into teacher(NO,name) values('2012001','陶伟基')";
                 result = stmt.executeUpdate(sql);
-                sql = "insert into student(NO,name) values('2012002','周小俊')";
+                sql = "insert into teacher(NO,name) values('2012002','周小俊')";
                 result = stmt.executeUpdate(sql);
-                sql = "select * from student";
+                sql = "select * from teacher";
                 ResultSet rs = stmt.executeQuery(sql);// executeQuery会返回结果的集合，否则返回空值
                 System.out.println("学号\t姓名");
                 while (rs.next()) {
@@ -59,7 +59,8 @@ public class MysqlDemo {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            conn.close();
+        	if(conn!=null)
+        		conn.close();
         }
  
     }
