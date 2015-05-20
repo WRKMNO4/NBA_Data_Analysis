@@ -72,6 +72,11 @@ public class TeamPO {
 		return seasonInfo.getAverageTeamData();
 	}
 	
+	public ArrayList<PlayerPO> getPlayersOfOneSeason(Season season){
+		SeasonInfoForTeam seasonInfo = getSeasonInfo(season);
+		return seasonInfo.getPlayers();
+	}
+	
 	public String getFullName() {
 		return fullName;
 	}
