@@ -2,6 +2,8 @@ package PO;
 
 import java.util.ArrayList;
 
+import BusinessLogic.SortHelper.TransferSortHelper;
+import Enum.PlayerData;
 import Enum.Season;
 
 public class PlayerPO {
@@ -67,7 +69,7 @@ public class PlayerPO {
 		SeasonInfoForPlayer seasonInfo = getSeasonInfo(season) ;
 		return seasonInfo.getMatches() ;
 	}
-
+	
 	public void setName(String name) {
 		this.name = name;
 	}

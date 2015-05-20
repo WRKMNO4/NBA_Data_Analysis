@@ -11,8 +11,10 @@ import DataService.TeamDataService.TeamDataService;
 import Enum.PlayerData;
 import Enum.Season;
 import Enum.TeamData;
+import Enum.Zone;
 import PO.MatchPO;
 import PO.PlayerPO;
+import PO.TeamListPO;
 import PO.TeamPO;
 
 public class TeamController implements TeamBusinessLogic{
@@ -80,6 +82,43 @@ public class TeamController implements TeamBusinessLogic{
 		}
 		ArrayList<MatchPO> latest5Matches = new ArrayList<>(allMatches.subList(allMatches.size()-5, allMatches.size())) ;
 		return latest5Matches ;
+	}
+	
+	public ArrayList<TeamPO> getTeamRankings(Season season, Zone zone){
+		ArrayList<TeamPO> initialTeam = TeamListPO.allTeams;
+		ArrayList<TeamPO> zoneTeam = new ArrayList<TeamPO>();
+		for(TeamPO team: initialTeam){
+			if(team.getZone()==zone)
+				zoneTeam.add(team);
+		}
+		Collections.sort(zoneTeam,new TeamSortHelper("perOfWin", null, season));
+		ArrayList<TeamPO> results = new ArrayList<>();
+		int pointer = 0 ;
+		results.add(zoneTeam.get(pointer));
+		zoneTeam.remove(pointer);
+		for(;results.size()<3;pointer++ ){
+			if(results.size()==1){
+				if(zoneTeam.get(pointer).getDistrict().equals(results.get(0).getDistrict()))
+					break;
+				else{
+					results.add(zoneTeam.get(pointer));
+					zoneTeam.remove(pointer);
+					pointer--;
+				}
+			}
+			if(results.size()==2){
+				if(zoneTeam.get(pointer).getDistrict().equals(results.get(0).getDistrict())||
+						zoneTeam.get(pointer).getDistrict().equals(results.get(1).getDistrict()))
+					break;
+				else{
+					results.add(zoneTeam.get(pointer));
+					zoneTeam.remove(pointer);
+					pointer--;
+				}
+			}	
+		}
+		results.addAll(zoneTeam);
+		return results;
 	}
 
 	

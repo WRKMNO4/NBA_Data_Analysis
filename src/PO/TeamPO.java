@@ -2,6 +2,7 @@ package PO;
 
 import java.util.ArrayList;
 
+import Enum.PlayerData;
 import Enum.Season;
 import Enum.Zone;
 
@@ -75,6 +76,11 @@ public class TeamPO {
 	public ArrayList<PlayerPO> getPlayersOfOneSeason(Season season){
 		SeasonInfoForTeam seasonInfo = getSeasonInfo(season);
 		return seasonInfo.getPlayers();
+	}
+	
+	public ArrayList<PlayerPO> getTeamLeaders(Season season, PlayerData playerData){
+		SeasonInfoForTeam seasonInfo = getSeasonInfo(season);
+		return seasonInfo.getTeamLeaders(playerData);
 	}
 	
 	public String getFullName() {

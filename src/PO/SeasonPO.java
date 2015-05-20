@@ -12,9 +12,11 @@ public class SeasonPO {
 		this.season=season;
 		matches=new MatchListPO();
 	}
+	
 	public void addMatch(MatchPO oneMatch){
 		matches.addMatch(oneMatch);
 	}
+	
 	public MatchPO findMatch(String date,String nameOfTeams){
 		for(MatchPO match: matches.getMatches()){
 			if(match.getDate().equals(date) && match.getName().contains(nameOfTeams)) 
@@ -22,9 +24,11 @@ public class SeasonPO {
 		}
 		return null;
 	}
+	
 	public Season getSeason() {
 		return season;
 	}
+	
 	public ArrayList<MatchPO> getMatches() {
 		return matches.getMatches();
 	}

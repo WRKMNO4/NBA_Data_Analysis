@@ -1,7 +1,10 @@
 package PO;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
+import BusinessLogic.SortHelper.PlayerSortHelper;
+import Enum.PlayerData;
 import Enum.Season;
 
 public class SeasonInfoForTeam {
@@ -56,6 +59,11 @@ public class SeasonInfoForTeam {
 	public void updateOtherTeamData(double score,int totalTime,TeamDataPO otherTeamData){
 		dataOfOtherTeams.update(score) ;
 		dataOfOtherTeams.update(totalTime, otherTeamData);
+	}
+	
+	public ArrayList<PlayerPO> getTeamLeaders(PlayerData playerData){
+		Collections.sort(players, new PlayerSortHelper("total", playerData, season));
+		return new ArrayList<PlayerPO>(players.subList(0, 3));
 	}
 	
 	public String getShortName() {

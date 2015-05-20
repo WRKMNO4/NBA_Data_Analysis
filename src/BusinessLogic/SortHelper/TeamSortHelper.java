@@ -52,8 +52,8 @@ public class TeamSortHelper implements Comparator<TeamPO>{
 		}
 		//Sort by percentage of winning
 		else if(str.equals("perOfWin")){ 
-			double win1=o1.getSeasonInfo(season).getNumberOfWinning();
-			double win2=o2.getSeasonInfo(season).getNumberOfWinning();
+			double win1=o1.getSeasonInfo(season).getPercentageOfWinning();
+			double win2=o2.getSeasonInfo(season).getPercentageOfWinning();
 			if(win1>win2)
 				return -1;
 			else if(win1==win2)

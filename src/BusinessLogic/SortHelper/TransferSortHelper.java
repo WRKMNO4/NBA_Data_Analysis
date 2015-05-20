@@ -3,6 +3,9 @@ package BusinessLogic.SortHelper;
 import Enum.PlayerData;
 import Enum.Season;
 import Enum.TeamData;
+import PO.PlayerDataPO;
+import PO.PlayerPO;
+import PO.SeasonInfoForPlayer;
 import PO.SeasonInfoForTeam;
 import PO.TeamDataPO;
 import PO.TeamPO;
@@ -394,6 +397,40 @@ public class TransferSortHelper {
 			return avgData.getNumberOfDefenseRebound();
 		case numberOfAttackRebound:
 			return avgData.getNumberOfAttackRebound();
+		}
+		return 0;
+	}
+
+	public static double PlayerDataTypeToTotalData(PlayerData dataType,PlayerPO onePlayer,Season season){
+		SeasonInfoForPlayer seasonInfo = onePlayer.getSeasonInfo(season);
+		PlayerDataPO totalData = seasonInfo.getTotalPlayerData();
+		
+		switch(dataType){
+		case score:
+			return totalData.getScore();
+		case numberOfAssist:
+			return totalData.getNumberOfAssist();
+		case numberOfBlock:
+			return totalData.getNumberOfBlock();
+		case numberOfSteal:
+			return totalData.getNumberOfSteal();
+		case numberOfAttack:
+			return totalData.getNumberOfAttack();
+		case numberOfDefense:
+			return totalData.getNumberOfDefense();
+		case numberOfFault:
+			return totalData.getNumberOfFault();
+		case numberOfFoul:
+			return totalData.getNumberOfFoul();
+		case numberOfShooting:
+			return totalData.getNumberOfShooting();
+		case numberOf3_Point:
+			return totalData.getNumberOf3_point();
+		case numberOfFreeThrow:
+			return totalData.getNumberOfFreeThrow();
+		case double_double:
+			return totalData.getDouble_double();
+
 		}
 		return 0;
 	}
