@@ -2,6 +2,7 @@ package com.kmno4.presentation;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Point;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,14 +34,16 @@ public class TeamDetailFrame extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public TeamDetailFrame(TeamPO teamPO) {
+		this(teamPO, MainFrame.mainFrame.getLocation());
+	}
+	
+	
+	public TeamDetailFrame(TeamPO teamPO, Point location) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(
-				MainFrame.mainFrame.getX(),
-				MainFrame.mainFrame.getY(),
+				location.x,
+				location.y,
 				MainFrame.mainFrame.getWidth(),
 				MainFrame.mainFrame.getHeight());
 		setLayout(null);
