@@ -378,9 +378,11 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 				}
 				if (standard.equals("场均")) {
 					standard = "avg";
+					isAvg = true;
 				}
 				if (standard.equals("总计")) {
 					standard = "total";
+					isAvg = false;
 				}
 
 				// position为英文，三种单字母

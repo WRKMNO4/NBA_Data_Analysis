@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Enum.Season;
 import Enum.TeamData;
+import Enum.Zone;
 import PO.MatchPO;
 import PO.TeamPO;
 
@@ -18,4 +19,5 @@ public interface TeamBusinessLogic {
 			TeamData dataType);
 	public ArrayList<MatchPO> getLatest5Matches(TeamPO team);
 	public ArrayList<TeamPO> getSeasonStandingTeam(Season season,TeamData dataType, int number);
+	public ArrayList<TeamPO> getTeamRankings(Season season, Zone zone);
 }

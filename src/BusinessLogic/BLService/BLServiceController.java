@@ -218,6 +218,11 @@ public class BLServiceController implements  BLService{
 		return teamController.getLatest5Matches(team);
 		}
 
+	@Override
+	public ArrayList<TeamPO> getTeamRankings(Season season, Zone zone) {
+		return teamController.getTeamRankings(season, zone);
+	}
+
 	
 
 	}

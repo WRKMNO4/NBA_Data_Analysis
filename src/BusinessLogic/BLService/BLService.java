@@ -116,4 +116,12 @@ public interface BLService {
 	 * @return 返回该球队在最新赛季最近五场比赛，如少于五场，则返回最新赛季所有比赛
 	 */
 	public ArrayList<MatchPO> getLatest5MatchesForTeam(TeamPO team);
+	/**
+	 * 
+	 * @param season
+	 * @param zone 分为Zone.W(西部) 和 Zone.E(东部)
+	 * @return 返回按排名排下来的TeamPO数组
+	 */
+	
+	public ArrayList<TeamPO> getTeamRankings(Season season, Zone zone);
 }
