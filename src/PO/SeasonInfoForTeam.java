@@ -17,7 +17,10 @@ public class SeasonInfoForTeam {
 	
 	int numberOfMatches;
 	int numberOfWinning;
-	double percentageOfWinning ; 
+	double percentageOfWinning;
+	
+	int numberOfHostWinning;  //主场胜场
+	int numberOfGuestWinning; //客场胜场
 	
 	ArrayList<PlayerPO> players = new ArrayList<PlayerPO>() ;
 	ArrayList<MatchPO> matches = new ArrayList<MatchPO>(); 
@@ -63,7 +66,7 @@ public class SeasonInfoForTeam {
 	
 	public ArrayList<PlayerPO> getTeamLeaders(PlayerData playerData){
 		Collections.sort(players, new PlayerSortHelper("total", playerData, season));
-		return new ArrayList<PlayerPO>(players.subList(0, 3));
+		return new ArrayList<PlayerPO>(players);
 	}
 	
 	public String getShortName() {
