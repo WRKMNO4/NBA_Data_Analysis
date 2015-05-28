@@ -56,12 +56,6 @@ public interface BLService {
 	 * @return 球员列表
 	 */
 	public ArrayList<PlayerPO> findPlayerByName(String name) ;
-//	/**
-//	 *  
-//	 * @param name 球队名称（缩写或者全名）
-//	 * @return 球队列表
-//	 */
-//	/*public ArrayList<TeamPO>findTeamByName(String name) ;*/
 	/**
 	 * 
 	 *  @param dataType 筛选条件
@@ -124,4 +118,28 @@ public interface BLService {
 	 */
 	
 	public ArrayList<TeamPO> getTeamRankings(Season season, Zone zone);
+	
+	/**
+	 * 
+	 * @param sesaon 输入赛季
+	 * @return  返回该赛季所有球员的场均得分，场均篮板，场均助攻，场均抢断，场均盖帽，场均失误，场均犯规列表
+	 */
+	public ArrayList<Double> getSeasonAvgData(Season season);
+	
+	/**
+	 * 
+	 * @param dataType 想要得到的数据类型，仅限于：命中率，效率，使用率，失误率
+	 * @param player 想要查询的PlayerPO
+	 * @return 返回该球员在所有赛季中的该个数据类型的数据
+	 */
+	public ArrayList<Double> getAllSeasonsDataOfOnePlayer(PlayerData dataType ,PlayerPO player) ;
+	
+	/**
+	 * 
+	 * @param dataType  想要得到的数据类型，仅限于：命中率，效率，使用率，失误率
+	 * @param player 想要查询的PlayerPO
+	 * @param season 想要得到的赛季
+	 * @return 返回该球员在该赛季中所有比赛的该个数据类型的数据
+	 */
+	public ArrayList<Double> getAllMatchesDataOfOnePlayerOfOneSeason(PlayerData dataType,PlayerPO player,Season season) ;
 }

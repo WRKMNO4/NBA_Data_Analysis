@@ -1,6 +1,7 @@
 package PO;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import BusinessLogic.SortHelper.TransferSortHelper;
 import Enum.PlayerData;
@@ -25,7 +26,14 @@ public class PlayerPO {
 	SeasonInfoForPlayer seasonInfo13_14=new SeasonInfoForPlayer(Season.season13_14);
 	SeasonInfoForPlayer seasonInfo14_15=new SeasonInfoForPlayer(Season.season14_15);
 	
-	
+	public ArrayList<SeasonInfoForPlayer> seasonInfos = new ArrayList<>( Arrays.asList( new SeasonInfoForPlayer[]{seasonInfo12_13,seasonInfo13_14,seasonInfo14_15} ) ) ;
+
+	public ArrayList<SeasonInfoForPlayer> getSeasonInfos() {
+		return seasonInfos;
+	}
+	public void setSeasonInfos(ArrayList<SeasonInfoForPlayer> seasonInfos) {
+		this.seasonInfos = seasonInfos;
+	}
 	public void calculateFinalData(){
 		seasonInfo12_13.calculateFinalData();
 		seasonInfo13_14.calculateFinalData();

@@ -18,9 +18,13 @@ import Enum.Season;
 import Enum.TeamData;
 import Enum.Zone;
 import PO.MatchPO;
+import PO.PlayerDataOfOneMatchPO;
+import PO.PlayerDataPO;
 import PO.PlayerListPO;
 import PO.PlayerPO;
+import PO.SeasonInfoForPlayer;
 import PO.SeasonListPO;
+import PO.SeasonPO;
 import PO.StandingDataPO;
 import PO.TeamPO;
 
@@ -221,6 +225,65 @@ public class BLServiceController implements  BLService{
 	@Override
 	public ArrayList<TeamPO> getTeamRankings(Season season, Zone zone) {
 		return teamController.getTeamRankings(season, zone);
+	}
+
+	@Override
+	public ArrayList<Double> getSeasonAvgData(Season season) {
+		SeasonPO theSeason = SeasonListPO.getSeasonPO(season) ;
+		return theSeason.getAvgDataOfAllPlayer();
+	}
+
+	@Override
+	public ArrayList<Double> getAllSeasonsDataOfOnePlayer(PlayerData dataType,
+			PlayerPO player) {
+		// TODO Auto-generated method stub
+		ArrayList<Double> results = new ArrayList<>() ;
+		ArrayList<SeasonInfoForPlayer> infos = player.getSeasonInfos() ;
+		for(SeasonInfoForPlayer oneSeason : infos){
+			PlayerDataPO avgData = oneSeason.getAveragePlayerData() ;
+			switch(dataType){
+			case percentageOfShooting:
+				results.add(avgData.getPercentageOfShooting()) ;
+				break ;
+			case efficiency:
+				results.add(avgData.getEfficiency()) ;
+				break ;
+			case percentageOfUse:
+				results.add(avgData.getPercentageOfUse()) ;
+				break ;
+			case percentageOfFault:
+				results.add(avgData.getPercentageOfFault()) ;
+				break ;
+			}
+		}
+		return results;
+	}
+
+	@Override
+	public ArrayList<Double> getAllMatchesDataOfOnePlayerOfOneSeason(
+			PlayerData dataType, PlayerPO player, Season season) {
+		// TODO Auto-generated method stub
+		ArrayList<Double> results = new ArrayList<>() ;
+		SeasonInfoForPlayer seasonInfo = player.getSeasonInfo(season) ;
+		ArrayList<MatchPO> matches = seasonInfo.getMatches() ;
+		for(MatchPO oneMatch:matches){
+			PlayerDataOfOneMatchPO theMatchData = oneMatch.getPlayerDataOfOneMatchByName(player.getName()) ;
+			switch(dataType){
+			case percentageOfShooting:
+				results.add(theMatchData.getPercentageOfShooting()) ;
+				break ;
+			case efficiency:
+				results.add(theMatchData.getEfficiency()) ;
+				break ;
+			case percentageOfUse:
+				results.add(theMatchData.getPercentageOfUse()) ;
+				break ;
+			case percentageOfFault:
+				results.add(theMatchData.getPercentageOfFault()) ;
+				break ;
+			}
+		}
+		return results;
 	}
 
 	

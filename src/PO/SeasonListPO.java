@@ -52,7 +52,7 @@ public class SeasonListPO {
 		 return matchesOfOneDay;
 	 }
 	 
-	 static SeasonPO getSeasonPO(Season season){
+	 public static SeasonPO getSeasonPO(Season season){
 		 switch(season){
 		 case season12_13:
 			 return seasons.get(0) ;
