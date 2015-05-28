@@ -16,8 +16,8 @@ import PO.TeamPO;
 @SuppressWarnings("serial")
 public class TeamDataAnalysisFrame extends JFrame {
 	private JPanel current_panel;
-	private TeamSeasonAnalysisPanel teamSeasonAnalysisPanel;
-	private TeamOffenAnalysisPanel teamOffenAnalysisPanel;
+	private TeamMatchAnalysisPanel teamMatchAnalysisPanel;
+	private TeamPlayerAnalysisPanel teamPlayerAnalysisPanel;
 	private TeamEvolutionAnalysisPanel teamEvolutionAnalysisPanel;
 	private TeamPO teamPO;
 	
@@ -35,7 +35,7 @@ public class TeamDataAnalysisFrame extends JFrame {
 //		setBackground(bgColor);
 		add(new ExitLabel(this));
 		
-		add(current_panel = (teamSeasonAnalysisPanel = new TeamSeasonAnalysisPanel(teamPO, this)));
+		add(current_panel = (teamMatchAnalysisPanel = new TeamMatchAnalysisPanel(teamPO, this)));
 		setVisible(true);
 		
 		@SuppressWarnings("unused")
@@ -46,23 +46,23 @@ public class TeamDataAnalysisFrame extends JFrame {
 	}
 	
 	/**
-	 * 切换到球队赛季分析
+	 * 切换到球队比赛部分
 	 */
-	public void ToSeasonAnalysis() {
+	public void ToMatchAnalysis() {
 		remove(current_panel);
-		add(current_panel = (teamSeasonAnalysisPanel = new TeamSeasonAnalysisPanel(teamPO, this)));
+		add(current_panel = (teamMatchAnalysisPanel = new TeamMatchAnalysisPanel(teamPO, this)));
 		repaint();
 	}
 	/**
-	 * 切换到球队攻防分析
+	 * 切换到球队球员分析
 	 */
-	public void ToOffenAnalysis() {
+	public void ToPlayerAnalysis() {
 		remove(current_panel);
-		add(current_panel = (teamOffenAnalysisPanel = new TeamOffenAnalysisPanel(teamPO, this)));
+		add(current_panel = (teamPlayerAnalysisPanel = new TeamPlayerAnalysisPanel(teamPO, this)));
 		repaint();
 	}
 	/**
-	 * 切换到球队演变分析
+	 * 切换到球队排名演变分析
 	 */
 	public void ToEvolutionAnalysis() {
 		remove(current_panel);
