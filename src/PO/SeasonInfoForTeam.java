@@ -38,8 +38,13 @@ public class SeasonInfoForTeam {
 	public void addMatch(MatchPO oneMatch){
 		matches.add(oneMatch) ;
 		numberOfMatches++;
-		if(oneMatch.getNameOfWinner().equals(shortName))
+		if(oneMatch.getNameOfWinner().equals(shortName)){
 			numberOfWinning++;
+			if(oneMatch.getFirstTeam().equals(shortName))
+				numberOfHostWinning++;
+			else
+				numberOfGuestWinning++;
+		}
 	}
 	
 	boolean ifContainThePlayer(PlayerPO onePlayer){
@@ -67,6 +72,89 @@ public class SeasonInfoForTeam {
 	public ArrayList<PlayerPO> getTeamLeaders(PlayerData playerData){
 		Collections.sort(players, new PlayerSortHelper("total", playerData, season));
 		return new ArrayList<PlayerPO>(players);
+	}
+	
+	public int getWinningStreak(){
+		int result = 0;
+		int tmp = 0;
+		for(MatchPO oneMatch : matches){
+			if(oneMatch.getNameOfWinner().equals(this.shortName)){
+				tmp++;
+			}
+			else{
+				if(tmp > result)
+					result = tmp ;
+				tmp = 0;
+				continue ;
+			}
+			if(tmp > result)
+				result = tmp ;
+		}
+		return result;
+	}
+	
+	public int getLosingStreak(){
+		int result = 0;
+		int tmp = 0;
+		for(MatchPO oneMatch : matches){
+			if(!oneMatch.getNameOfWinner().equals(this.shortName)){
+				tmp++;
+			}
+			else{
+				if(tmp > result)
+					result = tmp ;
+				tmp = 0;
+				continue ;
+			}
+			if(tmp > result)
+				result = tmp ;
+		}
+		return result;
+	}
+
+	public int getNumberOfWinningInRecent10Matches(){
+		int result = 0;
+		int count = 0;  //统计已经遍历了几场比赛
+		for(int i=matches.size()-1;i >= 0 && count < 10;i--){
+			MatchPO oneMatch = matches.get(i);
+			if(oneMatch.getNameOfWinner().equals(this.shortName))
+				result++;
+			count++;
+		}
+		return result;
+	}
+	
+	public int getNumberOfHostWinningInRecent10Matches(){
+		int count = 0;
+		int result = 0;
+		for(int i=matches.size()-1;i >= 0&&count < 10;i--){
+			MatchPO oneMatch = matches.get(i);
+			if(oneMatch.getSecondTeam().equals(this.shortName))
+				continue ;
+			if(oneMatch.getNameOfWinner().equals(this.shortName))
+				result++;
+			count++;
+		}
+		return result ;
+	}
+	
+	public int getNumberOfGuestWinningInRecent10Matches(){
+		int count = 0;
+		int result = 0;
+		for(int i=matches.size()-1;i >= 0&&count < 10;i--){
+			MatchPO oneMatch = matches.get(i);
+			if(oneMatch.getFirstTeam().equals(this.shortName))
+				continue ;
+			if(oneMatch.getNameOfWinner().equals(this.shortName))
+				result++;
+			count++;
+		}
+		return result ;
+	}
+	
+	public double getLosingPointsPerMatch(){  //场均失分
+		double totalLosingPoints=dataOfOtherTeams.getScoreOfOtherTeam();
+		return totalLosingPoints/matches.size();
 	}
 	
 	public String getShortName() {
@@ -122,6 +210,12 @@ public class SeasonInfoForTeam {
 	}
 	public void setMatches(ArrayList<MatchPO> matches) {
 		this.matches = matches;
+	}
+	public int getNumberOfHostWinning() {
+		return numberOfHostWinning;
+	}
+	public int getNumberOfGuestWinning() {
+		return numberOfGuestWinning;
 	}
 	
 	

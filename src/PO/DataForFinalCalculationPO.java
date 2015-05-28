@@ -7,6 +7,9 @@ public class DataForFinalCalculationPO {
 	double numberOfDefenseReboundOfOtherTeam ;
 	double numberOfRoundOfAttackOfOtherTeam ;
 	double numberOf2_PointAttemptOfOtherTeam ;
+	double numberOfAssist;
+	double numberOfSteal;
+	double numberOfBlock;
 	
 	double scoreOfOtherTeam;
 	
@@ -18,6 +21,9 @@ public class DataForFinalCalculationPO {
 		numberOfRoundOfAttackOfOtherTeam += otherTeamData.getRoundOfAttack() ;
 		numberOf2_PointAttemptOfOtherTeam += (otherTeamData.getNumberOfShotAttempt() 
 				- otherTeamData.getNumberOf3_pointAttempt()) ;
+		numberOfAssist += otherTeamData.getNumberOfAssist();
+		numberOfSteal += otherTeamData.getNumberOfSteal();
+		numberOfBlock += otherTeamData.getNumberOfBlock();
 	}
 	
 	public void update(double score){
@@ -49,6 +55,18 @@ public class DataForFinalCalculationPO {
 
 	public double getScoreOfOtherTeam() {
 		return scoreOfOtherTeam;
+	}
+
+	public double getNumberOfAssist() {
+		return numberOfAssist;
+	}
+
+	public double getNumberOfSteal() {
+		return numberOfSteal;
+	}
+
+	public double getNumberOfBlock() {
+		return numberOfBlock;
 	}
 	
 	
