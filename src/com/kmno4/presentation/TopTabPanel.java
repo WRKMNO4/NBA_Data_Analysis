@@ -134,34 +134,34 @@ public class TopTabPanel extends JPanel implements MouseListener{
 		line_y=Config.TOP_TAB_HEIGHT-47;
 		line.setLocation(line_x,line_y);
 		
-		player.addMouseListener(new LMouseAdapter() {
+		player.addMouseListener(new LMouseAdapter(MainFrame.mainFrame) {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				showPlayerInfo();
 			}
 
 		});
-		team.addMouseListener(new LMouseAdapter() {
+		team.addMouseListener(new LMouseAdapter(MainFrame.mainFrame) {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				showTeamInfo(TableContentTransfer.getSeason(0));
 			}
 		});
-		match.addMouseListener(new LMouseAdapter() {
+		match.addMouseListener(new LMouseAdapter(MainFrame.mainFrame) {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				showMatchInfo();
 			}
 		});
 		
-		hot.addMouseListener(new LMouseAdapter() {
+		hot.addMouseListener(new LMouseAdapter(MainFrame.mainFrame) {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				showHotInfo();
 			}
 		});
 		
-		aboutus.addMouseListener(new LMouseAdapter() {
+		aboutus.addMouseListener(new LMouseAdapter(MainFrame.mainFrame) {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				showAboutUsInfo();

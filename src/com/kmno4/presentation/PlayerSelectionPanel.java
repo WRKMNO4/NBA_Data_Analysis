@@ -408,11 +408,13 @@ public class PlayerSelectionPanel extends JPanel implements MouseListener,
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		LMouseAdapter.enter(e);
+		MainFrame.mainFrame.repaint();
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		LMouseAdapter.exit(e);
+		MainFrame.mainFrame.repaint();
 	}
 
 	@Override

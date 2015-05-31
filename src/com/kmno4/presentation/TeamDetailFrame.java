@@ -44,8 +44,8 @@ public class TeamDetailFrame extends JFrame {
 		setBounds(
 				location.x,
 				location.y,
-				MainFrame.mainFrame.getWidth(),
-				MainFrame.mainFrame.getHeight());
+				Config.UI_WIDTH,
+				Config.UI_HEIGHT);
 		setLayout(null);
 		setUndecorated(true);
 		setBackground(Color.white);

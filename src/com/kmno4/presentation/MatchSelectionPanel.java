@@ -52,21 +52,21 @@ public class MatchSelectionPanel extends JPanel {
 		lb_thirdSeason.setFont(new Font("default", Font.ITALIC, 20));
 		lb_thirdSeason.setForeground(Color.white);
 		add(lb_thirdSeason);
-		lb_firstSeason.addMouseListener(new LMouseAdapter() {
+		lb_firstSeason.addMouseListener(new LMouseAdapter(MainFrame.mainFrame) {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				foreground.setBounds(lb_firstSeason.getX(),LABEL_Y, Config.UI_WIDTH/3, 134/3+10);
 				changeSeason(Season.season12_13);
 			}
 		});
-		lb_secondSeason.addMouseListener(new LMouseAdapter() {
+		lb_secondSeason.addMouseListener(new LMouseAdapter(MainFrame.mainFrame) {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				foreground.setBounds(lb_secondSeason.getX(), LABEL_Y, Config.UI_WIDTH/3, 134/3+10);
 				changeSeason(Season.season13_14);
 			}
 		});
-		lb_thirdSeason.addMouseListener(new LMouseAdapter() {
+		lb_thirdSeason.addMouseListener(new LMouseAdapter(MainFrame.mainFrame) {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				foreground.setBounds(lb_thirdSeason.getX(), LABEL_Y, Config.UI_WIDTH/3, 134/3+10);

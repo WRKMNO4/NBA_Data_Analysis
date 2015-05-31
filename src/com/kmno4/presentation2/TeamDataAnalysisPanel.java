@@ -19,8 +19,8 @@ import PO.TeamPO;
 public class TeamDataAnalysisPanel extends JPanel {
 	public static final int 
 	    PADDING = 10,
-	    TEAM_LABEL_HEIGHT = 100,
-	    SELECT_PART_HEIGHT = 100,
+	    TEAM_LABEL_HEIGHT = 60,
+	    SELECT_PART_HEIGHT = 60,
 	    PANEL_HEIGHT = Config.UI_HEIGHT - PADDING * 3 - TEAM_LABEL_HEIGHT - SELECT_PART_HEIGHT;
 	
 	private JLabel teamLabel;
@@ -39,9 +39,15 @@ public class TeamDataAnalysisPanel extends JPanel {
 		setBounds(0, 0, f.getWidth(), f.getHeight());
 		setLayout(null);
 		
-		teamLabel = new JLabel(teamPO.getFullName(), JLabel.LEFT);
+		teamLabel = new JLabel(/*teamPO.getFullName()*/"某球队", JLabel.LEFT);
 		teamLabel.setBounds(PADDING, PADDING, Config.UI_WIDTH - PADDING * 2, TEAM_LABEL_HEIGHT);
+		teamLabel.addMouseListener(new LMouseAdapter(teamDataAnalysisFrame) {
+			public void mouseClicked(MouseEvent e) {
+				returnToDetailFrame();
+			}
+		});
 		add(teamLabel);
+		
 		selectPanel = new SelectPanel();
 		add(selectPanel);
 		add(current_panel = (teamMatchAnalysisPanel = new TeamMatchAnalysisPanel(teamPO, teamDataAnalysisFrame)));
@@ -52,22 +58,22 @@ public class TeamDataAnalysisPanel extends JPanel {
 		JLabel player, match, evolu;
 		public SelectPanel() {
 			setBounds(PADDING, PADDING + TEAM_LABEL_HEIGHT, Config.UI_WIDTH - PADDING * 2, SELECT_PART_HEIGHT);
-			
+			setLayout(null);
 			//TODO weizhi
 			player = new JLabel("球员分析");
 			match = new JLabel("比赛分析");
 			evolu = new JLabel("排名分析");
-			player.addMouseListener(new LMouseAdapter() {
+			player.addMouseListener(new LMouseAdapter(teamDataAnalysisFrame) {
 				public void mouseClicked(MouseEvent e) {
 					toPlayerAnalysis();
 				}
 			});
-			match.addMouseListener(new LMouseAdapter() {
+			match.addMouseListener(new LMouseAdapter(teamDataAnalysisFrame) {
 				public void mouseClicked(MouseEvent e) {
 					toMatchAnalysis();
 				}
 			});
-			evolu.addMouseListener(new LMouseAdapter() {
+			evolu.addMouseListener(new LMouseAdapter(teamDataAnalysisFrame) {
 				public void mouseClicked(MouseEvent e) {
 					toEvolutionAnalysis();
 				}
@@ -85,7 +91,7 @@ public class TeamDataAnalysisPanel extends JPanel {
 	private void toMatchAnalysis() {
 		remove(current_panel);
 		add(current_panel = (teamMatchAnalysisPanel = new TeamMatchAnalysisPanel(teamPO, teamDataAnalysisFrame)));
-		repaint();
+		teamDataAnalysisFrame.repaint();
 	}
 	/**
 	 * 切换到球队球员分析
@@ -93,7 +99,7 @@ public class TeamDataAnalysisPanel extends JPanel {
 	private void toPlayerAnalysis() {
 		remove(current_panel);
 		add(current_panel = (teamPlayerAnalysisPanel = new TeamPlayerAnalysisPanel(teamPO, teamDataAnalysisFrame)));
-		repaint();
+		teamDataAnalysisFrame.repaint();
 	}
 	/**
 	 * 切换到球队排名演变分析
@@ -101,7 +107,7 @@ public class TeamDataAnalysisPanel extends JPanel {
 	private void toEvolutionAnalysis() {
 		remove(current_panel);
 		add(current_panel = (teamEvolutionAnalysisPanel = new TeamEvolutionAnalysisPanel(teamPO, teamDataAnalysisFrame)));
-		repaint();
+		teamDataAnalysisFrame.repaint();
 	}
 	/**
 	 * 切换到teamDetailFrame界面
@@ -110,6 +116,11 @@ public class TeamDataAnalysisPanel extends JPanel {
 		new TeamDetailFrame(teamPO, this.getLocation());
 		teamDataAnalysisFrame.setVisible(false);
 		teamDataAnalysisFrame.dispose();
+	}
+	
+	
+	public static void main(String[] args) {
+		new TeamDataAnalysisFrame(null);
 	}
 	
 }

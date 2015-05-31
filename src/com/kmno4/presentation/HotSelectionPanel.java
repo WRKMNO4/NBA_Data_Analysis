@@ -114,28 +114,28 @@ public class HotSelectionPanel extends JPanel implements ActionListener,MouseMot
 //		MainFrame.mainFrame.add(calendarPanel);
 		showDailyPlayer();
 		
-		lb_daily_player.addMouseListener(new LMouseAdapter() {
+		lb_daily_player.addMouseListener(new LMouseAdapter(MainFrame.mainFrame) {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				showDailyPlayer();
 				refreshDailyPlayer();
 			}
 		});
-		lb_season_player.addMouseListener(new LMouseAdapter() {
+		lb_season_player.addMouseListener(new LMouseAdapter(MainFrame.mainFrame) {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				showSeasonPlayer();
 				refreshSeasonPlayer();
 			}
 		});
-		lb_improve_player.addMouseListener(new LMouseAdapter() {
+		lb_improve_player.addMouseListener(new LMouseAdapter(MainFrame.mainFrame) {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				showMostProvementPlayer();
 				refreshImprovePlayer();
 			}
 		});
-		lb_season_team.addMouseListener(new LMouseAdapter() {
+		lb_season_team.addMouseListener(new LMouseAdapter(MainFrame.mainFrame) {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				showSeasonTeam();

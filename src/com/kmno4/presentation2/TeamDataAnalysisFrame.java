@@ -3,6 +3,8 @@ package com.kmno4.presentation2;
 import java.awt.Point;
 
 import javax.swing.JFrame;
+
+import com.kmno4.common.Config;
 import com.kmno4.presentation.MainFrame;
 import com.kmno4.presentation.MoveOfFrame;
 import com.kmno4.presentation.RightClickClose;
@@ -26,8 +28,8 @@ public class TeamDataAnalysisFrame extends JFrame {
 	public TeamDataAnalysisFrame(TeamPO teamPO, Point location) {
 		setBounds(location.x,
 				location.y,
-				MainFrame.mainFrame.getWidth(),
-				MainFrame.mainFrame.getHeight());
+				Config.UI_WIDTH,
+				Config.UI_HEIGHT);
 		setLayout(null);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
