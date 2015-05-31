@@ -82,6 +82,7 @@ public class Config {
 	public static final String[] STANDING_IMPROVED_TYPE = {"场均得分提升率","场均篮板提升率","场均助攻提升率"} ;
 	public static final String[] STANDING_IMPROVE_TABLEHEAD = {"球员名称","所属球队","球员位置","近五场提升率"} ;
 	
+	public static final String[] PLAYER_HIGHINFO = {"姓名","球队","比赛场数","场均在场时间","在场进攻贡献值","在场防守贡献值","在场贡献值","球队胜利贡献值"};
 	public static final int 
 	    MATCH_DETAIL_WIDTH = 800,
 	    MATCH_DETAIL_HEIGHT = 600;

@@ -13,5 +13,5 @@ public interface PlayerDataService {
 	public ArrayList<PlayerPO> findPlayerByName(String name);
 	public ArrayList<PlayerPO> getAllPlayers() ;
 	public void calculateFinalData() ;
-	
+	public ArrayList<ArrayList<String>> getPlayerHighInfo(String fileAddress);
 }

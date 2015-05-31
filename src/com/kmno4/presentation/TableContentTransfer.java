@@ -543,6 +543,16 @@ public class TableContentTransfer {
 		return body ;
 	}
 	
+	public static String[][] transferPlayerHighInfo(ArrayList<ArrayList<String>> datas){
+		String [][] body = new String [datas.size()][Config.PLAYER_HIGHINFO.length];
+		body[0] = Config.PLAYER_HIGHINFO ;
+		for(int i=1; i<datas.size();i++){
+			ArrayList<String> onePlayer = datas.get(i-1);
+			for(int j=0 ; j<onePlayer.size(); j++)
+				body[i][j] = onePlayer.get(j);
+		}
+		return body;
+	}
 	
 	public static String[][] transferMatchScores(MatchPO match){
 		ArrayList<ScoreOfMatchPO> scores = match.getAllScore();

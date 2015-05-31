@@ -267,6 +267,10 @@ public class PlayerController implements PlayerBusinessLogic{
 		ArrayList<MatchPO> latest5Matches = new ArrayList<>(allMatches.subList(allMatches.size()-5, allMatches.size())) ;
 		return latest5Matches ;
 	}
+	@Override
+	public ArrayList<ArrayList<String>> getPlayerHighInfo(String fileAddress) {
+		return playerController.getPlayerHighInfo(fileAddress);
+	}
 	
 
 	

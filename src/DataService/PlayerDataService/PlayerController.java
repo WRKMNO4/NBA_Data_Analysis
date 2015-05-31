@@ -89,5 +89,41 @@ public class PlayerController implements PlayerDataService{
 		}
 	}
 
+	@Override
+	public ArrayList<ArrayList<String>> getPlayerHighInfo(String fileAddress) {
+		String fileDestination=fileAddress+"/highInfo/HighData.txt";
+		ArrayList<ArrayList<String>> Datas = new ArrayList<>();
+		File file = new File(fileDestination);
+		ArrayList<String> fileContent=FileHelper.readByLine(file);
+		for(String oneLine: fileContent){
+			ArrayList<String> eachPlayer = new ArrayList<String>();
+			String[] eachContent = oneLine.split(" ");
+			//先得到姓名，因为姓名长度不均
+			String name = eachContent[1];
+			int length = eachContent.length ; 
+			int tmp = length - 9;
+			for(; tmp > 0; tmp--){
+				name = name + " "+eachContent[length - 7 - tmp] ; 
+				System.out.println(name);
+			}
+			
+			eachPlayer.add(name);
+			for(int i = length - 7;i < eachContent.length ; i++)
+				eachPlayer.add(eachContent[i]);
+			Datas.add(eachPlayer);
+		}
+		return Datas;
+	}
+
+	public static void main(String[] args){
+		PlayerController p = new PlayerController("Data");
+		ArrayList<ArrayList<String>> data= p.getPlayerHighInfo("Data");
+		for(ArrayList<String> a:data){
+			for(String b:a)
+				System.out.print(b+"||");
+			System.out.println("");
+		
+		}
+	}
 
 }

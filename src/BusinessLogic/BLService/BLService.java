@@ -142,4 +142,9 @@ public interface BLService {
 	 * @return 返回该球员在该赛季中所有比赛的该个数据类型的数据
 	 */
 	public ArrayList<Double> getAllMatchesDataOfOnePlayerOfOneSeason(PlayerData dataType,PlayerPO player,Season season) ;
+	/**
+	 * 
+	 * @return 球员的高阶数据排名(如RPM等)
+	 */
+	public ArrayList<ArrayList<String>> getPlayerHighInfo();
 }

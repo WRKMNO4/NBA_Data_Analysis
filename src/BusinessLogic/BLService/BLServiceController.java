@@ -286,6 +286,11 @@ public class BLServiceController implements  BLService{
 		return results;
 	}
 
+	@Override
+	public ArrayList<ArrayList<String>> getPlayerHighInfo() {
+		return playerController.getPlayerHighInfo(fileAddress);
+	}
+
 	
 
 	}
