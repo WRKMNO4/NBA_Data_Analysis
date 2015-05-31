@@ -3,39 +3,38 @@ package com.kmno4.presentation2;
 import java.awt.Point;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import com.kmno4.presentation.MainFrame;
 import com.kmno4.presentation.MoveOfFrame;
 import com.kmno4.presentation.RightClickClose;
-import com.kmno4.presentation.TeamDetailFrame;
 import com.kmno4.presentation.button.ExitLabel;
 
 import PO.TeamPO;
-
+/**
+ * 球队单个分析界面
+ * 内含球员分析{@link TeamPlayerAnalysisPanel}，
+ * 球队全比赛分析{@link TeamMatchAnalysisPanel}，
+ * 球队排名演变分析{@link TeamEvolutionAnalysisPanel}
+ * 三个模块
+ * @author hutao
+ *
+ */
 @SuppressWarnings("serial")
 public class TeamDataAnalysisFrame extends JFrame {
-	private JPanel current_panel;
-	private TeamMatchAnalysisPanel teamMatchAnalysisPanel;
-	private TeamPlayerAnalysisPanel teamPlayerAnalysisPanel;
-	private TeamEvolutionAnalysisPanel teamEvolutionAnalysisPanel;
-	private TeamPO teamPO;
-	
 	public TeamDataAnalysisFrame(TeamPO teamPO) {
 		this(teamPO, new Point());
 	}
 	public TeamDataAnalysisFrame(TeamPO teamPO, Point location) {
-		this.teamPO = teamPO;
 		setBounds(location.x,
 				location.y,
 				MainFrame.mainFrame.getWidth(),
 				MainFrame.mainFrame.getHeight());
 		setLayout(null);
-		setUndecorated(true);setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setUndecorated(true);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 //		setBackground(bgColor);
 		add(new ExitLabel(this));
 		
-		add(current_panel = (teamMatchAnalysisPanel = new TeamMatchAnalysisPanel(teamPO, this)));
+		add(new TeamDataAnalysisPanel(this, teamPO));
 		setVisible(true);
 		
 		@SuppressWarnings("unused")
@@ -45,38 +44,7 @@ public class TeamDataAnalysisFrame extends JFrame {
 		
 	}
 	
-	/**
-	 * 切换到球队比赛部分
-	 */
-	public void ToMatchAnalysis() {
-		remove(current_panel);
-		add(current_panel = (teamMatchAnalysisPanel = new TeamMatchAnalysisPanel(teamPO, this)));
-		repaint();
-	}
-	/**
-	 * 切换到球队球员分析
-	 */
-	public void ToPlayerAnalysis() {
-		remove(current_panel);
-		add(current_panel = (teamPlayerAnalysisPanel = new TeamPlayerAnalysisPanel(teamPO, this)));
-		repaint();
-	}
-	/**
-	 * 切换到球队排名演变分析
-	 */
-	public void ToEvolutionAnalysis() {
-		remove(current_panel);
-		add(current_panel = (teamEvolutionAnalysisPanel = new TeamEvolutionAnalysisPanel(teamPO, this)));
-		repaint();
-	}
 	
-	/**
-	 * 切换到teamDetailFrame界面
-	 */
-	public void returnToDetailFrame() {
-		new TeamDetailFrame(teamPO, this.getLocation());
-		setVisible(false);
-		dispose();
-	}
+	
 
 }

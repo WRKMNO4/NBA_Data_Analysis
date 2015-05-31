@@ -23,7 +23,7 @@ public class LMouseAdapter extends MouseAdapter {
 		if(event.getSource() instanceof JComboBox) return;
 //		if(((JComponent)event.getSource()).isOpaque()){
 			((JComponent)event.getSource()).setOpaque(true);
-			((JComponent)event.getSource()).setBackground(LMouseAdapter.L);
+			((JComponent)event.getSource()).setBackground(L);
 			MainFrame.mainFrame.repaint();
 //		}
 
@@ -32,12 +32,14 @@ public class LMouseAdapter extends MouseAdapter {
 		if(event.getSource() instanceof JComboBox) return;
 //		if(!((JComponent)event.getSource()).isOpaque()){
 			((JComponent)event.getSource()).setOpaque(false);
-			((JComponent)event.getSource()).setBackground(new Color(0, 0, 0, 0));
+			((JComponent)event.getSource()).setBackground(O);
 //			((JComponent)event.getSource()).getParent().repaint();
 			MainFrame.mainFrame.repaint();
 //		}
 
 	}
 	
-	public static final Color L = new Color(255, 255, 255, 100);
+	public static final Color 
+	    L = new Color(255, 255, 255, 100),
+	    O = new Color(0, 0, 0, 0);
 }
