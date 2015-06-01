@@ -38,7 +38,10 @@ public class TableFactory {
 		    rh = rowHeight <= 0 ? DEFAULT_TABLE_ROW_HEIGHT : rowHeight,
 			hrh = headRowHeight <= 0 ? DEFAULT_TABLE_HEAD_ROW_HEIGHT : headRowHeight,
 			uw = unitWidth <= 0 ? DEFAULT_TABLE_UNIT_WIDTH : unitWidth;
-		
+		if(tg == null) {
+			System.out.println("tg == null");
+			return;
+		}
 		if(tg.table != null && tg.table.isVisible()) tg.table.setVisible(false);
 		if(tg.jsp != null && tg.jsp.isVisible()) tg.jsp.setVisible(false);
 		String[] head = new String[body[0].length];
