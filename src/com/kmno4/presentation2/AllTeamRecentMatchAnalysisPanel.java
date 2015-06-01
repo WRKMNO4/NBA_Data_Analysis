@@ -3,7 +3,11 @@ package com.kmno4.presentation2;
 import javax.swing.JPanel;
 
 import com.kmno4.common.Config;
-
+/**
+ * 全球队信息的最近10场比赛数据分析界面
+ * @author hutao
+ *
+ */
 @SuppressWarnings("serial")
 public class AllTeamRecentMatchAnalysisPanel extends JPanel {
 	private AllTeamDataAnalysisFrame allTeamDataAnalysisFrame;

@@ -3,7 +3,11 @@ package com.kmno4.presentation2;
 import javax.swing.JPanel;
 
 import com.kmno4.common.Config;
-
+/**
+ * 全球队信息的球队排名一览界面
+ * @author hutao
+ *
+ */
 @SuppressWarnings("serial")
 public class AllTeamRankingAnalysisPanel extends JPanel {
 	private AllTeamDataAnalysisFrame allTeamDataAnalysisFrame;

@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import com.kmno4.common.Config;
 import com.kmno4.presentation.button.LMouseAdapter;
 /**
- * 
+ * {@link AllTeamDataAnalysisFrame}
  * @author hutao
  *
  */
@@ -40,6 +40,7 @@ public class AllTeamDataAnalysisPanel extends JPanel {
 		selectPanel = new SelectPanel();
 		add(selectPanel);
 		
+		add(currentPanel = (allTeamRankingAnalysisPanel = new AllTeamRankingAnalysisPanel(allTeamDataAnalysisFrame)));
 		
 		
 	}
@@ -76,6 +77,7 @@ public class AllTeamDataAnalysisPanel extends JPanel {
 	 */
 	private void toRanking() {
 		remove(currentPanel);
+		add(currentPanel = (allTeamRankingAnalysisPanel = new AllTeamRankingAnalysisPanel(allTeamDataAnalysisFrame)));
 		allTeamDataAnalysisFrame.repaint();
 	}
 	/**
@@ -83,6 +85,7 @@ public class AllTeamDataAnalysisPanel extends JPanel {
 	 */
 	private void toRecentMatchAna() {
 		remove(currentPanel);
+		add(currentPanel = (allTeamRecentMatchAnalysisPanel = new AllTeamRecentMatchAnalysisPanel(allTeamDataAnalysisFrame)));
 		allTeamDataAnalysisFrame.repaint();
 	}
 	/**
@@ -90,6 +93,7 @@ public class AllTeamDataAnalysisPanel extends JPanel {
 	 */
 	private void toOffenAna() {
 		remove(currentPanel);
+		add(currentPanel = (allTeamOffenAnalysisPanel = new AllTeamOffenAnalysisPanel(allTeamDataAnalysisFrame)));
 		allTeamDataAnalysisFrame.repaint();
 	}
 }

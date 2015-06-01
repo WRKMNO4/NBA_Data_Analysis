@@ -3,7 +3,11 @@ package com.kmno4.presentation2;
 import javax.swing.JPanel;
 
 import com.kmno4.common.Config;
-
+/**
+ * 全球队的攻防数据分析界面
+ * @author hutao
+ *
+ */
 @SuppressWarnings("serial")
 public class AllTeamOffenAnalysisPanel extends JPanel {
 	private AllTeamDataAnalysisFrame allTeamDataAnalysisFrame;

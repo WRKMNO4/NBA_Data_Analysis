@@ -8,6 +8,10 @@ import com.kmno4.presentation.RightClickClose;
 import com.kmno4.presentation.button.ExitLabel;
 /**
  * 全球队一览分析界面
+ * 内含联盟排名一览界面{@link AllTeamRankingAnalysisPanel}，
+ * 最近10场分析界面{@link AllTeamRecentMatchAnalysisPanel}，
+ * 攻防数据分析界面{@link AllTeamOffenAnalysisPanel}
+ * 三个模块
  * @author hutao
  *
  */
