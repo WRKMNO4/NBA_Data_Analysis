@@ -81,5 +81,20 @@ public class TableFactory {
 //			tg.jsp.getVerticalScrollBar().updateUI();
 //		}
 	}
+	
+	public static void createSortTable(TableGroup tg, JFrame parent,
+			Object[][] body,
+			SortModel sortModel,
+			int viewWidth, int viewHeight,
+			int x, int y,
+			int rowHeight, int headRowHeight,
+			int unitWidth) {
+		if(sortModel == null) sortModel = new SortModel(0, body[0].length - 1);
+		createTable(tg, parent, body, viewWidth, viewHeight, x, y, rowHeight, headRowHeight, unitWidth);
+		TableModel originTableModel = tg.table.getModel();
+		
+		
+		
+	}
 
 }

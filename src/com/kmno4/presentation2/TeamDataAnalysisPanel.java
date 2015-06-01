@@ -58,7 +58,7 @@ public class TeamDataAnalysisPanel extends JPanel {
 		JLabel player, match, evolu;
 		public SelectPanel() {
 			setBounds(PADDING, PADDING + TEAM_LABEL_HEIGHT, Config.UI_WIDTH - PADDING * 2, SELECT_PART_HEIGHT);
-			setLayout(null);
+//			setLayout(null);
 			//TODO weizhi
 			player = new JLabel("球员分析");
 			match = new JLabel("比赛分析");

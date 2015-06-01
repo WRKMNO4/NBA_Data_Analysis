@@ -16,4 +16,5 @@ public class TableGroup {
 		this.jsp = jsp;
 	}
 	public TableGroup() {}
+	
 }
