@@ -1,5 +1,7 @@
 package com.kmno4.presentation.table;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Map;
@@ -49,7 +51,7 @@ public class SortModel {
 			sortStandrad = UP;
 		}
 		else
-			if(sortStandrad ++ > UP)
+			if(++ sortStandrad > UP)
 				sortStandrad = DOWN;
 		return true;
 	}
@@ -63,7 +65,6 @@ public class SortModel {
 	    UP = 1,
 	    NONE = 0,
 	    DOWN = -1;
-	//TODO考虑球队 +对手 2行一组的情况
 	public static TableModel sortTableModel(DefaultTableModel tableModel, SortModel sortModel,
 			int sortNum, DefaultTableModel defaultTableModel) {
 		if(!sortModel.sortFired(sortNum)) return tableModel;
@@ -72,32 +73,46 @@ public class SortModel {
 		case SortModel.NONE :
 			return defaultTableModel;
 		default :
-//			@SuppressWarnings("unchecked")
+			@SuppressWarnings("unchecked")
 			Vector<Vector<Object>> v = tableModel.getDataVector();
 			Object[][] body = new Object[v.size()][v.get(0).size()];
 			Object[] head = new Object[v.get(0).size()];
-			int groups = v.size() / groupNum;
-			Map<Double, Integer> map = new TreeMap<Double, Integer>(new Comparator<Double>() {
-				@Override
-				public int compare(Double o1, Double o2) {
-					return myCompare(o1, o2, sortModel.sortStandrad);
+			//第一行为表头
+			int groups = (v.size() - 1) / groupNum;
+			
+			class Couple implements Comparator<Couple> {
+				public int num;
+				public double value;
+				public Couple(int num, double value) {
+					this.num = num;
+					this.value = value;
 				}
-			});
-			for(int i = 0; i < groups - 1; i ++) {
-				map.put(Double.parseDouble(v.get(i * groupNum).get(sortNum).toString()),
-						new Integer(i * groupNum));
+				private int model;
+				public Couple(int model) {
+					this.model = model;
+				}
+				@Override
+				public int compare(Couple o1, Couple o2) {
+					if((o1.value > o2.value && model == SortModel.UP) || (o1.value < o2.value && model == SortModel.DOWN)) return -1;
+					if(o1.value == o2.value) return 0;
+					else return 1;
+				}
 			}
-			Iterator<Double> iter = map.keySet().iterator();
-			int g = 0;
-			while(iter.hasNext()) {
-				Double d = iter.next();
-				Integer i = map.get(d);
-				for(int j = 0; j < sortModel.groupNum - 1; j ++)
-					body[g * groupNum + j] = v.get(i + j).toArray();
-				g ++;
-				System.out.println(g);
+			ArrayList<Couple> al = new ArrayList<Couple>();
+			for(int i = 1; i < groups + 1; i ++) {
+				al.add(new Couple(new Integer(i * groupNum),
+						Double.parseDouble(v.get(i * groupNum).get(sortNum).toString())));
 			}
-			for(int i = 0; i < head.length - 1; i ++) {
+			Collections.sort(al, new Couple(sortModel.sortStandrad));
+			body[0] = v.get(0).toArray();
+			for(int i = 0; i < al.size(); i ++) {
+				for(int j = 0; j < groupNum; j ++) {
+					body[1 + i * groupNum + j] = v.get(al.get(i).num + j).toArray();
+				}
+			}
+			
+			
+			for(int i = 0; i < head.length; i ++) {
 				head[i] = "";
 			}
 			
@@ -107,18 +122,14 @@ public class SortModel {
 		
 	}
 	
-	private static int myCompare(Double d1, Double d2, int model) {
-		if((d1 > d2 && model == SortModel.UP) || (d1 < d2 && model == SortModel.DOWN)) return 1;
-		if(d1 == d2) return 0;
-		else return -1;
-	}
-	
 	public static void main(String[] args) {
+		SortModel s = new SortModel(0, 2, 1);
 		DefaultTableModel t = (DefaultTableModel)SortModel.sortTableModel(
-				new DefaultTableModel(new String[][] {{"1", "2", "3"},{"3", "2", "1"},{"3", "1", "2"}}, new String[]{"", "", ""}),
-				new SortModel(0, 2, 1),
+				new DefaultTableModel(new String[][] {{"a", "a", "a"},{"1", "2", "3.3"},{"3", "2", "1.1"},{"3", "1", "2.2"},{"3", "2", "5.5"}}, new String[]{"", "", ""}),
+				s,
 				2,
 				null);
+		@SuppressWarnings("unchecked")
 		Vector<Vector<Object>> v = t.getDataVector();
 		for(Vector<Object> vv : v) {
 			System.out.println(vv.get(2).toString());
