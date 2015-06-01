@@ -3,9 +3,6 @@ package com.kmno4.presentation.table;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.TreeMap;
 import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
@@ -65,6 +62,14 @@ public class SortModel {
 	    UP = 1,
 	    NONE = 0,
 	    DOWN = -1;
+	/**
+	 * 
+	 * @param tableModel 原model（包括变换过的）
+	 * @param sortModel 
+	 * @param sortNum 排序的列数
+	 * @param defaultTableModel 默认即最初的model
+	 * @return
+	 */
 	public static TableModel sortTableModel(DefaultTableModel tableModel, SortModel sortModel,
 			int sortNum, DefaultTableModel defaultTableModel) {
 		if(!sortModel.sortFired(sortNum)) return tableModel;

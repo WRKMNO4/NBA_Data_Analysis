@@ -2,16 +2,15 @@ package com.kmno4.presentation.table;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-
-import com.sun.prism.paint.Color;
 
 public class TableFactory {
 	private static final int
@@ -89,10 +88,18 @@ public class TableFactory {
 			int x, int y,
 			int rowHeight, int headRowHeight,
 			int unitWidth) {
-		if(sortModel == null) sortModel = new SortModel(0, body[0].length - 1);
 		createTable(tg, parent, body, viewWidth, viewHeight, x, y, rowHeight, headRowHeight, unitWidth);
 		TableModel originTableModel = tg.table.getModel();
-		
+		tg.table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				int row = tg.table.rowAtPoint(e.getPoint());
+				if(row != 1) return;
+				int col = tg.table.columnAtPoint(e.getPoint());
+				TableModel newModel = SortModel.sortTableModel((DefaultTableModel)tg.table.getModel(),
+						sortModel, col, (DefaultTableModel)originTableModel);
+				tg.table.setModel(newModel);
+			}
+		});
 		
 		
 	}
