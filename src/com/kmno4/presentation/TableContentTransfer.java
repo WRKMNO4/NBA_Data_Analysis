@@ -15,6 +15,7 @@ import PO.PlayerDataPO;
 import PO.PlayerPO;
 import PO.ScoreOfMatchPO;
 import PO.SeasonInfoForPlayer;
+import PO.SeasonInfoForTeam;
 import PO.StandingDataPO;
 import PO.TeamDataPO;
 import PO.TeamPO;
@@ -542,16 +543,58 @@ public class TableContentTransfer {
 		}
 		return body ;
 	}
-	
+	//球员高阶数据表，如RPM等
 	public static String[][] transferPlayerHighInfo(ArrayList<ArrayList<String>> datas){
 		String [][] body = new String [datas.size()][Config.PLAYER_HIGHINFO.length];
-		body[0] = Config.PLAYER_HIGHINFO ;
+		body[0] = Config.PLAYER_HIGHINFO;
 		for(int i=1; i<datas.size();i++){
 			ArrayList<String> onePlayer = datas.get(i-1);
 			for(int j=0 ; j<onePlayer.size(); j++)
 				body[i][j] = onePlayer.get(j);
 		}
 		return body;
+	}
+	// 球队排名表
+	public static String[][] transferTeamRanking(ArrayList<TeamPO> teams){
+		String [][] body = new String [teams.size()][Config.TEAM_RANKING.length];
+		body[0] = Config.TEAM_RANKING;
+		for(int i = 1;i < teams.size();i++){
+			TeamPO oneTeam = teams.get(i-1);
+			SeasonInfoForTeam seasonInfo = oneTeam.getSeasonInfo(Config.LASTEST_SEASON);
+			body[i][0] = String.valueOf(i);
+			body[i][1] = oneTeam.getShortName();
+			body[i][2] = cutTailOfTotalData(seasonInfo.getNumberOfWinning());
+			body[i][3] = cutTailOfTotalData(seasonInfo.getNumberOfMatches() - seasonInfo.getNumberOfWinning()) ;
+			body[i][4] = cutTailOfAvgData(seasonInfo.getPercentageOfWinning());
+			body[i][5] = cutTailOfTotalData(seasonInfo.getNumberOfHostWinning());
+			body[i][6] = cutTailOfTotalData(seasonInfo.getNumberOfGuestWinning());
+			body[i][7] = cutTailOfTotalData(seasonInfo.getWinningStreak());
+			body[i][8] = cutTailOfTotalData(seasonInfo.getLosingStreak());
+			body[i][9] = cutTailOfAvgData(seasonInfo.getAverageTeamData().getScore());
+			body[i][10] = cutTailOfAvgData(seasonInfo.getLosingPointsPerMatch());
+		}
+		return body;
+	}
+	//球队近10场比赛分析表
+	public static String[][] transferAnalysisOfLatest10Matches(ArrayList<TeamPO> teams){
+		String [][] body = new String [teams.size()][Config.TEAM_LATEST10MATCHES_ANALYSIS.length];
+		body[0] = Config.TEAM_LATEST10MATCHES_ANALYSIS;
+		for(int i = 1;i < teams.size();i++){
+			TeamPO oneTeam = teams.get(i-1);
+			SeasonInfoForTeam seasonInfo = oneTeam.getSeasonInfo(Config.LASTEST_SEASON);
+			body[i][0] = oneTeam.getShortName();
+			body[i][1] = String.valueOf(seasonInfo.getNumberOfWinning());
+			body[i][2] = String.valueOf(seasonInfo.getNumberOfMatches() - seasonInfo.getNumberOfWinning());
+			body[i][3] = String.valueOf(seasonInfo.getWinningStreak());
+			body[i][4] = String.valueOf(seasonInfo.getLosingStreak());
+			body[i][5] = String.valueOf(seasonInfo.getNumberOfWinningInRecent10Matches());
+			body[i][6] = String.valueOf(seasonInfo.getNumberOfHostWinningInRecent10Matches());
+			body[i][7] = String.valueOf(seasonInfo.getNumberOfGuestWinningInRecent10Matches());
+			body[i][8] = cutTailOfAvgData(seasonInfo.getAverageTeamData().getScore());
+			body[i][9] = cutTailOfAvgData(seasonInfo.getLosingPointsPerMatch());
+		}
+		return body;
+
 	}
 	
 	public static String[][] transferMatchScores(MatchPO match){

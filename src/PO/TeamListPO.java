@@ -3,6 +3,7 @@ package PO;
 import java.util.ArrayList;
 
 import Enum.ResultMessage;
+import Enum.Zone;
 
 public class TeamListPO {
 	public static ArrayList<TeamPO> allTeams ;
@@ -42,5 +43,21 @@ public class TeamListPO {
 	
 	public ArrayList<TeamPO> getAllTeams(){
 		return allTeams ;
+	}
+	
+	public ArrayList<TeamPO> getAllWestTeams(){
+		ArrayList<TeamPO> teams = new ArrayList<TeamPO>();
+		for(TeamPO oneTeam:allTeams)
+			if(oneTeam.getZone() == Zone.W)
+				teams.add(oneTeam);
+		return teams;
+	}
+	
+	public ArrayList<TeamPO> getAllEastTeams(){
+		ArrayList<TeamPO> teams = new ArrayList<TeamPO>();
+		for(TeamPO oneTeam:allTeams)
+			if(oneTeam.getZone() == Zone.E)
+				teams.add(oneTeam);
+		return teams;
 	}
 }
