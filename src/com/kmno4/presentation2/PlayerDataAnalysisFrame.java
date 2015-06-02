@@ -13,7 +13,11 @@ import com.kmno4.presentation.RightClickClose;
 import com.kmno4.presentation.button.ExitLabel;
 
 import PO.PlayerPO;
-
+/**
+ * 球员数据分析界面{@link PlayerDataAnalysisPanel}
+ * @author hutao
+ *
+ */
 @SuppressWarnings("serial")
 public class PlayerDataAnalysisFrame extends JFrame {
 	public PlayerDataAnalysisFrame(PlayerPO playerPO) {

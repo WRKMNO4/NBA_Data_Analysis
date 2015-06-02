@@ -2,16 +2,13 @@ package com.kmno4.presentation2;
 
 import javax.swing.JFrame;
 
+import com.kmno4.common.Config;
 import com.kmno4.presentation.MainFrame;
 import com.kmno4.presentation.MoveOfFrame;
 import com.kmno4.presentation.RightClickClose;
 import com.kmno4.presentation.button.ExitLabel;
 /**
- * 全球队一览分析界面
- * 内含联盟排名一览界面{@link AllTeamRankingAnalysisPanel}，
- * 最近10场分析界面{@link AllTeamRecentMatchAnalysisPanel}，
- * 攻防数据分析界面{@link AllTeamOffenAnalysisPanel}
- * 三个模块
+ * {@link AllTeamDataAnalysisPanel}
  * @author hutao
  *
  */
@@ -19,7 +16,8 @@ import com.kmno4.presentation.button.ExitLabel;
 public class AllTeamDataAnalysisFrame extends JFrame {
 	
 	public AllTeamDataAnalysisFrame() {
-		setBounds(MainFrame.mainFrame.getBounds());
+//		setBounds(MainFrame.mainFrame.getBounds());
+		setBounds(0, 0, Config.UI_WIDTH, Config.UI_HEIGHT);
 		setLayout(null);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

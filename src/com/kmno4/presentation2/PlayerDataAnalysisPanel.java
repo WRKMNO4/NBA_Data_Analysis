@@ -5,7 +5,15 @@ import javax.swing.JPanel;
 import com.kmno4.presentation.PlayerDetailFrame;
 
 import PO.PlayerPO;
-
+/**
+ * 球员数据分析界面
+ * 内含球员综合能力分析界面{@link PlayerPerformAnalysisPanel}，
+ * 球员对比分析界面{@link PlayerComparisonAnalysisPanel}，
+ * 球员演变分析界面{@link PlayerEvolutionAnalysisPanel}
+ * 三个模块
+ * @author hutao
+ *
+ */
 @SuppressWarnings("serial")
 public class PlayerDataAnalysisPanel extends JPanel {
 	private PlayerDataAnalysisPanel playerDataAnalysisPanel;
@@ -23,7 +31,7 @@ public class PlayerDataAnalysisPanel extends JPanel {
 		this.playerDataAnalysisPanel = this;
 		
 		
-		add(current_panel = (playerPerformAnalysisPanel = new PlayerPerformAnalysisPanel(playerPO, playerDataAnalysisFrame)));
+		add(current_panel = (playerEvolutionAnalysisPanel = new PlayerEvolutionAnalysisPanel(playerPO, playerDataAnalysisFrame)));
 		
 	}
 	/**

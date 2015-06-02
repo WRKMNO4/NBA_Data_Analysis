@@ -6,6 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -17,7 +18,7 @@ public class TableFactory {
 	    DEFAULT_TABLE_ROW_HEIGHT = 30,
 		DEFAULT_TABLE_HEAD_ROW_HEIGHT = 45,
 		DEFAULT_TABLE_UNIT_WIDTH = 100;
-	public static void createTable(TableGroup tg, JFrame parent,
+	public static void createTable(TableGroup tg, Object parent,
 			Object[][] body,
 			int viewWidth, int viewHeight,
 			int x, int y) {
@@ -28,7 +29,7 @@ public class TableFactory {
 				DEFAULT_TABLE_ROW_HEIGHT, DEFAULT_TABLE_HEAD_ROW_HEIGHT,
 				DEFAULT_TABLE_UNIT_WIDTH);
 	}
-	public static void createTable(TableGroup tg, JFrame parent,
+	public static void createTable(TableGroup tg, Object parent,
 			Object[][] body,
 			int viewWidth, int viewHeight,
 			int x, int y,
@@ -72,8 +73,8 @@ public class TableFactory {
 		
 		tg.table.setVisible(true);
 		tg.jsp.setVisible(true);
-		parent.add(tg.jsp);
-		
+		if(parent instanceof JFrame) ((JFrame)parent).add(tg.jsp);
+		if(parent instanceof JPanel) ((JPanel)parent).add(tg.jsp);
 		
 		tg.jsp.getViewport().setOpaque(false);
 		tg.jsp.setOpaque(false);
@@ -84,7 +85,7 @@ public class TableFactory {
 //		}
 	}
 	
-	public static void createSortTable(TableGroup tg, JFrame parent,
+	public static void createSortTable(TableGroup tg, Object parent,
 			Object[][] body,
 			SortModel sortModel,
 			int viewWidth, int viewHeight,
