@@ -23,7 +23,8 @@ public class AllTeamDataAnalysisPanel extends JPanel {
 	    PADDING = 10,
 	    LABEL_HEIGHT = 60,
 	    SELECT_PANEL_HEIGHT = 60,
-	    PANEL_HEIGHT = Config.UI_HEIGHT - 2 * PADDING - LABEL_HEIGHT - SELECT_PANEL_HEIGHT;
+	    PANEL_HEIGHT = Config.UI_HEIGHT - 2 * PADDING - LABEL_HEIGHT - SELECT_PANEL_HEIGHT,
+	    SELECT_LABEL_WIDTH = 100;
 	
 	private JLabel somthing;
 	private SelectPanel selectPanel;
@@ -54,11 +55,13 @@ public class AllTeamDataAnalysisPanel extends JPanel {
 		public SelectPanel() {
 			setBounds(PADDING, PADDING + LABEL_HEIGHT,
 					Config.UI_WIDTH - 2 * PADDING, SELECT_PANEL_HEIGHT);
-//			setLayout(null);
-			//TODO
-			rank = new JLabel("排名一览", JLabel.LEFT);
+			setLayout(null);
+			rank = new JLabel("排名数据分析", JLabel.LEFT);
+			rank.setBounds(0, 0, SELECT_LABEL_WIDTH, SELECT_PANEL_HEIGHT);
 			recent = new JLabel("最近10场分析", JLabel.LEFT);
+			recent.setBounds(SELECT_LABEL_WIDTH, 0, SELECT_LABEL_WIDTH, SELECT_PANEL_HEIGHT);
 			offen = new JLabel("进攻防守分析", JLabel.LEFT);
+			offen.setBounds(SELECT_LABEL_WIDTH * 2, 0, SELECT_LABEL_WIDTH, SELECT_PANEL_HEIGHT);
 			rank.addMouseListener(new LMouseAdapter(allTeamDataAnalysisFrame) {
 				public void mouseClicked(MouseEvent e) {
 					toRanking();

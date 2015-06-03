@@ -1,5 +1,8 @@
 package com.kmno4.presentation2;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
@@ -22,7 +25,7 @@ public class TeamPlayerAnalysisPanel extends JPanel {
 	private JComboBox<String> conditions;
 	private MainPlayerPanel mainPlayerPanel;
 	private OtherPlayerPanel otherPlayerPanel;
-	//柱状图 显示数据值
+	//TODO 柱状图 显示数据值
 	
 	public TeamPlayerAnalysisPanel(TeamPO teamPO, TeamDataAnalysisFrame f) {
 		this.teamPO = teamPO;
@@ -35,6 +38,12 @@ public class TeamPlayerAnalysisPanel extends JPanel {
 				TeamDataAnalysisPanel.PANEL_HEIGHT);
 		
 		conditions = new JComboBox<String>();
+		conditions.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//TODO
+			}
+		});
 		add(conditions);
 		
 		setPanel();
@@ -47,6 +56,11 @@ public class TeamPlayerAnalysisPanel extends JPanel {
 	private void setPanel() {
 		if(mainPlayerPanel != null) remove(mainPlayerPanel);
 		if(otherPlayerPanel != null) remove(otherPlayerPanel);
+		//TODO 获取球员列表等信息
+		mainPlayerPanel = new MainPlayerPanel();
+		add(mainPlayerPanel);
+		otherPlayerPanel = new OtherPlayerPanel();
+		add(otherPlayerPanel);
  	}
 	
 	/**
