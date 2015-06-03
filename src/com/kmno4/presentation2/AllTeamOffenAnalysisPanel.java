@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import com.kmno4.common.Config;
 /**
  * 全球队的攻防数据分析界面
+ * 用柱状图分列所有球队的攻防数据
  * @author hutao
  *
  */

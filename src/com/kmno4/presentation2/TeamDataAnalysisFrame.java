@@ -12,11 +12,7 @@ import com.kmno4.presentation.button.ExitLabel;
 
 import PO.TeamPO;
 /**
- * 球队单个分析界面
- * 内含球员分析{@link TeamPlayerAnalysisPanel}，
- * 球队全比赛分析{@link TeamMatchAnalysisPanel}，
- * 球队排名演变分析{@link TeamEvolutionAnalysisPanel}
- * 三个模块
+ * {@link TeamDataAnalysisPanel}
  * @author hutao
  *
  */

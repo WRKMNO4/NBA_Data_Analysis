@@ -11,7 +11,11 @@ import com.kmno4.presentation.button.LMouseAdapter;
 
 import PO.TeamPO;
 /**
- * {@link TeamDataAnalysisFrame}
+ * 球队单个分析界面
+ * 内含球员分析{@link TeamPlayerAnalysisPanel}，
+ * 球队全比赛分析{@link TeamMatchAnalysisPanel}，
+ * 球队排名演变分析{@link TeamEvolutionAnalysisPanel}
+ * 三个模块
  * @author hutao
  *
  */
@@ -21,7 +25,8 @@ public class TeamDataAnalysisPanel extends JPanel {
 	    PADDING = 10,
 	    TEAM_LABEL_HEIGHT = 60,
 	    SELECT_PART_HEIGHT = 60,
-	    PANEL_HEIGHT = Config.UI_HEIGHT - PADDING * 3 - TEAM_LABEL_HEIGHT - SELECT_PART_HEIGHT;
+	    PANEL_HEIGHT = Config.UI_HEIGHT - PADDING * 3 - TEAM_LABEL_HEIGHT - SELECT_PART_HEIGHT,
+	    SELECT_LABEL_WIDTH = 100;
 	
 	private JLabel teamLabel;
 	private SelectPanel selectPanel;
@@ -50,19 +55,21 @@ public class TeamDataAnalysisPanel extends JPanel {
 		
 		selectPanel = new SelectPanel();
 		add(selectPanel);
-		add(current_panel = (teamMatchAnalysisPanel = new TeamMatchAnalysisPanel(teamPO, teamDataAnalysisFrame)));
+		add(current_panel = (teamPlayerAnalysisPanel = new TeamPlayerAnalysisPanel(teamPO, teamDataAnalysisFrame)));
 	}
 	
-
+	
 	class SelectPanel extends JPanel {
 		JLabel player, match, evolu;
 		public SelectPanel() {
 			setBounds(PADDING, PADDING + TEAM_LABEL_HEIGHT, Config.UI_WIDTH - PADDING * 2, SELECT_PART_HEIGHT);
-//			setLayout(null);
-			//TODO weizhi
-			player = new JLabel("球员分析");
-			match = new JLabel("比赛分析");
-			evolu = new JLabel("排名分析");
+			setLayout(null);
+			player = new JLabel("球员分析", JLabel.CENTER);
+			player.setBounds(0, 0, SELECT_LABEL_WIDTH, SELECT_PART_HEIGHT);
+			match = new JLabel("比赛分析", JLabel.CENTER);
+			match.setBounds(SELECT_LABEL_WIDTH, 0, SELECT_LABEL_WIDTH, SELECT_PART_HEIGHT);
+			evolu = new JLabel("排名分析", JLabel.CENTER);
+			evolu.setBounds(SELECT_LABEL_WIDTH * 2, 0, SELECT_LABEL_WIDTH, SELECT_PART_HEIGHT);
 			player.addMouseListener(new LMouseAdapter(teamDataAnalysisFrame) {
 				public void mouseClicked(MouseEvent e) {
 					toPlayerAnalysis();
