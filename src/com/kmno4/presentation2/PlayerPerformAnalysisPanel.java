@@ -12,8 +12,14 @@ import PO.PlayerPO;
  */
 @SuppressWarnings("serial")
 public class PlayerPerformAnalysisPanel extends JPanel {
+	private PlayerPerformAnalysisPanel playerPerformAnalysisPanel;
+	private PlayerDataAnalysisFrame playerDataAnalysisFrame;
+	private PlayerPO playerPO;
 	
 	public PlayerPerformAnalysisPanel(PlayerPO playerPO, PlayerDataAnalysisFrame f) {
+		this.playerDataAnalysisFrame = f;
+		this.playerPerformAnalysisPanel = this;
+		this.playerPO = playerPO;
 		
 	}
 
