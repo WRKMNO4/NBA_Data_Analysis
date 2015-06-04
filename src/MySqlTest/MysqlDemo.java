@@ -15,13 +15,17 @@ import java.sql.Statement;
 public class MysqlDemo {
     public static void main(String[] args) throws Exception {
         Connection conn = null;
-        String sql;
+        String createPlayerTable;
+        String createTeamTable ;
+        String createMatchTable ;
+        String createScores ; //每场比赛的每节比分
+        String createPlayerDataOfOneMatchTable ;
         // MySQL的JDBC URL编写方式：jdbc:mysql://主机名称：连接端口/数据库的名称?参数=值
         // 避免中文乱码要指定useUnicode和characterEncoding
         // 执行数据库操作之前要在数据库管理系统上创建一个数据库，名字自己定，
         // 下面语句之前就要先创建javademo数据库
-        String url = "jdbc:mysql://192.168.1.103:3306/javademo?"
-                + "user=admin&password=admin&useUnicode=true&characterEncoding=UTF8";
+        String url = "jdbc:mysql://localhost:3306/NBA_DATA?"
+                + "user=root&password=941104&useUnicode=true&characterEncoding=UTF8";
  
         try {
             // 之所以要使用下面这条语句，是因为要使用MySQL的驱动，所以我们要把它驱动起来，
@@ -36,22 +40,30 @@ public class MysqlDemo {
             // 一个Connection代表一个数据库连接
             conn = DriverManager.getConnection(url);
             // Statement里面带有很多方法，比如executeUpdate可以实现插入，更新和删除等
+            System.out.println("成功建表");
             Statement stmt = conn.createStatement();
-            sql = "create table teacher(NO char(20),name varchar(20),primary key(NO))";
-            int result = stmt.executeUpdate(sql);// executeUpdate语句会返回一个受影响的行数，如果返回-1就没有成功
+            createPlayerTable = "create table players(name varchar(30),number int(3),position varchar(10),height varchar(20),weight int(3),birth char(12),"
+            		+ "age int(3),exp int(2),school varchar(20),primary key(name))";
+       
+            createTeamTable = "create table teams(fullname varchar(20),shortname char(3),city varchar(20),zone char(1),district varchar(20),homeCourt varchar(20),timeOfEstablishment year,primary key(shortname))";
+       
+            createMatchTable = "create table matches(matchID int(6),time date,firstteam char(3),secondteam char(3),firstscore int(3),"
+            		+ "secondscore int(3),primary key(matchID))";
+         
+            createScores = "create table scroesofonematch(matchID int,scoreID int,firstScore int(3),secondScore int(3),primary key(matchID ,scoreID))" ;
+           
+            createPlayerDataOfOneMatchTable = "create table playerdataofonematch(matchID int ,team char(3),name varchar(30),position char(1),ifStarting int(1),persentTime varchar(10),numberOfShooting int,numberOfShotAttempt int,"
+            		+ "numberOf3_point int, numberOf3_pointAttempt int,numberOfFreeThrow int, numberOfFreeThrowAttempt int ,numberOfAttackRebound int,numberOfDefenseRebound int ,numberOfRebound int ,numberOfAssist int ,numberOfSteal int ,numberOfBlock int ,numberOfFault int,"
+            		+ "numberOfFoul int ,score int, primary key(matchID,team ,name))" ;
+            		
+            int result1 = stmt.executeUpdate(createPlayerTable);// executeUpdate语句会返回一个受影响的行数，如果返回-1就没有成功
+//            int result2= stmt.executeUpdate(createTeamTable) ;
+//            int  result3 =stmt.executeUpdate(createScores) ;
+//            int result4 = stmt.executeUpdate(createPlayerDataOfOneMatchTable) ;
+//            int result5 = stmt.executeUpdate(createMatchTable) ;
+            int result = result1;
             if (result != -1) {
                 System.out.println("创建数据表成功");
-                sql = "insert into teacher(NO,name) values('2012001','陶伟基')";
-                result = stmt.executeUpdate(sql);
-                sql = "insert into teacher(NO,name) values('2012002','周小俊')";
-                result = stmt.executeUpdate(sql);
-                sql = "select * from teacher";
-                ResultSet rs = stmt.executeQuery(sql);// executeQuery会返回结果的集合，否则返回空值
-                System.out.println("学号\t姓名");
-                while (rs.next()) {
-                    System.out
-                            .println(rs.getString(1) + "\t" + rs.getString(2));// 入如果返回的是int类型可以用getInt()
-                }
             }
         } catch (SQLException e) {
             System.out.println("MySQL操作错误");
@@ -64,5 +76,5 @@ public class MysqlDemo {
         }
  
     }
- 
+    
 }

@@ -29,7 +29,7 @@ public class PlayerController implements PlayerDataService{
 		File file=new File(fileName);
 		if(file.isDirectory()){
 			File[] allFiles=file.listFiles();
-			for(int i=0;i<allFiles.length;i++){    //����info�ļ�����������ļ�
+			for(int i=0;i<allFiles.length;i++){   
 				ArrayList<String> tempString=FileHelper.readByLine(allFiles[i]);
 				PlayerPO newPlayer=new PlayerPO();
 				for(int j=0;j<tempString.size();j++){

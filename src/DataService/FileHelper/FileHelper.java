@@ -31,11 +31,11 @@ public class FileHelper {
 		
 	}
 	
-	public static ArrayList<String> analysisOfOneLine(String oneLine){   //����ÿ�����ݣ�����Ա��Ϣ�������Ϣ�ļ���Ч��
+	public static ArrayList<String> analysisOfOneLine(String oneLine){   
 		ArrayList<String> results=new ArrayList<String>();
-		oneLine=oneLine.substring(1,oneLine.length()-1);//ȥ����β�ķǷ��ַ�
+		oneLine=oneLine.substring(1,oneLine.length()-1);
 		String[] eachString=oneLine.split("│");
-		for(int i=0;i<eachString.length;i++){     //ȥ���ո�
+		for(int i=0;i<eachString.length;i++){    
 			results.add(eachString[i].trim());
 		}
 		
