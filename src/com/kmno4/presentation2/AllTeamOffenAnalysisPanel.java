@@ -25,4 +25,10 @@ public class AllTeamOffenAnalysisPanel extends JPanel {
 				AllTeamDataAnalysisPanel.PANEL_HEIGHT);
 	}
 
+	
+	private void createChart() {
+		
+	}
+	
+	
 }

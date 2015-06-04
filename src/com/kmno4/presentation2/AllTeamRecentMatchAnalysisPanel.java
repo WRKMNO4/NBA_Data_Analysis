@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import com.kmno4.common.Config;
 /**
  * 全球队信息的最近10场比赛数据分析界面
+ * 与联盟排名一览界面结构大体相同
  * @author hutao
  *
  */

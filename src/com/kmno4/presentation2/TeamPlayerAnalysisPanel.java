@@ -6,6 +6,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+
 import com.kmno4.common.Config;
 
 import PO.TeamPO;
@@ -26,6 +29,8 @@ public class TeamPlayerAnalysisPanel extends JPanel {
 	private MainPlayerPanel mainPlayerPanel;
 	private OtherPlayerPanel otherPlayerPanel;
 	//TODO 柱状图 显示数据值
+	private JFreeChart chart;
+	private ChartPanel chartPanel;
 	
 	public TeamPlayerAnalysisPanel(TeamPO teamPO, TeamDataAnalysisFrame f) {
 		this.teamPO = teamPO;
@@ -47,6 +52,7 @@ public class TeamPlayerAnalysisPanel extends JPanel {
 		add(conditions);
 		
 		setPanel();
+		createChart();
 	}
 	
 	
@@ -62,6 +68,16 @@ public class TeamPlayerAnalysisPanel extends JPanel {
 		otherPlayerPanel = new OtherPlayerPanel();
 		add(otherPlayerPanel);
  	}
+	/**
+	 * 初始化以及响应combobox改变图表
+	 */
+	private void createChart() {
+		if(chartPanel != null) remove(chartPanel);
+		
+		
+		
+//		chart = ChartFactory.c
+	}
 	
 	/**
 	 * 排名第一球员展示Panel
