@@ -31,7 +31,7 @@ public class MatchController implements MatchDataService{
 			File[] allFiles = file.listFiles() ;
 			Arrays.sort(allFiles,new CompareByTime());
 			
-			for(int i = 0; i<allFiles.length;i++){ 
+			for(int i = 0; i<allFiles.length;i++){
 				ArrayList<String> tempString  = FileHelper.readByLine(allFiles[i]) ;
 				MatchPO newMatch = new MatchPO() ;
 				newMatch.setName(allFiles[i].getName());
