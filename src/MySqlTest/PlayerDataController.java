@@ -18,7 +18,7 @@ public class PlayerDataController {
 	String url = "jdbc:mysql://localhost:3306/NBA_DATA?"
             + "user=root&password=941104&useUnicode=true&characterEncoding=UTF8";
 	java.sql.Statement stmt = null ;
-	 String insert = "insert into players(lname,fname,number,position,height,weight,birth,age,exp,school) values";
+	 String string = "insert into players(name,number,position,height,weight,birth,age,exp,school,portraitURL,actionURL) values";
 	public void init(){
 		 
 		 try {
@@ -52,21 +52,35 @@ public class PlayerDataController {
 			File[] allFiles=file.listFiles();
 			for(int i=0;i<allFiles.length;i++){   
 				ArrayList<String> tempString=FileHelper.readByLine(allFiles[i]);
-				
-				ArrayList<String> datas = new ArrayList<>() ;
+				String name = "" ;
+				ArrayList<String> dataOfString = new ArrayList<>() ;
+				ArrayList<Integer> dataOfInteger = new ArrayList<>() ;
 				for(int j = 0;j<tempString.size();j++){
+					if(j==1){
+						name = getDataOfOneLine(tempString.get(j)) ;
+					}
 					if(j%2 ==0)
 						continue ;
-					datas.add(getDataOfOneLine(tempString.get(j))) ;
+					if(j==3||j==9||j==13||j==15){
+						try{
+							dataOfInteger.add(Integer.parseInt(getDataOfOneLine(tempString.get(j)))) ;
+						}catch(NumberFormatException e){
+							dataOfInteger.add(0) ;
+						}
+					}else
+				    	dataOfString.add("'"+checkString(getDataOfOneLine(tempString.get(j)))+"'") ;
 				}
-				for(String str:datas){
-					System.out.print(str+" ");
-				}
-				insert = insert + "("+datas.get(0)+Integer.parseInt(datas.get(1))+datas.get(2)+datas.get(3)+Integer.parseInt(datas.get(4))+datas.get(5)+Integer.parseInt(datas.get(6))+Integer.parseInt(datas.get(7))+datas.get(8)+")";
+				dataOfString.add("'Data/players/portrait/"+checkString(name)+".png'") ;
+				dataOfString.add("'Data/players/action/"+checkString(name)+".png'") ;
+				String insert = string+"("+dataOfString.get(0)+","+dataOfInteger.get(0)+","+dataOfString.get(1)+","+dataOfString.get(2)+","
+				         +dataOfInteger.get(1)+","+dataOfString.get(3)+","+dataOfInteger.get(2)
+						+","+dataOfInteger.get(3)+","+dataOfString.get(4)+","+dataOfString.get(5)+","+dataOfString.get(6)+")";
+				System.out.println(insert);
                 try {
 					int result = stmt.executeUpdate(insert) ;
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
+					System.out.println("wrong");
 					e.printStackTrace();
 				}	
 			}
@@ -74,9 +88,16 @@ public class PlayerDataController {
 	}
 	private String getDataOfOneLine(String oneLine){
 		oneLine = oneLine.substring(1,oneLine.length()-1) ;
-		System.out.println(oneLine+"-------");
 		String[] strs = oneLine.split("│") ;
 		return strs[1].trim() ;
+	}
+	
+	private String checkString(String string){//检查插入的字符串中是否有单引号，从而添加转义符
+		if(string.contains("'")){
+			int i = string.indexOf("'") ;
+			string = string.substring(0,i)+"\\"+string.substring(i);
+		}
+		return string ;
 	}
 	
 
