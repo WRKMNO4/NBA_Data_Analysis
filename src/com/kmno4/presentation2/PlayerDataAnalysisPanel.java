@@ -1,5 +1,6 @@
 package com.kmno4.presentation2;
 
+import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
@@ -128,5 +129,9 @@ public class PlayerDataAnalysisPanel extends JPanel {
 		new PlayerDetailFrame(playerPO, this.getLocation());
 		playerDataAnalysisFrame.setVisible(false);
 		playerDataAnalysisFrame.dispose();
+	}
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(Config.DETAIL_BG.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
 	}
 }

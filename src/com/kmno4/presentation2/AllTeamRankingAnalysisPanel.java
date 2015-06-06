@@ -1,5 +1,8 @@
 package com.kmno4.presentation2;
 
+import java.awt.Color;
+import java.awt.Font;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -39,6 +42,10 @@ public class AllTeamRankingAnalysisPanel extends JPanel {
 		
 		southLabel = new JLabel("东部联盟");
 		southLabel.setBounds(0, 0, getWidth(), LABEL_HEIGHT);
+		southLabel.setOpaque(true);
+		southLabel.setBackground(new Color(128, 128, 128, 150));
+		southLabel.setForeground(Color.white);
+		southLabel.setFont(new Font("default", 0, 15));
 		add(southLabel);
 		southTg = new TableGroup();
 		TableFactory.createTable(southTg, this, example, getWidth(), TABLE_HEIGHT,
@@ -46,6 +53,10 @@ public class AllTeamRankingAnalysisPanel extends JPanel {
 		
 		westLabel = new JLabel("西部联盟");
 		westLabel.setBounds(0, LABEL_HEIGHT + TABLE_HEIGHT, getWidth(), LABEL_HEIGHT);
+		westLabel.setOpaque(true);
+		westLabel.setBackground(new Color(128, 128, 128, 150));
+		westLabel.setForeground(Color.white);
+		westLabel.setFont(new Font("default", 0, 15));
 		add(westLabel);
 		westTg = new TableGroup();
 		TableFactory.createTable(westTg, this, example, getWidth(), TABLE_HEIGHT,

@@ -1,5 +1,9 @@
 package com.kmno4.presentation2;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
@@ -23,9 +27,10 @@ public class TeamDataAnalysisPanel extends JPanel {
 	public static final int 
 	    PADDING = 10,
 	    TEAM_LABEL_HEIGHT = 60,
-	    SELECT_PART_HEIGHT = 60,
+	    TEAM_LABEL_WIDTH = 300,
+	    SELECT_PART_HEIGHT = 45,
 	    PANEL_HEIGHT = Config.UI_HEIGHT - PADDING * 3 - TEAM_LABEL_HEIGHT - SELECT_PART_HEIGHT,
-	    SELECT_LABEL_WIDTH = 100;
+	    SELECT_LABEL_WIDTH = 75;
 	
 	private JLabel teamLabel;
 	private SelectPanel selectPanel;
@@ -43,8 +48,10 @@ public class TeamDataAnalysisPanel extends JPanel {
 		setLayout(null);
 		
 		teamLabel = new JLabel(/*teamPO.getFullName()*/"某球队", JLabel.LEFT);
-		teamLabel.setBounds(PADDING, PADDING, Config.UI_WIDTH - PADDING * 2, TEAM_LABEL_HEIGHT);
-		teamLabel.addMouseListener(new LMouseAdapter(teamDataAnalysisFrame) {
+		teamLabel.setForeground(Color.white);
+		teamLabel.setFont(new Font("default", 2, 30));
+		teamLabel.setBounds(PADDING, PADDING, TEAM_LABEL_WIDTH, TEAM_LABEL_HEIGHT);
+		teamLabel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				returnToDetailFrame();
 			}
@@ -62,10 +69,15 @@ public class TeamDataAnalysisPanel extends JPanel {
 		public SelectPanel() {
 			setBounds(PADDING, PADDING + TEAM_LABEL_HEIGHT, Config.UI_WIDTH - PADDING * 2, SELECT_PART_HEIGHT);
 			setLayout(null);
+			setBackground(new Color(20, 79, 139, 150));
 			player = new JLabel("球员分析", JLabel.CENTER);
 			player.setBounds(0, 0, SELECT_LABEL_WIDTH, SELECT_PART_HEIGHT);
+			player.setForeground(Color.white);
+			player.setFont(new Font("default", 0, 15));
 			evolu = new JLabel("排名分析", JLabel.CENTER);
 			evolu.setBounds(SELECT_LABEL_WIDTH, 0, SELECT_LABEL_WIDTH, SELECT_PART_HEIGHT);
+			evolu.setForeground(Color.white);
+			evolu.setFont(new Font("default", 0, 15));
 			player.addMouseListener(new LMouseAdapter(teamDataAnalysisFrame) {
 				public void mouseClicked(MouseEvent e) {
 					toPlayerAnalysis();
@@ -107,7 +119,10 @@ public class TeamDataAnalysisPanel extends JPanel {
 		teamDataAnalysisFrame.dispose();
 	}
 	
-	
+	@Override
+	protected void paintComponent(Graphics g) {
+		g.drawImage(Config.DETAIL_BG.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
+	}
 	public static void main(String[] args) {
 		new TeamDataAnalysisFrame(null);
 	}
