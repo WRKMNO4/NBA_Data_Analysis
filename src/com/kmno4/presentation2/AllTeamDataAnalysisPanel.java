@@ -100,7 +100,8 @@ public class AllTeamDataAnalysisPanel extends JPanel {
 	 */
 	private void toRanking() {
 		remove(currentPanel);
-		add(currentPanel = (allTeamRankingAnalysisPanel = new AllTeamRankingAnalysisPanel(allTeamDataAnalysisFrame)));
+		allTeamRankingAnalysisPanel = new AllTeamRankingAnalysisPanel(allTeamDataAnalysisFrame);
+		add(currentPanel = allTeamRankingAnalysisPanel);
 		allTeamDataAnalysisFrame.repaint();
 	}
 	/**
@@ -108,7 +109,8 @@ public class AllTeamDataAnalysisPanel extends JPanel {
 	 */
 	private void toRecentMatchAna() {
 		remove(currentPanel);
-		add(currentPanel = (allTeamRecentMatchAnalysisPanel = new AllTeamRecentMatchAnalysisPanel(allTeamDataAnalysisFrame)));
+		allTeamRecentMatchAnalysisPanel = new AllTeamRecentMatchAnalysisPanel(allTeamDataAnalysisFrame);
+		add(currentPanel = allTeamRecentMatchAnalysisPanel);
 		allTeamDataAnalysisFrame.repaint();
 	}
 	/**
@@ -116,7 +118,8 @@ public class AllTeamDataAnalysisPanel extends JPanel {
 	 */
 	private void toOffenAna() {
 		remove(currentPanel);
-		add(currentPanel = (allTeamOffenAnalysisPanel = new AllTeamOffenAnalysisPanel(allTeamDataAnalysisFrame)));
+		allTeamOffenAnalysisPanel = new AllTeamOffenAnalysisPanel(allTeamDataAnalysisFrame);
+		add(currentPanel = allTeamOffenAnalysisPanel);
 		allTeamDataAnalysisFrame.repaint();
 	}
 	@Override
