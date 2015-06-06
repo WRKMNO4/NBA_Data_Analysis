@@ -43,6 +43,7 @@ public class PlayerEvolutionAnalysisPanel extends JPanel {
 				PADDING * 2 + PlayerDataAnalysisPanel.SELECT_PANEL_HEIGHT + PlayerDataAnalysisPanel.LABEL_HEIGHT,
 				Config.UI_WIDTH - 2 * PADDING,
 				PlayerDataAnalysisPanel.PANEL_HEIGHT);
+		setLayout(null);
 		
 		conditions = new JComboBox<String>();
 		conditions.setBounds(0, 0, COMBOBOX_WIDTH, COMBOBOX_HEIGHT);

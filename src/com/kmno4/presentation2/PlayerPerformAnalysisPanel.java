@@ -3,6 +3,8 @@ package com.kmno4.presentation2;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
+import com.kmno4.common.Config;
+
 import PO.PlayerPO;
 /**
  * 球员综合能力分析
@@ -16,6 +18,9 @@ public class PlayerPerformAnalysisPanel extends JPanel {
 	private PlayerPerformAnalysisPanel playerPerformAnalysisPanel;
 	private PlayerDataAnalysisFrame playerDataAnalysisFrame;
 	private PlayerPO playerPO;
+	public static final int 
+    	PADDING = PlayerDataAnalysisPanel.PADDING;
+	
 	
 	private JComboBox<String> conditions;
 	
@@ -23,7 +28,15 @@ public class PlayerPerformAnalysisPanel extends JPanel {
 		this.playerDataAnalysisFrame = f;
 		this.playerPerformAnalysisPanel = this;
 		this.playerPO = playerPO;
+		setBounds(
+				PADDING,
+				PADDING * 2 + PlayerDataAnalysisPanel.SELECT_PANEL_HEIGHT + PlayerDataAnalysisPanel.LABEL_HEIGHT,
+				Config.UI_WIDTH - 2 * PADDING,
+				PlayerDataAnalysisPanel.PANEL_HEIGHT);
+		setLayout(null);
 		
+		
+		setData();
 	}
 	
 	
