@@ -50,7 +50,7 @@ public class MysqlDemo {
             createMatchTable = "create table matches(matchID int(6),time date,firstTeam char(3),secondTeam char(3),firstScore int(3),"
             		+ "secondScore int(3),primary key(matchID))";
          
-            createScores = "create table scroesofonematch(matchID int,scoreID int,firstScore int(3),secondScore int(3),primary key(matchID ,scoreID))" ;
+            createScores = "create table scoresOfOneMatch(matchID int,scoreID int,firstScore int(3),secondScore int(3),primary key(matchID ,scoreID))" ;
            
             createPlayerDataOfOneMatchTable = "create table playerdataofonematch(matchID int ,team char(3),name varchar(30),position char(1),ifStarting int(1),persentTime varchar(10),numberOfShooting int,numberOfShotAttempt int,"
             		+ "numberOf3_point int, numberOf3_pointAttempt int,numberOfFreeThrow int, numberOfFreeThrowAttempt int ,numberOfAttackRebound int,numberOfDefenseRebound int ,numberOfRebound int ,numberOfAssist int ,numberOfSteal int ,numberOfBlock int ,numberOfFault int,"
@@ -58,10 +58,10 @@ public class MysqlDemo {
             		
 //            int result1 = stmt.executeUpdate(createPlayerTable);// executeUpdate语句会返回一个受影响的行数，如果返回-1就没有成功
 //            int result2= stmt.executeUpdate(createTeamTable) ;
-//            int  result3 =stmt.executeUpdate(createScores) ;
+            int  result3 =stmt.executeUpdate(createScores) ;
 //            int result4 = stmt.executeUpdate(createPlayerDataOfOneMatchTable) ;
-            int result5 = stmt.executeUpdate(createMatchTable) ;
-            int result =result5;
+//            int result5 = stmt.executeUpdate(createMatchTable) ;
+            int result =result3;
             if (result != -1) {
                 System.out.println("创建数据表成功");
             }
