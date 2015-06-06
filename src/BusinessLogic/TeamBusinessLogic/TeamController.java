@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import com.kmno4.common.Config;
 
+import BusinessLogic.PlayerBusinessLogic.get;
 import BusinessLogic.SortHelper.PlayerSortHelper;
 import BusinessLogic.SortHelper.TeamSortHelper;
 import DataService.TeamDataService.TeamDataService;
@@ -14,6 +15,8 @@ import Enum.TeamData;
 import Enum.Zone;
 import PO.MatchPO;
 import PO.PlayerPO;
+import PO.SeasonListPO;
+import PO.SeasonPO;
 import PO.TeamListPO;
 import PO.TeamPO;
 
@@ -121,5 +124,26 @@ public class TeamController implements TeamBusinessLogic{
 		return results;
 	}
 
+	@Override
+	public ArrayList<Integer> getRankingOfOneTeamIn3Years(String teamShortName) {
+		ArrayList<Integer> results = new ArrayList<>();
+		TeamPO theTeam = TeamListPO.findTeamByShortName(teamShortName);
+		for(int i=0;i<3;i++){
+			Season season = SeasonListPO.seasons.get(i).getSeason();
+			int tmp = findTeamRanking(getTeamRankings(season, theTeam.getZone()), teamShortName);
+			results.add(tmp);
+		}
+		return results;
+	}
+	
+	public int findTeamRanking(ArrayList<TeamPO> teams, String teamShortName){
+		for(int i = 0;i < teams.size();i++){
+			if(teams.get(i).getShortName().equals(teamShortName))
+				return i+1;
+			else
+				continue;
+		}
+		return 0;
+	}
 	
 }

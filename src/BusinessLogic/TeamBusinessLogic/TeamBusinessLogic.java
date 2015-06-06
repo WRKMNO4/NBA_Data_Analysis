@@ -20,4 +20,5 @@ public interface TeamBusinessLogic {
 	public ArrayList<MatchPO> getLatest5Matches(TeamPO team);
 	public ArrayList<TeamPO> getSeasonStandingTeam(Season season,TeamData dataType, int number);
 	public ArrayList<TeamPO> getTeamRankings(Season season, Zone zone);
+	public ArrayList<Integer> getRankingOfOneTeamIn3Years(String teamShortName);
 }

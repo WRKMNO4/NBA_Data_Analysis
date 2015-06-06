@@ -147,4 +147,10 @@ public interface BLService {
 	 * @return 球员的高阶数据排名(如RPM等)
 	 */
 	public ArrayList<ArrayList<String>> getPlayerHighInfo();
+	/**
+	 * 
+	 * @param 球队简写
+	 * @return 该球队近三年排名
+	 */
+	public ArrayList<Integer> getRankingOfOneTeamIn3Years(String teamShortName);
 }
