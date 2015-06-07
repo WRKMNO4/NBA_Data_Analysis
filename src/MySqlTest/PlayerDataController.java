@@ -18,7 +18,7 @@ public class PlayerDataController {
 	String url = "jdbc:mysql://localhost:3306/NBA_DATA?"
             + "user=root&password=941104&useUnicode=true&characterEncoding=UTF8";
 	java.sql.Statement stmt = null ;
-	 String string = "insert into players(name,number,position,height,weight,birth,age,exp,school,portraitURL,actionURL) values";
+	 String string = "insert into players(playerID,name,number,position,height,weight,birth,age,exp,school,portraitURL,actionURL) values";
 	public void init(){
 		 
 		 try {
@@ -72,7 +72,7 @@ public class PlayerDataController {
 				}
 				dataOfString.add("'Data/players/portrait/"+checkString(name)+".png'") ;
 				dataOfString.add("'Data/players/action/"+checkString(name)+".png'") ;
-				String insert = string+"("+dataOfString.get(0)+","+dataOfInteger.get(0)+","+dataOfString.get(1)+","+dataOfString.get(2)+","
+				String insert = string+"("+i+","+dataOfString.get(0)+","+dataOfInteger.get(0)+","+dataOfString.get(1)+","+dataOfString.get(2)+","
 				         +dataOfInteger.get(1)+","+dataOfString.get(3)+","+dataOfInteger.get(2)
 						+","+dataOfInteger.get(3)+","+dataOfString.get(4)+","+dataOfString.get(5)+","+dataOfString.get(6)+")";
 				System.out.println(insert);

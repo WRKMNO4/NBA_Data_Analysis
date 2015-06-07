@@ -42,10 +42,10 @@ public class MysqlDemo {
             // Statement里面带有很多方法，比如executeUpdate可以实现插入，更新和删除等
             System.out.println("成功建表");
             Statement stmt = conn.createStatement();
-            createPlayerTable = "create table players(name varchar(30),number int(3),position varchar(10),height varchar(20),weight int(3),birth char(12),"
-            		+ "age int(3),exp int(2),school varchar(50),portraitURL varchar(100),actionURL varchar(100),primary key(name))";
+            createPlayerTable = "create table players(playerID int,name varchar(30),number int(3),position varchar(10),height varchar(20),weight int(3),birth char(12),"
+            		+ "age int(3),exp int(2),school varchar(50),portraitURL varchar(100),actionURL varchar(100),primary key(playerID))";
        
-            createTeamTable = "create table teams(fullName varchar(20),shortName char(3),city varchar(20),zone char(1),district varchar(20),homeCourt varchar(30),timeOfEstablishment year,teamLogoURL varchar(100),primary key(shortname))";
+            createTeamTable = "create table teams(teamID int,fullName varchar(20),shortName char(3),city varchar(20),zone char(1),district varchar(20),homeCourt varchar(30),timeOfEstablishment year,teamLogoURL varchar(100),primary key(teamID))";
        
             createMatchTable = "create table matches(matchID int(6),time date,firstTeam char(3),secondTeam char(3),firstScore int(3),"
             		+ "secondScore int(3),primary key(matchID))";
@@ -57,11 +57,11 @@ public class MysqlDemo {
             		+ "numberOfFoul int ,score int, primary key(matchID,team ,name))" ;
             		
 //            int result1 = stmt.executeUpdate(createPlayerTable);// executeUpdate语句会返回一个受影响的行数，如果返回-1就没有成功
-//            int result2= stmt.executeUpdate(createTeamTable) ;
-            int  result3 =stmt.executeUpdate(createScores) ;
+            int result2= stmt.executeUpdate(createTeamTable) ;
+//            int  result3 =stmt.executeUpdate(createScores) ;
 //            int result4 = stmt.executeUpdate(createPlayerDataOfOneMatchTable) ;
 //            int result5 = stmt.executeUpdate(createMatchTable) ;
-            int result =result3;
+            int result =result2;
             if (result != -1) {
                 System.out.println("创建数据表成功");
             }
