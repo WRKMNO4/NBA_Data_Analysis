@@ -19,8 +19,10 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
 import com.kmno4.common.Config;
+import com.kmno4.presentation.button.LMouseAdapter;
 import com.kmno4.presentation.table.TableFactory;
 import com.kmno4.presentation.table.TableGroup;
+import com.kmno4.presentation2.PlayerDataAnalysisFrame;
 
 import PO.MatchPO;
 import PO.PlayerPO;
@@ -204,7 +206,7 @@ public class PlayerDetailPanel extends JPanel {
 			info2.setForeground(Color.WHITE);
 			info3.setForeground(Color.WHITE);
 			info4.setForeground(Color.WHITE);
-//			info5.setForeground(Color.WHITE);
+			info5.setForeground(Color.WHITE);
 //			info6.setForeground(Color.WHITE);
 		}
 		
@@ -236,24 +238,36 @@ public class PlayerDetailPanel extends JPanel {
 			name.setBounds(450, 40, 200, 50);
 			add(name);
 			
-			int delta = 30;
+			int delta = 30, width = 200, x = 650;
+			Font font = new Font("default", 2, 20);
 			info1 = new JLabel("身高/体重 : " + p.getHeight() + "(英尺-英寸)/" + p.getWeight() + "(磅)");
-			info1.setFont(new Font("default", 2, 20));
-			info1.setBounds(650, 50, 400, delta);
+			info1.setFont(font);
+			info1.setBounds(x, 50, width, delta);
 			add(info1);
 			info2 = new JLabel("生日 : " + p.getBirth());
-			info2.setFont(new Font("default", 2, 20));
-			info2.setBounds(650, info1.getY() + delta, 400, delta);
+			info2.setFont(font);
+			info2.setBounds(x, info1.getY() + delta, width, delta);
 			add(info2);
 			info3 = new JLabel("所在地 : " + p.getPosition());
-			info3.setFont(new Font("default", 2, 20));
-			info3.setBounds(650, info2.getY() + delta, 400, delta);
+			info3.setFont(font);
+			info3.setBounds(x, info2.getY() + delta, width, delta);
 			add(info3);
 			info4 = new JLabel("球龄 : " + p.getExp() + "年");
-			info4.setFont(new Font("default", 2, 20));
-			info4.setBounds(650, info3.getY() + delta, 400, delta);
+			info4.setFont(font);
+			info4.setBounds(x, info3.getY() + delta, width, delta);
 			add(info4);
-
+			
+			info5 = new JLabel("点此查看更详细信息");
+			info5.setFont(font);
+			info5.setBounds(x, info4.getY() + 2 * delta, width, delta);
+			info5.addMouseListener(new LMouseAdapter(playerDetailFrame) {
+				public void mouseClicked(MouseEvent e) {
+					new PlayerDataAnalysisFrame(playerPO, playerDetailFrame.getLocation());
+					playerDetailFrame.setVisible(false);
+					playerDetailFrame.dispose();
+				}
+			});
+			add(info5);
 //			bgLabel = new JLabel();
 ////			bgLabel.setBackground(Color.BLACK);
 ////			PlayerDetailPanel.fillLabel(PLAYER_DETAIL_TOP_BG, bgLabel, Config.UI_WIDTH - PADDING * 2, DATA_PANEL_HEIGHT);

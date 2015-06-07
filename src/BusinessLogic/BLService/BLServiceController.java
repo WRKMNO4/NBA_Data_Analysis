@@ -291,6 +291,11 @@ public class BLServiceController implements  BLService{
 		return playerController.getPlayerHighInfo(fileAddress);
 	}
 
+	@Override
+	public ArrayList<Integer> getRankingOfOneTeamIn3Years(String teamShortName) {
+		return teamController.getRankingOfOneTeamIn3Years(teamShortName);
+	}
+
 	
 
 	}

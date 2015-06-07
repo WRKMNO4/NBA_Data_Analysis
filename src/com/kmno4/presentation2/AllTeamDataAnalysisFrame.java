@@ -16,8 +16,7 @@ import com.kmno4.presentation.button.ExitLabel;
 public class AllTeamDataAnalysisFrame extends JFrame {
 	
 	public AllTeamDataAnalysisFrame() {
-//		setBounds(MainFrame.mainFrame.getBounds());
-		setBounds(0, 0, Config.UI_WIDTH, Config.UI_HEIGHT);
+		setBounds(MainFrame.mainFrame.getBounds());
 		setLayout(null);
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

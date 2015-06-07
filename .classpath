@@ -19,5 +19,6 @@
 	<classpathentry kind="lib" path="libs/swtgraphics2d.jar"/>
 	<classpathentry kind="lib" path="libs/testData.jar"/>
 	<classpathentry kind="lib" path="libs/weblaf-complete-1.28.jar"/>
+	<classpathentry kind="lib" path="libs/jython.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

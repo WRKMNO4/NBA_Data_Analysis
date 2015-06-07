@@ -271,9 +271,5 @@ public class PlayerController implements PlayerBusinessLogic{
 	public ArrayList<ArrayList<String>> getPlayerHighInfo(String fileAddress) {
 		return playerController.getPlayerHighInfo(fileAddress);
 	}
-	
-
-	
-	
 
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import Enum.Season;
 
 public class SeasonListPO {
-	 static ArrayList<SeasonPO> seasons;
+	 public static ArrayList<SeasonPO> seasons;
 	 
 	 public SeasonListPO(){
 		 seasons= new ArrayList<SeasonPO>();
