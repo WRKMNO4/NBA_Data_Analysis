@@ -9,6 +9,9 @@ import org.python.util.PythonInterpreter;
 
 
 
+
+import Enum.Season;
+
 import java.io.*;  
 
 import static java.lang.System.*; 
@@ -20,12 +23,8 @@ import static java.lang.System.*;
 public class test {
 	
 	public static void main(String[] args){
-		    PythonInterpreter interpreter = new PythonInterpreter();  
-	        interpreter.execfile("Statistics/add.py");  
-	        PyFunction func = (PyFunction)interpreter.get("adder",PyFunction.class);  
-	  
-	        int a = 2010, b = 2 ;  
-	        PyObject pyobj = func.__call__(new PyInteger(a), new PyInteger(b));  
-	        System.out.println("anwser = " + pyobj.toString());  
+		Season season =Season.season14_15 ; 
+		Season one = Season.valueOf(season.toString());
+		
 	}
 }
