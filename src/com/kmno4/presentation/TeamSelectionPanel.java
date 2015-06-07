@@ -21,6 +21,7 @@ import PO.TeamPO;
 
 import com.kmno4.common.Config;
 import com.kmno4.presentation.button.LMouseAdapter;
+import com.kmno4.presentation2.AllTeamDataAnalysisFrame;
 
 @SuppressWarnings("serial")
 public class TeamSelectionPanel extends JPanel implements MouseListener,ActionListener{
@@ -36,7 +37,7 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 	public JLabel lb_season;
 	
 	private JLabel foreGround;
-	
+	private JLabel toAnalysis;
 	
 	public TeamSelectionPanel() {
 		setLayout(null);
@@ -48,9 +49,9 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 		cb_avg_data=new JComboBox<String>(Config.TEAM_AVERAGE_INFO_OVERALL);
 		cb_total_data=new JComboBox<String>(Config.TEAM_TOTAL_INFO_OVERALL);
 		cb_season=new JComboBox<String>(Config.Seasons);
-		cb_avg_data.setBounds(127+20, 11, Config.COMBOBOX_WIDTH, Config.COMBOBOX_HEIGHT);
-		cb_total_data.setBounds(127+20, 11, Config.COMBOBOX_WIDTH, Config.COMBOBOX_HEIGHT);
-		cb_season.setBounds(400,11,150,27);
+		cb_avg_data.setBounds(127+20, 8, Config.COMBOBOX_WIDTH, Config.COMBOBOX_HEIGHT);
+		cb_total_data.setBounds(127+20, 8, Config.COMBOBOX_WIDTH, Config.COMBOBOX_HEIGHT);
+		cb_season.setBounds(400,8,150,27);
 		
 		cb_avg_data.setFont(new Font("default", Font.PLAIN, 14));
 		cb_total_data.setFont(new Font("default", Font.PLAIN, 14));
@@ -63,6 +64,17 @@ public class TeamSelectionPanel extends JPanel implements MouseListener,ActionLi
 		cb_total_data.addActionListener(this);
 		cb_avg_data.addActionListener(this);
 		cb_season.addActionListener(this);
+		
+		toAnalysis = new JLabel("点此查看全球队数据分析");
+		toAnalysis.setBounds(600, 8, 200, 27);
+		toAnalysis.setForeground(Color.white);
+		toAnalysis.setFont(new Font("default", 2, 16));
+		toAnalysis.addMouseListener(new LMouseAdapter(MainFrame.mainFrame) {
+			public void mouseClicked(MouseEvent e) {
+				new AllTeamDataAnalysisFrame();
+			}
+		});
+		add(toAnalysis);
 		
 		lb_season=new JLabel("赛季");
 		lb_season.setBounds(350, 15, 40, 15);

@@ -5,7 +5,12 @@ import javax.swing.JPanel;
 import com.kmno4.common.Config;
 
 import PO.PlayerPO;
-
+/**
+ * 球员对比分析界面
+ * 包含了一大堆功能
+ * @author hutao
+ *
+ */
 @SuppressWarnings("serial")
 public class PlayerComparisonAnalysisPanel extends JPanel {
 	private PlayerComparisonAnalysisPanel playerComparisonAnalysisPanel;

@@ -14,8 +14,10 @@ import PO.MatchPO;
 import PO.TeamPO;
 
 import com.kmno4.common.Config;
+import com.kmno4.presentation.button.LMouseAdapter;
 import com.kmno4.presentation.table.TableFactory;
 import com.kmno4.presentation.table.TableGroup;
+import com.kmno4.presentation2.TeamDataAnalysisFrame;
 
 @SuppressWarnings("serial")
 public class TeamDetailPanel extends JPanel {
@@ -145,7 +147,7 @@ public class TeamDetailPanel extends JPanel {
 	class MainDataPanel extends JPanel {
 		public JLabel bgLabel;
 		public JLabel logoLabel;
-		public JLabel info1, info2, info3, info4, info5, info6;
+		public JLabel info1, info2, info3, info4, info5, info6, info7;
 		
 		
 		public MainDataPanel(TeamPO teamPO) {
@@ -188,6 +190,18 @@ public class TeamDetailPanel extends JPanel {
 			info6.setForeground(Color.white);
 			add(info6);
 			
+			info7 = new JLabel("点此查看更详细信息");
+			info7.setBounds(600, info6.getY() + 3 * delta / 2, 200, 30);
+			info7.setFont(new Font("default", 2, 20));
+			info7.setForeground(Color.white);
+			info7.addMouseListener(new LMouseAdapter(teamDetailFrame) {
+				public void mouseClicked(MouseEvent e) {
+					new TeamDataAnalysisFrame(teamPO, teamDetailFrame.getLocation());
+					teamDetailFrame.setVisible(false);
+					teamDetailFrame.dispose();
+				}
+			});
+			add(info7);
 
 //			bgLabel = new JLabel();
 //			PlayerDetailPanel.fillLabel(TEAM_DETAIL_TOP_BG, bgLabel, Config.UI_WIDTH - PADDING * 2, DATA_PANEL_HEIGHT);
