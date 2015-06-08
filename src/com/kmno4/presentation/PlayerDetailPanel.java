@@ -55,7 +55,7 @@ public class PlayerDetailPanel extends JPanel {
 		playerDetailPanel = this;
 		setBounds(0, 0, playerDetailFrame.getWidth(), playerDetailFrame.getHeight());
 		setLayout(null);
-		setOpaque(true);
+		setOpaque(false);
 		setBackground(Color.white);
 		
 		dataPanel = new DataPanel(playerPO);
@@ -172,9 +172,10 @@ public class PlayerDetailPanel extends JPanel {
 			public Component getTableCellRendererComponent(JTable table,
 					Object value, boolean isSelected, boolean hasFocus,
 					int row, int column) {
-				if(row == 0) setBackground(new Color(255, 255, 255, 90)); 
+				setOpaque(true);
+				if(row == 0) setBackground(new Color(255, 255, 255, 0)); 
 				else if(row % 2 != 0) setBackground(new Color(255, 255, 255, 40)); 
-				else setBackground(new Color(255, 255, 255, 0)); 
+				else setBackground(new Color(255, 255, 255, 90)); 
 				
 				return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 			}

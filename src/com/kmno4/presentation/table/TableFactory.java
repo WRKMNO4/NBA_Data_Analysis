@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 public class TableFactory {
-	private static final int
+	public static final int
 	    DEFAULT_TABLE_ROW_HEIGHT = 30,
 		DEFAULT_TABLE_HEAD_ROW_HEIGHT = 45,
 		DEFAULT_TABLE_UNIT_WIDTH = 100;
@@ -87,21 +87,24 @@ public class TableFactory {
 	
 	public static void createSortTable(TableGroup tg, Object parent,
 			Object[][] body,
-			SortModel sortModel,
+			SortModel sortModel, OtherSet otherset,
 			int viewWidth, int viewHeight,
 			int x, int y,
 			int rowHeight, int headRowHeight,
 			int unitWidth) {
 		createTable(tg, parent, body, viewWidth, viewHeight, x, y, rowHeight, headRowHeight, unitWidth);
 		TableModel originTableModel = tg.table.getModel();
+		otherset.setTableGroup(tg);
+		otherset.reset();
 		tg.table.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				int row = tg.table.rowAtPoint(e.getPoint());
-				if(row != 1) return;
+				if(row != 0) return;
 				int col = tg.table.columnAtPoint(e.getPoint());
 				TableModel newModel = SortModel.sortTableModel((DefaultTableModel)tg.table.getModel(),
 						sortModel, col, (DefaultTableModel)originTableModel);
 				tg.table.setModel(newModel);
+				otherset.reset();
 			}
 		});
 		
