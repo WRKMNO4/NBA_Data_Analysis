@@ -7,6 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.kmno4.common.Config;
+import com.kmno4.presentation.MainFrame;
+import com.kmno4.presentation.TableContentTransfer;
 import com.kmno4.presentation.table.TableFactory;
 import com.kmno4.presentation.table.TableGroup;
 /**
@@ -59,9 +61,11 @@ public class AllTeamRankingAnalysisPanel extends JPanel {
 		westLabel.setFont(new Font("default", 0, 15));
 		add(westLabel);
 		westTg = new TableGroup();
-		TableFactory.createTable(westTg, this, example, getWidth(), TABLE_HEIGHT,
+		TableFactory.createTable(westTg, this,
+				TableContentTransfer.transferTeamRanking(MainFrame.mainFrame.teams),
+				getWidth(), TABLE_HEIGHT,
 				0, LABEL_HEIGHT * 2 + TABLE_HEIGHT/*, rowHeight, headRowHeight, unitWidth*/);
-		
+		//TODO
 		
 		
 	}

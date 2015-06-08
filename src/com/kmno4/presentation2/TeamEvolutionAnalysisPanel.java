@@ -1,5 +1,7 @@
 package com.kmno4.presentation2;
 
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 
 import org.jfree.chart.ChartFactory;
@@ -10,6 +12,7 @@ import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import com.kmno4.common.Config;
+import com.kmno4.presentation.MainFrame;
 
 import PO.TeamPO;
 /**
@@ -41,6 +44,9 @@ public class TeamEvolutionAnalysisPanel extends JPanel {
 	private JFreeChart lineChart;
 	private ChartPanel chartPanel;
 	private void createChart() {
+		//TODO
+		ArrayList<Integer> rank = MainFrame.mainFrame.bl.getRankingOfOneTeamIn3Years(teamPO.getShortName());
+		
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		
 		

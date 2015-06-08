@@ -18,7 +18,7 @@ public class PlayerComparisonAnalysisPanel extends JPanel {
 	private PlayerPO playerPO;
 	public static final int 
     	PADDING = PlayerDataAnalysisPanel.PADDING;
-	
+//	private 
 	
 	
 	public PlayerComparisonAnalysisPanel(PlayerPO playerPO, PlayerDataAnalysisFrame f) {

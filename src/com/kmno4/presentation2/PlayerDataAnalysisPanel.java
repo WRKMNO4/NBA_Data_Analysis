@@ -51,7 +51,7 @@ public class PlayerDataAnalysisPanel extends JPanel {
 		setLayout(null);
 		setBounds(0, 0, f.getWidth(), f.getHeight());
 		
-		playerLabel = new JLabel("aaa", JLabel.LEFT);
+		playerLabel = new JLabel(playerPO.getName(), JLabel.LEFT);
 		playerLabel.setBounds(PADDING, PADDING, LABEL_WIDTH, LABEL_HEIGHT);
 		playerLabel.setForeground(Color.white);
 		playerLabel.setFont(new Font("default", 2, 30));
@@ -144,7 +144,7 @@ public class PlayerDataAnalysisPanel extends JPanel {
 	 * 切换到playerDetailFrame界面
 	 */
 	public void returnToDetailFrame() {
-		new PlayerDetailFrame(playerPO, this.getLocation());
+		new PlayerDetailFrame(playerPO, playerDataAnalysisFrame.getLocation());
 		playerDataAnalysisFrame.setVisible(false);
 		playerDataAnalysisFrame.dispose();
 	}
@@ -153,7 +153,7 @@ public class PlayerDataAnalysisPanel extends JPanel {
 		g.drawImage(Config.DETAIL_BG.getImage(), 0, 0, this.getWidth(), this.getHeight(), null);
 	}
 	
-	public static void main(String[] args) {
-		new PlayerDataAnalysisFrame(null);
-	}
+//	public static void main(String[] args) {
+//		new PlayerDataAnalysisFrame(null);
+//	}
 }

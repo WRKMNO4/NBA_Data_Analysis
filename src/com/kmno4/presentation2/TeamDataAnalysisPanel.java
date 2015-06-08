@@ -114,7 +114,7 @@ public class TeamDataAnalysisPanel extends JPanel {
 	 * 切换到teamDetailFrame界面
 	 */
 	private void returnToDetailFrame() {
-		new TeamDetailFrame(teamPO, this.getLocation());
+		new TeamDetailFrame(teamPO, teamDataAnalysisFrame.getLocation());
 		teamDataAnalysisFrame.setVisible(false);
 		teamDataAnalysisFrame.dispose();
 	}

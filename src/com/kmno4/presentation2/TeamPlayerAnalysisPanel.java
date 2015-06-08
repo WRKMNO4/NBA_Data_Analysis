@@ -7,8 +7,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
+import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 import com.kmno4.common.Config;
 
@@ -35,7 +37,7 @@ public class TeamPlayerAnalysisPanel extends JPanel {
 	    OTHER_PLAYER_PANEL_WIDTH = Config.UI_WIDTH - 3 * PADDING - MAIN_PLAYER_PANEL_WIDTH,
 	    OTHER_PLAYER_PANEL_HEIGHT = MAIN_PLAYER_PANEL_HEIGHT + COMBOBOX_HEIGHT,
 	    CHART_WIDTH = Config.UI_WIDTH - 2 * PADDING,
-	    CHART_HEIGHT = TeamDataAnalysisPanel.PANEL_HEIGHT - PADDING - OTHER_PLAYER_PANEL_HEIGHT;
+	    CHART_HEIGHT = TeamDataAnalysisPanel.PANEL_HEIGHT - 2 * PADDING - OTHER_PLAYER_PANEL_HEIGHT;
 	    
 	private JComboBox<String> conditions;
 	private MainPlayerPanel mainPlayerPanel;
@@ -59,7 +61,8 @@ public class TeamPlayerAnalysisPanel extends JPanel {
 		conditions.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO
+				setPanel();
+				createChart();
 			}
 		});
 		add(conditions);
@@ -87,9 +90,13 @@ public class TeamPlayerAnalysisPanel extends JPanel {
 	private void createChart() {
 		if(chartPanel != null) remove(chartPanel);
 		
+		DefaultCategoryDataset data = new DefaultCategoryDataset();
+		chart = ChartFactory.createBarChart("", "", "", data);
+		chartPanel = new ChartPanel(chart);
+		chartPanel.setBounds(0, OTHER_PLAYER_PANEL_HEIGHT + PADDING, getWidth(), CHART_HEIGHT);
+		add(chartPanel);
+		//TODO
 		
-		
-//		chart = ChartFactory.c
 	}
 	
 	/**

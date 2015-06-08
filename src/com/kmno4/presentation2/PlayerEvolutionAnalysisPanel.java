@@ -12,6 +12,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import sun.security.krb5.internal.PAData;
 
 import com.kmno4.common.Config;
+import com.kmno4.presentation.MainFrame;
 
 import PO.PlayerPO;
 /**
@@ -53,6 +54,9 @@ public class PlayerEvolutionAnalysisPanel extends JPanel {
 	
 	private void setChart() {
 		if(chartPanel != null) remove(chartPanel);
+		
+//		TODO
+//		ArrayList<Double> data = MainFrame.mainFrame.bl.getAllMatchesDataOfOnePlayerOfOneSeason(dataType, playerPO, season)
 		
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		chart = ChartFactory.createLineChart("lal", "lalala", "nanan", dataset);

@@ -6,8 +6,10 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 import com.kmno4.common.Config;
 import com.kmno4.presentation.table.TableFactory;
@@ -61,6 +63,16 @@ public class AllTeamOffenAnalysisPanel extends JPanel {
 	
 	private void createChart() {
 		
+		DefaultCategoryDataset 
+		    southData = new DefaultCategoryDataset(),
+			westData = new DefaultCategoryDataset();
+		southChart = ChartFactory.createBarChart("", "", "", southData);
+		westChart = ChartFactory.createBarChart("", "", "", westData);
+		southPanel = new ChartPanel(southChart);
+		westPanel = new ChartPanel(westChart);
+		southPanel.setBounds(0, LABEL_HEIGHT, getWidth(), CHART_HEIGHT);
+		westPanel.setBounds(0, CHART_HEIGHT + 2 * LABEL_HEIGHT, getWidth(), CHART_HEIGHT);
+		//TODO
 	}
 	
 	

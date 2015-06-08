@@ -7,6 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.kmno4.common.Config;
+import com.kmno4.presentation.MainFrame;
+import com.kmno4.presentation.TableContentTransfer;
 import com.kmno4.presentation.table.TableFactory;
 import com.kmno4.presentation.table.TableGroup;
 /**
@@ -48,9 +50,11 @@ public class AllTeamRecentMatchAnalysisPanel extends JPanel {
 		southLabel.setFont(new Font("default", 0, 15));
 		add(southLabel);
 		southTg = new TableGroup();
-		TableFactory.createTable(southTg, this, example, getWidth(), TABLE_HEIGHT,
+		TableFactory.createTable(southTg, this,
+				TableContentTransfer.transferAnalysisOfLatest10Matches(MainFrame.mainFrame.teams),
+				getWidth(), TABLE_HEIGHT,
 				0, LABEL_HEIGHT/*, rowHeight, headRowHeight, unitWidth*/);
-		
+//		TODO
 		westLabel = new JLabel("西部联盟");
 		westLabel.setBounds(0, LABEL_HEIGHT + TABLE_HEIGHT, getWidth(), LABEL_HEIGHT);
 		westLabel.setOpaque(true);

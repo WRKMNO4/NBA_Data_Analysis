@@ -1,9 +1,12 @@
 package com.kmno4.presentation2;
 
-import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import com.kmno4.common.Config;
+import com.kmno4.presentation.MainFrame;
+import com.kmno4.presentation.TableContentTransfer;
+import com.kmno4.presentation.table.TableFactory;
+import com.kmno4.presentation.table.TableGroup;
 
 import PO.PlayerPO;
 /**
@@ -19,10 +22,13 @@ public class PlayerPerformAnalysisPanel extends JPanel {
 	private PlayerDataAnalysisFrame playerDataAnalysisFrame;
 	private PlayerPO playerPO;
 	public static final int 
-    	PADDING = PlayerDataAnalysisPanel.PADDING;
+    	PADDING = PlayerDataAnalysisPanel.PADDING,
+    	PANEL_HEIGHT = 60,
+    	TABLE_HEGIHT = PlayerDataAnalysisPanel.PANEL_HEIGHT - PANEL_HEIGHT - PADDING;
 	
 	
-	private JComboBox<String> conditions;
+	private TableGroup tg;
+	private PlayerFieldPanel pfp;
 	
 	public PlayerPerformAnalysisPanel(PlayerPO playerPO, PlayerDataAnalysisFrame f) {
 		this.playerDataAnalysisFrame = f;
@@ -35,13 +41,21 @@ public class PlayerPerformAnalysisPanel extends JPanel {
 				PlayerDataAnalysisPanel.PANEL_HEIGHT);
 		setLayout(null);
 		
+		pfp = new PlayerFieldPanel();
+		add(pfp);
 		
-		setData();
+		//TODO
+		tg = new TableGroup();
+		TableFactory.createTable(tg, this,
+				TableContentTransfer.transferPlayerHighInfo(MainFrame.mainFrame.bl.getPlayerHighInfo()),
+				getWidth(), PANEL_HEIGHT,
+				0, PADDING + PANEL_HEIGHT);
 	}
 	
 	
-	private void setData() {
-		
+	class PlayerFieldPanel extends JPanel {
+		public PlayerFieldPanel() {
+			
+		}
 	}
-
 }
