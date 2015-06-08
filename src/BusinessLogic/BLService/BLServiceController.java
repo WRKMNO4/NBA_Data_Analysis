@@ -293,7 +293,8 @@ public class BLServiceController implements  BLService{
 
 	@Override
 	public ArrayList<Integer> getRankingOfOneTeamIn3Years(String teamShortName) {
-		return teamController.getRankingOfOneTeamIn3Years(teamShortName);
+//		return teamController.getRankingOfOneTeamIn3Years(teamShortName);
+		return new ArrayList<Integer>();
 	}
 
 	
