@@ -19,7 +19,7 @@ public class TeamDataController {
 	String url = "jdbc:mysql://localhost:3306/NBA_DATA?"
             + "user=root&password=941104&useUnicode=true&characterEncoding=UTF8";
 	java.sql.Statement stmt = null ;
-    String string = "insert into teams(fullname,shortname,city,zone,district,homeCourt,timeOfEstablishment,teamLogoURL) values" ;
+    String string = "insert into teams(teamID,fullname,shortname,city,zone,district,homeCourt,timeOfEstablishment,teamLogoURL) values" ;
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		TeamDataController tl = new TeamDataController() ;
@@ -55,7 +55,7 @@ public class TeamDataController {
 			ArrayList<String> data = FileHelper.analysisOfOneLine(tempString.get(i)) ;
 			data.add("Data/teams/"+data.get(1)+".png") ;
 			
-			String insert = string+"('"+data.get(0)+"','"+data.get(1)+"','"+data.get(2)+"','"+data.get(3)+"','"+data.get(4)+"','"+data.get(5)+"',"+Integer.parseInt(data.get(6))+",'"+data.get(7)+"')" ;
+			String insert = string+"("+(i-1)+",'"+data.get(0)+"','"+data.get(1)+"','"+data.get(2)+"','"+data.get(3)+"','"+data.get(4)+"','"+data.get(5)+"',"+Integer.parseInt(data.get(6))+",'"+data.get(7)+"')" ;
 			System.out.println(insert);
 			try {
 				stmt.executeUpdate(insert) ;
