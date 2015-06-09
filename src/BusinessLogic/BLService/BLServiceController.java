@@ -47,7 +47,7 @@ public class BLServiceController implements  BLService{
 		this.teamController = new BusinessLogic.TeamBusinessLogic.TeamController() ;
 		this.playerController = new BusinessLogic.PlayerBusinessLogic.PlayerController() ;
 		this.matchController = new BusinessLogic.MatchBusinessLogic.MatchController() ;
-		this.statisticsController = new StatisticsController() ;
+		this.statisticsController = new StatisticsController(fileAddress) ;
 		this.fileAddress=fileAddress;
 	}
 
@@ -305,28 +305,28 @@ public class BLServiceController implements  BLService{
 	public boolean ifStableThanSelf(PlayerPO player, PlayerData dataType,
 			Season season) {
 		
-		return false;
+		return statisticsController.ifStableThanSelf(player, dataType, season);
 	}
 
 	@Override
 	public boolean ifBetterThanSelf(PlayerPO player, PlayerData dataType,
 			Season season) {
 		
-		return false;
+		return statisticsController.ifBetterThanSelf(player, dataType, season);
 	}
 
 	@Override
 	public boolean ifStableThanAnother(PlayerPO player, PlayerPO anotherPlayer,
 			PlayerData dataType, Season season) {
 		
-		return false;
+		return statisticsController.ifStableThanAnother(player, anotherPlayer, dataType, season);
 	}
 
 	@Override
 	public boolean ifBetterThanAnother(PlayerPO player, PlayerPO anotherPlayer,
 			PlayerData dataType, Season season) {
 		
-		return false;
+		return statisticsController.ifBetterThanAnother(player, anotherPlayer, dataType, season);
 	}
 
 	

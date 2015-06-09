@@ -11,9 +11,11 @@ import PO.PlayerPO;
 
 public class StatisticsController implements StatisticsBusinessLogic {
 	String fileAddress;
+	
 	public StatisticsController(String fileAddress){
 		this.fileAddress = fileAddress;
 	}
+	
 	double[] upperPointOfChi={5.02, 7.38, 9.35, 11.14, 12.83, 14.45, 16.01, 17.53, 19.02, 20.48,
 			21.92, 23.34, 24.74, 26.12, 27.49, 28.85, 30.19, 31.53, 32.85, 34.17, 35.48, 36.78, 38.08,
 			39.36, 40.65, 41.92, 43.19, 44.46, 45.72, 46.98};
@@ -87,7 +89,7 @@ public class StatisticsController implements StatisticsBusinessLogic {
 	}
 	
 	public static void main(String[] args){
-		StatisticsController s = new StatisticsController();
+		StatisticsController s = new StatisticsController("Data");
 		System.out.println(s.getFormerSeason(Season.season12_13));
 	}
 	
