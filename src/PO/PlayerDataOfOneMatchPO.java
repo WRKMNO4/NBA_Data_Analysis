@@ -118,7 +118,10 @@ public class PlayerDataOfOneMatchPO {
 			return result ;
 		}
 		String[] strs = time.split(":");
-		result = Integer.parseInt(strs[0])*60+Integer.parseInt(strs[1]) ;
+		if(strs.length == 1) // 高杨爬下来的数据没有冒号。
+			result = Integer.parseInt(strs[0]) * 60 ;
+		else 
+			result = Integer.parseInt(strs[0])*60+Integer.parseInt(strs[1]) ;
 		return result ;
 	}
 	

@@ -57,7 +57,7 @@ public class MatchController implements MatchDataService{
 				boolean isFirstTeam = false ; 
 				for(int j = 0;j<tempString.size() ;j++){ 
 					String[] splitString=tempString.get(j).split(";");
-					if(tempString.get(j).length() == 3){
+					if(tempString.get(j).length() >= 2 && tempString.get(j).length() <= 4){
 						isFirstTeam =!isFirstTeam ;
 						continue ;
 					}
@@ -68,12 +68,9 @@ public class MatchController implements MatchDataService{
 //					        	splitString[1].split("-")[0]="NOP";
 //					        else if(splitString[1].split("-")[1].equals("NOH"))
 //					        	splitString[1].split("-")[1]="NOP";
-					        newMatch.setFirstTeam(splitString[1].split("-")[0]);
-					        newMatch.setSecondTeam(splitString[1].split("-")[1]);
-					        if(newMatch.getFirstTeam().equals("NOH"))
-					        	newMatch.setFirstTeam("NOP");
-					        if(newMatch.getSecondTeam().equals("NOH"))
-					        	newMatch.setSecondTeam("NOP");
+					        newMatch.setFirstTeam(teamNameCorrection(splitString[1].split("-")[0]));
+					        newMatch.setSecondTeam(teamNameCorrection(splitString[1].split("-")[1]));
+					        
 					        newMatch.setFinalScore(new ScoreOfMatchPO(splitString[2]));
 					        break;
 					case 1: ArrayList<ScoreOfMatchPO> allScore = new ArrayList<ScoreOfMatchPO>();
@@ -103,6 +100,10 @@ public class MatchController implements MatchDataService{
 							 thePlayer.setTeam(newMatch.getSecondTeam(),newMatch.getSeason());
 						 }
 						 TeamPO theTeam = TeamListPO.findTeamByShortName(thePlayer.getTeam(newMatch.getSeason())) ;
+						 if(theTeam == null){
+							 System.out.println(thePlayer.getTeam(newMatch.getSeason()));
+							 continue;
+						 }
 						 theTeam.addPlayer(thePlayer,newMatch.getSeason());
 					}	
 				}
@@ -203,4 +204,26 @@ public class MatchController implements MatchDataService{
 				return true;
 		return false;
 		}
+	
+	public String teamNameCorrection(String init){
+		switch(init){
+		case "NOH" :
+			return "NOP";
+		case "NO":
+			return "NOP";
+		case "WSH":
+			return "WAS";
+		case "SA":
+			return "SAS";
+		case "GS":
+			return "GSW";
+		case "NY":
+			return "NYK";
+		case "UTAH":
+			return "UTA";
+		
+		}
+		return init ; 
 	}
+	
+}

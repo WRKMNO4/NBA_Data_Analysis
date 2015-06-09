@@ -143,7 +143,10 @@ public class PlayerDataPO {
 	public static int transportTime(String time){
 		int result = 0;
 		String[] strs = time.split(":") ;
-		result = Integer.parseInt(strs[0])*60 + Integer.parseInt(strs[1]) ;
+		if(strs.length==1)
+			result = Integer.parseInt(strs[0]) * 60;
+		else 
+			result = Integer.parseInt(strs[0])*60 + Integer.parseInt(strs[1]) ;
 		return result ;
 	}
 	

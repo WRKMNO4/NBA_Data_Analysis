@@ -153,4 +153,38 @@ public interface BLService {
 	 * @return 该球队近三年排名
 	 */
 	public ArrayList<Integer> getRankingOfOneTeamIn3Years(String teamShortName);
+	/**
+	 * 
+	 * @param player 某球员
+	 * @param dataType 只限得分、篮板、抢断、助攻
+	 * @param season 赛季
+	 * @return 推测是否比上赛季的自己稳定，是则返回true，否则返回false.
+	 */
+	public boolean ifStableThanSelf(PlayerPO player,PlayerData dataType, Season season);
+	/**
+	 * 
+	 * @param player 某球员
+	 * @param dataType 只限得分、篮板、抢断、助攻
+	 * @param season 赛季
+	 * @return 推测是否比上赛季的自己有进步，是则返回true，否则返回false.
+	 */
+	public boolean ifBetterThanSelf(PlayerPO player,PlayerData dataType, Season season);
+	/**
+	 * 
+	 * @param player 自身
+	 * @param anotherPlayer 另一位球员
+	 * @param dataType 只限得分、篮板、抢断、助攻
+	 * @param season 赛季
+	 * @return 推测是否比另一位球员稳定，是则返回true，否则返回false
+	 */
+	public boolean ifStableThanAnother(PlayerPO player, PlayerPO anotherPlayer, PlayerData dataType, Season season);
+	/**
+	 * 
+	 * @param player 自身
+	 * @param anotherPlayer 另一位球员
+	 * @param dataType 只限得分、篮板、抢断、助攻
+	 * @param season 赛季
+	 * @return 推测是否比另一位球员优秀，是则返回true，否则返回false
+	 */
+	public boolean ifBetterThanAnother(PlayerPO player, PlayerPO anotherPlayer, PlayerData dataType, Season season);
 }
