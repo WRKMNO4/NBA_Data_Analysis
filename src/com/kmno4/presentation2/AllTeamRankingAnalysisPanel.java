@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import com.kmno4.common.Config;
 import com.kmno4.presentation.MainFrame;
+import com.kmno4.presentation.PlayerDetailPanel;
 import com.kmno4.presentation.TableContentTransfer;
 import com.kmno4.presentation.table.TableFactory;
 import com.kmno4.presentation.table.TableGroup;
@@ -36,6 +37,7 @@ public class AllTeamRankingAnalysisPanel extends JPanel {
 	public AllTeamRankingAnalysisPanel(AllTeamDataAnalysisFrame f) {
 		this.allTeamDataAnalysisFrame = f;
 		this.allTeamRankingAnalysisPanel = this;
+		setOpaque(false);
 		setLayout(null);
 		setBounds(AllTeamDataAnalysisPanel.PADDING,
 				2 * AllTeamDataAnalysisPanel.PADDING + AllTeamDataAnalysisPanel.SELECT_PANEL_HEIGHT + AllTeamDataAnalysisPanel.LABEL_HEIGHT,
@@ -52,6 +54,7 @@ public class AllTeamRankingAnalysisPanel extends JPanel {
 		southTg = new TableGroup();
 		TableFactory.createTable(southTg, this, example, getWidth(), TABLE_HEIGHT,
 				0, LABEL_HEIGHT/*, rowHeight, headRowHeight, unitWidth*/);
+		PlayerDetailPanel.paintTable(southTg.table);
 		
 		westLabel = new JLabel("西部联盟");
 		westLabel.setBounds(0, LABEL_HEIGHT + TABLE_HEIGHT, getWidth(), LABEL_HEIGHT);
@@ -65,8 +68,8 @@ public class AllTeamRankingAnalysisPanel extends JPanel {
 				TableContentTransfer.transferTeamRanking(MainFrame.mainFrame.teams),
 				getWidth(), TABLE_HEIGHT,
 				0, LABEL_HEIGHT * 2 + TABLE_HEIGHT/*, rowHeight, headRowHeight, unitWidth*/);
-		//TODO
-		
+		//TODO 
+		PlayerDetailPanel.paintTable(westTg.table);
 		
 	}
 }

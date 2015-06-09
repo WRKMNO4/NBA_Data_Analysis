@@ -36,6 +36,7 @@ public class AllTeamOffenAnalysisPanel extends JPanel {
 		this.allTeamDataAnalysisFrame = f;
 		this.allTeamOffenAnalysisPanel = this;
 		setLayout(null);
+		setOpaque(false);
 		setBounds(AllTeamDataAnalysisPanel.PADDING,
 				2 * AllTeamDataAnalysisPanel.PADDING + AllTeamDataAnalysisPanel.SELECT_PANEL_HEIGHT + AllTeamDataAnalysisPanel.LABEL_HEIGHT,
 				Config.UI_WIDTH - 2 * AllTeamDataAnalysisPanel.PADDING,

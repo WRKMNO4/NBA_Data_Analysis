@@ -51,6 +51,7 @@ public class TeamPlayerAnalysisPanel extends JPanel {
 		this.teamDataAnalysisFrame = f;
 		this.teamPlayerAnalysisPanel = this;
 		setLayout(null);
+		setOpaque(false);
 		setBounds(TeamDataAnalysisPanel.PADDING,
 				2 * TeamDataAnalysisPanel.PADDING + TeamDataAnalysisPanel.SELECT_PART_HEIGHT + TeamDataAnalysisPanel.TEAM_LABEL_HEIGHT,
 				Config.UI_WIDTH - 2 * TeamDataAnalysisPanel.PADDING,
@@ -110,7 +111,8 @@ public class TeamPlayerAnalysisPanel extends JPanel {
 			setLayout(null);
 			setBackground(Color.CYAN);
 			//TODO 获取到的第一名player
-			PlayerPO playerPO = null;
+			PlayerPO playerPO = teamPO.getPlayersOfOneSeason(Config.LASTEST_SEASON).get(0);
+			
 		}
 	}
 	/**
