@@ -6,6 +6,8 @@ import java.util.Date;
 
 import BusinessLogic.MatchBusinessLogic.MatchBusinessLogic;
 import BusinessLogic.PlayerBusinessLogic.PlayerBusinessLogic;
+import BusinessLogic.Statistics.StatisticsBusinessLogic;
+import BusinessLogic.Statistics.StatisticsController;
 import BusinessLogic.TeamBusinessLogic.TeamBusinessLogic;
 import DataService.MatchDataService.MatchController;
 import DataService.MatchDataService.MatchDataService;
@@ -37,6 +39,7 @@ public class BLServiceController implements  BLService{
 	TeamBusinessLogic teamController ;
 	PlayerBusinessLogic playerController ;
 	MatchBusinessLogic matchController ;
+	StatisticsBusinessLogic statisticsController ;
 	String fileAddress;
 	
 	public BLServiceController(String fileAddress) {
@@ -44,6 +47,7 @@ public class BLServiceController implements  BLService{
 		this.teamController = new BusinessLogic.TeamBusinessLogic.TeamController() ;
 		this.playerController = new BusinessLogic.PlayerBusinessLogic.PlayerController() ;
 		this.matchController = new BusinessLogic.MatchBusinessLogic.MatchController() ;
+		this.statisticsController = new StatisticsController() ;
 		this.fileAddress=fileAddress;
 	}
 
@@ -295,6 +299,34 @@ public class BLServiceController implements  BLService{
 	public ArrayList<Integer> getRankingOfOneTeamIn3Years(String teamShortName) {
 //		return teamController.getRankingOfOneTeamIn3Years(teamShortName);
 		return new ArrayList<Integer>();
+	}
+
+	@Override
+	public boolean ifStableThanSelf(PlayerPO player, PlayerData dataType,
+			Season season) {
+		
+		return false;
+	}
+
+	@Override
+	public boolean ifBetterThanSelf(PlayerPO player, PlayerData dataType,
+			Season season) {
+		
+		return false;
+	}
+
+	@Override
+	public boolean ifStableThanAnother(PlayerPO player, PlayerPO anotherPlayer,
+			PlayerData dataType, Season season) {
+		
+		return false;
+	}
+
+	@Override
+	public boolean ifBetterThanAnother(PlayerPO player, PlayerPO anotherPlayer,
+			PlayerData dataType, Season season) {
+		
+		return false;
 	}
 
 	
