@@ -15,7 +15,7 @@ public class MatchDataController {
 	String url = "jdbc:mysql://localhost:3306/NBA_DATA?"
             + "user=root&password=941104&useUnicode=true&characterEncoding=UTF8";
 	java.sql.Statement stmt = null ;
-	String stringOfMatches = "insert into matches(matchID,time,firstTeam,secondTeam,firstScore,secondScore)values" ;
+	String stringOfMatches = "insert into matches(matchID,time,firstTeam,secondTeam,firstScore,secondScore)values(?,?,?,?,?,?)" ;
 	String stringOfScores = "insert into scoresOfOneMatch(matchID,scoreID,firstScore,secondScore) values" ;
 	String stringOfPlayerDataOfOneMatch = "insert into playerDataOfOneMatch(matchID,team,name,position,ifStarting,persentTime,numberOfShooting,numberOfShotAttempt,numberOf3_point,numberOf3_pointAttempt"
 			+ ",numberOfFreeThrow,numberOfFreeThrowAttempt,numberOfAttackRebound,numberOfDefenseRebound,numberOfRebound,numberOfAssist,numberOfSteal,numberOfBlock,numberOfFault,numberOfFoul,score)values" ;

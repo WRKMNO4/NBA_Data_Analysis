@@ -56,12 +56,12 @@ public class MysqlDemo {
             		+ "numberOf3_point int, numberOf3_pointAttempt int,numberOfFreeThrow int, numberOfFreeThrowAttempt int ,numberOfAttackRebound int,numberOfDefenseRebound int ,numberOfRebound int ,numberOfAssist int ,numberOfSteal int ,numberOfBlock int ,numberOfFault int,"
             		+ "numberOfFoul int ,score int, primary key(matchID,team ,name))" ;
             		
-//            int result1 = stmt.executeUpdate(createPlayerTable);// executeUpdate语句会返回一个受影响的行数，如果返回-1就没有成功
-            int result2= stmt.executeUpdate(createTeamTable) ;
+            int result1 = stmt.executeUpdate(createPlayerTable);// executeUpdate语句会返回一个受影响的行数，如果返回-1就没有成功
+//            int result2= stmt.executeUpdate(createTeamTable) ;
 //            int  result3 =stmt.executeUpdate(createScores) ;
 //            int result4 = stmt.executeUpdate(createPlayerDataOfOneMatchTable) ;
 //            int result5 = stmt.executeUpdate(createMatchTable) ;
-            int result =result2;
+            int result =result1;
             if (result != -1) {
                 System.out.println("创建数据表成功");
             }

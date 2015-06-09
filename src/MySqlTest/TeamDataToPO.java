@@ -13,8 +13,9 @@ public class TeamDataToPO {
 
 	String url = "jdbc:mysql://localhost:3306/NBA_DATA?user=root&password=941104&useUnicode=true&characterEncoding=UTF8" ;
 	java.sql.Connection con = null ;
-	java.sql.Statement stmt = null ;
+	java.sql.PreparedStatement stmt = null ;
 	TeamListPO teams  ;
+	String query = "select * from teams where teamID =?" ;
 	
 	public TeamDataToPO(){
 		teams = new TeamListPO() ;
@@ -22,10 +23,13 @@ public class TeamDataToPO {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		long beginTime = System.currentTimeMillis() ;
 		TeamDataToPO tp = new TeamDataToPO() ;
 		tp.init();
 		tp.read();
 		System.out.println(TeamListPO.allTeams.size());
+		long endTime = System.currentTimeMillis() ;
+		System.out.println("运行时间："+(endTime-beginTime));
 	}
 
 	public void init(){
@@ -36,7 +40,7 @@ public class TeamDataToPO {
 			con = DriverManager.getConnection(url) ;
 			System.out.println("链接数据库");
 			
-			stmt = con.createStatement() ;
+			stmt = con.prepareStatement(query) ;
 		
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -51,12 +55,12 @@ public class TeamDataToPO {
 	
 	public void read(){
 		int id = 0 ;
-		String query = "select * from teams where teamID =" ;
+		
 		try {
-			ResultSet rs = stmt.executeQuery(query+id) ;
+			stmt.setString(1, String.valueOf(id));
+			ResultSet rs = stmt.executeQuery() ;
 			
 			while(rs.next()){
-				System.out.println(rs.getString(2)+"  "+rs.getString(8));
 				TeamPO oneTeam = new TeamPO() ;
 				oneTeam.setFullName(rs.getString(2));
 				oneTeam.setShortName(rs.getString(3));
@@ -68,7 +72,8 @@ public class TeamDataToPO {
 				oneTeam.setTeamLogoURL(rs.getString(9));
 				teams.addTeam(oneTeam) ;
 				id++ ;
-				rs = stmt.executeQuery(query+id) ;
+				stmt.setString(1, String.valueOf(id));
+				rs = stmt.executeQuery() ;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

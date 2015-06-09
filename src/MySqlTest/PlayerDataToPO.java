@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
 
 import PO.PlayerListPO;
@@ -15,7 +16,8 @@ public class PlayerDataToPO {
 	PlayerListPO players  ;
 	String url = "jdbc:mysql://localhost:3306/NBA_DATA?user=root&password=941104&useUnicode=true&characterEncoding=UTF8" ;
 	java.sql.Connection con = null ;
-	java.sql.Statement stmt = null ;
+	java.sql.PreparedStatement stmt = null ;
+	String query = "select * from players where playerID =?" ;
 	
 	public PlayerDataToPO(){
 		players = new PlayerListPO() ;
@@ -29,7 +31,7 @@ public class PlayerDataToPO {
 			con = DriverManager.getConnection(url) ;
 			System.out.println("链接数据库");
 			
-			stmt = con.createStatement() ;
+			stmt = con.prepareStatement(query) ;
 		
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -44,9 +46,10 @@ public class PlayerDataToPO {
 	
 	public void read(){
 		int id = 0 ;
-		String query = "select * from players where playerID = " ;
+		
 		try {
-			ResultSet rs = stmt.executeQuery(query+id) ;
+			stmt.setString(1, String.valueOf(id));
+			ResultSet rs = stmt.executeQuery() ;
 			while(rs.next()){
 				PlayerPO onePlayer = new PlayerPO() ;
 				onePlayer.setName(rs.getString(2));
@@ -62,7 +65,8 @@ public class PlayerDataToPO {
 				onePlayer.setActionURL(rs.getString(12));
 				players.addPlayer(onePlayer) ;
 				id++ ;
-				rs = stmt.executeQuery(query+id) ;
+				stmt.setString(1, String.valueOf(id));
+				rs = stmt.executeQuery() ;
 			}
 			
 		} catch (SQLException e) {
@@ -76,6 +80,7 @@ public class PlayerDataToPO {
 		pp.init();
 		pp.read();
 		System.out.println(PlayerListPO.allPlayers.size());
+		
 	}
 	
 }
