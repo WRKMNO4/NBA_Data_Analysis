@@ -25,7 +25,7 @@ import PO.PlayerPO;
  */
 @SuppressWarnings("serial")
 public class PlayerDataAnalysisPanel extends JPanel {
-	private PlayerDataAnalysisPanel playerDataAnalysisPanel;
+//	private PlayerDataAnalysisPanel playerDataAnalysisPanel;
 	private PlayerDataAnalysisFrame playerDataAnalysisFrame;
 	public static final int 
 	    PADDING = 10,
@@ -47,7 +47,7 @@ public class PlayerDataAnalysisPanel extends JPanel {
 	public PlayerDataAnalysisPanel(PlayerPO playerPO, PlayerDataAnalysisFrame f) {
 		this.playerDataAnalysisFrame = f;
 		this.playerPO = playerPO;
-		this.playerDataAnalysisPanel = this;
+//		this.playerDataAnalysisPanel = this;
 		setLayout(null);
 		setBounds(0, 0, f.getWidth(), f.getHeight());
 		

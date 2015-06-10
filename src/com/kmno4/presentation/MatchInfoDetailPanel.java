@@ -192,7 +192,8 @@ public class MatchInfoDetailPanel extends JPanel {
 					MAIN_DATA_PANEL_HEIGHT + 2 * PADDING, 150,
 					26, 26,
 					90);
-			PlayerDetailPanel.paintTable(mainScore.table);
+			mainScore.table.setForeground(Color.white);
+//			PlayerDetailPanel.paintTable(mainScore.table);
 			
 //			bg=new JLabel(Config.DETAIL_BG);
 //			bg.setBounds(0, 0, this.getWidth(), this.getHeight());

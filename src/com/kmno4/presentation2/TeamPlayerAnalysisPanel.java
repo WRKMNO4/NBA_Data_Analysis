@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import org.jfree.chart.ChartFactory;
@@ -13,6 +14,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import com.kmno4.common.Config;
+import com.kmno4.presentation.PlayerDetailPanel;
 
 import PO.PlayerPO;
 import PO.TeamPO;
@@ -106,6 +108,8 @@ public class TeamPlayerAnalysisPanel extends JPanel {
 	 *
 	 */
 	class MainPlayerPanel extends JPanel {
+		JLabel pic;
+		JLabel info1, info2, info3, info4, info5;
 		public MainPlayerPanel() {
 			setBounds(0, COMBOBOX_HEIGHT, MAIN_PLAYER_PANEL_WIDTH, MAIN_PLAYER_PANEL_HEIGHT);
 			setLayout(null);
@@ -113,6 +117,22 @@ public class TeamPlayerAnalysisPanel extends JPanel {
 			//TODO 获取到的第一名player
 			PlayerPO playerPO = teamPO.getPlayersOfOneSeason(Config.LASTEST_SEASON).get(0);
 			
+			pic = new JLabel();
+			pic.setBounds(PADDING * 4, 0, MAIN_PLAYER_PANEL_HEIGHT * 550 / 700, MAIN_PLAYER_PANEL_HEIGHT);
+			PlayerDetailPanel.fillLabel(playerPO.getActionURL(), pic, pic.getWidth(), pic.getHeight());
+			add(pic);
+			
+			info1 = new JLabel("第一条信息");
+			info1.setBounds(0, 0, 0, 0);
+			info2 = new JLabel("第二条信息");
+			info3 = new JLabel("第三条信息");
+			info4 = new JLabel("第四条信息");
+			info5 = new JLabel("第五条信息");
+			add(info1);
+			add(info2);
+			add(info3);
+			add(info4);
+			add(info5);
 		}
 	}
 	/**

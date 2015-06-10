@@ -1,8 +1,6 @@
 package com.kmno4.presentation2;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -26,8 +24,8 @@ import PO.PlayerPO;
  */
 @SuppressWarnings("serial")
 public class PlayerPerformAnalysisPanel extends JPanel {
-	private PlayerPerformAnalysisPanel playerPerformAnalysisPanel;
-	private PlayerDataAnalysisFrame playerDataAnalysisFrame;
+//	private PlayerPerformAnalysisPanel playerPerformAnalysisPanel;
+//	private PlayerDataAnalysisFrame playerDataAnalysisFrame;
 	private PlayerPO playerPO;
 	public static final int 
     	PADDING = PlayerDataAnalysisPanel.PADDING,
@@ -39,8 +37,8 @@ public class PlayerPerformAnalysisPanel extends JPanel {
 	private PlayerFieldPanel pfp;
 	
 	public PlayerPerformAnalysisPanel(PlayerPO playerPO, PlayerDataAnalysisFrame f) {
-		this.playerDataAnalysisFrame = f;
-		this.playerPerformAnalysisPanel = this;
+//		this.playerDataAnalysisFrame = f;
+//		this.playerPerformAnalysisPanel = this;
 		this.playerPO = playerPO;
 		setBounds(
 				PADDING,
@@ -49,13 +47,13 @@ public class PlayerPerformAnalysisPanel extends JPanel {
 				PlayerDataAnalysisPanel.PANEL_HEIGHT);
 		setLayout(null);
 		setOpaque(false);
-		pfp = new PlayerFieldPanel();
+		String[][] info = TableContentTransfer.transferPlayerHighInfo(MainFrame.mainFrame.bl.getPlayerHighInfo());
+		pfp = new PlayerFieldPanel(info);
 		add(pfp);
 		
-		//TODO
 		tg = new TableGroup();
 		TableFactory.createSortTable(tg, this,
-				TableContentTransfer.transferPlayerHighInfo(MainFrame.mainFrame.bl.getPlayerHighInfo()),
+				info,
 				new SortModel(2, 7), new PlayerPerformSet(),
 				getWidth(), TABLE_HEGIHT,
 				0, PADDING + PANEL_HEIGHT,
@@ -84,7 +82,36 @@ public class PlayerPerformAnalysisPanel extends JPanel {
 	}
 	
 	class PlayerFieldPanel extends JPanel {
-		public PlayerFieldPanel() {
+		JLabel player, team, info1, info2, info3, info4, info5, info6;
+		public PlayerFieldPanel(String[][] info) {
+			setLayout(null);
+			setBounds(0, 0, getWidth(), PANEL_HEIGHT);
+			String[] pInfo = null;
+			String pName = playerPO.getName();
+			for(int i = 0; i < info.length; i ++) {
+				if(info[i][0].equals(pName)) {
+					pInfo = info[i];
+					break;
+				}
+			}
+			player = new JLabel();
+			team = new JLabel();
+			info1 = new JLabel();
+			info2 = new JLabel();
+			info3 = new JLabel();
+			info4 = new JLabel();
+			info5 = new JLabel();
+			info6 = new JLabel();
+			
+			add(player);
+			add(team);
+			add(info1);
+			add(info2);
+			add(info3);
+			add(info4);
+			add(info5);
+			add(info6);
+			
 			
 		}
 	}

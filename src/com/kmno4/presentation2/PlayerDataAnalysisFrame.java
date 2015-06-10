@@ -3,12 +3,8 @@ package com.kmno4.presentation2;
 import java.awt.Point;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import com.kmno4.common.Config;
-import com.kmno4.presentation.MainFrame;
 import com.kmno4.presentation.MoveOfFrame;
-import com.kmno4.presentation.PlayerDetailFrame;
 import com.kmno4.presentation.RightClickClose;
 import com.kmno4.presentation.button.ExitLabel;
 
