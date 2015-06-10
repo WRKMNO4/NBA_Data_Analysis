@@ -304,29 +304,31 @@ public class BLServiceController implements  BLService{
 	@Override
 	public boolean ifStableThanSelf(PlayerPO player, PlayerData dataType,
 			Season season) {
-		
 		return statisticsController.ifStableThanSelf(player, dataType, season);
 	}
 
 	@Override
 	public boolean ifBetterThanSelf(PlayerPO player, PlayerData dataType,
 			Season season) {
-		
 		return statisticsController.ifBetterThanSelf(player, dataType, season);
 	}
 
 	@Override
 	public boolean ifStableThanAnother(PlayerPO player, PlayerPO anotherPlayer,
 			PlayerData dataType, Season season) {
-		
 		return statisticsController.ifStableThanAnother(player, anotherPlayer, dataType, season);
 	}
 
 	@Override
 	public boolean ifBetterThanAnother(PlayerPO player, PlayerPO anotherPlayer,
 			PlayerData dataType, Season season) {
-		
 		return statisticsController.ifBetterThanAnother(player, anotherPlayer, dataType, season);
+	}
+
+	@Override
+	public int[] getgetRanksOfTeamByTeamFullName(String fullName) {
+		
+		return statisticsController.getRanksOfTeamByTeamFullName(fullName);
 	}
 
 	

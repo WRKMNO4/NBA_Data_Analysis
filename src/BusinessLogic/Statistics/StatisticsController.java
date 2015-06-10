@@ -1,9 +1,11 @@
 package BusinessLogic.Statistics;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import org.fife.ui.rtextarea.RTextAreaEditorKit.UpperSelectionCaseAction;
 
+import DataService.FileHelper.FileHelper;
 import Enum.PlayerData;
 import Enum.Season;
 import PO.PlayerDataOfOneMatchPO;
@@ -88,11 +90,6 @@ public class StatisticsController implements StatisticsBusinessLogic {
 		return season;
 	}
 	
-	public static void main(String[] args){
-		StatisticsController s = new StatisticsController("Data");
-		System.out.println(s.getFormerSeason(Season.season12_13));
-	}
-	
 	public ArrayList<Double> addToArray(PlayerPO player, PlayerData dataType, Season season){
 		ArrayList<Double> datas = new ArrayList<>();
 		ArrayList<PlayerDataOfOneMatchPO> records = player.getSeasonInfo(season).getDatas();
@@ -116,5 +113,30 @@ public class StatisticsController implements StatisticsBusinessLogic {
 			break;
 	}
 		return datas;
+	}
+
+	@Override
+	public int[] getRanksOfTeamByTeamFullName(String fullName) {
+		int[] ranks = new int [14]; 
+		String fileName ; 
+		for(int i = 0 ; i < 14 ; i++){
+			fileName = fileAddress + "/highInfo/ranks/" + String.valueOf(i + 2002);
+			ArrayList<String> lines = FileHelper.readByLine(new File(fileName));
+			for(String eachLine: lines){
+				if(eachLine.contains(fullName)){
+					String[] splitStr = eachLine.split(" ");
+					ranks[i] = Integer.parseInt(splitStr[0]);
+					break;
+				}
+			}
+		}
+		return ranks;
+	}
+	
+	public static void main(String[] args){
+		StatisticsController s = new StatisticsController("Data");
+		int[] a = s.getRanksOfTeamByTeamFullName("Indiana Pacers");
+		for(int b:a)
+			System.out.println(b);
 	}
 }

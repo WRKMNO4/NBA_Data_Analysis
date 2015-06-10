@@ -187,4 +187,10 @@ public interface BLService {
 	 * @return 推测是否比另一位球员优秀，是则返回true，否则返回false
 	 */
 	public boolean ifBetterThanAnother(PlayerPO player, PlayerPO anotherPlayer, PlayerData dataType, Season season);
+	/**
+	 * 
+	 * @param 球队的全名！
+	 * @return 球队的排名数组(数组大小是14，a[0]是2002年的排名......a[13]是2015年的排名)
+	 */
+	public int[] getgetRanksOfTeamByTeamFullName(String fullName);
 }
