@@ -15,6 +15,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 import com.kmno4.common.Config;
 import com.kmno4.presentation.PlayerDetailPanel;
+import com.kmno4.presentation.table.TableGroup;
 
 import PO.PlayerPO;
 import PO.TeamPO;
@@ -60,7 +61,7 @@ public class TeamPlayerAnalysisPanel extends JPanel {
 				TeamDataAnalysisPanel.PANEL_HEIGHT);
 		
 		conditions = new JComboBox<String>();
-		conditions.setBounds(0, 0, COMBOBOX_WIDHT, COMBOBOX_HEIGHT);
+		conditions.setBounds(PADDING, 0, COMBOBOX_WIDHT, COMBOBOX_HEIGHT);
 		conditions.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -113,12 +114,12 @@ public class TeamPlayerAnalysisPanel extends JPanel {
 		public MainPlayerPanel() {
 			setBounds(0, COMBOBOX_HEIGHT, MAIN_PLAYER_PANEL_WIDTH, MAIN_PLAYER_PANEL_HEIGHT);
 			setLayout(null);
-			setBackground(Color.CYAN);
+			setBackground(new Color(0, 255, 255, 100));
 			//TODO 获取到的第一名player
 			PlayerPO playerPO = teamPO.getPlayersOfOneSeason(Config.LASTEST_SEASON).get(0);
 			
 			pic = new JLabel();
-			pic.setBounds(PADDING * 4, 0, MAIN_PLAYER_PANEL_HEIGHT * 550 / 700, MAIN_PLAYER_PANEL_HEIGHT);
+			pic.setBounds(0, 0, MAIN_PLAYER_PANEL_HEIGHT * 440 / 700, MAIN_PLAYER_PANEL_HEIGHT);
 			PlayerDetailPanel.fillLabel(playerPO.getActionURL(), pic, pic.getWidth(), pic.getHeight());
 			add(pic);
 			
@@ -141,6 +142,7 @@ public class TeamPlayerAnalysisPanel extends JPanel {
 	 *
 	 */
 	class OtherPlayerPanel extends JPanel {
+		TableGroup tg;
 		public OtherPlayerPanel() {
 			setBounds(MAIN_PLAYER_PANEL_WIDTH + PADDING, 0, OTHER_PLAYER_PANEL_WIDTH, OTHER_PLAYER_PANEL_HEIGHT);
 			setLayout(null);

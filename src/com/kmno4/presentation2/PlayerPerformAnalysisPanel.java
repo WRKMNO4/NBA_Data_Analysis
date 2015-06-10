@@ -1,5 +1,8 @@
 package com.kmno4.presentation2;
 
+import java.awt.Color;
+import java.awt.Font;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -15,6 +18,7 @@ import com.kmno4.presentation.table.TableFactory;
 import com.kmno4.presentation.table.TableGroup;
 
 import PO.PlayerPO;
+import PO.TeamListPO;
 /**
  * 球员综合能力分析
  * 显示全球员的大表数据
@@ -24,7 +28,7 @@ import PO.PlayerPO;
  */
 @SuppressWarnings("serial")
 public class PlayerPerformAnalysisPanel extends JPanel {
-//	private PlayerPerformAnalysisPanel playerPerformAnalysisPanel;
+	private PlayerPerformAnalysisPanel playerPerformAnalysisPanel;
 //	private PlayerDataAnalysisFrame playerDataAnalysisFrame;
 	private PlayerPO playerPO;
 	public static final int 
@@ -38,7 +42,7 @@ public class PlayerPerformAnalysisPanel extends JPanel {
 	
 	public PlayerPerformAnalysisPanel(PlayerPO playerPO, PlayerDataAnalysisFrame f) {
 //		this.playerDataAnalysisFrame = f;
-//		this.playerPerformAnalysisPanel = this;
+		this.playerPerformAnalysisPanel = this;
 		this.playerPO = playerPO;
 		setBounds(
 				PADDING,
@@ -85,7 +89,8 @@ public class PlayerPerformAnalysisPanel extends JPanel {
 		JLabel player, team, info1, info2, info3, info4, info5, info6;
 		public PlayerFieldPanel(String[][] info) {
 			setLayout(null);
-			setBounds(0, 0, getWidth(), PANEL_HEIGHT);
+			setBounds(0, 0, playerPerformAnalysisPanel.getWidth(), PANEL_HEIGHT);
+			setOpaque(false);
 			String[] pInfo = null;
 			String pName = playerPO.getName();
 			for(int i = 0; i < info.length; i ++) {
@@ -94,14 +99,47 @@ public class PlayerPerformAnalysisPanel extends JPanel {
 					break;
 				}
 			}
+			Color color = Color.white;
+			Font font = new Font("default", 0, 25);
+			String url = playerPO.getPortraitURL();
 			player = new JLabel();
+			player.setBounds(0, 0, 150, PANEL_HEIGHT);
+			PlayerDetailPanel.fillLabel(url, player, PANEL_HEIGHT * 230 / 185, PANEL_HEIGHT);
+			
+			url = TeamListPO.findTeamByShortName(playerPO.getTeam(Config.LASTEST_SEASON)).getTeamLogoURL();
 			team = new JLabel();
-			info1 = new JLabel();
-			info2 = new JLabel();
-			info3 = new JLabel();
-			info4 = new JLabel();
-			info5 = new JLabel();
-			info6 = new JLabel();
+			team.setBounds(player.getWidth() + player.getX(), 0, 120, PANEL_HEIGHT);
+			PlayerDetailPanel.fillLabel(url, team, PANEL_HEIGHT, PANEL_HEIGHT);
+			
+			info1 = new JLabel(pInfo[2]);
+			info1.setBounds(team.getWidth() + team.getX(), 0, 85, PANEL_HEIGHT);
+			info1.setForeground(color);
+			info1.setFont(font);
+			
+			info2 = new JLabel(pInfo[3]);
+			info2.setBounds(info1.getWidth() + info1.getX(), 0, 120, PANEL_HEIGHT);
+			info2.setForeground(color);
+			info2.setFont(font);
+			
+			info3 = new JLabel(pInfo[4]);
+			info3.setBounds(info2.getWidth() + info2.getX(), 0, 120, PANEL_HEIGHT);
+			info3.setForeground(color);
+			info3.setFont(font);
+			
+			info4 = new JLabel(pInfo[5]);
+			info4.setBounds(info3.getWidth() + info3.getX(), 0, 120, PANEL_HEIGHT);
+			info4.setForeground(color);
+			info4.setFont(font);
+			
+			info5 = new JLabel(pInfo[6]);
+			info5.setBounds(info4.getWidth() + info4.getX(), 0, 120, PANEL_HEIGHT);
+			info5.setForeground(color);
+			info5.setFont(font);
+			
+			info6 = new JLabel(pInfo[7]);
+			info6.setBounds(info5.getWidth() + info5.getX(), 0, 120, PANEL_HEIGHT);
+			info6.setForeground(color);
+			info6.setFont(font);
 			
 			add(player);
 			add(team);

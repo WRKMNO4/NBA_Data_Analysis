@@ -25,10 +25,10 @@ public class AllTeamRecentMatchAnalysisPanel extends JPanel {
 	private static final int 
 		LABEL_HEIGHT = 40,
 		TABLE_HEIGHT = (AllTeamDataAnalysisPanel.PANEL_HEIGHT - 2 * LABEL_HEIGHT) / 2;
-	private JLabel southLabel, westLabel;
-	private TableGroup southTg, westTg;
+	private JLabel eastLabel, westLabel;
+	private TableGroup eastTg, westTg;
 
-	String[][] example = {
+	public static final String[][] example = {
 			{"lalal", "", "胜", "负", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"},
 			{"111", "ccc", "胜", "负", "aa", "b", "cc", "d", "e", "ff", "g", "h", "i", "jy", "k"},
 			{"222", "kaka", "胜", "负", "aa", "b", "c", "dd", "e", "f", "g", "h", "ig", "j", "ks"},
@@ -44,19 +44,19 @@ public class AllTeamRecentMatchAnalysisPanel extends JPanel {
 				Config.UI_WIDTH - 2 * AllTeamDataAnalysisPanel.PADDING,
 				AllTeamDataAnalysisPanel.PANEL_HEIGHT);
 		
-		southLabel = new JLabel("东部联盟");
-		southLabel.setBounds(0, 0, getWidth(), LABEL_HEIGHT);
-		southLabel.setOpaque(true);
-		southLabel.setBackground(new Color(128, 128, 128, 150));
-		southLabel.setForeground(Color.white);
-		southLabel.setFont(new Font("default", 0, 15));
-		add(southLabel);
-		southTg = new TableGroup();
-		TableFactory.createTable(southTg, this,
+		eastLabel = new JLabel("东部联盟");
+		eastLabel.setBounds(0, 0, getWidth(), LABEL_HEIGHT);
+		eastLabel.setOpaque(true);
+		eastLabel.setBackground(new Color(128, 128, 128, 150));
+		eastLabel.setForeground(Color.white);
+		eastLabel.setFont(new Font("default", 0, 15));
+		add(eastLabel);
+		eastTg = new TableGroup();
+		TableFactory.createTable(eastTg, this,
 				TableContentTransfer.transferAnalysisOfLatest10Matches(MainFrame.mainFrame.teams),
 				getWidth(), TABLE_HEIGHT,
 				0, LABEL_HEIGHT/*, rowHeight, headRowHeight, unitWidth*/);
-		PlayerDetailPanel.paintTable(southTg.table);
+		PlayerDetailPanel.paintTable(eastTg.table);
 //		TODO
 		westLabel = new JLabel("西部联盟");
 		westLabel.setBounds(0, LABEL_HEIGHT + TABLE_HEIGHT, getWidth(), LABEL_HEIGHT);

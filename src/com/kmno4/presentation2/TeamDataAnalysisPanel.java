@@ -47,7 +47,7 @@ public class TeamDataAnalysisPanel extends JPanel {
 		setBounds(0, 0, f.getWidth(), f.getHeight());
 		setLayout(null);
 		
-		teamLabel = new JLabel(/*teamPO.getFullName()*/"某球队", JLabel.LEFT);
+		teamLabel = new JLabel(teamPO.getFullName(), JLabel.LEFT);
 		teamLabel.setForeground(Color.white);
 		teamLabel.setFont(new Font("default", 2, 30));
 		teamLabel.setBounds(PADDING, PADDING, TEAM_LABEL_WIDTH, TEAM_LABEL_HEIGHT);
@@ -99,7 +99,8 @@ public class TeamDataAnalysisPanel extends JPanel {
 	 */
 	private void toPlayerAnalysis() {
 		remove(current_panel);
-		add(current_panel = (teamPlayerAnalysisPanel = new TeamPlayerAnalysisPanel(teamPO, teamDataAnalysisFrame)));
+		teamPlayerAnalysisPanel = new TeamPlayerAnalysisPanel(teamPO, teamDataAnalysisFrame);
+		add(current_panel = teamPlayerAnalysisPanel);
 		teamDataAnalysisFrame.repaint();
 	}
 	/**
@@ -107,7 +108,8 @@ public class TeamDataAnalysisPanel extends JPanel {
 	 */
 	private void toEvolutionAnalysis() {
 		remove(current_panel);
-		add(current_panel = (teamEvolutionAnalysisPanel = new TeamEvolutionAnalysisPanel(teamPO, teamDataAnalysisFrame)));
+		teamEvolutionAnalysisPanel = new TeamEvolutionAnalysisPanel(teamPO, teamDataAnalysisFrame);
+		add(current_panel = teamEvolutionAnalysisPanel);
 		teamDataAnalysisFrame.repaint();
 	}
 	/**
