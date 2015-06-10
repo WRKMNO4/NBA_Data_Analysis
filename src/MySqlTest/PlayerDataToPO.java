@@ -48,7 +48,7 @@ public class PlayerDataToPO {
 		int id = 0 ;
 		
 		try {
-			stmt.setString(1, String.valueOf(id));
+			stmt.setInt(1,id) ;
 			ResultSet rs = stmt.executeQuery() ;
 			while(rs.next()){
 				PlayerPO onePlayer = new PlayerPO() ;
