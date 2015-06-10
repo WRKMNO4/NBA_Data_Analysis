@@ -49,8 +49,8 @@ public class AllTeamRankingAnalysisPanel extends JPanel {
 		add(eastLabel);
 		eastTg = new TableGroup();
 		TableFactory.createTable(eastTg, this, 
-				AllTeamRecentMatchAnalysisPanel.example,
-				//TableContentTransfer.transferTeamRanking(MainFrame.mainFrame.bl.getTeamRankings(Config.LASTEST_SEASON, Zone.E)),
+//				AllTeamRecentMatchAnalysisPanel.example,
+				TableContentTransfer.transferTeamRanking(MainFrame.mainFrame.bl.getTeamRankings(Config.LASTEST_SEASON, Zone.E)),
 				getWidth(), TABLE_HEIGHT,
 				0, LABEL_HEIGHT/*, rowHeight, headRowHeight, unitWidth*/);
 		PlayerDetailPanel.paintTable(eastTg.table);
@@ -64,8 +64,8 @@ public class AllTeamRankingAnalysisPanel extends JPanel {
 		add(westLabel);
 		westTg = new TableGroup();
 		TableFactory.createTable(westTg, this,
-				AllTeamRecentMatchAnalysisPanel.example,
-//				TableContentTransfer.transferTeamRanking(MainFrame.mainFrame.bl.getTeamRankings(Config.LASTEST_SEASON, Zone.W)),
+//				AllTeamRecentMatchAnalysisPanel.example,
+				TableContentTransfer.transferTeamRanking(MainFrame.mainFrame.bl.getTeamRankings(Config.LASTEST_SEASON, Zone.W)),
 				getWidth(), TABLE_HEIGHT,
 				0, LABEL_HEIGHT * 2 + TABLE_HEIGHT/*, rowHeight, headRowHeight, unitWidth*/);
 		//TODO 
