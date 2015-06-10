@@ -18,7 +18,8 @@ public class PlayerComparisonAnalysisPanel extends JPanel {
 	private PlayerPO playerPO;
 	public static final int 
     	PADDING = PlayerDataAnalysisPanel.PADDING;
-//	private 
+	private PlayerPanel player1, player2;
+//	private InfoPanel 
 	
 	
 	public PlayerComparisonAnalysisPanel(PlayerPO playerPO, PlayerDataAnalysisFrame f) {
@@ -31,6 +32,18 @@ public class PlayerComparisonAnalysisPanel extends JPanel {
 				Config.UI_WIDTH - 2 * PADDING,
 				PlayerDataAnalysisPanel.PANEL_HEIGHT);
 		setLayout(null);
+		
+	}
+	
+	class PlayerPanel extends JPanel {
+		
+	}
+	
+	class InfoPanel extends JPanel {
+		
+	}
+	
+	class InputPanel extends JPanel {
 		
 	}
 
