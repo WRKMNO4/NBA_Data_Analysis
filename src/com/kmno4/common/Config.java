@@ -84,7 +84,7 @@ public class Config {
 	
 	public static final String[] PLAYER_HIGHINFO = {"姓名","球队","比赛场数","场均在场时间","在场进攻贡献度","在场防守贡献度","在场贡献度","球队胜利贡献度"};
 	public static final String[] TEAM_RANKING = {"排名","球队","胜场","负场","胜率","主场胜","客场胜","连续胜场","连续负场","场均得分","场均失分"};
-	public static final String[] TEAM_LATEST10MATCHES_ANALYSIS = {"球队","总胜场","总负场","连胜场数","连负场数","最近10场获胜场数","最近10个主场获胜场数","最近10个客场获胜场数","场均得分","场均失分"};
+	public static final String[] TEAM_LATEST10MATCHES_ANALYSIS = {"球队","总胜场","总负场","连胜场数","连负场数","最近10场胜场","最近10主场胜场","最近10客场胜场","场均得分","场均失分"};
 	public static final int 
 	    MATCH_DETAIL_WIDTH = 800,
 	    MATCH_DETAIL_HEIGHT = 600;

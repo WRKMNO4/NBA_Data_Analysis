@@ -45,7 +45,7 @@ public class TeamListPO {
 		return allTeams ;
 	}
 	
-	public ArrayList<TeamPO> getAllWestTeams(){
+	public static ArrayList<TeamPO> getAllWestTeams(){
 		ArrayList<TeamPO> teams = new ArrayList<TeamPO>();
 		for(TeamPO oneTeam:allTeams)
 			if(oneTeam.getZone() == Zone.W)
@@ -53,7 +53,7 @@ public class TeamListPO {
 		return teams;
 	}
 	
-	public ArrayList<TeamPO> getAllEastTeams(){
+	public static ArrayList<TeamPO> getAllEastTeams(){
 		ArrayList<TeamPO> teams = new ArrayList<TeamPO>();
 		for(TeamPO oneTeam:allTeams)
 			if(oneTeam.getZone() == Zone.E)
