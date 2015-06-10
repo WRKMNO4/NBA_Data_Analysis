@@ -117,6 +117,8 @@ public class MatchDataController {
 						try{
 							dataOfInt.add(Integer.parseInt(onePlayer[k])) ;
 						}catch(Exception e){
+							if(k==onePlayer.length)
+								dataOfInt.add(2*dataOfInt.get(2)+dataOfInt.get(4)+dataOfInt.get(6)) ;
 							dataOfInt.add(0) ;
 						}
 					}

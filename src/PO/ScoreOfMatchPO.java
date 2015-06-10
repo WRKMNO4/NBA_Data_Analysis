@@ -11,6 +11,11 @@ public class ScoreOfMatchPO {
 		firstScore=Integer.parseInt(tmp[0]);
 		secondScore=Integer.parseInt(tmp[1]);
 	}
+	public ScoreOfMatchPO(int first,int second){
+		scores = first+"-"+second ;
+		firstScore = first ;
+		secondScore = second ;
+	}
 
 	public String getScores() {
 		return scores;

@@ -17,7 +17,7 @@ public class PlayerDataToPO {
 	String url = "jdbc:mysql://localhost:3306/NBA_DATA?user=root&password=941104&useUnicode=true&characterEncoding=UTF8" ;
 	java.sql.Connection con = null ;
 	java.sql.PreparedStatement stmt = null ;
-	String query = "select * from players where playerID =?" ;
+	String query = "select * from players " ;
 	
 	public PlayerDataToPO(){
 		players = new PlayerListPO() ;
@@ -45,10 +45,10 @@ public class PlayerDataToPO {
 	}
 	
 	public void read(){
-		int id = 0 ;
+//		int id = 0 ;
 		
 		try {
-			stmt.setInt(1,id) ;
+//			stmt.setInt(1,id) ;
 			ResultSet rs = stmt.executeQuery() ;
 			while(rs.next()){
 				PlayerPO onePlayer = new PlayerPO() ;
@@ -64,9 +64,9 @@ public class PlayerDataToPO {
 				onePlayer.setPortraitURL(rs.getString(11));
 				onePlayer.setActionURL(rs.getString(12));
 				players.addPlayer(onePlayer) ;
-				id++ ;
-				stmt.setString(1, String.valueOf(id));
-				rs = stmt.executeQuery() ;
+//				id++ ;
+//				stmt.setString(1, String.valueOf(id));
+//				rs = stmt.executeQuery() ;
 			}
 			
 		} catch (SQLException e) {

@@ -15,7 +15,7 @@ public class TeamDataToPO {
 	java.sql.Connection con = null ;
 	java.sql.PreparedStatement stmt = null ;
 	TeamListPO teams  ;
-	String query = "select * from teams where teamID =?" ;
+	String query = "select * from teams " ;
 	
 	public TeamDataToPO(){
 		teams = new TeamListPO() ;
@@ -54,10 +54,10 @@ public class TeamDataToPO {
 	}
 	
 	public void read(){
-		int id = 0 ;
+//		int id = 0 ;
 		
 		try {
-			stmt.setString(1, String.valueOf(id));
+//			stmt.setString(1, String.valueOf(id));
 			ResultSet rs = stmt.executeQuery() ;
 			
 			while(rs.next()){
@@ -71,9 +71,9 @@ public class TeamDataToPO {
 				oneTeam.setTimeOfEstablishment(getETime(rs.getString(8)));
 				oneTeam.setTeamLogoURL(rs.getString(9));
 				teams.addTeam(oneTeam) ;
-				id++ ;
-				stmt.setString(1, String.valueOf(id));
-				rs = stmt.executeQuery() ;
+//				id++ ;
+//				stmt.setString(1, String.valueOf(id));
+//				rs = stmt.executeQuery() ;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
