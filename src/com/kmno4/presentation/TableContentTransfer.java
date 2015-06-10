@@ -556,9 +556,9 @@ public class TableContentTransfer {
 	}
 	// 球队排名表
 	public static String[][] transferTeamRanking(ArrayList<TeamPO> teams){
-		String [][] body = new String [teams.size()][Config.TEAM_RANKING.length];
+		String [][] body = new String [teams.size() + 1][Config.TEAM_RANKING.length];
 		body[0] = Config.TEAM_RANKING;
-		for(int i = 1;i < teams.size();i++){
+		for(int i = 1;i < body.length;i++){
 			TeamPO oneTeam = teams.get(i-1);
 			SeasonInfoForTeam seasonInfo = oneTeam.getSeasonInfo(Config.LASTEST_SEASON);
 			body[i][0] = String.valueOf(i);
@@ -577,9 +577,9 @@ public class TableContentTransfer {
 	}
 	//球队近10场比赛分析表
 	public static String[][] transferAnalysisOfLatest10Matches(ArrayList<TeamPO> teams){
-		String [][] body = new String [teams.size()][Config.TEAM_LATEST10MATCHES_ANALYSIS.length];
+		String [][] body = new String [teams.size() + 1][Config.TEAM_LATEST10MATCHES_ANALYSIS.length];
 		body[0] = Config.TEAM_LATEST10MATCHES_ANALYSIS;
-		for(int i = 1;i < teams.size();i++){
+		for(int i = 1;i < body.length;i++){
 			TeamPO oneTeam = teams.get(i-1);
 			SeasonInfoForTeam seasonInfo = oneTeam.getSeasonInfo(Config.LASTEST_SEASON);
 			body[i][0] = oneTeam.getShortName();

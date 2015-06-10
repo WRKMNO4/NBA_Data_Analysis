@@ -1,11 +1,13 @@
 package BusinessLogic.TeamBusinessLogic;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import com.kmno4.common.Config;
 
 import BusinessLogic.SortHelper.TeamSortHelper;
+import DataService.FileHelper.FileHelper;
 import DataService.TeamDataService.TeamDataService;
 import Enum.Season;
 import Enum.TeamData;
@@ -85,38 +87,55 @@ public class TeamController implements TeamBusinessLogic{
 	public ArrayList<TeamPO> getTeamRankings(Season season, Zone zone){
 		ArrayList<TeamPO> initialTeam = TeamListPO.allTeams;
 		ArrayList<TeamPO> zoneTeam = new ArrayList<TeamPO>();
+		TeamPO[] results = new TeamPO[15];
 		for(TeamPO team: initialTeam){
 			if(team.getZone()==zone)
 				zoneTeam.add(team);
 		}
-		Collections.sort(zoneTeam,new TeamSortHelper("perOfWin", null, season));
-		ArrayList<TeamPO> results = new ArrayList<>();
-		int pointer = 0 ;
-		results.add(zoneTeam.get(pointer));
-		zoneTeam.remove(pointer);
-		for(;results.size()<3;pointer++ ){
-			if(results.size()==1){
-				if(zoneTeam.get(pointer).getDistrict().equals(results.get(0).getDistrict()))
+		for(TeamPO theTeam : zoneTeam){
+			ArrayList<String> lines = FileHelper.readByLine(new File("Data/highInfo/ranks/2015"));
+			for(String eachLine: lines){
+				if(eachLine.contains(theTeam.getFullName())){
+					String[] splitStr = eachLine.split(" ");
+					results[Integer.parseInt(splitStr[0])-1] = theTeam;
 					break;
-				else{
-					results.add(zoneTeam.get(pointer));
-					zoneTeam.remove(pointer);
-					pointer--;
 				}
 			}
-			if(results.size()==2){
-				if(zoneTeam.get(pointer).getDistrict().equals(results.get(0).getDistrict())||
-						zoneTeam.get(pointer).getDistrict().equals(results.get(1).getDistrict()))
-					break;
-				else{
-					results.add(zoneTeam.get(pointer));
-					zoneTeam.remove(pointer);
-					pointer--;
-				}
-			}	
 		}
-		results.addAll(zoneTeam);
-		return results;
+		
+//		Collections.sort(zoneTeam,new TeamSortHelper("perOfWin", null, season));
+//		ArrayList<TeamPO> results = new ArrayList<>();
+//		int pointer = 0 ;
+//		results.add(zoneTeam.get(pointer));
+//		zoneTeam.remove(pointer);
+//		for(;results.size()<3;pointer++ ){
+//			if(results.size()==1){
+//				if(zoneTeam.get(pointer).getDistrict().equals(results.get(0).getDistrict()))
+//					break;
+//				else{
+//					results.add(zoneTeam.get(pointer));
+//					zoneTeam.remove(pointer);
+//					pointer--;
+//				}
+//			}
+//			if(results.size()==2){
+//				if(zoneTeam.get(pointer).getDistrict().equals(results.get(0).getDistrict())||
+//						zoneTeam.get(pointer).getDistrict().equals(results.get(1).getDistrict()))
+//					break;
+//				else{
+//					results.add(zoneTeam.get(pointer));
+//					zoneTeam.remove(pointer);
+//					pointer--;
+//				}
+//			}	
+//		}
+
+		ArrayList<TeamPO> returnResult = new ArrayList<>();
+		for(TeamPO oneTeam : results)
+			returnResult.add(oneTeam);
+		
+		System.out.println(returnResult.size());
+		return returnResult;
 	}
 
 	@Override

@@ -100,10 +100,6 @@ public class MatchController implements MatchDataService{
 							 thePlayer.setTeam(newMatch.getSecondTeam(),newMatch.getSeason());
 						 }
 						 TeamPO theTeam = TeamListPO.findTeamByShortName(thePlayer.getTeam(newMatch.getSeason())) ;
-						 if(theTeam == null){
-							 System.out.println(thePlayer.getTeam(newMatch.getSeason()));
-							 continue;
-						 }
 						 theTeam.addPlayer(thePlayer,newMatch.getSeason());
 					}	
 				}

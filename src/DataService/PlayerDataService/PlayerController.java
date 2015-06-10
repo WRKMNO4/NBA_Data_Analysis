@@ -104,7 +104,6 @@ public class PlayerController implements PlayerDataService{
 			int tmp = length - 9;
 			for(; tmp > 0; tmp--){
 				name = name + " "+eachContent[length - 7 - tmp] ; 
-				System.out.println(name);
 			}
 			
 			eachPlayer.add(name);
