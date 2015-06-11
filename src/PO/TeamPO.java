@@ -2,6 +2,7 @@ package PO;
 
 import java.util.ArrayList;
 
+import BusinessLogic.SortHelper.TransferSortHelper;
 import Enum.PlayerData;
 import Enum.Season;
 import Enum.Zone;
@@ -78,9 +79,18 @@ public class TeamPO {
 		return seasonInfo.getPlayers();
 	}
 	
-	public ArrayList<PlayerPO> getTeamLeaders(Season season, PlayerData playerData){
+	public Object[][] getTeamLeaders(Season season, PlayerData playerData){
 		SeasonInfoForTeam seasonInfo = getSeasonInfo(season);
-		return seasonInfo.getTeamLeaders(playerData);
+		ArrayList<PlayerPO> players = seasonInfo.getTeamLeaders(playerData);
+		Object[][] results = new Object[2][players.size()];
+		results[0] = players.toArray();
+		
+		for(int i = 0 ; i < players.size() ; i++){
+			PlayerPO thePlayer = players.get(i);
+			results[1][i] = TransferSortHelper.PlayerDataTypeToAvgData(playerData, thePlayer, season);
+		}
+		
+		return results;
 	}
 	
 	public String getFullName() {

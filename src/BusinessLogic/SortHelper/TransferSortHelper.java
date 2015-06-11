@@ -434,4 +434,28 @@ public class TransferSortHelper {
 		}
 		return 0;
 	}
+
+	public static double PlayerDataTypeToAvgData(PlayerData dataType, PlayerPO onePlayer,Season season){
+		SeasonInfoForPlayer seasonInfo = onePlayer.getSeasonInfo(season);
+		PlayerDataPO avgData = seasonInfo.getAveragePlayerData();
+		
+		switch(dataType){
+		case score:
+			return avgData.getScore();
+		case numberOfRebound:
+			return avgData.getNumberOfRebound();
+		case numberOfAssist:
+			return avgData.getNumberOfAssist();
+		case numberOfSteal:
+			return avgData.getNumberOfSteal();
+		case numberOfBlock:
+			return avgData.getNumberOfBlock();
+		case percentageOfShooting:
+			return avgData.getPercentageOfShooting();
+		case percentageOf3_Point:
+			return avgData.getPercentageOf3_Point();
+			
+		}
+		return 0;
+	}
 }

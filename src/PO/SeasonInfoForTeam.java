@@ -70,7 +70,7 @@ public class SeasonInfoForTeam {
 	}
 	
 	public ArrayList<PlayerPO> getTeamLeaders(PlayerData playerData){
-		Collections.sort(players, new PlayerSortHelper("total", playerData, season));
+		Collections.sort(players, new PlayerSortHelper("avg", playerData, season));
 		return new ArrayList<PlayerPO>(players);
 	}
 	
