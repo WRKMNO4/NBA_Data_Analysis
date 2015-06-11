@@ -16,7 +16,7 @@ public class Controller {
 			long begin = System.currentTimeMillis() ;
 			
 			Controller c = new Controller() ;
-			c.init();
+			c.initDataToPO();
 			
 			System.out.println(TeamListPO.allTeams.size());
 			System.out.println(PlayerListPO.allPlayers.size());
@@ -27,7 +27,10 @@ public class Controller {
 			System.out.println("运行时间："+(end-begin));
 	}
 
-	public void init(){
+	/**
+	 * 将数据从数据库转为PO
+	 */
+	public void initDataToPO(){
 		seasons = new SeasonListPO() ;
 		ptp = new PlayerDataToPO() ;
 		ptp.init();
@@ -42,4 +45,28 @@ public class Controller {
 		mtp.read();
 	}
 
+	
+	/**
+	 *  将源数据插入数据库
+	 * @param fileAddress 数据源地址 子目录下含players,teams,matches数据
+	 */
+	public void insertIntoDatabase(String fileAddress){
+		
+		long begin = System.currentTimeMillis() ;
+		
+		MatchDataController mc = new MatchDataController() ;
+		mc.init();
+		mc.read(fileAddress);
+		
+		PlayerDataController pc = new PlayerDataController() ;
+		pc.init();
+		pc.read(fileAddress);
+		
+		TeamDataController tc = new TeamDataController() ;
+		tc.init();
+		tc.read(fileAddress);
+		
+		long end = System.currentTimeMillis() ;
+		System.out.println("运行时间："+(end-begin));
+	}
 }
