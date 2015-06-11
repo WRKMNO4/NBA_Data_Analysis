@@ -1,6 +1,7 @@
 package com.kmno4.presentation2;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,12 +12,15 @@ import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DatasetUtilities;
 
 import com.kmno4.common.Config;
 import com.kmno4.presentation.PlayerDetailPanel;
 import com.kmno4.presentation.table.TableGroup;
 
+import Enum.PlayerData;
 import PO.PlayerPO;
 import PO.TeamPO;
 /**
@@ -36,9 +40,9 @@ public class TeamPlayerAnalysisPanel extends JPanel {
 	    COMBOBOX_HEIGHT = 30,
 	    COMBOBOX_WIDHT = 150,
 	    MAIN_PLAYER_PANEL_WIDTH = 550,
-	    MAIN_PLAYER_PANEL_HEIGHT = 330,
+	    MAIN_PLAYER_PANEL_HEIGHT = 320,
 	    OTHER_PLAYER_PANEL_WIDTH = Config.UI_WIDTH - 3 * PADDING - MAIN_PLAYER_PANEL_WIDTH,
-	    OTHER_PLAYER_PANEL_HEIGHT = MAIN_PLAYER_PANEL_HEIGHT + COMBOBOX_HEIGHT,
+	    OTHER_PLAYER_PANEL_HEIGHT = MAIN_PLAYER_PANEL_HEIGHT + COMBOBOX_HEIGHT + PADDING,
 	    CHART_WIDTH = Config.UI_WIDTH - 2 * PADDING,
 	    CHART_HEIGHT = TeamDataAnalysisPanel.PANEL_HEIGHT - 2 * PADDING - OTHER_PLAYER_PANEL_HEIGHT;
 	    
@@ -49,6 +53,7 @@ public class TeamPlayerAnalysisPanel extends JPanel {
 	private JFreeChart chart;
 	private ChartPanel chartPanel;
 	
+	private Object[][] data; 
 	public TeamPlayerAnalysisPanel(TeamPO teamPO, TeamDataAnalysisFrame f) {
 		this.teamPO = teamPO;
 		this.teamDataAnalysisFrame = f;
@@ -60,30 +65,49 @@ public class TeamPlayerAnalysisPanel extends JPanel {
 				Config.UI_WIDTH - 2 * TeamDataAnalysisPanel.PADDING,
 				TeamDataAnalysisPanel.PANEL_HEIGHT);
 		
-		conditions = new JComboBox<String>();
-		conditions.setBounds(PADDING, 0, COMBOBOX_WIDHT, COMBOBOX_HEIGHT);
+		conditions = new JComboBox<String>(Config.TEAM_LEADERS);
+		conditions.setBounds(0, 0, COMBOBOX_WIDHT, COMBOBOX_HEIGHT);
+		conditions.setFont(new Font("default", 0, 15)); 
 		conditions.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setPanel();
-				createChart();
+				act();
 			}
 		});
 		add(conditions);
+		act();
 		
-		setPanel();
-		createChart();
-		
-		//teamPO.getTeamLeaders(Season season, PlayerData playerData);
 	}
 	
+	private void act() {
+		PlayerData p;
+		switch(conditions.getSelectedIndex()) {
+		case 0 : p = PlayerData.score; break;
+		case 1 : p = PlayerData.numberOfRebound; break;
+		case 2 : p = PlayerData.numberOfAssist; break;
+		case 3 : p = PlayerData.numberOfSteal; break;
+		case 4 : p = PlayerData.numberOfBlock; break;
+		case 5 : p = PlayerData.percentageOfShooting; break;
+		case 6 : p = PlayerData.percentageOf3_Point; break;
+		default : p = PlayerData.score;
+		}
+		data = teamPO.getTeamLeaders(Config.LASTEST_SEASON, p);
+		setPanel();
+		createChart();
+	}
 	
 	/**
 	 * 初始化以及combobox的响应事件
 	 */
 	private void setPanel() {
-		if(mainPlayerPanel != null) remove(mainPlayerPanel);
-		if(otherPlayerPanel != null) remove(otherPlayerPanel);
+		if(mainPlayerPanel != null) {
+			mainPlayerPanel.setVisible(false);
+			remove(mainPlayerPanel);
+		}
+		if(otherPlayerPanel != null) {
+			otherPlayerPanel.setVisible(false);
+			remove(otherPlayerPanel);
+		}
 		//TODO 获取球员列表等信息
 		mainPlayerPanel = new MainPlayerPanel();
 		add(mainPlayerPanel);
@@ -94,9 +118,18 @@ public class TeamPlayerAnalysisPanel extends JPanel {
 	 * 初始化以及响应combobox改变图表
 	 */
 	private void createChart() {
-		if(chartPanel != null) remove(chartPanel);
+		if(chartPanel != null) {
+			chartPanel.setVisible(false);
+			remove(chartPanel);
+		}
+		double[][] d = new double[1][data[0].length];
+		String[] n = new String[data[0].length];
+		for(int i = 0; i < n.length; i ++) {
+			d[0][i] = (double)data[1][i];
+			n[i] = ((PlayerPO)data[0][i]).getName().substring(0, 3);
+		}
 		
-		DefaultCategoryDataset data = new DefaultCategoryDataset();
+		CategoryDataset data = DatasetUtilities.createCategoryDataset(new String[]{""}, n, d);
 		chart = ChartFactory.createBarChart("", "", "", data);
 		chartPanel = new ChartPanel(chart);
 		chartPanel.setBounds(0, OTHER_PLAYER_PANEL_HEIGHT + PADDING, getWidth(), CHART_HEIGHT);
@@ -114,7 +147,7 @@ public class TeamPlayerAnalysisPanel extends JPanel {
 		JLabel pic;
 		JLabel info1, info2, info3, info4, info5;
 		public MainPlayerPanel() {
-			setBounds(0, COMBOBOX_HEIGHT, MAIN_PLAYER_PANEL_WIDTH, MAIN_PLAYER_PANEL_HEIGHT);
+			setBounds(0, COMBOBOX_HEIGHT + PADDING, MAIN_PLAYER_PANEL_WIDTH, MAIN_PLAYER_PANEL_HEIGHT);
 			setLayout(null);
 			setBackground(new Color(0, 255, 255, 100));
 			//TODO 获取到的第一名player
