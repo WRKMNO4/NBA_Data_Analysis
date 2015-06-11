@@ -18,7 +18,7 @@ import PO.PlayerPO;
  * 球员数据分析界面
  * 内含球员综合能力分析界面{@link PlayerPerformAnalysisPanel}，
  * 球员对比分析界面{@link PlayerComparisonAnalysisPanel}，TODO
- * 球员演变分析界面{@link PlayerEvolutionAnalysisPanel} TODO
+ * 球员演变分析界面{@link PlayerEvolutionAnalysisPanel}
  * 三个模块
  * @author hutao
  *

@@ -73,6 +73,8 @@ public class TeamPlayerAnalysisPanel extends JPanel {
 		
 		setPanel();
 		createChart();
+		
+		//teamPO.getTeamLeaders(Season season, PlayerData playerData);
 	}
 	
 	

@@ -17,7 +17,7 @@ import PO.TeamPO;
 /**
  * 球队单个分析界面
  * 内含球员分析{@link TeamPlayerAnalysisPanel}，TODO
- * 球队排名演变分析{@link TeamEvolutionAnalysisPanel} TODO
+ * 球队排名演变分析{@link TeamEvolutionAnalysisPanel} 
  * 两个模块
  * @author hutao
  *

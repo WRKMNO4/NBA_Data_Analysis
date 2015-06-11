@@ -151,6 +151,7 @@ public interface BLService {
 	 * 
 	 * @param 球队简写
 	 * @return 该球队近三年排名
+	 * mei yong le
 	 */
 	public ArrayList<Integer> getRankingOfOneTeamIn3Years(String teamShortName);
 	/**
@@ -189,7 +190,7 @@ public interface BLService {
 	public boolean ifBetterThanAnother(PlayerPO player, PlayerPO anotherPlayer, PlayerData dataType, Season season);
 	/**
 	 * 
-	 * @param 球队的全名！
+	 * @param fullName 球队的全名！
 	 * @return 球队的排名数组(数组大小是14，a[0]是2002年的排名......a[13]是2015年的排名)
 	 */
 	public int[] getgetRanksOfTeamByTeamFullName(String fullName);

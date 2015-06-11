@@ -31,7 +31,7 @@ import PO.TeamPO;
 
 @SuppressWarnings("serial")
 public class PlayerDetailPanel extends JPanel {
-	private PlayerDetailPanel playerDetailPanel;
+//	private PlayerDetailPanel playerDetailPanel;
 	private PlayerDetailFrame playerDetailFrame;
 	private DataPanel dataPanel;
 	private TableGroup seasonAvgData, seasonSumData, recentData;
@@ -52,7 +52,7 @@ public class PlayerDetailPanel extends JPanel {
 	public PlayerDetailPanel(PlayerPO p, PlayerDetailFrame f) {
 		playerPO = p;
 		playerDetailFrame = f;
-		playerDetailPanel = this;
+//		playerDetailPanel = this;
 		setBounds(0, 0, playerDetailFrame.getWidth(), playerDetailFrame.getHeight());
 		setLayout(null);
 		setOpaque(false);
@@ -227,7 +227,7 @@ public class PlayerDetailPanel extends JPanel {
 			teamLabel = new JLabel();
 			TeamPO tp = TeamListPO.findTeamByShortName(playerPO.getTeam(Config.LASTEST_SEASON));
 			teamLabel.setBounds(450, 80, 80, 80);
-			fillLabel(tp.getTeamLogoURL(), teamLabel, teamLabel.getWidth(), teamLabel.getHeight());
+			if(tp.getTeamLogoURL() != null) fillLabel(tp.getTeamLogoURL(), teamLabel, teamLabel.getWidth(), teamLabel.getHeight());
 			add(teamLabel);
 			
 			ballNum = new JLabel(p.getNumber(), JLabel.RIGHT);
