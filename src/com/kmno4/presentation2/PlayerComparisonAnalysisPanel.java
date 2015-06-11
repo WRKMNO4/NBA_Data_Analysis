@@ -1,5 +1,6 @@
 package com.kmno4.presentation2;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.kmno4.common.Config;
@@ -17,7 +18,9 @@ public class PlayerComparisonAnalysisPanel extends JPanel {
 	private PlayerDataAnalysisFrame playerDataAnalysisFrame;
 	private PlayerPO playerPO;
 	public static final int 
-    	PADDING = PlayerDataAnalysisPanel.PADDING;
+    	PADDING = PlayerDataAnalysisPanel.PADDING,
+        PLAYER_PANEL_WIDTH = 400,
+        PLAYER_PANEL_HEIGHT = 300;
 	private PlayerPanel player1, player2;
 	private InfoPanel info;
 	private InputPanel input;
@@ -33,15 +36,11 @@ public class PlayerComparisonAnalysisPanel extends JPanel {
 				Config.UI_WIDTH - 2 * PADDING,
 				PlayerDataAnalysisPanel.PANEL_HEIGHT);
 		setLayout(null);
+
 		
-		player1 = new PlayerPanel(playerPO);
-		add(player1);
-		player2 = new PlayerPanel(null);
-		add(player2);
-		info = new InfoPanel();
-		add(info);
 		input = new InputPanel();
 		add(input);
+	    comp(null);
 		
 	}
 	/**
@@ -50,11 +49,19 @@ public class PlayerComparisonAnalysisPanel extends JPanel {
 	 *
 	 */
 	class PlayerPanel extends JPanel {
+		JLabel player, name, value;
 		public PlayerPanel(PlayerPO p) {
-//			if(p == null) setBounds(x, y, width, height);
-//			else setBounds(x, y, width, height);
+			setBounds(0, 0, PLAYER_PANEL_WIDTH, PLAYER_PANEL_HEIGHT);
 			
 		}
+		public PlayerPanel(String name) {
+			setBounds(playerComparisonAnalysisPanel.getWidth() - PLAYER_PANEL_WIDTH,
+	                playerComparisonAnalysisPanel.getHeight() - PLAYER_PANEL_HEIGHT,
+	                PLAYER_PANEL_WIDTH, PLAYER_PANEL_HEIGHT);
+			
+			//images/nba_logo.png
+		}
+		
 	}
 	/**
 	 * 显示比对后信息的panel
@@ -62,7 +69,10 @@ public class PlayerComparisonAnalysisPanel extends JPanel {
 	 *
 	 */
 	class InfoPanel extends JPanel {
-		public InfoPanel() {}
+        JLabel infoLabel1, infoLabel2;
+		public InfoPanel(String info1, String info2) {
+            
+        }
 		
 	}
 	/**
@@ -76,8 +86,23 @@ public class PlayerComparisonAnalysisPanel extends JPanel {
 	/**
 	 * 输入完毕后进行查询，并输出结果
 	 */
-	private void comp() {
-		
+	private void comp(String name) {
+		if(player1 == null) {
+			player1 = new PlayerPanel(playerPO);
+			add(player1);
+		}
+		if(player2 != null) {
+			player2.setVisible(false);
+			remove(player2);
+		}
+		player2 = new PlayerPanel(name);
+		add(player2);
+		if(info != null) {
+			info.setVisible(false);
+			remove(info);
+		}
+		info = new InfoPanel(null, null);
+		add(info);
 	}
 
 }
