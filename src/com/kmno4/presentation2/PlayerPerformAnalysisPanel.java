@@ -90,7 +90,7 @@ public class PlayerPerformAnalysisPanel extends JPanel {
 		public PlayerFieldPanel(String[][] info) {
 			setLayout(null);
 			setBounds(0, 0, playerPerformAnalysisPanel.getWidth(), PANEL_HEIGHT);
-			setOpaque(false);
+			setBackground(new Color(0, 255, 255, 40));
 			String[] pInfo = null;
 			String pName = playerPO.getName();
 			for(int i = 0; i < info.length; i ++) {

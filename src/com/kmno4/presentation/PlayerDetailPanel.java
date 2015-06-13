@@ -239,7 +239,7 @@ public class PlayerDetailPanel extends JPanel {
 			name.setBounds(450, 40, 200, 50);
 			add(name);
 			
-			int delta = 30, width = 200, x = 650;
+			int delta = 30, width = 300, x = 650;
 			Font font = new Font("default", 2, 20);
 			info1 = new JLabel("身高/体重 : " + p.getHeight() + "(英尺-英寸)/" + p.getWeight() + "(磅)");
 			info1.setFont(font);

@@ -2,7 +2,6 @@ package com.kmno4.presentation2;
 
 import javax.swing.JFrame;
 
-import com.kmno4.common.Config;
 import com.kmno4.presentation.MainFrame;
 import com.kmno4.presentation.MoveOfFrame;
 import com.kmno4.presentation.RightClickClose;

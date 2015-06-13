@@ -5,7 +5,6 @@ import java.awt.Point;
 import javax.swing.JFrame;
 
 import com.kmno4.common.Config;
-import com.kmno4.presentation.MainFrame;
 import com.kmno4.presentation.MoveOfFrame;
 import com.kmno4.presentation.RightClickClose;
 import com.kmno4.presentation.button.ExitLabel;
