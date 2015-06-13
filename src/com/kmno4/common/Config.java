@@ -87,6 +87,7 @@ public class Config {
 	public static final String[] TEAM_LATEST10MATCHES_ANALYSIS = {"球队","总胜场","总负场","连胜场数","连负场数","最近10场胜场","最近10主场胜场","最近10客场胜场","场均得分","场均失分"};
 	
 	public static final String[] TEAM_LEADERS = {"得分","篮板","助攻","抢断","盖帽","投篮命中率","三分命中率"};
+	public static final String[] PLAYER_COMPARE = {"得分", "篮板", "抢断", "助攻"};
 	public static final int 
 	    MATCH_DETAIL_WIDTH = 800,
 	    MATCH_DETAIL_HEIGHT = 600;
