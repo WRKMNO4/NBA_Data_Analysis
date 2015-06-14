@@ -2,15 +2,11 @@ package com.kmno4.presentation2;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,8 +18,11 @@ import com.kmno4.presentation.PlayerDetailPanel;
 import com.kmno4.presentation.button.LMouseAdapter;
 
 import Enum.PlayerData;
+import PO.PlayerDataPO;
 import PO.PlayerListPO;
 import PO.PlayerPO;
+import PO.TeamListPO;
+import PO.TeamPO;
 /**
  * 球员对比分析界面
  * 包含了一大堆功能
@@ -82,7 +81,7 @@ public class PlayerComparisonAnalysisPanel extends JPanel {
 	 *
 	 */
 	class PlayerPanel extends JPanel {
-		public JLabel player, name, value, cond;
+		public JLabel player, name, value, cond1, cond2, team;
 		public PlayerPanel() {
 			ini(true, playerPO);
 		}
@@ -109,6 +108,7 @@ public class PlayerComparisonAnalysisPanel extends JPanel {
 					info = new InfoPanel(
 						b1 ? "推测该球员本赛季" + s + "成绩较上赛季进步" : "推测该球员本赛季" + s + "成绩较上赛季退步",
 						b2 ? "推测该球员本赛季" + s + "成绩比上赛季稳定" : "推测该球员本赛季" + s + "成绩没上赛季稳定");
+				    info.setFontSize(18);
 				}
 				else {
 					boolean b1 = MainFrame.mainFrame.bl.ifBetterThanAnother(playerPO, anotherPlayerPO, pd, Config.LASTEST_SEASON);
@@ -116,6 +116,7 @@ public class PlayerComparisonAnalysisPanel extends JPanel {
 					info = new InfoPanel(
 						"推测" + playerPO.getName() + "本赛季" + s + "发挥" + (b1 ? "比" : "不如") + anotherPlayerPO.getName() + "优秀",
 						"推测" + playerPO.getName() + "本赛季" + s + "发挥" + (b2 ? "比" : "不如") + anotherPlayerPO.getName() + "稳定");
+					info.setFontSize(16);
 				}
 			}
 			else info = new InfoPanel(null, null);
@@ -140,30 +141,61 @@ public class PlayerComparisonAnalysisPanel extends JPanel {
 				player.getY() + (isLeft ? (PADDING + PLAYER_PIC_HEIGHT) : (- PADDING - NAME_HEIGHT)),
 				400, NAME_HEIGHT);
 			PUtil.setFontandColor(name, 30, Color.white);
-			cond = new JLabel("本赛季场均" + input.conditions.getSelectedItem());
+
+			team = new JLabel();
+			team.setBounds(
+				isLeft ? PLAYER_PANEL_WIDTH - PADDING - TEAM_WIDTH : PADDING,
+				isLeft ? PADDING : PLAYER_PANEL_HEIGHT - PADDING - TEAM_HEIGHT,
+				TEAM_WIDTH, TEAM_HEIGHT);
+
+			TeamPO t;
+			try {
+				t = TeamListPO.findTeamByShortName(p.getTeam(Config.LASTEST_SEASON));
+			}catch(Exception e) { t = null; }
 			
-//			ArrayList<Double> dl;
-//			switch(input.conditions.getSelectedIndex()) {
-//			case 0 : dl = MainFrame.mainFrame.bl.ge break;
-//			case 1 : pd = PlayerData.numberOfRebound; break;
-//			case 2 : pd = PlayerData.numberOfSteal; break;
-//			case 3 : pd = PlayerData.numberOfAssist; break;
-//			default : pd = PlayerData.score; 
-//			}
-			String s = (String)input.conditions.getSelectedItem();
-			value = new JLabel();
+			if(t != null) PlayerDetailPanel.fillLabel(t.getTeamLogoURL(), team, TEAM_WIDTH, TEAM_HEIGHT);
+			
+			try {
+				PlayerDataPO pd = p.getSeasonInfo(Config.LASTEST_SEASON).getAveragePlayerData();
+				double d;
+				switch(input.conditions.getSelectedIndex()) {
+				case 0 : d = pd.getScore(); if(Double.isNaN(d)) d = 0; break;
+				case 1 : d = pd.getNumberOfRebound(); if(Double.isNaN(d)) d = 0; break;
+				case 2 : d = pd.getNumberOfSteal(); if(Double.isNaN(d)) d = 0; break;
+				case 3 : d = pd.getNumberOfAssist(); if(Double.isNaN(d)) d = 0; break;
+				default : d = 0; 
+				}
+				value = new JLabel(String.format("%.2f", d));
+				value.setBounds(team.getX(), PLAYER_PANEL_HEIGHT / 2 + VALUE_HEIGHT, TEAM_WIDTH, VALUE_HEIGHT);
+				PUtil.setFontandColor(value, 30, Color.white);
+			}catch(Exception e) {
+				value = new JLabel();
+			}
+			
+			cond1 = new JLabel("本赛季");
+			cond1.setBounds(team.getX(), PLAYER_PANEL_HEIGHT / 2 - VALUE_HEIGHT, TEAM_WIDTH, VALUE_HEIGHT);
+			PUtil.setFontandColor(cond1, 28, Color.white);
+			
+			cond2 = new JLabel("场均" + input.conditions.getSelectedItem());
+			cond2.setBounds(team.getX(), PLAYER_PANEL_HEIGHT / 2, TEAM_WIDTH, VALUE_HEIGHT);
+			PUtil.setFontandColor(cond2, 28, Color.white);
 			
 			add(player);
 			add(name);
-			add(cond);
+			add(cond1);
+			add(cond2);
 			add(value);
+			add(team);
 		}
 		
 	}
 	private static final int 
 	    PLAYER_PIC_WIDTH = 250,
 		PLAYER_PIC_HEIGHT = PLAYER_PIC_WIDTH * 700 / 440,
-		NAME_HEIGHT = 50;
+		NAME_HEIGHT = 50,
+		TEAM_WIDTH = 150,
+		TEAM_HEIGHT = TEAM_WIDTH,
+		VALUE_HEIGHT = 40;
 	
 	/**
 	 * 显示比对后信息的panel
@@ -186,6 +218,11 @@ public class PlayerComparisonAnalysisPanel extends JPanel {
 			
 			playerComparisonAnalysisPanel.add(this);
         }
+		public void setFontSize(int size) {
+			Font f = new Font("default", 0, size);
+			infoLabel1.setFont(f);
+			infoLabel2.setFont(f);
+		}
 		
 	}
 	/**
@@ -283,7 +320,17 @@ public class PlayerComparisonAnalysisPanel extends JPanel {
 			player1 = new PlayerPanel();
 			add(player1);
 		}
-		player1.cond.setText("场均" + input.conditions.getSelectedItem());
+		player1.cond2.setText("场均" + input.conditions.getSelectedItem());
+		PlayerDataPO pd = playerPO.getSeasonInfo(Config.LASTEST_SEASON).getAveragePlayerData();
+		double d;
+		switch(input.conditions.getSelectedIndex()) {
+		case 0 : d = pd.getScore(); if(Double.isNaN(d)) d = 0; break;
+		case 1 : d = pd.getNumberOfRebound(); if(Double.isNaN(d)) d = 0; break;
+		case 2 : d = pd.getNumberOfSteal(); if(Double.isNaN(d)) d = 0; break;
+		case 3 : d = pd.getNumberOfAssist(); if(Double.isNaN(d)) d = 0; break;
+		default : d = 0; 
+		}
+		player1.value.setText(String.format("%.2f", d));
 		
 		if(player2 != null) {
 			player2.setVisible(false);
