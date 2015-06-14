@@ -18,8 +18,10 @@ import javax.swing.JTextField;
 
 import com.kmno4.common.Config;
 import com.kmno4.presentation.MainFrame;
+import com.kmno4.presentation.PlayerDetailPanel;
 import com.kmno4.presentation.button.LMouseAdapter;
 
+import Enum.PlayerData;
 import PO.PlayerListPO;
 import PO.PlayerPO;
 /**
@@ -80,28 +82,89 @@ public class PlayerComparisonAnalysisPanel extends JPanel {
 	 *
 	 */
 	class PlayerPanel extends JPanel {
-		JLabel player, name, value;
+		public JLabel player, name, value, cond;
 		public PlayerPanel() {
-			setBounds(0, 0, PLAYER_PANEL_WIDTH, PLAYER_PANEL_HEIGHT);
-			setLayout(null);
-			setBackground(new Color(0, 255, 255, 80));
+			ini(true, playerPO);
 		}
 		
 		public PlayerPanel(PlayerPO p) {
-			setBounds(playerComparisonAnalysisPanel.getWidth() - PLAYER_PANEL_WIDTH,
-	                playerComparisonAnalysisPanel.getHeight() - PLAYER_PANEL_HEIGHT,
-	                PLAYER_PANEL_WIDTH, PLAYER_PANEL_HEIGHT);
-			setLayout(null);
-			setBackground(new Color(0, 255, 255, 80));
-			
+			ini(false, p);
 			if(info != null) {
 				info.setVisible(false);
 				playerComparisonAnalysisPanel.remove(info);
 			}
-			info = new InfoPanel(null, null);
+			if(anotherPlayerPO != null) {
+				PlayerData pd;
+				switch(input.conditions.getSelectedIndex()) {
+				case 0 : pd = PlayerData.score; break;
+				case 1 : pd = PlayerData.numberOfRebound; break;
+				case 2 : pd = PlayerData.numberOfSteal; break;
+				case 3 : pd = PlayerData.numberOfAssist; break;
+				default : pd = PlayerData.score; 
+				}
+				String s = (String)input.conditions.getSelectedItem();
+				if(playerPO.getName().equals(anotherPlayerPO.getName())) {
+					boolean b1 = MainFrame.mainFrame.bl.ifBetterThanSelf(playerPO, pd, Config.LASTEST_SEASON);
+					boolean b2 = MainFrame.mainFrame.bl.ifStableThanSelf(playerPO, pd, Config.LASTEST_SEASON);
+					info = new InfoPanel(
+						b1 ? "推测该球员本赛季" + s + "成绩较上赛季进步" : "推测该球员本赛季" + s + "成绩较上赛季退步",
+						b2 ? "推测该球员本赛季" + s + "成绩比上赛季稳定" : "推测该球员本赛季" + s + "成绩没上赛季稳定");
+				}
+				else {
+					boolean b1 = MainFrame.mainFrame.bl.ifBetterThanAnother(playerPO, anotherPlayerPO, pd, Config.LASTEST_SEASON);
+					boolean b2 = MainFrame.mainFrame.bl.ifStableThanAnother(playerPO, anotherPlayerPO, pd, Config.LASTEST_SEASON);
+					info = new InfoPanel(
+						"推测" + playerPO.getName() + "本赛季" + s + "发挥" + (b1 ? "比" : "不如") + anotherPlayerPO.getName() + "优秀",
+						"推测" + playerPO.getName() + "本赛季" + s + "发挥" + (b2 ? "比" : "不如") + anotherPlayerPO.getName() + "稳定");
+				}
+			}
+			else info = new InfoPanel(null, null);
+		}
+		private void ini(boolean isLeft, PlayerPO p) {
+			if(isLeft) setBounds(0, 0, PLAYER_PANEL_WIDTH, PLAYER_PANEL_HEIGHT);
+			else setBounds(playerComparisonAnalysisPanel.getWidth() - PLAYER_PANEL_WIDTH,
+		                playerComparisonAnalysisPanel.getHeight() - PLAYER_PANEL_HEIGHT,
+		                PLAYER_PANEL_WIDTH, PLAYER_PANEL_HEIGHT);
+			setLayout(null);
+			setBackground(new Color(0, 0, 0, 80));
+			player = new JLabel();
+			player.setBounds(
+				isLeft ? PADDING : PLAYER_PANEL_WIDTH - PADDING - PLAYER_PIC_WIDTH,
+				isLeft ? PADDING : PLAYER_PANEL_HEIGHT - PADDING - PLAYER_PIC_HEIGHT,
+				PLAYER_PIC_WIDTH, PLAYER_PIC_HEIGHT);
+			PlayerDetailPanel.fillLabel(p == null ? "images/nba_logo.png" : p.getActionURL(),
+				    player, PLAYER_PIC_WIDTH, PLAYER_PIC_HEIGHT);
+			name = new JLabel(p == null ? "Unknown" : p.getName());
+			name.setBounds(
+				player.getX(),
+				player.getY() + (isLeft ? (PADDING + PLAYER_PIC_HEIGHT) : (- PADDING - NAME_HEIGHT)),
+				400, NAME_HEIGHT);
+			PUtil.setFontandColor(name, 30, Color.white);
+			cond = new JLabel("本赛季场均" + input.conditions.getSelectedItem());
+			
+//			ArrayList<Double> dl;
+//			switch(input.conditions.getSelectedIndex()) {
+//			case 0 : dl = MainFrame.mainFrame.bl.ge break;
+//			case 1 : pd = PlayerData.numberOfRebound; break;
+//			case 2 : pd = PlayerData.numberOfSteal; break;
+//			case 3 : pd = PlayerData.numberOfAssist; break;
+//			default : pd = PlayerData.score; 
+//			}
+			String s = (String)input.conditions.getSelectedItem();
+			value = new JLabel();
+			
+			add(player);
+			add(name);
+			add(cond);
+			add(value);
 		}
 		
 	}
+	private static final int 
+	    PLAYER_PIC_WIDTH = 250,
+		PLAYER_PIC_HEIGHT = PLAYER_PIC_WIDTH * 700 / 440,
+		NAME_HEIGHT = 50;
+	
 	/**
 	 * 显示比对后信息的panel
 	 * @author hutao
@@ -112,7 +175,16 @@ public class PlayerComparisonAnalysisPanel extends JPanel {
 		public InfoPanel(String info1, String info2) {
 			setLayout(null);
 			setBounds(0, PLAYER_PANEL_HEIGHT + PADDING, OTHER_PANEL_WIDHT, OTHER_PANEL_HEIGHT);
-			setBackground(Color.black);
+			setBackground(new Color(255, 255, 255, 80));
+			infoLabel1 = new JLabel(info1);
+			infoLabel1.setBounds(0, 0, getWidth(), OTHER_PANEL_HEIGHT / 2);
+			infoLabel2 = new JLabel(info2);
+			infoLabel2.setBounds(0, OTHER_PANEL_HEIGHT / 3, getWidth(), OTHER_PANEL_HEIGHT / 2);
+			
+			add(infoLabel1);
+			add(infoLabel2);
+			
+			playerComparisonAnalysisPanel.add(this);
         }
 		
 	}
@@ -131,17 +203,17 @@ public class PlayerComparisonAnalysisPanel extends JPanel {
 			setBounds(playerComparisonAnalysisPanel.getWidth() - PLAYER_PANEL_WIDTH,
 					0,
 					OTHER_PANEL_WIDHT, OTHER_PANEL_HEIGHT);
-			setBackground(Color.white);
+			setBackground(new Color(255, 255, 255, 80));
 			buffer = new String[]{"", "", "", "", ""};
 			
 			conditions = new JComboBox<String>(Config.PLAYER_COMPARE);
 			conditions.setFont(new Font("default", 0, 17));
-			conditions.setBounds(PADDING, 0, 150, 30);
+			conditions.setBounds(PADDING, 20, 150, 30);
 			add(conditions);
 			
 			name = new JTextField();
 			name.setFont(new Font("default", 0, 18));
-			name.setBounds(PADDING, 50, 300, 30);
+			name.setBounds(PADDING, 65, 300, 30);
 			name.addKeyListener(new KeyAdapter() {
 				public void keyTyped(KeyEvent e) {
 					if(e.getKeyChar() == 8 && name.getText().length() > 0) bufferChange(name.getText().substring(0, name.getText().length() - 1));
@@ -211,6 +283,8 @@ public class PlayerComparisonAnalysisPanel extends JPanel {
 			player1 = new PlayerPanel();
 			add(player1);
 		}
+		player1.cond.setText("场均" + input.conditions.getSelectedItem());
+		
 		if(player2 != null) {
 			player2.setVisible(false);
 			remove(player2);

@@ -1,11 +1,16 @@
 package main;
 
+import java.io.File;
+
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.plaf.FontUIResource;
+
 import com.alee.laf.WebLookAndFeel;
 import com.kmno4.common.Config;
 import com.kmno4.presentation.MainFrame;
 import com.kmno4.presentation.SplashPanel;
+import com.kmno4.presentation2.PUtil;
 
 public class FucMain {
 
@@ -14,6 +19,7 @@ public class FucMain {
 		 WebLookAndFeel.globalControlFont  = new FontUIResource("黑体",0, 15);
 		 WebLookAndFeel.install();
 		
+		 PUtil.setCache();
 		// look$feel——————second choice
 		// JFrame.setDefaultLookAndFeelDecorated(true);
 		// JDialog.setDefaultLookAndFeelDecorated(true);
