@@ -90,7 +90,7 @@ public class StatisticsController implements StatisticsBusinessLogic {
 		return season;
 	}
 	
-	public ArrayList<Double> addToArray(PlayerPO player, PlayerData dataType, Season season){
+	public static ArrayList<Double> addToArray(PlayerPO player, PlayerData dataType, Season season){
 		ArrayList<Double> datas = new ArrayList<>();
 		ArrayList<PlayerDataOfOneMatchPO> records = player.getSeasonInfo(season).getDatas();
 		

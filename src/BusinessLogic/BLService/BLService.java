@@ -194,4 +194,17 @@ public interface BLService {
 	 * @return 球队的排名数组(数组大小是14，a[0]是2002年的排名......a[13]是2015年的排名)
 	 */
 	public int[] getgetRanksOfTeamByTeamFullName(String fullName);
+	/**
+	 * 
+	 * @param 数据类型（得分、篮板、抢断、助攻） 
+	 * @return 球员某一数据的均值的参数估计
+	 */
+	public double getEstimatedAvgData(PlayerPO player, PlayerData dataType);
+	/**
+	 * 
+	 * @param 数据类型（得分、篮板、抢断、助攻）
+	 * @param 球员某一数据的方差的参数估计
+	 * @return
+	 */
+	public double getEstimatedVarData(PlayerPO player, PlayerData dataType);
 }

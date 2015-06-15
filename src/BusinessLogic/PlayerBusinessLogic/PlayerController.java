@@ -9,6 +9,7 @@ import com.kmno4.common.Config;
 import com.sun.org.apache.bcel.internal.generic.NEWARRAY;
 
 import BusinessLogic.SortHelper.PlayerSortHelper;
+import BusinessLogic.Statistics.StatisticsController;
 import DataService.PlayerDataService.PlayerDataService;
 import DataService.TeamDataService.TeamController;
 import Enum.PlayerData;
@@ -264,12 +265,31 @@ public class PlayerController implements PlayerBusinessLogic{
 		if(allMatches.size()<5){
 	        return allMatches ;
 		}
-		ArrayList<MatchPO> latest5Matches = new ArrayList<>(allMatches.subList(allMatches.size()-5, allMatches.size())) ;
+		ArrayList<MatchPO> latest5Matches = new ArrayList<>(allMatches.subList(allMatches.size()-5, 
+				allMatches.size())) ;
 		return latest5Matches ;
 	}
 	@Override
 	public ArrayList<ArrayList<String>> getPlayerHighInfo(String fileAddress) {
 		return playerController.getPlayerHighInfo(fileAddress);
+	}
+	@Override
+	public double getEstimatedAvgData(PlayerPO player, PlayerData dataType) {
+		ArrayList<Double> datas = StatisticsController.addToArray(player, dataType, Config.LASTEST_SEASON);
+		double sum = 0;
+		for(double oneData: datas)
+			sum += oneData ;
+		return sum / datas.size();
+	}
+	@Override
+	public double getEstimatedVarData(PlayerPO player, PlayerData dataType) {
+		ArrayList<Double> datas = StatisticsController.addToArray(player, dataType, Config.LASTEST_SEASON);
+		double sum = 0;
+		double avg = getEstimatedAvgData(player, dataType);
+		for(double oneData : datas)
+			sum = sum + (oneData - avg) * (oneData - avg);
+		
+		return sum / datas.size();
 	}
 
 }

@@ -327,10 +327,18 @@ public class BLServiceController implements  BLService{
 
 	@Override
 	public int[] getgetRanksOfTeamByTeamFullName(String fullName) {
-		
 		return statisticsController.getRanksOfTeamByTeamFullName(fullName);
 	}
 
+	@Override
+	public double getEstimatedAvgData(PlayerPO player, PlayerData dataType) {
+		return playerController.getEstimatedAvgData(player, dataType);
+	}
+
+	@Override
+	public double getEstimatedVarData(PlayerPO player, PlayerData dataType) {
+		return playerController.getEstimatedVarData(player, dataType);
+	}
 	
 
 	}
