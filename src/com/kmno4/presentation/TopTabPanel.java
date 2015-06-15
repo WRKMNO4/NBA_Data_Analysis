@@ -511,6 +511,8 @@ public class TopTabPanel extends JPanel implements MouseListener{
 						MainFrame.mainFrame.matchSelectionPanel.current_season,
 						tg.table.getValueAt(row, 0).toString(),
 						tg.table.getValueAt(row, 1) + "-" + tg.table.getValueAt(row, 4));
+				if(m==null)
+					System.out.println("null");
 				new MatchInfoDetailFrame(m);
 			}
 		});

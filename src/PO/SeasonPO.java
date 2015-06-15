@@ -71,12 +71,11 @@ public class SeasonPO {
 	
 	public void addMatch(MatchPO oneMatch){
 		matches.addMatch(oneMatch);
-		System.out.println(season.toString() + " "+ matches.getSizeOfMatches());
 	}
 	
 	public MatchPO findMatch(String date,String nameOfTeams){
 		for(MatchPO match: matches.getMatches()){
-			if(match.getDate().equals(date) && match.getName().contains(nameOfTeams)) 
+			if(match.getDate().equals(date) && match.getFirstTeam().equals(nameOfTeams.substring(0,3))) 
 				return match;
 		}
 		return null;

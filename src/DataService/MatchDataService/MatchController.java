@@ -26,6 +26,12 @@ public class MatchController implements MatchDataService{
 		File file = new File(fileName) ;
 		if(file.isDirectory()){
 			File[] allFiles = file.listFiles() ;
+			if(SeasonListPO.getSeasonPO(Season.season12_13).getMatches().size()
+					+SeasonListPO.getSeasonPO(Season.season12_13).getMatches().size()
+					+SeasonListPO.getSeasonPO(Season.season12_13).getMatches().size() 
+					== allFiles.length)
+				return;
+			
 			Arrays.sort(allFiles,new CompareByTime());
 			
 			for(int i = 0; i<allFiles.length;i++){
@@ -122,6 +128,8 @@ public class MatchController implements MatchDataService{
 				//更新球员的对手信息 
 				newMatch.updateOtherTeamDataForPlayers();
 				
+				if(newMatch == null)
+					System.out.println("null");
 				addMatch(newMatch.getSeason(),newMatch);
 			}
 		}
