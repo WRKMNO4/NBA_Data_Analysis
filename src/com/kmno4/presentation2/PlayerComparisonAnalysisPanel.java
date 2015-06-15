@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
@@ -14,7 +15,9 @@ import javax.swing.JTextField;
 
 import com.kmno4.common.Config;
 import com.kmno4.presentation.MainFrame;
+import com.kmno4.presentation.PlayerDetailFrame;
 import com.kmno4.presentation.PlayerDetailPanel;
+import com.kmno4.presentation.TeamDetailFrame;
 import com.kmno4.presentation.button.LMouseAdapter;
 
 import Enum.PlayerData;
@@ -116,7 +119,7 @@ public class PlayerComparisonAnalysisPanel extends JPanel {
 					info = new InfoPanel(
 						"推测" + playerPO.getName() + "本赛季" + s + "发挥" + (b1 ? "比" : "不如") + anotherPlayerPO.getName() + "优秀",
 						"推测" + playerPO.getName() + "本赛季" + s + "发挥" + (b2 ? "比" : "不如") + anotherPlayerPO.getName() + "稳定");
-					info.setFontSize(16);
+					info.setFontSize(15);
 				}
 			}
 			else info = new InfoPanel(null, null);
@@ -148,12 +151,27 @@ public class PlayerComparisonAnalysisPanel extends JPanel {
 				isLeft ? PADDING : PLAYER_PANEL_HEIGHT - PADDING - TEAM_HEIGHT,
 				TEAM_WIDTH, TEAM_HEIGHT);
 
-			TeamPO t;
+			TeamPO tp;
+			 
 			try {
-				t = TeamListPO.findTeamByShortName(p.getTeam(Config.LASTEST_SEASON));
-			}catch(Exception e) { t = null; }
-			
-			if(t != null) PlayerDetailPanel.fillLabel(t.getTeamLogoURL(), team, TEAM_WIDTH, TEAM_HEIGHT);
+				tp = TeamListPO.findTeamByShortName(p.getTeam(Config.LASTEST_SEASON));
+			}catch(Exception e) { tp = null; }
+			final TeamPO t = tp;
+			if(t != null) {
+				PlayerDetailPanel.fillLabel(t.getTeamLogoURL(), team, TEAM_WIDTH, TEAM_HEIGHT);
+				if(!isLeft) {
+					team.addMouseListener(new MouseAdapter() {
+						public void mouseClicked(MouseEvent e) {
+							new TeamDetailFrame(t, playerDataAnalysisFrame.getLocation());
+						}
+					});
+					player.addMouseListener(new MouseAdapter() {
+						public void mouseClicked(MouseEvent e) {
+							new PlayerDetailFrame(anotherPlayerPO, playerDataAnalysisFrame.getLocation());
+						}
+					});
+				}
+			}
 			
 			try {
 				PlayerDataPO pd = p.getSeasonInfo(Config.LASTEST_SEASON).getAveragePlayerData();

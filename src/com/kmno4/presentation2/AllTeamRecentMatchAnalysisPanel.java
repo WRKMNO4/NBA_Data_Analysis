@@ -82,19 +82,24 @@ public class AllTeamRecentMatchAnalysisPanel extends JPanel {
 	}
 	
 	private void addLinks() {
-		addLink(westTg);
-		addLink(eastTg);
-	}
-	private TableGroup tg;
-	private void addLink(TableGroup t) {
-		tg = t;
-		tg.table.addMouseListener(new MouseAdapter() {
+		westTg.table.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				int 
-				    row = tg.table.rowAtPoint(e.getPoint()),
-					col = tg.table.columnAtPoint(e.getPoint());
+				    row = westTg.table.rowAtPoint(e.getPoint()),
+					col = westTg.table.columnAtPoint(e.getPoint());
 				if(row == 0 || col != 0) return;
-				String name = tg.table.getValueAt(row, col).toString();
+				String name = westTg.table.getValueAt(row, col).toString();
+				TeamPO t = TeamListPO.findTeamByShortName(name);
+				new TeamDetailFrame(t, allTeamDataAnalysisFrame.getLocation());
+			}
+		});
+		eastTg.table.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				int 
+				    row = eastTg.table.rowAtPoint(e.getPoint()),
+					col = eastTg.table.columnAtPoint(e.getPoint());
+				if(row == 0 || col != 0) return;
+				String name = eastTg.table.getValueAt(row, col).toString();
 				TeamPO t = TeamListPO.findTeamByShortName(name);
 				new TeamDetailFrame(t, allTeamDataAnalysisFrame.getLocation());
 			}
