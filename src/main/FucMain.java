@@ -39,6 +39,7 @@ public class FucMain {
 		// } catch (Exception e) {
 		// System.err.println("Something went wrong!");
 		// }
+
 		Thread splash = new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -48,11 +49,7 @@ public class FucMain {
 				/* 设置JFrame */
 				GFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				GFrame.setUndecorated(true);
-				//Toolkit kit = Toolkit.getDefaultToolkit();
-				//Dimension screensize = kit.getScreenSize();
-				//int screenheight = screensize.height;
-				//int screenwidth = screensize.width;
-				//GFrame.setLocation(screenwidth / 8, screenheight / 8);
+
 				GFrame.setSize(Config.UI_WIDTH, Config.UI_HEIGHT);
 				GFrame.setLocationRelativeTo(null);
 				GFrame.setVisible(true);
@@ -90,12 +87,7 @@ public class FucMain {
 						Config.TOP_TAB_HEIGHT + Config.INTRODUCTION_WHITE,
 						Config.UI_WIDTH, Config.SELECTION_HEIGHT);
 				frame.setVisible(true);
-//				while (true) {
-//					if ((System.currentTimeMillis() - begin_time) > 3000) {
-//						frame.setVisible(true);
-//						break;
-//					}
-//				}
+
 			}
 		});
 
