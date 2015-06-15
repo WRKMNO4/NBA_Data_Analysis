@@ -90,8 +90,10 @@ public class MatchSelectionPanel extends JPanel {
 	private void changeSeason(Season season) {
 		current_season = season;
 //		ArrayList<MatchPO> ml = MainFrame.mainFrame.bl.getAllMatches(season);
-//		for(int i = 0; i < 10; i ++)
+//		for(int i = 0; i < 10; i ++){
 //			System.out.println(ml.get(i).getFirstTeam());
+//			System.out.println(ml.get(i).getName());
+//		}
 //		System.out.println("__________________________________-");
 		MainFrame.mainFrame.topTabPanel.refreshMatchTable(MainFrame.mainFrame.bl.getAllMatches(season));
 	}

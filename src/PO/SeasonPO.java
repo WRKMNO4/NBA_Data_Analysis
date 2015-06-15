@@ -71,6 +71,7 @@ public class SeasonPO {
 	
 	public void addMatch(MatchPO oneMatch){
 		matches.addMatch(oneMatch);
+		System.out.println(season.toString() + " "+ matches.getSizeOfMatches());
 	}
 	
 	public MatchPO findMatch(String date,String nameOfTeams){

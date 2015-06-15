@@ -25,6 +25,7 @@ public class SeasonListPO {
 		 else
 			 return null;
 	 }
+	 
 	 public static void addMatch(Season season,MatchPO oneMatch){
 		 SeasonPO theSeason = getSeasonPO(season) ;
 		 theSeason.addMatch(oneMatch);
@@ -39,6 +40,7 @@ public class SeasonListPO {
 	 public static ArrayList<MatchPO> getMatchesOfOneSeason(Season season){
 		 SeasonPO theSeason=getSeasonPO(season);
 		 return theSeason.getMatches();
+		 
 	 }
 	 
 	 public static ArrayList<MatchPO> getMatchesOfOneDay(Season season,String date){

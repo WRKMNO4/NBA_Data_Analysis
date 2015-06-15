@@ -134,7 +134,6 @@ public class TeamController implements TeamBusinessLogic{
 		for(TeamPO oneTeam : results)
 			returnResult.add(oneTeam);
 		
-		System.out.println(returnResult.size());
 		return returnResult;
 	}
 
