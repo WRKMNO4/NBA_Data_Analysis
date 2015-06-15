@@ -4,11 +4,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Enum.Season;
+import PO.MatchPO;
 
 import com.kmno4.common.Config;
 import com.kmno4.presentation.button.LMouseAdapter;
@@ -87,6 +89,10 @@ public class MatchSelectionPanel extends JPanel {
 	public Season current_season;
 	private void changeSeason(Season season) {
 		current_season = season;
+//		ArrayList<MatchPO> ml = MainFrame.mainFrame.bl.getAllMatches(season);
+//		for(int i = 0; i < 10; i ++)
+//			System.out.println(ml.get(i).getFirstTeam());
+//		System.out.println("__________________________________-");
 		MainFrame.mainFrame.topTabPanel.refreshMatchTable(MainFrame.mainFrame.bl.getAllMatches(season));
 	}
 	
