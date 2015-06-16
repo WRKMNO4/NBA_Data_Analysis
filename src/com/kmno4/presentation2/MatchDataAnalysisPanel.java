@@ -28,7 +28,7 @@ public class MatchDataAnalysisPanel extends JPanel {
 	public static final int 
 		PADDING = 10,
 		LABEL_HEIGHT = 60,
-		LABEL_WIDTH = 400,
+		LABEL_WIDTH = 300,
 		SELECT_PANEL_HEIGHT = 45,
 		PANEL_HEIGHT = Config.UI_HEIGHT - 2 * PADDING - LABEL_HEIGHT - SELECT_PANEL_HEIGHT,
 		SELECT_LABEL_WIDTH = 120;
