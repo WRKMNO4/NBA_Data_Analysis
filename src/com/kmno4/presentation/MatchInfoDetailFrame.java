@@ -1,13 +1,13 @@
 package com.kmno4.presentation;
 
 import java.awt.Color;
+import java.awt.Point;
 
 import javax.swing.JFrame;
 
 import PO.MatchPO;
 
 import com.alee.laf.WebLookAndFeel;
-import com.kmno4.common.Config;
 import com.kmno4.presentation.button.ExitLabel;
 
 @SuppressWarnings("serial")
@@ -16,8 +16,12 @@ public class MatchInfoDetailFrame extends JFrame {
 	public MatchInfoDetailPanel matchInfoDetailPanel;
 	
 	public MatchInfoDetailFrame(MatchPO matchPO) {
-		setBounds(MainFrame.mainFrame.getX(),
-				MainFrame.mainFrame.getY(),
+		this(matchPO, MainFrame.mainFrame.getLocation());
+	}
+	
+	public MatchInfoDetailFrame(MatchPO matchPO, Point location) {
+		setBounds(location.x,
+				location.y,
 				MainFrame.mainFrame.getWidth(),
 				MainFrame.mainFrame.getHeight());
 		setLayout(null);

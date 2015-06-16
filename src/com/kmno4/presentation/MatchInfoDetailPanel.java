@@ -16,15 +16,17 @@ import PO.TeamListPO;
 import PO.TeamPO;
 
 import com.kmno4.common.Config;
+import com.kmno4.presentation.button.LMouseAdapter;
 import com.kmno4.presentation.table.TableFactory;
 import com.kmno4.presentation.table.TableGroup;
+import com.kmno4.presentation2.MatchDataAnalysisFrame;
 
 @SuppressWarnings("serial")
 public class MatchInfoDetailPanel extends JPanel {
 	public static final ImageIcon MATCH_DETAIL_BACKGROUND=new ImageIcon("images/match_detail_bg.png");
 	
 	private MatchInfoDetailFrame matchInfoDetailFrame;
-	private MatchInfoDetailPanel matchInfoDetailPanel;
+//	private MatchInfoDetailPanel matchInfoDetailPanel;
 	private MainDataPanel mainDataPanel;
 	private TableGroup team1, team2;
 	private JLabel 
@@ -48,7 +50,7 @@ public class MatchInfoDetailPanel extends JPanel {
 	public MatchInfoDetailPanel(MatchPO m, MatchInfoDetailFrame f) {
 
 		matchPO = m;
-		matchInfoDetailPanel = this;
+//		matchInfoDetailPanel = this;
 		matchInfoDetailFrame = f;
 		teamPO1 = TeamListPO.findTeamByShortName(matchPO.getFirstTeam());
 		teamPO2 = TeamListPO.findTeamByShortName(matchPO.getSecondTeam());
@@ -156,6 +158,7 @@ public class MatchInfoDetailPanel extends JPanel {
 	class MainDataPanel extends JPanel {
 		public JLabel team1Logo, team2Logo, vsLabel;
 		public JLabel bg;
+		public JLabel info;
 		public TableGroup mainScore;
 		
 		public MainDataPanel(MatchPO matchPO) {
@@ -195,9 +198,21 @@ public class MatchInfoDetailPanel extends JPanel {
 			mainScore.table.setForeground(Color.white);
 //			PlayerDetailPanel.paintTable(mainScore.table);
 			
-//			bg=new JLabel(Config.DETAIL_BG);
-//			bg.setBounds(0, 0, this.getWidth(), this.getHeight());
-//			add(bg);
+			
+			info = new JLabel("点此查看统计数据对比");
+			info.setForeground(Color.white);
+			info.setFont(new Font("default", 2, 20));
+			info.setBounds(MAIN_DATA_PANEL_HEIGHT + 2 * PADDING,
+					210,
+					250, 30);
+			info.addMouseListener(new LMouseAdapter(matchInfoDetailFrame) {
+				public void mouseClicked(MouseEvent e) {
+					new MatchDataAnalysisFrame(matchPO, matchInfoDetailFrame.getLocation());
+					matchInfoDetailFrame.setVisible(false);
+					matchInfoDetailFrame.dispose();
+				}
+			});
+			add(info);
 			
 		}
 		
