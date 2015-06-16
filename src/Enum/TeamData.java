@@ -4,13 +4,13 @@ public enum TeamData {
 	 teamFullName,
 	 numberOfMatches,
 	 numberOfShooting,  //命中数
-	 numberOfShotAttempt,  
-	 numberOf3_point,
-	 numberOf3_pointAttempt,
+	 numberOfShotAttempt,  //投篮出手数
+	 numberOf3_point, //三分命中数
+	 numberOf3_pointAttempt, //三分出手数
 	 numberOfFreeThrow,   //罚球数
-	 numberOfFreeThrowAttempt,
-	 numberOfAttackRebound, 
-	 numberOfDefenseRebound,
+	 numberOfFreeThrowAttempt, //罚球出手数
+	 numberOfAttackRebound, //进攻回合
+	 numberOfDefenseRebound, //防守回合
 	 numberOfRebound,    //篮板数
 	 numberOfAssist,    //助攻数
 	 numberOfSteal,   //抢断数
@@ -19,19 +19,19 @@ public enum TeamData {
 	 numberOfFoul,   //犯规数
 	 score,
 	 
-	 percentageOfShooting,
-	 percentageOf3_point,
-	 percentageOfFreeThrow,
+	 percentageOfShooting, //投篮命中率
+	 percentageOf3_point, //三分命中率
+	 percentageOfFreeThrow, //罚球命中率
 	 roundOfAttack,   //进攻回合
-	 efficiencyOfAttack,
-	 efficiencyOfDefense,
-	 efficiencyOfRebound,
-	 efficiencyOfSteal,
-	 efficiencyOfAssist,
+	 efficiencyOfAttack, //进攻效率
+	 efficiencyOfDefense, //防守效率
+	 efficiencyOfRebound, // 篮板效率
+	 efficiencyOfSteal, // 抢断效率
+	 efficiencyOfAssist, //助攻效率
 	 
-	 percentageOfWinning,
+	 percentageOfWinning, // 胜率
 	 
-	 efficiencyOfAttackRebound,
-	 efficiencyOfDefenseRebound,
+	 efficiencyOfAttackRebound, //进攻篮板效率
+	 efficiencyOfDefenseRebound, //防守篮板效率
 	 
 }
