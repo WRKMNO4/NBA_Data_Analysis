@@ -192,8 +192,7 @@ public class Config {
 	
 	public static final ImageIcon INTRO_PAGE_BG=new ImageIcon("images/intro_page_bg.png");
 	public static final ImageIcon PLYAER=new ImageIcon("images/player.jpg");
-	
-	public static ArrayList<ImageIcon> motions=new ArrayList<ImageIcon>();
+
 	public static final Icon SPLASH_TITLE=new ImageIcon("images/splash_title.png");
 	public static final Icon SPLASH_BACKGROUND=new ImageIcon("images/splash_bg.png");
 	
@@ -227,13 +226,6 @@ public class Config {
 	public static final ImageIcon DETAIL_BG=new ImageIcon("images/detail_bg.png");
 	public static final ImageIcon NULL=new ImageIcon("images/null.png");
 	public static final ImageIcon HEAD_DETAIL_BG=new ImageIcon("images/detail_head_bg.png");
-	
-	public static ArrayList<ImageIcon> getLoadingMotions(){
-		for(int i=1;i<100;i++){
-			motions.add(new ImageIcon("images/loading_motions/"+i+".png"));	
-		}			
-		return motions;
-	}
 	
 	public static ArrayList<ImageIcon> getPlayers(){
 		ArrayList<ImageIcon> icons=new ArrayList<>();

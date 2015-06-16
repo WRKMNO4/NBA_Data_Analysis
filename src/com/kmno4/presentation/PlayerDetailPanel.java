@@ -227,7 +227,7 @@ public class PlayerDetailPanel extends JPanel {
 			teamLabel = new JLabel();
 			TeamPO tp = TeamListPO.findTeamByShortName(playerPO.getTeam(Config.LASTEST_SEASON));
 			teamLabel.setBounds(450, 80, 80, 80);
-			if(tp.getTeamLogoURL() != null) fillLabel(tp.getTeamLogoURL(), teamLabel, teamLabel.getWidth(), teamLabel.getHeight());
+			if(tp != null && tp.getTeamLogoURL() != null) fillLabel(tp.getTeamLogoURL(), teamLabel, teamLabel.getWidth(), teamLabel.getHeight());
 			add(teamLabel);
 			
 			ballNum = new JLabel(p.getNumber(), JLabel.RIGHT);

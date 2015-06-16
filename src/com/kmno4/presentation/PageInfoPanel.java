@@ -29,14 +29,17 @@ public class PageInfoPanel extends JPanel {
 //	private JLabel circle1,circle2,circle3,circle4;
 	private int circle_num;
 	private int full_circle_x;
-	
+	private ArrayList<ImageIcon> motions;
 	/**
 	 * Create the panel.
 	 */
 	public PageInfoPanel(String pageInfo) {
 		this.setBounds(0, Config.TOP_TAB_HEIGHT, Config.UI_WIDTH, Config.PAGE_INTRO_HEIGHT);
 		this.setLayout(null);		
-		
+		motions = new ArrayList<ImageIcon>();
+		for(int i=1;i<100;i++){
+			motions.add(new ImageIcon("images/loading_motions/"+i+".png"));	
+		}	
 		i=x=y=0;
 		circle_num=0;
 		
@@ -61,7 +64,7 @@ public class PageInfoPanel extends JPanel {
 		super.paintComponent(g);
 		g.drawImage(Config.INTRO_PAGE_BG.getImage(),0, 0, Config.UI_WIDTH, Config.INTRODUCTION_WHITE, null);
 		g.drawImage(players.get(i).getImage(),x,y, null);
-		g.drawImage(Config.getLoadingMotions().get(count).getImage(), FIRST_CIRCLE_X+CIRCLE_X_GAP*circle_num-5,14,20, 20, this);
+		g.drawImage(motions.get(count).getImage(), FIRST_CIRCLE_X+CIRCLE_X_GAP*circle_num-5,14,20, 20, this);
 		g.setColor(Color.WHITE);
 		g.drawLine(0, 40, 1000, 40);
 		drawCircle(g);
