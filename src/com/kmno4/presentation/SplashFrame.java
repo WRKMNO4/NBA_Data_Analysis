@@ -74,10 +74,10 @@ class Runner extends Thread {
     		try {
     			System.out.println(i);
 				panel.repaint();
-				g.drawImage(Config.getLoadingMotions().get(i).getImage(), 400, 300, 
-						Config.getLoadingMotions().get(i).getIconWidth(), 
-						Config.getLoadingMotions().get(i).getIconHeight(), 
-						panel);				
+//				g.drawImage(Config.getLoadingMotions().get(i).getImage(), 400, 300, 
+//						Config.getLoadingMotions().get(i).getIconWidth(), 
+//						Config.getLoadingMotions().get(i).getIconHeight(), 
+//						panel);				
 				sleep(110);
 				i++;
 			} catch (Exception e) {
