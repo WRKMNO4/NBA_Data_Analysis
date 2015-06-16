@@ -339,6 +339,11 @@ public class BLServiceController implements  BLService{
 	public double getEstimatedVarData(PlayerPO player, PlayerData dataType) {
 		return playerController.getEstimatedVarData(player, dataType);
 	}
+
+	@Override
+	public double getMaxDataOfAllTeams(Season season, TeamData dataType, int mark) {
+		return teamController.getMaxDataOfAllTeams(season, dataType, mark);
+	}
 	
 
 	}

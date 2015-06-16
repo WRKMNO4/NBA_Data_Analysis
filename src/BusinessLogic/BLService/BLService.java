@@ -207,6 +207,12 @@ public interface BLService {
 	 * @return
 	 */
 	public double getEstimatedVarData(PlayerPO player, PlayerData dataType);
-	
-	public double getMaxDataOfAllTeams(Season season, TeamData dataType);
+	/**
+	 * 
+	 * @param season 赛季
+	 * @param dataType 数据类型(得分、篮板、抢断、助攻)
+	 * @param mark 标识符：mark=0时，返回最小值；mark=1时，返回平均值；mark=2时，返回最大值。
+	 * @return 选定赛季里所有球队相关数据的相关值。
+	 */
+	public double getMaxDataOfAllTeams(Season season, TeamData dataType, int mark);
 }

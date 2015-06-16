@@ -158,5 +158,44 @@ public class TeamController implements TeamBusinessLogic{
 		}
 		return 0;
 	}
+	@Override
+	public double getMaxDataOfAllTeams(Season season, TeamData dataType, int mark) {
+		ArrayList<TeamPO> teams = TeamListPO.allTeams;
+		double max = 0;
+		double min = 1000;
+		double sum = 0;
+		double tmp = 0;
+		for(TeamPO oneTeam: teams){
+			switch(dataType){
+			case score:	
+				tmp = oneTeam.getSeasonInfo(season).getAverageTeamData().getScore();
+				break;
+			case numberOfRebound:
+				tmp = oneTeam.getSeasonInfo(season).getAverageTeamData().getNumberOfRebound();
+				break;
+			case numberOfAssist:
+				tmp = oneTeam.getSeasonInfo(season).getAverageTeamData().getNumberOfAssist();
+				break;
+			case numberOfSteal:
+				tmp = oneTeam.getSeasonInfo(season).getAverageTeamData().getNumberOfSteal();
+				break;
+			}
+			sum += tmp ;
+			if(tmp > max)
+				max = tmp ;
+			if(tmp < min)
+				min = tmp ;
+		}
+		switch(mark){
+		case 0:
+			return min;
+		case 1:
+			return sum/teams.size();
+		case 2:
+			return max;
+		default:
+			return 0;
+		}
+	}
 	
 }
