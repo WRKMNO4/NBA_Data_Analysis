@@ -50,6 +50,7 @@ public class MatchDataComparePanel extends JPanel {
 	private JLabel team1Name, team2Name;
 	private JFreeChart jfc;
 	private ChartPanel cp;
+	private JLabel[] infos;
 	private TeamPO t1, t2;
 	public MatchDataComparePanel(MatchPO m, MatchDataAnalysisFrame f) {
 		matchPO = m;
