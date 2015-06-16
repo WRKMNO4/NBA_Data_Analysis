@@ -207,4 +207,6 @@ public interface BLService {
 	 * @return
 	 */
 	public double getEstimatedVarData(PlayerPO player, PlayerData dataType);
+	
+	public double getMaxDataOfAllTeams(Season season, TeamData dataType);
 }
